@@ -57,7 +57,7 @@
     <message xmi:type="uml:Message" xmi:id="_vq6j0GBeEeq31cSPSR9mAA" name="11 : generationAssignationFiles()" receiveEvent="_vq7x8GBeEeq31cSPSR9mAA" sendEvent="_vq7K4GBeEeq31cSPSR9mAA"/>
     <message xmi:type="uml:Message" xmi:id="_6G1wIGBeEeq31cSPSR9mAA" name="12 : deliverAssignationFiles()" receiveEvent="_6G2XMWBeEeq31cSPSR9mAA" sendEvent="_6G2XMGBeEeq31cSPSR9mAA"/>
     <message xmi:type="uml:Message" xmi:id="_Q0Nf8GBfEeq31cSPSR9mAA" name="14 : sendMail(&quot;Fiche de services.ods&quot;)" messageSort="asynchCall" receiveEvent="_Q0OHAWBfEeq31cSPSR9mAA" sendEvent="_Q0OHAGBfEeq31cSPSR9mAA"/>
-    <message xmi:type="uml:Message" xmi:id="_shjaoGBoEeqlKqAqks6QXA" name="13 ; quitInterface()" messageSort="reply" receiveEvent="_shuZwGBoEeqlKqAqks6QXA" sendEvent="_shtysGBoEeqlKqAqks6QXA"/>
+    <message xmi:type="uml:Message" xmi:id="_shjaoGBoEeqlKqAqks6QXA" name="13 : quitInterface()" messageSort="reply" receiveEvent="_shuZwGBoEeqlKqAqks6QXA" sendEvent="_shtysGBoEeqlKqAqks6QXA"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_XVBhkGBfEeq31cSPSR9mAA" name="Teacher"/>
   <packagedElement xmi:type="uml:Actor" xmi:id="_b9rHsGBfEeq31cSPSR9mAA" name="Admin" visibility="public"/>
@@ -79,7 +79,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_l3GcIGEpEeqMmJrPvsnLhQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_l3MiwGEpEeqMmJrPvsnLhQ" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_gmQ0oGEpEeqMmJrPvsnLhQ" name="LE">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_gmQ0oGEpEeqMmJrPvsnLhQ" name="CM">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_n1dmQGEpEeqMmJrPvsnLhQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_n1pzgGEpEeqMmJrPvsnLhQ" value="*"/>
