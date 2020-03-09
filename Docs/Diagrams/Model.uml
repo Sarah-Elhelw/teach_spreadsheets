@@ -59,13 +59,87 @@
     <message xmi:type="uml:Message" xmi:id="_Q0Nf8GBfEeq31cSPSR9mAA" name="14 : sendMail(&quot;Fiche de services.ods&quot;)" messageSort="asynchCall" receiveEvent="_Q0OHAWBfEeq31cSPSR9mAA" sendEvent="_Q0OHAGBfEeq31cSPSR9mAA"/>
     <message xmi:type="uml:Message" xmi:id="_shjaoGBoEeqlKqAqks6QXA" name="13 : quitInterface()" messageSort="reply" receiveEvent="_shuZwGBoEeqlKqAqks6QXA" sendEvent="_shtysGBoEeqlKqAqks6QXA"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_XVBhkGBfEeq31cSPSR9mAA" name="Teacher"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_XVBhkGBfEeq31cSPSR9mAA" name="Course">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Yts48GFVEeq7OdFZt-_k0Q" name="Name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_awCkIGFVEeq7OdFZt-_k0Q" name="nbHours_CM">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_fXmlIGFVEeq7OdFZt-_k0Q" name="nbHours_TD">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_jFoWEGFVEeq7OdFZt-_k0Q" name="nbHours_CMTD">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_nhju0GFVEeq7OdFZt-_k0Q" name="nbHours_TP">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_tJ_W8GFVEeq7OdFZt-_k0Q" name="nbHours_CMTP">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_0zjwYGFVEeq7OdFZt-_k0Q" name="nbGroup_TD">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_7Sb4UGFVEeq7OdFZt-_k0Q" name="nbGroup_CMTD">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="__4igwGFVEeq7OdFZt-_k0Q" name="nbGroup_TP">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_FU40sGFWEeq7OdFZt-_k0Q" name="nbGroup_CMTP">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_IixF8GFWEeq7OdFZt-_k0Q" name="StudyYear">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_LQScIGFWEeq7OdFZt-_k0Q" name="semester">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+  </packagedElement>
   <packagedElement xmi:type="uml:Actor" xmi:id="_b9rHsGBfEeq31cSPSR9mAA" name="Admin" visibility="public"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_wsm04GBfEeq31cSPSR9mAA" name="GUIPref"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_6sn5gGEpEeqMmJrPvsnLhQ" name="Course"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6sn5gGEpEeqMmJrPvsnLhQ" name="Teacher">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_yLGaAGFNEeq7OdFZt-_k0Q" name="LastName">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_2J0SUGFNEeq7OdFZt-_k0Q" name="FirstName">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_5KmiwGFNEeq7OdFZt-_k0Q" name="Address">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_7-SyYGFNEeq7OdFZt-_k0Q" name="PostCode">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="__guXUGFNEeq7OdFZt-_k0Q" name="City">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_EKzg0GFOEeq7OdFZt-_k0Q" name="PersonalPhone">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_a_bSsGFPEeq7OdFZt-_k0Q" name="MobilePhone">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_d88zwGFPEeq7OdFZt-_k0Q" name="PersonaEmail">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_hWe7YGFPEeq7OdFZt-_k0Q" name="DauphineEmail">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_kecx4GFPEeq7OdFZt-_k0Q" name="Status">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_oJ5I4GFPEeq7OdFZt-_k0Q" name="DauphinePhoneNumbe">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_q93FUGFPEeq7OdFZt-_k0Q" name="Office">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+  </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="__FiFYGEnEeqMmJrPvsnLhQ" name="Cassignment" visibility="package">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_q-WX4mErEeqMmJrPvsnLhQ" name="Selectedcourse" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_q-TUkGErEeqMmJrPvsnLhQ"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_t5f6Y2ErEeqMmJrPvsnLhQ" name="Assignedteachers" type="_XVBhkGBfEeq31cSPSR9mAA" association="_t5f6YGErEeqMmJrPvsnLhQ">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_q-WX4mErEeqMmJrPvsnLhQ" name="Selectedcourse" type="_XVBhkGBfEeq31cSPSR9mAA" association="_q-TUkGErEeqMmJrPvsnLhQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_t5f6Y2ErEeqMmJrPvsnLhQ" name="Assignedteachers" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_t5f6YGErEeqMmJrPvsnLhQ">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_t5f6ZGErEeqMmJrPvsnLhQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_t5f6ZWErEeqMmJrPvsnLhQ" value="*"/>
     </ownedAttribute>
@@ -84,7 +158,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_n1dmQGEpEeqMmJrPvsnLhQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_n1pzgGEpEeqMmJrPvsnLhQ" value="*"/>
     </ownedAttribute>
-    <nestedClassifier xmi:type="uml:Association" xmi:id="_q-TUkGErEeqMmJrPvsnLhQ" visibility="package" memberEnd="_q-WX4mErEeqMmJrPvsnLhQ _q_QW0mErEeqMmJrPvsnLhQ">
+    <nestedClassifier xmi:type="uml:Association" xmi:id="_q-TUkGErEeqMmJrPvsnLhQ" visibility="public" memberEnd="_q-WX4mErEeqMmJrPvsnLhQ _q_QW0mErEeqMmJrPvsnLhQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_q-WX4GErEeqMmJrPvsnLhQ" source="org.eclipse.papyrus">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_q-WX4WErEeqMmJrPvsnLhQ" key="nature" value="UML_Nature"/>
       </eAnnotations>
@@ -191,4 +265,47 @@
   <packagedElement xmi:type="uml:Usage" xmi:id="_dEXB4GEuEeqMmJrPvsnLhQ" client="_pvnpAGEtEeqMmJrPvsnLhQ" supplier="_toDTIGEtEeqMmJrPvsnLhQ"/>
   <packagedElement xmi:type="uml:Usage" xmi:id="_eFEQ8GEuEeqMmJrPvsnLhQ" client="_pvnpAGEtEeqMmJrPvsnLhQ" supplier="_23O_gGEtEeqMmJrPvsnLhQ"/>
   <packagedElement xmi:type="uml:Usage" xmi:id="_e0BosGEuEeqMmJrPvsnLhQ" client="_pvnpAGEtEeqMmJrPvsnLhQ" supplier="_G2PZ4GEuEeqMmJrPvsnLhQ"/>
+  <packagedElement xmi:type="uml:AssociationClass" xmi:id="_bv1kcGIqEeq7OdFZt-_k0Q" name="CoursePref" visibility="public" memberEnd="_bv2LgmIqEeq7OdFZt-_k0Q _bv2ykGIqEeq7OdFZt-_k0Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bv2LgGIqEeq7OdFZt-_k0Q" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bv2LgWIqEeq7OdFZt-_k0Q" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_wKdOgGIqEeq7OdFZt-_k0Q" name="CM_pref" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_zlubgGIqEeq7OdFZt-_k0Q" name="TD_pref" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_1Kzi8GIqEeq7OdFZt-_k0Q" name="CMTD_pref" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_2OnJUGIqEeq7OdFZt-_k0Q" name="nbGrCM_pref" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_4cy4IGIqEeq7OdFZt-_k0Q" name="TP_pref" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_5h8iUGIqEeq7OdFZt-_k0Q" name="CMTP_pref" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_8KZyUGIqEeq7OdFZt-_k0Q" name="nbGrCMTD_pref" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_9i090GIqEeq7OdFZt-_k0Q" name="nbGrTD_pref" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="__xcKcGIqEeq7OdFZt-_k0Q" name="nbGrTP_pref" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_A6XhYGIrEeq7OdFZt-_k0Q" name="nbGrCMTP_pref" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_bv2LgmIqEeq7OdFZt-_k0Q" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_bv2ykGIqEeq7OdFZt-_k0Q" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KB-vkGFOEeq7OdFZt-_k0Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KCBL0GFOEeq7OdFZt-_k0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
 </uml:Model>
