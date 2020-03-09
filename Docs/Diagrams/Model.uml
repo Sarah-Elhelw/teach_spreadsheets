@@ -77,28 +77,21 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_nhju0GFVEeq7OdFZt-_k0Q" name="nbHours_TP">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_tJ_W8GFVEeq7OdFZt-_k0Q" name="nbHours_CMTP">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_0zjwYGFVEeq7OdFZt-_k0Q" name="nbGroup_TD">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_0zjwYGFVEeq7OdFZt-_k0Q" name="nbGroups">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_7Sb4UGFVEeq7OdFZt-_k0Q" name="nbGroup_CMTD">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="__4igwGFVEeq7OdFZt-_k0Q" name="nbGroup_TP">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_FU40sGFWEeq7OdFZt-_k0Q" name="nbGroup_CMTP">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_IixF8GFWEeq7OdFZt-_k0Q" name="StudyYear">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zaeJkGIxEeq7OdFZt-_k0Q"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zaibAGIxEeq7OdFZt-_k0Q" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_LQScIGFWEeq7OdFZt-_k0Q" name="semester">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_XCvjYGJPEeqlsr4MCrU1qg" name="apogeeCode">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_d25XwGJPEeqlsr4MCrU1qg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_d3ChsGJPEeqlsr4MCrU1qg" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Actor" xmi:id="_b9rHsGBfEeq31cSPSR9mAA" name="Admin" visibility="public"/>
@@ -283,7 +276,7 @@
   <packagedElement xmi:type="uml:Usage" xmi:id="_dEXB4GEuEeqMmJrPvsnLhQ" client="_pvnpAGEtEeqMmJrPvsnLhQ" supplier="_toDTIGEtEeqMmJrPvsnLhQ"/>
   <packagedElement xmi:type="uml:Usage" xmi:id="_eFEQ8GEuEeqMmJrPvsnLhQ" client="_pvnpAGEtEeqMmJrPvsnLhQ" supplier="_23O_gGEtEeqMmJrPvsnLhQ"/>
   <packagedElement xmi:type="uml:Usage" xmi:id="_e0BosGEuEeqMmJrPvsnLhQ" client="_pvnpAGEtEeqMmJrPvsnLhQ" supplier="_G2PZ4GEuEeqMmJrPvsnLhQ"/>
-  <packagedElement xmi:type="uml:AssociationClass" xmi:id="_bv1kcGIqEeq7OdFZt-_k0Q" name="CoursePref" visibility="public" memberEnd="_bv2LgmIqEeq7OdFZt-_k0Q _bv2ykGIqEeq7OdFZt-_k0Q">
+  <packagedElement xmi:type="uml:AssociationClass" xmi:id="_bv1kcGIqEeq7OdFZt-_k0Q" name="CoursePref" visibility="package" memberEnd="_bv2LgmIqEeq7OdFZt-_k0Q _bv2ykGIqEeq7OdFZt-_k0Q">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bv2LgGIqEeq7OdFZt-_k0Q" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bv2LgWIqEeq7OdFZt-_k0Q" key="nature" value="UML_Nature"/>
     </eAnnotations>
@@ -302,31 +295,15 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SLE6kGIzEeq7OdFZt-_k0Q"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SLIk8GIzEeq7OdFZt-_k0Q" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_2OnJUGIqEeq7OdFZt-_k0Q" name="nbGrCM_pref" visibility="public">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-    </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_4cy4IGIqEeq7OdFZt-_k0Q" name="TP_pref" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TJwJUGIzEeq7OdFZt-_k0Q"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TJzzsGIzEeq7OdFZt-_k0Q" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_5h8iUGIqEeq7OdFZt-_k0Q" name="CMTP_pref" visibility="public">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UH2wUGIzEeq7OdFZt-_k0Q"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UH6asGIzEeq7OdFZt-_k0Q" value="*"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_8KZyUGIqEeq7OdFZt-_k0Q" name="nbGrCMTD_pref" visibility="public">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_8KZyUGIqEeq7OdFZt-_k0Q" name="nbGr_pref" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_9i090GIqEeq7OdFZt-_k0Q" name="nbGrTD_pref" visibility="public">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="__xcKcGIqEeq7OdFZt-_k0Q" name="nbGrTP_pref" visibility="public">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-    </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_A6XhYGIrEeq7OdFZt-_k0Q" name="nbGrCMTP_pref" visibility="public">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_1P7TsGJPEeqlsr4MCrU1qg" name="Property14"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_bv2LgmIqEeq7OdFZt-_k0Q" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_bv2ykGIqEeq7OdFZt-_k0Q" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
   </packagedElement>
