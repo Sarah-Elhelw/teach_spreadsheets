@@ -62,10 +62,10 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_XVBhkGBfEeq31cSPSR9mAA" name="Course">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_Yts48GFVEeq7OdFZt-_k0Q" name="Name" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eii4cGIxEeq7OdFZt-_k0Q"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eio_EGIxEeq7OdFZt-_k0Q" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NY2dcGL-Eeq5naQLXXrJOA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NZL0oGL-Eeq5naQLXXrJOA" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_awCkIGFVEeq7OdFZt-_k0Q" name="nbHours_CM">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_awCkIGFVEeq7OdFZt-_k0Q" name="nbHours_CM" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_fXmlIGFVEeq7OdFZt-_k0Q" name="nbHours_TD">
@@ -97,7 +97,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zaeJkGIxEeq7OdFZt-_k0Q"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zaibAGIxEeq7OdFZt-_k0Q" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_LQScIGFWEeq7OdFZt-_k0Q" name="semester">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_LQScIGFWEeq7OdFZt-_k0Q" name="semester" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
     </ownedAttribute>
   </packagedElement>
