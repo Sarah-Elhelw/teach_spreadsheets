@@ -171,10 +171,10 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7NVocGXgEeqCdskTbpd-jA"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7MhwIGXgEeqCdskTbpd-jA" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_q-WX4mErEeqMmJrPvsnLhQ" name="Selectedcourse" visibility="private" type="_XVBhkGBfEeq31cSPSR9mAA" association="_q-TUkGErEeqMmJrPvsnLhQ"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_t5f6Y2ErEeqMmJrPvsnLhQ" name="Assignedteachers" visibility="private" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_t5f6YGErEeqMmJrPvsnLhQ">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_t5f6ZGErEeqMmJrPvsnLhQ"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_t5f6ZWErEeqMmJrPvsnLhQ" value="*"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_NUqdwGYvEeq1l4TbAAFJpQ" name="SelectedCourse" type="_XVBhkGBfEeq31cSPSR9mAA"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_SujTkGYvEeq1l4TbAAFJpQ" name="assignedTeachers" type="_6sn5gGEpEeqMmJrPvsnLhQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_U82XIGYvEeq1l4TbAAFJpQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_U89E0GYvEeq1l4TbAAFJpQ" value="*"/>
     </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_OK4MUGXoEeqCdskTbpd-jA" name="set_course">
       <ownedParameter xmi:type="uml:Parameter" xmi:id="_OK4MUWXoEeqCdskTbpd-jA" name="Course" type="_XVBhkGBfEeq31cSPSR9mAA"/>
@@ -198,6 +198,7 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_q-WX4WErEeqMmJrPvsnLhQ" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_q_QW0mErEeqMmJrPvsnLhQ" name="cassignment" type="__FiFYGEnEeqMmJrPvsnLhQ" association="_q-TUkGErEeqMmJrPvsnLhQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_q-WX4mErEeqMmJrPvsnLhQ" name="Selectedcourse" visibility="private" type="_XVBhkGBfEeq31cSPSR9mAA" association="_q-TUkGErEeqMmJrPvsnLhQ"/>
     </nestedClassifier>
     <nestedClassifier xmi:type="uml:Association" xmi:id="_t5f6YGErEeqMmJrPvsnLhQ" memberEnd="_t5f6Y2ErEeqMmJrPvsnLhQ _t5f6ZmErEeqMmJrPvsnLhQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_t5f6YWErEeqMmJrPvsnLhQ" source="org.eclipse.papyrus">
@@ -206,6 +207,10 @@
       <ownedEnd xmi:type="uml:Property" xmi:id="_t5f6ZmErEeqMmJrPvsnLhQ" name="cassignment" type="__FiFYGEnEeqMmJrPvsnLhQ" association="_t5f6YGErEeqMmJrPvsnLhQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zFNqwGXgEeqCdskTbpd-jA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zEstYGXgEeqCdskTbpd-jA" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_t5f6Y2ErEeqMmJrPvsnLhQ" name="Assignedteachers" visibility="private" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_t5f6YGErEeqMmJrPvsnLhQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_t5f6ZGErEeqMmJrPvsnLhQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_t5f6ZWErEeqMmJrPvsnLhQ" value="*"/>
       </ownedEnd>
     </nestedClassifier>
   </packagedElement>
@@ -352,9 +357,9 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="__0QREGIuEeq7OdFZt-_k0Q" name="test"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_uKK60GXlEeqCdskTbpd-jA" name="Assignment" visibility="public">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_F6_EoGXmEeqCdskTbpd-jA" name="cassignment" visibility="private" type="__FiFYGEnEeqMmJrPvsnLhQ" association="_F68oYGXmEeqCdskTbpd-jA">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_F7Bg4GXmEeqCdskTbpd-jA"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_F7D9IGXmEeqCdskTbpd-jA" value="*"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Yoh-sGYvEeq1l4TbAAFJpQ" name="cAssignment" type="__FiFYGEnEeqMmJrPvsnLhQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mWlDEGYvEeq1l4TbAAFJpQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mWsX0GYvEeq1l4TbAAFJpQ" value="*"/>
     </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_YwwJYGXpEeqCdskTbpd-jA" name="add_assignment">
       <ownedParameter xmi:type="uml:Parameter" xmi:id="_YwwJYWXpEeqCdskTbpd-jA" name="assignment" type="__FiFYGEnEeqMmJrPvsnLhQ"/>
@@ -366,6 +371,10 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_F6-dkGXmEeqCdskTbpd-jA" key="nature" value="UML_Nature"/>
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_F7GZYGXmEeqCdskTbpd-jA" name="assignment" type="_uKK60GXlEeqCdskTbpd-jA" association="_F68oYGXmEeqCdskTbpd-jA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_F6_EoGXmEeqCdskTbpd-jA" name="cassignment" visibility="private" type="__FiFYGEnEeqMmJrPvsnLhQ" association="_F68oYGXmEeqCdskTbpd-jA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_F7Bg4GXmEeqCdskTbpd-jA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_F7D9IGXmEeqCdskTbpd-jA" value="*"/>
+    </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_0YeooGYQEeqq2pYv3YMNcA" name="CalcData">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_Sy9_sGYSEeqq2pYv3YMNcA" name="teachers" visibility="private" type="_6sn5gGEpEeqMmJrPvsnLhQ">
