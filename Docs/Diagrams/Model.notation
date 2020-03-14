@@ -573,6 +573,10 @@
           <element xmi:type="uml:Operation" href="Model.uml#_3puhgGYREeqq2pYv3YMNcA"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_3qldIWYREeqq2pYv3YMNcA"/>
         </children>
+        <children xmi:type="notation:Shape" xmi:id="_gxXUwGY0EeqpC8Ch8Sz5hw" type="Operation_ClassOperationLabel">
+          <element xmi:type="uml:Operation" href="Model.uml#_gvXwsGY0EeqpC8Ch8Sz5hw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_gxXUwWY0EeqpC8Ch8Sz5hw"/>
+        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_0Yi6FmYQEeqq2pYv3YMNcA"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_0Yi6F2YQEeqq2pYv3YMNcA"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_0Yi6GGYQEeqq2pYv3YMNcA"/>
@@ -719,11 +723,11 @@
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="__XIHg2YQEeqq2pYv3YMNcA" type="Association_TargetRoleLabel">
         <styles xmi:type="notation:BooleanValueStyle" xmi:id="_I_9qAGYREeqq2pYv3YMNcA" name="IS_UPDATED_POSITION" booleanValue="true"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="__XIHhGYQEeqq2pYv3YMNcA" x="29" y="-18"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="__XIHhGYQEeqq2pYv3YMNcA" x="-8" y="-25"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="__XIHhWYQEeqq2pYv3YMNcA" type="Association_SourceRoleLabel">
         <styles xmi:type="notation:BooleanValueStyle" xmi:id="_JAgckGYREeqq2pYv3YMNcA" name="IS_UPDATED_POSITION" booleanValue="true"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="__XIHhmYQEeqq2pYv3YMNcA" x="-29" y="19"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="__XIHhmYQEeqq2pYv3YMNcA" x="17" y="26"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="__XIHh2YQEeqq2pYv3YMNcA" type="Association_SourceMultiplicityLabel">
         <styles xmi:type="notation:BooleanValueStyle" xmi:id="_JBCoEGYREeqq2pYv3YMNcA" name="IS_UPDATED_POSITION" booleanValue="true"/>
