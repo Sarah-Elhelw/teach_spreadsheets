@@ -171,8 +171,8 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7NVocGXgEeqCdskTbpd-jA"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7MhwIGXgEeqCdskTbpd-jA" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_NUqdwGYvEeq1l4TbAAFJpQ" name="SelectedCourse" type="_XVBhkGBfEeq31cSPSR9mAA"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_SujTkGYvEeq1l4TbAAFJpQ" name="assignedTeachers" type="_6sn5gGEpEeqMmJrPvsnLhQ">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_NUqdwGYvEeq1l4TbAAFJpQ" name="SelectedCourse" visibility="private" type="_XVBhkGBfEeq31cSPSR9mAA"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_SujTkGYvEeq1l4TbAAFJpQ" name="assignedTeachers" visibility="private" type="_6sn5gGEpEeqMmJrPvsnLhQ">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_U82XIGYvEeq1l4TbAAFJpQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_U89E0GYvEeq1l4TbAAFJpQ" value="*"/>
     </ownedAttribute>
@@ -357,7 +357,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="__0QREGIuEeq7OdFZt-_k0Q" name="test"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_uKK60GXlEeqCdskTbpd-jA" name="Assignment" visibility="public">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_Yoh-sGYvEeq1l4TbAAFJpQ" name="cAssignment" type="__FiFYGEnEeqMmJrPvsnLhQ">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Yoh-sGYvEeq1l4TbAAFJpQ" name="cAssignment" visibility="private" type="__FiFYGEnEeqMmJrPvsnLhQ">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mWlDEGYvEeq1l4TbAAFJpQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mWsX0GYvEeq1l4TbAAFJpQ" value="*"/>
     </ownedAttribute>
