@@ -15,3 +15,5 @@ We divided the work as follows:
 * The trinomial comprising Mike SANTANGELO, Inès DRAREDJA and Semida BUZDUGAN worked on: 
 
 ** the classes *Course*, *Teacher*, *CoursePref* and *CalcData* in the class diagram *Class_assignment*. 
+
+** Mike SANTANGELO, Inès DRAREDJA and Semida BUZDUGAN participated to the various doc/readme files
