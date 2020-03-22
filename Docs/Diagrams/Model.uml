@@ -367,10 +367,7 @@
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_0YeooGYQEeqq2pYv3YMNcA" name="CalcData">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_Sy9_sGYSEeqq2pYv3YMNcA" name="teachers" visibility="private" type="_6sn5gGEpEeqMmJrPvsnLhQ">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZycTQGYSEeqq2pYv3YMNcA"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZyjA8GYSEeqq2pYv3YMNcA" value="*"/>
-    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Sy9_sGYSEeqq2pYv3YMNcA" name="teachers" visibility="private" type="_6sn5gGEpEeqMmJrPvsnLhQ"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_ct-3UGYSEeqq2pYv3YMNcA" name="courses" visibility="private" type="_XVBhkGBfEeq31cSPSR9mAA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_n0tUIGYSEeqq2pYv3YMNcA"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_n0zawGYSEeqq2pYv3YMNcA" value="*"/>
@@ -379,14 +376,14 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qj1z4GYSEeqq2pYv3YMNcA"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qj5eQGYSEeqq2pYv3YMNcA" value="*"/>
     </ownedAttribute>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_3puhgGYREeqq2pYv3YMNcA" name="populateDataFromCalc">
-      <ownedParameter xmi:type="uml:Parameter" xmi:id="_EElfsGYSEeqq2pYv3YMNcA" name="filePath">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_3puhgGYREeqq2pYv3YMNcA" name="populateData">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_EElfsGYSEeqq2pYv3YMNcA" name="data">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedParameter>
     </ownedOperation>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_gvXwsGY0EeqpC8Ch8Sz5hw" name="populateDataFromJSON">
-      <ownedParameter xmi:type="uml:Parameter" xmi:id="_nxP4AGY0EeqpC8Ch8Sz5hw" name="jsonPath">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_o1DIkGwtEeqdw6kasHCXew" name="getData">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_udq98GwtEeqdw6kasHCXew" name="filePath">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
@@ -419,6 +416,16 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dSJw0GYREeqq2pYv3YMNcA" value="*"/>
     </ownedEnd>
     <ownedEnd xmi:type="uml:Property" xmi:id="_BJk8kGYREeqq2pYv3YMNcA" name="CalcData" type="_0YeooGYQEeqq2pYv3YMNcA" association="_BJjHYGYREeqq2pYv3YMNcA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_a4w-cGwuEeqdw6kasHCXew" name="AggregatedData"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_C3gvcGwvEeqdw6kasHCXew" memberEnd="_C3h9kWwvEeqdw6kasHCXew _C3ikoGwvEeqdw6kasHCXew">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_C3hWgGwvEeqdw6kasHCXew" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_C3h9kGwvEeqdw6kasHCXew" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_C3ikoGwvEeqdw6kasHCXew" name="calcdata" type="_0YeooGYQEeqq2pYv3YMNcA" aggregation="shared" association="_C3gvcGwvEeqdw6kasHCXew">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FL-FYGwvEeqdw6kasHCXew" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_C3h9kWwvEeqdw6kasHCXew" name="aggregatedata" type="_a4w-cGwuEeqdw6kasHCXew" association="_C3gvcGwvEeqdw6kasHCXew"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KB-vkGFOEeq7OdFZt-_k0Q">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KCBL0GFOEeq7OdFZt-_k0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
