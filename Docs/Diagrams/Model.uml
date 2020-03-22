@@ -391,10 +391,7 @@
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__Wf1YGYQEeqq2pYv3YMNcA" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__Wf1YWYQEeqq2pYv3YMNcA" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="__Wf1YmYQEeqq2pYv3YMNcA" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="__WenQGYQEeqq2pYv3YMNcA">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XZWxcGYREeqq2pYv3YMNcA"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XZfUUGYREeqq2pYv3YMNcA" value="*"/>
-    </ownedEnd>
+    <ownedEnd xmi:type="uml:Property" xmi:id="__Wf1YmYQEeqq2pYv3YMNcA" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="__WenQGYQEeqq2pYv3YMNcA"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="__WgccGYQEeqq2pYv3YMNcA" name="CalcData" type="_0YeooGYQEeqq2pYv3YMNcA" association="__WenQGYQEeqq2pYv3YMNcA"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_AbkAAGYREeqq2pYv3YMNcA" memberEnd="_AblOIWYREeqq2pYv3YMNcA _Abl1MGYREeqq2pYv3YMNcA">
