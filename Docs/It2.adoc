@@ -1,0 +1,19 @@
+= Iteration 2 UML 
+
+The aim of this iteration is to correct and improve UML Iteration 1 by taking into consideration Mr. Cailloux’s remarks. 
+
+We kept the same division of the work as for iteration 1. 
+
+Here is the list of the modifications that were made by each one : 
+
+* The duo comprising Hedi GUEDIDI and Sarah EL HELW divided the corrections as follows: 
+
+** Sarah EL HELW took care of the sequence diagram : 
+
+*** In the *“Seq_diagram_Global_project”* diagram, she took off the numbers in the messages and changed the names of some messages in order to find more correspondance with the class diagram “Class_assignment”. The messages in the diagram were rethought to adapt to the evolution the group wants to give to the project ; hence, it contains a reference to the other sequence diagram “Seq_diagram_Assignment” that details, separately, the assignment process. 
+
+*** The *“Seq_diagram_Assignment”* diagram is a new diagram. It gives a broad description of the assignment process as the team imagines it now. 
+
+ 
+
+Each member of the team completed the various documentation files. 

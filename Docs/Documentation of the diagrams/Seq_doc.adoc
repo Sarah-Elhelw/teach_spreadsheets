@@ -1,0 +1,17 @@
+= Sequence diagrams doc :
+
+For the UML Iteration 2, we decided to realize two sequence diagrams. 
+
+== First diagram : “Seq_diagram_Global_project” 
+
+image::DiagramImages\Diag_Sequence_1.JPG[width="700", height="500]
+
+The idea of this diagram is to present a global view of our project. The program starts by receiving all the files “AA-Saisie voeux 2016-2017.ods” already completed by each teacher. populateData() is the function used to register in a variable of type CalcData the information read in the files “AA-Saisie voeux 2016-2017.ods”. Hedi GUEDIDI and Sarah EL HELW will have to implement this function in the first java iteration. Then, once all the data caught and ordered in variables, the program can generate a file similar to “Fichier Agrégé.pdf” that summarizes thus all the files “AA-Saisie voeux 2016-2017.ods” loaded.  For the first java iteration, Semida BUZDUGAN will have to implement generateAggregatedDataFile() that writes in a Calc to produce a document similar to “Fichier Agrégé.pdf” given in the subject. The Admin receives the Calc file created by the function generateAggregatedDataFile(). 
+
+If desired by the Admin, our program can end with the generation of the aggregated file. Else, if required by the Admin, our program can continue to help the admin make an assignment. The Assignment process is described in the second sequence diagram (“Seq_diagram_Assignment”). In order to have a clear and not overloaded diagram, we decided to create a second diagram and put a reference to it in the first one. Unfortunately, we failed in making a double-clic on the Interaction Use work. 
+
+== Second diagram : “Seq_diagram_Assignment” 
+
+image::DiagramImages\Diag_Sequence_2.JPG[width="700", height="500]
+
+The idea of this diagram is to present a focus on the assignment process. All the methods used in the messages are meant to evolve later in our project, for now, they simply allow us to describe the principle of our program. We renounced to produce a function that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers (for example, we are thinking of a decrementation of the number of teaching hours for a teacher assigned to a class and displaying it to the Admin). As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (like “services MIDO.ods”, “Fiche de service” and “Fichier agrégé.pdf” fully completed). The Admin will receive all these files and will send the “Fiche de service” specific to each teacher. 
