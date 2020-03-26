@@ -1,6 +1,6 @@
 = Use case diagram doc :
 
-image::DiagramImages\Diag_Class_1.png[width="600", height="770"]
+image::DiagramImages\Diag_Class_1.png[width="600", height="800"]
 
 The *Assignment* class represents the result of the affectation processus.It contains references to *CourseAssignment* class.The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers.The *TeacherAssignment* class stores the number of TD,TP,CM groups assigned to one teacher in the selected course. +
 
