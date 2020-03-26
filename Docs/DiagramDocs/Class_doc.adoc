@@ -6,7 +6,7 @@ for this course we have a list of assigned teachers to this course (Assignedteac
 TD,TP and CM represent respectivelly the number of hours assigned to each teacher. +
 for example Assignedteachers[0] will teach TD[0] hours of TD,TP[0] hours of TP and CM[0] hours of "cours magistral" for the Selectedcourse. +
 This global assignment will be a list of Cassignment (one instance of Cassignment per course)stored in the class *Assignment*. +
-NOTE: For all our lists we're thinking of using  LinkedList type.
+NOTE: For all our lists we're thinking of using ArrayList or ImmutableList.
 
 CalcData represents the data that we can get from the files that the university gives us. The function populateData takes in parameter the file path from a file that contains informations, and populates the variables coursePrefs, teachers and courses.
 The classes Course, Teacher and CoursePref are used in that matter.
