@@ -5,7 +5,8 @@ The aim of this project is to read teacher’s preferences to assign them to stu
 
 == Global idea of the project 
 
-The way we imagine the process of assignment is described in the sequence diagram “Seq_diagram_Global_project”. 
+The way we imagine the process of assignment is described in the link:Docs\DiagramDocs\Seq_doc.adoc[sequence diagram]. +
+The classes that we plan to implement are described in the link:Docs\DiagramDocs\Class_doc.adoc[class diagram].
 
 == First java iteration 
 

@@ -14,6 +14,4 @@ Here is the list of the modifications that were made by each one :
 
 *** The *“Seq_diagram_Assignment”* diagram is a new diagram. It gives a broad description of the assignment process as the team imagines it now. 
 
- 
-
 Each member of the team completed the various documentation files. 

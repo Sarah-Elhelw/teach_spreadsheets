@@ -1,12 +1,8 @@
 = Use case diagram doc :
 
+image::DiagramImages\Diag_Class_1.png[width="700", height="500]
 
-The class Cassignment represents the assignment of *only one course*. +
-for this course we have a list of assigned teachers to this course (Assignedteachers). +
-TD,TP and CM represent respectivelly the number of hours assigned to each teacher. +
-for example Assignedteachers[0] will teach TD[0] hours of TD,TP[0] hours of TP and CM[0] hours of "cours magistral" for the Selectedcourse. +
-This global assignment will be a list of Cassignment (one instance of Cassignment per course)stored in the class *Assignment*. +
-NOTE: For all our lists we're thinking of using ArrayList or ImmutableList.
+The *Assignment* class represents the result of the affectation processus.It contains references to *CourseAssignment* class.The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers.The *TeacherAssignment* class stores the number of TD,TP,CM groups assigned to one teacher in the selected course. +
 
 CalcData represents the data that we can get from the files that the university gives us. The function populateData takes in parameter the file path from a file that contains informations, and populates the variables coursePrefs, teachers and courses.
 The classes Course, Teacher and CoursePref are used in that matter.
