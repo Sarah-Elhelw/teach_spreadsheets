@@ -11,4 +11,4 @@ NOTE: For all our lists we're thinking of using  LinkedList type.
 CalcData represents the data that we can get from the files that the university gives us. The function populateData takes in parameter the file path from a file that contains informations, and populates the variables coursePrefs, teachers and courses.
 The classes Course, Teacher and CoursePref are used in that matter.
 CoursePref represents preferences from a teacher for a specified course.
-We'll add getters and setters in the classes as we work on them because it's hard to know exactly what we will need.
+We'll add getters in the classes as we work on them because it's hard to know exactly what we will need.
