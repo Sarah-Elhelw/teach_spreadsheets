@@ -23,15 +23,15 @@
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_wb_i0GBbEeq31cSPSR9mAA" name="Message22ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_wb-7wGBbEeq31cSPSR9mAA"/>
     <fragment xmi:type="uml:CombinedFragment" xmi:id="_gS0fcG63EeqpHbxk__FH3A" name="CombinedFragment44" covered="_N7rl4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA" interactionOperator="loop">
       <operand xmi:type="uml:InteractionOperand" xmi:id="_roxrEG63EeqpHbxk__FH3A" name="InteractionOperand2" covered="_N7rl4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA">
-        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_G0kR4GBdEeq31cSPSR9mAA" name="Message28SendEvent" covered="_N7rl4GBaEeq31cSPSR9mAA" message="_G0jq0GBdEeq31cSPSR9mAA"/>
-        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_G0kR4WBdEeq31cSPSR9mAA" name="Message28ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_G0jq0GBdEeq31cSPSR9mAA"/>
-        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_G-8LUGBcEeq31cSPSR9mAA" name="Message25SendEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_G-7kQGBcEeq31cSPSR9mAA"/>
-        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_G-8LUWBcEeq31cSPSR9mAA" name="Message25ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_G-7kQGBcEeq31cSPSR9mAA"/>
         <guard xmi:type="uml:InteractionConstraint" xmi:id="_roy5MG63EeqpHbxk__FH3A" name="guard">
           <specification xmi:type="uml:LiteralString" xmi:id="_6kdnQG63EeqpHbxk__FH3A" name="constraintLoop1" value="teacherWishToBeLoaded()"/>
         </guard>
       </operand>
     </fragment>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_G0kR4GBdEeq31cSPSR9mAA" name="Message28SendEvent" covered="_N7rl4GBaEeq31cSPSR9mAA" message="_G0jq0GBdEeq31cSPSR9mAA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_G0kR4WBdEeq31cSPSR9mAA" name="Message28ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_G0jq0GBdEeq31cSPSR9mAA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_G-8LUGBcEeq31cSPSR9mAA" name="Message25SendEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_G-7kQGBcEeq31cSPSR9mAA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_G-8LUWBcEeq31cSPSR9mAA" name="Message25ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_G-7kQGBcEeq31cSPSR9mAA"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_d1dPgG6TEeqIeI1UFw-5OA" name="Message35SendEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_d1V6wG6TEeqIeI1UFw-5OA"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_d1dPgW6TEeqIeI1UFw-5OA" name="Message35ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_d1V6wG6TEeqIeI1UFw-5OA"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_FosUEW6UEeqIeI1UFw-5OA" name="Message38SendEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_FosUEG6UEeqIeI1UFw-5OA"/>
@@ -105,16 +105,16 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_7-SyYGFNEeq7OdFZt-_k0Q" name="postCode" visibility="private">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="__guXUGFNEeq7OdFZt-_k0Q" name="city" visibility="private">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_EKzg0GFOEeq7OdFZt-_k0Q" name="personalPhone" visibility="private">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_a_bSsGFPEeq7OdFZt-_k0Q" name="mobilePhone" visibility="private">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_d88zwGFPEeq7OdFZt-_k0Q" name="personalEmail" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -126,7 +126,7 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_oJ5I4GFPEeq7OdFZt-_k0Q" name="dauphinePhoneNumber" visibility="private">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_q93FUGFPEeq7OdFZt-_k0Q" name="office" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -138,30 +138,13 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UZCtcG9ZEeqks-MRezUMyA" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_NUkoUm9dEeqks-MRezUMyA" name="selectedCourse" type="_XVBhkGBfEeq31cSPSR9mAA" association="_NUkBQG9dEeqks-MRezUMyA"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_OK4MUGXoEeqCdskTbpd-jA" name="setCourse">
-      <ownedParameter xmi:type="uml:Parameter" xmi:id="_OK4MUWXoEeqCdskTbpd-jA" name="Course" type="_XVBhkGBfEeq31cSPSR9mAA"/>
-    </ownedOperation>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_3OxAcGXoEeqCdskTbpd-jA" name="setHours">
-      <ownedParameter xmi:type="uml:Parameter" xmi:id="_3OxAcWXoEeqCdskTbpd-jA" name="td">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
-      </ownedParameter>
-      <ownedParameter xmi:type="uml:Parameter" xmi:id="_3OxAcmXoEeqCdskTbpd-jA" name="tp">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
-      </ownedParameter>
-      <ownedParameter xmi:type="uml:Parameter" xmi:id="_3OxAc2XoEeqCdskTbpd-jA" name="cm">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
-      </ownedParameter>
-    </ownedOperation>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_BTiRAGXpEeqCdskTbpd-jA" name="assaignTeacher">
-      <ownedParameter xmi:type="uml:Parameter" xmi:id="_BTiRAWXpEeqCdskTbpd-jA" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ"/>
-    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Interaction" xmi:id="_vvEfcGEsEeqMmJrPvsnLhQ" name="Standard use case" useCase="_2IxMcGEsEeqMmJrPvsnLhQ _D8NHIGEtEeqMmJrPvsnLhQ _O2lKAGEtEeqMmJrPvsnLhQ _pvnpAGEtEeqMmJrPvsnLhQ _toDTIGEtEeqMmJrPvsnLhQ _23O_gGEtEeqMmJrPvsnLhQ _G2PZ4GEuEeqMmJrPvsnLhQ _URZBwG9jEeqks-MRezUMyA _ZXuCYG9jEeqks-MRezUMyA">
     <ownedUseCase xmi:type="uml:UseCase" xmi:id="_2IxMcGEsEeqMmJrPvsnLhQ" name="Assign teachers to courses" subject="_vvEfcGEsEeqMmJrPvsnLhQ"/>
     <ownedUseCase xmi:type="uml:UseCase" xmi:id="_D8NHIGEtEeqMmJrPvsnLhQ" name="Generate assignment Calc files" subject="_vvEfcGEsEeqMmJrPvsnLhQ"/>
     <ownedUseCase xmi:type="uml:UseCase" xmi:id="_O2lKAGEtEeqMmJrPvsnLhQ" name="Generate summarized courses\preferences Calc" subject="_vvEfcGEsEeqMmJrPvsnLhQ"/>
     <ownedUseCase xmi:type="uml:UseCase" xmi:id="_pvnpAGEtEeqMmJrPvsnLhQ" name="Read data" subject="_vvEfcGEsEeqMmJrPvsnLhQ"/>
-    <ownedUseCase xmi:type="uml:UseCase" xmi:id="_23O_gGEtEeqMmJrPvsnLhQ" name="Read a list of teachers" subject="_vvEfcGEsEeqMmJrPvsnLhQ"/>
+    <ownedUseCase xmi:type="uml:UseCase" xmi:id="_23O_gGEtEeqMmJrPvsnLhQ" name="Read information about teachers" subject="_vvEfcGEsEeqMmJrPvsnLhQ"/>
     <ownedUseCase xmi:type="uml:UseCase" xmi:id="_G2PZ4GEuEeqMmJrPvsnLhQ" name="Read teacher's preferences" subject="_vvEfcGEsEeqMmJrPvsnLhQ"/>
     <ownedUseCase xmi:type="uml:UseCase" xmi:id="_URZBwG9jEeqks-MRezUMyA" name="Generate an assignment Calc file per teacher" subject="_vvEfcGEsEeqMmJrPvsnLhQ">
       <generalization xmi:type="uml:Generalization" xmi:id="_lIjzMG9jEeqks-MRezUMyA" general="_D8NHIGEtEeqMmJrPvsnLhQ"/>
@@ -329,6 +312,7 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_iu4mEG9jEeqks-MRezUMyA" name="" type="_ZXuCYG9jEeqks-MRezUMyA"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_oi_5wG9jEeqks-MRezUMyA" name="" type="_G2PZ4GEuEeqMmJrPvsnLhQ"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_rFMwwG9jEeqks-MRezUMyA" name="" type="_23O_gGEtEeqMmJrPvsnLhQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_YS9F0G97EeqakuOyKK91tg" name="" type="_23O_gGEtEeqMmJrPvsnLhQ"/>
     <nestedClassifier xmi:type="uml:Association" xmi:id="_Rf1OwGEuEeqMmJrPvsnLhQ" memberEnd="_Rf1Ow2EuEeqMmJrPvsnLhQ _Rf1OxGEuEeqMmJrPvsnLhQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Rf1OwWEuEeqMmJrPvsnLhQ" source="org.eclipse.papyrus">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Rf1OwmEuEeqMmJrPvsnLhQ" key="nature" value="UML_Nature"/>
@@ -374,17 +358,16 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_A6XhYGIrEeq7OdFZt-_k0Q" name="prefNbGroupsCMTP" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
     </ownedAttribute>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_bv2LgmIqEeq7OdFZt-_k0Q" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_bv2ykGIqEeq7OdFZt-_k0Q" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_bv2LgmIqEeq7OdFZt-_k0Q" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="__0QREGIuEeq7OdFZt-_k0Q" name="test"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_uKK60GXlEeqCdskTbpd-jA" name="Assignment" visibility="public">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_nek3Em9dEeqks-MRezUMyA" name="courseassignment" type="__FiFYGEnEeqMmJrPvsnLhQ" association="_nekQAG9dEeqks-MRezUMyA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nek3E29dEeqks-MRezUMyA"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nek3FG9dEeqks-MRezUMyA" value="*"/>
     </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_YwwJYGXpEeqCdskTbpd-jA" name="addAssignment">
-      <ownedParameter xmi:type="uml:Parameter" xmi:id="_YwwJYWXpEeqCdskTbpd-jA" name="assignment" type="__FiFYGEnEeqMmJrPvsnLhQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_YwwJYWXpEeqCdskTbpd-jA" name="cassignment" type="__FiFYGEnEeqMmJrPvsnLhQ"/>
     </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_0YeooGYQEeqq2pYv3YMNcA" name="CalcData">
@@ -513,7 +496,10 @@
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eyXm0G9bEeqks-MRezUMyA" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_eyXm0W9bEeqks-MRezUMyA" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_eye7kG9bEeqks-MRezUMyA" type="_NuzqEG9ZEeqks-MRezUMyA" association="_eyW_wG9bEeqks-MRezUMyA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_eye7kG9bEeqks-MRezUMyA" type="_NuzqEG9ZEeqks-MRezUMyA" association="_eyW_wG9bEeqks-MRezUMyA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SCXY4G94EeqakuOyKK91tg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SCoeoG94EeqakuOyKK91tg" value="*"/>
+    </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_NUkBQG9dEeqks-MRezUMyA" memberEnd="_NUkoUm9dEeqks-MRezUMyA _NUrWAG9dEeqks-MRezUMyA">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NUkoUG9dEeqks-MRezUMyA" source="org.eclipse.papyrus">
