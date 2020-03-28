@@ -700,7 +700,7 @@
       <element xmi:type="uml:Association" href="Model.uml#_eyW_wG9bEeqks-MRezUMyA"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_eyydkm9bEeqks-MRezUMyA" points="[900, 232, -643984, -643984]$[940, 339, -643984, -643984]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eziEcG9bEeqks-MRezUMyA" id="(0.5925925925925926,0.9736842105263158)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eziEcW9bEeqks-MRezUMyA" id="(0.39800995024875624,0.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eziEcW9bEeqks-MRezUMyA" id="(0.4975124378109453,0.0)"/>
     </edges>
     <edges xmi:type="notation:Connector" xmi:id="_NVDJcG9dEeqks-MRezUMyA" type="Association_Edge" source="_UJZO0GEqEeqMmJrPvsnLhQ" target="_3QJ9MGEqEeqMmJrPvsnLhQ">
       <children xmi:type="notation:DecorationNode" xmi:id="_NVDwgG9dEeqks-MRezUMyA" type="Association_StereotypeLabel">

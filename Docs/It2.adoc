@@ -14,4 +14,16 @@ Here is the list of the modifications that were made by each one :
 
 *** The *“Seq_diagram_Assignment”* diagram is a new diagram. It gives a broad description of the assignment process as the team imagines it now. 
 
+** The actions done by Hedi GUEDIDI during this iteration are :
+
+*** Reorganising the papyrus model by putting the items in packages.
+
+*** Reformatting and reorganising the class diagram by removing unused sections and avoiding intersection between associations. 
+
+*** Updating the Class_doc file.
+
+*** Creating the UseCase_doc file to describe the the main functionalities to be implemented by our program.
+
+*** Adding a link from the README file to the diagrams' documentation. 
+
 Each member of the team completed the various documentation files. 
