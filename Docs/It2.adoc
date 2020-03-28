@@ -24,6 +24,6 @@ Here is the list of the modifications that were made by each one :
 
 *** Creating the UseCase_doc file to describe the the main functionalities to be implemented by our program.
 
-*** Adding a links from the README file to the diagrams' documentation. 
+*** Adding links to the README file for the diagrams' documentation. 
 
 Each member of the team completed the various documentation files. 
