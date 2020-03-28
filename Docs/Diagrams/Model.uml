@@ -32,18 +32,6 @@
         </eAnnotations>
         <ownedEnd xmi:type="uml:Property" xmi:id="_nek3FW9dEeqks-MRezUMyA" name="assignment" type="_uKK60GXlEeqCdskTbpd-jA" association="_nekQAG9dEeqks-MRezUMyA"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="__WenQGYQEeqq2pYv3YMNcA" memberEnd="__Wf1YmYQEeqq2pYv3YMNcA __WgccGYQEeqq2pYv3YMNcA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__Wf1YGYQEeqq2pYv3YMNcA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__Wf1YWYQEeqq2pYv3YMNcA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="__WgccGYQEeqq2pYv3YMNcA" name="CalcData" type="_0YeooGYQEeqq2pYv3YMNcA" association="__WenQGYQEeqq2pYv3YMNcA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_AbkAAGYREeqq2pYv3YMNcA" memberEnd="_AblOIWYREeqq2pYv3YMNcA _Abl1MGYREeqq2pYv3YMNcA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AbknEGYREeqq2pYv3YMNcA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AblOIGYREeqq2pYv3YMNcA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_Abl1MGYREeqq2pYv3YMNcA" name="CalcData" type="_0YeooGYQEeqq2pYv3YMNcA" association="_AbkAAGYREeqq2pYv3YMNcA"/>
-      </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_BJjHYGYREeqq2pYv3YMNcA" memberEnd="_BJkVgmYREeqq2pYv3YMNcA _BJk8kGYREeqq2pYv3YMNcA">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BJkVgGYREeqq2pYv3YMNcA" source="org.eclipse.papyrus">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BJkVgWYREeqq2pYv3YMNcA" key="nature" value="UML_Nature"/>
@@ -74,11 +62,6 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="_BJkVgmYREeqq2pYv3YMNcA" name="coursepref" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_BJjHYGYREeqq2pYv3YMNcA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dSDDIGYREeqq2pYv3YMNcA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dSJw0GYREeqq2pYv3YMNcA" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="__Wf1YmYQEeqq2pYv3YMNcA" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="__WenQGYQEeqq2pYv3YMNcA"/>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_AblOIWYREeqq2pYv3YMNcA" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_AbkAAGYREeqq2pYv3YMNcA">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_S_pmQGYREeqq2pYv3YMNcA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_S_4PwGYREeqq2pYv3YMNcA" value="*"/>
         </ownedAttribute>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_3puhgGYREeqq2pYv3YMNcA" name="populateData">
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_EElfsGYSEeqq2pYv3YMNcA" name="data">
