@@ -1,6 +1,6 @@
 = Use Case doc :
 
-image::DiagramImages\Use_Case_1.png[width="700", height="500]
+image::DiagramImages\Use_Case_1.png[width="900", height="500]
 
 This program has three main goals :
 
