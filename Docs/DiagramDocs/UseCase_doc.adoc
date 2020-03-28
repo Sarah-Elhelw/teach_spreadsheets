@@ -1,0 +1,11 @@
+= Use Case doc :
+
+image::DiagramImages\Use_Case_1.JPG[width="700", height="500]
+
+This program has three main goals :
+
+*To generate one summarized file containing all the information about the courses and the teachers' perfrences.This data exists currently in seperate files (one per teacher).
+*To help the adminstraion assign teachers to courses via a GUI.
+*After the affectation the program can generate two types of export :
+**A global assignment file intended to be used by the administration.
+**Multiple assignment files representing the assignment of each teacher.
