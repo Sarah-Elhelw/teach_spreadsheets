@@ -93,18 +93,18 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_a4w-cGwuEeqdw6kasHCXew" name="AggregatedData"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_NuzqEG9ZEeqks-MRezUMyA" name="TeacherAssignment">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_KxCNwGEpEeqMmJrPvsnLhQ" name="nbGroupsTD" visibility="private">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_KxCNwGEpEeqMmJrPvsnLhQ" name="countGroupsTD" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_Sz7GIGEpEeqMmJrPvsnLhQ" name="nbGroupsTP" visibility="private">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_Sz7GIGEpEeqMmJrPvsnLhQ" name="countGroupsTP" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_gmQ0oGEpEeqMmJrPvsnLhQ" name="nbGroupsCM" visibility="private">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_gmQ0oGEpEeqMmJrPvsnLhQ" name="countGroupsCM" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_eyXm0m9bEeqks-MRezUMyA" name="assignedTeacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_eyW_wG9bEeqks-MRezUMyA"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:AssociationClass" xmi:id="_bv1kcGIqEeq7OdFZt-_k0Q" name="CoursePref" visibility="package" memberEnd="_bv2LgmIqEeq7OdFZt-_k0Q _bv2ykGIqEeq7OdFZt-_k0Q">
+      <packagedElement xmi:type="uml:AssociationClass" xmi:id="_bv1kcGIqEeq7OdFZt-_k0Q" name="CoursePref" visibility="public" memberEnd="_bv2LgmIqEeq7OdFZt-_k0Q _bv2ykGIqEeq7OdFZt-_k0Q">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bv2LgGIqEeq7OdFZt-_k0Q" source="org.eclipse.papyrus">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bv2LgWIqEeq7OdFZt-_k0Q" key="nature" value="UML_Nature"/>
         </eAnnotations>
@@ -160,16 +160,16 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="_tJ_W8GFVEeq7OdFZt-_k0Q" name="nbHoursCMTP" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_0zjwYGFVEeq7OdFZt-_k0Q" name="nbGroupsTD" visibility="private">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_0zjwYGFVEeq7OdFZt-_k0Q" name="countGroupsTD" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_7Sb4UGFVEeq7OdFZt-_k0Q" name="nbGroupsCMTD" visibility="private">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_7Sb4UGFVEeq7OdFZt-_k0Q" name="countGroupsCMTD" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="__4igwGFVEeq7OdFZt-_k0Q" name="nbGroupsTP" visibility="private">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="__4igwGFVEeq7OdFZt-_k0Q" name="countGroupsTP" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_FU40sGFWEeq7OdFZt-_k0Q" name="nbGroupsCMTP" visibility="private">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_FU40sGFWEeq7OdFZt-_k0Q" name="countGroupsCMTP" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_IixF8GFWEeq7OdFZt-_k0Q" name="studyYear" visibility="private">
@@ -178,8 +178,8 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="_LQScIGFWEeq7OdFZt-_k0Q" name="semester" visibility="private">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_XmjwUG9vEeqLo7KqnGqs3g" name="nbGroupsCM" visibility="private">
-          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_XmjwUG9vEeqLo7KqnGqs3g" name="countGroupsCM" visibility="private">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_wsm04GBfEeq31cSPSR9mAA" name="Program"/>
