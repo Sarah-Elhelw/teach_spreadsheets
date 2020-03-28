@@ -22,7 +22,7 @@ For the first java iteration, we plan to divide the work among the subgroups as 
 
 * Group 2:  Hedi and Sarah 
 
-** Creates the skeleton (attributes and getters) of the class Cassignement and Assignment. 
+** Creates the skeleton (attributes and getters) of the class CourseAssignement and Assignment. 
 
 ** Looks for how to read a Calc document. This searching process allows to keep working while Group 1 codes Course and Teacher classes. 
 
