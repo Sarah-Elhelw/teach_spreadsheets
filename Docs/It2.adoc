@@ -26,4 +26,12 @@ Here is the list of the modifications that were made by each one :
 
 *** Adding links to the README file for the diagrams' documentation. 
 
+** The actions done by Mike SANTANGELO during this iteration are :
+
+*** move .gitignore file
+
+*** class diagram : edited Course, Teacher, CoursePref and CalcData and created a new class.
+
+*** Updating the Class_doc file.
+
 Each member of the team completed the various documentation files. 
