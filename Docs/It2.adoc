@@ -26,6 +26,8 @@ Here is the list of the modifications that were made by each one :
 
 *** Adding links to the README file for the diagrams' documentation. 
 
+* For the group constituted of Mike Santangelo, Inès Draredja and Semida Maria : 
+
 ** The actions done by Mike SANTANGELO during this iteration are :
 
 *** move .gitignore file
