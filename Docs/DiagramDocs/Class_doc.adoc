@@ -2,9 +2,9 @@
 
 image::DiagramImages\Diag_Class_1.png[width="700", height="950"]
 
-The *Assignment* class represents the result of the affectation processus.It contains references to *CourseAssignment* class.The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers.The *TeacherAssignment* class stores the number of TD,TP,CM groups assigned to one teacher in the selected course. +
+The *Assignment* class represents the result of the affectation processus. It contains references to *CourseAssignment* class. The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers. The *TeacherAssignment* class stores the number of TD, TP, CM groups assigned to one teacher in the selected course. +
 
-*CalcData* represents the data that we can get from the files that the university gives us. The function populateData takes in parameter the information from a file that we have got from getData function, and populates a list of *CoursePref* instances.
+*CalcData* represents the data that we can get from the files that the university gives us. The function *populateData* takes in parameter the information from a file that we have got from getData function, and populates a list of *CoursePref* instances.
 The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
 *CoursePref* represents preferences from a teacher for a specified course.
 We'll add getters in the classes as we work on them because it's hard to know exactly what we will need.
