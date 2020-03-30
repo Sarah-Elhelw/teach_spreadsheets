@@ -26,7 +26,7 @@ Here is the list of the modifications that were made by each one :
 
 *** Adding links to the README file for the diagrams' documentation. 
 
-* For the group constituted of Mike Santangelo, Inès Draredja and Semida Maria : 
+* For the group constituted of Mike Santangelo, Inès Draredja and Semida Buzdugan : 
 
 ** The actions done by Mike SANTANGELO during this iteration are :
 
@@ -40,6 +40,9 @@ Here is the list of the modifications that were made by each one :
 
 *** class diagram : edited Course, Teacher, CoursePref
 
-*** class diagram : changed the color of the classes
+*** class diagram : changed the colour of the classes
 
-Each member of the team completed the various documentation files. 
+** The actions done by Semida BUZDUGAN during this iteration are :
+
+*** improving various documentation files
+
