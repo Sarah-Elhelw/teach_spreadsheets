@@ -32,8 +32,14 @@ Here is the list of the modifications that were made by each one :
 
 *** move .gitignore file
 
-*** class diagram : edited Course, Teacher, CoursePref and CalcData and created a new class.
+*** class diagram : edited CalcData and created a new class.
 
 *** Updating the Class_doc file.
+
+** The actions done by Ines DRAREDJA during this iteration are :
+
+*** class diagram : edited Course, Teacher, CoursePref
+
+*** class diagram : changed the color of the classes
 
 Each member of the team completed the various documentation files. 
