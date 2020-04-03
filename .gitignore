@@ -1,3 +1,6 @@
 /.metadata/
 out.log
 target/
+.settings
+.classpath
+.project
