@@ -29,7 +29,7 @@ public class Course {
 	
 	private Course() {
 		name = "";
-        studyYear = "";
+		studyYear = "";
 	}
 	
 	public String getName() {

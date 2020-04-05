@@ -13,12 +13,18 @@ public class CoursePref {
 	private Course course;
 	private Teacher teacher;
 	
+	/**
+	 * Degree of preference of teacher for course, represented by chars
+	 */
 	private char prefCM;
 	private char prefTD;
 	private char prefCMTD;
 	private char prefTP;
 	private char prefCMTP;
 	
+	/**
+	 * Number of groups that the teacher wants to have
+	 */
 	private int prefNbGroupsCM;
 	private int prefNbGroupsTD;
 	private int prefNbGroupsCMTD;
