@@ -21,11 +21,11 @@ public class CalcData {
 	}
 	
 	/**
-	 * populates the data
+	 * returns an instance of CalcData containing the information from the parameter data
 	 * @param data is the parsed data returned by getData
 	 */
-	public static void populateData(Object data) {
-		
+	public static CalcData populateData(Object data) {
+		return null;
 	}
 	
 	public ArrayList<CoursePref> getCoursePrefs() {
