@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets;
 
+import java.io.Reader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
@@ -12,19 +13,36 @@ public class CalcData {
 	private Teacher teacher;
 	
 	/**
-	 * Gets the data from an excel spreadsheet or JSON API
-	 * @param filePath the path to the json file or excel spreadsheet
-	 * @return the parsed data
+	 * Gets the data from a JSON API
+	 * @param filePath the path to the json file
+	 * @return the JSON string
 	 */
-	public static Object getData(Path filePath) {
+	public static String getDataFromJSON(Path filePath) {
 		return null;
 	}
 	
 	/**
-	 * returns an instance of CalcData containing the information from the parameter data
-	 * @param data is the parsed data returned by getData
+	 * Gets the data from a CSV file
+	 * @param filePath the path to the CSV file
+	 * @return a file reader
 	 */
-	public static CalcData populateData(Object data) {
+	public static Reader getDataFromCSV(Path filePath) {
+		return null;
+	}
+	
+	/**
+	 * @param data is the parsed data returned by getDataFromJSON
+	 * @return an instance of CalcData containing the information from the parameter data
+	 */
+	public static CalcData populateDataFromJSON(String data) {
+		return null;
+	}
+	
+	/**
+	 * @param data is the parsed data returned by getDataFromCSV
+	 * @return an instance of CalcData containing the information from the parameter data
+	 */
+	public static CalcData populateDataFromCSV(Reader data) {
 		return null;
 	}
 	

@@ -5,7 +5,7 @@ import com.google.common.base.MoreObjects;
 /**
  * Class used to store a course information.
  * Uses Builder pattern implementation.
- * See : https://codereview.stackexchange.com/questions/127391/simple-builder-pattern-implementation-for-building-immutable-objects/127509#127509
+ * @see https://codereview.stackexchange.com/questions/127391/simple-builder-pattern-implementation-for-building-immutable-objects/127509#127509
  */
 public class Course {
 	private static final String EXCEPTION_STRING = "String must not be null.";
