@@ -1,8 +1,10 @@
 package io.github.oliviercailloux.teach_spreadsheets;
 
 import com.google.common.base.MoreObjects;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
+ * Immutable.
  * Class used to store a teacher's information.
  * Uses Builder pattern implementation.
  * @see https://codereview.stackexchange.com/questions/127391/simple-builder-pattern-implementation-for-building-immutable-objects/127509#127509
@@ -44,110 +46,88 @@ public class Teacher {
 	
 	public static class Builder {
         private Teacher teacherToBuild;
+        
+        public static Builder newInstance() {
+        	return new Builder();
+        }
 
-        Builder() {
+        private Builder() {
             teacherToBuild = new Teacher();
         }
 
         Teacher build() {
-            Teacher builtTeacher = teacherToBuild;
-            teacherToBuild = new Teacher();
-
-            return builtTeacher;
+        	checkNotNull(teacherToBuild.lastName);
+            return teacherToBuild;
         }
         
         public Builder setLastName(String lastName) throws NullPointerException {
-        	if (lastName == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+        	checkNotNull(lastName, EXCEPTION);
     		this.teacherToBuild.lastName = lastName;
     		return this;
     	}
 
     	public Builder setFirstName(String firstName) throws NullPointerException {
-    		if (firstName == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(firstName, EXCEPTION);
     		this.teacherToBuild.firstName = firstName;
     		return this;
     	}
 
     	public Builder setAddress(String address) throws NullPointerException {
-    		if (address == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(address, EXCEPTION);
     		this.teacherToBuild.address = address;
     		return this;
     	}
 
     	public Builder setPostCode(String postCode) throws NullPointerException {
-    		if (postCode == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(postCode, EXCEPTION);
     		this.teacherToBuild.postCode = postCode;
     		return this;
     	}
 
     	public Builder setCity(String city) throws NullPointerException {
-    		if (city == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(city, EXCEPTION);
     		this.teacherToBuild.city = city;
     		return this;
     	}
 
     	public Builder setPersonalPhone(String personalPhone) throws NullPointerException {
-    		if (personalPhone == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(personalPhone, EXCEPTION);
     		this.teacherToBuild.personalPhone = personalPhone;
     		return this;
     	}
 
     	public Builder setMobilePhone(String mobilePhone) throws NullPointerException {
-    		if (mobilePhone == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(mobilePhone, EXCEPTION);
     		this.teacherToBuild.mobilePhone = mobilePhone;
     		return this;
     	}
 
     	public Builder setDauphinePhoneNumber(String dauphinePhoneNumber) throws NullPointerException {
-    		if (dauphinePhoneNumber == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(dauphinePhoneNumber, EXCEPTION);
     		this.teacherToBuild.dauphinePhoneNumber = dauphinePhoneNumber;
     		return this;
     	}
 
     	public Builder setPersonalEmail(String personalEmail) throws NullPointerException {
-    		if (personalEmail == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(personalEmail, EXCEPTION);
     		this.teacherToBuild.personalEmail = personalEmail;
     		return this;
     	}
 
     	public Builder setDauphineEmail(String dauphineEmail) throws NullPointerException {
-    		if (dauphineEmail == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(dauphineEmail, EXCEPTION);
     		this.teacherToBuild.dauphineEmail = dauphineEmail;
     		return this;
     	}
 
     	public Builder setStatus(String status) throws NullPointerException {
-    		if (status == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(status, EXCEPTION);
     		this.teacherToBuild.status = status;
     		return this;
     	}
 
     	public Builder setOffice(String office) throws NullPointerException {
-    		if (office == null) {
-    			throw new NullPointerException(EXCEPTION);
-    		}
+    		checkNotNull(office, EXCEPTION);
     		this.teacherToBuild.office = office;
     		return this;
     	}

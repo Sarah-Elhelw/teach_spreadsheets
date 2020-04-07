@@ -7,16 +7,16 @@ import org.junit.jupiter.api.Test;
 public class CoursePrefTests {
 	@Test
 	void testToString() {
-		Teacher.Builder teacherBuilder = new Teacher.Builder();
+		Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
 		teacherBuilder.setAddress("Pont du maréchal de lattre de tassigny");
 		
-		Course.Builder courseBuilder = new Course.Builder();
+		Course.Builder courseBuilder = Course.Builder.newInstance();
 		courseBuilder.setCountGroupsCM(10);
 		courseBuilder.setName("Analyse de données");
 		
-		CoursePref.Builder coursePrefBuilder = new CoursePref.Builder();
-		coursePrefBuilder.setPrefCM('A');
-		coursePrefBuilder.setPrefTD('A');
+		CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance();
+		coursePrefBuilder.setPrefCM(Preference.A);
+		coursePrefBuilder.setPrefTD(Preference.A);
 		coursePrefBuilder.setCourse(courseBuilder.build());
 		coursePrefBuilder.setTeacher(teacherBuilder.build());
 		

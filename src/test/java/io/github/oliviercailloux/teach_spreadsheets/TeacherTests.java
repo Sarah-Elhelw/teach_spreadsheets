@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class TeacherTests {
 	@Test
 	void testToString() {
-		Teacher.Builder teacherBuilder = new Teacher.Builder();
+		Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
 		teacherBuilder.setAddress("Pont du maréchal de lattre de tassigny");
 		
 		String actual = teacherBuilder.build().toString();

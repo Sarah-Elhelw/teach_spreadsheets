@@ -2,22 +2,33 @@ package io.github.oliviercailloux.teach_spreadsheets;
 
 import java.io.Reader;
 import java.nio.file.Path;
-import java.util.ArrayList;
+
+import com.google.common.collect.ImmutableSet;
 
 /**
+ * Immutable.
  * Class used to store information from an excel spreadsheet : one teacher, multiple courses and his/her preferences for these courses.
  *
  */
 public class CalcData {
-	private ArrayList<CoursePref> coursePrefs;
+	private ImmutableSet<CoursePref> coursePrefs;
 	private Teacher teacher;
+	
+	private CalcData(ImmutableSet<CoursePref> coursePrefs, Teacher teacher) {
+		this.coursePrefs = coursePrefs;
+		this.teacher = teacher;
+	}
+	
+	public static CalcData newInstance(ImmutableSet<CoursePref> coursePrefs, Teacher teacher) {
+		return new CalcData(coursePrefs, teacher);
+	}
 	
 	/**
 	 * Gets the data from a JSON API
 	 * @param filePath the path to the json file
 	 * @return the JSON string
 	 */
-	public static String getDataFromJSON(Path filePath) {
+	public static String fromJSON(String filePath) {
 		return null;
 	}
 	
@@ -26,7 +37,7 @@ public class CalcData {
 	 * @param filePath the path to the CSV file
 	 * @return a file reader
 	 */
-	public static Reader getDataFromCSV(Path filePath) {
+	public static Reader fromCSV(Path filePath) {
 		return null;
 	}
 	
@@ -46,7 +57,7 @@ public class CalcData {
 		return null;
 	}
 	
-	public ArrayList<CoursePref> getCoursePrefs() {
+	public ImmutableSet<CoursePref> getCoursePrefs() {
 		return coursePrefs;
 	}
 

@@ -1,8 +1,11 @@
 package io.github.oliviercailloux.teach_spreadsheets;
 
 import com.google.common.base.MoreObjects;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
 
 /**
+ * ImmutableSet.
  * Class used to store a teacher's preference for one course.
  * Uses Builder pattern implementation.
  * @see https://codereview.stackexchange.com/questions/127391/simple-builder-pattern-implementation-for-building-immutable-objects/127509#127509
@@ -16,11 +19,11 @@ public class CoursePref {
 	/**
 	 * Degree of preference of teacher for course, represented by chars
 	 */
-	private char prefCM;
-	private char prefTD;
-	private char prefCMTD;
-	private char prefTP;
-	private char prefCMTP;
+	private Preference prefCM;
+	private Preference prefTD;
+	private Preference prefCMTD;
+	private Preference prefTP;
+	private Preference prefCMTP;
 	
 	/**
 	 * Number of groups that the teacher wants to have
@@ -32,14 +35,14 @@ public class CoursePref {
 	private int prefNbGroupsCMTP;
 	
 	private CoursePref() {
-		course = new Course.Builder().build();
-		teacher = new Teacher.Builder().build();
+		course = Course.Builder.newInstance().build();
+		teacher = Teacher.Builder.newInstance().build();
 		
-		prefCM = ' ';
-		prefTD = ' ';
-		prefCMTD = ' ';
-		prefTP = ' ';
-		prefCMTP = ' ';
+		prefCM = Preference.UNSPECIFIED;
+		prefTD = Preference.UNSPECIFIED;
+		prefCMTD = Preference.UNSPECIFIED;
+		prefTP = Preference.UNSPECIFIED;
+		prefCMTP = Preference.UNSPECIFIED;
 	}
 	
 	public Course getCourse() {
@@ -50,23 +53,23 @@ public class CoursePref {
 		return teacher;
 	}
 	
-	public char getPrefCM() {
+	public Preference getPrefCM() {
 		return prefCM;
 	}
 	
-	public char getPrefTD() {
+	public Preference getPrefTD() {
 		return prefTD;
 	}
 	
-	public char getPrefCMTD() {
+	public Preference getPrefCMTD() {
 		return prefCMTD;
 	}
 	
-	public char getPrefTP() {
+	public Preference getPrefTP() {
 		return prefTP;
 	}
 	
-	public char getPrefCMTP() {
+	public Preference getPrefCMTP() {
 		return prefCMTP;
 	}
 	
@@ -93,94 +96,83 @@ public class CoursePref {
 	public static class Builder {
         private CoursePref coursePrefToBuild;
 
-        Builder() {
+        public static Builder newInstance() {
+        	return new Builder();
+        }
+        
+        private Builder() {
             coursePrefToBuild = new CoursePref();
         }
 
         CoursePref build() {
-            CoursePref builtCoursePref = coursePrefToBuild;
-            coursePrefToBuild = new CoursePref();
-
-            return builtCoursePref;
+            checkNotNull(coursePrefToBuild.course.getName());
+            checkNotNull(coursePrefToBuild.teacher.getLastName());
+            return coursePrefToBuild;
         }
         
         public Builder setCourse(Course course) throws NullPointerException {
-        	if (course == null) {
-        		throw new NullPointerException("Course needs to be instanciated.");
-        	}
+        	checkNotNull(course, "Course needs to be instanciated.");
     		this.coursePrefToBuild.course = course;
     		return this;
         }
         
     	public Builder setTeacher(Teacher teacher) throws NullPointerException {
-    		if (teacher == null) {
-    			throw new NullPointerException("Teacher needs to be instanciated.");
-    		}
+    		checkNotNull(teacher, "Teacher needs to be instanciated.");
     		this.coursePrefToBuild.teacher = teacher;
     		return this;
     	}
     	
-    	public Builder setPrefCM(char prefCM) {
+    	public Builder setPrefCM(Preference prefCM) {
     		this.coursePrefToBuild.prefCM = prefCM;
     		return this;
     	}
     	
-    	public Builder setPrefTD(char prefTD) {
+    	public Builder setPrefTD(Preference prefTD) {
     		this.coursePrefToBuild.prefTD = prefTD;
     		return this;
     	}
     	
-    	public Builder setPrefCMTD(char prefCMTD) {
+    	public Builder setPrefCMTD(Preference prefCMTD) {
     		this.coursePrefToBuild.prefCMTD = prefCMTD;
     		return this;
     	}
     	
-    	public Builder setPrefTP(char prefTP) {
+    	public Builder setPrefTP(Preference prefTP) {
     		this.coursePrefToBuild.prefTP = prefTP;
     		return this;
     	}
     	
-    	public Builder setPrefCMTP(char prefCMTP) {
+    	public Builder setPrefCMTP(Preference prefCMTP) {
     		this.coursePrefToBuild.prefCMTP = prefCMTP;
     		return this;
     	}
     	
     	public Builder setPrefNbGroupsCM(int prefNbGroupsCM) throws IllegalArgumentException {
-    		if (prefNbGroupsCM < 0) {
-    			throw new IllegalArgumentException(EXCEPTION);
-    		}
+    		checkArgument(prefNbGroupsCM >= 0, EXCEPTION);
     		this.coursePrefToBuild.prefNbGroupsCM = prefNbGroupsCM;
     		return this;
     	}
     	
     	public Builder setPrefNbGroupsTD(int prefNbGroupsTD) throws IllegalArgumentException {
-    		if (prefNbGroupsTD < 0) {
-    			throw new IllegalArgumentException(EXCEPTION);
-    		}
+    		checkArgument(prefNbGroupsTD >= 0, EXCEPTION);
     		this.coursePrefToBuild.prefNbGroupsTD = prefNbGroupsTD;
     		return this;
     	}
     	
     	public Builder setPrefNbGroupsCMTD(int prefNbGroupsCMTD) throws IllegalArgumentException {
-    		if (prefNbGroupsCMTD < 0) {
-    			throw new IllegalArgumentException(EXCEPTION);
-    		}
+    		checkArgument(prefNbGroupsCMTD >= 0, EXCEPTION);
     		this.coursePrefToBuild.prefNbGroupsCMTD = prefNbGroupsCMTD;
     		return this;
     	}
     	
     	public Builder setPrefNbGroupsTP(int prefNbGroupsTP) throws IllegalArgumentException {
-    		if (prefNbGroupsTP < 0) {
-    			throw new IllegalArgumentException(EXCEPTION);
-    		}
+    		checkArgument(prefNbGroupsTP >= 0, EXCEPTION);
     		this.coursePrefToBuild.prefNbGroupsTP = prefNbGroupsTP;
     		return this;
     	}
     	
     	public Builder setPrefNbGroupsCMTP(int prefNbGroupsCMTP) throws IllegalArgumentException {
-    		if (prefNbGroupsCMTP < 0) {
-    			throw new IllegalArgumentException(EXCEPTION);
-    		}
+    		checkArgument(prefNbGroupsCMTP >= 0, EXCEPTION);
     		this.coursePrefToBuild.prefNbGroupsCMTP = prefNbGroupsCMTP;
     		return this;
     	}

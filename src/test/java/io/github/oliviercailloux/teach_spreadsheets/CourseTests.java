@@ -7,7 +7,7 @@ import io.github.oliviercailloux.teach_spreadsheets.Course;
 public class CourseTests {
 	@Test
 	void testToString() {
-		Course.Builder courseBuilder = new Course.Builder();
+		Course.Builder courseBuilder = Course.Builder.newInstance();
 		
 		courseBuilder.setCountGroupsCM(10);
 		courseBuilder.setName("Analyse de données");
