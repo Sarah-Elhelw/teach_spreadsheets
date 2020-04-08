@@ -12,12 +12,10 @@ public class PrefsInitializer {
             						.build();
 
 	public static PrefsInitializer newInstance() {
-		TODO();
-		return null;
+		return new PrefsInitializer();
 	}
 	
-	private PrefsInitialier() {
-		
+	private PrefsInitializer() {
 	}
 
 	public ImmutableSet<CoursePref> createPrefslist() {
