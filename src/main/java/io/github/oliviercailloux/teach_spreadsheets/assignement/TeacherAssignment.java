@@ -9,8 +9,7 @@ import io.github.oliviercailloux.teach_spreadsheets.Teacher;
 
 /**
  * This class provides, for a given course, a teacher that was assigned and details the number 
- * of TD, TP, CMTD, CMTP and CM groups the teacher will have to give lessons. We also find the
- * number of teaching minutes for each group.
+ * of TD, TP, CMTD, CMTP and CM groups the teacher will have to give lessons to.
  * 
  * @author sarah
  *
@@ -24,13 +23,22 @@ public class TeacherAssignment {
 	private int countGroupsCM;
 	
 	private TeacherAssignment() {
+		countGroupsTD = 0;
+		countGroupsTP = 0;
+		countGroupsCMTD = 0;
+		countGroupsCMTP = 0;
+		countGroupsCM = 0;
 	}
 	
 	public static class Builder{
 		private TeacherAssignment teacherAssignmentToBuild;
 		
-		Builder(){
+		private Builder(){
 			teacherAssignmentToBuild = new TeacherAssignment();
+		}
+		
+		public static Builder newInstance() {
+			return new Builder();
 		}
 		
 		TeacherAssignment build() {
@@ -40,6 +48,15 @@ public class TeacherAssignment {
 			return builtTeacherAssignment;
 		}
 		
+		/**
+		 * Sets the value of the attribute teacher of teacherAssignmentToBuild. This value must not be null.
+		 * 
+		 * @param teacher - the object used to set the value of the attribute teacher
+		 * 
+		 * @return this - the object that called the method
+		 * 
+		 * @throws NullPointerException if the parameter is null
+		 */
 		public Builder setTeacher(Teacher teacher) {
 			this.teacherAssignmentToBuild.teacher = Objects.requireNonNull(teacher, "The teacher assigned must not be null.");
 			return this;
@@ -47,10 +64,13 @@ public class TeacherAssignment {
 		
 		
 		/**
-		 * Set the value of the attribute countGroupsTD of teacherAssignmentToBuild. This value must be positive.
+		 * Sets the value of the attribute countGroupsTD of teacherAssignmentToBuild. This value must be positive.
 		 * 
-		 * @param countGroupsTD
-		 * @return
+		 * @param countGroupsTD - the integer used to set the value of the attribute countGroupsTD
+		 * 
+		 * @return this - the object that called the method
+		 * 
+		 * @throws IllegalArgumentException if the parameter is negative
 		 */
 		public Builder setCountGroupsTD(int countGroupsTD) {
 			Preconditions.checkArgument(countGroupsTD>=0, "The number of TD groups must be positive.");
@@ -59,10 +79,13 @@ public class TeacherAssignment {
 		}
 		
 		/**
-		 * Set the value of the attribute countGroupsTP of teacherAssignmentToBuild. This value must be positive.
+		 * Sets the value of the attribute countGroupsTP of teacherAssignmentToBuild. This value must be positive.
 		 * 
-		 * @param countGroupsTP
-		 * @return the object that called the method
+		 * @param countGroupsTP - the integer used to set the value of the attribute countGroupsTP
+		 * 
+		 * @return this - the object that called the method
+		 * 
+		 * @throws IllegalArgumentException if the parameter is negative 
 		 */
 		public Builder setCountGroupsTP(int countGroupsTP) {
 			Preconditions.checkArgument(countGroupsTP>=0, "The number of TP groups must be positive.");
@@ -71,10 +94,13 @@ public class TeacherAssignment {
 		}
 		
 		/**
-		 * Set the value of the attribute countGroupsCMTD of teacherAssignmentToBuild. This value must be positive.
+		 * Sets the value of the attribute countGroupsCMTD of teacherAssignmentToBuild. This value must be positive.
 		 * 
-		 * @param countGroupsCMTD
-		 * @return the object that called the method
+		 * @param countGroupsCMTD - the integer used to set the value of the attribute countGroupsCMTD
+		 * 
+		 * @return this - the object that called the method
+		 * 
+		 * @throws IllegalArgumentException if the parameter is negative 
 		 */
 		public Builder setCountGroupsCMTD(int countGroupsCMTD) {
 			Preconditions.checkArgument(countGroupsCMTD>=0, "The number of CMTD groups must be positive.");
@@ -83,10 +109,13 @@ public class TeacherAssignment {
 		}
 		
 		/**
-		 * Set the value of the attribute countGroupsCMTP of teacherAssignmentToBuild. This value must be positive.
+		 * Sets the value of the attribute countGroupsCMTP of teacherAssignmentToBuild. This value must be positive.
 		 * 
-		 * @param countGroupsCMTP
-		 * @return the object that called the method
+		 * @param countGroupsCMTP - the integer used to set the value of the attribute countGroupsCMTP
+		 * 
+		 * @return this - the object that called the method
+		 * 
+		 * @throws IllegalArgumentException if the parameter is negative 
 		 */
 		public Builder setCountGroupsCMTP(int countGroupsCMTP) {
 			Preconditions.checkArgument(countGroupsCMTP>=0, "The number of CMTP groups must be positive.");
@@ -95,10 +124,13 @@ public class TeacherAssignment {
 		}
 		
 		/**
-		 * Set the value of the attribute countGroupsCM of teacherAssignmentToBuild. This value must be positive.
+		 * Sets the value of the attribute countGroupsCM of teacherAssignmentToBuild. This value must be positive.
 		 * 
-		 * @param countGroupsCM
-		 * @return the object that called the method
+		 * @param countGroupsCM - the integer used to set the value of the attribute countGroupsCM
+		 * 
+		 * @return this - the object that called the method
+		 * 
+		 * @throws IllegalArgumentException if the parameter is negative 
 		 */
 		public Builder setCountGroupsCM(int countGroupsCM) {
 			Preconditions.checkArgument(countGroupsCM>=0, "The number of CM groups must be positive.");
