@@ -55,9 +55,12 @@ public class Teacher {
             teacherToBuild = new Teacher();
         }
 
-        Teacher build() {
+        public Teacher build() {
         	checkNotNull(teacherToBuild.lastName);
-            return teacherToBuild;
+        	if (teacherToBuild.lastName.isEmpty()) throw new IllegalArgumentException();
+        	Teacher teacherBuilt = teacherToBuild;
+        	teacherToBuild = new Teacher();
+            return teacherBuilt;
         }
         
         public Builder setLastName(String lastName) throws NullPointerException {

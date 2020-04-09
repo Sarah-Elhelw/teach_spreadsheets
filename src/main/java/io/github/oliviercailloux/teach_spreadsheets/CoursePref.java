@@ -12,12 +12,13 @@ import static com.google.common.base.Preconditions.checkArgument;
  */
 public class CoursePref {
 	private static final String EXCEPTION = "A preferred number of groups needs to be positive.";
+	private static final String EXCEPTION_PREFERENCE = "You can't have a preference for a type of course that won't have sessions.";
 	
 	private Course course;
 	private Teacher teacher;
 	
 	/**
-	 * Degree of preference of teacher for course, represented by chars
+	 * Degree of preference of teacher for course, represented by an enum type
 	 */
 	private Preference prefCM;
 	private Preference prefTD;
@@ -34,10 +35,30 @@ public class CoursePref {
 	private int prefNbGroupsTP;
 	private int prefNbGroupsCMTP;
 	
-	private CoursePref() {
-		course = Course.Builder.newInstance().build();
-		teacher = Teacher.Builder.newInstance().build();
-		
+	/**
+	 * Given a CM, TD, CMTD, TP or CMTP :
+	 * @param nbGroups the number of groups to assign to this type of course
+	 * @param nbMinutes the number of minutes for the sessions of this type of course
+	 * @param preference the preference of the teacher for this type of course
+	 * @return false iff there is 0 group or 0 minutes for this type of course, but the teacher has a preference for it
+	 */
+	private static boolean isPreferenceCoherent(int nbGroups, int nbMinutes, Preference preference) {
+		return !((nbGroups == 0 || nbMinutes == 0) && preference != Preference.UNSPECIFIED);
+	}
+	
+	/**
+	 * @return true iff the values for the preferences are valid according to the course
+	 */
+	private boolean isCoherent() {
+		return 
+				isPreferenceCoherent(course.getCountGroupsCM(), course.getnbMinutesCM(), getPrefCM()) &&
+				isPreferenceCoherent(course.getCountGroupsCMTD(), course.getnbMinutesCMTD(), getPrefCMTD()) &&
+				isPreferenceCoherent(course.getCountGroupsCMTP(), course.getnbMinutesCMTP(), getPrefCMTP()) &&
+				isPreferenceCoherent(course.getCountGroupsTD(), course.getnbMinutesTD(), getPrefTD()) &&
+				isPreferenceCoherent(course.getCountGroupsTP(), course.getnbMinutesTP(), getPrefTP());
+	}
+	
+	private CoursePref() {		
 		prefCM = Preference.UNSPECIFIED;
 		prefTD = Preference.UNSPECIFIED;
 		prefCMTD = Preference.UNSPECIFIED;
@@ -96,18 +117,24 @@ public class CoursePref {
 	public static class Builder {
         private CoursePref coursePrefToBuild;
 
-        public static Builder newInstance() {
-        	return new Builder();
+        public static Builder newInstance(Course course, Teacher teacher) {
+        	Builder builder = new Builder();
+        	builder.setCourse(course);
+        	builder.setTeacher(teacher);
+        	return builder;
         }
         
         private Builder() {
             coursePrefToBuild = new CoursePref();
         }
 
-        CoursePref build() {
-            checkNotNull(coursePrefToBuild.course.getName());
-            checkNotNull(coursePrefToBuild.teacher.getLastName());
-            return coursePrefToBuild;
+        public CoursePref build() {
+        	checkArgument(
+        			coursePrefToBuild.isCoherent(),
+        			EXCEPTION_PREFERENCE);
+        	CoursePref coursePrefBuilt = coursePrefToBuild;
+        	coursePrefToBuild = new CoursePref();
+            return coursePrefBuilt;
         }
         
         public Builder setCourse(Course course) throws NullPointerException {

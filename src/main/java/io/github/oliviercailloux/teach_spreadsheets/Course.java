@@ -24,11 +24,11 @@ public class Course {
 	private int countGroupsCMTP;
 	private int countGroupsCM;
 	
-	private int nbHoursTD;
-	private int nbHoursTP;
-	private int nbHoursCMTD;
-	private int nbHoursCMTP;
-	private int nbHoursCM;
+	private int nbMinutesTD;
+	private int nbMinutesTP;
+	private int nbMinutesCMTD;
+	private int nbMinutesCMTP;
+	private int nbMinutesCM;
 	
 	private Course() {
 		name = "";
@@ -36,7 +36,7 @@ public class Course {
 		
 		semester = 1;
 		
-		// by default, nbHours and countGroups variables are initialized at zero
+		// by default, nbMinutes and countGroups variables are initialized at zero
 	}
 	
 	public String getName() {
@@ -71,24 +71,24 @@ public class Course {
 		return countGroupsCM;
 	}
 	
-	public int getNbHoursTD() {
-		return nbHoursTD;
+	public int getnbMinutesTD() {
+		return nbMinutesTD;
 	}
 	
-	public int getNbHoursTP() {
-		return nbHoursTP;
+	public int getnbMinutesTP() {
+		return nbMinutesTP;
 	}
 	
-	public int getNbHoursCMTD() {
-		return nbHoursCMTD;
+	public int getnbMinutesCMTD() {
+		return nbMinutesCMTD;
 	}
 	
-	public int getNbHoursCMTP() {
-		return nbHoursCMTP;
+	public int getnbMinutesCMTP() {
+		return nbMinutesCMTP;
 	}
 	
-	public int getNbHoursCM() {
-		return nbHoursCM;
+	public int getnbMinutesCM() {
+		return nbMinutesCM;
 	}
 	
 	public static class Builder {
@@ -105,7 +105,7 @@ public class Course {
         public Course build() {
         	checkNotNull(courseToBuild.name);
         	checkNotNull(courseToBuild.studyYear);
-        	checkNotNull(courseToBuild.semester);
+        	checkArgument(courseToBuild.semester == 1 || courseToBuild.semester == 2);
         	checkArgument(
         			courseToBuild.countGroupsCM + 
         			courseToBuild.countGroupsCMTD +
@@ -113,13 +113,18 @@ public class Course {
         			courseToBuild.countGroupsTD +
         			courseToBuild.countGroupsTP > 0);
         	checkArgument(
-        			courseToBuild.nbHoursCM + 
-        			courseToBuild.nbHoursCMTD +
-        			courseToBuild.nbHoursCMTP +
-        			courseToBuild.nbHoursTD +
-        			courseToBuild.nbHoursTP > 0);
-
-            return courseToBuild;
+        			courseToBuild.nbMinutesCM + 
+        			courseToBuild.nbMinutesCMTD +
+        			courseToBuild.nbMinutesCMTP +
+        			courseToBuild.nbMinutesTD +
+        			courseToBuild.nbMinutesTP > 0);
+        	if (
+        			courseToBuild.name.isEmpty() ||
+        			courseToBuild.studyYear.isEmpty()) throw new IllegalArgumentException();
+        	
+        	Course courseBuilt = courseToBuild;
+        	courseToBuild = new Course();
+            return courseBuilt;
         }
         
         public Builder setName(String name) throws NullPointerException {
@@ -170,33 +175,33 @@ public class Course {
     		return this;
     	}
     	
-    	public Builder setNbHoursTD(int nbHoursTD) throws IllegalArgumentException {
-    		checkArgument(nbHoursTD >= 0, EXCEPTION_INT);
-    		this.courseToBuild.nbHoursTD = nbHoursTD;
+    	public Builder setnbMinutesTD(int nbMinutesTD) throws IllegalArgumentException {
+    		checkArgument(nbMinutesTD >= 0, EXCEPTION_INT);
+    		this.courseToBuild.nbMinutesTD = nbMinutesTD;
     		return this;
     	}
     	
-    	public Builder setNbHoursTP(int nbHoursTP) throws IllegalArgumentException {
-    		checkArgument(nbHoursTP >= 0, EXCEPTION_INT);
-    		this.courseToBuild.nbHoursTP = nbHoursTP;
+    	public Builder setnbMinutesTP(int nbMinutesTP) throws IllegalArgumentException {
+    		checkArgument(nbMinutesTP >= 0, EXCEPTION_INT);
+    		this.courseToBuild.nbMinutesTP = nbMinutesTP;
     		return this;
     	}
     	
-    	public Builder setNbHoursCMTD(int nbHoursCMTD) throws IllegalArgumentException {
-    		checkArgument(nbHoursCMTD >= 0, EXCEPTION_INT);
-    		this.courseToBuild.nbHoursCMTD = nbHoursCMTD;
+    	public Builder setnbMinutesCMTD(int nbMinutesCMTD) throws IllegalArgumentException {
+    		checkArgument(nbMinutesCMTD >= 0, EXCEPTION_INT);
+    		this.courseToBuild.nbMinutesCMTD = nbMinutesCMTD;
     		return this;
     	}
     	
-    	public Builder setNbHoursCMTP(int nbHoursCMTP) throws IllegalArgumentException {
-    		checkArgument(nbHoursCMTP >= 0, EXCEPTION_INT);
-    		this.courseToBuild.nbHoursCMTP = nbHoursCMTP;
+    	public Builder setnbMinutesCMTP(int nbMinutesCMTP) throws IllegalArgumentException {
+    		checkArgument(nbMinutesCMTP >= 0, EXCEPTION_INT);
+    		this.courseToBuild.nbMinutesCMTP = nbMinutesCMTP;
     		return this;
     	}
     	
-    	public Builder setNbHoursCM(int nbHoursCM) throws IllegalArgumentException {
-    		checkArgument(nbHoursCM >= 0, EXCEPTION_INT);
-    		this.courseToBuild.nbHoursCM = nbHoursCM;
+    	public Builder setnbMinutesCM(int nbMinutesCM) throws IllegalArgumentException {
+    		checkArgument(nbMinutesCM >= 0, EXCEPTION_INT);
+    		this.courseToBuild.nbMinutesCM = nbMinutesCM;
     		return this;
     	}
     }
@@ -211,11 +216,11 @@ public class Course {
 			       .add("countGroupsCMTP", countGroupsCMTP)
 			       .add("countGroupsCM", countGroupsCM)
 			       
-			       .add("nbHoursTD", nbHoursTD)
-			       .add("nbHoursCMTD", nbHoursCMTD)
-			       .add("nbHoursTP", nbHoursTP)
-			       .add("nbHoursCMTP", nbHoursCMTP)
-			       .add("nbHoursCM", nbHoursCM)
+			       .add("nbMinutesTD", nbMinutesTD)
+			       .add("nbMinutesCMTD", nbMinutesCMTD)
+			       .add("nbMinutesTP", nbMinutesTP)
+			       .add("nbMinutesCMTP", nbMinutesCMTP)
+			       .add("nbMinutesCM", nbMinutesCM)
 			       
 			       .add("studyYear", studyYear)
 			       .add("semester", semester)
