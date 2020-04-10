@@ -1,8 +1,8 @@
-package io.github.oliviercailloux.teach_spreadsheets.assignement;
+package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
-import java.util.List;
+import java.util.Set;
 import java.util.Objects;
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import com.google.common.base.MoreObjects;
 
@@ -15,17 +15,17 @@ import com.google.common.base.MoreObjects;
  *
  */
 public class Assignment {
-	private List<CourseAssignment> listOfCourseAssignments;
+	private Set<CourseAssignment> listOfCourseAssignments;	// We should not be able to consider more than once a CourseAssignment.
 	
 	public static Assignment newInstance() {
 		return new Assignment();
 	}
 	
 	private Assignment() {
-		listOfCourseAssignments = new ArrayList<>();
+		listOfCourseAssignments = new LinkedHashSet<>();
 	}
 	
-	public List<CourseAssignment> getListOfCourseAssignments(){
+	public Set<CourseAssignment> getListOfCourseAssignments(){
 		return listOfCourseAssignments;
 	}
 	

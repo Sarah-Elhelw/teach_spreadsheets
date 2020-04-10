@@ -1,11 +1,11 @@
-package io.github.oliviercailloux.teach_spreadsheets.assignement;
+package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
 import java.util.Objects;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
-import io.github.oliviercailloux.teach_spreadsheets.Teacher;
+import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 /**
  * This class provides, for a given course, a teacher that was assigned and details the number 
@@ -41,11 +41,16 @@ public class TeacherAssignment {
 			return new Builder();
 		}
 		
-		TeacherAssignment build() {
-			TeacherAssignment builtTeacherAssignment = teacherAssignmentToBuild;
-			teacherAssignmentToBuild = new TeacherAssignment();
-			
-			return builtTeacherAssignment;
+		/**
+		 * Builds a TeacherAssignment.
+		 * 
+		 * @return teacherAssignmentToBuild - the TeacherAssignment that was built.
+		 * 
+		 * @throws NullPointerException if we create a TeacherAssignment without a Teacher.
+		 */
+		public TeacherAssignment build() {
+			Preconditions.checkNotNull(teacherAssignmentToBuild.teacher, "You cannot build a TeacherAssignment without a Teacher.");
+			return teacherAssignmentToBuild;
 		}
 		
 		/**
