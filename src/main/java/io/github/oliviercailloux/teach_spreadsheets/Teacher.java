@@ -5,7 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Immutable.
- * Class used to store a teacher's information.
+ * Class used to store a teacher's information. The minimum information required is lastName.
  * Uses Builder pattern implementation.
  * @see https://codereview.stackexchange.com/questions/127391/simple-builder-pattern-implementation-for-building-immutable-objects/127509#127509
  */
@@ -63,73 +63,73 @@ public class Teacher {
             return teacherBuilt;
         }
         
-        public Builder setLastName(String lastName) throws NullPointerException {
+        public Builder setLastName(String lastName)  {
         	checkNotNull(lastName, EXCEPTION);
     		this.teacherToBuild.lastName = lastName;
     		return this;
     	}
 
-    	public Builder setFirstName(String firstName) throws NullPointerException {
+    	public Builder setFirstName(String firstName)  {
     		checkNotNull(firstName, EXCEPTION);
     		this.teacherToBuild.firstName = firstName;
     		return this;
     	}
 
-    	public Builder setAddress(String address) throws NullPointerException {
+    	public Builder setAddress(String address)  {
     		checkNotNull(address, EXCEPTION);
     		this.teacherToBuild.address = address;
     		return this;
     	}
 
-    	public Builder setPostCode(String postCode) throws NullPointerException {
+    	public Builder setPostCode(String postCode)  {
     		checkNotNull(postCode, EXCEPTION);
     		this.teacherToBuild.postCode = postCode;
     		return this;
     	}
 
-    	public Builder setCity(String city) throws NullPointerException {
+    	public Builder setCity(String city)  {
     		checkNotNull(city, EXCEPTION);
     		this.teacherToBuild.city = city;
     		return this;
     	}
 
-    	public Builder setPersonalPhone(String personalPhone) throws NullPointerException {
+    	public Builder setPersonalPhone(String personalPhone)  {
     		checkNotNull(personalPhone, EXCEPTION);
     		this.teacherToBuild.personalPhone = personalPhone;
     		return this;
     	}
 
-    	public Builder setMobilePhone(String mobilePhone) throws NullPointerException {
+    	public Builder setMobilePhone(String mobilePhone)  {
     		checkNotNull(mobilePhone, EXCEPTION);
     		this.teacherToBuild.mobilePhone = mobilePhone;
     		return this;
     	}
 
-    	public Builder setDauphinePhoneNumber(String dauphinePhoneNumber) throws NullPointerException {
+    	public Builder setDauphinePhoneNumber(String dauphinePhoneNumber)  {
     		checkNotNull(dauphinePhoneNumber, EXCEPTION);
     		this.teacherToBuild.dauphinePhoneNumber = dauphinePhoneNumber;
     		return this;
     	}
 
-    	public Builder setPersonalEmail(String personalEmail) throws NullPointerException {
+    	public Builder setPersonalEmail(String personalEmail)  {
     		checkNotNull(personalEmail, EXCEPTION);
     		this.teacherToBuild.personalEmail = personalEmail;
     		return this;
     	}
 
-    	public Builder setDauphineEmail(String dauphineEmail) throws NullPointerException {
+    	public Builder setDauphineEmail(String dauphineEmail)  {
     		checkNotNull(dauphineEmail, EXCEPTION);
     		this.teacherToBuild.dauphineEmail = dauphineEmail;
     		return this;
     	}
 
-    	public Builder setStatus(String status) throws NullPointerException {
+    	public Builder setStatus(String status)  {
     		checkNotNull(status, EXCEPTION);
     		this.teacherToBuild.status = status;
     		return this;
     	}
 
-    	public Builder setOffice(String office) throws NullPointerException {
+    	public Builder setOffice(String office)  {
     		checkNotNull(office, EXCEPTION);
     		this.teacherToBuild.office = office;
     		return this;

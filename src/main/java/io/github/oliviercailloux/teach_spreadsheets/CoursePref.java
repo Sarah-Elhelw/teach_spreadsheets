@@ -49,13 +49,10 @@ public class CoursePref {
 	/**
 	 * @return true iff the values for the preferences are valid according to the course
 	 */
-	private boolean isCoherent() {
-		return 
-				isPreferenceCoherent(course.getCountGroupsCM(), course.getnbMinutesCM(), getPrefCM()) &&
-				isPreferenceCoherent(course.getCountGroupsCMTD(), course.getnbMinutesCMTD(), getPrefCMTD()) &&
-				isPreferenceCoherent(course.getCountGroupsCMTP(), course.getnbMinutesCMTP(), getPrefCMTP()) &&
-				isPreferenceCoherent(course.getCountGroupsTD(), course.getnbMinutesTD(), getPrefTD()) &&
-				isPreferenceCoherent(course.getCountGroupsTP(), course.getnbMinutesTP(), getPrefTP());
+	private void checkCoherence() {
+		checkNotNull(course);
+		if(!(isPreferenceCoherent(course.getCountGroupsCM(), course.getnbMinutesCM(), getPrefCM()) && isPreferenceCoherent(course.getCountGroupsCMTD(), course.getnbMinutesCMTD(), getPrefCMTD()) && isPreferenceCoherent(course.getCountGroupsCMTP(), course.getnbMinutesCMTP(), getPrefCMTP()) && isPreferenceCoherent(course.getCountGroupsTD(), course.getnbMinutesTD(), getPrefTD()) && isPreferenceCoherent(course.getCountGroupsTP(), course.getnbMinutesTP(), getPrefTP()))) 
+			throw new IllegalArgumentException(EXCEPTION_PREFERENCE);
 	}
 	
 	private CoursePref() {		
@@ -129,76 +126,79 @@ public class CoursePref {
         }
 
         public CoursePref build() {
-        	checkArgument(
-        			coursePrefToBuild.isCoherent(),
-        			EXCEPTION_PREFERENCE);
+        	coursePrefToBuild.checkCoherence();
         	CoursePref coursePrefBuilt = coursePrefToBuild;
         	coursePrefToBuild = new CoursePref();
             return coursePrefBuilt;
         }
         
-        public Builder setCourse(Course course) throws NullPointerException {
+        private Builder setCourse(Course course)  {
         	checkNotNull(course, "Course needs to be instanciated.");
     		this.coursePrefToBuild.course = course;
     		return this;
         }
         
-    	public Builder setTeacher(Teacher teacher) throws NullPointerException {
+    	private Builder setTeacher(Teacher teacher)  {
     		checkNotNull(teacher, "Teacher needs to be instanciated.");
     		this.coursePrefToBuild.teacher = teacher;
     		return this;
     	}
     	
     	public Builder setPrefCM(Preference prefCM) {
+    		checkNotNull(prefCM);
     		this.coursePrefToBuild.prefCM = prefCM;
     		return this;
     	}
     	
     	public Builder setPrefTD(Preference prefTD) {
+    		checkNotNull(prefTD);
     		this.coursePrefToBuild.prefTD = prefTD;
     		return this;
     	}
     	
     	public Builder setPrefCMTD(Preference prefCMTD) {
+    		checkNotNull(prefCMTD);
     		this.coursePrefToBuild.prefCMTD = prefCMTD;
     		return this;
     	}
     	
     	public Builder setPrefTP(Preference prefTP) {
+    		checkNotNull(prefTP);
     		this.coursePrefToBuild.prefTP = prefTP;
     		return this;
     	}
     	
     	public Builder setPrefCMTP(Preference prefCMTP) {
+    		checkNotNull(prefCMTP);
     		this.coursePrefToBuild.prefCMTP = prefCMTP;
     		return this;
     	}
     	
-    	public Builder setPrefNbGroupsCM(int prefNbGroupsCM) throws IllegalArgumentException {
+    	public Builder setPrefNbGroupsCM(int prefNbGroupsCM)  {
     		checkArgument(prefNbGroupsCM >= 0, EXCEPTION);
     		this.coursePrefToBuild.prefNbGroupsCM = prefNbGroupsCM;
     		return this;
     	}
     	
-    	public Builder setPrefNbGroupsTD(int prefNbGroupsTD) throws IllegalArgumentException {
+    	public Builder setPrefNbGroupsTD(int prefNbGroupsTD)  {
     		checkArgument(prefNbGroupsTD >= 0, EXCEPTION);
     		this.coursePrefToBuild.prefNbGroupsTD = prefNbGroupsTD;
     		return this;
     	}
     	
-    	public Builder setPrefNbGroupsCMTD(int prefNbGroupsCMTD) throws IllegalArgumentException {
+    	public Builder setPrefNbGroupsCMTD(int prefNbGroupsCMTD)  {
     		checkArgument(prefNbGroupsCMTD >= 0, EXCEPTION);
     		this.coursePrefToBuild.prefNbGroupsCMTD = prefNbGroupsCMTD;
     		return this;
     	}
     	
-    	public Builder setPrefNbGroupsTP(int prefNbGroupsTP) throws IllegalArgumentException {
+    	public Builder setPrefNbGroupsTP(int prefNbGroupsTP)  {
     		checkArgument(prefNbGroupsTP >= 0, EXCEPTION);
     		this.coursePrefToBuild.prefNbGroupsTP = prefNbGroupsTP;
     		return this;
     	}
     	
-    	public Builder setPrefNbGroupsCMTP(int prefNbGroupsCMTP) throws IllegalArgumentException {
+    	public Builder setPrefNbGroupsCMTP(int prefNbGroupsCMTP)  {
     		checkArgument(prefNbGroupsCMTP >= 0, EXCEPTION);
     		this.coursePrefToBuild.prefNbGroupsCMTP = prefNbGroupsCMTP;
     		return this;

@@ -34,9 +34,7 @@ public class Course {
 		name = "";
 		studyYear = "";
 		
-		semester = 1;
-		
-		// by default, nbMinutes and countGroups variables are initialized at zero
+		// by default, semester, nbMinutes and countGroups variables are initialized at zero
 	}
 	
 	public String getName() {
@@ -118,88 +116,86 @@ public class Course {
         			courseToBuild.nbMinutesCMTP +
         			courseToBuild.nbMinutesTD +
         			courseToBuild.nbMinutesTP > 0);
-        	if (
-        			courseToBuild.name.isEmpty() ||
-        			courseToBuild.studyYear.isEmpty()) throw new IllegalArgumentException();
+        	if (courseToBuild.name.isEmpty() || courseToBuild.studyYear.isEmpty()) throw new IllegalStateException();
         	
         	Course courseBuilt = courseToBuild;
         	courseToBuild = new Course();
             return courseBuilt;
         }
         
-        public Builder setName(String name) throws NullPointerException {
+        public Builder setName(String name)  {
         	checkNotNull(name, EXCEPTION_STRING);
     		this.courseToBuild.name = name;
     		return this;
     	}
         
-    	public Builder setStudyYear(String studyYear) throws NullPointerException {
+    	public Builder setStudyYear(String studyYear)  {
     		checkNotNull(studyYear, EXCEPTION_STRING);
     		this.courseToBuild.studyYear = studyYear;
     		return this;
     	}
     	
-    	public Builder setSemester(int semester) throws IllegalArgumentException {
-    		checkArgument(semester == 0 || semester == 1, "int must be 1 or 2.");
+    	public Builder setSemester(int semester)  {
+    		checkArgument(semester == 2 || semester == 1, "int must be 1 or 2.");
     		this.courseToBuild.semester = semester;
     		return this;
     	}
     	
-    	public Builder setCountGroupsTD(int countGroupsTD) throws IllegalArgumentException {
+    	public Builder setCountGroupsTD(int countGroupsTD)  {
     		checkArgument(countGroupsTD >= 0, EXCEPTION_INT);
     		this.courseToBuild.countGroupsTD = countGroupsTD;
     		return this;
     	}
     	
-    	public Builder setCountGroupsTP(int countGroupsTP) throws IllegalArgumentException {
+    	public Builder setCountGroupsTP(int countGroupsTP)  {
     		checkArgument(countGroupsTP >= 0, EXCEPTION_INT);
     		this.courseToBuild.countGroupsTP = countGroupsTP;
     		return this;
     	}
     	
-    	public Builder setCountGroupsCMTD(int countGroupsCMTD) throws IllegalArgumentException {
+    	public Builder setCountGroupsCMTD(int countGroupsCMTD)  {
     		checkArgument(countGroupsCMTD >= 0, EXCEPTION_INT);
     		this.courseToBuild.countGroupsCMTD = countGroupsCMTD;
     		return this;
     	}
     	
-    	public Builder setCountGroupsCMTP(int countGroupsCMTP) throws IllegalArgumentException {
+    	public Builder setCountGroupsCMTP(int countGroupsCMTP)  {
     		checkArgument(countGroupsCMTP >= 0, EXCEPTION_INT);
     		this.courseToBuild.countGroupsCMTP = countGroupsCMTP;
     		return this;
     	}
     	
-    	public Builder setCountGroupsCM(int countGroupsCM) throws IllegalArgumentException {
+    	public Builder setCountGroupsCM(int countGroupsCM)  {
     		checkArgument(countGroupsCM >= 0, EXCEPTION_INT);
     		this.courseToBuild.countGroupsCM = countGroupsCM;
     		return this;
     	}
     	
-    	public Builder setnbMinutesTD(int nbMinutesTD) throws IllegalArgumentException {
+    	public Builder setnbMinutesTD(int nbMinutesTD)  {
     		checkArgument(nbMinutesTD >= 0, EXCEPTION_INT);
     		this.courseToBuild.nbMinutesTD = nbMinutesTD;
     		return this;
     	}
     	
-    	public Builder setnbMinutesTP(int nbMinutesTP) throws IllegalArgumentException {
+    	public Builder setnbMinutesTP(int nbMinutesTP)  {
     		checkArgument(nbMinutesTP >= 0, EXCEPTION_INT);
     		this.courseToBuild.nbMinutesTP = nbMinutesTP;
     		return this;
     	}
     	
-    	public Builder setnbMinutesCMTD(int nbMinutesCMTD) throws IllegalArgumentException {
+    	public Builder setnbMinutesCMTD(int nbMinutesCMTD)  {
     		checkArgument(nbMinutesCMTD >= 0, EXCEPTION_INT);
     		this.courseToBuild.nbMinutesCMTD = nbMinutesCMTD;
     		return this;
     	}
     	
-    	public Builder setnbMinutesCMTP(int nbMinutesCMTP) throws IllegalArgumentException {
+    	public Builder setnbMinutesCMTP(int nbMinutesCMTP)  {
     		checkArgument(nbMinutesCMTP >= 0, EXCEPTION_INT);
     		this.courseToBuild.nbMinutesCMTP = nbMinutesCMTP;
     		return this;
     	}
     	
-    	public Builder setnbMinutesCM(int nbMinutesCM) throws IllegalArgumentException {
+    	public Builder setnbMinutesCM(int nbMinutesCM)  {
     		checkArgument(nbMinutesCM >= 0, EXCEPTION_INT);
     		this.courseToBuild.nbMinutesCM = nbMinutesCM;
     		return this;

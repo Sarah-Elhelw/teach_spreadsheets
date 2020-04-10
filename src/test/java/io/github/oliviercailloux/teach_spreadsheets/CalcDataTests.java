@@ -29,9 +29,8 @@ public class CalcDataTests {
 		courseBuilder.setnbMinutesCM(20);
 		courseBuilder.setName("Java");
 		courseBuilder.setStudyYear("2012");
-		coursePrefBuilder.setCourse(courseBuilder.build());
 		
-		coursePrefBuilder.setTeacher(teacher);
+		coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(), teacher);
 		
 		coursePrefBuilder.setPrefCM(Preference.A);
 		
@@ -68,9 +67,8 @@ public class CalcDataTests {
 		courseBuilder.setnbMinutesCM(20);
 		courseBuilder.setName("Java");
 		courseBuilder.setStudyYear("2013");
-		coursePrefBuilder.setCourse(courseBuilder.build());
 		
-		coursePrefBuilder.setTeacher(teacher);
+		coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(), teacher);
 		
 		coursePrefBuilder.setPrefCM(Preference.A);
 		

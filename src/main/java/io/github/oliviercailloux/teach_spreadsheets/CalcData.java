@@ -1,15 +1,66 @@
 package io.github.oliviercailloux.teach_spreadsheets;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.collect.ImmutableSet;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.Set;
 
 /**
  * Immutable.
  * Class used to store information from an excel spreadsheet : one teacher, multiple courses and his/her preferences for these courses.
  */
 public class CalcData {
-	private ImmutableSet<CoursePref> coursePrefs;
+	private Set<CoursePref> coursePrefs;
 	private Teacher teacher;
+	
+	private CalcData(Set<CoursePref> coursePrefs, Teacher teacher) {
+		this.coursePrefs = coursePrefs;
+		this.teacher = teacher;
+	}
+	
+	public static CalcData newInstance(Set<CoursePref> coursePrefs, Teacher teacher) {
+		checkNotNull(coursePrefs);
+		checkNotNull(teacher);
+		
+		for (CoursePref coursePref : coursePrefs) {
+			for (CoursePref otherCoursePref : coursePrefs) {
+				if (coursePref != otherCoursePref && coursePref.getCourse().getName().equals(otherCoursePref.getCourse().getName())) {
+					throw new IllegalArgumentException("You can't have two courses of the same name.");
+				}
+			}
+		}
+		
+		return new CalcData(coursePrefs, teacher);
+	}
+	
+	public Set<CoursePref> getCoursePrefs() {
+		return coursePrefs;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	
+	/**
+	 * @param courseName the name of a Course
+	 * @return the CoursePref corresponding to courseName, null if not found
+	 */
+	public CoursePref getCoursePref(String courseName) {
+		checkNotNull(coursePrefs);
+		checkNotNull(courseName);
+		
+		for (CoursePref coursePref : coursePrefs) {
+			if (coursePref.getCourse().getName().equals(courseName)) return coursePref; 
+		}
+		return null;
+	}
+	
+	public String toString() {
+		return MoreObjects.toStringHelper(this)
+			       .add("coursePrefs", coursePrefs)
+			       .add("teacher", teacher)
+			       .toString();
+	}
 	
 	/**
 	 * Gets the data from a JSON API
@@ -26,51 +77,5 @@ public class CalcData {
 	 */
 	public static CalcData populateDataFromJSON(String data) {
 		return null;
-	}
-	
-	public ImmutableSet<CoursePref> getCoursePrefs() {
-		return coursePrefs;
-	}
-
-	public Teacher getTeacher() {
-		return teacher;
-	}
-	
-	/**
-	 * @param courseName the name of a Course
-	 * @return the CoursePref corresponding to courseName
-	 */
-	public CoursePref getCoursePref(String courseName) {
-		for (CoursePref coursePref : coursePrefs) {
-			if (coursePref.getCourse().getName().contentEquals(courseName)) return coursePref; 
-		}
-		return null;
-	}
-	
-	private CalcData(ImmutableSet<CoursePref> coursePrefs, Teacher teacher) {
-		this.coursePrefs = coursePrefs;
-		this.teacher = teacher;
-	}
-	
-	public static CalcData newInstance(ImmutableSet<CoursePref> coursePrefs, Teacher teacher) {
-		// checks that we don't have two CoursePref containing the same course
-		for (CoursePref coursePref : coursePrefs) {
-			for (CoursePref otherCoursePref : coursePrefs) {
-				if (
-						coursePref != otherCoursePref && 
-						coursePref.getCourse().getName().equals(otherCoursePref.getCourse().getName())) {
-					throw new IllegalArgumentException("You can't have two courses of the same name.");
-				}
-			}
-		}
-		
-		return new CalcData(coursePrefs, teacher);
-	}
-	
-	public String toString() {
-		return MoreObjects.toStringHelper(this)
-			       .add("coursePrefs", coursePrefs)
-			       .add("teacher", teacher)
-			       .toString();
 	}
 }
