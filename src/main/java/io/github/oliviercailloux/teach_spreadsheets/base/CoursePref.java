@@ -104,7 +104,7 @@ public class CoursePref {
             coursePrefToBuild = new CoursePref();
         }
 
-        CoursePref build() {
+        public CoursePref build() {
             checkNotNull(coursePrefToBuild.course.getName());
             checkNotNull(coursePrefToBuild.teacher.getLastName());
             return coursePrefToBuild;

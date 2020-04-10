@@ -14,8 +14,6 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
 public class PrefsInitializer {
-	private static int numberOfDocumentsOpened=0;
-	private static ArrayList<Course> courseList;
 	private static ImmutableList<String> tableList = ImmutableList.<String>builder() 
             						.add("DE1", "DE2", "L3 Informatique","L3 Mathématiques","M1 Mathématiques","M1 Informatique") 
             						.build();
@@ -25,20 +23,16 @@ public class PrefsInitializer {
 	}
 	
 	private PrefsInitializer() {
-		courseList=new ArrayList<>();
 	}
 
 	public ImmutableSet<CoursePref> createPrefslist(SpreadsheetDocument document){
 		LinkedHashSet<CoursePref> prefsList=new LinkedHashSet<>();
 		CourseAndPrefReader reader=CourseAndPrefReader.newInstance();
 		Table sheet;
-		Course course;
 		for(String iteam :tableList){
 			sheet=document.getTableByName(iteam);
-			while(reader.isThereANextCourse(sheet)){
-			prefsList.add(reader.nextPref(sheet));
-			}
-			numberOfDocumentsOpened++;
+			prefsList.addAll(reader.readSemester(sheet));
+			prefsList.addAll(reader.readSemester(sheet));
 		}
 		return ImmutableSet.copyOf(prefsList);
 	}
