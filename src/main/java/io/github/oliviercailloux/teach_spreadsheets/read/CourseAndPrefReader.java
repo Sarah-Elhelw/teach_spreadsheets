@@ -38,22 +38,48 @@ public class CourseAndPrefReader {
 		String test=cell.getDisplayText();
 		return !test.equals("");
 	}
-	public LinkedHashSet<CoursePref> readSemester(Table sheet) {
-		Cell cell;
-		cell=sheet.getCellByPosition(currentCol,currentRow);
+	public LinkedHashSet<CoursePref> readSemester(Table sheet, Teacher teacher) {
 		LinkedHashSet<CoursePref> coursePrefList= new LinkedHashSet<>();
 		while(isThereANextCourse(sheet)){
+			
 			Course.Builder courseBuilder=Course.Builder.newInstance();
 			CoursePref.Builder prefBuilder=CoursePref.Builder.newInstance();
-
+			courseBuilder.setName(Parse.parseName(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setCountGroupsCM(Parse.parseCountGroupsCM(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setCountGroupsCMTD(Parse.parseCountGroupsCMTD(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setCountGroupsCMTP(Parse.parseCountGroupsCMTP(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setCountGroupsTD(Parse.parseCountGroupsTD(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setNbHoursCM(Parse.parseNbHoursCM(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setNbHoursCMTD(Parse.parseNbHoursCMTD(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setNbHoursCMTP(Parse.parseNbHoursCMTP(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setNbHoursTD(Parse.parseNbHoursTD(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setNbHoursTP(Parse.parseNbHoursTP(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setSemester(Parse.parseSemester(sheet.getCellByPosition(currentCol,currentRow)));
+			courseBuilder.setStudyYear(Parse.parseStudyYear(sheet.getCellByPosition(currentCol,currentRow)));
+			
+			Course course=courseBuilder.build();
+			prefBuilder.setCourse(course);
+			prefBuilder.setTeacher(teacher);
+			prefBuilder.setPrefCM(Parse.parsePrefChar(sheet.getCellByPosition(currentCol,currentRow)));
+			prefBuilder.setPrefCMTD(Parse.parsePrefChar(sheet.getCellByPosition(currentCol,currentRow)));
+			prefBuilder.setPrefCMTP(Parse.parsePrefChar(sheet.getCellByPosition(currentCol,currentRow)));
+			prefBuilder.setPrefNbGroupsCM(Parse.parsePrefInt(sheet.getCellByPosition(currentCol,currentRow)));
+			prefBuilder.setPrefNbGroupsCMTD(Parse.parsePrefInt(sheet.getCellByPosition(currentCol,currentRow)));
+			prefBuilder.setPrefNbGroupsCMTP(Parse.parsePrefInt(sheet.getCellByPosition(currentCol,currentRow)));
+			prefBuilder.setPrefNbGroupsTD(Parse.parsePrefInt(sheet.getCellByPosition(currentCol,currentRow)));
+			prefBuilder.setPrefNbGroupsTP(Parse.parsePrefInt(sheet.getCellByPosition(currentCol,currentRow)));
+			prefBuilder.setPrefTD(Parse.parsePrefChar(sheet.getCellByPosition(currentCol,currentRow)));
+			prefBuilder.setPrefTP(Parse.parsePrefChar(sheet.getCellByPosition(currentCol,currentRow)));
 			
 			
 			
-			courseList.add(courseBuilder.build());
+			
+			courseList.add(course);
 			coursePrefList.add(prefBuilder.build());			
 			currentCol++;
 			currentRow++;
 		}
+		numberOfDocumentsOpened++;
 		currentCol=FIRST_COURSE_S2_COL;
 		currentRow=FIRST_COURSE_S2_ROW;
 		

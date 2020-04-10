@@ -12,6 +12,7 @@ import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class PrefsInitializer {
 	private static ImmutableList<String> tableList = ImmutableList.<String>builder() 
@@ -25,14 +26,14 @@ public class PrefsInitializer {
 	private PrefsInitializer() {
 	}
 
-	public ImmutableSet<CoursePref> createPrefslist(SpreadsheetDocument document){
+	public ImmutableSet<CoursePref> createPrefslist(SpreadsheetDocument document, Teacher teacher){
 		LinkedHashSet<CoursePref> prefsList=new LinkedHashSet<>();
 		CourseAndPrefReader reader=CourseAndPrefReader.newInstance();
 		Table sheet;
 		for(String iteam :tableList){
 			sheet=document.getTableByName(iteam);
-			prefsList.addAll(reader.readSemester(sheet));
-			prefsList.addAll(reader.readSemester(sheet));
+			prefsList.addAll(reader.readSemester(sheet,teacher));
+			prefsList.addAll(reader.readSemester(sheet,teacher));
 		}
 		return ImmutableSet.copyOf(prefsList);
 	}

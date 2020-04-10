@@ -28,7 +28,7 @@ public class CalcDataInitializer {
 		TeacherReader teacherReader=TeacherReader.newInstance();
 		Teacher teacher=teacherReader.createTeacherFromCalc(document);
 		PrefsInitializer prefsInitializer=PrefsInitializer.newInstance();
-		ImmutableSet<CoursePref> coursePrefs=prefsInitializer.createPrefslist(document);
+		ImmutableSet<CoursePref> coursePrefs=prefsInitializer.createPrefslist(document,teacher);
 		return CalcData.newInstance(coursePrefs, teacher);
 	}
 	
