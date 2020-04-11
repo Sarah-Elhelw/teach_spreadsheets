@@ -1,9 +1,18 @@
 package io.github.oliviercailloux.teach_spreadsheets.read;
 
 import org.odftoolkit.simple.SpreadsheetDocument;
-import org.odftoolkit.simple.table.Table;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.*;
+
+/**
+ * This class reads the informations about a teacher based on the sheet "Emplois du temps".
+ * For this reading to work, the document loaded and read must follow the same format as "AA - 
+ * Saisie des voeux 2016-2017.ods" : there needs to be a sheet "Emploi du temps" were are stored
+ * the informations about a teacher. Those informations must be in specific cells listed in the
+ * final static attributes.
+ * 
+ *
+ */
 public class TeacherReader{
 	private final static String sheet="Emplois du temps";
 	private final static String lastNamePosition="B2";
@@ -42,7 +51,7 @@ public class TeacherReader{
 	}
 	
 	private void readValues(SpreadsheetDocument document){
-		try(ODSReader reader= new ODSReader(document)){
+		ODSReader reader= new ODSReader(document);
 		lastName=reader.getCellValue(sheet, lastNamePosition);
 		firstName=reader.getCellValue(sheet, firstNamePosition);
 		address=reader.getCellValue(sheet, addressPosition);
@@ -55,24 +64,24 @@ public class TeacherReader{
 		status=reader.getCellValue(sheet, statusPosition);
 		dauphinePhoneNumber=reader.getCellValue(sheet, dauphinePhoneNumberPosition);
 		office=reader.getCellValue(sheet, officePosition);
-		}
+		reader.close();
 	}
 	
 	public Teacher createTeacherFromCalc(SpreadsheetDocument document){
 		readValues(document);
-		Teacher.Builder builder=Teacher.Builder.newInstance();
-		builder.setLastName(lastName);
-		builder.setFirstName(firstName);
-		builder.setAddress(address);
-		builder.setPostCode(postCode);
-		builder.setCity(city);
-		builder.setPersonalPhone(personalPhone);
-		builder.setMobilePhone(mobilePhone);
-		builder.setPersonalEmail(personalEmail);
-		builder.setDauphineEmail(dauphineEmail);
-		builder.setStatus(status);
-		builder.setDauphinePhoneNumber(dauphinePhoneNumber);
-		builder.setOffice(office);
-		return builder.build();	
+		Teacher.Builder teacherBuilder=Teacher.Builder.newInstance();
+		teacherBuilder.setLastName(lastName);
+		teacherBuilder.setFirstName(firstName);
+		teacherBuilder.setAddress(address);
+		teacherBuilder.setPostCode(postCode);
+		teacherBuilder.setCity(city);
+		teacherBuilder.setPersonalPhone(personalPhone);
+		teacherBuilder.setMobilePhone(mobilePhone);
+		teacherBuilder.setPersonalEmail(personalEmail);
+		teacherBuilder.setDauphineEmail(dauphineEmail);
+		teacherBuilder.setStatus(status);
+		teacherBuilder.setDauphinePhoneNumber(dauphinePhoneNumber);
+		teacherBuilder.setOffice(office);
+		return teacherBuilder.build();	
 	}
 }
