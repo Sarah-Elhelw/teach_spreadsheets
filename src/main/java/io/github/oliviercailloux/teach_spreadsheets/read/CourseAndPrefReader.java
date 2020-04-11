@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 
+import org.apache.commons.lang3.StringUtils;
+
 import org.odftoolkit.simple.style.StyleTypeDefinitions.CellBordersType;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
@@ -13,6 +15,7 @@ import org.odftoolkit.simple.table.Table;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course.Builder;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class CourseAndPrefReader {
@@ -47,6 +50,7 @@ public class CourseAndPrefReader {
 		String test=cell.getDisplayText();
 		return !test.equals("");
 	}
+	
 	public LinkedHashSet<CoursePref> readSemester(Table sheet, Teacher teacher) {
 		LinkedHashSet<CoursePref> coursePrefList= new LinkedHashSet<>();
 		while(isThereANextCourse(sheet)){
@@ -74,8 +78,36 @@ public class CourseAndPrefReader {
 		
 	}
 	private void setInfoPref(Table sheet,CoursePref.Builder prefBuilder,int j,int i) {
-		TODO();
-		
+		prefBuilder.setPrefCM(readPref(sheet,j,i));
+		prefBuilder.setPrefTD(readPref(sheet,j,i));
+		prefBuilder.setPrefCMTD(readPref(sheet,j,i));
+		prefBuilder.setPrefTP(readPref(sheet,j,i));
+		prefBuilder.setPrefCMTP(readPref(sheet,j,i));
+			
+	}
+	
+	private Preference readPref(Table sheet, int j, int i) {
+		Cell actualCell = sheet.getCellByPosition(j, i);
+		String cellText = actualCell.getDisplayText();
+		if(cellText.equals("")) {
+			return Preference.UNSPECIFIED;
+		}
+		String[] choix = cellText.split(" ");
+		if(choix.length !=2) {
+			throw new IllegalStateException("Preferance at "+sheet.toString()+" "+i+","+j+"is not in a valid format");
+		}
+		if(choix[1].equals("A")){
+			return Preference.A;
+		}
+		else if(choix[1].equals("B")){
+			return Preference.B;
+		}
+		else if(choix[1].equals("C")){
+			return Preference.C;
+		}
+		else {
+			return Preference.UNSPECIFIED;
+		}
 	}
 	private void setInfoCourse(Table currentSheet,Course.Builder courseBuilder, int currentCol,int currentRow) {
 		int j =currentCol,i=currentRow;
@@ -145,7 +177,29 @@ public class CourseAndPrefReader {
 			courseBuilder.setCountGroupsTP(0);
 
 		} else {
-			//setting the group numbers
+			String[] cellData = cellText.split(" ");
+			int value;
+			for(int k=0;k<cellData.length;k++) {
+				if(k<cellData.length-1 && StringUtils.isNumeric(cellData[k])) {
+					value=Integer.parseInt(cellData[k]);
+					if(cellData[k+1].equals("CM")) {
+						courseBuilder.setCountGroupsCM(value);
+					}
+					if(cellData[k+1].equals("CMTD")) {
+						courseBuilder.setCountGroupsCMTD(value);
+					}
+					if(cellData[k+1].equals("CMTP")) {
+						courseBuilder.setCountGroupsCMTP(value);
+					}
+					if(cellData[k+1].equals("TD")) {
+						courseBuilder.setCountGroupsTD(value);
+					}
+					if(cellData[k+1].equals("TP")) {
+						courseBuilder.setCountGroupsTD(value);			
+					}
+				}
+			}
+			
 		}
 		
 
@@ -186,6 +240,7 @@ public class CourseAndPrefReader {
 	private int hoursToMinutes(String hours){
 		return (int)(Double.parseDouble(hours)*60); 	
 	}
+	
 	
 	
 		
