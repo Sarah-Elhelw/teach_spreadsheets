@@ -33,9 +33,11 @@ public class CalcDataInitializer {
 	}
 	
 	public CalcData readDocument(Path documentPath) throws Exception{
-		InputStream stream= Files.newInputStream(documentPath);
-		SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
-		return createCalcData(document);
+		try(InputStream stream= Files.newInputStream(documentPath)){
+		try(SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)){
+			return createCalcData(document);
+		}
+		}
 		
 	}
 	

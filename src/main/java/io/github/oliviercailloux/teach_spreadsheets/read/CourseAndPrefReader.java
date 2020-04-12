@@ -19,7 +19,6 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class CourseAndPrefReader {
-	private static int numberOfDocumentsOpened=0;
 	
 	private final static String COURSTD = "CMTD";
 	private final static String COURSTP = "CMTP";
@@ -72,14 +71,13 @@ public class CourseAndPrefReader {
 			currentCol++;
 			currentRow++;
 		}
-		numberOfDocumentsOpened++;
 		currentCol=FIRST_COURSE_S2_COL;
 		currentRow=FIRST_COURSE_S2_ROW;
 		
 		return coursePrefList;
 		
 	}
-	private void setInfoPref(Table sheet,CoursePref.Builder prefBuilder,int j,int i) {
+	public void setInfoPref(Table sheet,CoursePref.Builder prefBuilder,int j,int i) {
 		prefBuilder.setPrefCM(readPref(sheet,j,i));
 		prefBuilder.setPrefTD(readPref(sheet,j+1,i));
 		prefBuilder.setPrefCMTD(readPref(sheet,j+1,i));
@@ -142,7 +140,7 @@ public class CourseAndPrefReader {
 			return Preference.UNSPECIFIED;
 		}
 	}
-	private void setInfoCourse(Table currentSheet,Course.Builder courseBuilder, int currentCol,int currentRow) {
+	public void setInfoCourse(Table currentSheet,Course.Builder courseBuilder, int currentCol,int currentRow) {
 		int j =currentCol,i=currentRow;
 		Cell actualCell = currentSheet.getCellByPosition(j, i);
 		String cellText = actualCell.getDisplayText();
