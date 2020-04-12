@@ -35,6 +35,8 @@ public class CourseAndPrefReader {
 	int currentRow=FIRST_COURSE_S1_ROW;
 	int currentSemester=1;
 	
+	private final static int EMPTY_INT=-1;
+
 	LinkedHashSet<Course> courseList;
 	
 	public static CourseAndPrefReader newInstance(){
@@ -79,10 +81,41 @@ public class CourseAndPrefReader {
 	}
 	private void setInfoPref(Table sheet,CoursePref.Builder prefBuilder,int j,int i) {
 		prefBuilder.setPrefCM(readPref(sheet,j,i));
-		prefBuilder.setPrefTD(readPref(sheet,j,i));
-		prefBuilder.setPrefCMTD(readPref(sheet,j,i));
-		prefBuilder.setPrefTP(readPref(sheet,j,i));
-		prefBuilder.setPrefCMTP(readPref(sheet,j,i));
+		prefBuilder.setPrefTD(readPref(sheet,j+1,i));
+		prefBuilder.setPrefCMTD(readPref(sheet,j+1,i));
+		prefBuilder.setPrefTP(readPref(sheet,j+2,i));
+		prefBuilder.setPrefCMTP(readPref(sheet,j+2,i));
+		
+
+		Cell actualCell = sheet.getCellByPosition(j, i);
+		String cellText = actualCell.getDisplayText();
+		if (isDiagonalBorder(sheet, j, i) || "".equals(cellText)) {
+			prefBuilder.setPrefNbGroupsCMTD(EMPTY_INT);
+			prefBuilder.setPrefNbGroupsTD(EMPTY_INT);
+			prefBuilder.setPrefNbGroupsCMTP(EMPTY_INT);
+			prefBuilder.setPrefNbGroupsTP(EMPTY_INT);
+		} else {
+			String[] cellData = cellText.split(" ");
+			int value;
+			for(int k=0;k<cellData.length;k++) {
+				if(k<cellData.length-1 && StringUtils.isNumeric(cellData[k])) {
+					value=Integer.parseInt(cellData[k]);
+					if(cellData[k+1].equals("CMTD")) {
+						prefBuilder.setPrefNbGroupsCMTD(value);
+					}
+					if(cellData[k+1].equals("CMTP")) {
+						prefBuilder.setPrefNbGroupsCMTP(value);
+					}
+					if(cellData[k+1].equals("TD")) {
+						prefBuilder.setPrefNbGroupsTD(value);
+					}
+					if(cellData[k+1].equals("TP")) {
+						prefBuilder.setPrefNbGroupsTP(value);		
+					}
+				}
+			}
+			
+		}
 			
 	}
 	
@@ -117,7 +150,7 @@ public class CourseAndPrefReader {
 
 		courseBuilder.setName(cellText.replaceAll("\n", " "));
 
-		j+=2;
+		j+=4;
 		
 		actualCell = currentSheet.getCellByPosition(j, i);
 		cellText = actualCell.getDisplayText();
