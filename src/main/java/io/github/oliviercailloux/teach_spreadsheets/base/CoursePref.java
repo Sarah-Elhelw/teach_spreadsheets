@@ -35,9 +35,6 @@ public class CoursePref {
 	private int prefNbGroupsCMTP;
 	
 	private CoursePref() {
-		course = Course.Builder.newInstance().build();
-		teacher = Teacher.Builder.newInstance().build();
-		
 		prefCM = Preference.UNSPECIFIED;
 		prefTD = Preference.UNSPECIFIED;
 		prefCMTD = Preference.UNSPECIFIED;
