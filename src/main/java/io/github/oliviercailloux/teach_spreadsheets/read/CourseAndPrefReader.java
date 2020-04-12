@@ -8,6 +8,8 @@ import org.odftoolkit.simple.style.StyleTypeDefinitions.CellBordersType;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
+import com.google.common.collect.ImmutableSet;
+
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
@@ -20,10 +22,10 @@ public class CourseAndPrefReader {
 	private final static String TD = "TD";
 	private final static String TP = "TP";
 	
-	private final static int FIRST_COURSE_S1_COL=2;
-	private final static int FIRST_COURSE_S1_ROW=4;
-	private final static int FIRST_COURSE_S2_COL=14;
-	private final static int FIRST_COURSE_S2_ROW=4;
+	private final static int FIRST_COURSE_S1_COL=1;
+	private final static int FIRST_COURSE_S1_ROW=3;
+	private final static int FIRST_COURSE_S2_COL=13;
+	private final static int FIRST_COURSE_S2_ROW=3;
 	
 	int currentCol=FIRST_COURSE_S1_COL;
 	int currentRow=FIRST_COURSE_S1_ROW;
@@ -45,7 +47,7 @@ public class CourseAndPrefReader {
 		return !test.equals("");
 	}
 	
-	public LinkedHashSet<CoursePref> readSemester(Table sheet, Teacher teacher) {
+	public ImmutableSet<CoursePref> readSemester(Table sheet, Teacher teacher) {
 		LinkedHashSet<CoursePref> coursePrefList= new LinkedHashSet<>();
 		while(isThereANextCourse(sheet)){
 			
@@ -67,7 +69,7 @@ public class CourseAndPrefReader {
 		currentCol=FIRST_COURSE_S2_COL;
 		currentRow=FIRST_COURSE_S2_ROW;
 		
-		return coursePrefList;
+		return ImmutableSet.copyOf(coursePrefList);
 		
 	}
 	
