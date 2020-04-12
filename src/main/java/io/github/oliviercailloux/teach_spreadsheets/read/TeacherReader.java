@@ -51,7 +51,7 @@ public class TeacherReader{
 	}
 	
 	private void readValues(SpreadsheetDocument document){
-		try(ODSReader reader= new ODSReader(document)){
+		ODSReader reader= new ODSReader(document);
 		lastName=reader.getCellValue(sheet, lastNamePosition);
 		firstName=reader.getCellValue(sheet, firstNamePosition);
 		address=reader.getCellValue(sheet, addressPosition);
@@ -64,7 +64,7 @@ public class TeacherReader{
 		status=reader.getCellValue(sheet, statusPosition);
 		dauphinePhoneNumber=reader.getCellValue(sheet, dauphinePhoneNumberPosition);
 		office=reader.getCellValue(sheet, officePosition);
-		}
+		
 	}
 	
 	public Teacher createTeacherFromCalc(SpreadsheetDocument document){
