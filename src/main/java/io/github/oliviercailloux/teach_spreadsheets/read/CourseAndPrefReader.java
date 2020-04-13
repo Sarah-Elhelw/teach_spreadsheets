@@ -37,14 +37,14 @@ public class CourseAndPrefReader {
 		return new CourseAndPrefReader();
 	}
 	private CourseAndPrefReader() {
-		
+		courseList = new LinkedHashSet<>();
 	}
 
 	public boolean isThereANextCourse(Table sheet) {
 		Cell cell;
 		cell=sheet.getCellByPosition(currentCol,currentRow);
 		String test=cell.getDisplayText();
-		return !test.equals("");
+		return !"".equals(test) && test!=null;
 	}
 	
 	public ImmutableSet<CoursePref> readSemester(Table sheet, Teacher teacher) {
@@ -52,18 +52,16 @@ public class CourseAndPrefReader {
 		while(isThereANextCourse(sheet)){
 			
 			Course.Builder courseBuilder=Course.Builder.newInstance();
-			CoursePref.Builder prefBuilder=CoursePref.Builder.newInstance();
 			setInfoCourse(sheet,courseBuilder,currentCol,currentRow);
-
-			
 			Course course=courseBuilder.build();
+			courseList.add(course);
+			
+			CoursePref.Builder prefBuilder=CoursePref.Builder.newInstance();
 			prefBuilder.setCourse(course);
 			prefBuilder.setTeacher(teacher);
-			setInfoPref(sheet,prefBuilder,currentCol,currentRow+6);
+			setInfoPref(sheet,prefBuilder,currentCol+8,currentRow); // Beware, there are hidden columns in the ods file.
 			
-			courseList.add(course);
-			coursePrefList.add(prefBuilder.build());			
-			currentCol++;
+			coursePrefList.add(prefBuilder.build());
 			currentRow++;
 		}
 		currentCol=FIRST_COURSE_S2_COL;
@@ -118,7 +116,7 @@ public class CourseAndPrefReader {
 		}
 		String[] choice = cellText.split(" ");
 		if(choice.length !=2) {
-			throw new IllegalStateException("Preference at "+sheet.getTableName()+" "+i+","+j+"is not in a valid format");
+			throw new IllegalStateException("Preference at "+sheet.getTableName()+" "+i+","+j+" is not in a valid format");
 		}
 		if(choice[1].equals("A")){
 			return Preference.A;
@@ -192,9 +190,10 @@ public class CourseAndPrefReader {
 		j++;
 		actualCell = currentSheet.getCellByPosition(j, i);
 		cellText = actualCell.getDisplayText();
-
+		
+		courseBuilder.setCountGroupsCM(1);
+		
 		if (isDiagonalBorder(currentSheet, j, i) || "".equals(cellText)) {
-			courseBuilder.setCountGroupsCM(0);
 			courseBuilder.setCountGroupsCMTD(0);
 			courseBuilder.setCountGroupsCMTP(0);
 			courseBuilder.setCountGroupsTD(0);
@@ -206,9 +205,6 @@ public class CourseAndPrefReader {
 			for(int k=0;k<cellData.length;k++) {
 				if(k<cellData.length-1 && StringUtils.isNumeric(cellData[k])) {
 					value=Integer.parseInt(cellData[k]);
-					if(cellData[k+1].equals("CM")) {
-						courseBuilder.setCountGroupsCM(value);
-					}
 					if(cellData[k+1].equals("CMTD")) {
 						courseBuilder.setCountGroupsCMTD(value);
 					}
