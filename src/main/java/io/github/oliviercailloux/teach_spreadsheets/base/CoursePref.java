@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.teach_spreadsheets;
+package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -55,11 +55,11 @@ public class CoursePref {
 	 */
 	private void checkCoherence() {
 		checkNotNull(course);
-		if (!(isPreferenceCoherent(course.getCountGroupsCM(), course.getnbMinutesCM(), getPrefCM())
-				&& isPreferenceCoherent(course.getCountGroupsCMTD(), course.getnbMinutesCMTD(), getPrefCMTD())
-				&& isPreferenceCoherent(course.getCountGroupsCMTP(), course.getnbMinutesCMTP(), getPrefCMTP())
-				&& isPreferenceCoherent(course.getCountGroupsTD(), course.getnbMinutesTD(), getPrefTD())
-				&& isPreferenceCoherent(course.getCountGroupsTP(), course.getnbMinutesTP(), getPrefTP())))
+		if (!(isPreferenceCoherent(course.getCountGroupsCM(), course.getNbMinutesCM(), getPrefCM())
+				&& isPreferenceCoherent(course.getCountGroupsCMTD(), course.getNbMinutesCMTD(), getPrefCMTD())
+				&& isPreferenceCoherent(course.getCountGroupsCMTP(), course.getNbMinutesCMTP(), getPrefCMTP())
+				&& isPreferenceCoherent(course.getCountGroupsTD(), course.getNbMinutesTD(), getPrefTD())
+				&& isPreferenceCoherent(course.getCountGroupsTP(), course.getNbMinutesTP(), getPrefTP())))
 			throw new IllegalArgumentException(EXCEPTION_PREFERENCE);
 	}
 
@@ -212,7 +212,8 @@ public class CoursePref {
 			return this;
 		}
 	}
-
+	
+	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("prefCM", prefCM).add("prefTD", prefTD).add("prefCMTD", prefCMTD)
 				.add("prefTP", prefTP).add("prefCMTP", prefCMTP)

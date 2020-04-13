@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.teach_spreadsheets;
+package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -184,7 +184,8 @@ public class Teacher {
 	public String getOffice() {
 		return office;
 	}
-
+	
+	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("lastName", lastName).add("firstName", firstName)
 				.add("address", address).add("postCode", postCode).add("city", city).add("personalPhone", personalPhone)

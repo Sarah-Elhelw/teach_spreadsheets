@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.teach_spreadsheets;
+package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -33,6 +33,7 @@ public class Course {
 	private Course() {
 		name = "";
 		studyYear = "";
+		semester = 0;
 
 		// by default, semester, nbMinutes and countGroups variables are initialized at
 		// zero
@@ -70,23 +71,23 @@ public class Course {
 		return countGroupsCM;
 	}
 
-	public int getnbMinutesTD() {
+	public int getNbMinutesTD() {
 		return nbMinutesTD;
 	}
 
-	public int getnbMinutesTP() {
+	public int getNbMinutesTP() {
 		return nbMinutesTP;
 	}
 
-	public int getnbMinutesCMTD() {
+	public int getNbMinutesCMTD() {
 		return nbMinutesCMTD;
 	}
 
-	public int getnbMinutesCMTP() {
+	public int getNbMinutesCMTP() {
 		return nbMinutesCMTP;
 	}
 
-	public int getnbMinutesCM() {
+	public int getNbMinutesCM() {
 		return nbMinutesCM;
 	}
 
@@ -195,7 +196,8 @@ public class Course {
 			return this;
 		}
 	}
-
+	
+	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("name", name)
 

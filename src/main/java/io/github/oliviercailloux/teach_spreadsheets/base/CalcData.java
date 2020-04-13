@@ -1,6 +1,8 @@
-package io.github.oliviercailloux.teach_spreadsheets;
+package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
+import com.google.common.collect.ImmutableSet;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Set;
@@ -10,11 +12,11 @@ import java.util.Set;
  * teacher, multiple courses and his/her preferences for these courses.
  */
 public class CalcData {
-	private Set<CoursePref> coursePrefs;
+	private ImmutableSet<CoursePref> coursePrefs;
 	private Teacher teacher;
 
 	private CalcData(Set<CoursePref> coursePrefs, Teacher teacher) {
-		this.coursePrefs = coursePrefs;
+		this.coursePrefs = ImmutableSet.copyOf(coursePrefs);
 		this.teacher = teacher;
 	}
 
@@ -34,7 +36,7 @@ public class CalcData {
 		return new CalcData(coursePrefs, teacher);
 	}
 
-	public Set<CoursePref> getCoursePrefs() {
+	public ImmutableSet<CoursePref> getCoursePrefs() {
 		return coursePrefs;
 	}
 
@@ -56,7 +58,8 @@ public class CalcData {
 		}
 		return null;
 	}
-
+	
+	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("coursePrefs", coursePrefs).add("teacher", teacher).toString();
 	}

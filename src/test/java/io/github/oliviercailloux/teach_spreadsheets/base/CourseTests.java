@@ -1,8 +1,10 @@
-package io.github.oliviercailloux.teach_spreadsheets;
+package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import org.junit.jupiter.api.Test;
+
+import io.github.oliviercailloux.teach_spreadsheets.base.Course;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import io.github.oliviercailloux.teach_spreadsheets.Course;
 
 public class CourseTests {
 	@Test
