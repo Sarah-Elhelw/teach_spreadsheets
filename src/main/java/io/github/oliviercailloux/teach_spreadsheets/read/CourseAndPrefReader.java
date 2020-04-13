@@ -66,6 +66,7 @@ public class CourseAndPrefReader {
 		}
 		currentCol=FIRST_COURSE_S2_COL;
 		currentRow=FIRST_COURSE_S2_ROW;
+		currentSemester = 2;
 		
 		return ImmutableSet.copyOf(coursePrefList);
 		
@@ -135,7 +136,8 @@ public class CourseAndPrefReader {
 		int j =currentCol,i=currentRow;
 		Cell actualCell = currentSheet.getCellByPosition(j, i);
 		String cellText = actualCell.getDisplayText();
-
+		
+		courseBuilder.setSemester(currentSemester);
 
 		courseBuilder.setName(cellText.replaceAll("\n", " "));
 
