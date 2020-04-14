@@ -2,6 +2,8 @@ package io.github.oliviercailloux.teach_spreadsheets.read;
 
 import org.odftoolkit.simple.SpreadsheetDocument;
 
+import java.lang.SuppressWarnings;
+
 import io.github.oliviercailloux.teach_spreadsheets.base.*;
 
 /**
@@ -51,7 +53,8 @@ public class TeacherReader{
 	}
 	
 	private void readValues(SpreadsheetDocument document){
-		//The document need to not be closed after the execution of this function so no try-with-ressource was used
+		//The document need to not be closed after the execution of this function so no try-with-resource was used
+		@SuppressWarnings ("resource")
 		ODSReader reader= new ODSReader(document);
 		lastName=reader.getCellValue(sheet, lastNamePosition);
 		firstName=reader.getCellValue(sheet, firstNamePosition);

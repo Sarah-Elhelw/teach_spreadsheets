@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.teach_spreadsheets.read;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,9 +33,9 @@ public class CalcDataInitializer {
 	
 	public CalcData readDocument(Path documentPath) throws Exception{
 		try(InputStream stream= Files.newInputStream(documentPath)){
-		try(SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)){
-			return createCalcData(document);
-		}
+			try(SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)){
+				return createCalcData(document);
+			}
 		}
 		
 	}

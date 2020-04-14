@@ -24,7 +24,7 @@ public class CourseAndPrefReader {
 	
 	private final static int FIRST_COURSE_S1_COL=1;
 	private final static int FIRST_COURSE_S1_ROW=3;
-	private final static int FIRST_COURSE_S2_COL=13;
+	private final static int FIRST_COURSE_S2_COL=15;
 	private final static int FIRST_COURSE_S2_ROW=3;
 	
 	private final static String semesterPosition="G1";
@@ -69,6 +69,7 @@ public class CourseAndPrefReader {
 			CoursePref.Builder prefBuilder=CoursePref.Builder.newInstance(course, teacher);
 			setInfoPref(sheet,prefBuilder,currentCol+8,currentRow); // Beware, there are hidden columns in the ods file.
 			coursePrefList.add(prefBuilder.build());
+			
 			currentRow++;
 		}
 		currentCol=FIRST_COURSE_S2_COL;
