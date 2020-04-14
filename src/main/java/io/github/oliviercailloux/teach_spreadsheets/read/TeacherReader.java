@@ -51,6 +51,7 @@ public class TeacherReader{
 	}
 	
 	private void readValues(SpreadsheetDocument document){
+		//The document need to not be closed after the execution of this function so no try-with-ressource was used
 		ODSReader reader= new ODSReader(document);
 		lastName=reader.getCellValue(sheet, lastNamePosition);
 		firstName=reader.getCellValue(sheet, firstNamePosition);

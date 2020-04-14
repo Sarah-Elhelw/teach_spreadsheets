@@ -27,8 +27,18 @@ public class CourseAndPrefReader {
 	private final static int FIRST_COURSE_S2_COL=13;
 	private final static int FIRST_COURSE_S2_ROW=3;
 	
+	private final static String semesterPosition="G1";
+	
+	private boolean flagCM;
+	private boolean flagTD;
+	private boolean flagCMTD;
+	private boolean flagTP;
+	private boolean flagCMTP;
+	
 	int currentCol=FIRST_COURSE_S1_COL;
 	int currentRow=FIRST_COURSE_S1_ROW;
+	
+	
 	int currentSemester=1;
 
 	LinkedHashSet<Course> courseList;
@@ -52,13 +62,12 @@ public class CourseAndPrefReader {
 		while(isThereANextCourse(sheet)){
 			
 			Course.Builder courseBuilder=Course.Builder.newInstance();
-			setInfoCourse(sheet,courseBuilder,currentCol,currentRow);
+			setInfoCourse(sheet,courseBuilder,currentCol,currentRow,currentSemester);
 			Course course=courseBuilder.build();
 			courseList.add(course);
 			
 			CoursePref.Builder prefBuilder=CoursePref.Builder.newInstance(course, teacher);
 			setInfoPref(sheet,prefBuilder,currentCol+8,currentRow); // Beware, there are hidden columns in the ods file.
-			
 			coursePrefList.add(prefBuilder.build());
 			currentRow++;
 		}
@@ -71,11 +80,11 @@ public class CourseAndPrefReader {
 	}
 	
 	public void setInfoPref(Table sheet,CoursePref.Builder prefBuilder,int j,int i) {
-		prefBuilder.setPrefCM(readPref(sheet,j,i));
-		prefBuilder.setPrefTD(readPref(sheet,j+1,i));
-		prefBuilder.setPrefCMTD(readPref(sheet,j+1,i));
-		prefBuilder.setPrefTP(readPref(sheet,j+2,i));
-		prefBuilder.setPrefCMTP(readPref(sheet,j+2,i));
+		prefBuilder.setPrefCM(readPref(sheet,j,i,flagCM));
+		prefBuilder.setPrefTD(readPref(sheet,j+1,i,flagTD));
+		prefBuilder.setPrefCMTD(readPref(sheet,j+1,i,flagCMTD));
+		prefBuilder.setPrefTP(readPref(sheet,j+2,i,flagTP));
+		prefBuilder.setPrefCMTP(readPref(sheet,j+2,i,flagCMTP));
 		
 		Cell actualCell = sheet.getCellByPosition(j+3, i);
 		String cellText = actualCell.getDisplayText();
@@ -104,7 +113,10 @@ public class CourseAndPrefReader {
 			
 	}
 	
-	private Preference readPref(Table sheet, int j, int i) {
+	private Preference readPref(Table sheet, int j, int i, boolean flag) {
+		if(!flag) {
+			return Preference.UNSPECIFIED;
+		}
 		if (isDiagonalBorder(sheet, j, i)) {
 			return Preference.UNSPECIFIED;
 		}
@@ -130,14 +142,28 @@ public class CourseAndPrefReader {
 			return Preference.UNSPECIFIED;
 		}
 	}
-	public void setInfoCourse(Table currentSheet,Course.Builder courseBuilder, int currentCol,int currentRow) {
+	public void setInfoCourse(Table currentSheet,Course.Builder courseBuilder, int currentCol,int currentRow,int semester) {
+		flagCM=false;
+		flagTD=false;
+		flagCMTD=false;
+		flagTP=false;
+		flagCMTP=false;
+		
 		int j =currentCol,i=currentRow;
 		Cell actualCell = currentSheet.getCellByPosition(j, i);
 		String cellText = actualCell.getDisplayText();
+		String[] cellData;
 		
-		courseBuilder.setSemester(currentSemester);
+		courseBuilder.setSemester(semester);
 
 		courseBuilder.setName(cellText.replaceAll("\n", " "));
+		
+		actualCell=currentSheet.getCellByPosition(semesterPosition);
+		cellData=actualCell.getDisplayText().split(" ");
+		if(cellData.length!=2) {
+			throw new IllegalStateException("The semester cell isn't in the right format");
+		}
+		courseBuilder.setStudyYear(cellData[1]);
 
 		j+=4;
 		
@@ -150,6 +176,8 @@ public class CourseAndPrefReader {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
 			courseBuilder.setNbMinutesCM(hoursToMinutes(hourTab[0]));
+			courseBuilder.setCountGroupsCM(hoursToMinutes(hourTab[0]));
+			flagCM=true;
 		}
 
 		j++;
@@ -164,8 +192,10 @@ public class CourseAndPrefReader {
 			String[] hourTab = hourStr.split("h");
 			if (hourStr.contains(COURSTD)) {
 				courseBuilder.setNbMinutesCMTD(hoursToMinutes(hourTab[0]));
+				flagCMTD=true;
 			} else if (hourStr.contains(TD)) {
 				courseBuilder.setNbMinutesTD(hoursToMinutes(hourTab[0]));
+				flagTD=true;
 			}
 		}
 
@@ -180,9 +210,11 @@ public class CourseAndPrefReader {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
 			if (hourStr.contains(COURSTP)) {
-				courseBuilder.setCountGroupsCMTP(hoursToMinutes(hourTab[0]));
+				courseBuilder.setNbMinutesCMTP(hoursToMinutes(hourTab[0]));
+				flagCMTP=true;
 			} else if (hourStr.contains(TP)) {
 				courseBuilder.setNbMinutesTP(hoursToMinutes(hourTab[0]));
+				flagTP=true;
 			}
 
 		}
@@ -200,7 +232,7 @@ public class CourseAndPrefReader {
 			courseBuilder.setCountGroupsTP(0);
 
 		} else {
-			String[] cellData = cellText.split(" ");
+			cellData = cellText.split(" ");
 			int value;
 			for(int k=0;k<cellData.length;k++) {
 				if(k<cellData.length-1 && StringUtils.isNumeric(cellData[k])) {
