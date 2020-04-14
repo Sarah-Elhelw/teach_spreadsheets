@@ -1,8 +1,9 @@
 package io.github.oliviercailloux.teach_spreadsheets.read;
 
-import org.odftoolkit.simple.SpreadsheetDocument;
+import java.util.Objects;
 
-import java.lang.SuppressWarnings;
+import org.odftoolkit.simple.SpreadsheetDocument;
+import org.odftoolkit.simple.table.Table;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.*;
 
@@ -16,7 +17,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.*;
  *
  */
 public class TeacherReader{
-	private final static String sheet="Emplois du temps";
+	private final static String sheetname="Emplois du temps";
 	private final static String lastNamePosition="B2";
 	private final static String firstNamePosition="F2";
 	private final static String addressPosition="B4";
@@ -52,27 +53,27 @@ public class TeacherReader{
 		
 	}
 	
-	private void readValues(SpreadsheetDocument document){
-		//The document need to not be closed after the execution of this function so no try-with-resource was used
-		@SuppressWarnings ("resource")
-		ODSReader reader= new ODSReader(document);
-		lastName=reader.getCellValue(sheet, lastNamePosition);
-		firstName=reader.getCellValue(sheet, firstNamePosition);
-		address=reader.getCellValue(sheet, addressPosition);
-		postCode=reader.getCellValue(sheet, postCodePosition);
-		city=reader.getCellValue(sheet, cityPosition);
-		personalPhone=reader.getCellValue(sheet, personalPhonePosition);
-		mobilePhone=reader.getCellValue(sheet, mobilePhonePosition);
-		personalEmail=reader.getCellValue(sheet, personalEmailPosition);
-		dauphineEmail=reader.getCellValue(sheet, dauphineEmailPosition);
-		status=reader.getCellValue(sheet, statusPosition);
-		dauphinePhoneNumber=reader.getCellValue(sheet, dauphinePhoneNumberPosition);
-		office=reader.getCellValue(sheet, officePosition);
+	
+	
+	private void readValues(Table sheet){
+		lastName=ReaderLib.getCellValue(sheet, lastNamePosition);
+		firstName=ReaderLib.getCellValue(sheet, firstNamePosition);
+		address=ReaderLib.getCellValue(sheet, addressPosition);
+		postCode=ReaderLib.getCellValue(sheet, postCodePosition);
+		city=ReaderLib.getCellValue(sheet, cityPosition);
+		personalPhone=ReaderLib.getCellValue(sheet, personalPhonePosition);
+		mobilePhone=ReaderLib.getCellValue(sheet, mobilePhonePosition);
+		personalEmail=ReaderLib.getCellValue(sheet, personalEmailPosition);
+		dauphineEmail=ReaderLib.getCellValue(sheet, dauphineEmailPosition);
+		status=ReaderLib.getCellValue(sheet, statusPosition);
+		dauphinePhoneNumber=ReaderLib.getCellValue(sheet, dauphinePhoneNumberPosition);
+		office=ReaderLib.getCellValue(sheet, officePosition);
 		
 	}
 	
 	public Teacher createTeacherFromCalc(SpreadsheetDocument document){
-		readValues(document);
+		Table sheet = Objects.requireNonNull(document.getSheetByName(sheetname));
+		readValues(sheet);
 		Teacher.Builder teacherBuilder=Teacher.Builder.newInstance();
 		teacherBuilder.setLastName(lastName);
 		teacherBuilder.setFirstName(firstName);
