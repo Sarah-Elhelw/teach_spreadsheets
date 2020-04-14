@@ -56,9 +56,7 @@ public class CourseAndPrefReader {
 			Course course=courseBuilder.build();
 			courseList.add(course);
 			
-			CoursePref.Builder prefBuilder=CoursePref.Builder.newInstance();
-			prefBuilder.setCourse(course);
-			prefBuilder.setTeacher(teacher);
+			CoursePref.Builder prefBuilder=CoursePref.Builder.newInstance(course, teacher);
 			setInfoPref(sheet,prefBuilder,currentCol+8,currentRow); // Beware, there are hidden columns in the ods file.
 			
 			coursePrefList.add(prefBuilder.build());
@@ -147,11 +145,11 @@ public class CourseAndPrefReader {
 		cellText = actualCell.getDisplayText();
 
 		if (isDiagonalBorder(currentSheet, j, i) || "".equals(cellText)) {
-			courseBuilder.setNbHoursCM(0);
+			courseBuilder.setNbMinutesCM(0);
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
-			courseBuilder.setNbHoursCM(hoursToMinutes(hourTab[0]));
+			courseBuilder.setNbMinutesCM(hoursToMinutes(hourTab[0]));
 		}
 
 		j++;
@@ -159,15 +157,15 @@ public class CourseAndPrefReader {
 		cellText = actualCell.getDisplayText();
 
 		if (isDiagonalBorder(currentSheet, j, i) || "".equals(cellText)) {
-			courseBuilder.setNbHoursTD(0);
-			courseBuilder.setNbHoursCMTD(0);
+			courseBuilder.setNbMinutesTD(0);
+			courseBuilder.setNbMinutesCMTD(0);
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
 			if (hourStr.contains(COURSTD)) {
-				courseBuilder.setNbHoursCMTD(hoursToMinutes(hourTab[0]));
+				courseBuilder.setNbMinutesCMTD(hoursToMinutes(hourTab[0]));
 			} else if (hourStr.contains(TD)) {
-				courseBuilder.setNbHoursTD(hoursToMinutes(hourTab[0]));
+				courseBuilder.setNbMinutesTD(hoursToMinutes(hourTab[0]));
 			}
 		}
 
@@ -176,7 +174,7 @@ public class CourseAndPrefReader {
 		cellText = actualCell.getDisplayText();
 
 		if (isDiagonalBorder(currentSheet, j, i) || "".equals(cellText)) {
-			courseBuilder.setNbHoursTP(0);
+			courseBuilder.setNbMinutesTP(0);
 			courseBuilder.setCountGroupsCMTP(0);
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
@@ -184,7 +182,7 @@ public class CourseAndPrefReader {
 			if (hourStr.contains(COURSTP)) {
 				courseBuilder.setCountGroupsCMTP(hoursToMinutes(hourTab[0]));
 			} else if (hourStr.contains(TP)) {
-				courseBuilder.setNbHoursTP(hoursToMinutes(hourTab[0]));
+				courseBuilder.setNbMinutesTP(hoursToMinutes(hourTab[0]));
 			}
 
 		}
