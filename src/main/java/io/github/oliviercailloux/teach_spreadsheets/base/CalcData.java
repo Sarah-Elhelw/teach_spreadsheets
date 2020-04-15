@@ -82,6 +82,4 @@ public class CalcData {
 	public static CalcData populateDataFromJSON(String data) {
 		return null;
 	}
-
 }
-
