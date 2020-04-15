@@ -177,11 +177,11 @@ public class CourseAndPrefReader {
 		cellText = actualCell.getDisplayText();
 
 		if (ReaderLib.isDiagonalBorder(currentSheet, j, i) || "".equals(cellText)) {
-			courseBuilder.setNbMinutesCM(0);
+			courseBuilder.setnbMinutesCM(0);
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
-			courseBuilder.setNbMinutesCM(ReaderLib.hoursToMinutes(hourTab[0]));
+			courseBuilder.setnbMinutesCM(ReaderLib.hoursToMinutes(hourTab[0]));
 			courseBuilder.setCountGroupsCM(ReaderLib.hoursToMinutes(hourTab[0]));
 			flagCM = true;
 		}
@@ -191,16 +191,16 @@ public class CourseAndPrefReader {
 		cellText = actualCell.getDisplayText();
 
 		if (ReaderLib.isDiagonalBorder(currentSheet, j, i) || "".equals(cellText)) {
-			courseBuilder.setNbMinutesTD(0);
-			courseBuilder.setNbMinutesCMTD(0);
+			courseBuilder.setnbMinutesTD(0);
+			courseBuilder.setnbMinutesCMTD(0);
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
 			if (hourStr.contains(COURSETD)) {
-				courseBuilder.setNbMinutesCMTD(ReaderLib.hoursToMinutes(hourTab[0]));
+				courseBuilder.setnbMinutesCMTD(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagCMTD = true;
 			} else if (hourStr.contains(TD)) {
-				courseBuilder.setNbMinutesTD(ReaderLib.hoursToMinutes(hourTab[0]));
+				courseBuilder.setnbMinutesTD(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagTD = true;
 			}
 		}
@@ -210,16 +210,16 @@ public class CourseAndPrefReader {
 		cellText = actualCell.getDisplayText();
 
 		if (ReaderLib.isDiagonalBorder(currentSheet, j, i) || "".equals(cellText)) {
-			courseBuilder.setNbMinutesTP(0);
+			courseBuilder.setnbMinutesTP(0);
 			courseBuilder.setCountGroupsCMTP(0);
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
 			if (hourStr.contains(COURSETP)) {
-				courseBuilder.setNbMinutesCMTP(ReaderLib.hoursToMinutes(hourTab[0]));
+				courseBuilder.setnbMinutesCMTP(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagCMTP = true;
 			} else if (hourStr.contains(TP)) {
-				courseBuilder.setNbMinutesTP(ReaderLib.hoursToMinutes(hourTab[0]));
+				courseBuilder.setnbMinutesTP(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagTP = true;
 			}
 

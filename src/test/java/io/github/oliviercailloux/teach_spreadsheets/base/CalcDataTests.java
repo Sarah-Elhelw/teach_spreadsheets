@@ -22,7 +22,7 @@ public class CalcDataTests {
 
 		Course.Builder courseBuilder = Course.Builder.newInstance();
 		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setNbMinutesCM(20);
+		courseBuilder.setnbMinutesCM(20);
 		courseBuilder.setName("Java");
 		courseBuilder.setStudyYear("2012");
 		courseBuilder.setSemester(1);
@@ -33,7 +33,7 @@ public class CalcDataTests {
 		CoursePref coursePref1 = coursePrefBuilder.build();
 
 		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setNbMinutesCM(20);
+		courseBuilder.setnbMinutesCM(20);
 		courseBuilder.setName("Java");
 		courseBuilder.setStudyYear("2012");
 		courseBuilder.setSemester(1);
@@ -62,7 +62,7 @@ public class CalcDataTests {
 
 		Course.Builder courseBuilder = Course.Builder.newInstance();
 		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setNbMinutesCM(20);
+		courseBuilder.setnbMinutesCM(20);
 		courseBuilder.setName("Analyse de données");
 		courseBuilder.setStudyYear("2012");
 		courseBuilder.setSemester(1);
@@ -73,7 +73,7 @@ public class CalcDataTests {
 		CoursePref coursePref1 = coursePrefBuilder.build();
 
 		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setNbMinutesCM(20);
+		courseBuilder.setnbMinutesCM(20);
 		courseBuilder.setName("Java");
 		courseBuilder.setStudyYear("2013");
 		courseBuilder.setSemester(2);

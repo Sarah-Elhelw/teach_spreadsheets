@@ -166,31 +166,31 @@ public class Course {
 			return this;
 		}
 
-		public Builder setNbMinutesTD(int nbMinutesTD) {
+		public Builder setnbMinutesTD(int nbMinutesTD) {
 			checkArgument(nbMinutesTD >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesTD = nbMinutesTD;
 			return this;
 		}
 
-		public Builder setNbMinutesTP(int nbMinutesTP) {
+		public Builder setnbMinutesTP(int nbMinutesTP) {
 			checkArgument(nbMinutesTP >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesTP = nbMinutesTP;
 			return this;
 		}
 
-		public Builder setNbMinutesCMTD(int nbMinutesCMTD) {
+		public Builder setnbMinutesCMTD(int nbMinutesCMTD) {
 			checkArgument(nbMinutesCMTD >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesCMTD = nbMinutesCMTD;
 			return this;
 		}
 
-		public Builder setNbMinutesCMTP(int nbMinutesCMTP) {
+		public Builder setnbMinutesCMTP(int nbMinutesCMTP) {
 			checkArgument(nbMinutesCMTP >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesCMTP = nbMinutesCMTP;
 			return this;
 		}
 
-		public Builder setNbMinutesCM(int nbMinutesCM) {
+		public Builder setnbMinutesCM(int nbMinutesCM) {
 			checkArgument(nbMinutesCM >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesCM = nbMinutesCM;
 			return this;

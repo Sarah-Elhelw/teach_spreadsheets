@@ -18,7 +18,7 @@ public class CoursePrefTests {
 
 		Course.Builder courseBuilder = Course.Builder.newInstance();
 		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setNbMinutesCM(20);
+		courseBuilder.setnbMinutesCM(20);
 		courseBuilder.setName("Analyse de données");
 		courseBuilder.setStudyYear("2012");
 		courseBuilder.setSemester(1);

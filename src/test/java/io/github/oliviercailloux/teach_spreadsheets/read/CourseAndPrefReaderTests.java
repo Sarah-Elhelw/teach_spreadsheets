@@ -36,7 +36,7 @@ public class CourseAndPrefReaderTests {
 				Course.Builder courseBuilder = Course.Builder.newInstance();
 				courseBuilder.setName("PRE-RENTREE : Mathématiques");
 				courseBuilder.setCountGroupsCMTD(6);
-				courseBuilder.setNbMinutesCMTD(15);
+				courseBuilder.setnbMinutesCMTD(15);
 				courseBuilder.setSemester(1);
 				courseBuilder.setStudyYear("2016/2017");
 				Course course = courseBuilder.build();
