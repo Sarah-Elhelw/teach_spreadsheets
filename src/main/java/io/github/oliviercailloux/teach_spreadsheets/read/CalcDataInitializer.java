@@ -26,8 +26,10 @@ public class CalcDataInitializer {
 	private CalcDataInitializer() {
 
 	}
+
 	/**
 	 * Creates a {@link CalcData} from the document passed as a parameter.
+	 * 
 	 * @param document - the document to be read
 	 * @return a {@link CalcData} gathering the informations read in the document
 	 */
@@ -39,9 +41,12 @@ public class CalcDataInitializer {
 		ImmutableSet<CoursePref> coursePrefs = prefsInitializer.createPrefslist(document, teacher);
 		return CalcData.newInstance(coursePrefs, teacher);
 	}
+
 	/**
-	 * Opens and creates a {@link CalcData} from a document whose path is passed as a parameter.
-	 * @param documentPath
+	 * Opens and creates a {@link CalcData} from a document whose path is passed as
+	 * a parameter.
+	 * 
+	 * @param documentPath - the path of the file to be read
 	 * @return a {@link CalcData} gathering the informations read in the document
 	 * @throws Exception to handle the exception type IOException
 	 */

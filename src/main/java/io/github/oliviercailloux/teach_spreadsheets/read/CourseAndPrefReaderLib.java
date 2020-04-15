@@ -15,7 +15,8 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 class CourseAndPrefReaderLib {
 	/**
 	 * Tests if there is a next course in the semester to read.
-	 * @param sheet - the current sheet
+	 * 
+	 * @param sheet      - the current sheet
 	 * @param currentCol - the current column of the cell to test
 	 * @param currentRow - the current row of the cell to test
 	 * @return true if there is a next curse to read and false otherwise.
@@ -27,13 +28,16 @@ class CourseAndPrefReaderLib {
 		String test = cell.getDisplayText();
 		return !"".equals(test) && test != null;
 	}
+
 	/**
 	 * Reads the preference from a cell.
+	 * 
 	 * @param sheet - the current sheet
-	 * @param j - the cell column containing the preference 
-	 * @param i - the cell row containing the preference 
-	 * @param flag - used to know if reading the preference is applicable in the context or not
-	 * @return the preference 
+	 * @param j     - the cell column containing the preference
+	 * @param i     - the cell row containing the preference
+	 * @param flag  - used to know if reading the preference is applicable in the
+	 *              context or not
+	 * @return the preference
 	 */
 
 	static Preference readPref(Table sheet, int j, int i, boolean flag) {

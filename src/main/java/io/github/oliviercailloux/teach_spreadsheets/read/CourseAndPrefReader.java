@@ -56,10 +56,13 @@ public class CourseAndPrefReader {
 	private CourseAndPrefReader() {
 		courseList = new LinkedHashSet<>();
 	}
-	
+
 	/**
-	 * Reads and returns the {@link CoursePref} objects corresponding to a semester of the standard format.
-	 * @param sheet - contains the courses and preferences of a specific study year.
+	 * Reads and returns the {@link CoursePref} objects corresponding to a semester
+	 * of the standard format.
+	 * 
+	 * @param sheet   - contains the courses and preferences of a specific study
+	 *                year.
 	 * @param teacher - whose courses'preferences are to read.
 	 * @return an ImmutableSet of {@link CoursePref}
 	 */
@@ -86,12 +89,16 @@ public class CourseAndPrefReader {
 		return ImmutableSet.copyOf(coursePrefList);
 
 	}
+
 	/**
 	 * Sets the informations of a {@link CoursePref} from a table.
-	 * @param sheet - the sheet where the preferences are read.
-	 * @param prefBuilder that needs to be completed
-	 * @param j the column of the cell containing the first preference cell of the line
-	 * @param i the row of the cell containing the first preference cell of the line
+	 * 
+	 * @param sheet       - the sheet where the preferences are read.
+	 * @param prefBuilder - the {@link CoursePref} to be completed
+	 * @param j           - the column of the cell containing the first preference
+	 *                    cell of the line
+	 * @param i           - the row of the cell containing the first preference cell
+	 *                    of the line
 	 */
 	public void setInfoPref(Table sheet, CoursePref.Builder prefBuilder, int j, int i) {
 		prefBuilder.setPrefCM(CourseAndPrefReaderLib.readPref(sheet, j, i, flagCM));
@@ -128,11 +135,16 @@ public class CourseAndPrefReader {
 	}
 
 	/**
-	 * Sets the informations of a {@link Course} from a table. This method is inspired from
-	 * <a href="https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/java/io/github/oliviercailloux/y2018/teach_spreadsheets/odf/CourseReader.java">readCoursesFromCell</a> written by Victor CHEN (Kantoki) and Louis FONTAINE
-	 * (fontlo15). for the project <a href="https://github.com/oliviercailloux/Teach-spreadsheets"> y2018 teach spreadsheets</a>.
-	 * @param j the column of the cell containing the first course cell of the line
-	 * @param i the row of the cell containing the first course cell of the line
+	 * Sets the informations of a {@link Course} from a table. This method is
+	 * inspired from <a href=
+	 * "https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/java/io/github/oliviercailloux/y2018/teach_spreadsheets/odf/CourseReader.java">readCoursesFromCell</a>
+	 * written by Victor CHEN (Kantoki) and Louis FONTAINE (fontlo15). for the
+	 * project <a href="https://github.com/oliviercailloux/Teach-spreadsheets">
+	 * y2018 teach spreadsheets</a>.
+	 * 
+	 * @param j - the column of the cell containing the first course cell of the
+	 *          line
+	 * @param i - the row of the cell containing the first course cell of the line
 	 */
 
 	public void setInfoCourse(Table currentSheet, Course.Builder courseBuilder, int currentCol, int currentRow,
