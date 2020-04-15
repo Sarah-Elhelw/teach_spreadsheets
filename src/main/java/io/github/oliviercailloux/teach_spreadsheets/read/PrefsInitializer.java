@@ -22,8 +22,8 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
  *
  */
 public class PrefsInitializer {
-	private static ImmutableList<String> tableList = ImmutableList.<String>builder()
-			.add("DE1", "DE2", "L3 Informatique", "L3 Mathématiques", "M1 Mathématiques", "M1 Informatique").build();
+	private static ImmutableList<String> TABLE_LIST = ImmutableList.<String>builder()
+			.add("DE1", "DE2", "L3 Informatique", "L3 Mathématiques", "M1 Mathématiques", "M1 Informatique").build(); //all the tables that follow the standard format
 
 	public static PrefsInitializer newInstance() {
 		return new PrefsInitializer();
@@ -31,7 +31,11 @@ public class PrefsInitializer {
 
 	private PrefsInitializer() {
 	}
-
+	/**
+	 * Creates and returns a list of {@link CoursePref} from an ods document following the standard format.
+	 * @param document
+	 * @param teacher 
+	 */
 	public ImmutableSet<CoursePref> createPrefslist(SpreadsheetDocument document, Teacher teacher) {
 		LinkedHashSet<CoursePref> prefsList = new LinkedHashSet<>();
 		Table sheet;
@@ -40,7 +44,7 @@ public class PrefsInitializer {
 		for (Table table : listOfTables) {
 			listOfTablesNames.add(table.getTableName());
 		}
-		for (String iteam : tableList) {
+		for (String iteam : TABLE_LIST) {
 			Preconditions.checkArgument(listOfTablesNames.contains(iteam)); // Checking the document contains all the
 																			// sheets'names in tableList
 			sheet = document.getTableByName(iteam);

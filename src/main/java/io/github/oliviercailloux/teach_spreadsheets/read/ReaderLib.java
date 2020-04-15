@@ -4,16 +4,22 @@ import org.odftoolkit.simple.style.StyleTypeDefinitions.CellBordersType;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
+import io.github.oliviercailloux.teach_spreadsheets.base.Course;
+
 /**
- * This class gathers basic methods that help reading an ods file. These methods
- * were coded by two members of the former group that had to work on teach
- * spreadsheets subject : Victor CHEN (Kantoki) and Louis Fontaine (fontlo15).
- * The original class these methods are extracted from is ODSReader that can be
- * found in
- * {@link https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/java/io/github/oliviercailloux/y2018/teach_spreadsheets/odf/ODSReader.java}.
+ * This class gathers basic methods that help reading an ods file.Some of These methods
+ * were coded by two members of the former group that had to work on <a href="https://github.com/oliviercailloux/Teach-spreadsheets">teach
+ * spreadsheets</a> subject : Victor CHEN (Kantoki) and Louis Fontaine (fontlo15).
+ * The original class these methods are extracted from is <a href="https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/java/io/github/oliviercailloux/y2018/teach_spreadsheets/odf/ODSReader.java">ODSReader</a>.
  *
  */
 class ReaderLib {
+	/**
+	 * 
+	 * @param currentSheet
+	 * @param cellPosition
+	 * @return the cell value as a String,null if the cell contains a diagonal border see : {@link #isDiagonalBorder(Table currentSheet, String cellPosition) isDiagonalBorder}.
+	 */
 
 	static String getCellValue(Table currentSheet, String cellPosition) {
 		Cell cell = currentSheet.getCellByPosition(cellPosition);
@@ -30,7 +36,9 @@ class ReaderLib {
 	/**
 	 * Detects if there is a diagonal border in the cell at cellPosition in the
 	 * current sheet.
-	 *
+	 * This method is written by Victor CHEN (Kantoki) and Louis FONTAINE
+	 * (fontlo15). for the project <a href="https://github.com/oliviercailloux/Teach-spreadsheets"> y2018 teach spreadsheets</a>.
+	 * 
 	 */
 	static boolean isDiagonalBorder(Table currentSheet, String cellPosition) {
 		/*
@@ -54,7 +62,9 @@ class ReaderLib {
 	/**
 	 * Detects if there is a diagonal border in the cell at j i position in the
 	 * current sheet.
-	 * 
+	 * This method is written by Victor CHEN (Kantoki) and Louis FONTAINE
+	 * (fontlo15). for the project <a href="https://github.com/oliviercailloux/Teach-spreadsheets"> y2018.teach.Sspreadsheets</a>.
+	 * It can be found in the class <a href="https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/java/io/github/oliviercailloux/y2018/teach_spreadsheets/odf/ODSReader.java">ODSReader</a> of this project.
 	 */
 	static boolean isDiagonalBorder(Table currentSheet, int columnIndex, int rowIndex) {
 		Cell cell = currentSheet.getCellByPosition(columnIndex, rowIndex);
@@ -69,6 +79,14 @@ class ReaderLib {
 		}
 		return false;
 	}
+	/**
+	 * Converts a String containing a number of hours to minutes.
+	 * @param hours a String containing only a real number
+	 * @throws NullPointerException if the string is null
+	 * @throws NumberFormatException if the string does not contain a parsable double.
+	 * @return the equivalent number of minutes
+	 * 
+	 */
 
 	static int hoursToMinutes(String hours) {
 		return (int) (Double.parseDouble(hours) * 60);

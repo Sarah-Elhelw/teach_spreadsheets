@@ -31,7 +31,7 @@ public class CourseAndPrefReader {
 	private final static int FIRST_COURSE_S2_COL = 15;
 	private final static int FIRST_COURSE_S2_ROW = 3;
 
-	private final static String semesterPosition = "G1";
+	private final static String SEMESTER_POSITION = "G1";
 
 	private boolean flagCM;
 	private boolean flagTD;
@@ -56,7 +56,13 @@ public class CourseAndPrefReader {
 	private CourseAndPrefReader() {
 		courseList = new LinkedHashSet<>();
 	}
-
+	
+	/**
+	 * Reads and return the {@link CoursePref} objects corresponding to a semester of the standard format.
+	 * @param sheet 
+	 * @param teacher
+	 * @return an ImmutableSet of {@link CoursePref}
+	 */
 	public ImmutableSet<CoursePref> readSemester(Table sheet, Teacher teacher) {
 		LinkedHashSet<CoursePref> coursePrefList = new LinkedHashSet<>();
 		while (CourseAndPrefReaderLib.isThereANextCourse(sheet, currentCol, currentRow)) {
@@ -80,7 +86,13 @@ public class CourseAndPrefReader {
 		return ImmutableSet.copyOf(coursePrefList);
 
 	}
-
+	/**
+	 * Sets the informations of a {@link CoursePref} from a table.
+	 * @param sheet
+	 * @param prefBuilder 
+	 * @param j the column of the cell containing the first preference cell of the line
+	 * @param i the row of the cell containing the first preference cell of the line
+	 */
 	public void setInfoPref(Table sheet, CoursePref.Builder prefBuilder, int j, int i) {
 		prefBuilder.setPrefCM(CourseAndPrefReaderLib.readPref(sheet, j, i, flagCM));
 		prefBuilder.setPrefTD(CourseAndPrefReaderLib.readPref(sheet, j + 1, i, flagTD));
@@ -116,10 +128,11 @@ public class CourseAndPrefReader {
 	}
 
 	/**
-	 * Sets the informations of a {@link Course}. This method is inspired from
-	 * readCoursesFromCell written by Victor CHEN (Kantoki) and Louis FONTAINE
-	 * (fontlo15). We can find it in
-	 * {@link https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/java/io/github/oliviercailloux/y2018/teach_spreadsheets/odf/CourseReader.java}.
+	 * Sets the informations of a {@link Course} from a table. This method is inspired from
+	 * <a href="https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/java/io/github/oliviercailloux/y2018/teach_spreadsheets/odf/CourseReader.java">readCoursesFromCell</a> written by Victor CHEN (Kantoki) and Louis FONTAINE
+	 * (fontlo15). for the project <a href="https://github.com/oliviercailloux/Teach-spreadsheets"> y2018 teach spreadsheets</a>.
+	 * @param j the column of the cell containing the first course cell of the line
+	 * @param i the row of the cell containing the first course cell of the line
 	 */
 
 	public void setInfoCourse(Table currentSheet, Course.Builder courseBuilder, int currentCol, int currentRow,
@@ -139,7 +152,7 @@ public class CourseAndPrefReader {
 
 		courseBuilder.setName(cellText.replaceAll("\n", " "));
 
-		actualCell = currentSheet.getCellByPosition(semesterPosition);
+		actualCell = currentSheet.getCellByPosition(SEMESTER_POSITION);
 		cellData = actualCell.getDisplayText().split(" ");
 		if (cellData.length != 2) {
 			throw new IllegalStateException("The semester cell isn't in the right format");

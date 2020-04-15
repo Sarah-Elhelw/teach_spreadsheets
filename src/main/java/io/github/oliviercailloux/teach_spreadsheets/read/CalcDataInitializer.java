@@ -26,6 +26,11 @@ public class CalcDataInitializer {
 	private CalcDataInitializer() {
 
 	}
+	/**
+	 * Creates a {@link CalcData} from the document passed as a parameter.
+	 * @param document
+	 * @return
+	 */
 
 	private CalcData createCalcData(SpreadsheetDocument document) {
 		TeacherReader teacherReader = TeacherReader.newInstance();
@@ -34,6 +39,12 @@ public class CalcDataInitializer {
 		ImmutableSet<CoursePref> coursePrefs = prefsInitializer.createPrefslist(document, teacher);
 		return CalcData.newInstance(coursePrefs, teacher);
 	}
+	/**
+	 * Opens and creates a {@link CalcData} from a document which path is passed as a parameter.
+	 * @param documentPath
+	 * @return
+	 * @throws Exception
+	 */
 
 	public CalcData readDocument(Path documentPath) throws Exception {
 		try (InputStream stream = Files.newInputStream(documentPath)) {

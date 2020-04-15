@@ -18,19 +18,19 @@ import io.github.oliviercailloux.teach_spreadsheets.base.*;
  *
  */
 public class TeacherReader {
-	private final static String sheetname = "Emplois du temps";
-	private final static String lastNamePosition = "B2";
-	private final static String firstNamePosition = "F2";
-	private final static String addressPosition = "B4";
-	private final static String postCodePosition = "B5";
-	private final static String cityPosition = "D5";
-	private final static String personalPhonePosition = "B6";
-	private final static String mobilePhonePosition = "E6";
-	private final static String personalEmailPosition = "B8";
-	private final static String dauphineEmailPosition = "B9";
-	private final static String statusPosition = "B11";
-	private final static String dauphinePhoneNumberPosition = "E11";
-	private final static String officePosition = "H11";
+	private final static String SHEET_NAME = "Emplois du temps";
+	private final static String LAST_NAME_POSITION = "B2";
+	private final static String FIRST_NAME_POSITION = "F2";
+	private final static String ADDRESS_POSITION = "B4";
+	private final static String POST_CODE_POSITION = "B5";
+	private final static String CITY_POSITION = "D5";
+	private final static String PERSONAL_PHONE_POSITION = "B6";
+	private final static String MOBILE_PHONE_POSITION = "E6";
+	private final static String PERSONAL_EMAIL_POSITION = "B8";
+	private final static String DAUPHINE_EMAIL_POSITION = "B9";
+	private final static String STATUS_POSITION = "B11";
+	private final static String DAUPHINE_PHONE_NUMBER_POSITION = "E11";
+	private final static String OFFICE_POSITION = "H11";
 
 	private String lastName;
 	private String firstName;
@@ -52,25 +52,34 @@ public class TeacherReader {
 	private TeacherReader() {
 
 	}
+	/**
+	 * Sets all the variables that will be later used to create a teacher.
+	 * @param sheet
+	 */
 
 	private void readValues(Table sheet) {
-		lastName = ReaderLib.getCellValue(sheet, lastNamePosition);
-		firstName = ReaderLib.getCellValue(sheet, firstNamePosition);
-		address = ReaderLib.getCellValue(sheet, addressPosition);
-		postCode = ReaderLib.getCellValue(sheet, postCodePosition);
-		city = ReaderLib.getCellValue(sheet, cityPosition);
-		personalPhone = ReaderLib.getCellValue(sheet, personalPhonePosition);
-		mobilePhone = ReaderLib.getCellValue(sheet, mobilePhonePosition);
-		personalEmail = ReaderLib.getCellValue(sheet, personalEmailPosition);
-		dauphineEmail = ReaderLib.getCellValue(sheet, dauphineEmailPosition);
-		status = ReaderLib.getCellValue(sheet, statusPosition);
-		dauphinePhoneNumber = ReaderLib.getCellValue(sheet, dauphinePhoneNumberPosition);
-		office = ReaderLib.getCellValue(sheet, officePosition);
+		lastName = ReaderLib.getCellValue(sheet, LAST_NAME_POSITION);
+		firstName = ReaderLib.getCellValue(sheet, FIRST_NAME_POSITION);
+		address = ReaderLib.getCellValue(sheet, ADDRESS_POSITION);
+		postCode = ReaderLib.getCellValue(sheet, POST_CODE_POSITION);
+		city = ReaderLib.getCellValue(sheet, CITY_POSITION);
+		personalPhone = ReaderLib.getCellValue(sheet, PERSONAL_PHONE_POSITION);
+		mobilePhone = ReaderLib.getCellValue(sheet, MOBILE_PHONE_POSITION);
+		personalEmail = ReaderLib.getCellValue(sheet, PERSONAL_EMAIL_POSITION);
+		dauphineEmail = ReaderLib.getCellValue(sheet, DAUPHINE_EMAIL_POSITION);
+		status = ReaderLib.getCellValue(sheet, STATUS_POSITION);
+		dauphinePhoneNumber = ReaderLib.getCellValue(sheet, DAUPHINE_PHONE_NUMBER_POSITION);
+		office = ReaderLib.getCellValue(sheet, OFFICE_POSITION);
 
 	}
-
+	
+	/**
+	 * Creates and returns a Teacher with the right informations set from an ods document.
+	 * @param document
+	 *  
+	 */
 	public Teacher createTeacherFromCalc(SpreadsheetDocument document) {
-		Table sheet = Objects.requireNonNull(document.getSheetByName(sheetname));
+		Table sheet = Objects.requireNonNull(document.getSheetByName(SHEET_NAME));
 		readValues(sheet);
 		Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
 		teacherBuilder.setLastName(lastName);
