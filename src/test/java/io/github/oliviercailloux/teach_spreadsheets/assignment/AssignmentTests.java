@@ -10,11 +10,11 @@ public class AssignmentTests {
 	void testAddCourseAssignmentWithNullCourseAssignment() {
 		Assignment assignment = Assignment.newInstance();
 		Throwable exception = Assertions.assertThrows(NullPointerException.class, new Executable() {
-	           @Override
-	           public void execute() throws Throwable {
-	        	   assignment.addCourseAssignment(null);
-	           }
-        });
+			@Override
+			public void execute() throws Throwable {
+				assignment.addCourseAssignment(null);
+			}
+		});
 		Assertions.assertEquals("The courseAssignment must not be null.", exception.getMessage());
 	}
 }

@@ -3,17 +3,26 @@ package io.github.oliviercailloux.teach_spreadsheets.read;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
+import com.google.common.base.Preconditions;
+
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 
+/**
+ * This class gathers basic methods that help reading preferences in an ods file
+ * and knowing if there is still a course to read.
+ *
+ */
 class CourseAndPrefReaderLib {
-	static boolean isThereANextCourse(Table sheet,int currentCol,int currentRow) {
+
+	static boolean isThereANextCourse(Table sheet, int currentCol, int currentRow) {
 		Cell cell;
-		cell=sheet.getCellByPosition(currentCol,currentRow);
-		String test=cell.getDisplayText();
-		return !"".equals(test) && test!=null;
+		cell = sheet.getCellByPosition(currentCol, currentRow);
+		String test = cell.getDisplayText();
+		return !"".equals(test) && test != null;
 	}
+
 	static Preference readPref(Table sheet, int j, int i, boolean flag) {
-		if(!flag) {
+		if (!flag) {
 			return Preference.UNSPECIFIED;
 		}
 		if (ReaderLib.isDiagonalBorder(sheet, j, i)) {
@@ -21,23 +30,19 @@ class CourseAndPrefReaderLib {
 		}
 		Cell actualCell = sheet.getCellByPosition(j, i);
 		String cellText = actualCell.getDisplayText();
-		if(cellText==null || cellText.equals("")) {
+		if (cellText == null || cellText.equals("")) {
 			return Preference.UNSPECIFIED;
 		}
 		String[] choice = cellText.split(" ");
-		if(choice.length !=2) {
-			throw new IllegalStateException("Preference at "+sheet.getTableName()+" "+i+","+j+" is not in a valid format");
-		}
-		if(choice[1].equals("A")){
+		Preconditions.checkState(choice.length == 2,
+				"Preference at " + sheet.getTableName() + " " + i + "," + j + " is not in a valid format");
+		if (choice[1].equals("A")) {
 			return Preference.A;
-		}
-		else if(choice[1].equals("B")){
+		} else if (choice[1].equals("B")) {
 			return Preference.B;
-		}
-		else if(choice[1].equals("C")){
+		} else if (choice[1].equals("C")) {
 			return Preference.C;
-		}
-		else {
+		} else {
 			return Preference.UNSPECIFIED;
 		}
 	}

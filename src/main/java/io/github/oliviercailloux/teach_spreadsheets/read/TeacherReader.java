@@ -8,29 +8,30 @@ import org.odftoolkit.simple.table.Table;
 import io.github.oliviercailloux.teach_spreadsheets.base.*;
 
 /**
- * This class reads the informations about a teacher based on the sheet "Emplois du temps".
- * For this reading to work, the document loaded and read must follow the same format as "AA - 
- * Saisie des voeux 2016-2017.ods" : there needs to be a sheet "Emploi du temps" were are stored
- * the informations about a teacher. Those informations must be in specific cells listed in the
- * final static attributes.
+ * This class reads the informations about a teacher based on the sheet "Emplois
+ * du temps". For this reading to work, the document loaded and read must follow
+ * the same format as "AA - Saisie des voeux 2016-2017.ods" : there needs to be
+ * a sheet "Emploi du temps" were are stored the informations about a teacher.
+ * Those informations must be in specific cells listed in the final static
+ * attributes.
  * 
  *
  */
-public class TeacherReader{
-	private final static String sheetname="Emplois du temps";
-	private final static String lastNamePosition="B2";
-	private final static String firstNamePosition="F2";
-	private final static String addressPosition="B4";
-	private final static String postCodePosition="B5";
-	private final static String cityPosition="D5";
-	private final static String personalPhonePosition="B6";
-	private final static String mobilePhonePosition="E6";
-	private final static String personalEmailPosition="B8";
-	private final static String dauphineEmailPosition="B9";
-	private final static String statusPosition="B11";
-	private final static String dauphinePhoneNumberPosition="E11";
-	private final static String officePosition="H11";
-	
+public class TeacherReader {
+	private final static String sheetname = "Emplois du temps";
+	private final static String lastNamePosition = "B2";
+	private final static String firstNamePosition = "F2";
+	private final static String addressPosition = "B4";
+	private final static String postCodePosition = "B5";
+	private final static String cityPosition = "D5";
+	private final static String personalPhonePosition = "B6";
+	private final static String mobilePhonePosition = "E6";
+	private final static String personalEmailPosition = "B8";
+	private final static String dauphineEmailPosition = "B9";
+	private final static String statusPosition = "B11";
+	private final static String dauphinePhoneNumberPosition = "E11";
+	private final static String officePosition = "H11";
+
 	private String lastName;
 	private String firstName;
 	private String address;
@@ -43,38 +44,35 @@ public class TeacherReader{
 	private String status;
 	private String dauphinePhoneNumber;
 	private String office;
-	
 
-	public static TeacherReader newInstance(){
+	public static TeacherReader newInstance() {
 		return new TeacherReader();
 	}
-	
+
 	private TeacherReader() {
-		
+
 	}
-	
-	
-	
-	private void readValues(Table sheet){
-		lastName=ReaderLib.getCellValue(sheet, lastNamePosition);
-		firstName=ReaderLib.getCellValue(sheet, firstNamePosition);
-		address=ReaderLib.getCellValue(sheet, addressPosition);
-		postCode=ReaderLib.getCellValue(sheet, postCodePosition);
-		city=ReaderLib.getCellValue(sheet, cityPosition);
-		personalPhone=ReaderLib.getCellValue(sheet, personalPhonePosition);
-		mobilePhone=ReaderLib.getCellValue(sheet, mobilePhonePosition);
-		personalEmail=ReaderLib.getCellValue(sheet, personalEmailPosition);
-		dauphineEmail=ReaderLib.getCellValue(sheet, dauphineEmailPosition);
-		status=ReaderLib.getCellValue(sheet, statusPosition);
-		dauphinePhoneNumber=ReaderLib.getCellValue(sheet, dauphinePhoneNumberPosition);
-		office=ReaderLib.getCellValue(sheet, officePosition);
-		
+
+	private void readValues(Table sheet) {
+		lastName = ReaderLib.getCellValue(sheet, lastNamePosition);
+		firstName = ReaderLib.getCellValue(sheet, firstNamePosition);
+		address = ReaderLib.getCellValue(sheet, addressPosition);
+		postCode = ReaderLib.getCellValue(sheet, postCodePosition);
+		city = ReaderLib.getCellValue(sheet, cityPosition);
+		personalPhone = ReaderLib.getCellValue(sheet, personalPhonePosition);
+		mobilePhone = ReaderLib.getCellValue(sheet, mobilePhonePosition);
+		personalEmail = ReaderLib.getCellValue(sheet, personalEmailPosition);
+		dauphineEmail = ReaderLib.getCellValue(sheet, dauphineEmailPosition);
+		status = ReaderLib.getCellValue(sheet, statusPosition);
+		dauphinePhoneNumber = ReaderLib.getCellValue(sheet, dauphinePhoneNumberPosition);
+		office = ReaderLib.getCellValue(sheet, officePosition);
+
 	}
-	
-	public Teacher createTeacherFromCalc(SpreadsheetDocument document){
+
+	public Teacher createTeacherFromCalc(SpreadsheetDocument document) {
 		Table sheet = Objects.requireNonNull(document.getSheetByName(sheetname));
 		readValues(sheet);
-		Teacher.Builder teacherBuilder=Teacher.Builder.newInstance();
+		Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
 		teacherBuilder.setLastName(lastName);
 		teacherBuilder.setFirstName(firstName);
 		teacherBuilder.setAddress(address);
@@ -87,6 +85,6 @@ public class TeacherReader{
 		teacherBuilder.setStatus(status);
 		teacherBuilder.setDauphinePhoneNumber(dauphinePhoneNumber);
 		teacherBuilder.setOffice(office);
-		return teacherBuilder.build();	
+		return teacherBuilder.build();
 	}
 }

@@ -10,9 +10,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
 /**
- * This class assigns a list of teachers'assignments to a course.
- *  
- * @author sarah
+ * This class assigns a set of teachers'assignments to a course.
  *
  */
 public class CourseAssignment {
@@ -39,7 +37,7 @@ public class CourseAssignment {
 		 * 
 		 * @return courseAssignmentToBuild - the CourseAssignment that was built.
 		 * 
-		 * @throws NullPointerException if we create a CourseAssignment without a Course.
+		 * @throws NullPointerException if we create a CourseAssignment without a {@link Course}.
 		 */
 		public CourseAssignment build() {
 			Preconditions.checkNotNull(courseAssignmentToBuild.course, "You cannot build a CourseAssignment without a Course.");
