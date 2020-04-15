@@ -212,5 +212,5 @@ public class Course {
 
 				.toString();
 	}
- 
+
 }
