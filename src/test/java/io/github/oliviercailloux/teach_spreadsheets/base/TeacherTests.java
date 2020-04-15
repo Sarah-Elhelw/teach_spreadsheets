@@ -16,6 +16,4 @@ public class TeacherTests {
 
 		assertEquals(expected, actual);
 	}
-
 }
-
