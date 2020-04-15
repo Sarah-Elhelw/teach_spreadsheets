@@ -58,9 +58,9 @@ public class CourseAndPrefReader {
 	}
 	
 	/**
-	 * Reads and return the {@link CoursePref} objects corresponding to a semester of the standard format.
-	 * @param sheet 
-	 * @param teacher
+	 * Reads and returns the {@link CoursePref} objects corresponding to a semester of the standard format.
+	 * @param sheet - contains the courses and preferences of a specific study year.
+	 * @param teacher - whose courses'preferences are to read.
 	 * @return an ImmutableSet of {@link CoursePref}
 	 */
 	public ImmutableSet<CoursePref> readSemester(Table sheet, Teacher teacher) {
@@ -88,8 +88,8 @@ public class CourseAndPrefReader {
 	}
 	/**
 	 * Sets the informations of a {@link CoursePref} from a table.
-	 * @param sheet
-	 * @param prefBuilder 
+	 * @param sheet - the sheet where the preferences are read.
+	 * @param prefBuilder that needs to be completed
 	 * @param j the column of the cell containing the first preference cell of the line
 	 * @param i the row of the cell containing the first preference cell of the line
 	 */

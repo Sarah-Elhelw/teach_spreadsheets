@@ -4,8 +4,6 @@ import org.odftoolkit.simple.style.StyleTypeDefinitions.CellBordersType;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.Course;
-
 /**
  * This class gathers basic methods that help reading an ods file.Some of These methods
  * were coded by two members of the former group that had to work on <a href="https://github.com/oliviercailloux/Teach-spreadsheets">teach
@@ -15,10 +13,10 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
  */
 class ReaderLib {
 	/**
-	 * 
-	 * @param currentSheet
-	 * @param cellPosition
-	 * @return the cell value as a String,null if the cell contains a diagonal border see : {@link #isDiagonalBorder(Table currentSheet, String cellPosition) isDiagonalBorder}.
+	 * Displays the content of a cell.
+	 * @param currentSheet - the current sheet
+	 * @param cellPosition - the position of the cell we want to get the content from.
+	 * @return the cell value as a String, null if the cell contains a diagonal border see : {@link #isDiagonalBorder(Table currentSheet, String cellPosition) isDiagonalBorder}.
 	 */
 
 	static String getCellValue(Table currentSheet, String cellPosition) {
@@ -37,8 +35,9 @@ class ReaderLib {
 	 * Detects if there is a diagonal border in the cell at cellPosition in the
 	 * current sheet.
 	 * This method is written by Victor CHEN (Kantoki) and Louis FONTAINE
-	 * (fontlo15). for the project <a href="https://github.com/oliviercailloux/Teach-spreadsheets"> y2018 teach spreadsheets</a>.
-	 * 
+	 * (fontlo15) for the project <a href="https://github.com/oliviercailloux/Teach-spreadsheets"> y2018 teach spreadsheets</a>.
+	 * @param currentSheet - the current sheet
+	 * @param cellPosition - the position of the cell where we would like to know if there is a border or not.
 	 */
 	static boolean isDiagonalBorder(Table currentSheet, String cellPosition) {
 		/*
@@ -63,8 +62,11 @@ class ReaderLib {
 	 * Detects if there is a diagonal border in the cell at j i position in the
 	 * current sheet.
 	 * This method is written by Victor CHEN (Kantoki) and Louis FONTAINE
-	 * (fontlo15). for the project <a href="https://github.com/oliviercailloux/Teach-spreadsheets"> y2018.teach.Sspreadsheets</a>.
+	 * (fontlo15) for the project <a href="https://github.com/oliviercailloux/Teach-spreadsheets"> y2018.teach.Sspreadsheets</a>.
 	 * It can be found in the class <a href="https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/java/io/github/oliviercailloux/y2018/teach_spreadsheets/odf/ODSReader.java">ODSReader</a> of this project.
+	 * @param currentSheet - the current sheet
+	 * @param columnIndex - the cell column
+	 * @param rowIndex - the cell row
 	 */
 	static boolean isDiagonalBorder(Table currentSheet, int columnIndex, int rowIndex) {
 		Cell cell = currentSheet.getCellByPosition(columnIndex, rowIndex);

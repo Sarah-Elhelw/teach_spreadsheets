@@ -28,8 +28,8 @@ public class CalcDataInitializer {
 	}
 	/**
 	 * Creates a {@link CalcData} from the document passed as a parameter.
-	 * @param document
-	 * @return
+	 * @param document - the document to be read
+	 * @return a {@link CalcData} gathering the informations read in the document
 	 */
 
 	private CalcData createCalcData(SpreadsheetDocument document) {
@@ -40,10 +40,10 @@ public class CalcDataInitializer {
 		return CalcData.newInstance(coursePrefs, teacher);
 	}
 	/**
-	 * Opens and creates a {@link CalcData} from a document which path is passed as a parameter.
+	 * Opens and creates a {@link CalcData} from a document whose path is passed as a parameter.
 	 * @param documentPath
-	 * @return
-	 * @throws Exception
+	 * @return a {@link CalcData} gathering the informations read in the document
+	 * @throws Exception to handle the exception type IOException
 	 */
 
 	public CalcData readDocument(Path documentPath) throws Exception {

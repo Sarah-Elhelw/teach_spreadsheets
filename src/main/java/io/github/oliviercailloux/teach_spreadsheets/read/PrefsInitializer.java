@@ -33,8 +33,8 @@ public class PrefsInitializer {
 	}
 	/**
 	 * Creates and returns a list of {@link CoursePref} from an ods document following the standard format.
-	 * @param document
-	 * @param teacher 
+	 * @param document - the document to be read
+	 * @param teacher - whose preferences are read
 	 */
 	public ImmutableSet<CoursePref> createPrefslist(SpreadsheetDocument document, Teacher teacher) {
 		LinkedHashSet<CoursePref> prefsList = new LinkedHashSet<>();

@@ -9,8 +9,9 @@ import org.junit.jupiter.api.function.Executable;
  * from building incoherent teachers'assignments by throwing exceptions.
  * 
  * To handle the throwing of exceptions in unit testing, we took inspiration
- * from the code in
- * {@link https://www.codejava.net/testing/junit-test-exception-examples-how-to-assert-an-exception-is-thrown}.
+ * from <a href=
+ * "https://www.codejava.net/testing/junit-test-exception-examples-how-to-assert-an-exception-is-thrown">this
+ * code.</a>
  *
  */
 public class TeacherAssignmentTests {

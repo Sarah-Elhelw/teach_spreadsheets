@@ -54,7 +54,7 @@ public class TeacherReader {
 	}
 	/**
 	 * Sets all the variables that will be later used to create a teacher.
-	 * @param sheet
+	 * @param sheet - the current sheet
 	 */
 
 	private void readValues(Table sheet) {
@@ -75,7 +75,7 @@ public class TeacherReader {
 	
 	/**
 	 * Creates and returns a Teacher with the right informations set from an ods document.
-	 * @param document
+	 * @param document - the document to be read to get the teacher's informations.
 	 *  
 	 */
 	public Teacher createTeacherFromCalc(SpreadsheetDocument document) {
