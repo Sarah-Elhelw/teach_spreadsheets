@@ -226,6 +226,4 @@ public class CoursePref {
 
 				.toString();
 	}
-
 }
-
