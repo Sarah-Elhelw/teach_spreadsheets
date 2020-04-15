@@ -33,4 +33,6 @@ public class CoursePrefTests {
 		assertEquals(expected, actual);
 
 	}
+
 }
+

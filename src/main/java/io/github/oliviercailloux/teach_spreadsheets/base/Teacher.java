@@ -192,4 +192,6 @@ public class Teacher {
 				.add("mobilePhone", mobilePhone).add("personalEmail", personalEmail).add("dauphineEmail", dauphineEmail)
 				.add("status", status).add("dauphinePhoneNumber", dauphinePhoneNumber).add("office", office).toString();
 	}
+
 }
+

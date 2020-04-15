@@ -21,4 +21,6 @@ public class CourseTests {
 
 		assertEquals(expected, actual);
 	}
+
 }
+
