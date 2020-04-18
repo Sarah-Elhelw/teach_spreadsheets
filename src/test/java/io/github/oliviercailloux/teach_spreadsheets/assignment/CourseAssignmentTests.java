@@ -2,7 +2,6 @@ package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.function.Executable;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.*;
 
@@ -15,11 +14,8 @@ public class CourseAssignmentTests {
 	@Test
 	void testBuilderWithNoCourse() {
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance();
-		Throwable exception = Assertions.assertThrows(NullPointerException.class, new Executable() {
-			@Override
-			public void execute() throws Throwable {
+		Throwable exception = Assertions.assertThrows(NullPointerException.class, () -> {
 				courseAssignmentBuilder.build();
-			}
 		});
 		Assertions.assertEquals("You cannot build a CourseAssignment without a Course.", exception.getMessage());
 	}
@@ -27,11 +23,8 @@ public class CourseAssignmentTests {
 	@Test
 	void testSetCourseWithNullCourse() {
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance();
-		Throwable exception = Assertions.assertThrows(NullPointerException.class, new Executable() {
-			@Override
-			public void execute() throws Throwable {
+		Throwable exception = Assertions.assertThrows(NullPointerException.class, () -> {
 				courseAssignmentBuilder.setCourse(null);
-			}
 		});
 		Assertions.assertEquals("The course must not be null.", exception.getMessage());
 	}
@@ -42,11 +35,8 @@ public class CourseAssignmentTests {
 				.setCountGroupsTD(3).build();
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance();
 		courseAssignmentBuilder.setCourse(course);
-		Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
-			@Override
-			public void execute() throws Throwable {
+		Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
 				courseAssignmentBuilder.addTeacherAssignment(teacherAssignment);
-			}
 		});
 		Assertions.assertEquals(
 				"The number of assigned TD groups must not exceed the number of TD groups associated to the course.",
@@ -58,11 +48,8 @@ public class CourseAssignmentTests {
 		TeacherAssignment teacherAssignment0 = TeacherAssignment.Builder.newInstance().setTeacher(teacher).build();
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance();
 		courseAssignmentBuilder.setCourse(course);
-		Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
-			@Override
-			public void execute() throws Throwable {
+		Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
 				courseAssignmentBuilder.addTeacherAssignment(teacherAssignment0);
-			}
 		});
 		Assertions.assertEquals("An assignment must have at least one assigned group.", exception.getMessage());
 	}

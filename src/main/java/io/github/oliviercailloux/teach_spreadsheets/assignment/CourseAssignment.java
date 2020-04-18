@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableSet;
 
 /**
  * This class assigns a set of teachers'assignments to a course.
@@ -17,16 +18,14 @@ public class CourseAssignment {
 	/**
 	 * Set of {@link TeacherAssignment} : we should not be able to assign more than once a teacher's assignment to a course.
 	 */
-	private Set<TeacherAssignment> teacherAssignments;
-	
-	private CourseAssignment() {
-		teacherAssignments = new LinkedHashSet<>();
-	}
+	private  ImmutableSet<TeacherAssignment> finalTeacherAssignments;
 	
 	public static class Builder{
+		private Set<TeacherAssignment> teacherAssignments;
 		private CourseAssignment courseAssignmentToBuild;
 		
 		private Builder() {
+			teacherAssignments = new LinkedHashSet<>();
 			courseAssignmentToBuild = new CourseAssignment();
 		}
 		
@@ -43,6 +42,7 @@ public class CourseAssignment {
 		 */
 		public CourseAssignment build() {
 			Preconditions.checkNotNull(courseAssignmentToBuild.course, "You cannot build a CourseAssignment without a Course.");
+			courseAssignmentToBuild.finalTeacherAssignments = ImmutableSet.copyOf(teacherAssignments);
 			return courseAssignmentToBuild;
 		}
 		
@@ -59,7 +59,7 @@ public class CourseAssignment {
 		}
 		
 		/**
-		 * Adds a teacher's assignment to the listOfTeacherAssignments. The total numbers of assigned TD, TP, CMTD, 
+		 * Adds a teacher's assignment to the teacherAssignments. The total numbers of assigned TD, TP, CMTD, 
 		 * CMTP and CM groups to the course must not exceed the numbers of TD, TP, CMTD, CMTP and CM groups that 
 		 * are associated to the given course.
 		 * Moreover, we cannot add a teacher's assignment were the numbers of assigned TD, TP, CMTD, CMTP and CM are
@@ -84,7 +84,7 @@ public class CourseAssignment {
 			int sumAssignedGroupsCMTP = 0;
 			int sumAssignedGroupsCM = 0;
 
-			for (TeacherAssignment ta : courseAssignmentToBuild.teacherAssignments) {
+			for (TeacherAssignment ta : teacherAssignments) {
 				sumAssignedGroupsTD += ta.getCountGroupsTD();
 				sumAssignedGroupsTP += ta.getCountGroupsTP();
 				sumAssignedGroupsCMTD += ta.getCountGroupsCMTD();
@@ -100,7 +100,7 @@ public class CourseAssignment {
 			
 			Preconditions.checkArgument(teacherAssignment.getCountGroupsTD()!=0 || teacherAssignment.getCountGroupsTP()!=0 || teacherAssignment.getCountGroupsCMTD()!=0 || teacherAssignment.getCountGroupsCMTP()!=0 || teacherAssignment.getCountGroupsCM()!=0, "An assignment must have at least one assigned group.");
 			
-			courseAssignmentToBuild.teacherAssignments.add(teacherAssignment);
+			teacherAssignments.add(teacherAssignment);
 		}
 	}
 	
@@ -108,15 +108,15 @@ public class CourseAssignment {
 		return course;
 	}
 	
-	public Set<TeacherAssignment> getListOfTeacherAssignments(){
-		return teacherAssignments;
+	public Set<TeacherAssignment> getTeacherAssignments(){
+		return finalTeacherAssignments;
 	}
 	
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this)
 	       .add("Course", course.getName())
-	       .add("List of Teachers'Assignments", teacherAssignments)
+	       .add("List of Teachers'Assignments", finalTeacherAssignments)
 	       .toString();
 	}
 }
