@@ -1,29 +1,31 @@
 package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
 import java.util.Set;
-import java.util.Objects;
 import java.util.LinkedHashSet;
 
 import com.google.common.base.MoreObjects;
+import com.google.common.base.Preconditions;
 
 /**
  * This class gathers all the course assignments that were made in a set.
  *
  */
 public class Assignment {
-	private Set<CourseAssignment> listOfCourseAssignments; // We should not be able to consider more than once a
-															// CourseAssignment.
+	/**
+	 * Set of {@link CourseAssignment} :  we should not be able to consider more than once a CourseAssignment.
+	 */
+	private Set<CourseAssignment> courseAssignments;
 
 	public static Assignment newInstance() {
 		return new Assignment();
 	}
 
 	private Assignment() {
-		listOfCourseAssignments = new LinkedHashSet<>();
+		courseAssignments = new LinkedHashSet<>();
 	}
 
 	public Set<CourseAssignment> getListOfCourseAssignments() {
-		return listOfCourseAssignments;
+		return courseAssignments;
 	}
 
 	/**
@@ -35,11 +37,11 @@ public class Assignment {
 	 * @throws NullPointerException if the parameter is null
 	 */
 	public void addCourseAssignment(CourseAssignment courseAssignment) {
-		listOfCourseAssignments.add(Objects.requireNonNull(courseAssignment, "The courseAssignment must not be null."));
+		courseAssignments.add(Preconditions.checkNotNull(courseAssignment, "The courseAssignment must not be null."));
 	}
 
 	@Override
 	public String toString() {
-		return MoreObjects.toStringHelper(this).add("List of CourseAssignments", listOfCourseAssignments).toString();
+		return MoreObjects.toStringHelper(this).add("List of CourseAssignments", courseAssignments).toString();
 	}
 }

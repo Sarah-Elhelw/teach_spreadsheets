@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
-import java.util.Objects;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
@@ -65,7 +64,7 @@ public class TeacherAssignment {
 		 * @throws NullPointerException if the parameter is null
 		 */
 		public Builder setTeacher(Teacher teacher) {
-			this.teacherAssignmentToBuild.teacher = Objects.requireNonNull(teacher,
+			this.teacherAssignmentToBuild.teacher = Preconditions.checkNotNull(teacher,
 					"The teacher assigned must not be null.");
 			return this;
 		}

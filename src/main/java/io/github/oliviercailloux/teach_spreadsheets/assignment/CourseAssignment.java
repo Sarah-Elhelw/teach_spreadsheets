@@ -3,7 +3,6 @@ package io.github.oliviercailloux.teach_spreadsheets.assignment;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
 import java.util.Set;
-import java.util.Objects;
 import java.util.LinkedHashSet;
 
 import com.google.common.base.MoreObjects;
@@ -15,10 +14,13 @@ import com.google.common.base.Preconditions;
  */
 public class CourseAssignment {
 	private Course course;
-	private Set<TeacherAssignment> listOfTeacherAssignments; // We should not be able to assign more than once a teacher's assignment to a course.
+	/**
+	 * Set of {@link TeacherAssignment} : we should not be able to assign more than once a teacher's assignment to a course.
+	 */
+	private Set<TeacherAssignment> teacherAssignments;
 	
 	private CourseAssignment() {
-		listOfTeacherAssignments = new LinkedHashSet<>();
+		teacherAssignments = new LinkedHashSet<>();
 	}
 	
 	public static class Builder{
@@ -52,7 +54,7 @@ public class CourseAssignment {
 		 * @throws NullPointerException if the parameter is null
 		 */
 		public Builder setCourse(Course course) {
-			this.courseAssignmentToBuild.course = Objects.requireNonNull(course, "The course must not be null.");
+			this.courseAssignmentToBuild.course = Preconditions.checkNotNull(course, "The course must not be null.");
 			return this;
 		}
 		
@@ -73,21 +75,21 @@ public class CourseAssignment {
 		 * assignment are all equal to zero.
 		 */
 		public void addTeacherAssignment(TeacherAssignment teacherAssignment) {
-			Objects.requireNonNull(courseAssignmentToBuild.course, "The Course must be set first.");
-			Objects.requireNonNull(teacherAssignment, "The teacherAssignment must not be null.");
-			
-			int sumAssignedGroupsTD=0;
-			int sumAssignedGroupsTP=0;
-			int sumAssignedGroupsCMTD=0;
-			int sumAssignedGroupsCMTP=0;
-			int sumAssignedGroupsCM=0;
-			
-			for (TeacherAssignment ta : courseAssignmentToBuild.listOfTeacherAssignments) {
-				sumAssignedGroupsTD+=ta.getCountGroupsTD();
-				sumAssignedGroupsTP+=ta.getCountGroupsTP();
-				sumAssignedGroupsCMTD+=ta.getCountGroupsCMTD();
-				sumAssignedGroupsCMTP+=ta.getCountGroupsCMTP();
-				sumAssignedGroupsCM+=ta.getCountGroupsCM();
+			Preconditions.checkNotNull(courseAssignmentToBuild.course, "The Course must be set first.");
+			Preconditions.checkNotNull(teacherAssignment, "The teacherAssignment must not be null.");
+
+			int sumAssignedGroupsTD = 0;
+			int sumAssignedGroupsTP = 0;
+			int sumAssignedGroupsCMTD = 0;
+			int sumAssignedGroupsCMTP = 0;
+			int sumAssignedGroupsCM = 0;
+
+			for (TeacherAssignment ta : courseAssignmentToBuild.teacherAssignments) {
+				sumAssignedGroupsTD += ta.getCountGroupsTD();
+				sumAssignedGroupsTP += ta.getCountGroupsTP();
+				sumAssignedGroupsCMTD += ta.getCountGroupsCMTD();
+				sumAssignedGroupsCMTP += ta.getCountGroupsCMTP();
+				sumAssignedGroupsCM += ta.getCountGroupsCM();
 			}
 			
 			Preconditions.checkArgument(sumAssignedGroupsTD+teacherAssignment.getCountGroupsTD()<=courseAssignmentToBuild.course.getCountGroupsTD(), "The number of assigned TD groups must not exceed the number of TD groups associated to the course.");
@@ -98,7 +100,7 @@ public class CourseAssignment {
 			
 			Preconditions.checkArgument(teacherAssignment.getCountGroupsTD()!=0 || teacherAssignment.getCountGroupsTP()!=0 || teacherAssignment.getCountGroupsCMTD()!=0 || teacherAssignment.getCountGroupsCMTP()!=0 || teacherAssignment.getCountGroupsCM()!=0, "An assignment must have at least one assigned group.");
 			
-			courseAssignmentToBuild.listOfTeacherAssignments.add(teacherAssignment);
+			courseAssignmentToBuild.teacherAssignments.add(teacherAssignment);
 		}
 	}
 	
@@ -107,14 +109,14 @@ public class CourseAssignment {
 	}
 	
 	public Set<TeacherAssignment> getListOfTeacherAssignments(){
-		return listOfTeacherAssignments;
+		return teacherAssignments;
 	}
 	
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this)
 	       .add("Course", course.getName())
-	       .add("List of Teachers'Assignments", listOfTeacherAssignments)
+	       .add("List of Teachers'Assignments", teacherAssignments)
 	       .toString();
 	}
 }
