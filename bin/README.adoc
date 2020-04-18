@@ -1,0 +1,34 @@
+= Teach spreadsheets
+== Aim of the project 
+
+The aim of this project is to read teacher’s preferences to assign them to study groups in courses.
+
+== Global idea of the project 
+
+The main functionalities that this project will implement are described in the link:Docs\DiagramDocs\UseCase_doc.adoc[use case diagram]. +
+The way we imagine the process of assignment is described in the link:Docs\DiagramDocs\Seq_doc.adoc[sequence diagram]. +
+The classes that we plan to implement are described in the link:Docs\DiagramDocs\Class_doc.adoc[class diagram].
+
+== First java iteration 
+
+For the first java iteration, we plan to divide the work among the subgroups as follows: 
+
+* Group 1: Mike and Inès 
+
+** Creates the skeleton (attributes and getters) of classes Course, Teacher CoursePref and CalcData. 
+
+** Prepares some samples of “AA - Saisie des voeux 2016-2017.ods" as if they were completed by teachers. 
+
+** Gets courses and teachers with Json API to populate CalcData. 
+
+* Group 2:  Hedi and Sarah 
+
+** Creates the skeleton (attributes and getters) of the class CourseAssignement and Assignment. 
+
+** Looks for how to read a Calc document. This searching process allows to keep working while Group 1 codes Course and Teacher classes. 
+
+** Reads the Calc document “AA - Saisie des voeux 2016-2017.ods" and instantiates a CalcData variable. 
+
+* Semida 
+
+** Looks for a way to summarize the samples of “AA - Saisie des voeux 2016-2017.ods" made. Hence, looks for how to write in a Calc. 
