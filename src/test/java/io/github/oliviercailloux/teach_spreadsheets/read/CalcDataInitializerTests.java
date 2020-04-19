@@ -16,7 +16,7 @@ public class CalcDataInitializerTests {
 	void testreadDocument() throws Exception {
 		CalcDataInitializer calcDataInitializer = CalcDataInitializer.newInstance();
 		final Path infile = Path.of(
-				"src\\test\\resources\\io.github.oliviercailloux.teach_spreadsheets.read\\Saisie_des_voeux_format simple.ods");
+				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\Saisie_des_voeux_format simple.ods");
 		CalcData calcData = calcDataInitializer.readDocument(infile);
 
 		// Checking the informations of the teacher:

@@ -17,7 +17,7 @@ public class TeacherReaderTests {
 	@Test
 	void testcreateTeacherFromCalc() throws Exception {
 		final Path infile = Path.of(
-				"src\\test\\resources\\io.github.oliviercailloux.teach_spreadsheets.read\\AA - Saisie des voeux 2016-2017_Emplois-du-temps.ods");
+				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\AA - Saisie des voeux 2016-2017_Emplois-du-temps.ods");
 		try (InputStream stream = Files.newInputStream(infile)) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				TeacherReader teacherReader = TeacherReader.newInstance();

@@ -14,7 +14,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 /**
  * This class creates a {@link CalcData} by reading an ods file with a structure
- * similar to "AA - Saisie des voeux 2016-2017.ods".
+ * similar to <a href="../../../../../../../../src/test/resources/io/github/oliviercailloux/teach_spreadsheets/read/AA - Saisie des voeux 2016-2017_Emplois-du-temps.ods">"AA - Saisie des voeux 2016-2017.ods"</a>.
  *
  */
 public class CalcDataInitializer {

@@ -24,7 +24,7 @@ public class PrefsInitializerTests {
 	@Test
 	void testCreatePrefsList() throws Exception {
 		final Path infile = Path.of(
-				"src\\test\\resources\\io.github.oliviercailloux.teach_spreadsheets.read\\Saisie_des_voeux_format simple.ods");
+				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\Saisie_des_voeux_format simple.ods");
 		try (InputStream stream = Files.newInputStream(infile)) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				PrefsInitializer prefsInitializer = PrefsInitializer.newInstance();
