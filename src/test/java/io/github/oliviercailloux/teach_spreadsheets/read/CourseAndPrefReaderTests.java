@@ -27,7 +27,7 @@ public class CourseAndPrefReaderTests {
 	void testSetInfoPref() throws Exception { // Checking the preferences for "PRE-RENTREE : Mathématiques"
 		CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();
 		final Path infile = Path.of(
-				"src\\test\\resources\\io.github.oliviercailloux.teach_spreadsheets.read\\Saisie_des_voeux_format simple.ods");
+				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\Saisie_des_voeux_format simple.ods");
 		try (InputStream stream = Files.newInputStream(infile)) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				Table sheet = document.getTableByName("DE1");
@@ -62,7 +62,7 @@ public class CourseAndPrefReaderTests {
 	@Test
 	void testSetInfoCourse() throws Exception {
 		final Path infile = Path.of(
-				"src\\test\\resources\\io.github.oliviercailloux.teach_spreadsheets.read\\Saisie_des_voeux_format simple.ods");
+				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\Saisie_des_voeux_format simple.ods");
 		try (InputStream stream = Files.newInputStream(infile)) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();
@@ -83,7 +83,7 @@ public class CourseAndPrefReaderTests {
 	@Test
 	void testreadSemester() throws Exception {
 		final Path infile = Path.of(
-				"src\\test\\resources\\io.github.oliviercailloux.teach_spreadsheets.read\\Saisie_des_voeux_format simple.ods");
+				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\Saisie_des_voeux_format simple.ods");
 		try (InputStream stream = Files.newInputStream(infile)) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				Table sheet = document.getTableByName("DE1");

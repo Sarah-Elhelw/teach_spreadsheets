@@ -14,18 +14,10 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 /**
  * This class creates a {@link CalcData} by reading an ods file with a structure
- * similar to "AA - Saisie des voeux 2016-2017.ods".
+ * similar to <a href="../../../../../../../../src/test/resources/io/github/oliviercailloux/teach_spreadsheets/read/AA - Saisie des voeux 2016-2017_Emplois-du-temps.ods">"AA - Saisie des voeux 2016-2017.ods"</a>.
  *
  */
 public class CalcDataInitializer {
-
-	public static CalcDataInitializer newInstance() {
-		return new CalcDataInitializer();
-	}
-
-	private CalcDataInitializer() {
-
-	}
 
 	/**
 	 * Creates a {@link CalcData} from the document passed as a parameter.
@@ -34,7 +26,7 @@ public class CalcDataInitializer {
 	 * @return a {@link CalcData} gathering the informations read in the document
 	 */
 
-	private CalcData createCalcData(SpreadsheetDocument document) {
+	public static CalcData createCalcData(SpreadsheetDocument document) {
 		TeacherReader teacherReader = TeacherReader.newInstance();
 		Teacher teacher = teacherReader.createTeacherFromCalc(document);
 		PrefsInitializer prefsInitializer = PrefsInitializer.newInstance();
@@ -42,22 +34,6 @@ public class CalcDataInitializer {
 		return CalcData.newInstance(coursePrefs, teacher);
 	}
 
-	/**
-	 * Opens and creates a {@link CalcData} from a document whose path is passed as
-	 * a parameter.
-	 * 
-	 * @param documentPath - the path of the file to be read
-	 * @return a {@link CalcData} gathering the informations read in the document
-	 * @throws Exception to handle the exception type IOException
-	 */
 
-	public CalcData readDocument(Path documentPath) throws Exception {
-		try (InputStream stream = Files.newInputStream(documentPath)) {
-			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
-				return createCalcData(document);
-			}
-		}
-
-	}
 
 }
