@@ -14,10 +14,9 @@ public class CalcDataInitializerTests {
 
 	@Test
 	void testreadDocument() throws Exception {
-		CalcDataInitializer calcDataInitializer = CalcDataInitializer.newInstance();
 		final Path infile = Path.of(
 				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\Saisie_des_voeux_format simple.ods");
-		CalcData calcData = calcDataInitializer.readDocument(infile);
+		CalcData calcData = CalcData.getData(infile);
 
 		// Checking the informations of the teacher:
 		String expectedTeacher = "Teacher{lastName=Doe, firstName=John, address=19 rue Jacques Louvel-Tessier, postCode=75010, city=Paris, personalPhone=123456789, mobilePhone=987654321, personalEmail=john.doe@outlook.com, dauphineEmail=john.doe@dauphine.eu, status=MCF, dauphinePhoneNumber=1928373645, office=B048}";
