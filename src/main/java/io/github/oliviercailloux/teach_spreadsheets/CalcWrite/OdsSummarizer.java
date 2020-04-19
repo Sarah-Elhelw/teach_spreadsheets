@@ -11,6 +11,10 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
 public class OdsSummarizer {
 
+	/**
+	 * These Strings are the positions in the Summarized Ods 
+	 * of the Year, Semester, Course, Teacher's name and the various preferences.
+	 */
 	
 	private final static String YEAR_POSITION = "A1";
 	private final static String SEMESTER_POSITION = "B1";
@@ -24,12 +28,25 @@ public class OdsSummarizer {
 	private final static String TP_POSITION = "J1";
 	
 	
+	/**
+	 * This method creates an empty Ods and removes the default sheet
+	 * 
+	 * @return a new Ods empty document 
+	 * @throws Throwable if the Ods could not be created
+	 */
+	
 	private static SpreadsheetDocument createAnEmptyOds() throws Throwable { 
 		SpreadsheetDocument document = SpreadsheetDocument.newSpreadsheetDocument();
 		document.removeSheet(0);// remove the default sheet
 		return document;
 	}
 	
+	
+	/**
+	 * This method adds the headers to this new document. 
+	 * 
+	 * @param table This is the main table of the ods document that we want to complete
+	 */
 	
 	private static void headersToOds(Table table){
 		
@@ -38,19 +55,40 @@ public class OdsSummarizer {
 		table.getCellByPosition(COURSE_POSITION).setStringValue("Course name");
 		table.getCellByPosition(TEACHER_FIRST_NAME_POSITION).setStringValue("Teacher's first name");
 		table.getCellByPosition(TEACHER_LAST_NAME_POSITION).setStringValue("Teacher's last name");
-		table.getCellByPosition(CM_POSITION).setStringValue("Choix Cours");
-		table.getCellByPosition(CMTD_POSITION).setStringValue("Choix CMTD");
-		table.getCellByPosition(TD_POSITION).setStringValue("Choix TD");
-		table.getCellByPosition(CMTP_POSITION).setStringValue("Choix CMTP");
-		table.getCellByPosition(TP_POSITION).setStringValue("Choix TP");
+		table.getCellByPosition(CM_POSITION).setStringValue("Course Choice");
+		table.getCellByPosition(CMTD_POSITION).setStringValue("CMTD Choice");
+		table.getCellByPosition(TD_POSITION).setStringValue("TD Choice");
+		table.getCellByPosition(CMTP_POSITION).setStringValue("CMTP Choice");
+		table.getCellByPosition(TP_POSITION).setStringValue("TP Choice");
 		
 	}
+	
+	
+	/**
+	 * This method sets a value at a specific cell of an ods document
+	 * 
+	 * @param table This is the main table of the ods document that we want to complete
+	 * @param info This is the string that we would like to set at a specific cell
+	 * @param row The value is set at this specific row number 
+	 * @param column The value is set at this specific column number 
+	 */
 	
 	private static void setValueAt(Table table, String info, int row, int column) {
 		Cell cell= table.getCellByPosition(column, row);
 		cell.setDisplayText(info);
 		
 	}
+	
+	
+	/**
+	 * This method creates a summarized Ods. 
+	 * For each course, it writes all the teachers who want to teach the course and their preferences.
+	 * 
+	 * @param allCourses This is a complete set of Courses. 
+	 * @param prefs This is a complete set of Preferences.
+	 * @return A document competed with all the courses and all the preferences of the teachers for each course.
+	 * @throws Throwable if the document could not be correctly completed
+	 */
 	
 	public static SpreadsheetDocument createSummarizedOds(ImmutableSet <Course> allCourses, ImmutableSet <CoursePref> prefs) throws Throwable {
 		
@@ -71,11 +109,26 @@ public class OdsSummarizer {
 					test = true; 
 					setValueAt(summary,p.getTeacher().getFirstName(), line, 3);
 					setValueAt(summary,p.getTeacher().getLastName(), line, 4);
-					setValueAt(summary,p.getPrefCM().toString(), line, 5);
-					setValueAt(summary,p.getPrefCMTD().toString(), line, 6);
-					setValueAt(summary,p.getPrefTD().toString(), line, 7);
-					setValueAt(summary,p.getPrefCMTP().toString(), line, 8);
-					setValueAt(summary,p.getPrefTP().toString(), line, 9);
+					
+					if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
+						setValueAt(summary,p.getPrefCM().toString(), line, 5);
+					}
+					
+					if (!p.getPrefCMTD().toString().equals("UNSPECIFIED")) {
+						setValueAt(summary,p.getPrefCMTD().toString(), line, 6);
+					}
+					
+					if (!p.getPrefTD().toString().equals("UNSPECIFIED")) {
+						setValueAt(summary,p.getPrefTD().toString(), line, 7);
+					}
+					
+					if (!p.getPrefCMTP().toString().equals("UNSPECIFIED")) {
+						setValueAt(summary,p.getPrefCMTP().toString(), line, 8);
+					}
+					
+					if (!p.getPrefTP().toString().equals("UNSPECIFIED")) {
+						setValueAt(summary,p.getPrefTP().toString(), line, 9);
+					}
 					
 					line++;
 				}

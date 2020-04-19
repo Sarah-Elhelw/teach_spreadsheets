@@ -23,6 +23,12 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 public class testOdsSummarizer {
 	
 	@Test
+	
+	/**
+	 * This Test verifies if the summarized document is correctly completed
+	 * @throws Throwable if it is a problem while testing if the document is correctly completed
+	 */
+	
 	void testFichierAgrege() throws Throwable{
 		
 		Course.Builder courseBuilder1=Course.Builder.newInstance();
@@ -106,9 +112,12 @@ public class testOdsSummarizer {
 				assertEquals( expectedvalue4, actualvalue4);
 				assertEquals( expectedvalue5, actualvalue5);
 				assertEquals( expectedvalue6, actualvalue6);
-			
+				
+				
 				}
+			
 			}
+		Files.delete(infile);
 		
 	}
 
