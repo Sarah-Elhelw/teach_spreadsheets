@@ -1,26 +1,26 @@
 package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 /**
- * This class provides, for a given course, a teacher that was assigned and
- * details the number of TD, TP, CMTD, CMTP and CM groups the teacher will have
- * to give lessons to.
+ * Immutable. This class provides, for a given course, a teacher that was
+ * assigned and details the number of TD, TP, CMTD, CMTP and CM groups the
+ * teacher will have to give lessons to.
  *
  */
 public class TeacherAssignment {
-	private Teacher teacher;
+	private final Teacher teacher;
 	private int countGroupsTD;
 	private int countGroupsTP;
 	private int countGroupsCMTD;
 	private int countGroupsCMTP;
 	private int countGroupsCM;
 
-	private TeacherAssignment() {
+	private TeacherAssignment(Teacher teacher) {
+		this.teacher = Preconditions.checkNotNull(teacher, "The teacher assigned must not be null.");
 		countGroupsTD = 0;
 		countGroupsTP = 0;
 		countGroupsCMTD = 0;
@@ -31,12 +31,12 @@ public class TeacherAssignment {
 	public static class Builder {
 		private TeacherAssignment teacherAssignmentToBuild;
 
-		private Builder() {
-			teacherAssignmentToBuild = new TeacherAssignment();
+		private Builder(Teacher teacher) {
+			teacherAssignmentToBuild = new TeacherAssignment(teacher);
 		}
 
-		public static Builder newInstance() {
-			return new Builder();
+		public static Builder newInstance(Teacher teacher) {
+			return new Builder(teacher);
 		}
 
 		/**
@@ -44,29 +44,9 @@ public class TeacherAssignment {
 		 * 
 		 * @return teacherAssignmentToBuild - the TeacherAssignment that was built.
 		 * 
-		 * @throws NullPointerException if we create a TeacherAssignment without a
-		 *                              {@link Teacher}.
 		 */
 		public TeacherAssignment build() {
-			Preconditions.checkNotNull(teacherAssignmentToBuild.teacher,
-					"You cannot build a TeacherAssignment without a Teacher.");
 			return teacherAssignmentToBuild;
-		}
-
-		/**
-		 * Sets the value of the attribute teacher of teacherAssignmentToBuild. This
-		 * value must not be null.
-		 * 
-		 * @param teacher - the object used to set the value of the attribute teacher
-		 * 
-		 * @return this - the object that called the method
-		 * 
-		 * @throws NullPointerException if the parameter is null
-		 */
-		public Builder setTeacher(Teacher teacher) {
-			this.teacherAssignmentToBuild.teacher = Preconditions.checkNotNull(teacher,
-					"The teacher assigned must not be null.");
-			return this;
 		}
 
 		/**
@@ -179,7 +159,7 @@ public class TeacherAssignment {
 	public int getCountGroupsCM() {
 		return countGroupsCM;
 	}
-	
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this)

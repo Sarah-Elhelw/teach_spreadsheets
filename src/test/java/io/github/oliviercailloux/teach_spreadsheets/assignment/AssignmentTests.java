@@ -9,7 +9,7 @@ public class AssignmentTests {
 	void testAddCourseAssignmentWithNullCourseAssignment() {
 		Assignment assignment = Assignment.newInstance();
 		Throwable exception = Assertions.assertThrows(NullPointerException.class, () -> {
-				assignment.addCourseAssignment(null);
+			assignment.addCourseAssignment(null);
 		});
 		Assertions.assertEquals("The courseAssignment must not be null.", exception.getMessage());
 	}

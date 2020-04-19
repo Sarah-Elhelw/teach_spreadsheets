@@ -1,6 +1,9 @@
 package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
 import org.junit.jupiter.api.Test;
+
+import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
+
 import org.junit.jupiter.api.Assertions;
 
 /**
@@ -15,30 +18,21 @@ import org.junit.jupiter.api.Assertions;
  */
 public class TeacherAssignmentTests {
 
+	private static Teacher teacher = Teacher.Builder.newInstance().setLastName("Doe").setFirstName("John").build();
+
 	@Test
 	void testBuilderWithNegativeCountGroupsTD() {
-		TeacherAssignment.Builder teacherAssignmentBuilder = TeacherAssignment.Builder.newInstance();
+		TeacherAssignment.Builder teacherAssignmentBuilder = TeacherAssignment.Builder.newInstance(teacher);
 		Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-				teacherAssignmentBuilder.setCountGroupsTD(-1);
+			teacherAssignmentBuilder.setCountGroupsTD(-1);
 		});
 		Assertions.assertEquals("The number of TD groups must be positive.", exception.getMessage());
 	}
 
 	@Test
-	void testBuilderWithNoTeacher() {
-		TeacherAssignment.Builder teacherAssignmentBuilder = TeacherAssignment.Builder.newInstance();
-		teacherAssignmentBuilder.setCountGroupsTD(2);
+	void testSettingTeacherWithNullTeacher() {
 		Throwable exception = Assertions.assertThrows(NullPointerException.class, () -> {
-				teacherAssignmentBuilder.build();
-		});
-		Assertions.assertEquals("You cannot build a TeacherAssignment without a Teacher.", exception.getMessage());
-	}
-
-	@Test
-	void testSetTeacherWithNullTeacher() {
-		TeacherAssignment.Builder teacherAssignmentBuilder = TeacherAssignment.Builder.newInstance();
-		Throwable exception = Assertions.assertThrows(NullPointerException.class, () -> {
-				teacherAssignmentBuilder.setTeacher(null);
+			TeacherAssignment.Builder.newInstance(null);
 		});
 		Assertions.assertEquals("The teacher assigned must not be null.", exception.getMessage());
 	}

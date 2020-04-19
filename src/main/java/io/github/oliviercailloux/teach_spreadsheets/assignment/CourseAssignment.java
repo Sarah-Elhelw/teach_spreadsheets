@@ -10,54 +10,59 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
 
 /**
- * This class assigns a set of teachers'assignments to a course.
+ * Immutable. This class assigns a set of teachers'assignments to a course.
  *
  */
 public class CourseAssignment {
-	private Course course;
+	private final Course course;
 	/**
-	 * Set of {@link TeacherAssignment} : we should not be able to assign more than once a teacher's assignment to a course.
+	 * Set of {@link TeacherAssignment} : we should not be able to assign more than
+	 * once a teacher's assignment to a course.
 	 */
-	private  ImmutableSet<TeacherAssignment> finalTeacherAssignments;
-	
-	public static class Builder{
+	private ImmutableSet<TeacherAssignment> finalTeacherAssignments;
+
+	private CourseAssignment(Course course) {
+		this.course = Preconditions.checkNotNull(course, "The course must not be null.");
+	}
+
+	private CourseAssignment(Course course, ImmutableSet<TeacherAssignment> finalTeacherAssignments) {
+		this.course = Preconditions.checkNotNull(course, "The course must not be null.");
+		this.finalTeacherAssignments = Preconditions.checkNotNull(finalTeacherAssignments,
+				"The teachers'assignments must not be null");
+	}
+
+	public static CourseAssignment newInstance(Course course, ImmutableSet<TeacherAssignment> finalTeacherAssignments) {
+		return new CourseAssignment(course, finalTeacherAssignments);
+	}
+
+	public static class Builder {
+		/**
+		 * Set of {@link TeacherAssignment} : it is used to build (by adding) the
+		 * finalTeacherAssignments.
+		 */
 		private Set<TeacherAssignment> teacherAssignments;
 		private CourseAssignment courseAssignmentToBuild;
-		
-		private Builder() {
+
+		private Builder(Course course) {
 			teacherAssignments = new LinkedHashSet<>();
-			courseAssignmentToBuild = new CourseAssignment();
+			courseAssignmentToBuild = new CourseAssignment(course);
 		}
-		
-		public static Builder newInstance() {
-			return new Builder();
+
+		public static Builder newInstance(Course course) {
+			return new Builder(course);
 		}
-		
+
 		/**
 		 * Builds a CourseAssignment.
 		 * 
 		 * @return courseAssignmentToBuild - the CourseAssignment that was built.
 		 * 
-		 * @throws NullPointerException if we create a CourseAssignment without a {@link Course}.
 		 */
 		public CourseAssignment build() {
-			Preconditions.checkNotNull(courseAssignmentToBuild.course, "You cannot build a CourseAssignment without a Course.");
 			courseAssignmentToBuild.finalTeacherAssignments = ImmutableSet.copyOf(teacherAssignments);
 			return courseAssignmentToBuild;
 		}
-		
-		/**
-		 * Sets the value of the attribute course of courseAssignmentToBuild. This value must not be null.
-		 * 
-		 * @param course - the object used to set the value of the attribute course
-		 * 
-		 * @throws NullPointerException if the parameter is null
-		 */
-		public Builder setCourse(Course course) {
-			this.courseAssignmentToBuild.course = Preconditions.checkNotNull(course, "The course must not be null.");
-			return this;
-		}
-		
+
 		/**
 		 * Adds a teacher's assignment to the teacherAssignments. The total numbers of assigned TD, TP, CMTD, 
 		 * CMTP and CM groups to the course must not exceed the numbers of TD, TP, CMTD, CMTP and CM groups that 
