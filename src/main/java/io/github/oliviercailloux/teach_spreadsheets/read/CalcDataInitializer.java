@@ -1,9 +1,5 @@
 package io.github.oliviercailloux.teach_spreadsheets.read;
 
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import org.odftoolkit.simple.SpreadsheetDocument;
 
 import com.google.common.collect.ImmutableSet;
