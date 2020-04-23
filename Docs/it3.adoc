@@ -1,0 +1,31 @@
+= Iteration 3 UML 
+
+The aim of this iteration is to correct and improve UML Iteration 2 by taking into consideration Mr. Cailloux’s remarks. We also did new Class Diagrams for the classes we implemented in the first java iteration.
+
+Here is the list of the modifications that were made by each one : 
+
+* The group constituted of Hedi GUEDIDI, Semida BUZDUGAN and Inès DRAREDJA divided the corrections as follows: 
+
+** Hedi GUEDIDI : 
+
+***  ...
+
+** Semida BUZDUGAN : 
+
+*** Removed useless files : Model_fr_FR.propreties and .project in the Diagrams folder
+
+*** Improving documents files
+
+** Inès DRAREDJA
+
+*** ...
+
+* The group constituted of Sarah EL HELW and Mike SANTANGELO divided the corrections as follows: 
+
+** Sarah EL HELW
+ 
+*** ...
+
+** Mike SANTANGELO 
+
+*** ...
