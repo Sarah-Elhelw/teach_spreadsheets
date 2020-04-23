@@ -9,26 +9,32 @@ The main functionalities that this project will implement are described in the l
 The way we imagine the process of assignment is described in the link:Docs\DiagramDocs\Seq_doc.adoc[sequence diagram]. +
 The classes that we plan to implement are described in the link:Docs\DiagramDocs\Class_doc.adoc[class diagram].
 
-== First java iteration 
+== Second java iteration
 
-For the first java iteration, we plan to divide the work among the subgroups as follows: 
+* Group 1: SM/PO : Hedi 
+
+* Group 2: Mike and Sarah
+
+* Group 3: Semida and Inès
+
+== What was done in the first java iteration  
 
 * Group 1: Mike and Inès 
 
-** Creates the skeleton (attributes and getters) of classes Course, Teacher CoursePref and CalcData. 
+** Created the skeleton (attributes and getters) of classes Course, Teacher CoursePref and CalcData. 
 
-** Prepares some samples of “AA - Saisie des voeux 2016-2017.ods" as if they were completed by teachers. 
+** Prepared some samples of “AA - Saisie des voeux 2016-2017.ods" as if they were completed by teachers. 
 
-** Gets courses and teachers with Json API to populate CalcData. 
+** Got courses and teachers with Json API to populate CalcData. 
 
 * Group 2:  Hedi and Sarah 
 
-** Creates the skeleton (attributes and getters) of the class CourseAssignement and Assignment. 
+** Created the skeleton (attributes and getters) of the class CourseAssignement and Assignment. 
 
-** Looks for how to read a Calc document. This searching process allows to keep working while Group 1 codes Course and Teacher classes. 
+** Looked for how to read a Calc document. 
 
-** Reads the Calc document “AA - Saisie des voeux 2016-2017.ods" and instantiates a CalcData variable. 
+** Read the Calc document “AA - Saisie des voeux 2016-2017.ods" and instantiated a CalcData variable. 
 
 * Semida 
 
-** Looks for a way to summarize the samples of “AA - Saisie des voeux 2016-2017.ods" made. Hence, looks for how to write in a Calc. 
+** Created a class which summarises the samples of “AA - Saisie des voeux 2016-2017.ods" made by writing teachers' preferences in a Calc. 
