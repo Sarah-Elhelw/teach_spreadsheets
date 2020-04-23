@@ -13,9 +13,25 @@ The classes that we plan to implement are described in the link:Docs\DiagramDocs
 
 * Group 1: SM/PO : Hedi 
 
+** Does the necessary changes in order to merge the branch it1-java-Hedi-Sarah to master
+
+** Looks for a way to read the tabs "LSO" and "Apprentissage"
+
+** Verifies that the merges are not problematic
+
+
 * Group 2: Mike and Sarah
 
+** Reads and writes a list of courses 
+
+** Does the necessary changes on classes Assignment
+
+
 * Group 3: Semida and Inès
+
+** Does the necessary changes in order to merge the branch it1-Semida to master
+
+** Adds new features to the class OdsSummarizer (examples : export to pdf, make a more design Calc ...)
 
 == What was done in the first java iteration  
 
