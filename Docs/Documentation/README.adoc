@@ -31,7 +31,7 @@ The idea of this diagram is to present a focus on the assignment process. All th
 [[ClassDiag]]
 = Class diagram doc :
 == Base classes :
-image::Images\Diag_Class_1.png[width="700", height="950"]
+image::Images\Diag_Class_1.png[width="800", height="950"]
 
 The *Assignment* class represents the result of the affectation processus. It contains references to *CourseAssignment* class. The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers. The *TeacherAssignment* class stores the number of TD, TP, CM groups assigned to one teacher in the selected course. +
 
@@ -41,4 +41,4 @@ The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
 We'll add getters in the classes as we work on them because it's hard to know exactly what we will need.
 
 == Ods Reader classes :
-image::Images\Class_OdsRead_diag.png[width="900", height="500"]
+image::Images\Class_OdsRead_diag.png[width="1000", height="300"]
