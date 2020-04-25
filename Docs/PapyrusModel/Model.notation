@@ -662,7 +662,7 @@
         <styles xmi:type="notation:BooleanValueStyle" xmi:id="_VaWxwG9fEeqks-MRezUMyA" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_eyydmG9bEeqks-MRezUMyA" x="13" y="-77"/>
       </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_eyydmW9bEeqks-MRezUMyA" type="Association_SourceRoleLabel">
+      <children xmi:type="notation:DecorationNode" xmi:id="_eyydmW9bEeqks-MRezUMyA" visible="false" type="Association_SourceRoleLabel">
         <styles xmi:type="notation:BooleanValueStyle" xmi:id="_VaoekG9fEeqks-MRezUMyA" name="IS_UPDATED_POSITION" booleanValue="true"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_eyydmm9bEeqks-MRezUMyA" x="-29" y="67"/>
       </children>
