@@ -6,7 +6,7 @@ The aim of this project is to read teacher’s preferences to assign them to stu
 == Global idea of the project 
 
 The main functionalities that this project will implement are described in the link:Docs\DiagramDocs\README.adoc[use case diagram]. +
-The way we imagine the process of assignment is described in the link:anchor:bookmark-a[][sequence diagram]. +
+The way we imagine the process of assignment is described in the anchor:bookmark-a[][sequence diagram]. +
 The classes that we plan to implement are described in the link:Docs\DiagramDocs\README.adoc[class diagram].
 
 == Second java iteration
