@@ -1,7 +1,5 @@
 = Sequence diagrams doc :
 
-For the UML Iteration 2, we decided to realize two sequence diagrams. 
-
 == First diagram : “Seq_diagram_Global_context” 
 
 image::DiagramImages\Diag_Sequence_1.JPG[width="700", height="500]
