@@ -10,6 +10,7 @@ Here is the list of the modifications that were made by each one :
 
 *** Creating the Class_ODS_Read diagram and its documentaion
 *** Correcting and updating the Class_assignment diagram and its documentation
+*** Making some general documentation changes
 
 ** Semida BUZDUGAN : 
 
