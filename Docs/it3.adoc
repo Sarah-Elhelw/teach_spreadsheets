@@ -8,7 +8,8 @@ Here is the list of the modifications that were made by each one :
 
 ** Hedi GUEDIDI : 
 
-***  ...
+*** Creating the Class_ODS_Read diagram and its documentaion
+*** Correcting and updating the Class_assignment diagram and its documentation
 
 ** Semida BUZDUGAN : 
 
