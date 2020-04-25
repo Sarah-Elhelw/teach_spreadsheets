@@ -42,9 +42,7 @@ The classes that we plan to implement are described in the link:Docs\Documentati
 
 ** Created the skeleton (attributes and getters) of classes Course, Teacher CoursePref and CalcData. 
 
-** Prepared some samples of “AA - Saisie des voeux 2016-2017.ods" as if they were completed by teachers. 
-
-** Got courses and teachers with Json API to populate CalcData. 
+** Prepared some samples of “AA - Saisie des voeux 2016-2017.ods" as if they were completed by teachers.  
 
 * Group 2:  Hedi and Sarah 
 
