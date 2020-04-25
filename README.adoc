@@ -22,9 +22,11 @@ The classes that we plan to implement are described in the link:Docs\Documentati
 
 * Group 2: Mike and Sarah
 
-** Reads and writes a list of courses 
+** Reads and writes a list of courses in JSON
 
-** Does the necessary changes on classes Assignment
+** Reads a list of teachers from RefRof
+
+** Deals with the comments and issues from iteration 1 for the classes in the packages assignment and base
 
 
 * Group 3: Semida and Inès

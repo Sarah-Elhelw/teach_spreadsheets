@@ -24,7 +24,13 @@ Here is the list of the modifications that were made by each one :
 
 ** Sarah EL HELW
  
-*** ...
+*** For the sequence diagrams :
+**** Changing the subject and name of the first sequence diagram
+**** Changing the name of the third lifeline in the sequence diagrams to match the subject in the use case diagram
+
+*** For the documentation :
+**** Ading links to the documents Fichier Agrégé.pdf, AA-Saisie des voeux 2016-2017.od, services MIDO.xls and Fiche de service.png
+****  Merging the three documents describing the diagrams into one
 
 ** Mike SANTANGELO 
 
