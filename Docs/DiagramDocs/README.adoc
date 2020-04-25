@@ -10,6 +10,7 @@ The Use Case diagram describes the main functionalities the project will impleme
 ** A global assignment file intended to be used by the administration.
 ** Multiple assignment files representing the assignment of each teacher.
 
+[[bookmark-a]]
 = Sequence diagrams doc :
 
 == First diagram : “Seq_diagram_Global_context” 
