@@ -309,10 +309,10 @@
       <message xmi:type="uml:Message" xmi:id="_Dr47oGBbEeq31cSPSR9mAA" name="complete(&quot;AA-Saisie voeux 2016-2017.ods&quot;) " messageSort="asynchCall" receiveEvent="_Dr5isWBbEeq31cSPSR9mAA" sendEvent="_Dr5isGBbEeq31cSPSR9mAA"/>
       <message xmi:type="uml:Message" xmi:id="_YTQoQGBbEeq31cSPSR9mAA" name="sendMail(&quot;AA-Saisie voeux 2016-2017.ods&quot;)" messageSort="asynchCall" receiveEvent="_YTRPUWBbEeq31cSPSR9mAA" sendEvent="_YTRPUGBbEeq31cSPSR9mAA"/>
       <message xmi:type="uml:Message" xmi:id="_wb-7wGBbEeq31cSPSR9mAA" name="launchInterface()" messageSort="asynchCall" receiveEvent="_wb_i0GBbEeq31cSPSR9mAA" sendEvent="_wb-7wWBbEeq31cSPSR9mAA"/>
-      <message xmi:type="uml:Message" xmi:id="_G-7kQGBcEeq31cSPSR9mAA" name="populateData(in data : String)" receiveEvent="_G-8LUWBcEeq31cSPSR9mAA" sendEvent="_G-8LUGBcEeq31cSPSR9mAA"/>
+      <message xmi:type="uml:Message" xmi:id="_G-7kQGBcEeq31cSPSR9mAA" name="getData(in documentPath : Path)" receiveEvent="_G-8LUWBcEeq31cSPSR9mAA" sendEvent="_G-8LUGBcEeq31cSPSR9mAA"/>
       <message xmi:type="uml:Message" xmi:id="_G0jq0GBdEeq31cSPSR9mAA" name="load(&quot;AA-Saisie des voeux 2016-2017.ods&quot;)" messageSort="asynchCall" receiveEvent="_G0kR4WBdEeq31cSPSR9mAA" sendEvent="_G0kR4GBdEeq31cSPSR9mAA"/>
-      <message xmi:type="uml:Message" xmi:id="_d1V6wG6TEeqIeI1UFw-5OA" name="generateAggregatedDataFile(in calc: CalcData)" receiveEvent="_d1dPgW6TEeqIeI1UFw-5OA" sendEvent="_d1dPgG6TEeqIeI1UFw-5OA"/>
-      <message xmi:type="uml:Message" xmi:id="_FosUEG6UEeqIeI1UFw-5OA" name="deliverAggregatedDataFile(&quot;Fichier Agrégé.ods&quot;)" receiveEvent="_Fos7IG6UEeqIeI1UFw-5OA" sendEvent="_FosUEW6UEeqIeI1UFw-5OA"/>
+      <message xmi:type="uml:Message" xmi:id="_d1V6wG6TEeqIeI1UFw-5OA" name="createSumarizedOds(in calc: CalcData[*])" receiveEvent="_d1dPgW6TEeqIeI1UFw-5OA" sendEvent="_d1dPgG6TEeqIeI1UFw-5OA"/>
+      <message xmi:type="uml:Message" xmi:id="_FosUEG6UEeqIeI1UFw-5OA" name="deliverSummarizedOds(&quot;Fichier Agrégé.ods&quot;)" receiveEvent="_Fos7IG6UEeqIeI1UFw-5OA" sendEvent="_FosUEW6UEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_2r8OoG6YEeqIeI1UFw-5OA" name="quitInterface()" messageSort="reply" receiveEvent="_2r81sW6YEeqIeI1UFw-5OA" sendEvent="_2r81sG6YEeqIeI1UFw-5OA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_9XmyMG6UEeqIeI1UFw-5OA" name="AdminAssignement" visibility="public">
