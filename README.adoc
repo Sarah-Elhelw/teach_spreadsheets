@@ -16,7 +16,7 @@ The classes that we plan to implement are described in the link:Docs\Documentati
 
 ** Does the necessary changes in order to merge the branch it1-java-Hedi-Sarah to master
 
-** Looks for a way to read the tabs "LSO" and "Apprentissage"
+** Looks for a way to read the tabs "LSO", "Apprentissage" and improve the reader classes
 
 ** Verifies that the merges are not problematic
 
