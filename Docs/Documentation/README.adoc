@@ -41,4 +41,4 @@ The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
 We'll add getters in the classes as we work on them because it's hard to know exactly what we will need.
 
 == Ods Reader classes :
-image::Images\Class_OdsRead_diag.png
+image::Images\Class_OdsRead_diag.png[width="1200", height="300"]
