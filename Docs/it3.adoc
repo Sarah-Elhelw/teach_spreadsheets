@@ -44,4 +44,6 @@ Here is the list of the modifications that were made by each one :
 
 ** Mike SANTANGELO 
 
-*** ...
+*** For the class diagrams :
+**** Creation of diagram Class_Json_Read
+**** Adding class in Class_ODS_Read
