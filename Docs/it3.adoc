@@ -45,7 +45,8 @@ Here is the list of the modifications that were made by each one :
 
 *** For the documentation :
 **** Adding links to the documents Fichier Agrégé.pdf, AA-Saisie des voeux 2016-2017.od, services MIDO.xls and Fiche de service.png
-****  Merging the three documents describing the diagrams into one
+**** Merging the three documents describing the diagrams into one
+**** Resizing images in the documentation, completing and updating the text in it
 
 ** Mike SANTANGELO 
 
