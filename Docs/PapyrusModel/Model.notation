@@ -1862,7 +1862,7 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_78ECMYe3EeqbHs-aXdOJpQ"/>
       <element xmi:type="uml:Dependency" href="Model.uml#_b5uHEIe3EeqbHs-aXdOJpQ"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_78ECMoe3EeqbHs-aXdOJpQ" points="[428, 320, -643984, -643984]$[410, 144, -643984, -643984]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gfcKoIfbEeqw0tXzRKMkvg" id="(0.34574468085106386,0.0)"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gfcKoIfbEeqw0tXzRKMkvg" id="(0.4057971014492754,0.0)"/>
     </edges>
   </notation:Diagram>
 </xmi:XMI>

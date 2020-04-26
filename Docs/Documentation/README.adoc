@@ -55,7 +55,7 @@ This class has been already implemented in the first java itération. We will ad
 == Json Read classes:
 image::Images\Class_Json_Read.JPG[width="450", height="350"]
 
-The main goal of *JsonReader* is to read teachers and courses informations presented in a Json format. These informations are found in RefRof and in files in the class path. 
+The main goal of *JsonReader* is to read teachers and courses informations presented in a Json format. These informations are found in RefRof and in files in the class path. RefRof's logins are stored in a file the methods reading RefRof's content need to access.
 
 
 *InputVowsFile* deals with the files link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”]. The method *createPersonalizedFiles* creates personalized calc files, by completing the sheet "Emploi du temps", and puts them in a specified directory. The method *getInputVowsFiles* gets all the names of the calc files that were completed by the teachers and put in a specific directory. 

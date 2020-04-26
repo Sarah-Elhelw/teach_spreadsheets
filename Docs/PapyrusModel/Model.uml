@@ -296,35 +296,32 @@
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_z60P8Ie0EeqbHs-aXdOJpQ" name="JsonReader" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_BB8eQIe1EeqbHs-aXdOJpQ" name="readRefRofPage" visibility="private" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_Am8_0Ie_EeqbHs-aXdOJpQ" name="fileName">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_Am8_0Ie_EeqbHs-aXdOJpQ" name="loginFileName">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_eUlR4Ie1EeqbHs-aXdOJpQ" name="getSetOfTeachersInfo" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_EA264Ie_EeqbHs-aXdOJpQ" name="fileName">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_EA264Ie_EeqbHs-aXdOJpQ" name="loginFileName">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_kfD3IIe1EeqbHs-aXdOJpQ" name="readJsonFile" visibility="private" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_kfD3IYe1EeqbHs-aXdOJpQ" name="path">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_kfD3IYe1EeqbHs-aXdOJpQ" name="fileName">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_rLHfcIe1EeqbHs-aXdOJpQ" name="getSetOfCoursesInfo" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_rLHfcYe1EeqbHs-aXdOJpQ" name="path">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_rLHfcYe1EeqbHs-aXdOJpQ" name="fileName">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_xwvIkIe1EeqbHs-aXdOJpQ" name="InputVowsFiles">
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_DDS1gIe2EeqbHs-aXdOJpQ" name="createPersonalizedFiles" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_DDS1gYe2EeqbHs-aXdOJpQ" name="username">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_DDS1gIe2EeqbHs-aXdOJpQ" name="createPersonalizedFiles" visibility="package" isStatic="true">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r2mzAIfiEeqw0tXzRKMkvg" name="loginFileName">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_DDS1goe2EeqbHs-aXdOJpQ" name="password">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_DDS1g4e2EeqbHs-aXdOJpQ" name="filePath" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_DDS1g4e2EeqbHs-aXdOJpQ" name="modelFilePath" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_DDS1hIe2EeqbHs-aXdOJpQ" name="directoryPath" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_H7f6kIe2EeqbHs-aXdOJpQ" name="getInputVowsFiles" isStatic="true">
