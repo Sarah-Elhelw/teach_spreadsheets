@@ -53,7 +53,7 @@ This class has been already implemented in the first java itération. We will ad
 
 
 == Json Read classes:
-image::Images\Class_Json_Read.png[width="600", height="500"]
+image::Images\Class_Json_Read.JPG[width="600", height="500"]
 
 The main goal of these classes is to read teachers and courses informations presented in a Json format. These informations are found in RefRof and in files in the class path. 
 
