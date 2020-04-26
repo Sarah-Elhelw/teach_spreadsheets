@@ -1725,7 +1725,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_FGCLUIegEeq_vJIT4Zoedw" type="Class_FloatingNameLabel">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_FGCLUYegEeq_vJIT4Zoedw" y="15"/>
       </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_FGCLUoegEeq_vJIT4Zoedw" type="Class_AttributeCompartment">
+      <children xmi:type="notation:BasicCompartment" xmi:id="_FGCLUoegEeq_vJIT4Zoedw" visible="false" type="Class_AttributeCompartment">
         <styles xmi:type="notation:TitleStyle" xmi:id="_FGCLU4egEeq_vJIT4Zoedw"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_FGCLVIegEeq_vJIT4Zoedw"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_FGCLVYegEeq_vJIT4Zoedw"/>
@@ -1753,7 +1753,7 @@
         <styles xmi:type="notation:FilteringStyle" xmi:id="_FGCLWoegEeq_vJIT4Zoedw"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FGCLW4egEeq_vJIT4Zoedw"/>
       </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_FGCyYIegEeq_vJIT4Zoedw" type="Class_NestedClassifierCompartment">
+      <children xmi:type="notation:BasicCompartment" xmi:id="_FGCyYIegEeq_vJIT4Zoedw" visible="false" type="Class_NestedClassifierCompartment">
         <styles xmi:type="notation:TitleStyle" xmi:id="_FGCyYYegEeq_vJIT4Zoedw"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_FGCyYoegEeq_vJIT4Zoedw"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_FGCyY4egEeq_vJIT4Zoedw"/>
@@ -1862,6 +1862,7 @@
       <styles xmi:type="notation:FontStyle" xmi:id="_78ECMYe3EeqbHs-aXdOJpQ"/>
       <element xmi:type="uml:Dependency" href="Model.uml#_b5uHEIe3EeqbHs-aXdOJpQ"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_78ECMoe3EeqbHs-aXdOJpQ" points="[428, 320, -643984, -643984]$[410, 144, -643984, -643984]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gfcKoIfbEeqw0tXzRKMkvg" id="(0.34574468085106386,0.0)"/>
     </edges>
   </notation:Diagram>
 </xmi:XMI>
