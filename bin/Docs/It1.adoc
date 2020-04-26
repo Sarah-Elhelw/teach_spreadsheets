@@ -1,0 +1,19 @@
+= Iteration 1 UML 
+
+The aim of this iteration is to understand and build the bases of our project. 
+
+We divided the work as follows: 
+
+* The duo comprising Hedi GUEDIDI and Sarah EL HELW divided the work as follows: 
+
+** Hedi GUEDIDI made the use case diagram *Use_global* and designed the classes *Cassignement* and *Assignment* in the class diagram *Class_assignment*. 
+
+** Sarah EL HELW made the sequence diagram *Seq_diagram_Global_project*. The aim of this diagram was to present the global functioning of our program from the beginning to the end of the assignment process.  
+
+** Hedi GUEDIDI and Sarah EL HELW participated to the various doc/readme files. 
+
+* The trinomial comprising Mike SANTANGELO, Inès DRAREDJA and Semida BUZDUGAN worked on: 
+
+** the classes *Course*, *Teacher*, *CoursePref* and *CalcData* in the class diagram *Class_assignment*. 
+
+** Mike SANTANGELO, Inès DRAREDJA and Semida BUZDUGAN participated to the various doc/readme files

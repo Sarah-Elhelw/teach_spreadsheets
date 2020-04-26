@@ -43,19 +43,16 @@ We'll add getters in the classes as we work on them because it's hard to know ex
 == Ods Reader classes :
 image::Images\Class_OdsRead_diag.png[width="750", height="500"]
 
-The main goal of these classes is to read information from an link:https://github.com/Sarah-Elhelw/teach_spreadsheets/blob/master/Docs/Documentation/Documents/AA_Saisie_des_voeux_2016-2017.ods[ods file] and create the corresponding CalcData object. The classes Course,Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
+The main goal of these classes is to read information from an link:https://github.com/Sarah-Elhelw/teach_spreadsheets/blob/master/Docs/Documentation/Documents/AA_Saisie_des_voeux_2016-2017.ods[ods file] and create the correspanding CalcData object. The classes Course,Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
 
 
 == Ods Write classes :
 image::Images\Class_OdsWrite_diag.png[width="750", height="500"]
 
-This class has been already implemented in the first java itération. We will add new classes to this diagram very soon. We are thinking about the best solution to create new Calc Documents to summarize the assignment per teacher and the global assignment. You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\TeachersPreferences.ods[“TeachersPreferences.ods”]. +
+This class has been already implemented in the first java itération. We will add new classes to this diagram very soon. We are thinking about the best solution to create new Calc Documents to summarise the assignment per teacher and the global assignment. You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\TeachersPreferences.ods[“TeachersPreferences.ods”]. +
 
 
 == Json Read classes:
-image::Images\Class_Json_Read.png[width="750", height="500"]
-
-The main goal of these classes is to read teachers and courses informations presented in a Json format. These informations are found in RefRof and in files in the class path. 
-
+image: :Images\Class_.png[width="750", height="500"]
 
 Coming soon ... 

@@ -14,7 +14,7 @@ Here is the list of the modifications that were made by each one :
 
 ** Semida BUZDUGAN : 
 
-*** Creating the Class_ODS_Write diagram
+*** Creating the Class_ODS_Write diagram and its documentaion
 
 *** Creating the documents AssigmentPerTeacher.ods and TeachersPreferences.ods in order to have a global view of what we aim to do at the next java iteration 
 
@@ -27,13 +27,8 @@ Here is the list of the modifications that were made by each one :
 ** Inès DRAREDJA
 
 *** Making some general documentation changes
-
-*** Creating the documentation of the Class_Json_read diagram
-
-*** Adding links to the image Class_Json_Read in the Docs Readme.adoc
-
 *** Creating the documentation of the Class_ODS_write diagram
-
+*** ...
 
 * The group constituted of Sarah EL HELW and Mike SANTANGELO divided the corrections as follows: 
 
