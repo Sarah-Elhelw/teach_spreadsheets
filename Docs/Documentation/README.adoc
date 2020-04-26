@@ -24,7 +24,7 @@ If desired by the Admin, our program can end with the generation of the aggregat
 
 == Second diagram : “Seq_diagram_Assignment” 
 
-image::Images\Diag_Sequence_2.JPG[width="700", height="500]
+image::Images\Diag_Sequence_2.JPG[width="800", height="600]
 
 The idea of this diagram is to present a focus on the assignment process. All the methods used in the messages are meant to evolve later in our project, for now, they simply allow us to describe the principle of our program. We renounced to produce a function that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers (for example, we are thinking of a decrementation of the number of teaching hours for a teacher assigned to a class and displaying it to the Admin). As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (like link:Documents\services_MIDO.xls[“services MIDO.ods”], link:Documents\Fiche_de_service.png[“Fiche de service.png”] and link:Documents\FichierAgrege.pdf[“Fichier Agrégé.pdf”] fully completed). The Admin will receive all these files and will send the link:Documents\Fiche_de_service.png[“Fiche de service.png”] specific to each teacher. 
 
@@ -47,13 +47,13 @@ The main goal of these classes is to read information from an link:https://githu
 
 
 == Ods Write classes :
-image::Images\Class_OdsWrite_diag.png[width="750", height="500"]
+image::Images\Class_OdsWrite_diag.png[width="600", height="400"]
 
 This class has been already implemented in the first java itération. We will add new classes to this diagram very soon. We are thinking about the best solution to create new Calc Documents to summarize the assignment per teacher and the global assignment. You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\TeachersPreferences.ods[“TeachersPreferences.ods”]. +
 
 
 == Json Read classes:
-image::Images\Class_Json_Read.png[width="750", height="500"]
+image::Images\Class_Json_Read.png[width="600", height="500"]
 
 The main goal of these classes is to read teachers and courses informations presented in a Json format. These informations are found in RefRof and in files in the class path. 
 
