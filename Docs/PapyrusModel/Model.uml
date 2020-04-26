@@ -455,6 +455,28 @@
     <packagedElement xmi:type="uml:DataType" xmi:id="_UJcaMIceEeqUqZA2AF_9Pw" name="SpreadsheetDocument"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_CvFKMIcgEeqUqZA2AF_9Pw" name="Table"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_FCjZgIegEeq_vJIT4Zoedw" name="OdsSummarizer">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_K0cDIIehEeq_vJIT4Zoedw" name="createAnEmptyOds" visibility="private" isStatic="true" concurrency="concurrent"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_Vxj4AIehEeq_vJIT4Zoedw" name="headersToOds" visibility="private" isStatic="true" concurrency="concurrent">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_stFGoIejEeq_vJIT4Zoedw" name="table" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_Am6pwIeiEeq_vJIT4Zoedw" name="setValueAt" visibility="private" isStatic="true">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_vkexkIejEeq_vJIT4Zoedw" name="table" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_YB9X4IeiEeq_vJIT4Zoedw" name="info">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_a3NGsIeiEeq_vJIT4Zoedw" name="row">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_cyyCkIeiEeq_vJIT4Zoedw" name="column">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_eSKKoIeiEeq_vJIT4Zoedw" name="createSummarizedOds" visibility="public" isStatic="true">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_PGGasIejEeq_vJIT4Zoedw" name="allCourses" type="_XVBhkGBfEeq31cSPSR9mAA"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_k3r3sIejEeq_vJIT4Zoedw" name="prefs" type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
+    </ownedOperation>
+  </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KB-vkGFOEeq7OdFZt-_k0Q">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KCBL0GFOEeq7OdFZt-_k0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
