@@ -46,8 +46,9 @@ image::Images\Class_OdsRead_diag.png[width="750", height="500"]
 The main goal of these classes is to read information from an link:https://github.com/Sarah-Elhelw/teach_spreadsheets/blob/master/Docs/Documentation/Documents/AA_Saisie_des_voeux_2016-2017.ods[ods file] and create the correspanding CalcData object. The classes Course,Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
 
 
-== Ods Writer classes :
+== Ods Write classes :
 image::Images\Class_OdsWrite_diag.png[width="750", height="500"]
 
-This class has been already implemented in the first java itération. We will add new classes to this diagram very soon. We are thinking about the best solution to create new Calc Documents to summarise the assignment per teacher and the global assignment. You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\TeachersPreferences.ods[“TeachersPreferences.ods”]
+This class has been already implemented in the first java itération. We will add new classes to this diagram very soon. We are thinking about the best solution to create new Calc Documents to summarise the assignment per teacher and the global assignment. You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\TeachersPreferences.ods[“TeachersPreferences.ods”]. +
+
 Coming soon ... 
