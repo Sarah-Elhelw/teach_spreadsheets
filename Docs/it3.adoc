@@ -26,6 +26,8 @@ Here is the list of the modifications that were made by each one :
 
 ** Inès DRAREDJA
 
+*** Making some general documentation changes
+*** Creating the documentation of the Class_ODS_write diagram
 *** ...
 
 * The group constituted of Sarah EL HELW and Mike SANTANGELO divided the corrections as follows: 
