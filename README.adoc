@@ -36,6 +36,8 @@ The classes that we plan to implement are described in the link:Docs\Documentati
 
 ** Adds new features to the class OdsSummarizer (examples : export to pdf, make a more design Calc ...)
 
+** Creates new classes in order to write the result of the assignment process into new ods files : AssignmentPerTeacher and GlobalAssigment
+
 == What was done in the first java iteration  
 
 * Group 1: Mike and Inès 
