@@ -1,0 +1,61 @@
+[[UseCaseDiag]]
+= Use Case doc :
+
+image::Images\Use_Case_1.png[width="936", height="542"]
+
+The Use Case diagram describes the main functionalities the project will implement. In a nutshell, this program has three main goals :
+
+* To generate one summarised file containing all the information about the courses and the teachers' preferences. This data exists currently in separate files (one per teacher).
+* To help the administration to assign teachers to courses via a GUI.
+* After the affectation the program can generate two types of export :
+** A global assignment file intended to be used by the administration.
+** Multiple assignment files representing the assignment of each teacher.
+
+[[SeqDiag]]
+= Sequence diagrams doc :
+
+== First diagram : “Seq_diagram_Global_context” 
+
+image::Images\Diag_Sequence_1.JPG[width="800", height="600]
+
+The idea of this diagram is to present a global view of our project. The program starts by receiving all the files link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”] already completed by each teacher. *getData()* is the function used to register in a variable of type CalcData the information read in the files link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”]. Then, once all the data caught and ordered in variables, the program can generate a file similar to link:Documents\FichierAgrege.pdf[“Fichier Agrégé.pdf”] that summarizes thus all the files link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”] loaded.  The function *createSumarizedOds()* writes in a Calc to produce a document similar to link:Documents\FichierAgrege.pdf[“Fichier Agrégé.pdf”] given in the subject. The Admin receives the Calc file created by the function generateAggregatedDataFile(). 
+
+If desired by the Admin, our program can end with the generation of the aggregated file. Else, if required by the Admin, our program can continue to help the admin make an assignment. The Assignment process is described in the second sequence diagram (“Seq_diagram_Assignment”). In order to have a clear and not overloaded diagram, we decided to create a second diagram and put a reference to it in the first one. 
+
+== Second diagram : “Seq_diagram_Assignment” 
+
+image::Images\Diag_Sequence_2.JPG[width="800", height="600]
+
+The idea of this diagram is to present a focus on the assignment process. All the methods used in the messages are meant to evolve later in our project, for now, they simply allow us to describe the principle of our program. We renounced to produce a function that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers (for example, we are thinking of a decrementation of the number of teaching hours for a teacher assigned to a class and displaying it to the Admin). As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (like link:Documents\services_MIDO.xls[“services MIDO.ods”], link:Documents\Fiche_de_service.png[“Fiche de service.png”] and link:Documents\FichierAgrege.pdf[“Fichier Agrégé.pdf”] fully completed). The Admin will receive all these files and will send the link:Documents\Fiche_de_service.png[“Fiche de service.png”] specific to each teacher. 
+
+[[ClassDiag]]
+= Class diagram doc :
+== Base classes :
+image::Images\Diag_Class_1.png[width="800", height="950"]
+
+The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers. The *TeacherAssignment* class stores the number of TD, TP, CM groups assigned to one teacher in the selected course. +
+
+*CalcData* represents the data that we can get from the files that the university gives us. The function *getDataFromODS* reads all the necessary informations in the calc link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”] to build and return a CalcData.
+The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
+*CoursePref* represents preferences from a teacher for a specified course.
+We'll add getters in the classes as we work on them because it's hard to know exactly what we will need.
+
+== Ods Reader classes :
+image::Images\Class_OdsRead_diag.png[width="750", height="500"]
+
+The main goal of these classes is to read information from an link:https://github.com/Sarah-Elhelw/teach_spreadsheets/blob/master/Docs/Documentation/Documents/AA_Saisie_des_voeux_2016-2017.ods[ods file] and create the corresponding CalcData object. The classes Course,Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
+
+
+== Ods Write classes :
+image::Images\Class_OdsWrite_diag.JPG[width="350", height="150"]
+
+This class has been already implemented in the first java itération. We will add new classes to this diagram very soon. We are thinking about the best solution to create new Calc Documents to summarize the assignment per teacher and the global assignment. You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\TeachersPreferences.ods[“TeachersPreferences.ods”]. +
+
+
+== Json Read classes:
+image::Images\Class_Json_Read.JPG[width="450", height="350"]
+
+The main goal of *JsonReader* is to read teachers and courses informations presented in a Json format. These informations are found in RefRof and in files in the class path. RefRof's logins are stored in a file the methods reading RefRof's content need to access.
+
+
+*InputVowsFile* deals with the files link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”]. The method *createPersonalizedFiles* creates personalized calc files, by completing the sheet "Emploi du temps", and puts them in a specified directory. The method *getInputVowsFiles* gets all the names of the calc files that were completed by the teachers and put in a specific directory. 
