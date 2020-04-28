@@ -145,7 +145,7 @@ public class JsonRead {
 	
 	/**
 	 * This method takes in argument a json string from RefRof that has a complex
-	 * structure and simplies it to be able to deserialize it later on.
+	 * structure and simplifies it to be able to deserialize it later on.
 	 * 
 	 * @param teacherArray - the json string containing an array to be simplified.
 	 * 
