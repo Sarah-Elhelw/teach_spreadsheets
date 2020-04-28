@@ -28,4 +28,11 @@ public class JsonReadTests {
 		});
 		assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
 	}
+	
+	@Test
+	void testGetSetOfTeachersInfo() throws Exception{
+		String actualIs = JsonRead.getSetOfTeachersInfo("LoginRefRof.txt").asList().get(1).toString();
+		String expectedIS = "Teacher{lastName=BRACI, firstName=LINA, address=, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=lina.braci@dauphine.fr, status=PROF.UNIV., dauphinePhoneNumber=, office=}";
+		assertEquals(expectedIS, actualIs);
+	}
 }

@@ -132,8 +132,7 @@ public class JsonRead {
 				private static final long serialVersionUID = 1L;}.getClass().getGenericSuperclass()); 	// Not building teachers yet to respect the building constraints.
 			List<Teacher> teachers = new ArrayList<>();
 			for (Teacher.Builder tb : teacherB) {
-				if (!tb.getTeacherToBuild().getLastName().equals(""))
-					teachers.add(tb.build());
+				teachers.add(tb.build());
 			}
 			ImmutableSet<Teacher> is = ImmutableSet.copyOf(teachers);
 			return is;
