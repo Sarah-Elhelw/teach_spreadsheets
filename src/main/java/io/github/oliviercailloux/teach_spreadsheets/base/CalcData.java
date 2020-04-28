@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableSet;
 import io.github.oliviercailloux.teach_spreadsheets.read.CalcDataInitializer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
 
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -58,12 +59,14 @@ public class CalcData {
 	public CoursePref getCoursePref(String courseName) {
 		checkNotNull(coursePrefs);
 		checkNotNull(courseName);
-
+		
+		CoursePref cp = null;
 		for (CoursePref coursePref : coursePrefs) {
 			if (coursePref.getCourse().getName().equals(courseName))
-				return coursePref;
+				cp = coursePref;
 		}
-		return null;
+		checkArgument(cp != null, "The name given in parameter does not match any course.");
+		return cp;
 	}
 	
 	@Override
