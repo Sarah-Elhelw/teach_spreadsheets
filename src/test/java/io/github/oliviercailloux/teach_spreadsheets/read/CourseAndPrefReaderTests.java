@@ -62,7 +62,7 @@ public class CourseAndPrefReaderTests {
 	@Test
 	void testSetInfoCourse() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
-		try (InputStream stream =resourceUrl.openStream()) {
+		try (InputStream stream = resourceUrl.openStream()) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();
 				Course.Builder courseBuilder = Course.Builder.newInstance();
@@ -82,7 +82,7 @@ public class CourseAndPrefReaderTests {
 	@Test
 	void testreadSemester() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
-		try (InputStream stream =resourceUrl.openStream()) {
+		try (InputStream stream = resourceUrl.openStream()) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				Table sheet = document.getTableByName("DE1");
 				CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();

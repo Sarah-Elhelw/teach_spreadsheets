@@ -10,7 +10,9 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 /**
  * This class creates a {@link CalcData} by reading an ods file with a structure
- * similar to <a href="https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/resources/io/github/oliviercailloux/y2018/teach_spreadsheets/odf/Saisie_voeux_dauphine.ods">"AA - Saisie des voeux 2016-2017.ods"</a>.
+ * similar to <a href=
+ * "https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/resources/io/github/oliviercailloux/y2018/teach_spreadsheets/odf/Saisie_voeux_dauphine.ods">"AA
+ * - Saisie des voeux 2016-2017.ods"</a>.
  *
  */
 public class CalcDataInitializer {
@@ -28,7 +30,5 @@ public class CalcDataInitializer {
 		ImmutableSet<CoursePref> coursePrefs = PrefsInitializer.createPrefslist(document, teacher);
 		return CalcData.newInstance(coursePrefs, teacher);
 	}
-
-
 
 }
