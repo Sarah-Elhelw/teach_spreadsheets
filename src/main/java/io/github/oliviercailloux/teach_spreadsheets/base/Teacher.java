@@ -63,6 +63,10 @@ public class Teacher {
 			teacherToBuild = new Teacher();
 			return teacherBuilt;
 		}
+		
+		public Teacher getTeacherToBuild() {
+			return teacherToBuild;
+		}
 
 		public Builder setLastName(String lastName) {
 			checkNotNull(lastName, EXCEPTION);
