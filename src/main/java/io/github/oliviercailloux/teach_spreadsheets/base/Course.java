@@ -2,6 +2,9 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import javax.json.bind.annotation.JsonbCreator;
+
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
@@ -94,6 +97,7 @@ public class Course {
 	public static class Builder {
 		private Course courseToBuild;
 
+		@JsonbCreator
 		public static Builder newInstance() {
 			return new Builder();
 		}
