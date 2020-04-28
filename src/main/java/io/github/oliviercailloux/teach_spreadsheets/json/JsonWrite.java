@@ -1,10 +1,8 @@
 package io.github.oliviercailloux.teach_spreadsheets.json;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
@@ -23,7 +21,6 @@ public class JsonWrite {
 		
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			String serialized = jsonb.toJson(courses.toArray());
-			jsonb.close();
 			Files.writeString(filePath, serialized, StandardCharsets.UTF_8);
 		}
 	}
