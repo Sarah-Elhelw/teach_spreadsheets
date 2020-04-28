@@ -3,7 +3,7 @@ package io.github.oliviercailloux.teach_spreadsheets.read;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.InputStream;
-
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -23,12 +23,10 @@ public class PrefsInitializerTests {
 
 	@Test
 	void testCreatePrefsList() throws Exception {
-		final Path infile = Path.of(
-				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\Saisie_des_voeux_format simple.ods");
-		try (InputStream stream = Files.newInputStream(infile)) {
+		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
+		try (InputStream stream = resourceUrl.openStream()) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
-				PrefsInitializer prefsInitializer = PrefsInitializer.newInstance();
-				ImmutableSet<CoursePref> coursePrefsSet = prefsInitializer.createPrefslist(document, teacher);
+				ImmutableSet<CoursePref> coursePrefsSet = PrefsInitializer.createPrefslist(document, teacher);
 
 				// Checking the preferences for the course in cell P12 in the sheet DE1 : the
 				// aim here is to test that we can read course preferences in the semester 2.

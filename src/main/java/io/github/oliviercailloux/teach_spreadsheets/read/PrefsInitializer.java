@@ -25,13 +25,6 @@ public class PrefsInitializer {
 	private static ImmutableList<String> TABLE_LIST = ImmutableList.<String>builder()
 			.add("DE1", "DE2", "L3 Informatique", "L3 Mathématiques", "M1 Mathématiques", "M1 Informatique").build(); //all the tables that follow the standard format
 
-	public static PrefsInitializer newInstance() {
-		return new PrefsInitializer();
-	}
-
-	private PrefsInitializer() {
-	}
-
 	/**
 	 * Creates and returns a list of {@link CoursePref} from an ods document
 	 * following the standard format.
@@ -39,7 +32,7 @@ public class PrefsInitializer {
 	 * @param document - the document to be read
 	 * @param teacher  - whose preferences are read
 	 */
-	public ImmutableSet<CoursePref> createPrefslist(SpreadsheetDocument document, Teacher teacher) {
+	public static ImmutableSet<CoursePref> createPrefslist(SpreadsheetDocument document, Teacher teacher) {
 		LinkedHashSet<CoursePref> prefsList = new LinkedHashSet<>();
 		Table sheet;
 		List<Table> listOfTables = document.getTableList();

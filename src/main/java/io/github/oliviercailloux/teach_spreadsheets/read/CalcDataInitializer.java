@@ -25,8 +25,7 @@ public class CalcDataInitializer {
 	public static CalcData createCalcData(SpreadsheetDocument document) {
 		TeacherReader teacherReader = TeacherReader.newInstance();
 		Teacher teacher = teacherReader.createTeacherFromCalc(document);
-		PrefsInitializer prefsInitializer = PrefsInitializer.newInstance();
-		ImmutableSet<CoursePref> coursePrefs = prefsInitializer.createPrefslist(document, teacher);
+		ImmutableSet<CoursePref> coursePrefs = PrefsInitializer.createPrefslist(document, teacher);
 		return CalcData.newInstance(coursePrefs, teacher);
 	}
 

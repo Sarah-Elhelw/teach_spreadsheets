@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import java.io.InputStream;
+import java.net.URL;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -26,9 +27,8 @@ public class CourseAndPrefReaderTests {
 	@Test
 	void testSetInfoPref() throws Exception { // Checking the preferences for "PRE-RENTREE : Mathématiques"
 		CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();
-		final Path infile = Path.of(
-				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\Saisie_des_voeux_format simple.ods");
-		try (InputStream stream = Files.newInputStream(infile)) {
+		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
+		try (InputStream stream = resourceUrl.openStream()) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				Table sheet = document.getTableByName("DE1");
 
@@ -61,9 +61,8 @@ public class CourseAndPrefReaderTests {
 
 	@Test
 	void testSetInfoCourse() throws Exception {
-		final Path infile = Path.of(
-				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\Saisie_des_voeux_format simple.ods");
-		try (InputStream stream = Files.newInputStream(infile)) {
+		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
+		try (InputStream stream =resourceUrl.openStream()) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();
 				Course.Builder courseBuilder = Course.Builder.newInstance();
@@ -82,9 +81,8 @@ public class CourseAndPrefReaderTests {
 
 	@Test
 	void testreadSemester() throws Exception {
-		final Path infile = Path.of(
-				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\Saisie_des_voeux_format simple.ods");
-		try (InputStream stream = Files.newInputStream(infile)) {
+		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
+		try (InputStream stream =resourceUrl.openStream()) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				Table sheet = document.getTableByName("DE1");
 				CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();

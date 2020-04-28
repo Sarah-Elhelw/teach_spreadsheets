@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.InputStream;
-
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -16,9 +16,8 @@ public class TeacherReaderTests {
 
 	@Test
 	void testcreateTeacherFromCalc() throws Exception {
-		final Path infile = Path.of(
-				"src\\test\\resources\\io\\github\\oliviercailloux\\teach_spreadsheets\\read\\AA - Saisie des voeux 2016-2017_Emplois-du-temps.ods");
-		try (InputStream stream = Files.newInputStream(infile)) {
+		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
+		try (InputStream stream = resourceUrl.openStream()) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				TeacherReader teacherReader = TeacherReader.newInstance();
 				Teacher teacher = teacherReader.createTeacherFromCalc(document);
