@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CourseTests {
