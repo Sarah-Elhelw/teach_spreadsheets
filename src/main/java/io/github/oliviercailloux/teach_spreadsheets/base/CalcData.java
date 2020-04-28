@@ -4,6 +4,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
 
 import java.util.Set;
 
@@ -51,12 +52,14 @@ public class CalcData {
 	public CoursePref getCoursePref(String courseName) {
 		checkNotNull(coursePrefs);
 		checkNotNull(courseName);
-
+		
+		CoursePref cp = null;
 		for (CoursePref coursePref : coursePrefs) {
 			if (coursePref.getCourse().getName().equals(courseName))
-				return coursePref;
+				cp = coursePref;
 		}
-		return null;
+		checkArgument(cp != null, "The name given in parameter does not match any course.");
+		return cp;
 	}
 	
 	@Override
