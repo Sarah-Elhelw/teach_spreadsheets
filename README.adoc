@@ -1,34 +1,59 @@
 = Teach spreadsheets
-== Aim of the project 
 
-The aim of this project is to read teacher’s preferences to assign them to study groups in courses.
+== About the project 
+
+The aim of this project is to read teacher’s preferences to assign them to study groups in courses.This project is inspired by the link:https://github.com/oliviercailloux/Teach-spreadsheets[Teach-spreadsheets project].
 
 == Global idea of the project 
 
-The main functionalities that this project will implement are described in the link:Docs\DiagramDocs\UseCase_doc.adoc[use case diagram]. +
-The way we imagine the process of assignment is described in the link:Docs\DiagramDocs\Seq_doc.adoc[sequence diagram]. +
-The classes that we plan to implement are described in the link:Docs\DiagramDocs\Class_doc.adoc[class diagram].
+The main functionalities that this project will implement are described in the link:Docs\Documentation\README.adoc#UseCaseDiag[use case diagram]. +
+The way we imagine the process of assignment is described in the link:Docs\Documentation\README.adoc#SeqDiag[sequence diagram]. +
+The classes that we plan to implement are described in the link:Docs\Documentation\README.adoc#ClassDiag[class diagram].
 
-== First java iteration 
+== Second java iteration
 
-For the first java iteration, we plan to divide the work among the subgroups as follows: 
+* Group 1: SM/PO : Hedi 
+
+** Does the necessary changes in order to merge the branch it1-java-Hedi-Sarah to master
+
+** Looks for a way to read the tabs "LSO", "Apprentissage" and improve the reader classes
+
+** Verifies that the merges are not problematic
+
+
+* Group 2: Mike and Sarah
+
+** Reads and writes a list of courses in JSON
+
+** Reads a list of teachers from RefRof
+
+** Deals with the comments and issues from iteration 1 for the classes in the packages assignment and base
+
+
+* Group 3: Semida and Inès
+
+** Does the necessary changes in order to merge the branch it1-Semida to master
+
+** Adds new features to the class OdsSummarizer (examples : export to pdf, make a more design Calc ...)
+
+** Creates new classes in order to write the result of the assignment process into new ods files : AssignmentPerTeacher and GlobalAssigment
+
+== What was done in the first java iteration  
 
 * Group 1: Mike and Inès 
 
-** Creates the skeleton (attributes and getters) of classes Course, Teacher CoursePref and CalcData. 
+** Created the skeleton (attributes and getters) of classes Course, Teacher CoursePref and CalcData. 
 
-** Prepares some samples of “AA - Saisie des voeux 2016-2017.ods" as if they were completed by teachers. 
-
-** Gets courses and teachers with Json API to populate CalcData. 
+** Prepared some samples of “AA - Saisie des voeux 2016-2017.ods" as if they were completed by teachers.  
 
 * Group 2:  Hedi and Sarah 
 
-** Creates the skeleton (attributes and getters) of the class CourseAssignement and Assignment. 
+** Created the skeleton (attributes and getters) of the class CourseAssignement and Assignment. 
 
-** Looks for how to read a Calc document. This searching process allows to keep working while Group 1 codes Course and Teacher classes. 
+** Looked for how to read a Calc document. 
 
-** Reads the Calc document “AA - Saisie des voeux 2016-2017.ods" and instantiates a CalcData variable. 
+** Read the Calc document “AA - Saisie des voeux 2016-2017.ods" and instantiated a CalcData variable. 
 
 * Semida 
 
-** Looks for a way to summarize the samples of “AA - Saisie des voeux 2016-2017.ods" made. Hence, looks for how to write in a Calc. 
+** Created a class which summarises the samples of “AA - Saisie des voeux 2016-2017.ods" made by writing teachers' preferences in a Calc. 
