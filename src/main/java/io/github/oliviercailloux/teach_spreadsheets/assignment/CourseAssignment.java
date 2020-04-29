@@ -26,25 +26,20 @@ public class CourseAssignment {
 	}
 
 	/**
-	 * One of the constructors of the class. It takes two parameters, one of them being declared as a Set
-	 * to remind the user that there should be no duplicates of teachers'assignments in a
-	 * course assignment.
-	 * 
-	 */
-	private CourseAssignment(Course course, Set<TeacherAssignment> finalTeacherAssignments) {
-		this.course = Preconditions.checkNotNull(course, "The course must not be null.");
-		this.finalTeacherAssignments = Preconditions.checkNotNull(ImmutableSet.copyOf(finalTeacherAssignments),
-				"The teachers'assignments must not be null");
-	}
-
-	/**
 	 * One of the static factories of the class. It takes two parameters, one of them being declared as a Set
 	 * to remind the user that there should be no duplicates of teachers'assignments in a
 	 * course assignment.
 	 * 
 	 */
 	public static CourseAssignment newInstance(Course course, Set<TeacherAssignment> finalTeacherAssignments) {
-		return new CourseAssignment(course, finalTeacherAssignments);
+		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course);
+		Preconditions.checkNotNull(finalTeacherAssignments, "The teachers'assignments must not be null");
+		for (TeacherAssignment ta : finalTeacherAssignments) {
+			courseAssignmentBuilder.addTeacherAssignment(ta);
+		}
+		CourseAssignment courseAssignment = courseAssignmentBuilder.build();
+		
+		return courseAssignment;
 	}
 
 	public static class Builder {
@@ -73,7 +68,7 @@ public class CourseAssignment {
 		 * 
 		 */
 		public CourseAssignment build() {
-			Preconditions.checkState(teacherAssignments.size() >= 1);
+			Preconditions.checkState(teacherAssignments.size() >= 1, "The course assignment must contain at least one teacher assignment.");
 			courseAssignmentToBuild.finalTeacherAssignments = ImmutableSet.copyOf(teacherAssignments);
 			return courseAssignmentToBuild;
 		}

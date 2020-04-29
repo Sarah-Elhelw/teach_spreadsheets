@@ -1,6 +1,9 @@
 package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.LinkedHashSet;
+
 import org.junit.jupiter.api.Assertions;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.*;
@@ -40,5 +43,13 @@ public class CourseAssignmentTests {
 			courseAssignmentBuilder.addTeacherAssignment(teacherAssignment0);
 		});
 		Assertions.assertEquals("An assignment must have at least one assigned group.", exception.getMessage());
+	}
+	
+	@Test
+	void testNewInstanceWithTwoParametersWithNoTeacherAssignment() {
+		Throwable exception = Assertions.assertThrows(IllegalStateException.class, () -> {
+			CourseAssignment.newInstance(course, new LinkedHashSet<TeacherAssignment>());
+		});
+		Assertions.assertEquals("The course assignment must contain at least one teacher assignment.", exception.getMessage());
 	}
 }
