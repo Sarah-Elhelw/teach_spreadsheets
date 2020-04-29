@@ -3,6 +3,7 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Immutable Class used to store a course information. Uses Builder pattern
@@ -110,8 +111,7 @@ public class Course {
 					+ courseToBuild.countGroupsTD + courseToBuild.countGroupsTP > 0);
 			checkArgument(courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
 					+ courseToBuild.nbMinutesTD + courseToBuild.nbMinutesTP > 0);
-			if (courseToBuild.name.isEmpty() || courseToBuild.studyYear.isEmpty())
-				throw new IllegalStateException();
+			checkState(!courseToBuild.name.isEmpty() && !courseToBuild.studyYear.isEmpty());
 
 			Course courseBuilt = courseToBuild;
 			courseToBuild = new Course();

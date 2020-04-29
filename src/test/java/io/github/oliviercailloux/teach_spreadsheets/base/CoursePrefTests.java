@@ -27,9 +27,15 @@ public class CoursePrefTests {
 		coursePrefBuilder.setPrefCM(Preference.A);
 		coursePrefBuilder.setPrefCMTD(Preference.B);
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalStateException.class, () -> {
 			coursePrefBuilder.build();
 		});
-
+		
+		coursePrefBuilder.setPrefCMTD(Preference.UNSPECIFIED);
+		coursePrefBuilder.setPrefNbGroupsCM(11);
+		
+		assertThrows(IllegalStateException.class, () -> {
+			coursePrefBuilder.build();
+		});
 	}
 }

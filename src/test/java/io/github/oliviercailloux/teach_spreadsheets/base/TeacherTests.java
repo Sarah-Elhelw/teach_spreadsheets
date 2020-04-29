@@ -11,7 +11,7 @@ public class TeacherTests {
 		Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
 		teacherBuilder.setAddress("Pont du maréchal de lattre de tassigny");
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalStateException.class, () -> {
 			teacherBuilder.build();
 		});
 	}
