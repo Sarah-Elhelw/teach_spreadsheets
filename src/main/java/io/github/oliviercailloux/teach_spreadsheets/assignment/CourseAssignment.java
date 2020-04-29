@@ -37,7 +37,13 @@ public class CourseAssignment {
 				"The teachers'assignments must not be null");
 	}
 
-	public static CourseAssignment newInstance(Course course, ImmutableSet<TeacherAssignment> finalTeacherAssignments) {
+	/**
+	 * One of the static factories of the class. It takes two parameters, one of them being declared as a Set
+	 * to remind the user that there should be no duplicates of teachers'assignments in a
+	 * course assignment.
+	 * 
+	 */
+	public static CourseAssignment newInstance(Course course, Set<TeacherAssignment> finalTeacherAssignments) {
 		return new CourseAssignment(course, finalTeacherAssignments);
 	}
 
@@ -63,8 +69,11 @@ public class CourseAssignment {
 		 * 
 		 * @return courseAssignmentToBuild - the CourseAssignment that was built.
 		 * 
+		 * @throws IllegalStateException if the set of teachers'assignments is empty.
+		 * 
 		 */
 		public CourseAssignment build() {
+			Preconditions.checkState(teacherAssignments.size() >= 1);
 			courseAssignmentToBuild.finalTeacherAssignments = ImmutableSet.copyOf(teacherAssignments);
 			return courseAssignmentToBuild;
 		}
@@ -103,13 +112,13 @@ public class CourseAssignment {
 				sumAssignedGroupsCM += ta.getCountGroupsCM();
 			}
 			
-			Preconditions.checkArgument(sumAssignedGroupsTD+teacherAssignment.getCountGroupsTD()<=courseAssignmentToBuild.course.getCountGroupsTD(), "The number of assigned TD groups must not exceed the number of TD groups associated to the course.");
-			Preconditions.checkArgument(sumAssignedGroupsTP+teacherAssignment.getCountGroupsTP()<=courseAssignmentToBuild.course.getCountGroupsTP(), "The number of assigned TP groups must not exceed the number of TP groups associated to the course.");
-			Preconditions.checkArgument(sumAssignedGroupsCMTD+teacherAssignment.getCountGroupsCMTD()<=courseAssignmentToBuild.course.getCountGroupsCMTD(), "The number of assigned CMTD groups must not exceed the number of CMTD groups associated to the course.");
-			Preconditions.checkArgument(sumAssignedGroupsCMTP+teacherAssignment.getCountGroupsCMTP()<=courseAssignmentToBuild.course.getCountGroupsCMTP(), "The number of assigned CMTP groups must not exceed the number of CMTP groups associated to the course.");
-			Preconditions.checkArgument(sumAssignedGroupsCM+teacherAssignment.getCountGroupsCM()<=courseAssignmentToBuild.course.getCountGroupsCM(), "The number of assigned CM groups must not exceed the number of CM groups associated to the course.");
+			Preconditions.checkArgument(sumAssignedGroupsTD+teacherAssignment.getCountGroupsTD() <= courseAssignmentToBuild.course.getCountGroupsTD(), "The number of assigned TD groups must not exceed the number of TD groups associated to the course.");
+			Preconditions.checkArgument(sumAssignedGroupsTP+teacherAssignment.getCountGroupsTP() <= courseAssignmentToBuild.course.getCountGroupsTP(), "The number of assigned TP groups must not exceed the number of TP groups associated to the course.");
+			Preconditions.checkArgument(sumAssignedGroupsCMTD+teacherAssignment.getCountGroupsCMTD() <= courseAssignmentToBuild.course.getCountGroupsCMTD(), "The number of assigned CMTD groups must not exceed the number of CMTD groups associated to the course.");
+			Preconditions.checkArgument(sumAssignedGroupsCMTP+teacherAssignment.getCountGroupsCMTP() <= courseAssignmentToBuild.course.getCountGroupsCMTP(), "The number of assigned CMTP groups must not exceed the number of CMTP groups associated to the course.");
+			Preconditions.checkArgument(sumAssignedGroupsCM+teacherAssignment.getCountGroupsCM() <= courseAssignmentToBuild.course.getCountGroupsCM(), "The number of assigned CM groups must not exceed the number of CM groups associated to the course.");
 			
-			Preconditions.checkArgument(teacherAssignment.getCountGroupsTD()!=0 || teacherAssignment.getCountGroupsTP()!=0 || teacherAssignment.getCountGroupsCMTD()!=0 || teacherAssignment.getCountGroupsCMTP()!=0 || teacherAssignment.getCountGroupsCM()!=0, "An assignment must have at least one assigned group.");
+			Preconditions.checkArgument(teacherAssignment.getCountGroupsTD() != 0 || teacherAssignment.getCountGroupsTP() != 0 || teacherAssignment.getCountGroupsCMTD() !=0 || teacherAssignment.getCountGroupsCMTP() !=0 || teacherAssignment.getCountGroupsCM() !=0, "An assignment must have at least one assigned group.");
 			
 			teacherAssignments.add(teacherAssignment);
 		}
