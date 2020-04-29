@@ -2,7 +2,9 @@ package io.github.oliviercailloux.teach_spreadsheets.json;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashSet;
@@ -13,6 +15,8 @@ import javax.json.bind.JsonbBuilder;
 import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.jimfs.Configuration;
+import com.google.common.jimfs.Jimfs;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -21,8 +25,8 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 public class JsonWriteTests {
 	@Test
 	void testWriteCoursesInAJsonFile() throws Exception {
-		final Path infile = Path.of(
-				"src/test/resources/io/github/oliviercailloux/teach_spreadsheets/read/Saisie_des_voeux_format simple.ods");
+		URL url = JsonWriteTests.class.getResource("Saisie_des_voeux_format simple.ods");
+		final Path infile = Path.of(url.toURI());
 		CalcData calcData = CalcData.getData(infile);
 		
 		ImmutableSet<CoursePref> coursePrefs = calcData.getCoursePrefs();
@@ -31,13 +35,15 @@ public class JsonWriteTests {
 			courses.add(coursePref.getCourse());
 		}
 		
-		Path jsonPath = Path.of("courses.json");
-		JsonWrite.writeCoursesInAJsonFile(jsonPath, courses);
-		
-		try (Jsonb jsonb = JsonbBuilder.create()) {
-			String expected = jsonb.toJson(courses.toArray());
-			String actual = Files.readString(jsonPath, StandardCharsets.UTF_8);
-			assertEquals(expected, actual);
+		try (FileSystem inMemoryFs = Jimfs.newFileSystem(Configuration.unix())) {
+			Path jsonPath = inMemoryFs.getPath("courses.json");
+			JsonWrite.writeCoursesInAJsonFile(jsonPath, courses);
+			
+			try (Jsonb jsonb = JsonbBuilder.create()) {
+				String expected = jsonb.toJson(courses.toArray());
+				String actual = Files.readString(jsonPath, StandardCharsets.UTF_8);
+				assertEquals(expected, actual);
+			}
 		}
 	}
 }
