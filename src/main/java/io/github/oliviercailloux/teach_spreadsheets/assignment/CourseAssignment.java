@@ -25,9 +25,15 @@ public class CourseAssignment {
 		this.course = Preconditions.checkNotNull(course, "The course must not be null.");
 	}
 
-	private CourseAssignment(Course course, ImmutableSet<TeacherAssignment> finalTeacherAssignments) {
+	/**
+	 * One of the constructors of the class. It takes two parameters, one of them being declared as a Set
+	 * to remind the user that there should be no duplicates of teachers'assignments in a
+	 * course assignment.
+	 * 
+	 */
+	private CourseAssignment(Course course, Set<TeacherAssignment> finalTeacherAssignments) {
 		this.course = Preconditions.checkNotNull(course, "The course must not be null.");
-		this.finalTeacherAssignments = Preconditions.checkNotNull(finalTeacherAssignments,
+		this.finalTeacherAssignments = Preconditions.checkNotNull(ImmutableSet.copyOf(finalTeacherAssignments),
 				"The teachers'assignments must not be null");
 	}
 
