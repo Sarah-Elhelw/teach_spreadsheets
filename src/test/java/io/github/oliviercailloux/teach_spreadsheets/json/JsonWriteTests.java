@@ -21,11 +21,12 @@ import com.google.common.jimfs.Jimfs;
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.read.CalcDataInitializerTests;
 
 public class JsonWriteTests {
 	@Test
 	void testWriteCoursesInAJsonFile() throws Exception {
-		URL url = JsonWriteTests.class.getResource("Saisie_des_voeux_format simple.ods");
+		URL url = CalcDataInitializerTests.class.getResource("Saisie_des_voeux_format simple.ods");
 		final Path infile = Path.of(url.toURI());
 		CalcData calcData = CalcData.getData(infile);
 		
