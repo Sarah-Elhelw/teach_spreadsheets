@@ -70,7 +70,7 @@ public class CourseAssignment {
 		 * Moreover, we cannot add a teacher's assignment were the numbers of assigned TD, TP, CMTD, CMTP and CM are
 		 * all equal to zero.
 		 * 
-		 * @param teacherAssignment - the object representing a new teacher's assignment to the list of
+		 * @param teacherAssignment - the object representing a new teacher's assignment to the set of
 		 * teacher's assignments.
 		 * 
 		 * @throws NullPointerException if the parameter is null
@@ -121,7 +121,7 @@ public class CourseAssignment {
 	public String toString() {
 		return MoreObjects.toStringHelper(this)
 	       .add("Course", course.getName())
-	       .add("List of Teachers'Assignments", finalTeacherAssignments)
+	       .add("Set of Teachers'Assignments", finalTeacherAssignments)
 	       .toString();
 	}
 }
