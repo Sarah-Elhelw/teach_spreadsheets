@@ -21,11 +21,11 @@ import io.github.oliviercailloux.teach_spreadsheets.read.CourseAndPrefReader;
 
 public class CourseAndPrefReaderTests {
 
-	/** Creating a fake teacher : */
+	/** Creating a fake teacher :*/
 	static Teacher teacher = Teacher.Builder.newInstance().setLastName("Doe").build();
 
 	@Test
-	void testSetInfoPref() throws Exception {
+	void testSetInfoPref() throws Exception { 
 		/** Checking the preferences for "PRE-RENTREE : Mathématiques" */
 		CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();
 		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
@@ -42,11 +42,9 @@ public class CourseAndPrefReaderTests {
 				courseBuilder.setStudyYear("2016/2017");
 				Course course = courseBuilder.build();
 
-				/**
-				 * Creating and filling the coursePref, By default, the semester is initialized
-				 */
+				/** Creating and filling the coursePref, By default, the semester is initialized */
 				CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(course, teacher);
-				/** // Beware : the number of rows and columns starts at 0. */ // with 1.
+				/** // Beware : the number of rows and columns starts at 0.*/																						// with 1.
 				courseAndPrefReader.setInfoPref(sheet, coursePrefBuilder, 9, 3);
 				CoursePref coursePref = coursePrefBuilder.build();
 				/** Checking the filling : */
@@ -88,7 +86,6 @@ public class CourseAndPrefReaderTests {
 				ImmutableSet<CoursePref> coursePrefList = courseAndPrefReader.readSemester(sheet, teacher);
 
 				String expectedLine7 = "CoursePref{prefCM=UNSPECIFIED, prefTD=UNSPECIFIED, prefCMTD=C, prefTP=UNSPECIFIED, prefCMTP=A, prefNbGroupsCM=0, prefNbGroupsTD=0, prefNbGroupsCMTD=1, prefNbGroupsTP=0, prefNbGroupsCMTP=1, Course=Course{name=Algorithmique et programmation 1, countGroupsTD=0, countGroupsCMTD=4, countGroupsTP=0, countGroupsCMTP=5, countGroupsCM=1, nbMinutesTD=0, nbMinutesCMTD=1800, nbMinutesTP=0, nbMinutesCMTP=1800, nbMinutesCM=0, studyYear=2016/2017, semester=1}, Teacher=Teacher{lastName=Doe, firstName=, address=, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}";
-				
 				String expectedLine9 = "CoursePref{prefCM=B, prefTD=UNSPECIFIED, prefCMTD=UNSPECIFIED, prefTP=UNSPECIFIED, prefCMTP=UNSPECIFIED, prefNbGroupsCM=0, prefNbGroupsTD=0, prefNbGroupsCMTD=0, prefNbGroupsTP=0, prefNbGroupsCMTP=0, Course=Course{name=Problèmes économiques, countGroupsTD=0, countGroupsCMTD=0, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=1, nbMinutesTD=0, nbMinutesCMTD=0, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=2160, studyYear=2016/2017, semester=1}, Teacher=Teacher{lastName=Doe, firstName=, address=, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}";
 
 				assertEquals(expectedLine7, coursePrefList.asList().get(3).toString());
