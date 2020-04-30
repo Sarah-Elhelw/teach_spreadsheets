@@ -44,7 +44,7 @@ public class CourseAndPrefReaderTests {
 
 				/** Creating and filling the coursePref, By default, the semester is initialized */
 				CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(course, teacher);
-				/** // Beware : the number of rows and columns starts at 0.*/																						// with 1.
+				/** Beware : the number of rows and columns starts at 0.*/																						// with 1.
 				courseAndPrefReader.setInfoPref(sheet, coursePrefBuilder, 9, 3);
 				CoursePref coursePref = coursePrefBuilder.build();
 				/** Checking the filling : */
