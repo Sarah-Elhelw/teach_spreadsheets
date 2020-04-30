@@ -23,7 +23,7 @@ public class CalcDataInitializerTests {
 		try (InputStream stream = resourceUrl.openStream()) {
 			CalcData calcData = CalcData.getData(stream);
 
-			// Checking the informations of the teacher:
+			/** Checking the informations of the teacher: */
 			Teacher actualTeacher = calcData.getTeacher();
 			assertEquals("Doe", actualTeacher.getLastName());
 			assertEquals("John", actualTeacher.getFirstName());
@@ -38,10 +38,10 @@ public class CalcDataInitializerTests {
 			assertEquals("1928373645", actualTeacher.getDauphinePhoneNumber());
 			assertEquals("B048", actualTeacher.getOffice());
 
-			// Checking the information of the course in the cell P11 of the sheet DE1:
+			/** Checking the information of the course in the cell P11 of the sheet DE1: */
 			CoursePref actualCoursePref = calcData.getCoursePref("Macroéconomie : analyse de long terme");
-			Course actualCourse=actualCoursePref.getCourse();
-			Teacher acutalTeacherInPref=actualCoursePref.getTeacher();
+			Course actualCourse = actualCoursePref.getCourse();
+			Teacher acutalTeacherInPref = actualCoursePref.getTeacher();
 			assertEquals(Preference.UNSPECIFIED, actualCoursePref.getPrefCM());
 			assertEquals(Preference.UNSPECIFIED, actualCoursePref.getPrefTD());
 			assertEquals(Preference.UNSPECIFIED, actualCoursePref.getPrefCMTD());
