@@ -21,18 +21,19 @@ import io.github.oliviercailloux.teach_spreadsheets.read.CourseAndPrefReader;
 
 public class CourseAndPrefReaderTests {
 
-	// Creating a fake teacher :
+	/** Creating a fake teacher :*/
 	static Teacher teacher = Teacher.Builder.newInstance().setLastName("Doe").build();
 
 	@Test
-	void testSetInfoPref() throws Exception { // Checking the preferences for "PRE-RENTREE : Mathématiques"
+	void testSetInfoPref() throws Exception { 
+		/** Checking the preferences for "PRE-RENTREE : Mathématiques" */
 		CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();
 		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
 		try (InputStream stream = resourceUrl.openStream()) {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				Table sheet = document.getTableByName("DE1");
 
-				// Creating a fake course :
+				/** Creating a fake course : */
 				Course.Builder courseBuilder = Course.Builder.newInstance();
 				courseBuilder.setName("PRE-RENTREE : Mathématiques");
 				courseBuilder.setCountGroupsCMTD(6);
@@ -41,17 +42,12 @@ public class CourseAndPrefReaderTests {
 				courseBuilder.setStudyYear("2016/2017");
 				Course course = courseBuilder.build();
 
-				// Creating and filling the coursePref :
-				CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(course, teacher);// By default,
-																										// the semester
-																										// is
-																										// initialized
-																										// with 1.
-				courseAndPrefReader.setInfoPref(sheet, coursePrefBuilder, 9, 3); // Beware : the number of rows and
-																					// columns starts at 0.
+				/** Creating and filling the coursePref, By default, the semester is initialized */
+				CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(course, teacher);
+				/** // Beware : the number of rows and columns starts at 0.*/																						// with 1.
+				courseAndPrefReader.setInfoPref(sheet, coursePrefBuilder, 9, 3);
 				CoursePref coursePref = coursePrefBuilder.build();
-
-				// Checking the filling :
+				/** Checking the filling : */
 				String actual = coursePref.toString();
 				String expected = "CoursePref{prefCM=UNSPECIFIED, prefTD=UNSPECIFIED, prefCMTD=UNSPECIFIED, prefTP=UNSPECIFIED, prefCMTP=UNSPECIFIED, prefNbGroupsCM=0, prefNbGroupsTD=0, prefNbGroupsCMTD=1, prefNbGroupsTP=0, prefNbGroupsCMTP=0, Course=Course{name=PRE-RENTREE : Mathématiques, countGroupsTD=0, countGroupsCMTD=6, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=0, nbMinutesTD=0, nbMinutesCMTD=15, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=0, studyYear=2016/2017, semester=1}, Teacher=Teacher{lastName=Doe, firstName=, address=, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}";
 				assertEquals(expected, actual);

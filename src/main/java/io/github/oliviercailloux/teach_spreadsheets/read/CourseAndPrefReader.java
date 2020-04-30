@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.teach_spreadsheets.read;
 
 import java.util.LinkedHashSet;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -47,7 +48,7 @@ public class CourseAndPrefReader {
 	/**
 	 * Stores the courses for future use when we'll try to open more than one file.
 	 */
-	LinkedHashSet<Course> courseList;
+	Set<Course> courseList;
 
 	public static CourseAndPrefReader newInstance() {
 		return new CourseAndPrefReader();
@@ -76,8 +77,8 @@ public class CourseAndPrefReader {
 			courseList.add(course);
 
 			CoursePref.Builder prefBuilder = CoursePref.Builder.newInstance(course, teacher);
-			setInfoPref(sheet, prefBuilder, currentCol + 8, currentRow); // Beware, there are hidden columns in the ods
-																			// file.
+			/** Beware, there are hidden columns in the odsfile. */
+			setInfoPref(sheet, prefBuilder, currentCol + 8, currentRow);
 			coursePrefList.add(prefBuilder.build());
 
 			currentRow++;
@@ -129,9 +130,7 @@ public class CourseAndPrefReader {
 					}
 				}
 			}
-
 		}
-
 	}
 
 	/**
@@ -146,7 +145,6 @@ public class CourseAndPrefReader {
 	 *          line
 	 * @param i - the row of the cell containing the first course cell of the line
 	 */
-
 	public void setInfoCourse(Table currentSheet, Course.Builder courseBuilder, int currentCol, int currentRow,
 			int semester) {
 		flagCM = false;
