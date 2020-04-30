@@ -32,15 +32,15 @@ public class JsonReadTests {
 	/**
 	 * The aim of this test is to check that getSetOfTeachersInfo() returns the
 	 * proper ImmutableSet of teachers read on RefRof. For confidentiality reasons,
-	 * LoginRefRof.txt is ignored by git and hence not published on github. For this
-	 * test to function, it is needed to create a file LoginRefRof.txt in the
+	 * LoginRefRof.json is ignored by git and hence not published on github. For this
+	 * test to function, it is needed to create a file LoginRefRof.json in the
 	 * directory
 	 * src\test\resources\io\github\oliviercailloux\teach_spreadsheets\json with the
 	 * format specified in {@link JsonRead}.
 	 */
 	@Test
 	void testGetSetOfTeachersInfo() throws Exception {
-		String actualIs = JsonRead.getSetOfTeachersInfo("LoginRefRof.txt").asList().get(1).toString();
+		String actualIs = JsonRead.getSetOfTeachersInfo("LoginRefRof.json", "https://rof.testapi.dauphine.fr/ebx-dataservices/rest/data/v1/BpvRefRof/RefRof/root/Person").asList().get(1).toString();
 		String expectedIS = "Teacher{lastName=BRACI, firstName=LINA, address=, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=lina.braci@dauphine.fr, status=PROF.UNIV., dauphinePhoneNumber=, office=}";
 		assertEquals(expectedIS, actualIs);
 	}

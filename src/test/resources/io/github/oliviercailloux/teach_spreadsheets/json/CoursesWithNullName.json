@@ -1,5 +1,4 @@
-{
-  "courses": [
+[
   {
     "name": "PRE-RENTREE : Mathématiques",
     "studyYear": "2016/2017",
@@ -30,5 +29,4 @@
     "nbMinutesCMTP": "0",
     "nbMinutesCM": "0"
   }
-  ]
-}
+ ]
