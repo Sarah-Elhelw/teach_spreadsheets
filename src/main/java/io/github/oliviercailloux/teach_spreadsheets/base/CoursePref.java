@@ -13,7 +13,7 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public class CoursePref {
 	private static final String EXCEPTION = "A preferred number of groups needs to be positive.";
-	private static final String EXCEPTION_PREFERENCE = "You can't have a preference for a type of course that won't have sessions, you must have a preference for a course that will have sessions and you can't have a preferred number of groups greater than the actual number of groups.";
+	private static final String EXCEPTION_PREFERENCE = "You can't have a preference for a type of course that won't have sessions, the preference must be complete and you can't have a preferred number of groups greater than the actual number of groups.";
 
 	private Course course;
 	private Teacher teacher;
@@ -44,15 +44,14 @@ public class CoursePref {
 	 * @param nbMinutes    the number of minutes for the sessions of this type of
 	 *                     course
 	 * @param preference   the preference of the teacher for this type of course
-	 * @return false iff (there is 0 group or 0 minutes for this type of course, but
-	 *         the teacher has a preference for it, or there is more than 0 group or
-	 *         0 minutes for this type of course, but the teacher doesn't have a
-	 *         preference for it, or the preferred number of groups is greater than
-	 *         the number of groups)
+	 * @return false iff (there is 0 group or 0 minutes for this type of course, but the teacher has a preference for it, 
+	 *         or the preference is partially completed,
+	 *         or the preferred number of groups is greater than the number of groups)
 	 */
 	private static boolean isPreferenceCoherent(int nbGroups, int nbGroupsPref, int nbMinutes, Preference preference) {
 		return !(((nbGroups == 0 || nbMinutes == 0) && preference != Preference.UNSPECIFIED)
-				|| ((nbGroups > 0 || nbMinutes > 0) && preference == Preference.UNSPECIFIED)
+				|| (nbGroupsPref != 0 && preference == Preference.UNSPECIFIED)
+				|| (nbGroupsPref == 0 && preference != Preference.UNSPECIFIED)
 				|| nbGroupsPref > nbGroups);
 	}
 

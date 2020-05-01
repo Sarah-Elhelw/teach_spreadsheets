@@ -29,6 +29,7 @@ public class CalcDataTests {
 
 		CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(), teacher);
 		coursePrefBuilder.setPrefCM(Preference.A);
+		coursePrefBuilder.setPrefNbGroupsCM(9);
 
 		CoursePref coursePref1 = coursePrefBuilder.build();
 
@@ -39,8 +40,8 @@ public class CalcDataTests {
 		courseBuilder.setSemester(2);
 
 		coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(), teacher);
-
 		coursePrefBuilder.setPrefCM(Preference.A);
+		coursePrefBuilder.setPrefNbGroupsCM(2);
 
 		CoursePref coursePref2 = coursePrefBuilder.build();
 
@@ -67,6 +68,7 @@ public class CalcDataTests {
 
 		CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(), teacher);
 		coursePrefBuilder.setPrefCM(Preference.A);
+		coursePrefBuilder.setPrefNbGroupsCM(2);
 
 		CoursePref coursePref1 = coursePrefBuilder.build();
 
@@ -77,8 +79,8 @@ public class CalcDataTests {
 		courseBuilder.setSemester(2);
 
 		coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(), teacher);
-
 		coursePrefBuilder.setPrefCM(Preference.A);
+		coursePrefBuilder.setPrefNbGroupsCM(2);
 
 		CoursePref coursePref2 = coursePrefBuilder.build();
 
@@ -90,7 +92,7 @@ public class CalcDataTests {
 			calcData.getCoursePref("programmation");
 		});
 		
-		String expected = "CoursePref{prefCM=A, prefTD=UNSPECIFIED, prefCMTD=UNSPECIFIED, prefTP=UNSPECIFIED, prefCMTP=UNSPECIFIED, prefNbGroupsCM=0, prefNbGroupsTD=0, prefNbGroupsCMTD=0, prefNbGroupsTP=0, prefNbGroupsCMTP=0, Course=Course{name=Java, countGroupsTD=0, countGroupsCMTD=0, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=10, nbMinutesTD=0, nbMinutesCMTD=0, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=20, studyYear=2013, semester=2}, Teacher=Teacher{lastName=Doe, firstName=, address=, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}";
+		String expected = "CoursePref{prefCM=A, prefTD=UNSPECIFIED, prefCMTD=UNSPECIFIED, prefTP=UNSPECIFIED, prefCMTP=UNSPECIFIED, prefNbGroupsCM=2, prefNbGroupsTD=0, prefNbGroupsCMTD=0, prefNbGroupsTP=0, prefNbGroupsCMTP=0, Course=Course{name=Java, countGroupsTD=0, countGroupsCMTD=0, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=10, nbMinutesTD=0, nbMinutesCMTD=0, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=20, studyYear=2013, semester=2}, Teacher=Teacher{lastName=Doe, firstName=, address=, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}";
 		String actual = calcData.getCoursePref("Java").toString();
 		
 		assertEquals(expected, actual);
