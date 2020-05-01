@@ -48,14 +48,14 @@ public class CourseAndPrefReader {
 	/**
 	 * Stores the courses for future use when we'll try to open more than one file.
 	 */
-	Set<Course> courseList;
+	Set<Course> courses;
 
 	public static CourseAndPrefReader newInstance() {
 		return new CourseAndPrefReader();
 	}
 
 	private CourseAndPrefReader() {
-		courseList = new LinkedHashSet<>();
+		courses = new LinkedHashSet<>();
 	}
 
 	/**
@@ -68,26 +68,27 @@ public class CourseAndPrefReader {
 	 * @return an ImmutableSet of {@link CoursePref}
 	 */
 	public ImmutableSet<CoursePref> readSemester(Table sheet, Teacher teacher) {
-		LinkedHashSet<CoursePref> coursePrefList = new LinkedHashSet<>();
+		Set<CoursePref> coursePrefs = new LinkedHashSet<>();
 		while (CourseAndPrefReaderLib.isThereANextCourse(sheet, currentCol, currentRow)) {
 
 			Course.Builder courseBuilder = Course.Builder.newInstance();
 			setInfoCourse(sheet, courseBuilder, currentCol, currentRow, currentSemester);
 			Course course = courseBuilder.build();
-			courseList.add(course);
+			courses.add(course);
 
 			CoursePref.Builder prefBuilder = CoursePref.Builder.newInstance(course, teacher);
 			/** Beware, there are hidden columns in the odsfile. */
 			setInfoPref(sheet, prefBuilder, currentCol + 8, currentRow);
-			coursePrefList.add(prefBuilder.build());
+			coursePrefs.add(prefBuilder.build());
 
 			currentRow++;
 		}
 		currentCol = FIRST_COURSE_S2_COL;
 		currentRow = FIRST_COURSE_S2_ROW;
 		currentSemester = 2;
-
-		return ImmutableSet.copyOf(coursePrefList);
+		ImmutableSet.Builder<CoursePref> coursePrefsBuilder=new ImmutableSet.Builder<>();
+		coursePrefsBuilder.addAll(coursePrefs);
+		return coursePrefsBuilder.build();
 
 	}
 
