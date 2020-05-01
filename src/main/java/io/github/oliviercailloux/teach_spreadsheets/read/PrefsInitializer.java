@@ -22,15 +22,9 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
  *
  */
 public class PrefsInitializer {
+	/** all the tables that follow the standard format */
 	private static ImmutableList<String> TABLE_LIST = ImmutableList.<String>builder()
-			.add("DE1", "DE2", "L3 Informatique", "L3 Mathématiques", "M1 Mathématiques", "M1 Informatique").build(); //all the tables that follow the standard format
-
-	public static PrefsInitializer newInstance() {
-		return new PrefsInitializer();
-	}
-
-	private PrefsInitializer() {
-	}
+			.add("DE1", "DE2", "L3 Informatique", "L3 Mathématiques", "M1 Mathématiques", "M1 Informatique").build();
 
 	/**
 	 * Creates and returns a list of {@link CoursePref} from an ods document
@@ -39,7 +33,7 @@ public class PrefsInitializer {
 	 * @param document - the document to be read
 	 * @param teacher  - whose preferences are read
 	 */
-	public ImmutableSet<CoursePref> createPrefslist(SpreadsheetDocument document, Teacher teacher) {
+	public static ImmutableSet<CoursePref> createPrefslist(SpreadsheetDocument document, Teacher teacher) {
 		LinkedHashSet<CoursePref> prefsList = new LinkedHashSet<>();
 		Table sheet;
 		List<Table> listOfTables = document.getTableList();
@@ -48,8 +42,8 @@ public class PrefsInitializer {
 			listOfTablesNames.add(table.getTableName());
 		}
 		for (String iteam : TABLE_LIST) {
-			Preconditions.checkArgument(listOfTablesNames.contains(iteam)); // Checking the document contains all the
-																			// sheets'names in tableList
+			/** Checking the document contains all the sheets'names in tableList */
+			Preconditions.checkArgument(listOfTablesNames.contains(iteam));
 			sheet = document.getTableByName(iteam);
 			CourseAndPrefReader reader = CourseAndPrefReader.newInstance();
 			prefsList.addAll(reader.readSemester(sheet, teacher));
