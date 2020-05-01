@@ -3,10 +3,17 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
 
+import io.github.oliviercailloux.teach_spreadsheets.read.CalcDataInitializer;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Set;
+
+import org.odftoolkit.simple.SpreadsheetDocument;
 
 /**
  * Immutable. Class used to store information from an excel spreadsheet : one
@@ -84,5 +91,20 @@ public class CalcData {
 	 */
 	public static CalcData populateDataFromJSON(String data) {
 		return null;
+	}
+	/**
+	 * Opens and creates a {@link CalcData} from a document whose path is passed as
+	 * a parameter.
+	 * 
+	 * @param stream - the path of the file to be read
+	 * @return a {@link CalcData} gathering the informations read in the document
+	 * @throws Exception to handle the exception type IOException
+	 */
+
+	public static CalcData getData(InputStream stream) throws Exception {
+			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
+				return CalcDataInitializer.createCalcData(document);
+			}
+
 	}
 }
