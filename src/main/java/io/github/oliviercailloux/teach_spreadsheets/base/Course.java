@@ -106,10 +106,10 @@ public class Course {
 		public Course build() {
 			checkNotNull(courseToBuild.name);
 			checkNotNull(courseToBuild.studyYear);
-			checkArgument(courseToBuild.semester == 1 || courseToBuild.semester == 2);
-			checkArgument(courseToBuild.countGroupsCM + courseToBuild.countGroupsCMTD + courseToBuild.countGroupsCMTP
+			checkState(courseToBuild.semester == 1 || courseToBuild.semester == 2);
+			checkState(courseToBuild.countGroupsCM + courseToBuild.countGroupsCMTD + courseToBuild.countGroupsCMTP
 					+ courseToBuild.countGroupsTD + courseToBuild.countGroupsTP > 0);
-			checkArgument(courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
+			checkState(courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
 					+ courseToBuild.nbMinutesTD + courseToBuild.nbMinutesTP > 0);
 			checkState(!courseToBuild.name.isEmpty() && !courseToBuild.studyYear.isEmpty());
 

@@ -11,19 +11,19 @@ public class CourseTests {
 	void testBuild() {
 		Course.Builder courseBuilder = Course.Builder.newInstance();
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalStateException.class, () -> {
 			courseBuilder.build();
 		});
 		
 		courseBuilder.setSemester(1);
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalStateException.class, () -> {
 			courseBuilder.build();
 		});
 		
 		courseBuilder.setCountGroupsCM(20);
 		
-		assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalStateException.class, () -> {
 			courseBuilder.build();
 		});
 		
