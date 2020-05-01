@@ -2,7 +2,6 @@ package io.github.oliviercailloux.teach_spreadsheets.CalcWrite;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 import org.junit.jupiter.api.Test;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;

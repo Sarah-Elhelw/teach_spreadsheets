@@ -9,11 +9,11 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 
-
 public class GlobalAssignment {
-	
-	//This class generate and ods like FichierAgrege.pdf given but without the Assignment column
-	
+
+	// This class generate and ods like FichierAgrege.pdf given but without the
+	// Assignment column
+
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
 	 * Course, Teacher's name and the various preferences.
@@ -29,8 +29,7 @@ public class GlobalAssignment {
 	private final static String CANDIDATES_LAST_NAME_POSITION = "G3";
 	private final static String CHOICES_POSITION = "H3";
 	private final static String ASSIGMENT_POSITION = "I3";
-	
-	
+
 	/**
 	 * This method adds the headers to this new document.
 	 * 
@@ -51,48 +50,45 @@ public class GlobalAssignment {
 		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choices");
 		table.getCellByPosition(ASSIGMENT_POSITION).setStringValue("Assigment");
 
-		// TO DO : mettre les entetes en forme : en gras + le titre en plus grand et en gras
+		// TO DO : mettre les entetes en forme : en gras + le titre en plus grand et en
+		// gras
 	}
-	
-	
-	/* Je voulais utiliser cette methode pour éviter la duplication du code mais je pense que ça devient très compliqué à l'utiliser
+
+	/*
+	 * Je voulais utiliser cette methode pour éviter la duplication du code mais je
+	 * pense que ça devient très compliqué à l'utiliser
 	 * 
-	private static int completePreferences(Table summary, int countGroups, int nbMinutes , int line, String courseName, ImmutableSet<CoursePref> prefs) {
-		
-		if (countGroups >0) {
-			
-			boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want to
-			// teach the course or not
-			OdsHelper.setValueAt(summary, "CM", line, 2);
-			OdsHelper.setValueAt(summary, String.valueOf(countGroups), line, 3);
-			OdsHelper.setValueAt(summary, String.valueOf(nbMinutes), line, 4);
-			
-			for (CoursePref p : prefs) {
+	 * private static int completePreferences(Table summary, int countGroups, int
+	 * nbMinutes , int line, String courseName, ImmutableSet<CoursePref> prefs) {
+	 * 
+	 * if (countGroups >0) {
+	 * 
+	 * boolean courseHasTeacher = false; // this test helps us to see when there if
+	 * they are teachers who want to // teach the course or not
+	 * OdsHelper.setValueAt(summary, "CM", line, 2); OdsHelper.setValueAt(summary,
+	 * String.valueOf(countGroups), line, 3); OdsHelper.setValueAt(summary,
+	 * String.valueOf(nbMinutes), line, 4);
+	 * 
+	 * for (CoursePref p : prefs) {
+	 * 
+	 * if (courseName.equals(p.getCourse().getName())) { courseHasTeacher = true;
+	 * OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
+	 * OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+	 * 
+	 * if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
+	 * OdsHelper.setValueAt(summary, p.getPrefCM().toString(), line, 7); } }
+	 * 
+	 * line++; }
+	 * 
+	 * if (!courseHasTeacher) { line++; }
+	 * 
+	 * }
+	 * 
+	 * return line;
+	 * 
+	 * }
+	 */
 
-				if (courseName.equals(p.getCourse().getName())) {
-					courseHasTeacher = true;
-					OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-					OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
-
-					if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
-						OdsHelper.setValueAt(summary, p.getPrefCM().toString(), line, 7);
-					}
-				}
-				
-				line++;
-			}
-
-			if (!courseHasTeacher) {
-				line++;
-			}
-			
-		}
-		
-		return line;
-		
-	}
-	*/
-	
 	/**
 	 * This method creates a summarized Ods. For each course, it writes all the
 	 * teachers who want to teach the course and their preferences.
@@ -104,7 +100,8 @@ public class GlobalAssignment {
 	 * @throws Throwable if the document could not be correctly completed
 	 */
 	
-	//TO DO : on doit completer cette fonction en faisant apparaitre les affectations sur le document
+	//TO DO : on doit completer cette fonction en faisant apparaitre les affectations sur le document. 
+	//Pour l'instant c'est que la methode createTeachersPreferences
 
 	public static SpreadsheetDocument createGlobalAssignment(ImmutableSet<Course> allCourses,
 			ImmutableSet<CoursePref> prefs, ImmutableSet<CourseAssignment>) throws Throwable {
@@ -270,7 +267,7 @@ public class GlobalAssignment {
 			
 
 		}
-		document.save("target//GlobalAssignment.ods");
+		document.save("target//GlobalAssignment.ods"); // ligne à supprimer avant de PR
 		return document;
 
 	}
