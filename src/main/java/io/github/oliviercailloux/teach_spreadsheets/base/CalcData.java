@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableSet;
 import io.github.oliviercailloux.teach_spreadsheets.read.CalcDataInitializer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
 
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -58,12 +59,14 @@ public class CalcData {
 	public CoursePref getCoursePref(String courseName) {
 		checkNotNull(coursePrefs);
 		checkNotNull(courseName);
-
+		
+		CoursePref cp = null;
 		for (CoursePref coursePref : coursePrefs) {
 			if (coursePref.getCourse().getName().equals(courseName))
-				return coursePref;
+				cp = coursePref;
 		}
-		return null;
+		checkArgument(cp != null, "The name given in parameter does not match any course.");
+		return cp;
 	}
 	
 	@Override
@@ -93,17 +96,15 @@ public class CalcData {
 	 * Opens and creates a {@link CalcData} from a document whose path is passed as
 	 * a parameter.
 	 * 
-	 * @param documentPath - the path of the file to be read
+	 * @param stream - the path of the file to be read
 	 * @return a {@link CalcData} gathering the informations read in the document
 	 * @throws Exception to handle the exception type IOException
 	 */
 
-	public static CalcData getData(Path documentPath) throws Exception {
-		try (InputStream stream = Files.newInputStream(documentPath)) {
+	public static CalcData getData(InputStream stream) throws Exception {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				return CalcDataInitializer.createCalcData(document);
 			}
-		}
 
 	}
 }

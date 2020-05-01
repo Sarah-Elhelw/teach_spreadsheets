@@ -37,6 +37,7 @@ class ReaderLib {
 		}
 		return cell.getDisplayText();
 	}
+	
 
 	/**
 	 * Detects if there is a diagonal border in the cell at cellPosition in the
@@ -56,17 +57,10 @@ class ReaderLib {
 		 * description but a NumberFormatException, so the catch fix it
 		 */
 		Cell cell = currentSheet.getCellByPosition(cellPosition);
-		if (cell == null)
-			return false;
-		try {
-			cell.getBorder(CellBordersType.DIAGONALBLTR);
-		} catch (@SuppressWarnings("unused") NullPointerException e) {
-			return false;
-		} catch (@SuppressWarnings("unused") NumberFormatException z) {
-			return true;
-		}
-		return false;
+		return verifyBorder(cell);
 	}
+
+	
 
 	/**
 	 * Detects if there is a diagonal border in the cell at j i position in the
@@ -83,6 +77,10 @@ class ReaderLib {
 	 */
 	static boolean isDiagonalBorder(Table currentSheet, int columnIndex, int rowIndex) {
 		Cell cell = currentSheet.getCellByPosition(columnIndex, rowIndex);
+		return verifyBorder(cell);
+	}
+	
+	private static boolean verifyBorder(Cell cell) {
 		if (cell == null)
 			return false;
 		try {
