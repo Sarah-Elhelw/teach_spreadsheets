@@ -52,7 +52,13 @@ public class JsonReadTests {
 	 */
 	@Test
 	void testGetSetOfTeachersInfo() throws Exception {
-		String actualIs = JsonRead.getSetOfTeachersInfo("LoginRefRof.json", "https://rof.testapi.dauphine.fr/ebx-dataservices/rest/data/v1/BpvRefRof/RefRof/root/Person").asList().get(1).toString();
+		URL resourceUrl = JsonRead.class.getResource("LoginRefRof.json");
+		final Path path = Path.of(resourceUrl.toURI());
+		String jsonLogin = Files.readString(path);
+		
+		JsonRead.authentification(jsonLogin);
+		
+		String actualIs = JsonRead.getSetOfTeachersInfo("https://rof.testapi.dauphine.fr/ebx-dataservices/rest/data/v1/BpvRefRof/RefRof/root/Person").asList().get(1).toString();
 		String expectedIS = "Teacher{lastName=BRACI, firstName=LINA, address=, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=lina.braci@dauphine.fr, status=PROF.UNIV., dauphinePhoneNumber=, office=}";
 		assertEquals(expectedIS, actualIs);
 	}

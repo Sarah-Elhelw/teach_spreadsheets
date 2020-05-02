@@ -1,15 +1,11 @@
 package io.github.oliviercailloux.teach_spreadsheets.json;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,9 +50,9 @@ public class JsonRead {
 	 * This method deserializes a json string into an ImmutableSet of courses. The
 	 * lines of code that deserialize the json string are inspired from
 	 * <a href="http://json-b.net/docs/user-guide.html">this website</a>.
-	 * The json file read must contain a single array.
+	 * The json string read must contain a single array.
 	 * 
-	 * @param fileName - the name of the file to be read.
+	 * @param textFile - the json string containing a list of courses.
 	 * 
 	 * @return an ImmutableSet of courses.
 	 * 
@@ -79,34 +75,16 @@ public class JsonRead {
 	}
 	
 	/**
-	 * This method connects to RefRof, using the user name and password in a file, to
-	 * read its XML content.
+	 * This method connects to RefRof using a json String containing the user name and the password.
 	 * 
-	 * The file used to get RefReof's login must be structured as follows : it is a json file
-	 * with the key "userName" whose value is the user name needed to get connected to RefRof
-	 * and the key "password" whose value is the password needed to get connected to RefRof.
+	 * @param jsonLogin - the json String containing the login informations
 	 * 
-	 * @param loginFileName - the name of the file containing RefRof's login.
-	 * @param httpAdress - the web address to the RefRof page containing the informations on teachers.
-	 * 
-	 * @return the XML content of the <a href=
-	 *         "https://rof.testapi.dauphine.fr/ebx-dataservices/rest/data/v1/BpvRefRof/RefRof/root/Person">RefRof
-	 *         page</a> containing the informations on teachers.
-	 * 
-	 * @throws URISyntaxException if this URL is not well formatted and cannot be
-	 *                            converted to a URI.
-	 * @throws IOException        if an I/O error occurs reading from the file or a
-	 *                            malformed or unmappable byte sequence is read.
 	 */
-	private static String readRefRofPage(String loginFileName, String httpAddress) throws URISyntaxException, IOException {
-		URL resourceUrl = JsonRead.class.getResource(loginFileName);
-		checkNotNull(resourceUrl, "The resource does not exist.");
-		final Path path = Path.of(resourceUrl.toURI());
-		String fileContent = Files.readString(path);
+	public static void authentification(String jsonLogin) {
 		JsonObject jo;
 		String userName;
 		String password;
-		try (JsonReader jr = Json.createReader(new StringReader(fileContent))) {
+		try (JsonReader jr = Json.createReader(new StringReader(jsonLogin))) {
 			jo = jr.readObject();
 			userName = jo.getString("userName");
 			password = jo.getString("password");
@@ -118,12 +96,8 @@ public class JsonRead {
 				return new PasswordAuthentication(userName, password.toCharArray());
 			}
 		});
-
-		URL resourceUrlRef = new URL(httpAddress);
-		try (BufferedReader in = new BufferedReader(new InputStreamReader(resourceUrlRef.openStream()))) {
-			return in.readLine();
-		}
 	}
+
 	
 	/**
 	 * This method takes in argument a json string from RefRof that has a complex
@@ -184,7 +158,6 @@ public class JsonRead {
 	 * lines of code that deserialize the json string are inspired from
 	 * <a href="http://json-b.net/docs/user-guide.html">this website</a>.
 	 * 
-	 * @param loginFileName - the name of the file containing RefRof's login.
 	 * @param httpAdress    - the web address to the RefRof page containing the
 	 *                      informations on teachers.
 	 * 
@@ -192,8 +165,12 @@ public class JsonRead {
 	 * 
 	 * @throws Exception, thrown by close() if the resource cannot be closed.
 	 */
-	public static ImmutableSet<Teacher> getSetOfTeachersInfo(String loginFileName, String httpAddress) throws Exception {
-		String tempText = readRefRofPage(loginFileName, httpAddress);
+	public static ImmutableSet<Teacher> getSetOfTeachersInfo(String httpAddress) throws Exception {
+		URL resourceUrlRef = new URL(httpAddress);
+		String tempText;
+		try (BufferedReader in = new BufferedReader(new InputStreamReader(resourceUrlRef.openStream()))) {
+			tempText = in.readLine();
+		}
 		final String finalText = reformatTeacherListInJson(tempText);
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/** We first build each teacher to make sure they represent proper and acceptable Teacher objects : */
