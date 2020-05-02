@@ -49,6 +49,16 @@ public class PrefsInitializer {
 			prefsList.addAll(reader.readSemester(sheet, teacher));
 			prefsList.addAll(reader.readSemester(sheet, teacher));
 		}
+		if(listOfTablesNames.contains("LSO")) {
+			sheet = document.getTableByName("LSO");
+			CourseAndPrefReaderLso readerLso = CourseAndPrefReaderLso.newInstance();
+			prefsList.addAll(readerLso.readLso(sheet, teacher));
+		}
+		if(listOfTablesNames.contains("APPRENTISSAGE")) {
+			sheet = document.getTableByName("LSO");
+			CourseAndPrefReaderApprentissage readerApprentissage = CourseAndPrefReaderApprentissage.newInstance();
+			prefsList.addAll(readerApprentissage.readApprentissage(sheet, teacher));
+		}
 		return ImmutableSet.copyOf(prefsList);
 	}
 
