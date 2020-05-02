@@ -3,6 +3,12 @@ package io.github.oliviercailloux.teach_spreadsheets.json;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import javax.json.bind.JsonbException;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -12,7 +18,10 @@ public class JsonReadTests {
 
 	@Test
 	void testGetSetOfCoursesInfo() throws Exception {
-		String actualIs = JsonRead.getSetOfCoursesInfo("Courses.json").toString();
+		URL resourceUrl = JsonRead.class.getResource("Courses.json");
+		final Path path = Path.of(resourceUrl.toURI());
+		final String textFile = Files.readString(path);
+		String actualIs = JsonRead.getSetOfCoursesInfo(textFile).toString();
 		String expectedIS = "[Course{name=PRE-RENTREE : Mathématiques, countGroupsTD=0, countGroupsCMTD=6, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=0, nbMinutesTD=0, nbMinutesCMTD=900, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=0, studyYear=2016/2017, semester=1}, Course{name=Analyse 1, countGroupsTD=0, countGroupsCMTD=5, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=0, nbMinutesTD=0, nbMinutesCMTD=450, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=0, studyYear=2016/2017, semester=1}]";
 		assertEquals(expectedIS, actualIs);
 	}
@@ -22,9 +31,12 @@ public class JsonReadTests {
 	 * setters in {@link Course} class.
 	 */
 	@Test
-	void testGetSetOfCoursesInfoWithNullName() {
+	void testGetSetOfCoursesInfoWithNullName() throws URISyntaxException, IOException {
+		URL resourceUrl = JsonRead.class.getResource("CoursesWithNullName.json");
+		final Path path = Path.of(resourceUrl.toURI());
+		final String textFile = Files.readString(path);
 		Throwable exception = assertThrows(JsonbException.class, () -> {
-			JsonRead.getSetOfCoursesInfo("CoursesWithNullName.json");
+			JsonRead.getSetOfCoursesInfo(textFile);
 		});
 		assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
 	}

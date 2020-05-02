@@ -49,25 +49,6 @@ public class JsonRead {
 		checkArgument(leftSquareBracket == textArray.lastIndexOf('[') && rightSquareBracket == textArray.lastIndexOf(']'), "The parameter must contain a single array.");
 	}
 	
-	/**
-	 * This method reads a file and returns its content in a String.
-	 * 
-	 * @param fileName - the name of the file to be read.
-	 * 
-	 * @return the whole content of the file.
-	 * 
-	 * @throws IOException        if an I/O error occurs reading from the file or a
-	 *                            malformed or unmappable byte sequence is read.
-	 * @throws URISyntaxException if this URL is not well formatted and cannot be
-	 *                            converted to a URI.
-	 */
-	private static String readFile(String fileName) throws IOException, URISyntaxException {
-		URL resourceUrl = JsonRead.class.getResource(fileName);
-		checkNotNull(resourceUrl, "The resource does not exist.");
-		final Path path = Path.of(resourceUrl.toURI());
-		return Files.readString(path);
-
-	}
 	
 	/**
 	 * This method deserializes a json string into an ImmutableSet of courses. The
@@ -81,8 +62,7 @@ public class JsonRead {
 	 * 
 	 * @throws Exception, thrown by close() if the resource cannot be closed.
 	 */
-	public static ImmutableSet<Course> getSetOfCoursesInfo(String fileName) throws Exception {
-		final String textFile = readFile(fileName);
+	public static ImmutableSet<Course> getSetOfCoursesInfo(String textFile) throws Exception {
 		checkFormatOfArray(textFile);
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/** We first build each course to make sure they represent proper and acceptable Course objects :*/
