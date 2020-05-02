@@ -31,26 +31,22 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class JsonRead {
-
+	
 	/**
-	 * This method formats a json text, that contains a single array, to extract
-	 * this array from it.
+	 * This method checks that the json String is only a single array.
 	 * 
 	 * @param textArray - the json text containing an array.
-	 * 
-	 * @return the formatted json text to suit Jsonb deserializer.
-	 * 
+	 *  
 	 * @throws NullPointerException     if the parameter is null
 	 * @throws IllegalArgumentException if the parameter does not contain an array
 	 *                                  or contains several arrays.
 	 */
-	private static String formatToArray(String textArray) {
+	private static void checkFormatOfArray(String textArray) {
 		checkNotNull(textArray, "The String must not be null.");
 		int leftSquareBracket = textArray.indexOf('[');
 		int rightSquareBracket = textArray.indexOf(']');
 		checkArgument(leftSquareBracket != -1 && rightSquareBracket != -1, "The parameter must be a json text containing an array.");
 		checkArgument(leftSquareBracket == textArray.lastIndexOf('[') && rightSquareBracket == textArray.lastIndexOf(']'), "The parameter must contain a single array.");
-		return textArray.substring(leftSquareBracket, rightSquareBracket + 1);
 	}
 	
 	/**
@@ -86,8 +82,8 @@ public class JsonRead {
 	 * @throws Exception, thrown by close() if the resource cannot be closed.
 	 */
 	public static ImmutableSet<Course> getSetOfCoursesInfo(String fileName) throws Exception {
-		String tempTextFile = readFile(fileName);
-		final String textFile = formatToArray(tempTextFile);
+		final String textFile = readFile(fileName);
+		checkFormatOfArray(textFile);
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/** We first build each course to make sure they represent proper and acceptable Course objects :*/
 			List<Course.Builder> coursesB = jsonb.fromJson(textFile, new ArrayList<Course.Builder>() {
@@ -197,11 +193,10 @@ public class JsonRead {
 
 			jsonArray = jab.build();
 		}
-		JsonObject finalJson = Json.createObjectBuilder().add("rows", jsonArray).build();
 
-		String finalText = finalJson.toString();
+		String finalText = jsonArray.toString();
 
-		return formatToArray(finalText);
+		return finalText;
 	}
 	
 	/**
