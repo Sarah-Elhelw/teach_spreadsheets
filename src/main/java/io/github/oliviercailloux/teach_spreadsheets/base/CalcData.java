@@ -36,6 +36,7 @@ public class CalcData {
 			for (CoursePref otherCoursePref : coursePrefs) {
 				if (coursePref != otherCoursePref
 						&& coursePref.getCourse().getName().equals(otherCoursePref.getCourse().getName())) {
+					System.out.println(coursePref.getCourse().getName());
 					throw new IllegalArgumentException("You can't have two courses of the same name.");
 				}
 			}
