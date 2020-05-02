@@ -26,9 +26,9 @@ public class CourseAssignment {
 	}
 
 	/**
-	 * One of the static factories of the class. It takes two parameters, one of them being declared as a Set
-	 * to remind the user that there should be no duplicates of teachers'assignments in a
-	 * course assignment.
+	 * One of the static factories of the class. It takes two parameters, one of
+	 * them being declared as a Set to remind the user that there should be no
+	 * duplicates of teachers'assignments in a course assignment.
 	 * 
 	 */
 	public static CourseAssignment newInstance(Course course, Set<TeacherAssignment> finalTeacherAssignments) {
@@ -74,20 +74,23 @@ public class CourseAssignment {
 		}
 
 		/**
-		 * Adds a teacher's assignment to the teacherAssignments. The total numbers of assigned TD, TP, CMTD, 
-		 * CMTP and CM groups to the course must not exceed the numbers of TD, TP, CMTD, CMTP and CM groups that 
-		 * are associated to the given course.
-		 * Moreover, we cannot add a teacher's assignment were the numbers of assigned TD, TP, CMTD, CMTP and CM are
-		 * all equal to zero.
+		 * Adds a teacher's assignment to the teacherAssignments. The total numbers of
+		 * assigned TD, TP, CMTD, CMTP and CM groups to the course must not exceed the
+		 * numbers of TD, TP, CMTD, CMTP and CM groups that are associated to the given
+		 * course. Moreover, we cannot add a teacher's assignment were the numbers of
+		 * assigned TD, TP, CMTD, CMTP and CM are all equal to zero.
 		 * 
-		 * @param teacherAssignment - the object representing a new teacher's assignment to the set of
-		 * teacher's assignments.
+		 * @param teacherAssignment - the object representing a new teacher's assignment
+		 *                          to the set of teacher's assignments.
 		 * 
-		 * @throws NullPointerException if the parameter is null
-		 * @throws IllegalArgumentException if the total numbers of assigned TD, TP, CMTD, CMTP and CM groups 
-		 * to the course exceed the numbers of TD, TP, CMTD, CMTP and CM groups that are associated 
-		 * to the given course or if the numbers of assigned TD, TP, CMTD, CMTP and CM of the new teacher's
-		 * assignment are all equal to zero.
+		 * @throws NullPointerException     if the parameter is null
+		 * @throws IllegalArgumentException if the total numbers of assigned TD, TP,
+		 *                                  CMTD, CMTP and CM groups to the course
+		 *                                  exceed the numbers of TD, TP, CMTD, CMTP and
+		 *                                  CM groups that are associated to the given
+		 *                                  course or if the numbers of assigned TD, TP,
+		 *                                  CMTD, CMTP and CM of the new teacher's
+		 *                                  assignment are all equal to zero.
 		 */
 		public void addTeacherAssignment(TeacherAssignment teacherAssignment) {
 			Preconditions.checkNotNull(courseAssignmentToBuild.course, "The Course must be set first.");
