@@ -86,7 +86,7 @@ public class CourseAndPrefReader {
 		currentCol = FIRST_COURSE_S2_COL;
 		currentRow = FIRST_COURSE_S2_ROW;
 		currentSemester = 2;
-		ImmutableSet.Builder<CoursePref> coursePrefsBuilder = new ImmutableSet.Builder<>();
+		ImmutableSet.Builder<CoursePref> coursePrefsBuilder=new ImmutableSet.Builder<>();
 		coursePrefsBuilder.addAll(coursePrefs);
 		return coursePrefsBuilder.build();
 
@@ -239,43 +239,24 @@ public class CourseAndPrefReader {
 		} else {
 			cellData = cellText.split(" ");
 			int value;
-			/**
-			 * reading group number in the case of just one number given in "Nombre de
-			 * groupes indicatif" case
-			 */
-			if (cellData.length == 1 && StringUtils.isNumeric(cellData[0])) {
-				value = Integer.parseInt(cellData[0]);
-				if (flagTD) {
-					courseBuilder.setCountGroupsTD(value);
-				}
-				if (flagCMTD) {
-					courseBuilder.setCountGroupsCMTD(value);
-				}
-				if (flagTP) {
-					courseBuilder.setCountGroupsTP(value);
-				}
-				if (flagCMTP) {
-					courseBuilder.setCountGroupsCMTP(value);
-				}
-			} else {
-				for (int k = 0; k < cellData.length; k++) {
-					if (k < cellData.length - 1 && StringUtils.isNumeric(cellData[k])) {
-						value = Integer.parseInt(cellData[k]);
-						if (cellData[k + 1].equals("CMTD")) {
-							courseBuilder.setCountGroupsCMTD(value);
-						}
-						if (cellData[k + 1].equals("CMTP")) {
-							courseBuilder.setCountGroupsCMTP(value);
-						}
-						if (cellData[k + 1].equals("TD")) {
-							courseBuilder.setCountGroupsTD(value);
-						}
-						if (cellData[k + 1].equals("TP")) {
-							courseBuilder.setCountGroupsTP(value);
-						}
+			for (int k = 0; k < cellData.length; k++) {
+				if (k < cellData.length - 1 && StringUtils.isNumeric(cellData[k])) {
+					value = Integer.parseInt(cellData[k]);
+					if (cellData[k + 1].equals("CMTD")) {
+						courseBuilder.setCountGroupsCMTD(value);
+					}
+					if (cellData[k + 1].equals("CMTP")) {
+						courseBuilder.setCountGroupsCMTP(value);
+					}
+					if (cellData[k + 1].equals("TD")) {
+						courseBuilder.setCountGroupsTD(value);
+					}
+					if (cellData[k + 1].equals("TP")) {
+						courseBuilder.setCountGroupsTD(value);
 					}
 				}
 			}
+
 		}
 	}
 }
