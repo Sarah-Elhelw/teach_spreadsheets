@@ -14,12 +14,18 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
+/**
+ * This class reads the courses in an APPRENTISSAGE sheet and the preferences of a teacher for
+ * these courses. 
+ *
+ */
 public class CourseAndPrefReaderApprentissage {
+	Set<Course> courses;
 	public static CourseAndPrefReaderApprentissage newInstance() {
 		return new CourseAndPrefReaderApprentissage();
 	}
 	private CourseAndPrefReaderApprentissage() {
-		
+		courses = new LinkedHashSet<>();
 	}
 	private final static int FIRST_COURSE_S1_COL_L3_S1 = 0;
 	private final static int FIRST_COURSE_S1_ROW_L3_S1 = 4;
@@ -29,7 +35,15 @@ public class CourseAndPrefReaderApprentissage {
 	private final static int FIRST_COURSE_S1_ROW_M1_S1 = 18;
 	private final static int FIRST_COURSE_S1_COL_M1_S2 = 6;
 	private final static int FIRST_COURSE_S1_ROW_M1_S2 = 18;
-		
+	
+	/**
+	 * Reads and returns the {@link CoursePref} objects corresponding to the information on the APPRENTISSAGE sheet
+	 * 
+	 * @param sheet   - contains the courses and preferences of a specific study
+	 *                year.
+	 * @param teacher - whose courses'preferences are to read.
+	 * @return an ImmutableSet of {@link CoursePref}
+	 */
 	public ImmutableSet<CoursePref> readApprentissage(Table sheet, Teacher teacher) {
 		Set<CoursePref> coursePrefs=new LinkedHashSet<>();
 		setInfo(sheet,teacher,coursePrefs,FIRST_COURSE_S1_COL_L3_S1,FIRST_COURSE_S1_ROW_L3_S1,1);
@@ -39,13 +53,16 @@ public class CourseAndPrefReaderApprentissage {
 		return ImmutableSet.copyOf(coursePrefs);
 	}
 	
-
+	/**
+	 *  Sets information from an APPRENTISSAGE sheet.
+	 */
 	private void setInfo(Table sheet, Teacher teacher,Set<CoursePref> coursePrefs,int currentCol, int currentRow, int semester) {
 		int i = currentRow;
 		while (CourseAndPrefReaderLib.isThereANextCourse(sheet, currentCol, i)) {
 		Course.Builder courseBuilder = Course.Builder.newInstance();
 		setInfoCourseApprentissage(sheet, courseBuilder, currentCol, i,semester);
 		Course course = courseBuilder.build();
+		courses.add(course);
 		CoursePref.Builder prefBuilder = CoursePref.Builder.newInstance(course, teacher);
 		setInfoPrefApprentissage(sheet, prefBuilder, currentCol + 3, i);
 		coursePrefs.add(prefBuilder.build());
@@ -53,8 +70,10 @@ public class CourseAndPrefReaderApprentissage {
 		}
 	}
 
-	
-	public void setInfoCourseApprentissage(Table currentSheet, Course.Builder courseBuilder, int currentCol, int currentRow,
+	/**
+	 * Sets the course information from an APPRENTISSAGE sheet.
+	 */
+	private void setInfoCourseApprentissage(Table currentSheet, Course.Builder courseBuilder, int currentCol, int currentRow,
 			int semester) {
 		int j = currentCol, i = currentRow;
 		String[] cellData;
@@ -86,8 +105,10 @@ public class CourseAndPrefReaderApprentissage {
 			courseBuilder.setCountGroupsCMTP(0);
 		
 	}
-	
-	public void setInfoPrefApprentissage(Table sheet, CoursePref.Builder prefBuilder, int j, int i) {
+	/**
+	 * Sets the preference information from an APPRENTISSAGE sheet.
+	 */
+	private void setInfoPrefApprentissage(Table sheet, CoursePref.Builder prefBuilder, int j, int i) {
 		Cell actualCell = sheet.getCellByPosition(j, i);
 		String cellText = actualCell.getDisplayText(); 
 		cellText=cellText.trim();
