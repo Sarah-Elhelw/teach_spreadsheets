@@ -1,11 +1,8 @@
 package io.github.oliviercailloux.teach_spreadsheets.json;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +15,10 @@ import javax.json.JsonReader;
 import javax.json.JsonValue;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 
 import com.google.common.collect.ImmutableSet;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -154,7 +155,8 @@ public class JsonRead {
 	}
 	
 	/**
-	 * This method deserializes a json string into an ImmutableSet of teachers. The
+	 * This method reads the content (which is just one line) of the RefRof page concerning the teachers ;
+	 * this content is in json. Then, it deserializes the json string into an ImmutableSet of teachers. The
 	 * lines of code that deserialize the json string are inspired from
 	 * <a href="http://json-b.net/docs/user-guide.html">this website</a>.
 	 * 
@@ -166,11 +168,10 @@ public class JsonRead {
 	 * @throws Exception, thrown by close() if the resource cannot be closed.
 	 */
 	public static ImmutableSet<Teacher> getSetOfTeachersInfo(String httpAddress) throws Exception {
-		URL resourceUrlRef = new URL(httpAddress);
-		String tempText;
-		try (BufferedReader in = new BufferedReader(new InputStreamReader(resourceUrlRef.openStream()))) {
-			tempText = in.readLine();
-		}
+		Client client = ClientBuilder.newClient();
+		WebTarget t1 = client.target(httpAddress);
+		String tempText = t1.request(MediaType.TEXT_PLAIN).get(String.class);
+		client.close();
 		final String finalText = reformatTeacherListInJson(tempText);
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/** We first build each teacher to make sure they represent proper and acceptable Teacher objects : */
