@@ -91,7 +91,7 @@ public class CourseAndPrefReaderApprentissage {
 		Cell actualCell = sheet.getCellByPosition(j, i);
 		String cellText = actualCell.getDisplayText(); 
 		cellText=cellText.trim();
-		if(cellText.equals("")) {
+		if(cellText== null || cellText.equals("")) {
 			prefBuilder.setPrefCMTD(Preference.UNSPECIFIED);
 			prefBuilder.setPrefNbGroupsCMTD(0);
 		}

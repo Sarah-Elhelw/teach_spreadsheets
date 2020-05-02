@@ -55,7 +55,7 @@ public class PrefsInitializer {
 			prefsList.addAll(readerLso.readLso(sheet, teacher));
 		}
 		if(listOfTablesNames.contains("APPRENTISSAGE")) {
-			sheet = document.getTableByName("LSO");
+			sheet = document.getTableByName("APPRENTISSAGE");
 			CourseAndPrefReaderApprentissage readerApprentissage = CourseAndPrefReaderApprentissage.newInstance();
 			prefsList.addAll(readerApprentissage.readApprentissage(sheet, teacher));
 		}
