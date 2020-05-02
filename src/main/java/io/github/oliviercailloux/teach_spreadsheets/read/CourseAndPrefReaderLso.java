@@ -54,7 +54,7 @@ public class CourseAndPrefReaderLso {
 		return ImmutableSet.copyOf(coursePrefs);
 	}
 	/**
-	 * Test whether the a Cell contain the String "semestre2" 
+	 * Tests whether the a Cell contain the String "semestre2" 
 	 */
 	private boolean testSemester2(Table sheet,int col,int row) {
 		Cell actualCell = sheet.getCellByPosition(col, row);
