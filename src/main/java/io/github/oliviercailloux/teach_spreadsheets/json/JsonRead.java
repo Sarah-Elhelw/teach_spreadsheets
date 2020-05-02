@@ -210,7 +210,8 @@ public class JsonRead {
 	 * <a href="http://json-b.net/docs/user-guide.html">this website</a>.
 	 * 
 	 * @param loginFileName - the name of the file containing RefRof's login.
-	 * @param httpAdress - the web address to the RefRof page containing the informations on teachers.
+	 * @param httpAdress    - the web address to the RefRof page containing the
+	 *                      informations on teachers.
 	 * 
 	 * @return an ImmutableSet of teachers.
 	 * 
