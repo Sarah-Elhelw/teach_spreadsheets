@@ -25,8 +25,7 @@ public class CourseAssignment {
 	}
 
 	/**
-	 * One of the static factories of the class. It takes two parameters, one of
-	 * them being declared as a Set to remind the user that there should be no
+	 * The second parameter is declared as a Set to remind the user that there should be no
 	 * duplicates of teachers'assignments in a course assignment.
 	 * 
 	 */
