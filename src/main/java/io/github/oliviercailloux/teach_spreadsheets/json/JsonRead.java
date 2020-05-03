@@ -44,6 +44,7 @@ public class JsonRead {
 		int rightSquareBracket = textArray.indexOf(']');
 		checkArgument(leftSquareBracket != -1 && rightSquareBracket != -1, "The parameter must be a json text containing an array.");
 		checkArgument(leftSquareBracket == textArray.lastIndexOf('[') && rightSquareBracket == textArray.lastIndexOf(']'), "The parameter must contain a single array.");
+		checkArgument(textArray.trim().equals(textArray.substring(leftSquareBracket, rightSquareBracket+1)), "The parameter should only be a single array.");
 	}
 	
 	
@@ -77,6 +78,9 @@ public class JsonRead {
 	
 	/**
 	 * This method connects to RefRof using a json String containing the user name and the password.
+	 * The json String must have the following structure: it contains the key "userName" whose value 
+	 * is the user name needed to get connected to RefRof and the key "password" whose value is the 
+	 * password needed to get connected to RefRof.
 	 * 
 	 * @param jsonLogin - the json String containing the login informations
 	 * 
