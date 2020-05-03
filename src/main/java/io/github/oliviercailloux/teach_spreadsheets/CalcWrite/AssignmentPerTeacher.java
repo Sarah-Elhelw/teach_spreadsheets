@@ -109,7 +109,6 @@ public class AssignmentPerTeacher {
 		table.getCellByPosition(TYPE_POSITION).setStringValue("Type");
 
 		table.getCellByPosition(NUMBER_MINUTES_POSITION).setStringValue("Number of minutes");
-
 	}
 
 	public static SpreadsheetDocument createAssignmentPerTeacher(Teacher teacher,

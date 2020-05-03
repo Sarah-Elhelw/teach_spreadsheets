@@ -5,6 +5,8 @@ import java.util.Set;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
+import org.apache.poi.hssf.util.HSSFColor;
+
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -42,7 +44,7 @@ public class GlobalAssignment {
 
 	private static void headersToOds(Table table) {
 
-		table.getCellByPosition(TITLE_POSITION).setStringValue("Teachers' Preferences and Assigment");
+		table.getCellByPosition(TITLE_POSITION).setStringValue("Teachers Preferences and Assigment");
 		table.getCellByPosition(YEAR_POSITION).setStringValue("Year of study");
 		table.getCellByPosition(SEMESTER_POSITION).setStringValue("Semester");
 		table.getCellByPosition(COURSE_TYPE_POSITION).setStringValue("Course Type");
@@ -53,8 +55,10 @@ public class GlobalAssignment {
 		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choices");
 		table.getCellByPosition(ASSIGMENT_POSITION).setStringValue("Assigment");
 
-		// TO DO : mettre les entetes en forme : en gras + le titre en plus grand et en
-		// gras
+		
+	//	TITLE_POSITION.setBold(true);
+		
+		
 	}
 
 	/*
@@ -155,7 +159,10 @@ public class GlobalAssignment {
 									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
 									&& ta.getCountGroupsCM()) { // if is the same Teacher
 								OdsHelper.setValueAt(summary, "yes", line, 8);
-								// TO DO : mettre la cellule des noms et prenoms en vert
+							
+							//    ta.setFillForegroundColor(HSSFColor.GREEN.index);
+
+								
 							}
 						}
 
@@ -194,7 +201,7 @@ public class GlobalAssignment {
 									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
 									&& ta.getCountGroupsCMTD()) { // if is the same Teacher
 								OdsHelper.setValueAt(summary, "yes", line, 8);
-								// TO DO : mettre la cellule des noms et prenoms en vert
+								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 							}
 						}
 
@@ -232,7 +239,7 @@ public class GlobalAssignment {
 									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
 									&& ta.getCountGroupsCMTP()) { // if is the same Teacher
 								OdsHelper.setValueAt(summary, "yes", line, 8);
-								// TO DO : mettre la cellule des noms et prenoms en vert
+								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 							}
 						}
 
@@ -270,8 +277,7 @@ public class GlobalAssignment {
 									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
 									&& ta.getCountGroupsTD()) { // if is the same Teacher
 								OdsHelper.setValueAt(summary, "yes", line, 8);
-								// TO DO : mettre la cellule des noms et prenoms en vert
-							}
+								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 						}
 
 						line++;
@@ -308,7 +314,7 @@ public class GlobalAssignment {
 									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
 									&& ta.getCountGroupsTP()) { // if is the same Teacher
 								OdsHelper.setValueAt(summary, "yes", line, 8);
-								// TO DO : mettre la cellule des noms et prenoms en vert
+								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 							}
 						}
 
