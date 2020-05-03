@@ -4,13 +4,13 @@ import java.io.StringReader;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.json.Json;
 import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
 import javax.json.JsonValue;
 import javax.json.bind.Jsonb;
@@ -101,27 +101,32 @@ public class JsonRead {
 
 	
 	/**
-	 * This method takes in argument a json string from RefRof that has a complex
-	 * structure and simplifies it to be able to deserialize it later on.
+	 * This method reads the content (which is just one line) of the RefRof page concerning the teachers ;
+	 * this content is in json. Then, it extracts from it the informations needed to build the set of of teachers.
 	 * 
-	 * @param teacherArray - the json string containing an array to be simplified.
+	 * @param httpAdress    - the web address to the RefRof page containing the
+	 *                      informations on teachers.
 	 * 
-	 * @return the simplified json string.
+	 * @return an ImmutableSet of teachers.
+	 * 
+	 * @throws Exception, thrown by close() if the resource cannot be closed.
 	 */
-	private static String reformatTeacherListInJson(String teacherArray) {
-		/**
-		 * It represents the simplified array built by this method.
-		 */
-		JsonArray jsonArray;
+	public static ImmutableSet<Teacher> getSetOfTeachersInfo(String httpAddress) {
+		Client client = ClientBuilder.newClient();
+		WebTarget t1 = client.target(httpAddress);
+		String content = t1.request(MediaType.TEXT_PLAIN).get(String.class);
+		client.close();
+		
+		
+		Set<Teacher> teachers = new LinkedHashSet<>();
 
 		/** ----- Getting the json object associated to the string teacherArray ------ */
 		JsonObject formerJson;
-		try (JsonReader jr = Json.createReader(new StringReader(teacherArray))) {
+		try (JsonReader jr = Json.createReader(new StringReader(content))) {
 			formerJson = jr.readObject();
 
 			/** ------ Building a simpler array ------ */
 			JsonArray formerJsonArray = formerJson.getJsonArray("rows");
-			JsonArrayBuilder jab = Json.createArrayBuilder();
 
 			/** ----- Analyzing each element in the array: ------ */
 			for (JsonValue jv : formerJsonArray) {
@@ -131,60 +136,23 @@ public class JsonRead {
 					JsonObject jo = jr2.readObject();
 					
 					/** ----- Building a json object with only what is needed ------- */
-					JsonObjectBuilder job = Json.createObjectBuilder();
-					job.add("lastName", jo.getJsonObject("content").getJsonObject("familyName").getString("content", ""));
-					job.add("firstName", jo.getJsonObject("content").getJsonObject("givenName").getString("content", ""));
-					job.add("address", jo.getJsonObject("content").getJsonObject("contactData").getJsonObject("content").getJsonObject("address").getJsonObject("content").getJsonObject("street").getString("content", ""));
-					job.add("postCode", jo.getJsonObject("content").getJsonObject("contactData").getJsonObject("content").getJsonObject("address").getJsonObject("content").getJsonObject("pcode").getString("content", ""));
-					job.add("city", jo.getJsonObject("content").getJsonObject("contactData").getJsonObject("content").getJsonObject("address").getJsonObject("content").getJsonObject("locality").getString("content", ""));
-					job.add("personalPhone", jo.getJsonObject("content").getJsonObject("contactData").getJsonObject("content").getJsonObject("telephone").getString("content", ""));
-					job.add("dauphineEmail", jo.getJsonObject("content").getJsonObject("contactData").getJsonObject("content").getJsonObject("email").getString("content", ""));
-					job.add("status", jo.getJsonObject("content").getJsonObject("title").getString("content", ""));
+					Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
+					teacherBuilder.setLastName(jo.getJsonObject("content").getJsonObject("familyName").getString("content", ""));
+					teacherBuilder.setFirstName(jo.getJsonObject("content").getJsonObject("givenName").getString("content", ""));
+					teacherBuilder.setAddress(jo.getJsonObject("content").getJsonObject("contactData").getJsonObject("content").getJsonObject("address").getJsonObject("content").getJsonObject("street").getString("content", ""));
+					teacherBuilder.setPostCode(jo.getJsonObject("content").getJsonObject("contactData").getJsonObject("content").getJsonObject("address").getJsonObject("content").getJsonObject("pcode").getString("content", ""));
+					teacherBuilder.setCity(jo.getJsonObject("content").getJsonObject("contactData").getJsonObject("content").getJsonObject("address").getJsonObject("content").getJsonObject("locality").getString("content", ""));
+					teacherBuilder.setPersonalPhone(jo.getJsonObject("content").getJsonObject("contactData").getJsonObject("content").getJsonObject("telephone").getString("content", ""));
+					teacherBuilder.setDauphineEmail(jo.getJsonObject("content").getJsonObject("contactData").getJsonObject("content").getJsonObject("email").getString("content", ""));
+					teacherBuilder.setStatus(jo.getJsonObject("content").getJsonObject("title").getString("content", ""));
 					
-					/** ---- Adding the json object to the JsonArrayBuilder */
-					jab.add(job);
+					teachers.add(teacherBuilder.build());
 				}
 			}
 
-			jsonArray = jab.build();
 		}
-
-		String finalText = jsonArray.toString();
-
-		return finalText;
-	}
-	
-	/**
-	 * This method reads the content (which is just one line) of the RefRof page concerning the teachers ;
-	 * this content is in json. Then, it deserializes the json string into an ImmutableSet of teachers. The
-	 * lines of code that deserialize the json string are inspired from
-	 * <a href="http://json-b.net/docs/user-guide.html">this website</a>.
-	 * 
-	 * @param httpAdress    - the web address to the RefRof page containing the
-	 *                      informations on teachers.
-	 * 
-	 * @return an ImmutableSet of teachers.
-	 * 
-	 * @throws Exception, thrown by close() if the resource cannot be closed.
-	 */
-	public static ImmutableSet<Teacher> getSetOfTeachersInfo(String httpAddress) throws Exception {
-		Client client = ClientBuilder.newClient();
-		WebTarget t1 = client.target(httpAddress);
-		String tempText = t1.request(MediaType.TEXT_PLAIN).get(String.class);
-		client.close();
-		final String finalText = reformatTeacherListInJson(tempText);
-		try (Jsonb jsonb = JsonbBuilder.create()) {
-			/** We first build each teacher to make sure they represent proper and acceptable Teacher objects : */
-			List<Teacher.Builder> teacherB = jsonb.fromJson(finalText, new ArrayList<Teacher.Builder>() {
-				private static final long serialVersionUID = 1L;
-			}.getClass().getGenericSuperclass());
-			List<Teacher> teachers = new ArrayList<>();
-			for (Teacher.Builder tb : teacherB) {
-				teachers.add(tb.build());
-			}
-			ImmutableSet<Teacher> is = ImmutableSet.copyOf(teachers);
-			return is;
-		}
+		
+		return ImmutableSet.copyOf(teachers);
 	}
 
 }
