@@ -27,7 +27,7 @@ public class JsonWriteTests {
 	void testWriteCourses() throws Exception {
 		URL url = CalcDataInitializerTests.class.getResource("Saisie_des_voeux_format simple.ods");
 		Path odsPath = Path.of(url.toURI());
-		
+
 		try (InputStream odsStream = Files.newInputStream(odsPath)) {
 			CalcData calcData = CalcData.getData(odsStream);
 
@@ -36,10 +36,10 @@ public class JsonWriteTests {
 			for (CoursePref coursePref : coursePrefs) {
 				courses.add(coursePref.getCourse());
 			}
-			
+
 			Writer writer = new StringWriter();
 			JsonWrite.writeCoursesInAWriter(writer, courses);
-			
+
 			try (Jsonb jsonb = JsonbBuilder.create()) {
 				String expected = jsonb.toJson(courses.toArray());
 				String actual = writer.toString();

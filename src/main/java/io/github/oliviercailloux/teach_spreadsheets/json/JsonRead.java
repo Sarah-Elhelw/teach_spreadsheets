@@ -28,7 +28,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class JsonRead {
-	
+
 	/**
 	 * This method checks that the json String is only a single array.
 	 * 
@@ -108,7 +108,6 @@ public class JsonRead {
 		});
 	}
 
-	
 	/**
 	 * This method reads the content (which is just one line) of the RefRof page
 	 * concerning the teachers ; this content is in json. Then, it extracts from it
@@ -126,7 +125,7 @@ public class JsonRead {
 		WebTarget t1 = client.target(httpAddress);
 		String content = t1.request(MediaType.TEXT_PLAIN).get(String.class);
 		client.close();
-		
+
 		Set<Teacher> teachers = new LinkedHashSet<>();
 
 		/** ----- Getting the json object associated to the string teacherArray ------ */

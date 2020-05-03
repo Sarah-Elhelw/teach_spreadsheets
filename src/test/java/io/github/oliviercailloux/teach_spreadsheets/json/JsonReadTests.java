@@ -69,7 +69,7 @@ public class JsonReadTests {
 	void testGetSetOfTeachersInfo() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("LoginRefRof.json");
 		final Path path = Path.of(resourceUrl.toURI());
-		String jsonLogin = Files.readString(path);
+		final String jsonLogin = Files.readString(path);
 
 		JsonRead.authentication(jsonLogin);
 
