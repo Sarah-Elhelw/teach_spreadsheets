@@ -90,6 +90,7 @@ public class JsonRead {
 	 * 
 	 */
 	public static void authentication(String jsonLogin) {
+		checkNotNull(jsonLogin, "The String must not be null.");
 		JsonObject jo;
 		String userName;
 		String password;
@@ -120,6 +121,7 @@ public class JsonRead {
 	 * 
 	 */
 	public static ImmutableSet<Teacher> getSetOfTeachersInfo(String httpAddress) {
+		checkNotNull(httpAddress, "The String must not be null.");
 		Client client = ClientBuilder.newClient();
 		WebTarget t1 = client.target(httpAddress);
 		String content = t1.request(MediaType.TEXT_PLAIN).get(String.class);
