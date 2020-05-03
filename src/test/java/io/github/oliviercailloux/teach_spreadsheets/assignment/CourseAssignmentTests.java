@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashSet;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.*;
 
@@ -16,10 +17,10 @@ public class CourseAssignmentTests {
 
 	@Test
 	void testSetCourseWithNullCourse() {
-		Throwable exception = Assertions.assertThrows(NullPointerException.class, () -> {
+		Throwable exception = assertThrows(NullPointerException.class, () -> {
 			CourseAssignment.Builder.newInstance(null);
 		});
-		Assertions.assertEquals("The course must not be null.", exception.getMessage());
+		assertEquals("The course must not be null.", exception.getMessage());
 	}
 
 	@Test
@@ -27,10 +28,10 @@ public class CourseAssignmentTests {
 		TeacherAssignment teacherAssignment = TeacherAssignment.Builder.newInstance(teacher).setCountGroupsTD(3)
 				.build();
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course);
-		Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			courseAssignmentBuilder.addTeacherAssignment(teacherAssignment);
 		});
-		Assertions.assertEquals(
+		assertEquals(
 				"The number of assigned TD groups must not exceed the number of TD groups associated to the course.",
 				exception.getMessage());
 	}
@@ -39,17 +40,17 @@ public class CourseAssignmentTests {
 	void testAddTeacherAssignmentWithZeroGroupsAssigned() {
 		TeacherAssignment teacherAssignment0 = TeacherAssignment.Builder.newInstance(teacher).build();
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course);
-		Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			courseAssignmentBuilder.addTeacherAssignment(teacherAssignment0);
 		});
-		Assertions.assertEquals("An assignment must have at least one assigned group.", exception.getMessage());
+		assertEquals("An assignment must have at least one assigned group.", exception.getMessage());
 	}
 	
 	@Test
 	void testNewInstanceWithTwoParametersWithNoTeacherAssignment() {
-		Throwable exception = Assertions.assertThrows(IllegalStateException.class, () -> {
+		Throwable exception = assertThrows(IllegalStateException.class, () -> {
 			CourseAssignment.newInstance(course, new LinkedHashSet<TeacherAssignment>());
 		});
-		Assertions.assertEquals("The course assignment must contain at least one teacher assignment.", exception.getMessage());
+		assertEquals("The course assignment must contain at least one teacher assignment.", exception.getMessage());
 	}
 }

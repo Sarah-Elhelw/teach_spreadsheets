@@ -6,7 +6,9 @@ import java.util.Set;
 import java.util.LinkedHashSet;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Preconditions;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+import static com.google.common.base.Preconditions.checkArgument;
 import com.google.common.collect.ImmutableSet;
 
 /**
@@ -19,7 +21,7 @@ public class CourseAssignment {
 	private ImmutableSet<TeacherAssignment> teacherAssignments;
 
 	private CourseAssignment(Course course) {
-		this.course = Preconditions.checkNotNull(course, "The course must not be null.");
+		this.course = checkNotNull(course, "The course must not be null.");
 	}
 
 	/**
@@ -30,7 +32,7 @@ public class CourseAssignment {
 	 */
 	public static CourseAssignment newInstance(Course course, Set<TeacherAssignment> finalTeacherAssignments) {
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course);
-		Preconditions.checkNotNull(finalTeacherAssignments, "The teachers'assignments must not be null");
+		checkNotNull(finalTeacherAssignments, "The teachers'assignments must not be null");
 		for (TeacherAssignment ta : finalTeacherAssignments) {
 			courseAssignmentBuilder.addTeacherAssignment(ta);
 		}
@@ -65,7 +67,7 @@ public class CourseAssignment {
 		 * 
 		 */
 		public CourseAssignment build() {
-			Preconditions.checkState(tempTeacherAssignments.size() >= 1, "The course assignment must contain at least one teacher assignment.");
+			checkState(tempTeacherAssignments.size() >= 1, "The course assignment must contain at least one teacher assignment.");
 			courseAssignmentToBuild.teacherAssignments = ImmutableSet.copyOf(tempTeacherAssignments);
 			return courseAssignmentToBuild;
 		}
@@ -90,8 +92,8 @@ public class CourseAssignment {
 		 *                                  assignment are all equal to zero.
 		 */
 		public void addTeacherAssignment(TeacherAssignment teacherAssignment) {
-			Preconditions.checkNotNull(courseAssignmentToBuild.course, "The Course must be set first.");
-			Preconditions.checkNotNull(teacherAssignment, "The teacherAssignment must not be null.");
+			checkNotNull(courseAssignmentToBuild.course, "The Course must be set first.");
+			checkNotNull(teacherAssignment, "The teacherAssignment must not be null.");
 
 			int sumAssignedGroupsTD = 0;
 			int sumAssignedGroupsTP = 0;
@@ -107,13 +109,13 @@ public class CourseAssignment {
 				sumAssignedGroupsCM += ta.getCountGroupsCM();
 			}
 			
-			Preconditions.checkArgument(sumAssignedGroupsTD+teacherAssignment.getCountGroupsTD() <= courseAssignmentToBuild.course.getCountGroupsTD(), "The number of assigned TD groups must not exceed the number of TD groups associated to the course.");
-			Preconditions.checkArgument(sumAssignedGroupsTP+teacherAssignment.getCountGroupsTP() <= courseAssignmentToBuild.course.getCountGroupsTP(), "The number of assigned TP groups must not exceed the number of TP groups associated to the course.");
-			Preconditions.checkArgument(sumAssignedGroupsCMTD+teacherAssignment.getCountGroupsCMTD() <= courseAssignmentToBuild.course.getCountGroupsCMTD(), "The number of assigned CMTD groups must not exceed the number of CMTD groups associated to the course.");
-			Preconditions.checkArgument(sumAssignedGroupsCMTP+teacherAssignment.getCountGroupsCMTP() <= courseAssignmentToBuild.course.getCountGroupsCMTP(), "The number of assigned CMTP groups must not exceed the number of CMTP groups associated to the course.");
-			Preconditions.checkArgument(sumAssignedGroupsCM+teacherAssignment.getCountGroupsCM() <= courseAssignmentToBuild.course.getCountGroupsCM(), "The number of assigned CM groups must not exceed the number of CM groups associated to the course.");
+			checkArgument(sumAssignedGroupsTD+teacherAssignment.getCountGroupsTD() <= courseAssignmentToBuild.course.getCountGroupsTD(), "The number of assigned TD groups must not exceed the number of TD groups associated to the course.");
+			checkArgument(sumAssignedGroupsTP+teacherAssignment.getCountGroupsTP() <= courseAssignmentToBuild.course.getCountGroupsTP(), "The number of assigned TP groups must not exceed the number of TP groups associated to the course.");
+			checkArgument(sumAssignedGroupsCMTD+teacherAssignment.getCountGroupsCMTD() <= courseAssignmentToBuild.course.getCountGroupsCMTD(), "The number of assigned CMTD groups must not exceed the number of CMTD groups associated to the course.");
+			checkArgument(sumAssignedGroupsCMTP+teacherAssignment.getCountGroupsCMTP() <= courseAssignmentToBuild.course.getCountGroupsCMTP(), "The number of assigned CMTP groups must not exceed the number of CMTP groups associated to the course.");
+			checkArgument(sumAssignedGroupsCM+teacherAssignment.getCountGroupsCM() <= courseAssignmentToBuild.course.getCountGroupsCM(), "The number of assigned CM groups must not exceed the number of CM groups associated to the course.");
 			
-			Preconditions.checkArgument(teacherAssignment.getCountGroupsTD() != 0 || teacherAssignment.getCountGroupsTP() != 0 || teacherAssignment.getCountGroupsCMTD() !=0 || teacherAssignment.getCountGroupsCMTP() !=0 || teacherAssignment.getCountGroupsCM() !=0, "An assignment must have at least one assigned group.");
+			checkArgument(teacherAssignment.getCountGroupsTD() != 0 || teacherAssignment.getCountGroupsTP() != 0 || teacherAssignment.getCountGroupsCMTD() !=0 || teacherAssignment.getCountGroupsCMTP() !=0 || teacherAssignment.getCountGroupsCM() !=0, "An assignment must have at least one assigned group.");
 			
 			tempTeacherAssignments.add(teacherAssignment);
 		}
