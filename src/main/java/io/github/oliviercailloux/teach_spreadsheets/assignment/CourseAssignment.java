@@ -15,11 +15,8 @@ import com.google.common.collect.ImmutableSet;
  */
 public class CourseAssignment {
 	private final Course course;
-	/**
-	 * Set of {@link TeacherAssignment} : we should not be able to assign more than
-	 * once a teacher's assignment to a course.
-	 */
-	private ImmutableSet<TeacherAssignment> finalTeacherAssignments;
+	
+	private ImmutableSet<TeacherAssignment> teacherAssignments;
 
 	private CourseAssignment(Course course) {
 		this.course = Preconditions.checkNotNull(course, "The course must not be null.");
@@ -47,11 +44,11 @@ public class CourseAssignment {
 		 * Set of {@link TeacherAssignment} : it is used to build (by adding) the
 		 * finalTeacherAssignments.
 		 */
-		private Set<TeacherAssignment> teacherAssignments;
+		private Set<TeacherAssignment> tempTeacherAssignments;
 		private CourseAssignment courseAssignmentToBuild;
 
 		private Builder(Course course) {
-			teacherAssignments = new LinkedHashSet<>();
+			tempTeacherAssignments = new LinkedHashSet<>();
 			courseAssignmentToBuild = new CourseAssignment(course);
 		}
 
@@ -68,8 +65,8 @@ public class CourseAssignment {
 		 * 
 		 */
 		public CourseAssignment build() {
-			Preconditions.checkState(teacherAssignments.size() >= 1, "The course assignment must contain at least one teacher assignment.");
-			courseAssignmentToBuild.finalTeacherAssignments = ImmutableSet.copyOf(teacherAssignments);
+			Preconditions.checkState(tempTeacherAssignments.size() >= 1, "The course assignment must contain at least one teacher assignment.");
+			courseAssignmentToBuild.teacherAssignments = ImmutableSet.copyOf(tempTeacherAssignments);
 			return courseAssignmentToBuild;
 		}
 
@@ -102,7 +99,7 @@ public class CourseAssignment {
 			int sumAssignedGroupsCMTP = 0;
 			int sumAssignedGroupsCM = 0;
 
-			for (TeacherAssignment ta : teacherAssignments) {
+			for (TeacherAssignment ta : tempTeacherAssignments) {
 				sumAssignedGroupsTD += ta.getCountGroupsTD();
 				sumAssignedGroupsTP += ta.getCountGroupsTP();
 				sumAssignedGroupsCMTD += ta.getCountGroupsCMTD();
@@ -118,7 +115,7 @@ public class CourseAssignment {
 			
 			Preconditions.checkArgument(teacherAssignment.getCountGroupsTD() != 0 || teacherAssignment.getCountGroupsTP() != 0 || teacherAssignment.getCountGroupsCMTD() !=0 || teacherAssignment.getCountGroupsCMTP() !=0 || teacherAssignment.getCountGroupsCM() !=0, "An assignment must have at least one assigned group.");
 			
-			teacherAssignments.add(teacherAssignment);
+			tempTeacherAssignments.add(teacherAssignment);
 		}
 	}
 	
@@ -127,14 +124,14 @@ public class CourseAssignment {
 	}
 	
 	public Set<TeacherAssignment> getTeacherAssignments(){
-		return finalTeacherAssignments;
+		return teacherAssignments;
 	}
 	
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this)
 	       .add("Course", course.getName())
-	       .add("Set of Teachers'Assignments", finalTeacherAssignments)
+	       .add("Set of Teachers'Assignments", teacherAssignments)
 	       .toString();
 	}
 }
