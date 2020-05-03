@@ -3,8 +3,6 @@ package io.github.oliviercailloux.teach_spreadsheets.json;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -48,7 +46,7 @@ public class JsonReadTests {
 	 * setters in {@link Course} class.
 	 */
 	@Test
-	void testGetSetOfCoursesInfoWithNullName() throws URISyntaxException, IOException {
+	void testGetSetOfCoursesInfoWithNullName() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("CoursesWithNullName.json");
 		final Path path = Path.of(resourceUrl.toURI());
 		final String textFile = Files.readString(path);
