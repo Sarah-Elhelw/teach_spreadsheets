@@ -89,7 +89,7 @@ public class JsonRead {
 	 * @param jsonLogin - the json String containing the login informations
 	 * 
 	 */
-	public static void authentification(String jsonLogin) {
+	public static void authentication(String jsonLogin) {
 		JsonObject jo;
 		String userName;
 		String password;

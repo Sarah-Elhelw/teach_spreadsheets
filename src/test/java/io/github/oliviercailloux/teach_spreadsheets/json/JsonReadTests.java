@@ -73,7 +73,7 @@ public class JsonReadTests {
 		final Path path = Path.of(resourceUrl.toURI());
 		String jsonLogin = Files.readString(path);
 
-		JsonRead.authentification(jsonLogin);
+		JsonRead.authentication(jsonLogin);
 
 		Teacher actualTeacher = JsonRead.getSetOfTeachersInfo("https://rof.testapi.dauphine.fr/ebx-dataservices/rest/data/v1/BpvRefRof/RefRof/root/Person").asList().get(1);
 
