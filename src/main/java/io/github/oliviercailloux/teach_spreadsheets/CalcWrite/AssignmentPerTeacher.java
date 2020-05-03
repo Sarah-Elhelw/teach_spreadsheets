@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.teach_spreadsheets.CalcWrite;
 
+import java.util.Set;
+
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
@@ -8,6 +10,9 @@ import com.google.common.collect.ImmutableSet;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
+
+import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
+import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 
 public class AssignmentPerTeacher {
 
@@ -55,9 +60,7 @@ public class AssignmentPerTeacher {
 
 	private final static String TYPE_POSITION = "D16";
 
-	private final static String NUMBER_HOURS_POSITION = "E16";
-
-	private final static String TOTAL_POSITION = "D36";
+	private final static String NUMBER_MINUTES_POSITION = "E16";
 
 	/**
 	 * This method adds the headers to this new document.
@@ -105,18 +108,77 @@ public class AssignmentPerTeacher {
 
 		table.getCellByPosition(TYPE_POSITION).setStringValue("Type");
 
-		table.getCellByPosition(NUMBER_HOURS_POSITION).setStringValue("Number of hours");
-
-		table.getCellByPosition(TOTAL_POSITION).setStringValue("TOTAL");
+		table.getCellByPosition(NUMBER_MINUTES_POSITION).setStringValue("Number of minutes");
 
 	}
 
-	public static SpreadsheetDocument createAssigmentPerTeacher(Teacher teacher) throws Throwable {
+	public static SpreadsheetDocument createAssignmentPerTeacher(Teacher teacher,
+			ImmutableSet<CourseAssignment> allCoursesAssigned) throws Throwable {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
 		headersToOds(summary, teacher);
-		int line = 3;
+		int line = 16;
+		int totalNumberMinutes = 0;
+
+		Set<TeacherAssignment> teachersAssigned;
+		Course courseAssigned;
+
+		for (CourseAssignment ca : allCoursesAssigned) {
+
+			teachersAssigned = ca.getTeacherAssignments();
+
+			for (TeacherAssignment ta : teachersAssigned) {
+
+				if (teacher.getFirstName().equals(ta.getTeacher().getFirstName())
+						&& teacher.getLastName().equals(ta.getTeacher().getLastName())) {
+					courseAssigned = ca;
+
+					OdsHelper.setValueAt(summary, courseAssigned.getStudyYear(), line, 0);
+					OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getSemester()), line, 1);
+					OdsHelper.setValueAt(summary, courseAssigned.getName(), line, 2);
+
+					if (ta.getCountGroupsCM()) {
+						OdsHelper.setValueAt(summary, "CM", line, 3);
+						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesCM()), line, 4);
+						totalNumberMinutes += courseAssigned.getNbMinutesCM();
+						line++;
+					}
+
+					if (ta.getCountGroupsCMTD()) {
+						OdsHelper.setValueAt(summary, "CMTD", line, 3);
+						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesCMTD()), line, 4);
+						totalNumberMinutes += courseAssigned.getNbMinutesCMTD();
+						line++;
+					}
+
+					if (ta.getCountGroupsCMTP()) {
+						OdsHelper.setValueAt(summary, "CMTP", line, 3);
+						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesCMTP()), line, 4);
+						totalNumberMinutes += courseAssigned.getNbMinutesCMTP();
+						line++;
+					}
+
+					if (ta.getCountGroupsTD()) {
+						OdsHelper.setValueAt(summary, "TD", line, 3);
+						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesTD()), line, 4);
+						totalNumberMinutes += courseAssigned.getNbMinutesTD();
+						line++;
+					}
+
+					if (ta.getCountGroupsTP()) {
+						OdsHelper.setValueAt(summary, "TP", line, 3);
+						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesTP()), line, 4);
+						totalNumberMinutes += courseAssigned.getNbMinutesTP();
+						line++;
+					}
+				}
+			}
+		}
+
+		line += 3;
+		OdsHelper.setValueAt(summary, "TOTAL", line, 3);
+		OdsHelper.setValueAt(summary, String.valueOf(totalNumberMinutes), line, 4);
 
 		document.save("target//AssignmentPerTeacher.ods"); // ligne à supprimer avant de PR
 		return document;

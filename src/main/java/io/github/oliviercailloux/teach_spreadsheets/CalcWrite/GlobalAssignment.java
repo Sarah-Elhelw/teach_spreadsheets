@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.teach_spreadsheets.CalcWrite;
 
+import java.util.Set;
+
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
@@ -8,6 +10,7 @@ import com.google.common.collect.ImmutableSet;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
+import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 
 public class GlobalAssignment {
 
@@ -99,33 +102,43 @@ public class GlobalAssignment {
 	 *         the teachers for each course.
 	 * @throws Throwable if the document could not be correctly completed
 	 */
-	
-	//TO DO : on doit completer cette fonction en faisant apparaitre les affectations sur le document. 
-	//Pour l'instant c'est que la methode createTeachersPreferences
+
+	// TO DO : on doit completer cette fonction en faisant apparaitre les
+	// affectations sur le document.
+	// Pour l'instant c'est que la methode createTeachersPreferences
 
 	public static SpreadsheetDocument createGlobalAssignment(ImmutableSet<Course> allCourses,
-			ImmutableSet<CoursePref> prefs, ImmutableSet<CourseAssignment>) throws Throwable {
+			ImmutableSet<CoursePref> prefs, ImmutableSet<CourseAssignment> allCoursesAssigned) throws Throwable {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
 		headersToOds(summary);
 		int line = 3;
+		boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want to teach
+											// the course or not
 
 		for (Course c : allCourses) {
-			
+
 			OdsHelper.setValueAt(summary, c.getStudyYear(), line, 0);
 			OdsHelper.setValueAt(summary, String.valueOf(c.getSemester()), line, 1);
 			OdsHelper.setValueAt(summary, c.getName(), line, 2);
 			line++;
-			
-			if (c.getCountGroupsCM()>0) {
-				
-				boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want to
-				// teach the course or not
+			Set<TeacherAssignment> teachersAssigned;
+
+			for (CourseAssignment ca : allCoursesAssigned) {
+				if (c.getName().equals(ca.getCourse().getName())) {
+					teachersAssigned = ca.getTeacherAssignments();
+				}
+			}
+
+			if (c.getCountGroupsCM() > 0) {
+
+				line++;
+				courseHasTeacher = false;
 				OdsHelper.setValueAt(summary, "CM", line, 2);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCM()), line, 3);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCM()), line, 4);
-				
+
 				for (CoursePref p : prefs) {
 
 					if (c.getName().equals(p.getCourse().getName())) {
@@ -136,26 +149,35 @@ public class GlobalAssignment {
 						if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
 							OdsHelper.setValueAt(summary, p.getPrefCM().toString(), line, 7);
 						}
+
+						for (TeacherAssignment ta : teachersAssigned) {
+							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+									&& ta.getCountGroupsCM()) { // if is the same Teacher
+								OdsHelper.setValueAt(summary, "yes", line, 8);
+								// TO DO : mettre la cellule des noms et prenoms en vert
+							}
+						}
+
+						line++;
 					}
-					
-					line++;
+
 				}
 
 				if (!courseHasTeacher) {
 					line++;
 				}
-				
+
 			}
-			
-			
-			if (c.getCountGroupsCMTD()>0) {
-				
-				boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want to
-				// teach the course or not
+
+			if (c.getCountGroupsCMTD() > 0) {
+
+				line++;
+				courseHasTeacher = false;
 				OdsHelper.setValueAt(summary, "CMTD", line, 2);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCMTD()), line, 3);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCMTD()), line, 4);
-				
+
 				for (CoursePref p : prefs) {
 
 					if (c.getName().equals(p.getCourse().getName())) {
@@ -166,25 +188,34 @@ public class GlobalAssignment {
 						if (!p.getPrefCMTD().toString().equals("UNSPECIFIED")) {
 							OdsHelper.setValueAt(summary, p.getPrefCMTD().toString(), line, 7);
 						}
+
+						for (TeacherAssignment ta : teachersAssigned) {
+							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+									&& ta.getCountGroupsCMTD()) { // if is the same Teacher
+								OdsHelper.setValueAt(summary, "yes", line, 8);
+								// TO DO : mettre la cellule des noms et prenoms en vert
+							}
+						}
+
+						line++;
 					}
-					
-					line++;
 				}
 
 				if (!courseHasTeacher) {
 					line++;
 				}
-				
+
 			}
 
-			if (c.getCountGroupsCMTP()>0) {
-				
-				boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want to
-				// teach the course or not
+			if (c.getCountGroupsCMTP() > 0) {
+
+				line++;
+				courseHasTeacher = false;
 				OdsHelper.setValueAt(summary, "CMTP", line, 2);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCMTP()), line, 3);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCMTP()), line, 4);
-				
+
 				for (CoursePref p : prefs) {
 
 					if (c.getName().equals(p.getCourse().getName())) {
@@ -195,26 +226,34 @@ public class GlobalAssignment {
 						if (!p.getPrefCMTP().toString().equals("UNSPECIFIED")) {
 							OdsHelper.setValueAt(summary, p.getPrefCMTP().toString(), line, 7);
 						}
+
+						for (TeacherAssignment ta : teachersAssigned) {
+							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+									&& ta.getCountGroupsCMTP()) { // if is the same Teacher
+								OdsHelper.setValueAt(summary, "yes", line, 8);
+								// TO DO : mettre la cellule des noms et prenoms en vert
+							}
+						}
+
+						line++;
 					}
-					
-					line++;
 				}
 
 				if (!courseHasTeacher) {
 					line++;
 				}
-				
+
 			}
-			
-			
-			if (c.getCountGroupsTD()>0) {
-				
-				boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want to
-				// teach the course or not
+
+			if (c.getCountGroupsTD() > 0) {
+
+				line++;
+				courseHasTeacher = false;
 				OdsHelper.setValueAt(summary, "TD", line, 2);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsTD()), line, 3);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesTD()), line, 4);
-				
+
 				for (CoursePref p : prefs) {
 
 					if (c.getName().equals(p.getCourse().getName())) {
@@ -225,25 +264,34 @@ public class GlobalAssignment {
 						if (!p.getPrefTD().toString().equals("UNSPECIFIED")) {
 							OdsHelper.setValueAt(summary, p.getPrefTD().toString(), line, 7);
 						}
+
+						for (TeacherAssignment ta : teachersAssigned) {
+							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+									&& ta.getCountGroupsTD()) { // if is the same Teacher
+								OdsHelper.setValueAt(summary, "yes", line, 8);
+								// TO DO : mettre la cellule des noms et prenoms en vert
+							}
+						}
+
+						line++;
 					}
-					
-					line++;
 				}
 
 				if (!courseHasTeacher) {
 					line++;
 				}
-				
+
 			}
 
-			if (c.getCountGroupsTP()>0) {
-				
-				boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want to
-				// teach the course or not
+			if (c.getCountGroupsTP() > 0) {
+
+				line++;
+				courseHasTeacher = false;
 				OdsHelper.setValueAt(summary, "TP", line, 2);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsTP()), line, 3);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesTP()), line, 4);
-				
+
 				for (CoursePref p : prefs) {
 
 					if (c.getName().equals(p.getCourse().getName())) {
@@ -254,17 +302,25 @@ public class GlobalAssignment {
 						if (!p.getPrefTP().toString().equals("UNSPECIFIED")) {
 							OdsHelper.setValueAt(summary, p.getPrefTP().toString(), line, 7);
 						}
+
+						for (TeacherAssignment ta : teachersAssigned) {
+							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+									&& ta.getCountGroupsTP()) { // if is the same Teacher
+								OdsHelper.setValueAt(summary, "yes", line, 8);
+								// TO DO : mettre la cellule des noms et prenoms en vert
+							}
+						}
+
+						line++;
 					}
-					
-					line++;
 				}
 
 				if (!courseHasTeacher) {
 					line++;
 				}
-				
+
 			}
-			
 
 		}
 		document.save("target//GlobalAssignment.ods"); // ligne à supprimer avant de PR

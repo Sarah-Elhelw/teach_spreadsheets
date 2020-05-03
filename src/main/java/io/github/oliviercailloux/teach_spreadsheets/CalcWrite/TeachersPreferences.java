@@ -50,6 +50,7 @@ public class TeachersPreferences {
 
 		// TO DO : mettre les entetes en forme : en gras + le titre en plus grand et en
 		// gras
+		// Essayer de formater les cellules avec la largeur du texte
 	}
 
 	/*
@@ -107,6 +108,8 @@ public class TeachersPreferences {
 		Table summary = document.appendSheet("Summary");
 		headersToOds(summary);
 		int line = 3;
+		boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want to teach
+											// the course or not
 
 		for (Course c : allCourses) {
 
@@ -117,9 +120,8 @@ public class TeachersPreferences {
 
 			if (c.getCountGroupsCM() > 0) {
 
-				boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want
-													// to
-				// teach the course or not
+				line++;
+				courseHasTeacher = false;
 				OdsHelper.setValueAt(summary, "CM", line, 2);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCM()), line, 3);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCM()), line, 4);
@@ -134,9 +136,8 @@ public class TeachersPreferences {
 						if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
 							OdsHelper.setValueAt(summary, p.getPrefCM().toString(), line, 7);
 						}
+						line++;
 					}
-
-					line++;
 				}
 
 				if (!courseHasTeacher) {
@@ -147,9 +148,8 @@ public class TeachersPreferences {
 
 			if (c.getCountGroupsCMTD() > 0) {
 
-				boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want
-													// to
-				// teach the course or not
+				line++;
+				courseHasTeacher = false;
 				OdsHelper.setValueAt(summary, "CMTD", line, 2);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCMTD()), line, 3);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCMTD()), line, 4);
@@ -164,9 +164,8 @@ public class TeachersPreferences {
 						if (!p.getPrefCMTD().toString().equals("UNSPECIFIED")) {
 							OdsHelper.setValueAt(summary, p.getPrefCMTD().toString(), line, 7);
 						}
+						line++;
 					}
-
-					line++;
 				}
 
 				if (!courseHasTeacher) {
@@ -177,9 +176,8 @@ public class TeachersPreferences {
 
 			if (c.getCountGroupsCMTP() > 0) {
 
-				boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want
-													// to
-				// teach the course or not
+				line++;
+				courseHasTeacher = false;
 				OdsHelper.setValueAt(summary, "CMTP", line, 2);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCMTP()), line, 3);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCMTP()), line, 4);
@@ -194,9 +192,8 @@ public class TeachersPreferences {
 						if (!p.getPrefCMTP().toString().equals("UNSPECIFIED")) {
 							OdsHelper.setValueAt(summary, p.getPrefCMTP().toString(), line, 7);
 						}
+						line++;
 					}
-
-					line++;
 				}
 
 				if (!courseHasTeacher) {
@@ -207,9 +204,8 @@ public class TeachersPreferences {
 
 			if (c.getCountGroupsTD() > 0) {
 
-				boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want
-													// to
-				// teach the course or not
+				line++;
+				courseHasTeacher = false;
 				OdsHelper.setValueAt(summary, "TD", line, 2);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsTD()), line, 3);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesTD()), line, 4);
@@ -224,9 +220,8 @@ public class TeachersPreferences {
 						if (!p.getPrefTD().toString().equals("UNSPECIFIED")) {
 							OdsHelper.setValueAt(summary, p.getPrefTD().toString(), line, 7);
 						}
+						line++;
 					}
-
-					line++;
 				}
 
 				if (!courseHasTeacher) {
@@ -237,9 +232,8 @@ public class TeachersPreferences {
 
 			if (c.getCountGroupsTP() > 0) {
 
-				boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want
-													// to
-				// teach the course or not
+				line++;
+				courseHasTeacher = false;
 				OdsHelper.setValueAt(summary, "TP", line, 2);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsTP()), line, 3);
 				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesTP()), line, 4);
@@ -254,9 +248,8 @@ public class TeachersPreferences {
 						if (!p.getPrefTP().toString().equals("UNSPECIFIED")) {
 							OdsHelper.setValueAt(summary, p.getPrefTP().toString(), line, 7);
 						}
+						line++;
 					}
-
-					line++;
 				}
 
 				if (!courseHasTeacher) {
