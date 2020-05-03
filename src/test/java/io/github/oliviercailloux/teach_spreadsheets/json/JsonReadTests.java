@@ -24,9 +24,9 @@ public class JsonReadTests {
 		URL resourceUrl = JsonRead.class.getResource("Courses.json");
 		final Path path = Path.of(resourceUrl.toURI());
 		final String textFile = Files.readString(path);
-		
+
 		Course actualCourse = JsonRead.getSetOfCoursesInfo(textFile).asList().get(1);
-		
+
 		assertEquals("Analyse 1", actualCourse.getName());
 		assertEquals(0, actualCourse.getCountGroupsTD());
 		assertEquals(5, actualCourse.getCountGroupsCMTD());
@@ -40,7 +40,7 @@ public class JsonReadTests {
 		assertEquals(0, actualCourse.getNbMinutesCM());
 		assertEquals("2016/2017", actualCourse.getStudyYear());
 		assertEquals(1, actualCourse.getSemester());
-		
+
 	}
 
 	/**
@@ -61,8 +61,8 @@ public class JsonReadTests {
 	/**
 	 * The aim of this test is to check that getSetOfTeachersInfo() returns the
 	 * proper ImmutableSet of teachers read on RefRof. For confidentiality reasons,
-	 * LoginRefRof.json is ignored by git and hence not published on github. For this
-	 * test to function, it is needed to create a file LoginRefRof.json in the
+	 * LoginRefRof.json is ignored by git and hence not published on github. For
+	 * this test to function, it is needed to create a file LoginRefRof.json in the
 	 * directory
 	 * src\test\resources\io\github\oliviercailloux\teach_spreadsheets\json with the
 	 * format specified in {@link JsonRead}.
@@ -72,11 +72,11 @@ public class JsonReadTests {
 		URL resourceUrl = JsonRead.class.getResource("LoginRefRof.json");
 		final Path path = Path.of(resourceUrl.toURI());
 		String jsonLogin = Files.readString(path);
-		
+
 		JsonRead.authentification(jsonLogin);
-		
+
 		Teacher actualTeacher = JsonRead.getSetOfTeachersInfo("https://rof.testapi.dauphine.fr/ebx-dataservices/rest/data/v1/BpvRefRof/RefRof/root/Person").asList().get(1);
-		
+
 		assertEquals("BRACI", actualTeacher.getLastName());
 		assertEquals("LINA", actualTeacher.getFirstName());
 		assertEquals("", actualTeacher.getAddress());
@@ -89,6 +89,6 @@ public class JsonReadTests {
 		assertEquals("PROF.UNIV.", actualTeacher.getStatus());
 		assertEquals("", actualTeacher.getDauphinePhoneNumber());
 		assertEquals("", actualTeacher.getOffice());
-		
+
 	}
 }
