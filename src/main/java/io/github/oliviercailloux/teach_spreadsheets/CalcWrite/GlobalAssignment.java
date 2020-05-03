@@ -5,6 +5,7 @@ import java.util.Set;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.util.HSSFColor;
 
 import com.google.common.collect.ImmutableSet;
@@ -54,6 +55,7 @@ public class GlobalAssignment {
 		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setStringValue("Candidates' Last Name");
 		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choices");
 		table.getCellByPosition(ASSIGMENT_POSITION).setStringValue("Assigment");
+	    HSSFCellStyle cellStyle = null;
 
 		
 	//	TITLE_POSITION.setBold(true);
