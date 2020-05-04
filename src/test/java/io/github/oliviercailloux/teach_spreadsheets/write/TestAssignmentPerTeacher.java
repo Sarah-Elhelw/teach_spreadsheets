@@ -64,7 +64,7 @@ public class TestAssignmentPerTeacher {
 
 			assertEquals("teacher1FirstName", table.getCellByPosition("A4").getDisplayText());
 			assertEquals("teacher1@dauphine.fr", table.getCellByPosition("C10").getDisplayText());
-			assertEquals("testcourse1", table.getCellByPosition("K3").getDisplayText());
+			assertEquals("testcourse1", table.getCellByPosition("C17").getDisplayText());
 
 		}
 	}

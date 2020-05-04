@@ -87,216 +87,214 @@ public class GlobalAssignment {
 			OdsHelper.setValueAt(summary, String.valueOf(c.getSemester()), line, 1);
 			OdsHelper.setValueAt(summary, c.getName(), line, 2);
 			line++;
-			Set<TeacherAssignment> teachersAssigned = null;
+			Set<TeacherAssignment> teachersAssigned;
 
 			for (CourseAssignment ca : allCoursesAssigned) {
 				if (c.getName().equals(ca.getCourse().getName())) {
 					teachersAssigned = ca.getTeacherAssignments();
-				}
-			}
 
-			if (c.getCountGroupsCM() > 0) {
+					if (c.getCountGroupsCM() > 0) {
 
-				line++;
-				courseHasTeacher = false;
-				OdsHelper.setValueAt(summary, "CM", line, 2);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCM()), line, 3);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCM()), line, 4);
+						line++;
+						courseHasTeacher = false;
+						OdsHelper.setValueAt(summary, "CM", line, 2);
+						OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCM()), line, 3);
+						OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCM()), line, 4);
 
-				for (CoursePref p : prefs) {
+						for (CoursePref p : prefs) {
 
-					if (c.getName().equals(p.getCourse().getName())) {
-						courseHasTeacher = true;
-						OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-						OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+							if (c.getName().equals(p.getCourse().getName())) {
+								courseHasTeacher = true;
+								OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
+								OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
 
-						if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
-							OdsHelper.setValueAt(summary, p.getPrefCM().toString(), line, 7);
+								if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
+									OdsHelper.setValueAt(summary, p.getPrefCM().toString(), line, 7);
+								}
+
+								for (TeacherAssignment ta : teachersAssigned) {
+									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+											&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+											&& ta.getCountGroupsCM() != 0) { // if is the same Teacher
+										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
+										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+
+										// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+
+									}
+								}
+
+								line++;
+							}
+
 						}
 
-						for (TeacherAssignment ta : teachersAssigned) {
-							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
-									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroupsCM() != 0) { // if is the same Teacher
-								OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
-								OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+						if (!courseHasTeacher) {
+							line++;
+						}
 
-								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+					}
 
+					if (c.getCountGroupsCMTD() > 0) {
+
+						line++;
+						courseHasTeacher = false;
+						OdsHelper.setValueAt(summary, "CMTD", line, 2);
+						OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCMTD()), line, 3);
+						OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCMTD()), line, 4);
+
+						for (CoursePref p : prefs) {
+
+							if (c.getName().equals(p.getCourse().getName())) {
+								courseHasTeacher = true;
+								OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
+								OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+
+								if (!p.getPrefCMTD().toString().equals("UNSPECIFIED")) {
+									OdsHelper.setValueAt(summary, p.getPrefCMTD().toString(), line, 7);
+								}
+
+								for (TeacherAssignment ta : teachersAssigned) {
+									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+											&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+											&& ta.getCountGroupsCMTD() != 0) { // if is the same Teacher
+										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
+										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+
+										// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+									}
+								}
+
+								line++;
 							}
 						}
 
-						line++;
-					}
-
-				}
-
-				if (!courseHasTeacher) {
-					line++;
-				}
-
-			}
-
-			if (c.getCountGroupsCMTD() > 0) {
-
-				line++;
-				courseHasTeacher = false;
-				OdsHelper.setValueAt(summary, "CMTD", line, 2);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCMTD()), line, 3);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCMTD()), line, 4);
-
-				for (CoursePref p : prefs) {
-
-					if (c.getName().equals(p.getCourse().getName())) {
-						courseHasTeacher = true;
-						OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-						OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
-
-						if (!p.getPrefCMTD().toString().equals("UNSPECIFIED")) {
-							OdsHelper.setValueAt(summary, p.getPrefCMTD().toString(), line, 7);
+						if (!courseHasTeacher) {
+							line++;
 						}
 
-						for (TeacherAssignment ta : teachersAssigned) {
-							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
-									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroupsCMTD() != 0) { // if is the same Teacher
-								OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
-								OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+					}
 
-								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+					if (c.getCountGroupsCMTP() > 0) {
+
+						line++;
+						courseHasTeacher = false;
+						OdsHelper.setValueAt(summary, "CMTP", line, 2);
+						OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCMTP()), line, 3);
+						OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCMTP()), line, 4);
+
+						for (CoursePref p : prefs) {
+
+							if (c.getName().equals(p.getCourse().getName())) {
+								courseHasTeacher = true;
+								OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
+								OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+
+								if (!p.getPrefCMTP().toString().equals("UNSPECIFIED")) {
+									OdsHelper.setValueAt(summary, p.getPrefCMTP().toString(), line, 7);
+								}
+
+								for (TeacherAssignment ta : teachersAssigned) {
+									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+											&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+											&& ta.getCountGroupsCMTP() != 0) { // if is the same Teacher
+										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
+										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+
+										// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+									}
+								}
+
+								line++;
 							}
 						}
 
-						line++;
-					}
-				}
-
-				if (!courseHasTeacher) {
-					line++;
-				}
-
-			}
-
-			if (c.getCountGroupsCMTP() > 0) {
-
-				line++;
-				courseHasTeacher = false;
-				OdsHelper.setValueAt(summary, "CMTP", line, 2);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCMTP()), line, 3);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCMTP()), line, 4);
-
-				for (CoursePref p : prefs) {
-
-					if (c.getName().equals(p.getCourse().getName())) {
-						courseHasTeacher = true;
-						OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-						OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
-
-						if (!p.getPrefCMTP().toString().equals("UNSPECIFIED")) {
-							OdsHelper.setValueAt(summary, p.getPrefCMTP().toString(), line, 7);
+						if (!courseHasTeacher) {
+							line++;
 						}
 
-						for (TeacherAssignment ta : teachersAssigned) {
-							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
-									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroupsCMTP() != 0) { // if is the same Teacher
-								OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
-								OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+					}
 
-								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+					if (c.getCountGroupsTD() > 0) {
+
+						line++;
+						courseHasTeacher = false;
+						OdsHelper.setValueAt(summary, "TD", line, 2);
+						OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsTD()), line, 3);
+						OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesTD()), line, 4);
+
+						for (CoursePref p : prefs) {
+
+							if (c.getName().equals(p.getCourse().getName())) {
+								courseHasTeacher = true;
+								OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
+								OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+
+								if (!p.getPrefTD().toString().equals("UNSPECIFIED")) {
+									OdsHelper.setValueAt(summary, p.getPrefTD().toString(), line, 7);
+								}
+
+								for (TeacherAssignment ta : teachersAssigned) {
+									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+											&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+											&& ta.getCountGroupsTD() != 0) { // if is the same Teacher
+										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
+										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+
+										// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+									}
+								}
+
+								line++;
 							}
 						}
 
-						line++;
-					}
-				}
-
-				if (!courseHasTeacher) {
-					line++;
-				}
-
-			}
-
-			if (c.getCountGroupsTD() > 0) {
-
-				line++;
-				courseHasTeacher = false;
-				OdsHelper.setValueAt(summary, "TD", line, 2);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsTD()), line, 3);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesTD()), line, 4);
-
-				for (CoursePref p : prefs) {
-
-					if (c.getName().equals(p.getCourse().getName())) {
-						courseHasTeacher = true;
-						OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-						OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
-
-						if (!p.getPrefTD().toString().equals("UNSPECIFIED")) {
-							OdsHelper.setValueAt(summary, p.getPrefTD().toString(), line, 7);
+						if (!courseHasTeacher) {
+							line++;
 						}
 
-						for (TeacherAssignment ta : teachersAssigned) {
-							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
-									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroupsTD() != 0) { // if is the same Teacher
-								OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
-								OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+					}
 
-								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+					if (c.getCountGroupsTP() > 0) {
+
+						line++;
+						courseHasTeacher = false;
+						OdsHelper.setValueAt(summary, "TP", line, 2);
+						OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsTP()), line, 3);
+						OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesTP()), line, 4);
+
+						for (CoursePref p : prefs) {
+
+							if (c.getName().equals(p.getCourse().getName())) {
+								courseHasTeacher = true;
+								OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
+								OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+
+								if (!p.getPrefTP().toString().equals("UNSPECIFIED")) {
+									OdsHelper.setValueAt(summary, p.getPrefTP().toString(), line, 7);
+								}
+
+								for (TeacherAssignment ta : teachersAssigned) {
+									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+											&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+											&& ta.getCountGroupsTP() != 0) { // if is the same Teacher
+										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
+										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+
+										// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+									}
+								}
+
+								line++;
 							}
 						}
 
-						line++;
+						if (!courseHasTeacher) {
+							line++;
+						}
 					}
 				}
-
-				if (!courseHasTeacher) {
-					line++;
-				}
-
 			}
-
-			if (c.getCountGroupsTP() > 0) {
-
-				line++;
-				courseHasTeacher = false;
-				OdsHelper.setValueAt(summary, "TP", line, 2);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsTP()), line, 3);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesTP()), line, 4);
-
-				for (CoursePref p : prefs) {
-
-					if (c.getName().equals(p.getCourse().getName())) {
-						courseHasTeacher = true;
-						OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-						OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
-
-						if (!p.getPrefTP().toString().equals("UNSPECIFIED")) {
-							OdsHelper.setValueAt(summary, p.getPrefTP().toString(), line, 7);
-						}
-
-						for (TeacherAssignment ta : teachersAssigned) {
-							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
-									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroupsTP() != 0) { // if is the same Teacher
-								OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
-								OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
-
-								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
-							}
-						}
-
-						line++;
-					}
-				}
-
-				if (!courseHasTeacher) {
-					line++;
-				}
-
-			}
-
 		}
 
 		document.save("target//GlobalAssignment.ods"); // ligne à supprimer avant de PR

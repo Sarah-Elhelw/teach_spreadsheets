@@ -75,28 +75,35 @@ public class TestGlobalAssignment {
 		CoursePref pref2 = prefBuilder2.build();
 		CoursePref pref3 = prefBuilder3.build();
 
-		TeacherAssignment teacherAssignment = TeacherAssignment.Builder.newInstance(teacher1).setCountGroupsTD(1)
+		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(teacher1).setCountGroupsTD(1)
 				.build();
-		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course1);
-		courseAssignmentBuilder.addTeacherAssignment(teacherAssignment);
+		CourseAssignment.Builder courseAssignmentBuilder1 = CourseAssignment.Builder.newInstance(course1);
+		courseAssignmentBuilder1.addTeacherAssignment(teacherAssignment1);
 
-		CourseAssignment courseAssignment = courseAssignmentBuilder.build();
+		CourseAssignment courseAssignment1 = courseAssignmentBuilder1.build();
+
+		TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(teacher1).setCountGroupsTD(1)
+				.build();
+		CourseAssignment.Builder courseAssignmentBuilder2 = CourseAssignment.Builder.newInstance(course2);
+		courseAssignmentBuilder2.addTeacherAssignment(teacherAssignment2);
+
+		CourseAssignment courseAssignment2 = courseAssignmentBuilder2.build();
 
 		ImmutableSet<Course> courses = ImmutableSet.of(course1, course2);
 		ImmutableSet<CoursePref> prefs = ImmutableSet.of(pref1, pref2, pref3);
-		ImmutableSet<CourseAssignment> allCoursesAssigned = ImmutableSet.of(courseAssignment);
+		ImmutableSet<CourseAssignment> allCoursesAssigned = ImmutableSet.of(courseAssignment1, courseAssignment2);
 
 		try (SpreadsheetDocument document = GlobalAssignment.createGlobalAssignment(courses, prefs,
 				allCoursesAssigned)) {
 			Table table = document.getTableByName("Summary");
 
-			assertEquals("testcourse1", table.getCellByPosition("C2").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("D2").getDisplayText());
-			assertEquals("A", table.getCellByPosition("F2").getDisplayText());
-			assertEquals("testcourse2", table.getCellByPosition("C4").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("D4").getDisplayText());
-			assertEquals("C", table.getCellByPosition("H4").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("E9").getDisplayText());
+			assertEquals("testcourse1", table.getCellByPosition("C4").getDisplayText());
+			assertEquals("teacher1FirstName", table.getCellByPosition("F6").getDisplayText());
+			assertEquals("A", table.getCellByPosition("H6").getDisplayText());
+			assertEquals("testcourse2", table.getCellByPosition("C11").getDisplayText());
+			assertEquals("teacher1FirstName", table.getCellByPosition("F13").getDisplayText());
+			assertEquals("C", table.getCellByPosition("H13").getDisplayText());
+			assertEquals("teacher1FirstName", table.getCellByPosition("I9").getDisplayText());
 
 		}
 

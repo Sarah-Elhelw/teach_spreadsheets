@@ -79,12 +79,12 @@ public class TestTeachersPreferences {
 		try (SpreadsheetDocument document = TeachersPreferences.createTeachersPreferences(courses, prefs)) {
 			Table table = document.getTableByName("Summary");
 
-			assertEquals("testcourse1", table.getCellByPosition("C2").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("D2").getDisplayText());
-			assertEquals("A", table.getCellByPosition("F2").getDisplayText());
-			assertEquals("testcourse2", table.getCellByPosition("C4").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("D4").getDisplayText());
-			assertEquals("C", table.getCellByPosition("H4").getDisplayText());
+			assertEquals("testcourse1", table.getCellByPosition("C4").getDisplayText());
+			assertEquals("teacher1FirstName", table.getCellByPosition("F6").getDisplayText());
+			assertEquals("A", table.getCellByPosition("H6").getDisplayText());
+			assertEquals("testcourse2", table.getCellByPosition("C11").getDisplayText());
+			assertEquals("teacher1FirstName", table.getCellByPosition("F13").getDisplayText());
+			assertEquals("C", table.getCellByPosition("H13").getDisplayText());
 
 		}
 
