@@ -3,8 +3,11 @@ package io.github.oliviercailloux.teach_spreadsheets.CalcWrite;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.odftoolkit.simple.SpreadsheetDocument;
+import org.odftoolkit.simple.table.Cell;
+import org.odftoolkit.simple.table.Table;
+
 //import org.apache.poi.xwpf.usermodel.Document;
-//import org.odftoolkit.simple.SpreadsheetDocument;
 //import org.odftoolkit.simple.text.Paragraph;
 // import com.lowagie.text.pdf.PdfWriter;
 
