@@ -5,8 +5,8 @@ import java.util.Set;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.util.HSSFColor;
+//import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+//import org.apache.poi.hssf.util.HSSFColor;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -17,8 +17,7 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 
 public class GlobalAssignment {
 
-	// This class generate and ods like FichierAgrege.pdf given but without the
-	// Assignment column
+	// This class generate and ods like FichierAgrege.pdf given
 
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
@@ -55,48 +54,11 @@ public class GlobalAssignment {
 		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setStringValue("Candidates' Last Name");
 		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choices");
 		table.getCellByPosition(ASSIGMENT_POSITION).setStringValue("Assigment");
-	    HSSFCellStyle cellStyle = null;
+		// HSSFCellStyle cellStyle = null;
 
-		
-	//	TITLE_POSITION.setBold(true);
-		
-		
+		// TITLE_POSITION.setBold(true);
+
 	}
-
-	/*
-	 * Je voulais utiliser cette methode pour éviter la duplication du code mais je
-	 * pense que ça devient très compliqué à l'utiliser
-	 * 
-	 * private static int completePreferences(Table summary, int countGroups, int
-	 * nbMinutes , int line, String courseName, ImmutableSet<CoursePref> prefs) {
-	 * 
-	 * if (countGroups >0) {
-	 * 
-	 * boolean courseHasTeacher = false; // this test helps us to see when there if
-	 * they are teachers who want to // teach the course or not
-	 * OdsHelper.setValueAt(summary, "CM", line, 2); OdsHelper.setValueAt(summary,
-	 * String.valueOf(countGroups), line, 3); OdsHelper.setValueAt(summary,
-	 * String.valueOf(nbMinutes), line, 4);
-	 * 
-	 * for (CoursePref p : prefs) {
-	 * 
-	 * if (courseName.equals(p.getCourse().getName())) { courseHasTeacher = true;
-	 * OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-	 * OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
-	 * 
-	 * if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
-	 * OdsHelper.setValueAt(summary, p.getPrefCM().toString(), line, 7); } }
-	 * 
-	 * line++; }
-	 * 
-	 * if (!courseHasTeacher) { line++; }
-	 * 
-	 * }
-	 * 
-	 * return line;
-	 * 
-	 * }
-	 */
 
 	/**
 	 * This method creates a summarized Ods. For each course, it writes all the
@@ -108,10 +70,6 @@ public class GlobalAssignment {
 	 *         the teachers for each course.
 	 * @throws Throwable if the document could not be correctly completed
 	 */
-
-	// TO DO : on doit completer cette fonction en faisant apparaitre les
-	// affectations sur le document.
-	// Pour l'instant c'est que la methode createTeachersPreferences
 
 	public static SpreadsheetDocument createGlobalAssignment(ImmutableSet<Course> allCourses,
 			ImmutableSet<CoursePref> prefs, ImmutableSet<CourseAssignment> allCoursesAssigned) throws Throwable {
@@ -129,7 +87,7 @@ public class GlobalAssignment {
 			OdsHelper.setValueAt(summary, String.valueOf(c.getSemester()), line, 1);
 			OdsHelper.setValueAt(summary, c.getName(), line, 2);
 			line++;
-			Set<TeacherAssignment> teachersAssigned;
+			Set<TeacherAssignment> teachersAssigned = null;
 
 			for (CourseAssignment ca : allCoursesAssigned) {
 				if (c.getName().equals(ca.getCourse().getName())) {
@@ -159,12 +117,12 @@ public class GlobalAssignment {
 						for (TeacherAssignment ta : teachersAssigned) {
 							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
 									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroupsCM()) { // if is the same Teacher
-								OdsHelper.setValueAt(summary, "yes", line, 8);
-							
-							//    ta.setFillForegroundColor(HSSFColor.GREEN.index);
+									&& ta.getCountGroupsCM() != 0) { // if is the same Teacher
+								OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
+								OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
 
-								
+								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+
 							}
 						}
 
@@ -201,8 +159,10 @@ public class GlobalAssignment {
 						for (TeacherAssignment ta : teachersAssigned) {
 							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
 									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroupsCMTD()) { // if is the same Teacher
-								OdsHelper.setValueAt(summary, "yes", line, 8);
+									&& ta.getCountGroupsCMTD() != 0) { // if is the same Teacher
+								OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
+								OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+
 								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 							}
 						}
@@ -239,8 +199,10 @@ public class GlobalAssignment {
 						for (TeacherAssignment ta : teachersAssigned) {
 							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
 									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroupsCMTP()) { // if is the same Teacher
-								OdsHelper.setValueAt(summary, "yes", line, 8);
+									&& ta.getCountGroupsCMTP() != 0) { // if is the same Teacher
+								OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
+								OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+
 								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 							}
 						}
@@ -277,9 +239,12 @@ public class GlobalAssignment {
 						for (TeacherAssignment ta : teachersAssigned) {
 							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
 									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroupsTD()) { // if is the same Teacher
-								OdsHelper.setValueAt(summary, "yes", line, 8);
+									&& ta.getCountGroupsTD() != 0) { // if is the same Teacher
+								OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
+								OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+
 								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
+							}
 						}
 
 						line++;
@@ -314,8 +279,10 @@ public class GlobalAssignment {
 						for (TeacherAssignment ta : teachersAssigned) {
 							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
 									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroupsTP()) { // if is the same Teacher
-								OdsHelper.setValueAt(summary, "yes", line, 8);
+									&& ta.getCountGroupsTP() != 0) { // if is the same Teacher
+								OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
+								OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
+
 								// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 							}
 						}
@@ -331,6 +298,7 @@ public class GlobalAssignment {
 			}
 
 		}
+
 		document.save("target//GlobalAssignment.ods"); // ligne à supprimer avant de PR
 		return document;
 

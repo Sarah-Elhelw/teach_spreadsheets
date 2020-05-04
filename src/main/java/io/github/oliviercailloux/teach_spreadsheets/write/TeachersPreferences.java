@@ -53,41 +53,6 @@ public class TeachersPreferences {
 		// Essayer de formater les cellules avec la largeur du texte
 	}
 
-	/*
-	 * Je voulais utiliser cette methode pour éviter la duplication du code mais je
-	 * pense que ça devient très compliqué à l'utiliser
-	 * 
-	 * private static int completePreferences(Table summary, int countGroups, int
-	 * nbMinutes , int line, String courseName, ImmutableSet<CoursePref> prefs) {
-	 * 
-	 * if (countGroups >0) {
-	 * 
-	 * boolean courseHasTeacher = false; // this test helps us to see when there if
-	 * they are teachers who want to // teach the course or not
-	 * OdsHelper.setValueAt(summary, "CM", line, 2); OdsHelper.setValueAt(summary,
-	 * String.valueOf(countGroups), line, 3); OdsHelper.setValueAt(summary,
-	 * String.valueOf(nbMinutes), line, 4);
-	 * 
-	 * for (CoursePref p : prefs) {
-	 * 
-	 * if (courseName.equals(p.getCourse().getName())) { courseHasTeacher = true;
-	 * OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-	 * OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
-	 * 
-	 * if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
-	 * OdsHelper.setValueAt(summary, p.getPrefCM().toString(), line, 7); } }
-	 * 
-	 * line++; }
-	 * 
-	 * if (!courseHasTeacher) { line++; }
-	 * 
-	 * }
-	 * 
-	 * return line;
-	 * 
-	 * }
-	 */
-
 	/**
 	 * This method creates a summarized Ods. For each course, it writes all the
 	 * teachers who want to teach the course and their preferences.
@@ -281,4 +246,3 @@ public class TeachersPreferences {
 		return document;
 	}
 }
-

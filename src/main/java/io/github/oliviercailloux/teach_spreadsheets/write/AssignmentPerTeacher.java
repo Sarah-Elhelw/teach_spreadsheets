@@ -8,7 +8,6 @@ import org.odftoolkit.simple.table.Table;
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
-import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
@@ -137,35 +136,35 @@ public class AssignmentPerTeacher {
 					OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getSemester()), line, 1);
 					OdsHelper.setValueAt(summary, courseAssigned.getName(), line, 2);
 
-					if (ta.getCountGroupsCM()) {
+					if (ta.getCountGroupsCM() != 0) {
 						OdsHelper.setValueAt(summary, "CM", line, 3);
 						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesCM()), line, 4);
 						totalNumberMinutes += courseAssigned.getNbMinutesCM();
 						line++;
 					}
 
-					if (ta.getCountGroupsCMTD()) {
+					if (ta.getCountGroupsCMTD() != 0) {
 						OdsHelper.setValueAt(summary, "CMTD", line, 3);
 						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesCMTD()), line, 4);
 						totalNumberMinutes += courseAssigned.getNbMinutesCMTD();
 						line++;
 					}
 
-					if (ta.getCountGroupsCMTP()) {
+					if (ta.getCountGroupsCMTP() != 0) {
 						OdsHelper.setValueAt(summary, "CMTP", line, 3);
 						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesCMTP()), line, 4);
 						totalNumberMinutes += courseAssigned.getNbMinutesCMTP();
 						line++;
 					}
 
-					if (ta.getCountGroupsTD()) {
+					if (ta.getCountGroupsTD() != 0) {
 						OdsHelper.setValueAt(summary, "TD", line, 3);
 						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesTD()), line, 4);
 						totalNumberMinutes += courseAssigned.getNbMinutesTD();
 						line++;
 					}
 
-					if (ta.getCountGroupsTP()) {
+					if (ta.getCountGroupsTP() != 0) {
 						OdsHelper.setValueAt(summary, "TP", line, 3);
 						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesTP()), line, 4);
 						totalNumberMinutes += courseAssigned.getNbMinutesTP();
@@ -184,4 +183,3 @@ public class AssignmentPerTeacher {
 	}
 
 }
-
