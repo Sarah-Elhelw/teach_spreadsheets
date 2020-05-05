@@ -4,8 +4,6 @@ import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
-
-
 public class OdsHelper {
 
 	// This class implements the basic methods we need for
@@ -39,15 +37,6 @@ public class OdsHelper {
 		Cell cell = table.getCellByPosition(column, row);
 		cell.setDisplayText(info);
 
-	}
-
-	/**
-	 * This method convert and ods file to pdf
-	 * 
-	 * @param doc
-	 * @return a pdf doc
-	 */
-	protected static void odsToPdf(SpreadsheetDocument doc) {
 	}
 
 }

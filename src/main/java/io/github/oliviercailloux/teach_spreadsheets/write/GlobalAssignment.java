@@ -55,7 +55,6 @@ public class GlobalAssignment {
 		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choices");
 		table.getCellByPosition(ASSIGMENT_POSITION).setStringValue("Assigment");
 
-
 	}
 
 	/**
@@ -119,7 +118,6 @@ public class GlobalAssignment {
 											&& ta.getCountGroupsCM() != 0) { // if is the same Teacher
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
-
 
 									}
 								}
