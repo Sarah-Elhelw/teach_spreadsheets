@@ -4,13 +4,7 @@ import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
-//import java.io.FileOutputStream;
-//import java.io.IOException;
 
-//import org.apache.poi.xwpf.usermodel.Document;
-//import org.odftoolkit.simple.SpreadsheetDocument;
-//import org.odftoolkit.simple.text.Paragraph;
-// import com.lowagie.text.pdf.PdfWriter;
 
 public class OdsHelper {
 
@@ -54,19 +48,6 @@ public class OdsHelper {
 	 * @return a pdf doc
 	 */
 	protected static void odsToPdf(SpreadsheetDocument doc) {
-//		Document document = new Document(PageSize.A4);
-//	    try {
-//	      PdfWriter.getInstance(doc,
-//	          new FileOutputStream("c:/test.pdf"));
-//	      doc.open();
-//	      doc.add(new Paragraph("Hello World"));
-//	    } catch (DocumentException de) {
-//	      de.printStackTrace();
-//	    } catch (IOException ioe) {
-//	      ioe.printStackTrace();
-//	    }
-
-//	    doc.close();
 	}
 
 }

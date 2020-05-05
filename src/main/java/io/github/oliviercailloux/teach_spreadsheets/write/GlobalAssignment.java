@@ -54,9 +54,7 @@ public class GlobalAssignment {
 		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setStringValue("Candidates' Last Name");
 		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choices");
 		table.getCellByPosition(ASSIGMENT_POSITION).setStringValue("Assigment");
-		// HSSFCellStyle cellStyle = null;
 
-		// TITLE_POSITION.setBold(true);
 
 	}
 
@@ -122,7 +120,6 @@ public class GlobalAssignment {
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
 
-										// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 
 									}
 								}
@@ -164,7 +161,6 @@ public class GlobalAssignment {
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
 
-										// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 									}
 								}
 
@@ -204,7 +200,6 @@ public class GlobalAssignment {
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
 
-										// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 									}
 								}
 
@@ -244,7 +239,6 @@ public class GlobalAssignment {
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
 
-										// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 									}
 								}
 
@@ -283,8 +277,6 @@ public class GlobalAssignment {
 											&& ta.getCountGroupsTP() != 0) { // if is the same Teacher
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
-
-										// ta.setFillForegroundColor(HSSFColor.GREEN.index);
 									}
 								}
 
