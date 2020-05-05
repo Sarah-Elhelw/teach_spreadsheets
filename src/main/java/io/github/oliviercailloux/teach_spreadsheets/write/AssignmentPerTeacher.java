@@ -15,11 +15,11 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 
 public class AssignmentPerTeacher {
 
-	// This class generate and ods like Fiche_de_service.png given
+	// This class generates and ods like Fiche_de_service.png given
 
 	/**
-	 * These Strings are the positions in the Summarized Ods of the personal
-	 * information of the Teacher and the document's headers
+	 * These Strings are the positions in the Summarized Ods of the Teachers'
+	 * personal information and the document's headers
 	 */
 
 	private final static String TITLE_POSITION = "A1";
@@ -32,6 +32,9 @@ public class AssignmentPerTeacher {
 
 	private final static String STATUS_POSITION = "A6";
 	private final static String STATUS_POSITION_VALUE = "B6";
+
+	private final static String OFFICE_POSITION = "C6";
+	private final static String OFFICE_POSITION_VALUE = "D6";
 
 	private final static String PERSONAL_EMAIL_POSITION = "A8";
 	private final static String PERSONAL_EMAIL_POSITION_VALUE = "C8";
@@ -48,9 +51,6 @@ public class AssignmentPerTeacher {
 	private final static String DAUPHINE_PHONE_NUMBER_POSITION = "E12";
 	private final static String DAUPHINE_PHONE_NUMBER_POSITION_VALUE = "E13";
 
-	private final static String OFFICE_POSITION = "F12";
-	private final static String OFFICE_POSITION_VALUE = "F13";
-
 	private final static String YEAR_POSITION = "A16";
 
 	private final static String SEMESTER_POSITION = "B16";
@@ -64,8 +64,10 @@ public class AssignmentPerTeacher {
 	/**
 	 * This method adds the headers to this new document.
 	 * 
-	 * @param table This is the main table of the ods document that we want to
-	 *              complete
+	 * @param table   This is the main table of the ods document that we want to
+	 *                complete
+	 * @param teacher This is the Teacher for who we want to do the summarized Fiche
+	 *                de service
 	 */
 
 	private static void headersToOds(Table table, Teacher teacher) {
@@ -80,6 +82,9 @@ public class AssignmentPerTeacher {
 
 		table.getCellByPosition(STATUS_POSITION).setStringValue("Status");
 		table.getCellByPosition(STATUS_POSITION_VALUE).setStringValue(teacher.getStatus());
+
+		table.getCellByPosition(OFFICE_POSITION).setStringValue("Office");
+		table.getCellByPosition(OFFICE_POSITION_VALUE).setStringValue(teacher.getOffice());
 
 		table.getCellByPosition(PERSONAL_EMAIL_POSITION).setStringValue("Personal E-mail");
 		table.getCellByPosition(PERSONAL_EMAIL_POSITION_VALUE).setStringValue(teacher.getPersonalEmail());
@@ -96,9 +101,6 @@ public class AssignmentPerTeacher {
 		table.getCellByPosition(DAUPHINE_PHONE_NUMBER_POSITION).setStringValue("Dauphine Phone Number");
 		table.getCellByPosition(DAUPHINE_PHONE_NUMBER_POSITION_VALUE).setStringValue(teacher.getDauphinePhoneNumber());
 
-		table.getCellByPosition(OFFICE_POSITION).setStringValue("Office");
-		table.getCellByPosition(OFFICE_POSITION_VALUE).setStringValue(teacher.getOffice());
-
 		table.getCellByPosition(YEAR_POSITION).setStringValue("Year of study");
 
 		table.getCellByPosition(SEMESTER_POSITION).setStringValue("Semester");
@@ -109,6 +111,21 @@ public class AssignmentPerTeacher {
 
 		table.getCellByPosition(NUMBER_MINUTES_POSITION).setStringValue("Number of minutes");
 	}
+
+	/**
+	 * This method creates a summarized Ods like Fiche de service.png. For each
+	 * teacher, it writes all the courses he/she will teach.
+	 * 
+	 * @param teacher            This is the teacher for who we want to do the
+	 *                           summarized Fiche de service
+	 * @param allCoursesAssigned This is a complete set of CourseAssignment (courses
+	 *                           which has been assigned to teachers). It will help
+	 *                           us to know to which classes the teacher has been
+	 *                           assigned
+	 * @return A document completed with all the courses a specific teacher will
+	 *         teach
+	 * @throws Throwable if the document could not be correctly completed
+	 */
 
 	public static SpreadsheetDocument createAssignmentPerTeacher(Teacher teacher,
 			ImmutableSet<CourseAssignment> allCoursesAssigned) throws Throwable {
@@ -178,7 +195,6 @@ public class AssignmentPerTeacher {
 		OdsHelper.setValueAt(summary, "TOTAL", line, 3);
 		OdsHelper.setValueAt(summary, String.valueOf(totalNumberMinutes), line, 4);
 
-		document.save("target//AssignmentPerTeacher.ods"); // ligne à supprimer avant de PR
 		return document;
 	}
 

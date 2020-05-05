@@ -7,7 +7,6 @@ import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
-import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class TeachersPreferences {
 
@@ -48,9 +47,6 @@ public class TeachersPreferences {
 		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setStringValue("Candidates' Last Name");
 		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choices");
 
-		// TO DO : mettre les entetes en forme : en gras + le titre en plus grand et en
-		// gras
-		// Essayer de formater les cellules avec la largeur du texte
 	}
 
 	/**
@@ -66,8 +62,6 @@ public class TeachersPreferences {
 
 	public static SpreadsheetDocument createTeachersPreferences(ImmutableSet<Course> allCourses,
 			ImmutableSet<CoursePref> prefs) throws Throwable {
-
-		// A ameliorer: regrouper les cours en fonction du semestre
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
@@ -224,25 +218,9 @@ public class TeachersPreferences {
 			}
 
 		}
-		document.save("target//TeachersPreferences.ods"); // ligne à supprimer avant de PR
+
 		return document;
 
 	}
 
-	public static SpreadsheetDocument addNewTeacher(SpreadsheetDocument document, Teacher teacher,
-			ImmutableSet<Course> allCourses, ImmutableSet<CoursePref> prefs) throws Throwable {
-
-		// TO DO MAYBE
-		// possible que ImmutableSet<Course> allCourses soit pas utile
-
-		return document;
-	}
-
-	public static SpreadsheetDocument addNewCourse(SpreadsheetDocument document, Course cours,
-			ImmutableSet<CoursePref> prefs) throws Throwable {
-
-		// TO DO MAYBE
-
-		return document;
-	}
 }

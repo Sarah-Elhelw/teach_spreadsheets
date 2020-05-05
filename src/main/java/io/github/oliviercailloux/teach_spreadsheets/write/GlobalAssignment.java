@@ -17,11 +17,11 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 
 public class GlobalAssignment {
 
-	// This class generate and ods like FichierAgrege.pdf given
+	// This class generates and ods like FichierAgrege.pdf given
 
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
-	 * Course, Teacher's name and the various preferences.
+	 * Course, Teacher's name and the various preferences and assignment.
 	 */
 
 	private final static String TITLE_POSITION = "A1";
@@ -61,13 +61,16 @@ public class GlobalAssignment {
 	}
 
 	/**
-	 * This method creates a summarized Ods. For each course, it writes all the
-	 * teachers who want to teach the course and their preferences.
+	 * This method creates a summarized Ods like FichierAgrege.pdf. For each course,
+	 * it writes all the teachers who want to teach the course, their preferences
+	 * and the possible assignment.
 	 * 
-	 * @param allCourses This is a complete set of Courses.
-	 * @param prefs      This is a complete set of Preferences.
-	 * @return A document competed with all the courses and all the preferences of
-	 *         the teachers for each course.
+	 * @param allCourses         This is a complete set of Courses.
+	 * @param prefs              This is a complete set of Preferences.
+	 * @param allCoursesAssigned This is a complete set of CourseAssignment (courses
+	 *                           which has been assigned to teachers)
+	 * @return A document competed with all the courses, all the preferences of the
+	 *         teachers and the possible assignment for each course
 	 * @throws Throwable if the document could not be correctly completed
 	 */
 
@@ -297,7 +300,6 @@ public class GlobalAssignment {
 			}
 		}
 
-		document.save("target//GlobalAssignment.ods"); // ligne à supprimer avant de PR
 		return document;
 
 	}

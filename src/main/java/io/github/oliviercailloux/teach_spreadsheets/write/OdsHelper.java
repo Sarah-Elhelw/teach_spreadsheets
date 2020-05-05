@@ -13,6 +13,7 @@ import org.odftoolkit.simple.table.Table;
 // import com.lowagie.text.pdf.PdfWriter;
 
 public class OdsHelper {
+
 	// This class implements the basic methods we need for
 	// TeahcersPreferencesAndAssigment and AssigmentPerTeacher classes
 
@@ -20,11 +21,11 @@ public class OdsHelper {
 	 * This method creates an empty Ods and removes the default sheet
 	 * 
 	 * @return a new Ods empty document
-	 * @throws Throwable if the Ods could not be created
+	 * @throws Exception if the Ods could not be created
 	 */
 
-	protected static SpreadsheetDocument createAnEmptyOds() throws Exception { // génerer autre exception plus précise
-																				// ...
+	protected static SpreadsheetDocument createAnEmptyOds() throws Exception { // we are thinking about other exception
+																				// more precise to throw ...
 		SpreadsheetDocument document = SpreadsheetDocument.newSpreadsheetDocument();
 		document.removeSheet(0);// remove the default sheet
 		return document;
