@@ -5,9 +5,6 @@ import java.util.Set;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
-//import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-//import org.apache.poi.hssf.util.HSSFColor;
-
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -115,7 +112,7 @@ public class GlobalAssignment {
 								for (TeacherAssignment ta : teachersAssigned) {
 									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
 											&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-											&& ta.getCountGroupsCM() != 0) { // if is the same Teacher
+											&& ta.getCountGroupsCM() != 0) { 
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
 
@@ -155,7 +152,7 @@ public class GlobalAssignment {
 								for (TeacherAssignment ta : teachersAssigned) {
 									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
 											&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-											&& ta.getCountGroupsCMTD() != 0) { // if is the same Teacher
+											&& ta.getCountGroupsCMTD() != 0) { 
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
 
@@ -194,7 +191,7 @@ public class GlobalAssignment {
 								for (TeacherAssignment ta : teachersAssigned) {
 									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
 											&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-											&& ta.getCountGroupsCMTP() != 0) { // if is the same Teacher
+											&& ta.getCountGroupsCMTP() != 0) { 
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
 
@@ -233,7 +230,7 @@ public class GlobalAssignment {
 								for (TeacherAssignment ta : teachersAssigned) {
 									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
 											&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-											&& ta.getCountGroupsTD() != 0) { // if is the same Teacher
+											&& ta.getCountGroupsTD() != 0) { 
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
 
@@ -272,7 +269,7 @@ public class GlobalAssignment {
 								for (TeacherAssignment ta : teachersAssigned) {
 									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
 											&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-											&& ta.getCountGroupsTP() != 0) { // if is the same Teacher
+											&& ta.getCountGroupsTP() != 0) { 
 										OdsHelper.setValueAt(summary, ta.getTeacher().getFirstName(), line, 8);
 										OdsHelper.setValueAt(summary, ta.getTeacher().getLastName(), line, 9);
 									}
