@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.gui;
 
+import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,6 +9,7 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedHashMap;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -36,13 +38,17 @@ import org.eclipse.swt.widgets.TableItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.ImmutableMap;
+
+import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+
 public class GUIPref {
 	private final static Logger LOGGER = LoggerFactory.getLogger(GUIPref.class);
 	
 	private Display display;
 	private Shell shell;
 	
-	private Composite tableArea;
+
 	
 	private Composite allPrefrences;
 	private Composite chosenPrefrences;
@@ -66,6 +72,7 @@ public class GUIPref {
 		shell.setLayout(new GridLayout(3, false));
 		Image logo = new Image(display, GUIPref.class.getResourceAsStream("configuration.png"));
 		shell.setImage(logo);
+
 		
 		this.allPrefrences = new Composite(shell, SWT.BORDER);
 		allPrefrencesContent = new Composite(allPrefrences, SWT.NONE);
@@ -156,28 +163,30 @@ public class GUIPref {
         gd_table.heightHint = 400;
         t.setLayoutData(gd_table);
 
-
+		TableColumn Id = new TableColumn(t, SWT.NONE);
 		TableColumn teacher = new TableColumn(t, SWT.NONE);
 		TableColumn course = new TableColumn(t, SWT.NONE);
 		TableColumn groupType = new TableColumn(t, SWT.NONE);
 		TableColumn choice = new TableColumn(t, SWT.NONE);
 		
+		//Id.setText("ID");
 		teacher.setText("Teacher");
 		course.setText("Course");
 		groupType.setText("Group type");
 		choice.setText("Choice");
 
-
+		//Id.setWidth(25);
 		teacher.setWidth(70);
 		course.setWidth(70);
-		groupType.setWidth(90);
+		groupType.setWidth(70);
 		choice.setWidth(70);
 
 		t.setHeaderVisible(true);
 		// à modifier !!!!!!!
-		for(int i=0;i<50;i++) {
+		for(Integer i=0;i<50;i++) {
+			LinkedHashMap<Integer,CoursePref> mapPreference=new LinkedHashMap<>();
 			TableItem item = new TableItem(t, SWT.NONE);
-			item.setText(new String[] {"testTeacher","testCourse","testGroup","testchoice"});
+			item.setText(new String[] {i.toString(),"testTeacher","testCourse","testGroup","testchoice"});
 		}
 	}
 	private void setCompositeCourseTable(Composite parentComposite,Composite content, String headerText, Image logo) {
