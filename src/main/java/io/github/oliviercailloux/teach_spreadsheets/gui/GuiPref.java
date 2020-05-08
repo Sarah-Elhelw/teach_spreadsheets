@@ -42,8 +42,8 @@ import com.google.common.collect.ImmutableMap;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
-public class GUIPref {
-	private final static Logger LOGGER = LoggerFactory.getLogger(GUIPref.class);
+public class GuiPref {
+	private final static Logger LOGGER = LoggerFactory.getLogger(GuiPref.class);
 	
 	private Display display;
 	private Shell shell;
@@ -61,7 +61,7 @@ public class GUIPref {
 	private Composite submit;
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-			GUIPref gui = new GUIPref();
+			GuiPref gui = new GuiPref();
 			gui.initializeGui();
 		}
 	public void initializeGui() {
@@ -70,23 +70,23 @@ public class GUIPref {
 		shell.setMaximized(true);
 		shell.setText("Preferences selection");
 		shell.setLayout(new GridLayout(3, false));
-		Image logo = new Image(display, GUIPref.class.getResourceAsStream("configuration.png"));
+		Image logo = new Image(display, GuiPref.class.getResourceAsStream("configuration.png"));
 		shell.setImage(logo);
 
 		
 		this.allPrefrences = new Composite(shell, SWT.BORDER);
 		allPrefrencesContent = new Composite(allPrefrences, SWT.NONE);
-		Image logoAllPreferences = new Image(display, GUIPref.class.getResourceAsStream("paper.png"));
+		Image logoAllPreferences = new Image(display, GuiPref.class.getResourceAsStream("paper.png"));
 		setCompositePreferenceTable(allPrefrences,allPrefrencesContent,"All prefrences",logoAllPreferences);
 		
 		this.chosenPrefrences = new Composite(shell, SWT.BORDER);
 		chosenPrefrencesContent= new Composite(chosenPrefrences, SWT.NONE);
-		Image logoChosenPrefrences  = new Image(display, GUIPref.class.getResourceAsStream("check.png"));
+		Image logoChosenPrefrences  = new Image(display, GuiPref.class.getResourceAsStream("check.png"));
 		setCompositePreferenceTable(chosenPrefrences,chosenPrefrencesContent,"Chosen prefrences",logoChosenPrefrences);
 		
 		this.courses = new Composite(shell, SWT.BORDER);
 		coursesContent= new Composite(courses, SWT.NONE);
-		Image logoCourses = new Image(display, GUIPref.class.getResourceAsStream("education.png"));
+		Image logoCourses = new Image(display, GuiPref.class.getResourceAsStream("education.png"));
 		setCompositeCourseTable(courses,coursesContent,"Courses",logoCourses);
 		
 		prefShell();
@@ -162,7 +162,8 @@ public class GUIPref {
 		//à modifier pour qu'elle s'adapte automatiquement!!!!
         gd_table.heightHint = 400;
         t.setLayoutData(gd_table);
-
+        
+        //The column id won't be show to the user of this program.It is useful to determine which coursePref the tableIteam (created later) comes from
 		TableColumn Id = new TableColumn(t, SWT.NONE);
 		TableColumn teacher = new TableColumn(t, SWT.NONE);
 		TableColumn course = new TableColumn(t, SWT.NONE);
