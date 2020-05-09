@@ -13,7 +13,6 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.junit.jupiter.api.Test;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
-import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class JsonReadTests {
 
@@ -56,37 +55,4 @@ public class JsonReadTests {
 		assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
 	}
 
-	/**
-	 * The aim of this test is to check that getSetOfTeachersInfo() returns the
-	 * proper ImmutableSet of teachers read on RefRof. For confidentiality reasons,
-	 * LoginRefRof.json is ignored by git and hence not published on github. For
-	 * this test to function, it is needed to create a file LoginRefRof.json in the
-	 * directory
-	 * src\test\resources\io\github\oliviercailloux\teach_spreadsheets\json with the
-	 * format specified in {@link JsonRead}.
-	 */
-	@Test
-	void testGetSetOfTeachersInfo() throws Exception {
-		URL resourceUrl = JsonRead.class.getResource("LoginRefRof.json");
-		final Path path = Path.of(resourceUrl.toURI());
-		final String jsonLogin = Files.readString(path);
-
-		JsonRead.authentication(jsonLogin);
-
-		Teacher actualTeacher = JsonRead.getSetOfTeachersInfo("https://rof.testapi.dauphine.fr/ebx-dataservices/rest/data/v1/BpvRefRof/RefRof/root/Person").asList().get(1);
-
-		assertEquals("BRACI", actualTeacher.getLastName());
-		assertEquals("LINA", actualTeacher.getFirstName());
-		assertEquals("", actualTeacher.getAddress());
-		assertEquals("", actualTeacher.getPostCode());
-		assertEquals("", actualTeacher.getCity());
-		assertEquals("", actualTeacher.getPersonalPhone());
-		assertEquals("", actualTeacher.getMobilePhone());
-		assertEquals("", actualTeacher.getPersonalEmail());
-		assertEquals("lina.braci@dauphine.fr", actualTeacher.getDauphineEmail());
-		assertEquals("PROF.UNIV.", actualTeacher.getStatus());
-		assertEquals("", actualTeacher.getDauphinePhoneNumber());
-		assertEquals("", actualTeacher.getOffice());
-
-	}
 }
