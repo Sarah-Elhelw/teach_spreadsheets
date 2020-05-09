@@ -163,20 +163,19 @@ public class GuiPref {
         gd_table.heightHint = 400;
         t.setLayoutData(gd_table);
         
-        //The column id won't be show to the user of this program.It is useful to determine which coursePref the tableIteam (created later) comes from
-		TableColumn Id = new TableColumn(t, SWT.NONE);
+
 		TableColumn teacher = new TableColumn(t, SWT.NONE);
 		TableColumn course = new TableColumn(t, SWT.NONE);
 		TableColumn groupType = new TableColumn(t, SWT.NONE);
 		TableColumn choice = new TableColumn(t, SWT.NONE);
 		
-		//Id.setText("ID");
+
 		teacher.setText("Teacher");
 		course.setText("Course");
 		groupType.setText("Group type");
 		choice.setText("Choice");
 
-		//Id.setWidth(25);
+
 		teacher.setWidth(70);
 		course.setWidth(70);
 		groupType.setWidth(70);
@@ -185,7 +184,7 @@ public class GuiPref {
 		t.setHeaderVisible(true);
 		// à modifier !!!!!!!
 		for(Integer i=0;i<50;i++) {
-			LinkedHashMap<Integer,CoursePref> mapPreference=new LinkedHashMap<>();
+			LinkedHashMap<TableItem,CoursePref> mapPreference=new LinkedHashMap<>();
 			TableItem item = new TableItem(t, SWT.NONE);
 			item.setText(new String[] {i.toString(),"testTeacher","testCourse","testGroup","testchoice"});
 		}
