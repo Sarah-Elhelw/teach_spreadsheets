@@ -12,6 +12,8 @@ import javax.json.bind.JsonbException;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.junit.jupiter.api.Test;
 
+import com.google.common.collect.ImmutableSet;
+
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
 public class JsonReadTests {
@@ -20,7 +22,7 @@ public class JsonReadTests {
 	void testGetSetOfCoursesInfo() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("Courses.json");
 		final Path path = Path.of(resourceUrl.toURI());
-		final String textFile = Files.readString(path);
+		final String textFile = JsonRead.formatToArray(Files.readString(path));
 
 		Course actualCourse = JsonRead.getSetOfCoursesInfo(textFile).asList().get(1);
 
@@ -48,11 +50,21 @@ public class JsonReadTests {
 	void testGetSetOfCoursesInfoWithNullName() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("CoursesWithNullName.json");
 		final Path path = Path.of(resourceUrl.toURI());
-		final String textFile = Files.readString(path);
+		final String textFile = JsonRead.formatToArray(Files.readString(path));
 		Throwable exception = assertThrows(JsonbException.class, () -> {
 			JsonRead.getSetOfCoursesInfo(textFile);
 		});
 		assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
+	}
+	
+	@Test
+	void testDemonstratingNeedForFormatToArray() throws Exception {
+		URL resourceUrl = JsonRead.class.getResource("Courses.json");
+		final Path path = Path.of(resourceUrl.toURI());
+		final String textFile = Files.readString(path);
+		
+		ImmutableSet.Builder<Course> isb = new ImmutableSet.Builder<>();
+		assertEquals(isb.build(), JsonRead.getSetOfCoursesInfo(textFile));
 	}
 
 }
