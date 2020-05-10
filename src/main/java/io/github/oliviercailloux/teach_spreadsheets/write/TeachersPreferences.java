@@ -10,9 +10,6 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
 public class TeachersPreferences {
 
-	// This class generate and ods like FichierAgrege.pdf given but without the
-	// Assignment column
-
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
 	 * Course, Teacher's name and the various preferences.
@@ -67,8 +64,7 @@ public class TeachersPreferences {
 		Table summary = document.appendSheet("Summary");
 		headersToOds(summary);
 		int line = 3;
-		boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want to teach
-											// the course or not
+		boolean courseHasTeacher = false; 
 
 		for (Course c : allCourses) {
 

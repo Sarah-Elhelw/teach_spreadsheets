@@ -4,7 +4,7 @@ import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
-package class OdsHelper {
+protected class OdsHelper {
 
 	// This class implements the basic methods we need for
 	// TeahcersPreferencesAndAssigment and AssigmentPerTeacher classes
@@ -16,7 +16,7 @@ package class OdsHelper {
 	 * @throws Exception if the Ods could not be created
 	 */
 
-	protected static SpreadsheetDocument createAnEmptyOds() throws Exception { // we are thinking about other exception
+	public static SpreadsheetDocument createAnEmptyOds() throws Exception { // we are thinking about other exception
 																				// more precise to throw ...
 		SpreadsheetDocument document = SpreadsheetDocument.newSpreadsheetDocument();
 		document.removeSheet(0);// remove the default sheet
@@ -33,7 +33,7 @@ package class OdsHelper {
 	 * @param column The value is set at this specific column number
 	 */
 
-	protected static void setValueAt(Table table, String info, int row, int column) {
+	public static void setValueAt(Table table, String info, int row, int column) {
 		Cell cell = table.getCellByPosition(column, row);
 		cell.setDisplayText(info);
 

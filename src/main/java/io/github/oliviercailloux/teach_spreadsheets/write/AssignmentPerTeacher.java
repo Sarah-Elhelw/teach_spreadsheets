@@ -15,7 +15,6 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 
 public class AssignmentPerTeacher {
 
-	// This class generates and ods like Fiche_de_service.png given
 
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Teachers'

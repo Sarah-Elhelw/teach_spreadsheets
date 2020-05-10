@@ -14,8 +14,6 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 
 public class GlobalAssignment {
 
-	// This class generates and ods like FichierAgrege.pdf given
-
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
 	 * Course, Teacher's name and the various preferences and assignment.
@@ -75,8 +73,7 @@ public class GlobalAssignment {
 		Table summary = document.appendSheet("Summary");
 		headersToOds(summary);
 		int line = 3;
-		boolean courseHasTeacher = false; // this test helps us to see when there if they are teachers who want to teach
-											// the course or not
+		boolean courseHasTeacher = false; 
 
 		for (Course c : allCourses) {
 
