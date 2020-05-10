@@ -31,8 +31,11 @@ public class JsonRead {
 		checkNotNull(textArray, "The String must not be null.");
 		int leftSquareBracket = textArray.indexOf('[');
 		int rightSquareBracket = textArray.indexOf(']');
-		checkArgument(leftSquareBracket != -1 && rightSquareBracket != -1, "The parameter must be a json text containing an array.");
-		checkArgument(leftSquareBracket == textArray.lastIndexOf('[') && rightSquareBracket == textArray.lastIndexOf(']'), "The parameter must contain a single array.");
+		checkArgument(leftSquareBracket != -1 && rightSquareBracket != -1,
+				"The parameter must be a json text containing an array.");
+		checkArgument(
+				leftSquareBracket == textArray.lastIndexOf('[') && rightSquareBracket == textArray.lastIndexOf(']'),
+				"The parameter must contain a single array.");
 		return textArray.substring(leftSquareBracket, rightSquareBracket + 1);
 	}
 	
@@ -70,8 +73,7 @@ public class JsonRead {
 		 */
 		catch (JsonbException je) {
 			throw je;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
 		}
 	}

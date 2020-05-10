@@ -66,7 +66,7 @@ public class JsonReadTests {
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
 		final String fileContent = Files.readString(path);
-		
+
 		ImmutableSet.Builder<Course> isb = new ImmutableSet.Builder<>();
 		assertEquals(isb.build(), JsonRead.getSetOfCoursesInfo(fileContent));
 	}
