@@ -9,6 +9,8 @@ import java.util.Set;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
+import static com.google.common.base.Verify.verify;
+
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -19,15 +21,17 @@ public class JsonWrite {
 	 * Serializes a Set of Course objects
 	 * 
 	 * @param courses a collection of Course objects with no duplicate elements
-	 * @throws Exception
 	 */
-	private static String serializeSet(Set<Course> courses) throws Exception {
+	private static String serializeSet(Set<Course> courses) {
 		checkNotNull(courses);
 		String serialized = null;
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			serialized = jsonb.toJson(courses.toArray());
 		}
-		checkNotNull(serialized);
+		catch (Exception e) {
+			throw new IllegalArgumentException(e);
+		}
+		verify(serialized != null);
 		return serialized;
 	}
 

@@ -72,7 +72,7 @@ public class JsonRead {
 			throw je;
 		}
 		catch (Exception e) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(e);
 		}
 	}
 	
