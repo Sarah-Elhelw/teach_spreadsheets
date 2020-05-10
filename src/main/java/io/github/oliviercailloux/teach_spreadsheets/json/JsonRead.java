@@ -41,19 +41,19 @@ public class JsonRead {
 	 * <a href="http://json-b.net/docs/user-guide.html">this website</a>. The json
 	 * string read must contain a single array.
 	 * 
-	 * @param textFile - the json string containing a list of courses.
+	 * @param fileContent - the json string containing a list of courses.
 	 * 
 	 * @return an ImmutableSet of courses.
 	 * 
 	 * @throws Exception, thrown by close() if the resource cannot be closed.
 	 */
-	public static ImmutableSet<Course> getSetOfCoursesInfo(String textFile) throws Exception {
+	public static ImmutableSet<Course> getSetOfCoursesInfo(String fileContent) throws Exception {
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/**
 			 * We first build each course to make sure they represent proper and acceptable
 			 * Course objects :
 			 */
-			List<Course.Builder> coursesB = jsonb.fromJson(textFile, new ArrayList<Course.Builder>() {
+			List<Course.Builder> coursesB = jsonb.fromJson(fileContent, new ArrayList<Course.Builder>() {
 				private static final long serialVersionUID = -7485196487129232750L;
 			}.getClass().getGenericSuperclass());
 			List<Course> courses = new ArrayList<>();
