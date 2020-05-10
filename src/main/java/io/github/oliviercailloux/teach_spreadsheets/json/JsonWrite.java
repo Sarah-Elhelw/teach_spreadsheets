@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.json;
 
+import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -23,7 +24,7 @@ public class JsonWrite {
 	 * @param courses a collection of Course objects with no duplicate elements
 	 */
 	private static String serializeSet(Set<Course> courses) {
-		checkNotNull(courses);
+		checkNotNull(courses, "The courses must not be null");
 		String serialized = null;
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			serialized = jsonb.toJson(courses.toArray());
@@ -31,7 +32,7 @@ public class JsonWrite {
 		catch (Exception e) {
 			throw new IllegalArgumentException(e);
 		}
-		verify(serialized != null);
+		verify(serialized != null, "The serialization process returned null");
 		return serialized;
 	}
 
@@ -40,11 +41,13 @@ public class JsonWrite {
 	 * 
 	 * @param filePath the file path where we store the serialized courses
 	 * @param courses  a collection of Course objects with no duplicate elements
-	 * @throws Exception
+	 * 
+	 * @throws if an I/O error occurs writing to or creating the file, or the text
+	 *            cannot be encoded using the specified charset
 	 */
-	public static void writeCoursesInAJsonFile(Path filePath, Set<Course> courses) throws Exception {
-		checkNotNull(filePath);
-		checkNotNull(courses);
+	public static void writeCoursesInAJsonFile(Path filePath, Set<Course> courses) throws IOException {
+		checkNotNull(filePath, "The filePath must not be null");
+		checkNotNull(courses, "The courses must not be null");
 
 		String serialized = serializeSet(courses);
 		Files.writeString(filePath, serialized, StandardCharsets.UTF_8);
@@ -55,11 +58,12 @@ public class JsonWrite {
 	 * 
 	 * @param writer  the Writer where we store the serialized courses
 	 * @param courses a collection of Course objects with no duplicate elements
-	 * @throws Exception
+	 * 
+	 * @throws IOException if an I/O error occurs
 	 */
-	public static void writeCoursesInAWriter(Writer writer, Set<Course> courses) throws Exception {
-		checkNotNull(writer);
-		checkNotNull(courses);
+	public static void writeCoursesInAWriter(Writer writer, Set<Course> courses) throws IOException {
+		checkNotNull(writer, "The writer must not be null.");
+		checkNotNull(courses, "The courses must not be null");
 
 		String serialized = serializeSet(courses);
 		writer.write(serialized);
