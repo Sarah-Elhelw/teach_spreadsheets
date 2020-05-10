@@ -12,6 +12,7 @@ import javax.json.bind.JsonbException;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.junit.jupiter.api.Test;
 
+import static com.google.common.base.Verify.verify;
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -21,6 +22,7 @@ public class JsonReadTests {
 	@Test
 	void testGetSetOfCoursesInfo() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("Courses.json");
+		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
 		final String fileContent = JsonRead.formatToArray(Files.readString(path));
 
@@ -49,6 +51,7 @@ public class JsonReadTests {
 	@Test
 	void testGetSetOfCoursesInfoWithNullName() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("CoursesWithNullName.json");
+		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
 		final String fileContent = JsonRead.formatToArray(Files.readString(path));
 		Throwable exception = assertThrows(JsonbException.class, () -> {
@@ -60,6 +63,7 @@ public class JsonReadTests {
 	@Test
 	void testDemonstratingNeedForFormatToArray() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("Courses.json");
+		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
 		final String fileContent = Files.readString(path);
 		
