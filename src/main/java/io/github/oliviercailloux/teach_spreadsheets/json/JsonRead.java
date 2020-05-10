@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import javax.json.bind.JsonbException;
 
 import com.google.common.collect.ImmutableSet;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -45,9 +46,8 @@ public class JsonRead {
 	 * 
 	 * @return an ImmutableSet of courses.
 	 * 
-	 * @throws Exception, thrown by close() if the resource cannot be closed.
 	 */
-	public static ImmutableSet<Course> getSetOfCoursesInfo(String fileContent) throws Exception {
+	public static ImmutableSet<Course> getSetOfCoursesInfo(String fileContent) {
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/**
 			 * We first build each course to make sure they represent proper and acceptable
@@ -62,6 +62,17 @@ public class JsonRead {
 			}
 			ImmutableSet<Course> is = ImmutableSet.copyOf(courses);
 			return is;
+		}
+		/**
+		 * If an exception is thrown by the initialization of coursesB, we want to throw
+		 * it as it is (and not as a new IllegalArgumentException) to get the root
+		 * cause.
+		 */
+		catch (JsonbException je) {
+			throw je;
+		}
+		catch (Exception e) {
+			throw new IllegalArgumentException();
 		}
 	}
 	
