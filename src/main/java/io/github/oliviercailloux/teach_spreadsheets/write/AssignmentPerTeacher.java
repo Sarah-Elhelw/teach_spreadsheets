@@ -131,6 +131,8 @@ public class AssignmentPerTeacher {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
+		OdsHelper ods = OdsHelper.newInstance(summary);
+		
 		headersToOds(summary, teacher);
 		int line = 16;
 		int totalNumberMinutes = 0;
@@ -148,41 +150,41 @@ public class AssignmentPerTeacher {
 						&& teacher.getLastName().equals(ta.getTeacher().getLastName())) {
 					courseAssigned = ca.getCourse();
 
-					OdsHelper.setValueAt(summary, courseAssigned.getStudyYear(), line, 0);
-					OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getSemester()), line, 1);
-					OdsHelper.setValueAt(summary, courseAssigned.getName(), line, 2);
+					ods.setValueAt(courseAssigned.getStudyYear(), line, 0);
+					ods.setValueAt(String.valueOf(courseAssigned.getSemester()), line, 1);
+					ods.setValueAt(courseAssigned.getName(), line, 2);
 
 					if (ta.getCountGroupsCM() != 0) {
-						OdsHelper.setValueAt(summary, "CM", line, 3);
-						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesCM()), line, 4);
+						ods.setValueAt("CM", line, 3);
+						ods.setValueAt(String.valueOf(courseAssigned.getNbMinutesCM()), line, 4);
 						totalNumberMinutes += courseAssigned.getNbMinutesCM();
 						line++;
 					}
 
 					if (ta.getCountGroupsCMTD() != 0) {
-						OdsHelper.setValueAt(summary, "CMTD", line, 3);
-						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesCMTD()), line, 4);
+						ods.setValueAt("CMTD", line, 3);
+						ods.setValueAt(String.valueOf(courseAssigned.getNbMinutesCMTD()), line, 4);
 						totalNumberMinutes += courseAssigned.getNbMinutesCMTD();
 						line++;
 					}
 
 					if (ta.getCountGroupsCMTP() != 0) {
-						OdsHelper.setValueAt(summary, "CMTP", line, 3);
-						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesCMTP()), line, 4);
+						ods.setValueAt("CMTP", line, 3);
+						ods.setValueAt(String.valueOf(courseAssigned.getNbMinutesCMTP()), line, 4);
 						totalNumberMinutes += courseAssigned.getNbMinutesCMTP();
 						line++;
 					}
 
 					if (ta.getCountGroupsTD() != 0) {
-						OdsHelper.setValueAt(summary, "TD", line, 3);
-						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesTD()), line, 4);
+						ods.setValueAt("TD", line, 3);
+						ods.setValueAt(String.valueOf(courseAssigned.getNbMinutesTD()), line, 4);
 						totalNumberMinutes += courseAssigned.getNbMinutesTD();
 						line++;
 					}
 
 					if (ta.getCountGroupsTP() != 0) {
-						OdsHelper.setValueAt(summary, "TP", line, 3);
-						OdsHelper.setValueAt(summary, String.valueOf(courseAssigned.getNbMinutesTP()), line, 4);
+						ods.setValueAt("TP", line, 3);
+						ods.setValueAt(String.valueOf(courseAssigned.getNbMinutesTP()), line, 4);
 						totalNumberMinutes += courseAssigned.getNbMinutesTP();
 						line++;
 					}
@@ -191,8 +193,8 @@ public class AssignmentPerTeacher {
 		}
 
 		line += 3;
-		OdsHelper.setValueAt(summary, "TOTAL", line, 3);
-		OdsHelper.setValueAt(summary, String.valueOf(totalNumberMinutes), line, 4);
+		ods.setValueAt("TOTAL", line, 3);
+		ods.setValueAt(String.valueOf(totalNumberMinutes), line, 4);
 
 		return document;
 	}

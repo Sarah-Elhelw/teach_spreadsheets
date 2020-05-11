@@ -4,11 +4,17 @@ import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
-protected class OdsHelper {
+public class OdsHelper {
+	
+	static Table table;
 
-	// This class implements the basic methods we need for
-	// TeahcersPreferencesAndAssigment and AssigmentPerTeacher classes
-
+	private OdsHelper(Table tableGiven) {
+		table=tableGiven;
+	}
+	
+	public static OdsHelper newInstance(Table tableGiven) {
+		return new OdsHelper(tableGiven);
+	}
 	/**
 	 * This method creates an empty Ods and removes the default sheet
 	 * 
@@ -33,7 +39,7 @@ protected class OdsHelper {
 	 * @param column The value is set at this specific column number
 	 */
 
-	public static void setValueAt(Table table, String info, int row, int column) {
+	public void setValueAt(String info, int row, int column) {
 		Cell cell = table.getCellByPosition(column, row);
 		cell.setDisplayText(info);
 

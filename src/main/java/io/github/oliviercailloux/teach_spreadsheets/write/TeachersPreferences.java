@@ -62,34 +62,36 @@ public class TeachersPreferences {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
+		OdsHelper ods = OdsHelper.newInstance(summary);
+		
 		headersToOds(summary);
 		int line = 3;
 		boolean courseHasTeacher = false; 
 
 		for (Course c : allCourses) {
 
-			OdsHelper.setValueAt(summary, c.getStudyYear(), line, 0);
-			OdsHelper.setValueAt(summary, String.valueOf(c.getSemester()), line, 1);
-			OdsHelper.setValueAt(summary, c.getName(), line, 2);
+			ods.setValueAt(c.getStudyYear(), line, 0);
+			ods.setValueAt(String.valueOf(c.getSemester()), line, 1);
+			ods.setValueAt(c.getName(), line, 2);
 			line++;
 
 			if (c.getCountGroupsCM() > 0) {
 
 				line++;
 				courseHasTeacher = false;
-				OdsHelper.setValueAt(summary, "CM", line, 2);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCM()), line, 3);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCM()), line, 4);
+				ods.setValueAt("CM", line, 2);
+				ods.setValueAt(String.valueOf(c.getCountGroupsCM()), line, 3);
+				ods.setValueAt(String.valueOf(c.getNbMinutesCM()), line, 4);
 
 				for (CoursePref p : prefs) {
 
 					if (c.getName().equals(p.getCourse().getName())) {
 						courseHasTeacher = true;
-						OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-						OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+						ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
+						ods.setValueAt(p.getTeacher().getLastName(), line, 6);
 
 						if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
-							OdsHelper.setValueAt(summary, p.getPrefCM().toString(), line, 7);
+							ods.setValueAt(p.getPrefCM().toString(), line, 7);
 						}
 						line++;
 					}
@@ -105,19 +107,19 @@ public class TeachersPreferences {
 
 				line++;
 				courseHasTeacher = false;
-				OdsHelper.setValueAt(summary, "CMTD", line, 2);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCMTD()), line, 3);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCMTD()), line, 4);
+				ods.setValueAt("CMTD", line, 2);
+				ods.setValueAt(String.valueOf(c.getCountGroupsCMTD()), line, 3);
+				ods.setValueAt(String.valueOf(c.getNbMinutesCMTD()), line, 4);
 
 				for (CoursePref p : prefs) {
 
 					if (c.getName().equals(p.getCourse().getName())) {
 						courseHasTeacher = true;
-						OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-						OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+						ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
+						ods.setValueAt(p.getTeacher().getLastName(), line, 6);
 
 						if (!p.getPrefCMTD().toString().equals("UNSPECIFIED")) {
-							OdsHelper.setValueAt(summary, p.getPrefCMTD().toString(), line, 7);
+							ods.setValueAt(p.getPrefCMTD().toString(), line, 7);
 						}
 						line++;
 					}
@@ -133,19 +135,19 @@ public class TeachersPreferences {
 
 				line++;
 				courseHasTeacher = false;
-				OdsHelper.setValueAt(summary, "CMTP", line, 2);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsCMTP()), line, 3);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesCMTP()), line, 4);
+				ods.setValueAt("CMTP", line, 2);
+				ods.setValueAt(String.valueOf(c.getCountGroupsCMTP()), line, 3);
+				ods.setValueAt(String.valueOf(c.getNbMinutesCMTP()), line, 4);
 
 				for (CoursePref p : prefs) {
 
 					if (c.getName().equals(p.getCourse().getName())) {
 						courseHasTeacher = true;
-						OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-						OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+						ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
+						ods.setValueAt(p.getTeacher().getLastName(), line, 6);
 
 						if (!p.getPrefCMTP().toString().equals("UNSPECIFIED")) {
-							OdsHelper.setValueAt(summary, p.getPrefCMTP().toString(), line, 7);
+							ods.setValueAt(p.getPrefCMTP().toString(), line, 7);
 						}
 						line++;
 					}
@@ -161,19 +163,19 @@ public class TeachersPreferences {
 
 				line++;
 				courseHasTeacher = false;
-				OdsHelper.setValueAt(summary, "TD", line, 2);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsTD()), line, 3);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesTD()), line, 4);
+				ods.setValueAt("TD", line, 2);
+				ods.setValueAt(String.valueOf(c.getCountGroupsTD()), line, 3);
+				ods.setValueAt(String.valueOf(c.getNbMinutesTD()), line, 4);
 
 				for (CoursePref p : prefs) {
 
 					if (c.getName().equals(p.getCourse().getName())) {
 						courseHasTeacher = true;
-						OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-						OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+						ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
+						ods.setValueAt(p.getTeacher().getLastName(), line, 6);
 
 						if (!p.getPrefTD().toString().equals("UNSPECIFIED")) {
-							OdsHelper.setValueAt(summary, p.getPrefTD().toString(), line, 7);
+							ods.setValueAt(p.getPrefTD().toString(), line, 7);
 						}
 						line++;
 					}
@@ -189,19 +191,19 @@ public class TeachersPreferences {
 
 				line++;
 				courseHasTeacher = false;
-				OdsHelper.setValueAt(summary, "TP", line, 2);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getCountGroupsTP()), line, 3);
-				OdsHelper.setValueAt(summary, String.valueOf(c.getNbMinutesTP()), line, 4);
+				ods.setValueAt("TP", line, 2);
+				ods.setValueAt(String.valueOf(c.getCountGroupsTP()), line, 3);
+				ods.setValueAt(String.valueOf(c.getNbMinutesTP()), line, 4);
 
 				for (CoursePref p : prefs) {
 
 					if (c.getName().equals(p.getCourse().getName())) {
 						courseHasTeacher = true;
-						OdsHelper.setValueAt(summary, p.getTeacher().getFirstName(), line, 5);
-						OdsHelper.setValueAt(summary, p.getTeacher().getLastName(), line, 6);
+						ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
+						ods.setValueAt(p.getTeacher().getLastName(), line, 6);
 
 						if (!p.getPrefTP().toString().equals("UNSPECIFIED")) {
-							OdsHelper.setValueAt(summary, p.getPrefTP().toString(), line, 7);
+							ods.setValueAt(p.getPrefTP().toString(), line, 7);
 						}
 						line++;
 					}
