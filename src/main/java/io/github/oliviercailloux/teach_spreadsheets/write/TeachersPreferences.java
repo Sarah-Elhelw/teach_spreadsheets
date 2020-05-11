@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class TeachersPreferences {
 
@@ -219,6 +220,37 @@ public class TeachersPreferences {
 
 		return document;
 
+	}
+	
+	/**
+	 * This method allows to add new classes and the teachers' preferences associated
+	 * 
+	 * @param newCourses
+	 * @param prefs
+	 * @return
+	 * @throws Throwable
+	 */
+	
+	public static SpreadsheetDocument addNewCourses(ImmutableSet<Course> newCourses,
+			ImmutableSet<CoursePref> prefs) throws Throwable { 
+		//TODO
+		return null;
+	}
+	
+	
+	/**
+	 * This method allows to add new teachers' preferences to the list already had
+	 * 
+	 * @param newTeachers
+	 * @param prefs
+	 * @return
+	 * @throws Throwable
+	 */
+	
+	public static SpreadsheetDocument addNewTeacher(ImmutableSet<Teacher> newTeachers,
+			ImmutableSet<CoursePref> prefs) throws Throwable { 
+		//TODO
+		return null;
 	}
 
 }
