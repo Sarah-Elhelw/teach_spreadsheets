@@ -99,14 +99,12 @@ public class GlobalAssignment {
 
 						for (CoursePref p : prefs) {
 
-							if (c.getName().equals(p.getCourse().getName())) {
+							if (c.getName().equals(p.getCourse().getName()) && !p.getPrefCM().toString().equals("UNSPECIFIED")) {
 								courseHasTeacher = true;
 								ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
 								ods.setValueAt(p.getTeacher().getLastName(), line, 6);
-
-								if (!p.getPrefCM().toString().equals("UNSPECIFIED")) {
-									ods.setValueAt(p.getPrefCM().toString(), line, 7);
-								}
+								ods.setValueAt(p.getPrefCM().toString(), line, 7);
+								
 
 								for (TeacherAssignment ta : teachersAssigned) {
 									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
@@ -139,14 +137,12 @@ public class GlobalAssignment {
 
 						for (CoursePref p : prefs) {
 
-							if (c.getName().equals(p.getCourse().getName())) {
+							if (c.getName().equals(p.getCourse().getName()) && !p.getPrefCMTD().toString().equals("UNSPECIFIED")) {
 								courseHasTeacher = true;
 								ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
 								ods.setValueAt(p.getTeacher().getLastName(), line, 6);
-
-								if (!p.getPrefCMTD().toString().equals("UNSPECIFIED")) {
-									ods.setValueAt(p.getPrefCMTD().toString(), line, 7);
-								}
+								ods.setValueAt(p.getPrefCMTD().toString(), line, 7);
+								
 
 								for (TeacherAssignment ta : teachersAssigned) {
 									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
@@ -178,14 +174,12 @@ public class GlobalAssignment {
 
 						for (CoursePref p : prefs) {
 
-							if (c.getName().equals(p.getCourse().getName())) {
+							if (c.getName().equals(p.getCourse().getName()) && !p.getPrefCMTP().toString().equals("UNSPECIFIED")) {
 								courseHasTeacher = true;
 								ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
 								ods.setValueAt(p.getTeacher().getLastName(), line, 6);
-
-								if (!p.getPrefCMTP().toString().equals("UNSPECIFIED")) {
-									ods.setValueAt(p.getPrefCMTP().toString(), line, 7);
-								}
+								ods.setValueAt(p.getPrefCMTP().toString(), line, 7);
+								
 
 								for (TeacherAssignment ta : teachersAssigned) {
 									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
@@ -217,14 +211,12 @@ public class GlobalAssignment {
 
 						for (CoursePref p : prefs) {
 
-							if (c.getName().equals(p.getCourse().getName())) {
+							if (c.getName().equals(p.getCourse().getName()) && !p.getPrefTD().toString().equals("UNSPECIFIED")) {
 								courseHasTeacher = true;
 								ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
 								ods.setValueAt(p.getTeacher().getLastName(), line, 6);
-
-								if (!p.getPrefTD().toString().equals("UNSPECIFIED")) {
-									ods.setValueAt(p.getPrefTD().toString(), line, 7);
-								}
+								ods.setValueAt(p.getPrefTD().toString(), line, 7);
+								
 
 								for (TeacherAssignment ta : teachersAssigned) {
 									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
@@ -256,14 +248,12 @@ public class GlobalAssignment {
 
 						for (CoursePref p : prefs) {
 
-							if (c.getName().equals(p.getCourse().getName())) {
+							if (c.getName().equals(p.getCourse().getName()) && !p.getPrefTP().toString().equals("UNSPECIFIED")) {
 								courseHasTeacher = true;
 								ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
 								ods.setValueAt(p.getTeacher().getLastName(), line, 6);
-
-								if (!p.getPrefTP().toString().equals("UNSPECIFIED")) {
-									ods.setValueAt(p.getPrefTP().toString(), line, 7);
-								}
+								ods.setValueAt(p.getPrefTP().toString(), line, 7);
+								
 
 								for (TeacherAssignment ta : teachersAssigned) {
 									if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
