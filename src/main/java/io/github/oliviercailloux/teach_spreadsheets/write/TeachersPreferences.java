@@ -1,8 +1,11 @@
 package io.github.oliviercailloux.teach_spreadsheets.write;
 
+import java.util.Set;
+
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -11,6 +14,8 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class TeachersPreferences {
 
+	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
+	
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
 	 * Course, Teacher's name and the various preferences.
@@ -47,6 +52,36 @@ public class TeachersPreferences {
 
 	}
 
+	private static int setTeachersPreferences(OdsHelper ods, int line, Course c, Set<CoursePref> prefs, String group, boolean courseHasTeacher) {
+		if (c.getCountGroups(group) > 0) {
+
+			line++;
+			courseHasTeacher = false;
+			ods.setValueAt(group, line, 2);
+			ods.setValueAt(String.valueOf(c.getCountGroups(group)), line, 3);
+			ods.setValueAt(String.valueOf(c.getNbMinutes(group)), line, 4);
+
+			for (CoursePref p : prefs) {
+
+				if (c.getName().equals(p.getCourse().getName()) && !p.getPref(group).toString().equals("UNSPECIFIED") ) {
+					
+					courseHasTeacher = true;
+					ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
+					ods.setValueAt(p.getTeacher().getLastName(), line, 6);
+					ods.setValueAt(p.getPref(group).toString(), line, 7);
+					
+					line++;
+				}
+			}
+
+			if (!courseHasTeacher) {
+				line++;
+			}
+
+		}
+		return line;
+	}
+	
 	/**
 	 * This method creates a summarized Ods. For each course, it writes all the
 	 * teachers who want to teach the course and their preferences.
@@ -76,137 +111,9 @@ public class TeachersPreferences {
 			ods.setValueAt(c.getName(), line, 2);
 			line++;
 
-			if (c.getCountGroupsCM() > 0) {
-
-				line++;
-				courseHasTeacher = false;
-				ods.setValueAt("CM", line, 2);
-				ods.setValueAt(String.valueOf(c.getCountGroupsCM()), line, 3);
-				ods.setValueAt(String.valueOf(c.getNbMinutesCM()), line, 4);
-
-				for (CoursePref p : prefs) {
-
-					if (c.getName().equals(p.getCourse().getName()) && !p.getPrefCM().toString().equals("UNSPECIFIED") ) {
-						
-						courseHasTeacher = true;
-						ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
-						ods.setValueAt(p.getTeacher().getLastName(), line, 6);
-						ods.setValueAt(p.getPrefCM().toString(), line, 7);
-						
-						line++;
-					}
-				}
-
-				if (!courseHasTeacher) {
-					line++;
-				}
-
+			for (String group : GROUPS) {
+				line = setTeachersPreferences(ods, line, c, prefs, group, courseHasTeacher);
 			}
-
-			if (c.getCountGroupsCMTD() > 0) {
-
-				line++;
-				courseHasTeacher = false;
-				ods.setValueAt("CMTD", line, 2);
-				ods.setValueAt(String.valueOf(c.getCountGroupsCMTD()), line, 3);
-				ods.setValueAt(String.valueOf(c.getNbMinutesCMTD()), line, 4);
-
-				for (CoursePref p : prefs) {
-
-					if (c.getName().equals(p.getCourse().getName()) && !p.getPrefCMTD().toString().equals("UNSPECIFIED")) {
-						courseHasTeacher = true;
-						ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
-						ods.setValueAt(p.getTeacher().getLastName(), line, 6);
-						ods.setValueAt(p.getPrefCMTD().toString(), line, 7);
-						
-						line++;
-					}
-				}
-
-				if (!courseHasTeacher) {
-					line++;
-				}
-
-			}
-
-			if (c.getCountGroupsCMTP() > 0) {
-
-				line++;
-				courseHasTeacher = false;
-				ods.setValueAt("CMTP", line, 2);
-				ods.setValueAt(String.valueOf(c.getCountGroupsCMTP()), line, 3);
-				ods.setValueAt(String.valueOf(c.getNbMinutesCMTP()), line, 4);
-
-				for (CoursePref p : prefs) {
-
-					if (c.getName().equals(p.getCourse().getName()) && !p.getPrefCMTP().toString().equals("UNSPECIFIED")) {
-						courseHasTeacher = true;
-						ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
-						ods.setValueAt(p.getTeacher().getLastName(), line, 6);
-						ods.setValueAt(p.getPrefCMTP().toString(), line, 7);
-						
-						line++;
-					}
-				}
-
-				if (!courseHasTeacher) {
-					line++;
-				}
-
-			}
-
-			if (c.getCountGroupsTD() > 0) {
-
-				line++;
-				courseHasTeacher = false;
-				ods.setValueAt("TD", line, 2);
-				ods.setValueAt(String.valueOf(c.getCountGroupsTD()), line, 3);
-				ods.setValueAt(String.valueOf(c.getNbMinutesTD()), line, 4);
-
-				for (CoursePref p : prefs) {
-
-					if (c.getName().equals(p.getCourse().getName()) && !p.getPrefTD().toString().equals("UNSPECIFIED")) {
-						courseHasTeacher = true;
-						ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
-						ods.setValueAt(p.getTeacher().getLastName(), line, 6);
-						ods.setValueAt(p.getPrefTD().toString(), line, 7);
-						
-						line++;
-					}
-				}
-
-				if (!courseHasTeacher) {
-					line++;
-				}
-
-			}
-
-			if (c.getCountGroupsTP() > 0) {
-
-				line++;
-				courseHasTeacher = false;
-				ods.setValueAt("TP", line, 2);
-				ods.setValueAt(String.valueOf(c.getCountGroupsTP()), line, 3);
-				ods.setValueAt(String.valueOf(c.getNbMinutesTP()), line, 4);
-
-				for (CoursePref p : prefs) {
-
-					if (c.getName().equals(p.getCourse().getName()) && !p.getPrefTP().toString().equals("UNSPECIFIED")) {
-						courseHasTeacher = true;
-						ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
-						ods.setValueAt(p.getTeacher().getLastName(), line, 6);
-						ods.setValueAt(p.getPrefTP().toString(), line, 7);
-						
-						line++;
-					}
-				}
-
-				if (!courseHasTeacher) {
-					line++;
-				}
-
-			}
-
 		}
 
 		return document;

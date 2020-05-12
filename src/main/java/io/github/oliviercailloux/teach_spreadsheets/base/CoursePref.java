@@ -98,6 +98,34 @@ public class CoursePref {
 	public Preference getPrefCMTP() {
 		return prefCMTP;
 	}
+	
+	/**
+	 * This method is a standardized getter for the preferences for a group.
+	 * 
+	 * @param group - the name of the group whose teacher's preference we want to
+	 *              get.
+	 * 
+	 * @return - the preference of a teacher for the group.
+	 * 
+	 * @throws IllegalArgumentException if group is not equal to "CM" or "TD" or
+	 *                                  "TP" or "CMTD" or "CMTP".
+	 */
+	public Preference getPref(String group) {
+		switch (group) {
+		case "CM":
+			return getPrefCM();
+		case "TD":
+			return getPrefTD();
+		case "TP":
+			return getPrefTP();
+		case "CMTD":
+			return getPrefCMTD();
+		case "CMTP":
+			return getPrefCMTP();
+		default:
+			throw new IllegalArgumentException("The argument must be CM, TD, TP, CMTD or CMTP.");
+		}
+	}
 
 	public int getPrefNbGroupsCM() {
 		return prefNbGroupsCM;
