@@ -52,18 +52,29 @@ public class TeachersPreferences {
 
 	}
 
-	private static int setTeachersPreferences(OdsHelper ods, int line, Course c, Set<CoursePref> prefs, String group, boolean courseHasTeacher) {
-		if (c.getCountGroups(group) > 0) {
+	/**
+	 * This method sets teachers' preferences for a given course group in an ods document.
+	 * 
+	 * @param ods - the ods document to complete
+	 * @param line - the starting line in the ods document where to write
+	 * @param course - the given course
+	 * @param prefs - the set of teachers' preferences for the given course
+	 * @param group - the group of the given course
+	 * 
+	 * @return line - the updated index of line
+	 */
+	private static int setTeachersPreferencesForGroup(OdsHelper ods, int line, Course course, Set<CoursePref> prefs, String group) {
+		boolean courseHasTeacher = false;
+		if (course.getCountGroups(group) > 0) {
 
 			line++;
-			courseHasTeacher = false;
 			ods.setValueAt(group, line, 2);
-			ods.setValueAt(String.valueOf(c.getCountGroups(group)), line, 3);
-			ods.setValueAt(String.valueOf(c.getNbMinutes(group)), line, 4);
+			ods.setValueAt(String.valueOf(course.getCountGroups(group)), line, 3);
+			ods.setValueAt(String.valueOf(course.getNbMinutes(group)), line, 4);
 
 			for (CoursePref p : prefs) {
 
-				if (c.getName().equals(p.getCourse().getName()) && !p.getPref(group).toString().equals("UNSPECIFIED") ) {
+				if (course.getName().equals(p.getCourse().getName()) && !p.getPref(group).toString().equals("UNSPECIFIED") ) {
 					
 					courseHasTeacher = true;
 					ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
@@ -102,17 +113,16 @@ public class TeachersPreferences {
 		
 		headersToOds(summary);
 		int line = 3;
-		boolean courseHasTeacher = false; 
 
-		for (Course c : allCourses) {
+		for (Course course : allCourses) {
 
-			ods.setValueAt(c.getStudyYear(), line, 0);
-			ods.setValueAt(String.valueOf(c.getSemester()), line, 1);
-			ods.setValueAt(c.getName(), line, 2);
+			ods.setValueAt(course.getStudyYear(), line, 0);
+			ods.setValueAt(String.valueOf(course.getSemester()), line, 1);
+			ods.setValueAt(course.getName(), line, 2);
 			line++;
 
 			for (String group : GROUPS) {
-				line = setTeachersPreferences(ods, line, c, prefs, group, courseHasTeacher);
+				line = setTeachersPreferencesForGroup(ods, line, course, prefs, group);
 			}
 		}
 
