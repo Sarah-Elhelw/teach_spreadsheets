@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
+import java.util.Optional;
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
@@ -94,7 +95,7 @@ public class GlobalAssignmentTests {
 		ImmutableSet<CourseAssignment> allCoursesAssigned = ImmutableSet.of(courseAssignment1, courseAssignment2);
 
 		try (SpreadsheetDocument document = GlobalAssignment.createGlobalAssignment(courses, prefs,
-				allCoursesAssigned)) {
+				Optional.of(allCoursesAssigned))) {
 			Table table = document.getTableByName("Summary");
 
 			assertEquals("testcourse1", table.getCellByPosition("C4").getDisplayText());

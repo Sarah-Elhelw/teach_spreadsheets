@@ -1,6 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.write;
 
-import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.odftoolkit.simple.SpreadsheetDocument;
@@ -56,6 +56,7 @@ public class GlobalAssignment {
 
 	}
 
+	
 	/**
 	 * This method sets teachers' preferences and assignments for a given course
 	 * group in an ods document.
@@ -72,7 +73,7 @@ public class GlobalAssignment {
 	 * 
 	 * @return line - the updated index of line
 	 */
-	private static int setSummarizedFileForGroup(OdsHelper ods, int line, Course course, Set<CoursePref> prefs, String group, Set<TeacherAssignment> teachersAssigned) {
+	private static int setSummarizedFileForGroup(OdsHelper ods, int line, Course course, Set<CoursePref> prefs, String group, Optional<Set<TeacherAssignment>> teachersAssigned) {
 		boolean courseHasTeacher = false;
 		
 		if (course.getCountGroups(group) > 0) {
@@ -91,13 +92,15 @@ public class GlobalAssignment {
 					ods.setValueAt(p.getTeacher().getLastName(), line, 6);
 					ods.setValueAt(p.getPref(group).toString(), line, 7);
 					
-					for (TeacherAssignment ta : teachersAssigned) {
-						if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
-								&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-								&& ta.getCountGroups(group) != 0) {
-							ods.setValueAt(ta.getTeacher().getFirstName(), line, 8);
-							ods.setValueAt(ta.getTeacher().getLastName(), line, 9);
-
+					if (teachersAssigned.isPresent()) {
+						for (TeacherAssignment ta : teachersAssigned.get()) {
+							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
+									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
+									&& ta.getCountGroups(group) != 0) {
+								ods.setValueAt(ta.getTeacher().getFirstName(), line, 8);
+								ods.setValueAt(ta.getTeacher().getLastName(), line, 9);
+	
+							}
 						}
 					}
 					
@@ -128,7 +131,7 @@ public class GlobalAssignment {
 	 */
 
 	public static SpreadsheetDocument createGlobalAssignment(ImmutableSet<Course> allCourses,
-			ImmutableSet<CoursePref> prefs, ImmutableSet<CourseAssignment> allCoursesAssigned) throws Throwable {
+			ImmutableSet<CoursePref> prefs, Optional<ImmutableSet<CourseAssignment>> allCoursesAssigned) throws Throwable {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
@@ -144,12 +147,14 @@ public class GlobalAssignment {
 			ods.setValueAt(course.getName(), line, 2);
 			line++;
 			
-			Set<TeacherAssignment> teachersAssigned = new LinkedHashSet<>();
+			Optional<Set<TeacherAssignment>> teachersAssigned = Optional.empty();
 
-			for (CourseAssignment ca : allCoursesAssigned) {
-				if (course.getName().equals(ca.getCourse().getName())) {
-					teachersAssigned = ca.getTeacherAssignments();
-					break;
+			if (allCoursesAssigned.isPresent()) {
+				for (CourseAssignment ca : allCoursesAssigned.get()) {
+					if (course.getName().equals(ca.getCourse().getName())) {
+						teachersAssigned = Optional.of(ca.getTeacherAssignments());
+						break;
+					}
 				}
 			}
 			
