@@ -15,7 +15,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
-public class TestGlobalAssignment {
+public class GlobalAssignmentTests {
 
 	@Test
 
@@ -26,7 +26,7 @@ public class TestGlobalAssignment {
 	 *                   correctly completed
 	 */
 
-	void testGlobalAssignment() throws Throwable {
+	void testCreateGlobalAssignment() throws Throwable {
 
 		Course.Builder courseBuilder1 = Course.Builder.newInstance();
 		Course.Builder courseBuilder2 = Course.Builder.newInstance();

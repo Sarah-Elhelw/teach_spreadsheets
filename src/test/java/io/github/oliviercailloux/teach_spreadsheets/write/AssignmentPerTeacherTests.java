@@ -13,7 +13,7 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
-public class TestAssignmentPerTeacher {
+public class AssignmentPerTeacherTests {
 
 	@Test
 
@@ -24,7 +24,7 @@ public class TestAssignmentPerTeacher {
 	 *                   correctly completed
 	 */
 
-	void testAssignmentPerTeacher() throws Throwable {
+	void testCreateAssignmentPerTeacher() throws Throwable {
 		Teacher.Builder teacherBuilder1 = Teacher.Builder.newInstance();
 		teacherBuilder1.setFirstName("teacher1FirstName");
 		teacherBuilder1.setLastName("teacher1LastName");

@@ -13,7 +13,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
-public class TestTeachersPreferences {
+public class TeachersPreferencesTests {
 
 	@Test
 
@@ -24,7 +24,7 @@ public class TestTeachersPreferences {
 	 *                   correctly completed
 	 */
 
-	void testTeachersPreferences() throws Throwable {
+	void testCreateTeachersPreferences() throws Throwable {
 
 		Course.Builder courseBuilder1 = Course.Builder.newInstance();
 		Course.Builder courseBuilder2 = Course.Builder.newInstance();
