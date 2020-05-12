@@ -53,13 +53,15 @@ public class TeachersPreferences {
 	}
 
 	/**
-	 * This method sets teachers' preferences for a given course group in an ods document.
+	 * This method sets teachers' preferences for a given course group in an ods
+	 * document.
 	 * 
-	 * @param ods - the ods document to complete
-	 * @param line - the starting line in the ods document where to write
+	 * @param ods    - the ods document to complete
+	 * @param line   - the starting line in the ods document where to write
 	 * @param course - the given course
-	 * @param prefs - the set of teachers' preferences for the given course
-	 * @param group - the group of the given course
+	 * @param prefs  - a set of teachers' preferences for the given course. There
+	 *               should be no duplicates of teachers' preferences.
+	 * @param group  - the group of the given course
 	 * 
 	 * @return line - the updated index of line
 	 */
