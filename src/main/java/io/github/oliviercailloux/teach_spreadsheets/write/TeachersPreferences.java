@@ -67,6 +67,7 @@ public class TeachersPreferences {
 	 */
 	private static int setTeachersPreferencesForGroup(OdsHelper ods, int line, Course course, Set<CoursePref> prefs, String group) {
 		boolean courseHasTeacher = false;
+		
 		if (course.getCountGroups(group) > 0) {
 
 			line++;

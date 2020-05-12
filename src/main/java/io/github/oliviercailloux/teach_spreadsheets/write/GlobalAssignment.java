@@ -57,20 +57,24 @@ public class GlobalAssignment {
 	}
 
 	/**
-	 * This method sets teachers' preferences for a given course group in an ods
-	 * document.
+	 * This method sets teachers' preferences and assignments for a given course
+	 * group in an ods document.
 	 * 
-	 * @param ods    - the ods document to complete
-	 * @param line   - the starting line in the ods document where to write
-	 * @param course - the given course
-	 * @param prefs  - a set of teachers' preferences for the given course. There
-	 *               should be no duplicates of teachers' preferences.
-	 * @param group  - the group of the given course
+	 * @param ods              - the ods document to complete
+	 * @param line             - the starting line in the ods document where to
+	 *                         write
+	 * @param course           - the given course
+	 * @param prefs            - a set of teachers' preferences for the given
+	 *                         course. There should be no duplicates of teachers'
+	 *                         preferences.
+	 * @param group            - the group of the given course
+	 * @param teachersAssigned - the set of teachers assigned to the given course
 	 * 
 	 * @return line - the updated index of line
 	 */
-	private static int setTeachersPreferencesForGroup(OdsHelper ods, int line, Course course, Set<CoursePref> prefs, String group, Set<TeacherAssignment> teachersAssigned) {
+	private static int setSummarizedFileForGroup(OdsHelper ods, int line, Course course, Set<CoursePref> prefs, String group, Set<TeacherAssignment> teachersAssigned) {
 		boolean courseHasTeacher = false;
+		
 		if (course.getCountGroups(group) > 0) {
 
 			line++;
@@ -139,6 +143,7 @@ public class GlobalAssignment {
 			ods.setValueAt(String.valueOf(course.getSemester()), line, 1);
 			ods.setValueAt(course.getName(), line, 2);
 			line++;
+			
 			Set<TeacherAssignment> teachersAssigned = new LinkedHashSet<>();
 
 			for (CourseAssignment ca : allCoursesAssigned) {
@@ -149,7 +154,7 @@ public class GlobalAssignment {
 			}
 			
 			for (String group : GROUPS) {
-				line = setTeachersPreferencesForGroup(ods, line, course, prefs, group, teachersAssigned);
+				line = setSummarizedFileForGroup(ods, line, course, prefs, group, teachersAssigned);
 			}
 		}
 
