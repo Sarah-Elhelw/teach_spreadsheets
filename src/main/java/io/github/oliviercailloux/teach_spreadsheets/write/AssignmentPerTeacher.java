@@ -5,6 +5,8 @@ import java.util.Set;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
+import com.google.common.collect.ImmutableList;
+
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
@@ -12,6 +14,9 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 
 public class AssignmentPerTeacher {
+
+	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
+	static int totalNumberMinutes = 0;
 
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Teachers'
@@ -109,6 +114,59 @@ public class AssignmentPerTeacher {
 	}
 
 	/**
+	 * This method finds the courses assigned to the teacher
+	 * 
+	 * @param teacher            The teacher we want to complete the Fichedeservice
+	 * @param allCoursesAssigned A complete set of CourseAssignment
+	 * @return a set of Courses assigned to the teacher
+	 */
+	private static Set<Course> findCoursesAssigned(Teacher teacher, Set<CourseAssignment> allCoursesAssigned) {
+
+		Set<Course> coursesAssigned = Set.of();
+		Set<TeacherAssignment> teachersAssigned;
+
+		for (CourseAssignment ca : allCoursesAssigned) {
+
+			teachersAssigned = ca.getTeacherAssignments();
+			for (TeacherAssignment ta : teachersAssigned) {
+
+				if (teacher.getFirstName().equals(ta.getTeacher().getFirstName())
+						&& teacher.getLastName().equals(ta.getTeacher().getLastName())) {
+					coursesAssigned.add(ca.getCourse());
+
+				}
+			}
+		}
+
+		return coursesAssigned;
+
+	}
+
+	/**
+	 * This method writes in the calc the courses Assigned to a teacher
+	 * 
+	 * @param ods            the ods document to complete
+	 * @param line           the starting line in the ods document where to write
+	 * @param ta             a TeacherAssignment in order to get the number of
+	 *                       groups assigned to a specific teacher
+	 * @param courseAssigned a Course assigned to the Teacher
+	 * @param group          the group type of the given course
+	 * @return the updated index of line
+	 */
+
+	private static int completeCourses(OdsHelper ods, int line, TeacherAssignment ta, Course courseAssigned,
+			String group) {
+
+		if (ta.getCountGroups(group) != 0) {
+			ods.setValueAt(group, line, 3);
+			ods.setValueAt(String.valueOf(courseAssigned.getNbMinutes(group)), line, 4);
+			totalNumberMinutes += courseAssigned.getNbMinutes(group);
+			line++;
+		}
+		return line;
+	}
+
+	/**
 	 * This method creates a summarized Ods like Fiche de service.png. For each
 	 * teacher, it writes all the courses he/she will teach.
 	 * 
@@ -132,10 +190,12 @@ public class AssignmentPerTeacher {
 
 		headersToOds(summary, teacher);
 		int line = 16;
-		int totalNumberMinutes = 0;
+		totalNumberMinutes = 0;
 
 		Set<TeacherAssignment> teachersAssigned;
 		Course courseAssigned;
+
+		Set<Course> coursesAssigned = findCoursesAssigned(teacher, allCoursesAssigned);
 
 		for (CourseAssignment ca : allCoursesAssigned) {
 
@@ -151,39 +211,8 @@ public class AssignmentPerTeacher {
 					ods.setValueAt(String.valueOf(courseAssigned.getSemester()), line, 1);
 					ods.setValueAt(courseAssigned.getName(), line, 2);
 
-					if (ta.getCountGroupsCM() != 0) {
-						ods.setValueAt("CM", line, 3);
-						ods.setValueAt(String.valueOf(courseAssigned.getNbMinutesCM()), line, 4);
-						totalNumberMinutes += courseAssigned.getNbMinutesCM();
-						line++;
-					}
-
-					if (ta.getCountGroupsCMTD() != 0) {
-						ods.setValueAt("CMTD", line, 3);
-						ods.setValueAt(String.valueOf(courseAssigned.getNbMinutesCMTD()), line, 4);
-						totalNumberMinutes += courseAssigned.getNbMinutesCMTD();
-						line++;
-					}
-
-					if (ta.getCountGroupsCMTP() != 0) {
-						ods.setValueAt("CMTP", line, 3);
-						ods.setValueAt(String.valueOf(courseAssigned.getNbMinutesCMTP()), line, 4);
-						totalNumberMinutes += courseAssigned.getNbMinutesCMTP();
-						line++;
-					}
-
-					if (ta.getCountGroupsTD() != 0) {
-						ods.setValueAt("TD", line, 3);
-						ods.setValueAt(String.valueOf(courseAssigned.getNbMinutesTD()), line, 4);
-						totalNumberMinutes += courseAssigned.getNbMinutesTD();
-						line++;
-					}
-
-					if (ta.getCountGroupsTP() != 0) {
-						ods.setValueAt("TP", line, 3);
-						ods.setValueAt(String.valueOf(courseAssigned.getNbMinutesTP()), line, 4);
-						totalNumberMinutes += courseAssigned.getNbMinutesTP();
-						line++;
+					for (String group : GROUPS) {
+						line = completeCourses(ods, line, ta, courseAssigned, group);
 					}
 				}
 			}

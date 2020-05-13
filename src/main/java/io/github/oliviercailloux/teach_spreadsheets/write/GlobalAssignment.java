@@ -66,7 +66,7 @@ public class GlobalAssignment {
 	 * @param prefs            - a set of teachers' preferences for the given
 	 *                         course. There should be no duplicates of teachers'
 	 *                         preferences.
-	 * @param group            - the group of the given course
+	 * @param group            - the group type of the given course
 	 * @param teachersAssigned - the set of teachers assigned to the given course
 	 * 
 	 * @return line - the updated index of line
