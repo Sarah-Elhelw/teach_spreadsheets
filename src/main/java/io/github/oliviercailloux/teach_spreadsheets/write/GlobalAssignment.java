@@ -7,7 +7,6 @@ import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
@@ -17,7 +16,7 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 public class GlobalAssignment {
 
 	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
-	
+
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
 	 * Course, Teacher's name and the various preferences and assignment.
@@ -56,7 +55,6 @@ public class GlobalAssignment {
 
 	}
 
-	
 	/**
 	 * This method sets teachers' preferences and assignments for a given course
 	 * group in an ods document.
@@ -73,9 +71,11 @@ public class GlobalAssignment {
 	 * 
 	 * @return line - the updated index of line
 	 */
-	private static int setSummarizedFileForGroup(OdsHelper ods, int line, Course course, Set<CoursePref> prefs, String group, Optional<Set<TeacherAssignment>> teachersAssigned) {
+	private static int setSummarizedFileForGroup(OdsHelper ods, int line, Course course, Set<CoursePref> prefs,
+			String group, Optional<Set<TeacherAssignment>> teachersAssigned) {
+
 		boolean courseHasTeacher = false;
-		
+
 		if (course.getCountGroups(group) > 0) {
 
 			line++;
@@ -85,13 +85,13 @@ public class GlobalAssignment {
 
 			for (CoursePref p : prefs) {
 
-				if (course.getName().equals(p.getCourse().getName()) && !p.getPref(group).toString().equals("UNSPECIFIED") ) {
-					
+				if (course.equals(p.getCourse()) && !p.getPref(group).toString().equals("UNSPECIFIED")) {
+
 					courseHasTeacher = true;
 					ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
 					ods.setValueAt(p.getTeacher().getLastName(), line, 6);
 					ods.setValueAt(p.getPref(group).toString(), line, 7);
-					
+
 					if (teachersAssigned.isPresent()) {
 						for (TeacherAssignment ta : teachersAssigned.get()) {
 							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
@@ -99,11 +99,11 @@ public class GlobalAssignment {
 									&& ta.getCountGroups(group) != 0) {
 								ods.setValueAt(ta.getTeacher().getFirstName(), line, 8);
 								ods.setValueAt(ta.getTeacher().getLastName(), line, 9);
-	
+
 							}
 						}
 					}
-					
+
 					line++;
 				}
 			}
@@ -115,7 +115,7 @@ public class GlobalAssignment {
 		}
 		return line;
 	}
-	
+
 	/**
 	 * This method creates a summarized Ods like FichierAgrege.pdf. For each course,
 	 * it writes all the teachers who want to teach the course, their preferences
@@ -130,13 +130,13 @@ public class GlobalAssignment {
 	 * @throws Throwable if the document could not be correctly completed
 	 */
 
-	public static SpreadsheetDocument createGlobalAssignment(ImmutableSet<Course> allCourses,
-			ImmutableSet<CoursePref> prefs, Optional<ImmutableSet<CourseAssignment>> allCoursesAssigned) throws Throwable {
+	public static SpreadsheetDocument createGlobalAssignment(Set<Course> allCourses, Set<CoursePref> prefs,
+			Optional<Set<CourseAssignment>> allCoursesAssigned) throws Throwable {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
 		OdsHelper ods = OdsHelper.newInstance(summary);
-		
+
 		headersToOds(summary);
 		int line = 3;
 
@@ -146,18 +146,18 @@ public class GlobalAssignment {
 			ods.setValueAt(String.valueOf(course.getSemester()), line, 1);
 			ods.setValueAt(course.getName(), line, 2);
 			line++;
-			
+
 			Optional<Set<TeacherAssignment>> teachersAssigned = Optional.empty();
 
 			if (allCoursesAssigned.isPresent()) {
 				for (CourseAssignment ca : allCoursesAssigned.get()) {
-					if (course.getName().equals(ca.getCourse().getName())) {
+					if (course.equals(ca.getCourse())) {
 						teachersAssigned = Optional.of(ca.getTeacherAssignments());
 						break;
 					}
 				}
 			}
-			
+
 			for (String group : GROUPS) {
 				line = setSummarizedFileForGroup(ods, line, course, prefs, group, teachersAssigned);
 			}

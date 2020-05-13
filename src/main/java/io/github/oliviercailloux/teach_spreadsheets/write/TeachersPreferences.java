@@ -6,7 +6,6 @@ import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
@@ -15,7 +14,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 public class TeachersPreferences {
 
 	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
-	
+
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
 	 * Course, Teacher's name and the various preferences.
@@ -65,9 +64,10 @@ public class TeachersPreferences {
 	 * 
 	 * @return line - the updated index of line
 	 */
-	private static int setTeachersPreferencesForGroup(OdsHelper ods, int line, Course course, Set<CoursePref> prefs, String group) {
+	private static int setTeachersPreferencesForGroup(OdsHelper ods, int line, Course course, Set<CoursePref> prefs,
+			String group) {
 		boolean courseHasTeacher = false;
-		
+
 		if (course.getCountGroups(group) > 0) {
 
 			line++;
@@ -77,13 +77,13 @@ public class TeachersPreferences {
 
 			for (CoursePref p : prefs) {
 
-				if (course.getName().equals(p.getCourse().getName()) && !p.getPref(group).toString().equals("UNSPECIFIED") ) {
-					
+				if (course.equals(p.getCourse()) && !p.getPref(group).toString().equals("UNSPECIFIED")) {
+
 					courseHasTeacher = true;
 					ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
 					ods.setValueAt(p.getTeacher().getLastName(), line, 6);
 					ods.setValueAt(p.getPref(group).toString(), line, 7);
-					
+
 					line++;
 				}
 			}
@@ -95,7 +95,7 @@ public class TeachersPreferences {
 		}
 		return line;
 	}
-	
+
 	/**
 	 * This method creates a summarized Ods. For each course, it writes all the
 	 * teachers who want to teach the course and their preferences.
@@ -107,13 +107,13 @@ public class TeachersPreferences {
 	 * @throws Throwable if the document could not be correctly completed
 	 */
 
-	public static SpreadsheetDocument createTeachersPreferences(ImmutableSet<Course> allCourses,
-			ImmutableSet<CoursePref> prefs) throws Throwable {
+	public static SpreadsheetDocument createTeachersPreferences(Set<Course> allCourses, Set<CoursePref> prefs)
+			throws Throwable {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
 		OdsHelper ods = OdsHelper.newInstance(summary);
-		
+
 		headersToOds(summary);
 		int line = 3;
 
@@ -132,23 +132,22 @@ public class TeachersPreferences {
 		return document;
 
 	}
-	
+
 	/**
-	 * This method allows to add new classes and the teachers' preferences associated
+	 * This method allows to add new classes and the teachers' preferences
+	 * associated
 	 * 
 	 * @param newCourses
 	 * @param prefs
 	 * @return
 	 * @throws Throwable
 	 */
-	
-	public static SpreadsheetDocument addNewCourses(ImmutableSet<Course> newCourses,
-			ImmutableSet<CoursePref> prefs) throws Throwable { 
-		//TODO
+
+	public static SpreadsheetDocument addNewCourses(Set<Course> newCourses, Set<CoursePref> prefs) throws Throwable {
+		// TODO
 		return null;
 	}
-	
-	
+
 	/**
 	 * This method allows to add new teachers' preferences to the list already had
 	 * 
@@ -157,10 +156,9 @@ public class TeachersPreferences {
 	 * @return
 	 * @throws Throwable
 	 */
-	
-	public static SpreadsheetDocument addNewTeacher(ImmutableSet<Teacher> newTeachers,
-			ImmutableSet<CoursePref> prefs) throws Throwable { 
-		//TODO
+
+	public static SpreadsheetDocument addNewTeacher(Set<Teacher> newTeachers, Set<CoursePref> prefs) throws Throwable {
+		// TODO
 		return null;
 	}
 

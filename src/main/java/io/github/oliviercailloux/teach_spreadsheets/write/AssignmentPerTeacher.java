@@ -5,8 +5,6 @@ import java.util.Set;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
-import com.google.common.collect.ImmutableSet;
-
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
@@ -14,7 +12,6 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 
 public class AssignmentPerTeacher {
-
 
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Teachers'
@@ -127,12 +124,12 @@ public class AssignmentPerTeacher {
 	 */
 
 	public static SpreadsheetDocument createAssignmentPerTeacher(Teacher teacher,
-			ImmutableSet<CourseAssignment> allCoursesAssigned) throws Throwable {
+			Set<CourseAssignment> allCoursesAssigned) throws Throwable {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
 		OdsHelper ods = OdsHelper.newInstance(summary);
-		
+
 		headersToOds(summary, teacher);
 		int line = 16;
 		int totalNumberMinutes = 0;

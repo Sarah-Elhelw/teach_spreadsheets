@@ -5,9 +5,9 @@ import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
 public class OdsHelper {
-	
+
 	static Table table;
-	
+
 	/**
 	 * This is the constructor of the class
 	 * 
@@ -15,20 +15,20 @@ public class OdsHelper {
 	 */
 
 	private OdsHelper(Table tableGiven) {
-		table=tableGiven;
+		table = tableGiven;
 	}
-	
-	
+
 	/**
 	 * This is the factory of this class
 	 * 
 	 * @param tableGiven This is the table of a document that we want to modify
 	 * @return a new instance of OdsHelper
 	 */
-	
+
 	public static OdsHelper newInstance(Table tableGiven) {
 		return new OdsHelper(tableGiven);
 	}
+
 	/**
 	 * This method creates an empty Ods and removes the default sheet
 	 * 
@@ -37,7 +37,7 @@ public class OdsHelper {
 	 */
 
 	public static SpreadsheetDocument createAnEmptyOds() throws Exception { // we are thinking about other exception
-																				// more precise to throw ...
+																			// more precise to throw ...
 		SpreadsheetDocument document = SpreadsheetDocument.newSpreadsheetDocument();
 		document.removeSheet(0);// remove the default sheet
 		return document;
@@ -58,16 +58,16 @@ public class OdsHelper {
 		cell.setDisplayText(info);
 
 	}
-	
+
 	/**
-	 * This method can convert an ods to pdf 
+	 * This method can convert an ods to pdf
 	 * 
 	 * @param ods document
-	 * @return a pdf 
+	 * @return a pdf
 	 */
-	
+
 	public void odsToPdf(SpreadsheetDocument document) {
-		//TODO
+		// TODO
 	}
 
 }
