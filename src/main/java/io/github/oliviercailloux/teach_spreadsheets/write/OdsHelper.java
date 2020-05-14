@@ -4,7 +4,7 @@ import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
-public class OdsHelper {
+class OdsHelper {
 
 	static Table table;
 
