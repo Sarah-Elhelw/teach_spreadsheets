@@ -19,16 +19,24 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
-public class ReadFiles {
+public class FilesReader {
 	Boolean firstRead = false;
 	Set<Course> courses = new LinkedHashSet<>();
+	
+	public static FilesReader newInstance() {
+		return new FilesReader();
+	}
+	
+	private FilesReader() {
+		
+	}
+	
 
 	public Set<CalcData> readFilesFromFolder(Path pathToFolder) throws Exception {
 		checkNotNull(pathToFolder);
 		Set<CalcData> calcDataSet = new LinkedHashSet<>();
 		try (Stream<Path> walk = Files.walk(pathToFolder)) {
-			List<Path> result = walk.filter(f -> f.endsWith(".ods")).collect(Collectors.toList());
-
+			List<Path> result = walk.filter(f -> f.toString().endsWith(".ods")).collect(Collectors.toList());
 			for (Path filePath : result) {
 				try (InputStream fileStream = Files.newInputStream(filePath)) {
 					CalcData calcData = CalcData.getData(fileStream);
