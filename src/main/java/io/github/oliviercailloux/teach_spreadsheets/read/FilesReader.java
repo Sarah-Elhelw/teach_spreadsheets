@@ -36,7 +36,7 @@ public class FilesReader {
 		checkNotNull(pathToFolder);
 		Set<CalcData> calcDataSet = new LinkedHashSet<>();
 		try (Stream<Path> walk = Files.walk(pathToFolder)) {
-			List<Path> result = walk.filter(f -> f.toString().endsWith(".ods")).collect(Collectors.toList());
+			Set<Path> result = walk.filter(f -> f.toString().endsWith(".ods")).collect(Collectors.toSet());
 			for (Path filePath : result) {
 				try (InputStream fileStream = Files.newInputStream(filePath)) {
 					CalcData calcData = CalcData.getData(fileStream);
