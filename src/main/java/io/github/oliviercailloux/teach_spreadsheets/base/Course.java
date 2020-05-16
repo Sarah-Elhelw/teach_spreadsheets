@@ -15,6 +15,7 @@ public class Course {
 	private static final String EXCEPTION_INT = "int must not be positive.";
 
 	private String name;
+	private String studyLevel;
 	private String studyYear;
 	private int semester;
 
@@ -32,6 +33,7 @@ public class Course {
 
 	private Course() {
 		name = "";
+		studyLevel = "";
 		studyYear = "";
 		semester = 0;
 
@@ -41,6 +43,10 @@ public class Course {
 
 	public String getName() {
 		return name;
+	}
+	
+	public String getStudyLevel() {
+		return studyLevel;
 	}
 
 	public String getStudyYear() {
@@ -104,13 +110,14 @@ public class Course {
 
 		public Course build() {
 			checkNotNull(courseToBuild.name);
+			checkNotNull(courseToBuild.studyLevel);
 			checkNotNull(courseToBuild.studyYear);
 			checkArgument(courseToBuild.semester == 1 || courseToBuild.semester == 2);
 			checkArgument(courseToBuild.countGroupsCM + courseToBuild.countGroupsCMTD + courseToBuild.countGroupsCMTP
 					+ courseToBuild.countGroupsTD + courseToBuild.countGroupsTP > 0);
 			checkArgument(courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
 					+ courseToBuild.nbMinutesTD + courseToBuild.nbMinutesTP > 0);
-			if (courseToBuild.name.isEmpty() || courseToBuild.studyYear.isEmpty())
+			if (courseToBuild.name.isEmpty() || courseToBuild.studyLevel.isEmpty() || courseToBuild.studyYear.isEmpty())
 				throw new IllegalStateException();
 
 			Course courseBuilt = courseToBuild;
@@ -121,6 +128,12 @@ public class Course {
 		public Builder setName(String name) {
 			checkNotNull(name, EXCEPTION_STRING);
 			this.courseToBuild.name = name;
+			return this;
+		}
+		
+		public Builder setStudyLevel(String studyLevel) {
+			checkNotNull(studyLevel, EXCEPTION_STRING);
+			this.courseToBuild.studyLevel = studyLevel;
 			return this;
 		}
 
@@ -208,7 +221,7 @@ public class Course {
 				.add("nbMinutesTD", nbMinutesTD).add("nbMinutesCMTD", nbMinutesCMTD).add("nbMinutesTP", nbMinutesTP)
 				.add("nbMinutesCMTP", nbMinutesCMTP).add("nbMinutesCM", nbMinutesCM)
 
-				.add("studyYear", studyYear).add("semester", semester)
+				.add("studyLevel", studyLevel).add("studyYear", studyYear).add("semester", semester)
 
 				.toString();
 	}

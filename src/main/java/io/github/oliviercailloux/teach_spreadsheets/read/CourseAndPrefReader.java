@@ -160,7 +160,7 @@ public class CourseAndPrefReader {
 		String[] cellData;
 
 		courseBuilder.setSemester(semester);
-
+		courseBuilder.setStudyLevel(currentSheet.getTableName());
 		courseBuilder.setName(cellText.replaceAll("\n", " "));
 
 		actualCell = currentSheet.getCellByPosition(SEMESTER_POSITION);

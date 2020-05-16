@@ -15,9 +15,11 @@ public class CourseTests {
 		courseBuilder.setnbMinutesCM(20);
 		courseBuilder.setName("Analyse de données");
 		courseBuilder.setStudyYear("2014");
+		courseBuilder.setStudyLevel("DE1");
+		courseBuilder.setSemester(1);
 
 		String actual = courseBuilder.build().toString();
-		String expected = "Course{name=Analyse de données, countGroupsTD=0, countGroupsCMTD=0, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=10, nbMinutesTD=0, nbMinutesCMTD=0, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=20, studyYear=2014, semester=1}";
+		String expected = "Course{name=Analyse de données, countGroupsTD=0, countGroupsCMTD=0, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=10, nbMinutesTD=0, nbMinutesCMTD=0, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=20, studyLevel=DE1, studyYear=2014, semester=1}";
 
 		assertEquals(expected, actual);
 	}

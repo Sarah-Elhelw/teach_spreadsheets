@@ -19,8 +19,11 @@ public class CoursePrefTests {
 		Course.Builder courseBuilder = Course.Builder.newInstance();
 		courseBuilder.setCountGroupsCM(10);
 		courseBuilder.setnbMinutesCM(20);
+		courseBuilder.setCountGroupsCMTD(10);
+		courseBuilder.setnbMinutesCMTD(20);
 		courseBuilder.setName("Analyse de données");
 		courseBuilder.setStudyYear("2012");
+		courseBuilder.setStudyLevel("DE1");
 		courseBuilder.setSemester(1);
 
 		CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(),
@@ -29,7 +32,7 @@ public class CoursePrefTests {
 		coursePrefBuilder.setPrefCMTD(Preference.B);
 
 		String actual = coursePrefBuilder.build().toString();
-		String expected = "CoursePref{prefCM=A, prefTD=UNSPECIFIED, prefCMTD=B, prefTP=UNSPECIFIED, prefCMTP=UNSPECIFIED, prefNbGroupsCM=0, prefNbGroupsTD=0, prefNbGroupsCMTD=0, prefNbGroupsTP=0, prefNbGroupsCMTP=0, Course=Course{name=Analyse de données, countGroupsTD=0, countGroupsCMTD=0, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=10, nbMinutesTD=0, nbMinutesCMTD=0, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=20, studyYear=2012, semester=1}, Teacher=Teacher{lastName=Doe, firstName=, address=Pont du maréchal de lattre de tassigny, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}";
+		String expected = "CoursePref{prefCM=A, prefTD=UNSPECIFIED, prefCMTD=B, prefTP=UNSPECIFIED, prefCMTP=UNSPECIFIED, prefNbGroupsCM=0, prefNbGroupsTD=0, prefNbGroupsCMTD=0, prefNbGroupsTP=0, prefNbGroupsCMTP=0, Course=Course{name=Analyse de données, countGroupsTD=0, countGroupsCMTD=10, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=10, nbMinutesTD=0, nbMinutesCMTD=20, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=20, studyLevel=DE1, studyYear=2012, semester=1}, Teacher=Teacher{lastName=Doe, firstName=, address=Pont du maréchal de lattre de tassigny, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}";
 		assertEquals(expected, actual);
 
 	}
