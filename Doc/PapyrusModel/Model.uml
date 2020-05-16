@@ -289,9 +289,22 @@
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_gSygcIe0EeqbHs-aXdOJpQ" name="Json">
-        <packagedElement xmi:type="uml:Class" xmi:id="_oSoE0Ie0EeqbHs-aXdOJpQ" name="JsonWriter">
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_ya9mwIe0EeqbHs-aXdOJpQ" name="writeCoursesInAJsonFile" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_ya9mwYe0EeqbHs-aXdOJpQ" name="path" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_oSoE0Ie0EeqbHs-aXdOJpQ" name="JsonWrite">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_ya9mwIe0EeqbHs-aXdOJpQ" name="writeCoursesInAJsonFile" isStatic="true" concurrency="concurrent">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_ya9mwYe0EeqbHs-aXdOJpQ" name="filePath" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_LhAcQJdaEeqZR-Nl_eMGbQ" name="courses" type="_XVBhkGBfEeq31cSPSR9mAA">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MsEhMJdaEeqZR-Nl_eMGbQ"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MsNEEJdaEeqZR-Nl_eMGbQ" value="*"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_IuDlwJdVEeqZR-Nl_eMGbQ" name="serializeSet" visibility="private" isStatic="true">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_a69eQJdZEeqZR-Nl_eMGbQ" name="courses" type="_XVBhkGBfEeq31cSPSR9mAA">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cWXsUJdZEeqZR-Nl_eMGbQ"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cWeaAJdZEeqZR-Nl_eMGbQ" value="*"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_qYotMJdZEeqZR-Nl_eMGbQ" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_z60P8Ie0EeqbHs-aXdOJpQ" name="JsonRead" visibility="public">
@@ -299,14 +312,25 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_EA264Ie_EeqbHs-aXdOJpQ" name="httpAddress">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_uLHVwJdYEeqZR-Nl_eMGbQ" type="_6sn5gGEpEeqMmJrPvsnLhQ" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_womr4JdYEeqZR-Nl_eMGbQ"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wounsJdYEeqZR-Nl_eMGbQ" value="*"/>
+            </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_rLHfcIe1EeqbHs-aXdOJpQ" name="getSetOfCoursesInfo" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_rLHfcYe1EeqbHs-aXdOJpQ" name="fileContent">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_LxQwsJdYEeqZR-Nl_eMGbQ" type="_XVBhkGBfEeq31cSPSR9mAA" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qt4bsJdYEeqZR-Nl_eMGbQ"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QuEB4JdYEeqZR-Nl_eMGbQ" value="*"/>
+            </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_vkkDsJdSEeqZR-Nl_eMGbQ" name="formatToArray" isStatic="true" concurrency="concurrent">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_-EScoJdSEeqZR-Nl_eMGbQ" name="textArray">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_590HwJdYEeqZR-Nl_eMGbQ" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
           </ownedOperation>
