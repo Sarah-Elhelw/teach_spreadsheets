@@ -6,9 +6,9 @@ The aim of this project is to read teacher’s preferences to assign them to stu
 
 == Global idea of the project 
 
-The main functionalities that this project will implement are described in the link:Docs\Documentation\README.adoc#UseCaseDiag[use case diagram]. +
-The way we imagine the process of assignment is described in the link:Docs\Documentation\README.adoc#SeqDiag[sequence diagram]. +
-The classes that we plan to implement are described in the link:Docs\Documentation\README.adoc#ClassDiag[class diagram].
+The main functionalities that this project will implement are described in the link:Doc\README.adoc#UseCaseDiag[use case diagram]. +
+The way we imagine the process of assignment is described in the link:Doc\README.adoc#SeqDiag[sequence diagram]. +
+The classes that we plan to implement are described in the link:Doc\README.adoc#ClassDiag[class diagram].
 
 == Second java iteration
 

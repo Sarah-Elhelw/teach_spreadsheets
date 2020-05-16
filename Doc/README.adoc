@@ -43,7 +43,7 @@ We'll add getters in the classes as we work on them because it's hard to know ex
 == Ods Reader classes :
 image::Images\Class_OdsRead_diag.png[width="750", height="500"]
 
-The main goal of these classes is to read information from an link:https://github.com/Sarah-Elhelw/teach_spreadsheets/blob/master/Docs/Documentation/Documents/AA_Saisie_des_voeux_2016-2017.ods[ods file] and create the corresponding CalcData object. The classes Course,Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
+The main goal of these classes is to read information from an link:https://github.com/Sarah-Elhelw/teach_spreadsheets/blob/master/Doc/Documents/AA_Saisie_des_voeux_2016-2017.ods[ods file] and create the corresponding CalcData object. The classes Course,Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
 
 
 == Ods Write classes :
