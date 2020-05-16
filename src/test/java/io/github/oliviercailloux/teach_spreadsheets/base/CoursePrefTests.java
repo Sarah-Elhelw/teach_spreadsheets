@@ -22,7 +22,7 @@ public class CoursePrefTests {
 		courseBuilder.setCountGroupsCMTD(10);
 		courseBuilder.setnbMinutesCMTD(20);
 		courseBuilder.setName("Analyse de données");
-		courseBuilder.setStudyYear("2012");
+		courseBuilder.setStudyYear(2012);
 		courseBuilder.setStudyLevel("DE1");
 		courseBuilder.setSemester(1);
 

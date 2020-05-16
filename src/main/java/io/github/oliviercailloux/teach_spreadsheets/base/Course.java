@@ -3,6 +3,7 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Immutable Class used to store a course information. Uses Builder pattern
@@ -16,7 +17,7 @@ public class Course {
 
 	private String name;
 	private String studyLevel;
-	private String studyYear;
+	private int studyYear;
 	private int semester;
 
 	private int countGroupsTD;
@@ -34,7 +35,6 @@ public class Course {
 	private Course() {
 		name = "";
 		studyLevel = "";
-		studyYear = "";
 		semester = 0;
 
 		// by default, semester, nbMinutes and countGroups variables are initialized at
@@ -49,7 +49,7 @@ public class Course {
 		return studyLevel;
 	}
 
-	public String getStudyYear() {
+	public int getStudyYear() {
 		return studyYear;
 	}
 
@@ -111,15 +111,14 @@ public class Course {
 		public Course build() {
 			checkNotNull(courseToBuild.name);
 			checkNotNull(courseToBuild.studyLevel);
-			checkNotNull(courseToBuild.studyYear);
-			checkArgument(courseToBuild.semester == 1 || courseToBuild.semester == 2);
-			checkArgument(courseToBuild.countGroupsCM + courseToBuild.countGroupsCMTD + courseToBuild.countGroupsCMTP
+			checkState(courseToBuild.semester == 1 || courseToBuild.semester == 2);
+			checkState(courseToBuild.countGroupsCM + courseToBuild.countGroupsCMTD + courseToBuild.countGroupsCMTP
 					+ courseToBuild.countGroupsTD + courseToBuild.countGroupsTP > 0);
-			checkArgument(courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
+			checkState(courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
 					+ courseToBuild.nbMinutesTD + courseToBuild.nbMinutesTP > 0);
-			if (courseToBuild.name.isEmpty() || courseToBuild.studyLevel.isEmpty() || courseToBuild.studyYear.isEmpty())
-				throw new IllegalStateException();
-
+			checkState(!courseToBuild.name.isEmpty());
+			checkState(!courseToBuild.studyLevel.isEmpty());
+			checkState(courseToBuild.studyYear != 0);
 			Course courseBuilt = courseToBuild;
 			courseToBuild = new Course();
 			return courseBuilt;
@@ -137,7 +136,7 @@ public class Course {
 			return this;
 		}
 
-		public Builder setStudyYear(String studyYear) {
+		public Builder setStudyYear(int studyYear) {
 			checkNotNull(studyYear, EXCEPTION_STRING);
 			this.courseToBuild.studyYear = studyYear;
 			return this;

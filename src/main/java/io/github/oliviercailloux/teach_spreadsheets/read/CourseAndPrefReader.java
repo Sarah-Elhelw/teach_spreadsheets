@@ -9,6 +9,8 @@ import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
 import com.google.common.collect.ImmutableSet;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
@@ -168,7 +170,11 @@ public class CourseAndPrefReader {
 		if (cellData.length != 2) {
 			throw new IllegalStateException("The semester cell isn't in the right format");
 		}
-		courseBuilder.setStudyYear(cellData[1]);
+		
+		String studyYear = cellData[1];
+		checkNotNull(studyYear);
+		checkState(studyYear.indexOf('/') != -1);
+		courseBuilder.setStudyYear(Integer.parseInt(studyYear.substring(0,studyYear.indexOf('/'))));
 
 		j += 4;
 

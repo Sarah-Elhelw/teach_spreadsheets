@@ -14,7 +14,7 @@ public class CourseTests {
 		courseBuilder.setCountGroupsCM(10);
 		courseBuilder.setnbMinutesCM(20);
 		courseBuilder.setName("Analyse de données");
-		courseBuilder.setStudyYear("2014");
+		courseBuilder.setStudyYear(2014);
 		courseBuilder.setStudyLevel("DE1");
 		courseBuilder.setSemester(1);
 
