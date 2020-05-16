@@ -29,7 +29,7 @@ image::Images\Diag_Sequence_2.png[width="800", height="600]
 The idea of this diagram is to present a focus on the assignment process. All the methods used in the messages are meant to evolve later in our project, for now, they simply allow us to describe the principle of our program. We renounced to produce a function that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers (for example, we are thinking of a decrementation of the number of teaching hours for a teacher assigned to a class and displaying it to the Admin). As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (like link:Documents\services_MIDO.xls[“services MIDO.ods”], link:Documents\Fiche_de_service.png[“Fiche de service.png”] and link:Documents\FichierAgrege.pdf[“Fichier Agrégé.pdf”] fully completed). The Admin will receive all these files and will send the link:Documents\Fiche_de_service.png[“Fiche de service.png”] specific to each teacher. 
 
 [[ClassDiag]]
-= Class diagram doc :
+= Class diagrams doc :
 == Base classes :
 image::Images\Diag_Class_1.png[width="800", height="950"]
 
