@@ -14,7 +14,7 @@ The Use Case diagram describes the main functionalities the project will impleme
 [[SeqDiag]]
 = Sequence diagrams doc :
 
-== First diagram : “Seq_diagram_Global_context” 
+== Global context 
 
 image::Images\Diag_Sequence_1.png[width="800", height="600]
 
@@ -22,7 +22,7 @@ The idea of this diagram is to present a global view of our project. The program
 
 If desired by the Admin, our program can end with the generation of the aggregated file. Else, if required by the Admin, our program can continue to help the admin make an assignment. The Assignment process is described in the second sequence diagram (“Seq_diagram_Assignment”). In order to have a clear and not overloaded diagram, we decided to create a second diagram and put a reference to it in the first one. 
 
-== Second diagram : “Seq_diagram_Assignment” 
+== Assignment
 
 image::Images\Diag_Sequence_2.png[width="800", height="600]
 
