@@ -14,7 +14,7 @@ The classes that we plan to implement are described in the link:Doc\README.adoc#
 
 * Group 1: SM/PO: Inès
 
-** Adding loggins in the code
+** Adding loggers in the code
 
 * Group 2 : Hedi and Mike
 
