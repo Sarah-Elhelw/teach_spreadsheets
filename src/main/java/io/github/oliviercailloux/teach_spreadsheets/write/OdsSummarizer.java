@@ -303,10 +303,9 @@ public class OdsSummarizer {
 			ods.setValueAt(course.getName(), line, 2);
 			for (int col = 2; col<=9; col++) {
 				summary.getCellByPosition(col, line).setCellBackgroundColor(Color.SILVER);
-				summary.getCellByPosition(col, line).setBorders(CellBordersType.BOTTOM, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+				summary.getCellByPosition(col, line).setBorders(CellBordersType.TOP_BOTTOM, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 			}
 			summary.getCellByPosition(2, line).setFont(new Font("Arial", FontStyle.BOLD, 11.0, Color.BLACK));
-			summary.getCellByPosition(2, line).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 			
 			line++;
 
