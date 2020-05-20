@@ -10,6 +10,7 @@ import org.odftoolkit.simple.style.Border;
 import org.odftoolkit.simple.style.Font;
 import org.odftoolkit.simple.style.StyleTypeDefinitions.CellBordersType;
 import org.odftoolkit.simple.style.StyleTypeDefinitions.FontStyle;
+import org.odftoolkit.simple.style.StyleTypeDefinitions.HorizontalAlignmentType;
 import org.odftoolkit.simple.style.StyleTypeDefinitions.SupportedLinearMeasure;
 import org.odftoolkit.simple.table.Table;
 
@@ -55,11 +56,11 @@ public class OdsSummarizer {
 	private final static String SEMESTER_POSITION = "B3";
 	private final static String COURSE_TYPE_POSITION = "C3";
 	private final static String GROUPS_NUMBER_POSITION = "D3";
-	private final static String NUMBER_MINUTES_POSITION = "E3";
+	private final static String NUMBER_HOURS_POSITION = "E3";
 	private final static String CANDIDATES_FIRST_NAME_POSITION = "F3";
 	private final static String CANDIDATES_LAST_NAME_POSITION = "G3";
 	private final static String CHOICES_POSITION = "H3";
-	private final static String ASSIGMENT_POSITION = "I3";
+	private final static String ASSIGNMENT_POSITION = "I3";
 	
 	/**
 	 * This method sets the Teachers' preferences for the courses : it adds new
@@ -123,10 +124,10 @@ public class OdsSummarizer {
 		allCoursesAssigned = Optional.of(assignmentsToBeSet);
 	}
 
-	private void setBorders(Table table) {
+	private void putBorders(Table table) {
 		checkNotNull(table);
 		for(int col = 0; col <= 9; col++) {
-			for(int row = 2; row <= rows; row++) {
+			for(int row = 3; row <= rows; row++) {
 				if (!(new Font("Arial", FontStyle.BOLD, 11.0, Color.BLACK).equals(table.getCellByPosition(2, row).getFont()))) {
 					table.getCellByPosition(col, row).setBorders(CellBordersType.LEFT_RIGHT, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 				}
@@ -136,9 +137,9 @@ public class OdsSummarizer {
 		}
 	}
 	
-	private static void formattingHeaders(Table table) {
+	private static void formatHeaders(Table table) {
 		table.getCellByPosition(TITLE_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 15.0, new Color(201, 33, 30)));
-		Set<String> headersPositions = Set.of(YEAR_POSITION, SEMESTER_POSITION, COURSE_TYPE_POSITION, GROUPS_NUMBER_POSITION, NUMBER_MINUTES_POSITION, CANDIDATES_FIRST_NAME_POSITION, CANDIDATES_LAST_NAME_POSITION, CHOICES_POSITION, ASSIGMENT_POSITION);
+		Set<String> headersPositions = Set.of(YEAR_POSITION, SEMESTER_POSITION, COURSE_TYPE_POSITION, GROUPS_NUMBER_POSITION, NUMBER_HOURS_POSITION, CANDIDATES_FIRST_NAME_POSITION, CANDIDATES_LAST_NAME_POSITION, CHOICES_POSITION, ASSIGNMENT_POSITION);
 		for (String position : headersPositions) {
 			table.getCellByPosition(position).setCellBackgroundColor(new Color(255, 182, 108));
 			table.getCellByPosition(position).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
@@ -146,6 +147,7 @@ public class OdsSummarizer {
 		}
 		table.getCellByPosition("J3").setCellBackgroundColor(new Color(255, 182, 108));
 		table.getCellByPosition("J3").setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		table.getCellByPosition(ASSIGNMENT_POSITION).setBorders(CellBordersType.TOP_BOTTOM, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 	}
 	
 	/**
@@ -161,15 +163,23 @@ public class OdsSummarizer {
 		table.getCellByPosition(SEMESTER_POSITION).setStringValue("Semester");
 		table.getCellByPosition(COURSE_TYPE_POSITION).setStringValue("Course Type");
 		table.getCellByPosition(GROUPS_NUMBER_POSITION).setStringValue("Numbers of groups");
-		table.getCellByPosition(NUMBER_MINUTES_POSITION).setStringValue("Number of minutes weekly");
+		table.getCellByPosition(NUMBER_HOURS_POSITION).setStringValue("Number of hours weekly");
 		table.getCellByPosition(CANDIDATES_FIRST_NAME_POSITION).setStringValue("Candidates' First Name");
 		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setStringValue("Candidates' Last Name");
 		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choices");
-		table.getCellByPosition(ASSIGMENT_POSITION).setStringValue("Assignment");
+		table.getCellByPosition(ASSIGNMENT_POSITION).setStringValue("Assignment");
 		
-		formattingHeaders(table);
+		formatHeaders(table);
 	}
 
+	private void formatGroups(Table table, int line) {
+		table.getCellByPosition(2, line).setHorizontalAlignment(HorizontalAlignmentType.RIGHT);
+		table.getCellByPosition(3, line).setHorizontalAlignment(HorizontalAlignmentType.CENTER);
+		for (int col = 2; col <=9; col++) {
+			table.getCellByPosition(col, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		}
+	}
+	
 	/**
 	 * This method sets teachers' preferences and assignments for a given course
 	 * group in an ods document.
@@ -197,11 +207,9 @@ public class OdsSummarizer {
 			
 			ods.setValueAt(group, line, 2);
 			ods.setValueAt(String.valueOf(course.getCountGroups(group)), line, 3);
-			ods.setValueAt(String.valueOf(course.getNbMinutes(group)), line, 4);
+			ods.setValueAt(String.valueOf(course.getNbMinutes(group)/60), line, 4);
 
-			for (int col = 2; col <=9; col++) {
-				table.getCellByPosition(col, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-			}
+			formatGroups(table, line);
 
 			for (CoursePref p : prefs) {
 
@@ -238,7 +246,7 @@ public class OdsSummarizer {
 		return line;
 	}
 	
-	public void setCourseHeader(Table table, int line) {
+	public void formatCourseHeader(Table table, int line) {
 		table.getCellByPosition(0, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		table.getCellByPosition(1, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		for (int col = 2; col<=9; col++) {
@@ -277,7 +285,7 @@ public class OdsSummarizer {
 			ods.setValueAt(String.valueOf(course.getSemester()), line, 1);
 			ods.setValueAt(course.getName(), line, 2);
 			
-			setCourseHeader(summary, line);
+			formatCourseHeader(summary, line);
 			
 			line++;
 
@@ -299,7 +307,7 @@ public class OdsSummarizer {
 		}
 		
 		rows = line;
-		setBorders(summary);
+		putBorders(summary);
 		
 		document.save("target//OdsSummarizer.ods");
 		return document;
