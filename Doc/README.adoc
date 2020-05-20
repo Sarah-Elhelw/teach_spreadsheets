@@ -1,7 +1,7 @@
 [[GuiDescription]]
 = Gui Description :
 
-image::Images\gui.png[width="1054", height="612"]
+image::Images\gui.png[width="1054", height="500"]
 
 When the user runs this program, he will be met with this interface with all the preferences of all the teachers in the left table (If there's a problem with the reading of the input files an error message will shown instead).The user then can choose to move some of these preferences to the middle table by clicking on the item.The items in the middle table
 are considered as selected preferences and represents the preferences that the user accepts. After all the wanted preferences are selected, the user can click on the submit button to generate the
