@@ -67,7 +67,7 @@ public class OdsSummarizer {
 	 *                                  course while their is already one in prefs.
 	 */
 
-	public void setCoursesPref(Set<CoursePref> prefsToBeSet) {
+	public void setPrefs(Set<CoursePref> prefsToBeSet) {
 		checkNotNull(prefsToBeSet, "The preferences must not be null.");
 
 		Set<Course> coursesInPrefs = new LinkedHashSet<>();
@@ -89,21 +89,25 @@ public class OdsSummarizer {
 	}
 
 	/**
-	 * This method sets all the assignments for the courses. We will set them as
-	 * optional in the case we want only the teachers' preferences
+	 * This method sets all the assignments for the courses. According to the way
+	 * teach_spreadsheets project will work, a set of all the courses' assignments
+	 * will be provided to create the summarized assignment ods file. In this class,
+	 * the assignments are set as optional in the case only the teachers'
+	 * preferences are wanted : an empty optional means there are no assignment
+	 * informations to display.
 	 * 
 	 * @param assignmentsToBeSet These are all the courses Assignment to be written
 	 *                           in the FichierAgrege
 	 * 
-	 * @throws NullPointerException if the paramtere is null
+	 * @throws NullPointerException if the parameter is null
 	 */
 
-	public void setCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
+	public void setAllCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
 		checkNotNull(assignmentsToBeSet, "The course assignments should not be null.");
-		
+
 		allCoursesAssigned = Optional.of(assignmentsToBeSet);
 	}
-	
+
 	/**
 	 * This method adds the headers to this new document.
 	 * 
@@ -200,7 +204,7 @@ public class OdsSummarizer {
 	 * @throws Throwable if the document could not be correctly completed
 	 */
 
-	public SpreadsheetDocument createOdsSummarizer() throws Throwable {
+	public SpreadsheetDocument createSummary() throws Throwable {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");

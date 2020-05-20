@@ -102,11 +102,11 @@ public class OdsSummarizerTests {
 		allCoursesAssigned.add(courseAssignment2);
 		
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
-		ods.setCoursesPref(prefs);
-		ods.setCoursesAssigned(allCoursesAssigned);
+		ods.setPrefs(prefs);
+		ods.setAllCoursesAssigned(allCoursesAssigned);
 		
 		
-		try (SpreadsheetDocument document = ods.createOdsSummarizer()) {
+		try (SpreadsheetDocument document = ods.createSummary()) {
 			Table table = document.getTableByName("Summary");
 
 			assertEquals("testcourse1", table.getCellByPosition("C4").getDisplayText());
