@@ -42,6 +42,7 @@ public class OdsSummarizer {
 	}
 	
 	public static OdsSummarizer newInstance(Set<Course> allCourses) {
+		checkNotNull(allCourses, "The set of courses should not be null.");
 		return new OdsSummarizer(allCourses);
 	}
 	
@@ -266,10 +267,7 @@ public class OdsSummarizer {
 
 					if (teachersAssigned.isPresent()) {
 						for (TeacherAssignment ta : teachersAssigned.get()) {
-							if (p.getTeacher().getFirstName().equals(ta.getTeacher().getFirstName())
-									&& p.getTeacher().getLastName().equals(ta.getTeacher().getLastName())
-									&& ta.getCountGroups(group) != 0) {
-								
+							if (p.getTeacher().equals(ta.getTeacher()) && ta.getCountGroups(group) != 0) {
 								ods.setValueAt(ta.getTeacher().getFirstName(), line, 8);								
 								ods.setValueAt(ta.getTeacher().getLastName(), line, 9);
 

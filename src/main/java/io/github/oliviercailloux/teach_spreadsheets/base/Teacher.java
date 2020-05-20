@@ -3,6 +3,8 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Objects;
+
 /**
  * Immutable. Class used to store a teacher's information. The minimum
  * information required is lastName. Uses Builder pattern implementation.
@@ -183,6 +185,26 @@ public class Teacher {
 
 	public String getOffice() {
 		return office;
+	}
+	
+	@Override
+	public boolean equals(Object o2) {
+		if (!(o2 instanceof Teacher)) {
+			return false;
+		}
+		if (this == o2) {
+			return true;
+		}
+		Teacher t2 = (Teacher) o2;
+		/**
+		 * We consider that two teachers are equal if they have the same dauphine e-mail as e-mails guarantee uniqueness.
+		 */
+		return dauphineEmail.equals(t2.dauphineEmail);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dauphineEmail);
 	}
 	
 	@Override

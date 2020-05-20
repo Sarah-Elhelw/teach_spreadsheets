@@ -54,8 +54,10 @@ public class OdsSummarizerTests {
 		Teacher.Builder teacherBuilder2 = Teacher.Builder.newInstance();
 		teacherBuilder1.setFirstName("teacher1FirstName");
 		teacherBuilder1.setLastName("teacher1LastName");
+		teacherBuilder1.setDauphineEmail("teacher1@dauphine.eu");
 		teacherBuilder2.setFirstName("teacher2FirstName");
 		teacherBuilder2.setLastName("teacher2LastName");
+		teacherBuilder1.setDauphineEmail("teacher2@dauphine.eu");
 		Teacher teacher1 = teacherBuilder1.build();
 		Teacher teacher2 = teacherBuilder2.build();
 
