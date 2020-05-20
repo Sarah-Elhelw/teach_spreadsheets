@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.write;
 
+import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -321,7 +322,7 @@ public class OdsSummarizer {
 	 * @throws Throwable if the document could not be correctly completed
 	 */
 
-	public SpreadsheetDocument createSummary() throws Throwable {
+	public SpreadsheetDocument createSummary() throws IOException {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
@@ -360,7 +361,6 @@ public class OdsSummarizer {
 		rows = line;
 		putBorders(summary);
 		
-		document.save("target//OdsSummarizer.ods");
 		return document;
 
 	}

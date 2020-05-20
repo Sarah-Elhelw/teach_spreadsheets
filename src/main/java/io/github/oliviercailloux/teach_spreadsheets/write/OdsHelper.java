@@ -6,6 +6,8 @@ import org.odftoolkit.simple.table.Table;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.IOException;
+
 class OdsHelper {
 
 	static Table table;
@@ -34,13 +36,18 @@ class OdsHelper {
 	 * This method creates an empty Ods and removes the default sheet
 	 * 
 	 * @return a new Ods empty document
-	 * @throws Exception if the Ods could not be created
+	 * @throws IOException if the Ods could not be created
 	 */
-	public static SpreadsheetDocument createAnEmptyOds() throws Exception {
-		SpreadsheetDocument document = SpreadsheetDocument.newSpreadsheetDocument();
-		/** The default sheet should be removed : */
-		document.removeSheet(0);
-		return document;
+	public static SpreadsheetDocument createAnEmptyOds() throws IOException {
+		try{
+			SpreadsheetDocument document = SpreadsheetDocument.newSpreadsheetDocument();
+			/** The default sheet should be removed : */
+			document.removeSheet(0);
+			return document;
+		} catch(Exception e) {
+			throw new IOException();
+		}
+		
 	}
 
 	/**
