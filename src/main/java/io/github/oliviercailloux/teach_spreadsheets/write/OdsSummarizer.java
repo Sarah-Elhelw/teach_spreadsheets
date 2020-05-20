@@ -94,10 +94,13 @@ public class OdsSummarizer {
 	 * 
 	 * @param assignmentsToBeSet These are all the courses Assignment to be written
 	 *                           in the FichierAgrege
+	 * 
+	 * @throws NullPointerException if the paramtere is null
 	 */
 
 	public void setCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
-		checkNotNull(assignmentsToBeSet, "The assignments should not be null.");
+		checkNotNull(assignmentsToBeSet, "The course assignments should not be null.");
+		
 		allCoursesAssigned = Optional.of(assignmentsToBeSet);
 	}
 	

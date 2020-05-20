@@ -93,19 +93,18 @@ public class OdsSummarizerTests {
 		Set<CoursePref> prefs = Set.of(pref1, pref2, pref3);
 		Set<CourseAssignment> allCoursesAssigned = Set.of(courseAssignment1, courseAssignment2);
 		
-		OdsSummarizer ods = OdsSummarizer.newInstance();
-		ods.setCourses(courses);
+		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.setCoursesPref(prefs);
 		ods.setCoursesAssigned(allCoursesAssigned);
 		
 		
-		try (SpreadsheetDocument document = OdsSummarizer.createOdsSummarizer()) {
+		try (SpreadsheetDocument document = ods.createOdsSummarizer()) {
 			Table table = document.getTableByName("Summary");
 
 			assertEquals("testcourse2", table.getCellByPosition("C4").getDisplayText());
-			assertEquals("teacher2FirstName", table.getCellByPosition("F6").getDisplayText());
+			assertEquals("teacher1FirstName", table.getCellByPosition("F6").getDisplayText());
 			assertEquals("C", table.getCellByPosition("H6").getDisplayText());
-			assertEquals("testcourse2", table.getCellByPosition("C11").getDisplayText());
+			assertEquals("CM", table.getCellByPosition("C11").getDisplayText());
 			assertEquals("teacher1FirstName", table.getCellByPosition("F13").getDisplayText());
 			assertEquals("C", table.getCellByPosition("H13").getDisplayText());
 			assertEquals("teacher1FirstName", table.getCellByPosition("I10").getDisplayText());
