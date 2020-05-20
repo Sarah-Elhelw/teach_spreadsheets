@@ -105,11 +105,11 @@ public class OdsSummarizer {
 	public void setAllCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
 		checkNotNull(assignmentsToBeSet, "The course assignments should not be null.");
 
-		Set<Course> coursesInPrefs = new LinkedHashSet<>();
+		Set<Course> coursesInAssignments = new LinkedHashSet<>();
 		for (CourseAssignment courseAssignment : assignmentsToBeSet) {
-			coursesInPrefs.add(courseAssignment.getCourse());
+			coursesInAssignments.add(courseAssignment.getCourse());
 		}
-		checkArgument(allCourses.containsAll(coursesInPrefs),
+		checkArgument(allCourses.containsAll(coursesInAssignments),
 				"The assignments must be for courses specified in allCourses attribute.");
 		
 		allCoursesAssigned = Optional.of(assignmentsToBeSet);
