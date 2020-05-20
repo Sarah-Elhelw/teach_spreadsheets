@@ -110,12 +110,12 @@ public class OdsSummarizerTests {
 			Table table = document.getTableByName("Summary");
 
 			assertEquals("testcourse1", table.getCellByPosition("C4").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("F6").getDisplayText());
-			assertEquals("A", table.getCellByPosition("H6").getDisplayText());
-			assertEquals("testcourse2", table.getCellByPosition("C11").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("F13").getDisplayText());
-			assertEquals("C", table.getCellByPosition("H13").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("I9").getDisplayText());
+			assertEquals("teacher1FirstName", table.getCellByPosition("F5").getDisplayText());
+			assertEquals("A", table.getCellByPosition("H5").getDisplayText());
+			assertEquals("testcourse2", table.getCellByPosition("C10").getDisplayText());
+			assertEquals("teacher1FirstName", table.getCellByPosition("F11").getDisplayText());
+			assertEquals("C", table.getCellByPosition("H11").getDisplayText());
+			assertEquals("teacher1FirstName", table.getCellByPosition("I8").getDisplayText());
 
 		}
 

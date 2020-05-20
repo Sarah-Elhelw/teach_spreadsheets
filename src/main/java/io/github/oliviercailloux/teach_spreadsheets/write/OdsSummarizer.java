@@ -192,6 +192,8 @@ public class OdsSummarizer {
 		table.getCellByPosition(ASSIGMENT_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
 		table.getCellByPosition(ASSIGMENT_POSITION).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		
+		table.getCellByPosition("J3").setCellBackgroundColor(new Color(255, 182, 108));
+		table.getCellByPosition("J3").setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 	}
 
 	/**
@@ -320,6 +322,7 @@ public class OdsSummarizer {
 				}
 			}
 
+			line--;
 			for (String group : GROUPS) {
 				line = setSummarizedFileForGroup(ods, summary, line, course, group, teachersAssigned);
 			}
