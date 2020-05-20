@@ -186,7 +186,7 @@ public class GuiPref {
 		for(Integer i=0;i<50;i++) {
 			LinkedHashMap<TableItem,CoursePref> mapPreference=new LinkedHashMap<>();
 			TableItem item = new TableItem(t, SWT.NONE);
-			item.setText(new String[] {i.toString(),"testTeacher","testCourse","testGroup","testchoice"});
+			item.setText(new String[] {"testTeacher","testCourse","testGroup","testchoice"});
 		}
 	}
 	private void setCompositeCourseTable(Composite parentComposite,Composite content, String headerText, Image logo) {
