@@ -136,6 +136,18 @@ public class OdsSummarizer {
 		}
 	}
 	
+	private static void formattingHeaders(Table table) {
+		table.getCellByPosition(TITLE_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 15.0, new Color(201, 33, 30)));
+		Set<String> headersPositions = Set.of(YEAR_POSITION, SEMESTER_POSITION, COURSE_TYPE_POSITION, GROUPS_NUMBER_POSITION, NUMBER_MINUTES_POSITION, CANDIDATES_FIRST_NAME_POSITION, CANDIDATES_LAST_NAME_POSITION, CHOICES_POSITION, ASSIGMENT_POSITION);
+		for (String position : headersPositions) {
+			table.getCellByPosition(position).setCellBackgroundColor(new Color(255, 182, 108));
+			table.getCellByPosition(position).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
+			table.getCellByPosition(position).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		}
+		table.getCellByPosition("J3").setCellBackgroundColor(new Color(255, 182, 108));
+		table.getCellByPosition("J3").setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+	}
+	
 	/**
 	 * This method adds the headers to this new document.
 	 * 
@@ -145,55 +157,17 @@ public class OdsSummarizer {
 	private static void headersToOds(Table table) {
 
 		table.getCellByPosition(TITLE_POSITION).setStringValue("Teachers Preferences and Assignment");
-		table.getCellByPosition(TITLE_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 15.0, new Color(201, 33, 30)));
-		
 		table.getCellByPosition(YEAR_POSITION).setStringValue("Year of study");
-		table.getCellByPosition(YEAR_POSITION).setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition(YEAR_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
-		table.getCellByPosition(YEAR_POSITION).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		
 		table.getCellByPosition(SEMESTER_POSITION).setStringValue("Semester");
-		table.getCellByPosition(SEMESTER_POSITION).setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition(SEMESTER_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
-		table.getCellByPosition(SEMESTER_POSITION).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		
 		table.getCellByPosition(COURSE_TYPE_POSITION).setStringValue("Course Type");
-		table.getCellByPosition(COURSE_TYPE_POSITION).setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition(COURSE_TYPE_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
-		table.getCellByPosition(COURSE_TYPE_POSITION).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		
 		table.getCellByPosition(GROUPS_NUMBER_POSITION).setStringValue("Numbers of groups");
-		table.getCellByPosition(GROUPS_NUMBER_POSITION).setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition(GROUPS_NUMBER_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
-		table.getCellByPosition(GROUPS_NUMBER_POSITION).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		
 		table.getCellByPosition(NUMBER_MINUTES_POSITION).setStringValue("Number of minutes weekly");
-		table.getCellByPosition(NUMBER_MINUTES_POSITION).setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition(NUMBER_MINUTES_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
-		table.getCellByPosition(NUMBER_MINUTES_POSITION).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		
 		table.getCellByPosition(CANDIDATES_FIRST_NAME_POSITION).setStringValue("Candidates' First Name");
-		table.getCellByPosition(CANDIDATES_FIRST_NAME_POSITION).setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition(CANDIDATES_FIRST_NAME_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
-		table.getCellByPosition(CANDIDATES_FIRST_NAME_POSITION).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		
 		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setStringValue("Candidates' Last Name");
-		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
-		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		
 		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choices");
-		table.getCellByPosition(CHOICES_POSITION).setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition(CHOICES_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
-		table.getCellByPosition(CHOICES_POSITION).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		
 		table.getCellByPosition(ASSIGMENT_POSITION).setStringValue("Assignment");
-		table.getCellByPosition(ASSIGMENT_POSITION).setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition(ASSIGMENT_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
-		table.getCellByPosition(ASSIGMENT_POSITION).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		
-		table.getCellByPosition("J3").setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition("J3").setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		formattingHeaders(table);
 	}
 
 	/**
@@ -222,19 +196,12 @@ public class OdsSummarizer {
 			line++;
 			
 			ods.setValueAt(group, line, 2);
-			table.getCellByPosition(2, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-			
 			ods.setValueAt(String.valueOf(course.getCountGroups(group)), line, 3);
-			table.getCellByPosition(3, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-			
 			ods.setValueAt(String.valueOf(course.getNbMinutes(group)), line, 4);
-			table.getCellByPosition(4, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 
-			table.getCellByPosition(5, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-			table.getCellByPosition(6, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-			table.getCellByPosition(7, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-			table.getCellByPosition(8, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-			table.getCellByPosition(9, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+			for (int col = 2; col <=9; col++) {
+				table.getCellByPosition(col, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+			}
 
 			for (CoursePref p : prefs) {
 
@@ -270,6 +237,16 @@ public class OdsSummarizer {
 		}
 		return line;
 	}
+	
+	public void setCourseHeader(Table table, int line) {
+		table.getCellByPosition(0, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		table.getCellByPosition(1, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		for (int col = 2; col<=9; col++) {
+			table.getCellByPosition(col, line).setCellBackgroundColor(Color.SILVER);
+			table.getCellByPosition(col, line).setBorders(CellBordersType.TOP_BOTTOM, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		}
+		table.getCellByPosition(2, line).setFont(new Font("Arial", FontStyle.BOLD, 11.0, Color.BLACK));
+	}
 
 	/**
 	 * This method creates a summarized Ods like FichierAgrege.pdf. For each course,
@@ -297,17 +274,10 @@ public class OdsSummarizer {
 		for (Course course : allCourses) {
 
 			ods.setValueAt(course.getStudyYear(), line, 0);
-			summary.getCellByPosition(0, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-			
 			ods.setValueAt(String.valueOf(course.getSemester()), line, 1);
-			summary.getCellByPosition(1, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-			
 			ods.setValueAt(course.getName(), line, 2);
-			for (int col = 2; col<=9; col++) {
-				summary.getCellByPosition(col, line).setCellBackgroundColor(Color.SILVER);
-				summary.getCellByPosition(col, line).setBorders(CellBordersType.TOP_BOTTOM, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-			}
-			summary.getCellByPosition(2, line).setFont(new Font("Arial", FontStyle.BOLD, 11.0, Color.BLACK));
+			
+			setCourseHeader(summary, line);
 			
 			line++;
 
