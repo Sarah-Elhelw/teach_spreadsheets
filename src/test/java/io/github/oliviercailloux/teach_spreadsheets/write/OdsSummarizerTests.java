@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
@@ -89,9 +90,16 @@ public class OdsSummarizerTests {
 
 		CourseAssignment courseAssignment2 = courseAssignmentBuilder2.build();
 
-		Set<Course> courses = Set.of(course1, course2);
-		Set<CoursePref> prefs = Set.of(pref1, pref2, pref3);
-		Set<CourseAssignment> allCoursesAssigned = Set.of(courseAssignment1, courseAssignment2);
+		Set<Course> courses = new LinkedHashSet<>();
+		courses.add(course1);
+		courses.add(course2);
+		Set<CoursePref> prefs = new LinkedHashSet<>();
+		prefs.add(pref1);
+		prefs.add(pref2);
+		prefs.add(pref3);
+		Set<CourseAssignment> allCoursesAssigned = new LinkedHashSet<>();
+		allCoursesAssigned.add(courseAssignment1);
+		allCoursesAssigned.add(courseAssignment2);
 		
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.setCoursesPref(prefs);
@@ -101,13 +109,13 @@ public class OdsSummarizerTests {
 		try (SpreadsheetDocument document = ods.createOdsSummarizer()) {
 			Table table = document.getTableByName("Summary");
 
-			assertEquals("testcourse2", table.getCellByPosition("C4").getDisplayText());
+			assertEquals("testcourse1", table.getCellByPosition("C4").getDisplayText());
 			assertEquals("teacher1FirstName", table.getCellByPosition("F6").getDisplayText());
-			assertEquals("C", table.getCellByPosition("H6").getDisplayText());
-			assertEquals("CM", table.getCellByPosition("C11").getDisplayText());
+			assertEquals("A", table.getCellByPosition("H6").getDisplayText());
+			assertEquals("testcourse2", table.getCellByPosition("C11").getDisplayText());
 			assertEquals("teacher1FirstName", table.getCellByPosition("F13").getDisplayText());
 			assertEquals("C", table.getCellByPosition("H13").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("I10").getDisplayText());
+			assertEquals("teacher1FirstName", table.getCellByPosition("I9").getDisplayText());
 
 		}
 
