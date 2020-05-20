@@ -1,5 +1,5 @@
 [[GuiDescription]]
-= Gui Description :
+= Gui description :
 
 image::Images\gui.png[width="1054", height="500"]
 
