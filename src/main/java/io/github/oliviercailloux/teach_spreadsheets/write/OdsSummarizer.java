@@ -18,9 +18,20 @@ public class OdsSummarizer {
 
 	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
 
-	private static Set<Course> allCourses = new LinkedHashSet<Course>();
-	private static Set<CoursePref> prefs = new LinkedHashSet<CoursePref>();
-	private static Optional<Set<CourseAssignment>> allCoursesAssigned = Optional.empty();
+	private static Set<Course> allCourses;
+	private static Set<CoursePref> prefs;
+	private static Optional<Set<CourseAssignment>> allCoursesAssigned;
+	
+	private OdsSummarizer() {
+		allCourses = new LinkedHashSet<Course>();
+		prefs = new LinkedHashSet<CoursePref>();
+		allCoursesAssigned = Optional.empty();
+	}
+	
+	public static OdsSummarizer newInstance() {
+		return new OdsSummarizer();
+	}
+	
 
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
@@ -67,7 +78,7 @@ public class OdsSummarizer {
 	 *                       FichierAgrege
 	 */
 
-	public static void setCourses(Set<Course> coursesToBeSet) {
+	public void setCourses(Set<Course> coursesToBeSet) {
 		allCourses.addAll(coursesToBeSet);
 	}
 
@@ -78,7 +89,7 @@ public class OdsSummarizer {
 	 *                     the FichierAgrege
 	 */
 
-	public static void setCoursesPref(Set<CoursePref> prefsToBeSet) {
+	public void setCoursesPref(Set<CoursePref> prefsToBeSet) {
 		prefs.addAll(prefsToBeSet);
 	}
 
@@ -90,7 +101,7 @@ public class OdsSummarizer {
 	 *                           in the FichierAgrege
 	 */
 
-	public static void setCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
+	public void setCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
 		allCoursesAssigned = Optional.of(assignmentsToBeSet);
 	}
 
@@ -169,7 +180,7 @@ public class OdsSummarizer {
 	 * @throws Throwable if the document could not be correctly completed
 	 */
 
-	public static SpreadsheetDocument createGlobalAssignment() throws Throwable {
+	public static SpreadsheetDocument createOdsSummarizer() throws Throwable {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
@@ -200,7 +211,8 @@ public class OdsSummarizer {
 				line = setSummarizedFileForGroup(ods, line, course, group, teachersAssigned);
 			}
 		}
-
+		
+		document.save("target//OdsSummarizer.ods");
 		return document;
 
 	}
