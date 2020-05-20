@@ -1,3 +1,18 @@
+[[GuiDescription]]
+= Gui Description :
+image::Images\Use_Case_1.png[width="1054", height="612"]
+When the user runs this program, he will be met with this interface with all the preferences of all the teachers in the left table (If there's a problem with the reading of the input files an error message will shown instead).The user then can choose to move some of these preferences to the middle table by clicking on the item.The items in the middle table
+are considered as selected preferences and represents the preferences that the user accepts. After all the wanted preferences are selected, the user can click on the submit button to generate the
+assignment files.
+
+Some notes:
+* The table on the right shows all the courses.The user can check it to know the maximum number of each group in each course.
+* The user can undo a selected preference by clicking on the item in the middle table.
+* Some mechanism will later be implemented to signal to the user that he can't select a certain preference if the maximum number of group is already reached. For example if we have a course that accepts only 1 group of TD and there is one item on the middle table concerning 1 TD of that course than the user shouldn't be able to select another group of TD for this course from the left table.
+
+Note :
+
+
 [[UseCaseDiag]]
 = Use Case doc :
 
@@ -59,3 +74,4 @@ The main goal of *JsonReader* is to read teachers and courses informations prese
 
 
 *InputVowsFile* deals with the files link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”]. The method *createPersonalizedFiles* creates personalized calc files, by completing the sheet "Emploi du temps", and puts them in a specified directory. The method *getInputVowsFiles* gets all the names of the calc files that were completed by the teachers and put in a specific directory. 
+
