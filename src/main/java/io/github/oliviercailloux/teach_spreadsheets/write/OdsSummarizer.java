@@ -8,6 +8,10 @@ import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
@@ -18,18 +22,18 @@ public class OdsSummarizer {
 
 	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
 
-	private static Set<Course> allCourses;
-	private static Set<CoursePref> prefs;
-	private static Optional<Set<CourseAssignment>> allCoursesAssigned;
+	private ImmutableSet<Course> allCourses;
+	private Set<CoursePref> prefs;
+	private Optional<Set<CourseAssignment>> allCoursesAssigned;
 	
-	private OdsSummarizer() {
-		allCourses = new LinkedHashSet<Course>();
+	private OdsSummarizer(Set<Course> allCourses) {
+		this.allCourses = ImmutableSet.copyOf(allCourses);
 		prefs = new LinkedHashSet<CoursePref>();
 		allCoursesAssigned = Optional.empty();
 	}
 	
-	public static OdsSummarizer newInstance() {
-		return new OdsSummarizer();
+	public static OdsSummarizer newInstance(Set<Course> allCourses) {
+		return new OdsSummarizer(allCourses);
 	}
 	
 
@@ -48,12 +52,59 @@ public class OdsSummarizer {
 	private final static String CANDIDATES_LAST_NAME_POSITION = "G3";
 	private final static String CHOICES_POSITION = "H3";
 	private final static String ASSIGMENT_POSITION = "I3";
+	
+	/**
+	 * This method sets the Teachers' preferences for the courses : it adds new
+	 * teacher's preferences for a course.
+	 * 
+	 * @param prefsToBeSet These are all the courses preferences to be written in
+	 *                     the FichierAgrege
+	 * 
+	 * @throws NullPointerException     if the parameter is null
+	 * @throws IllegalArgumentException if we want to add a teacher's preference for
+	 *                                  a course that is not in allCourses or if we
+	 *                                  want to add a teacher's preferences for a
+	 *                                  course while their is already one in prefs.
+	 */
 
+	public void setCoursesPref(Set<CoursePref> prefsToBeSet) {
+		checkNotNull(prefsToBeSet, "The preferences must not be null.");
+
+		Set<Course> coursesInPrefs = new LinkedHashSet<>();
+		for (CoursePref coursePref : prefsToBeSet) {
+			coursesInPrefs.add(coursePref.getCourse());
+		}
+		checkArgument(allCourses.containsAll(coursesInPrefs),
+				"The preferences must be for courses specified in allCourses attribute.");
+
+		for (CoursePref pref1 : prefs) {
+			for (CoursePref pref2 : prefsToBeSet) {
+				checkArgument(
+						!(pref1.getTeacher().equals(pref2.getTeacher()) && pref1.getCourse().equals(pref2.getCourse())),
+						"The preferences of a teacher for a course should be set once.");
+			}
+		}
+		
+		prefs.addAll(prefsToBeSet);
+	}
+
+	/**
+	 * This method sets all the assignments for the courses. We will set them as
+	 * optional in the case we want only the teachers' preferences
+	 * 
+	 * @param assignmentsToBeSet These are all the courses Assignment to be written
+	 *                           in the FichierAgrege
+	 */
+
+	public void setCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
+		checkNotNull(assignmentsToBeSet, "The assignments should not be null.");
+		allCoursesAssigned = Optional.of(assignmentsToBeSet);
+	}
+	
 	/**
 	 * This method adds the headers to this new document.
 	 * 
-	 * @param table This is the main table of the ods document that we want to
-	 *              complete
+	 * @param table - this is the main table of the ods document to be completed
 	 */
 
 	private static void headersToOds(Table table) {
@@ -72,40 +123,6 @@ public class OdsSummarizer {
 	}
 
 	/**
-	 * This method sets the courses to be written in the FichierAgrege
-	 * 
-	 * @param coursesToBeSet These are all the courses that will e written in the
-	 *                       FichierAgrege
-	 */
-
-	public void setCourses(Set<Course> coursesToBeSet) {
-		allCourses.addAll(coursesToBeSet);
-	}
-
-	/**
-	 * This method sets the Teachers' preferences for the courses
-	 * 
-	 * @param prefsToBeSet These are all the courses preferences to be written in
-	 *                     the FichierAgrege
-	 */
-
-	public void setCoursesPref(Set<CoursePref> prefsToBeSet) {
-		prefs.addAll(prefsToBeSet);
-	}
-
-	/**
-	 * This method sets all the assignments for the courses. We will set them as
-	 * optional in the case we want only the teachers' preferences
-	 * 
-	 * @param assignmentsToBeSet These are all the courses Assignment to be written
-	 *                           in the FichierAgrege
-	 */
-
-	public void setCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
-		allCoursesAssigned = Optional.of(assignmentsToBeSet);
-	}
-
-	/**
 	 * This method sets teachers' preferences and assignments for a given course
 	 * group in an ods document.
 	 * 
@@ -121,7 +138,7 @@ public class OdsSummarizer {
 	 * 
 	 * @return line - the updated index of line
 	 */
-	private static int setSummarizedFileForGroup(OdsHelper ods, int line, Course course, String group,
+	private int setSummarizedFileForGroup(OdsHelper ods, int line, Course course, String group,
 			Optional<Set<TeacherAssignment>> teachersAssigned) {
 
 		boolean courseHasTeacher = false;
@@ -180,7 +197,7 @@ public class OdsSummarizer {
 	 * @throws Throwable if the document could not be correctly completed
 	 */
 
-	public static SpreadsheetDocument createOdsSummarizer() throws Throwable {
+	public SpreadsheetDocument createOdsSummarizer() throws Throwable {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
