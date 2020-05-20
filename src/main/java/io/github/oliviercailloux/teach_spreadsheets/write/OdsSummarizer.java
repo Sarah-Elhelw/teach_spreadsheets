@@ -50,7 +50,6 @@ public class OdsSummarizer {
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
 	 * Course, Teacher's name and the various preferences and assignment.
 	 */
-
 	private final static String TITLE_POSITION = "A1";
 	private final static String YEAR_POSITION = "A3";
 	private final static String SEMESTER_POSITION = "B3";
@@ -66,7 +65,7 @@ public class OdsSummarizer {
 	 * This method sets the Teachers' preferences for the courses : it adds new
 	 * teacher's preferences for a course.
 	 * 
-	 * @param prefsToBeSet These are all the courses preferences to be written in
+	 * @param prefsToBeSet - These are all the courses preferences to be written in
 	 *                     the FichierAgrege
 	 * 
 	 * @throws NullPointerException     if the parameter is null
@@ -105,7 +104,7 @@ public class OdsSummarizer {
 	 * preferences are wanted : an empty optional means there are no assignment
 	 * informations to display.
 	 * 
-	 * @param assignmentsToBeSet These are all the courses Assignment to be written
+	 * @param assignmentsToBeSet - These are all the courses Assignment to be written
 	 *                           in the FichierAgrege
 	 * 
 	 * @throws NullPointerException if the parameter is null
@@ -124,30 +123,56 @@ public class OdsSummarizer {
 		allCoursesAssigned = Optional.of(assignmentsToBeSet);
 	}
 
+	/**
+	 * This methods sets the main borders of the unique table in the ods summarized
+	 * file.
+	 * 
+	 * @param table - the sheet where the table is.
+	 * 
+	 * @throws NullPointerException if the parameter is null
+	 */
 	private void putBorders(Table table) {
-		checkNotNull(table);
-		for(int col = 0; col <= 9; col++) {
-			for(int row = 3; row <= rows; row++) {
-				if (!(new Font("Arial", FontStyle.BOLD, 11.0, Color.BLACK).equals(table.getCellByPosition(2, row).getFont()))) {
-					table.getCellByPosition(col, row).setBorders(CellBordersType.LEFT_RIGHT, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		checkNotNull(table, "The sheet should not be null.");
+		for (int col = 0; col <= 9; col++) {
+			for (int row = 3; row <= rows; row++) {
+				if (!(new Font("Arial", FontStyle.BOLD, 11.0, Color.BLACK)
+						.equals(table.getCellByPosition(2, row).getFont()))) {
+					table.getCellByPosition(col, row).setBorders(CellBordersType.LEFT_RIGHT,
+							new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 				}
-				table.getCellByPosition(col, row).setBorders(CellBordersType.LEFT_RIGHT, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+				table.getCellByPosition(col, row).setBorders(CellBordersType.LEFT_RIGHT,
+						new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 			}
-			table.getCellByPosition(col, rows).setBorders(CellBordersType.BOTTOM, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+			table.getCellByPosition(col, rows).setBorders(CellBordersType.BOTTOM,
+					new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		}
 	}
 	
+	/**
+	 * This method formats the headers of the table in the sheet.
+	 * 
+	 * @param table - the sheet where the table is
+	 * 
+	 * @throws NullPointerException if the parameter is null
+	 */
 	private static void formatHeaders(Table table) {
-		table.getCellByPosition(TITLE_POSITION).setFont(new Font("Arial", FontStyle.BOLD, 15.0, new Color(201, 33, 30)));
-		Set<String> headersPositions = Set.of(YEAR_POSITION, SEMESTER_POSITION, COURSE_TYPE_POSITION, GROUPS_NUMBER_POSITION, NUMBER_HOURS_POSITION, CANDIDATES_FIRST_NAME_POSITION, CANDIDATES_LAST_NAME_POSITION, CHOICES_POSITION, ASSIGNMENT_POSITION);
+		checkNotNull(table, "The sheet should not be null.");
+		table.getCellByPosition(TITLE_POSITION)
+				.setFont(new Font("Arial", FontStyle.BOLD, 15.0, new Color(201, 33, 30)));
+		Set<String> headersPositions = Set.of(YEAR_POSITION, SEMESTER_POSITION, COURSE_TYPE_POSITION,
+				GROUPS_NUMBER_POSITION, NUMBER_HOURS_POSITION, CANDIDATES_FIRST_NAME_POSITION,
+				CANDIDATES_LAST_NAME_POSITION, CHOICES_POSITION, ASSIGNMENT_POSITION);
 		for (String position : headersPositions) {
 			table.getCellByPosition(position).setCellBackgroundColor(new Color(255, 182, 108));
 			table.getCellByPosition(position).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
-			table.getCellByPosition(position).setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+			table.getCellByPosition(position).setBorders(CellBordersType.ALL_FOUR,
+					new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		}
 		table.getCellByPosition("J3").setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition("J3").setBorders(CellBordersType.ALL_FOUR, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		table.getCellByPosition(ASSIGNMENT_POSITION).setBorders(CellBordersType.TOP_BOTTOM, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		table.getCellByPosition("J3").setBorders(CellBordersType.ALL_FOUR,
+				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		table.getCellByPosition(ASSIGNMENT_POSITION).setBorders(CellBordersType.TOP_BOTTOM,
+				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 	}
 	
 	/**
@@ -172,14 +197,24 @@ public class OdsSummarizer {
 		formatHeaders(table);
 	}
 
+	/**
+	 * This method formats the cells containing informations about a course group.
+	 * 
+	 * @param table - the sheet where the table is
+	 * @param line - the line where the course group information are
+	 * 
+	 * @throws NullPointerException if the parameter is null
+	 */
 	private void formatGroups(Table table, int line) {
+		checkNotNull(table, "The sheet should not be null.");
 		table.getCellByPosition(2, line).setHorizontalAlignment(HorizontalAlignmentType.RIGHT);
 		table.getCellByPosition(3, line).setHorizontalAlignment(HorizontalAlignmentType.CENTER);
-		for (int col = 2; col <=9; col++) {
-			table.getCellByPosition(col, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		for (int col = 2; col <= 9; col++) {
+			table.getCellByPosition(col, line).setBorders(CellBordersType.TOP,
+					new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		}
 	}
-	
+
 	/**
 	 * This method sets teachers' preferences and assignments for a given course
 	 * group in an ods document.
@@ -195,10 +230,18 @@ public class OdsSummarizer {
 	 * @param teachersAssigned - the set of teachers assigned to the given course
 	 * 
 	 * @return line - the updated index of line
+	 * 
+	 * @throws NullPointerException if one of the parameters is null
 	 */
 	private int setSummarizedFileForGroup(OdsHelper ods, Table table, int line, Course course, String group,
 			Optional<Set<TeacherAssignment>> teachersAssigned) {
 
+		checkNotNull(ods, "The ods component should not be null");
+		checkNotNull(table, "The sheet should not be null.");
+		checkNotNull(course, "The course should not be null.");
+		checkNotNull(group, "The group should not be null.");
+		checkNotNull(teachersAssigned, "The teacher's assignments should not be null.");
+		
 		boolean courseHasTeacher = false;
 
 		if (course.getCountGroups(group) > 0) {
@@ -246,7 +289,17 @@ public class OdsSummarizer {
 		return line;
 	}
 	
+	/**
+	 * This method formats the cells containing informations about a course.
+	 * 
+	 * @param table - the sheet where the table is
+	 * @param line - the line where the course information are
+	 * 
+	 * @throws NullPointerException if the parameter is null
+	 */
 	public void formatCourseHeader(Table table, int line) {
+		checkNotNull(table, "The sheet should not be null.");
+		
 		table.getCellByPosition(0, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		table.getCellByPosition(1, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		for (int col = 2; col<=9; col++) {
