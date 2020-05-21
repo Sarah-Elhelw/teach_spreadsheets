@@ -221,12 +221,16 @@
         <packagedElement xmi:type="uml:Class" xmi:id="_Eu9GUIcXEeqUqZA2AF_9Pw" name="CalcDataInitializer" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_MbJ40IceEeqUqZA2AF_9Pw" name="createCalcData" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_MbJ40YceEeqUqZA2AF_9Pw" name="document" type="_UJcaMIceEeqUqZA2AF_9Pw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_JsxKcJtrEeqdz4L_R9L93Q" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA" direction="return"/>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_IG1BEIcXEeqUqZA2AF_9Pw" name="CourseAndPrefReader" visibility="package">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_QumZEIcgEeqUqZA2AF_9Pw" name=" readSemester" visibility="package" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_QumZEYcgEeqUqZA2AF_9Pw" name="sheet" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_QumZEocgEeqUqZA2AF_9Pw" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_2sjMYJtrEeqdz4L_R9L93Q" name="coursePrefs" type="_bv1kcGIqEeq7OdFZt-_k0Q" direction="return">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_t_PBgJtsEeqdz4L_R9L93Q" value="*"/>
+            </ownedParameter>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_LZz0wIcXEeqUqZA2AF_9Pw" name="CourseAndPrefReaderLib" visibility="package">
@@ -237,6 +241,9 @@
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_QSCic4csEeqUqZA2AF_9Pw" name="currentRow">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_RxI0EJtsEeqdz4L_R9L93Q" name="isThereANextCourse" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_tD4WIIcsEeqUqZA2AF_9Pw" name="readPref" visibility="package" isStatic="true">
@@ -250,12 +257,16 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_tD4WJIcsEeqUqZA2AF_9Pw" name="flag">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
             </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_ilds4JtsEeqdz4L_R9L93Q" name="preference" type="_7XVMcIcSEeqUqZA2AF_9Pw" direction="return"/>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_PDkJsIcXEeqUqZA2AF_9Pw" name="PrefsInitializer" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_c3hIIIcfEeqUqZA2AF_9Pw" name="createPrefslist" visibility="public" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_c3hIIYcfEeqUqZA2AF_9Pw" name="document" type="_UJcaMIceEeqUqZA2AF_9Pw"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_c3hIIocfEeqUqZA2AF_9Pw" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_iLwo4JtrEeqdz4L_R9L93Q" name="coursePrefList" type="_bv1kcGIqEeq7OdFZt-_k0Q" direction="return">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lknbEJtrEeqdz4L_R9L93Q" value="*"/>
+            </ownedParameter>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_SKA9QIcXEeqUqZA2AF_9Pw" name="ReaderLib" visibility="package">
@@ -264,11 +275,17 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_MXzW8ocrEeqUqZA2AF_9Pw" name="cellPosition">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_omMgQJtsEeqdz4L_R9L93Q" name="cell" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_XaKRIIcrEeqUqZA2AF_9Pw" name="isDiagonalBorder" visibility="package" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_XaKRIYcrEeqUqZA2AF_9Pw" name="currentSheet" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_XaKRIocrEeqUqZA2AF_9Pw" name="cellPosition">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_39jEwJtsEeqdz4L_R9L93Q" name="isDiagonalBorder" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_oe_EEIcrEeqUqZA2AF_9Pw" name="isDiagonalBorder" visibility="package" isStatic="true">
@@ -279,25 +296,38 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_oe_EE4crEeqUqZA2AF_9Pw" name="rowIndex">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_9TJ3gJtsEeqdz4L_R9L93Q" name="isDiagonalBorder" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_1l9hYIcrEeqUqZA2AF_9Pw" name="hoursToMinutes" visibility="package" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_1l9hYYcrEeqUqZA2AF_9Pw" name="hours">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_KgdmUJttEeqdz4L_R9L93Q" name="minutes" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_VB_P8IcXEeqUqZA2AF_9Pw" name="TeacherReader" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_BxqqQIchEeqUqZA2AF_9Pw" name="createTeacherFromCalc" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_BxqqQYchEeqUqZA2AF_9Pw" name="document" type="_UJcaMIceEeqUqZA2AF_9Pw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_TPnu0JttEeqdz4L_R9L93Q" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" direction="return"/>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_T5jLgJs_EeqkfLOOhPUFxQ" name="FilesReader" visibility="public">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_Z9QIcJtBEeqkfLOOhPUFxQ" name="courses" type="_XVBhkGBfEeq31cSPSR9mAA"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_l7lisJtBEeqkfLOOhPUFxQ" name="readFilesFromFolder">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_l7lisZtBEeqkfLOOhPUFxQ" name="pathToFolder" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_w6DXYJttEeqdz4L_R9L93Q" name="calcDataList" type="_0YeooGYQEeqq2pYv3YMNcA" direction="return">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5VmnYJttEeqdz4L_R9L93Q" value="*"/>
+            </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_GI9CEJtCEeqkfLOOhPUFxQ" name="extractCoursesFromCalcData" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_GI9CEZtCEeqkfLOOhPUFxQ" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_13_4EJttEeqdz4L_R9L93Q" name="courseList" type="_XVBhkGBfEeq31cSPSR9mAA" direction="return">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_31YKwJttEeqdz4L_R9L93Q" value="*"/>
+            </ownedParameter>
           </ownedOperation>
         </packagedElement>
       </packagedElement>
