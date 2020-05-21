@@ -71,7 +71,7 @@ FilesReader reads all the ods files present in a certain folder via the readFile
 
 
 == Ods Write classes :
-image::Images\Class_ODS_Write.PNG[width="590", height="170"]
+image::Images\Class_ODS_Write.PNG[width="750", height="450"]
 
 We have 2 main writing classes. +
 
