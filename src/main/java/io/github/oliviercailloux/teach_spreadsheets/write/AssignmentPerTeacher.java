@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.write;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.odftoolkit.simple.SpreadsheetDocument;
@@ -122,7 +123,7 @@ public class AssignmentPerTeacher {
 	 */
 	private static Set<Course> findCoursesAssigned(Teacher teacher, Set<CourseAssignment> allCoursesAssigned) {
 
-		Set<Course> coursesAssigned = Set.of();
+		Set<Course> coursesAssigned = new LinkedHashSet<>();
 		Set<TeacherAssignment> teachersAssigned;
 
 		for (CourseAssignment ca : allCoursesAssigned) {
@@ -221,6 +222,8 @@ public class AssignmentPerTeacher {
 		line += 3;
 		ods.setValueAt("TOTAL", line, 3);
 		ods.setValueAt(String.valueOf(totalNumberMinutes), line, 4);
+		
+		document.save("target//AssignmentPerTeacher.ods");
 
 		return document;
 	}
