@@ -1,0 +1,34 @@
+= Iteration 4 UML 
+
+The aim of this iteration is to correct and improve UML Iteration 3 by taking into consideration Mr. Cailloux’s remarks. We also did new Class Diagrams for the classes we implemented in the second java iteration and we will implement in the third java iteration.
+
+Here is the list of the modifications that were made by each one : 
+
+* The group constituted of Sarah EL HELW, Semida BUZDUGAN and Inès DRAREDJA divided the corrections as follows: 
+
+** Sarah EL HELW : 
+
+*** 
+
+** Semida BUZDUGAN : 
+
+*** Add the new writing classes to the Class_ODS_Write diagram 
+
+*** Adding links to the new documents AssigmentPerTeacher.ods and TeachersPreferences.ods in the Docs Readme.adoc
+
+*** Improving documents files
+
+** Inès DRAREDJA
+
+*** 
+
+
+* The group constituted of Hedi GUEDIDI and Mike SANTANGELO divided the corrections as follows: 
+
+** Hedi GUEDIDI
+ 
+*** 
+
+** Mike SANTANGELO 
+
+*** 

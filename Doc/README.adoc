@@ -73,7 +73,14 @@ FilesReader reads all the ods files present in a certain folder via the readFile
 == Ods Write classes :
 image::Images\Class_ODS_Write.PNG[width="590", height="170"]
 
-This class has been already implemented in the first java itération. We will add new classes to this diagram very soon. We are thinking about the best solution to create new Calc Documents to summarize the assignment per teacher and the global assignment. You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\TeachersPreferences.ods[“TeachersPreferences.ods”]. +
+We have 2 main writing classes. +
+
+The class AssignmentPerTeacher creates a Calc like link:Documents\Fiche_de_service.png[“Fiche_de_service.png”]. The aim of this document is to summarise all the courses a teacher will teach.
+
+The class OdsSummarizer creates a Calc like link:Documents\FichierAgrege.pdf[“FichierAgrege.pdf”]. This document shows all the teachers' preferences for a list of courses. Also, if desired, this class can complete the column Assignment in order to show the possible Assignments our program suggest to do.
+
+
+You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\OdsSummarizer.ods[“OdsSummarizer.ods”]. +
 
 
 == Json Read classes:
