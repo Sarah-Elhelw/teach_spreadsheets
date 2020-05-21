@@ -75,12 +75,17 @@
           <ownedAttribute xmi:type="uml:Property" xmi:id="_-I-YMIcTEeqUqZA2AF_9Pw" name="teacher" visibility="public" type="_6sn5gGEpEeqMmJrPvsnLhQ"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_3puhgGYREeqq2pYv3YMNcA" name="getDataFromODS" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_EElfsGYSEeqq2pYv3YMNcA" name="filePath" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_3wXScJtuEeqdz4L_R9L93Q" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA" direction="return"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_o1DIkGwtEeqdw6kasHCXew" name="fromJSON" visibility="public" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_udq98GwtEeqdw6kasHCXew" name="filePath" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_gyuSAJtuEeqdz4L_R9L93Q" name="data" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_soo-4IccEeqUqZA2AF_9Pw" name="populateDataFromJSON" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_soo-4YccEeqUqZA2AF_9Pw" name="data" type="_Dbm5wIe0EeqbHs-aXdOJpQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_xkFWYJtuEeqdz4L_R9L93Q" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA" direction="return"/>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_a4w-cGwuEeqdw6kasHCXew" name="AggregatedData"/>
