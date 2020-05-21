@@ -57,7 +57,7 @@ The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
 We'll add getters in the classes as we work on them because it's hard to know exactly what we will need.
 
 == Gui classes :
-image::Images\Class_Gui.PNG[width="450", height="350"]
+image::Images\Class_Gui.PNG[width="700", height="423"]
 
 The GuiPref class creates the shell and manages it. 
 The GuiLib class links the gui with the rest of the classes. The function extractPreferenceItems converts the preference information contained in CalcData instances into items that can be inserted in the tables of the gui (left or middle table).
