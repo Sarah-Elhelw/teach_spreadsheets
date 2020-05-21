@@ -55,10 +55,14 @@
         <packagedElement xmi:type="uml:Dependency" xmi:id="_H4POoIcbEeqUqZA2AF_9Pw" name="create" client="_VB_P8IcXEeqUqZA2AF_9Pw" supplier="_6sn5gGEpEeqMmJrPvsnLhQ"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_PDFEsIcbEeqUqZA2AF_9Pw" name="create" client="_PDkJsIcXEeqUqZA2AF_9Pw" supplier="_bv1kcGIqEeq7OdFZt-_k0Q"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_Td_JwIcbEeqUqZA2AF_9Pw" name="create" client="_s6OXIGBZEeq31cSPSR9mAA" supplier="_s6OXIGBZEeq31cSPSR9mAA"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_9f3XQJs_EeqkfLOOhPUFxQ" name="use" client="_T5jLgJs_EeqkfLOOhPUFxQ" supplier="_Eu9GUIcXEeqUqZA2AF_9Pw"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_wHJfIIe2EeqbHs-aXdOJpQ" name="Json">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_b5uHEIe3EeqbHs-aXdOJpQ" name="use" client="_s6OXIGBZEeq31cSPSR9mAA" supplier="_z60P8Ie0EeqbHs-aXdOJpQ"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_hV3xQIe4EeqbHs-aXdOJpQ" name="use" client="_oSoE0Ie0EeqbHs-aXdOJpQ" supplier="_PDkJsIcXEeqUqZA2AF_9Pw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_FRQz0Js8EeqkfLOOhPUFxQ" name="Gui">
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_5jHxsJs7EeqkfLOOhPUFxQ" name="use" client="_ki1OwJs7EeqkfLOOhPUFxQ" supplier="_mYyDwJs7EeqkfLOOhPUFxQ"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_K_8HYHDKEequm7xLIeERRg" name="Classes">
@@ -287,6 +291,15 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_BxqqQYchEeqUqZA2AF_9Pw" name="document" type="_UJcaMIceEeqUqZA2AF_9Pw"/>
           </ownedOperation>
         </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_T5jLgJs_EeqkfLOOhPUFxQ" name="FilesReader" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_Z9QIcJtBEeqkfLOOhPUFxQ" name="courses" type="_XVBhkGBfEeq31cSPSR9mAA"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_l7lisJtBEeqkfLOOhPUFxQ" name="readFilesFromFolder">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_l7lisZtBEeqkfLOOhPUFxQ" name="pathToFolder" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_GI9CEJtCEeqkfLOOhPUFxQ" name="extractCoursesFromCalcData" visibility="private">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_GI9CEZtCEeqkfLOOhPUFxQ" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA"/>
+          </ownedOperation>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_gSygcIe0EeqbHs-aXdOJpQ" name="Json">
         <packagedElement xmi:type="uml:Class" xmi:id="_oSoE0Ie0EeqbHs-aXdOJpQ" name="JsonWrite">
@@ -374,6 +387,27 @@
           <ownedOperation xmi:type="uml:Operation" xmi:id="_eSKKoIeiEeq_vJIT4Zoedw" name="createSummarizedOds" visibility="public" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_PGGasIejEeq_vJIT4Zoedw" name="allCourses" type="_XVBhkGBfEeq31cSPSR9mAA"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_k3r3sIejEeq_vJIT4Zoedw" name="prefs" type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
+          </ownedOperation>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_i4FkMJs7EeqkfLOOhPUFxQ" name="Gui">
+        <packagedElement xmi:type="uml:Class" xmi:id="_ki1OwJs7EeqkfLOOhPUFxQ" name="GuiPref">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_bCoOYJs8EeqkfLOOhPUFxQ" name="initializeGui"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_htRhcJs8EeqkfLOOhPUFxQ" name="createPrefShell" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_leM1YJs8EeqkfLOOhPUFxQ" name="exitShell" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_tFJYoJs8EeqkfLOOhPUFxQ" name="setCompositePreferenceTable" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_vq7IEJs8EeqkfLOOhPUFxQ" name="setCompositeCourseTable" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_yJqbYJs8EeqkfLOOhPUFxQ" name="setAndCreateBoutonSubmit" visibility="private"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_mYyDwJs7EeqkfLOOhPUFxQ" name="GuiLib">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_itiPIJs9EeqkfLOOhPUFxQ" name="extractPreferenceItems">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_itiPIZs9EeqkfLOOhPUFxQ" name="table" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_itiPIps9EeqkfLOOhPUFxQ" name="calcs" type="_0YeooGYQEeqq2pYv3YMNcA"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_itiPI5s9EeqkfLOOhPUFxQ" name="mapPreference"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_zSGNoJs9EeqkfLOOhPUFxQ" name="createAssignments">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_zSGNoZs9EeqkfLOOhPUFxQ" name="tableItems" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_zSGNops9EeqkfLOOhPUFxQ" name="mapPreference"/>
           </ownedOperation>
         </packagedElement>
       </packagedElement>
@@ -548,6 +582,7 @@
     <packagedElement xmi:type="uml:DataType" xmi:id="_UJcaMIceEeqUqZA2AF_9Pw" name="SpreadsheetDocument"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_CvFKMIcgEeqUqZA2AF_9Pw" name="Table"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_Dbm5wIe0EeqbHs-aXdOJpQ" name="Object"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_F4qgIJs-EeqkfLOOhPUFxQ" name="org.eclipse.swt.widgets.Table"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KB-vkGFOEeq7OdFZt-_k0Q">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KCBL0GFOEeq7OdFZt-_k0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
