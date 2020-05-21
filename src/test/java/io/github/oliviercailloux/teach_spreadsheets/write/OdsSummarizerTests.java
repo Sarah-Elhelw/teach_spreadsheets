@@ -23,11 +23,9 @@ public class OdsSummarizerTests {
 	/**
 	 * This Test verifies if the summarized document is correctly completed
 	 * 
-	 * @throws Throwable if it is a problem while testing if the document is
-	 *                   correctly completed
 	 */
 
-	void testCreateGlobalAssignment() throws Throwable {
+	void testCreateGlobalAssignment() throws Exception {
 
 		Course.Builder courseBuilder1 = Course.Builder.newInstance();
 		Course.Builder courseBuilder2 = Course.Builder.newInstance();

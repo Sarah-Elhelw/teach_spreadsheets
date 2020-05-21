@@ -33,9 +33,7 @@ public class OdsSummarizer {
 	private ImmutableSet<Course> allCourses;
 	private Set<CoursePref> prefs;
 	private Optional<Set<CourseAssignment>> allCoursesAssigned;
-	
-	private int rows;
-	
+		
 	private OdsSummarizer(Set<Course> allCourses) {
 		this.allCourses = ImmutableSet.copyOf(allCourses);
 		prefs = new LinkedHashSet<CoursePref>();
@@ -130,13 +128,14 @@ public class OdsSummarizer {
 	 * file.
 	 * 
 	 * @param table - the sheet where the table is.
+	 * @param line - the current line.
 	 * 
 	 * @throws NullPointerException if the parameter is null
 	 */
-	private void putBorders(Table table) {
+	private void putBorders(Table table, int line) {
 		checkNotNull(table, "The sheet should not be null.");
 		for (int col = 0; col <= 9; col++) {
-			for (int row = 3; row <= rows; row++) {
+			for (int row = 3; row <= line; row++) {
 				if (!(new Font("Arial", FontStyle.BOLD, 11.0, Color.BLACK)
 						.equals(table.getCellByPosition(2, row).getFont()))) {
 					table.getCellByPosition(col, row).setBorders(CellBordersType.LEFT_RIGHT,
@@ -145,7 +144,7 @@ public class OdsSummarizer {
 				table.getCellByPosition(col, row).setBorders(CellBordersType.LEFT_RIGHT,
 						new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 			}
-			table.getCellByPosition(col, rows).setBorders(CellBordersType.BOTTOM,
+			table.getCellByPosition(col, line).setBorders(CellBordersType.BOTTOM,
 					new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		}
 	}
@@ -358,9 +357,8 @@ public class OdsSummarizer {
 			}
 		}
 		
-		rows = line;
-		putBorders(summary);
-		
+		putBorders(summary, line);
+				
 		return document;
 
 	}
