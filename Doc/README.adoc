@@ -1,7 +1,7 @@
 [[GuiDescription]]
 = Gui description :
 
-image::Images\gui.png[width="1054", height="500"]
+image::Images\gui.png[width="1054", height="612"]
 
 When the user runs this program, he will be met with this interface with all the preferences of all the teachers in the left table (If there's a problem with the reading of the input files an error message will shown instead).The user then can choose to move some of these preferences to the middle table by clicking on the item.The items in the middle table
 are considered as selected preferences and represents the preferences that the user accepts. After all the wanted preferences are selected, the user can click on the submit button to generate the
@@ -17,7 +17,7 @@ Some notes:
 [[UseCaseDiag]]
 = Use Case doc :
 
-image::Images\Use_Case_1.png[width="936", height="542"]
+image::Images\Use_global.PNG[width="1194", height="621"]
 
 The Use Case diagram describes the main functionalities the project will implement. In a nutshell, this program has three main goals :
 
@@ -32,7 +32,7 @@ The Use Case diagram describes the main functionalities the project will impleme
 
 == Global context 
 
-image::Images\Diag_Sequence_1.png[width="800", height="600]
+image::Images\Sequence_Global_context.PNG[width="1285", height="1020]
 
 The idea of this diagram is to present a global view of our project. The program starts by receiving all the files link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”] already completed by each teacher. *getData()* is the function used to register in a variable of type CalcData the information read in the files “AA-Saisie voeux 2016-2017.ods”. Then, once all the data caught and ordered in variables, the program can generate a file similar to link:Documents\FichierAgrege.pdf[“Fichier Agrégé.pdf”] that summarizes thus all the files “AA-Saisie voeux 2016-2017.ods” loaded.  The function *createSumarizedOds()* writes in a Calc to produce a document similar to “Fichier Agrégé.pdf” given in the subject. The Admin receives the Calc file created by the function generateAggregatedDataFile(). 
 
@@ -40,14 +40,14 @@ If desired by the Admin, our program can end with the generation of the aggregat
 
 == Assignment
 
-image::Images\Diag_Sequence_2.png[width="800", height="600]
+image::Images\Sequence_Assignment.PNG[width="1026", height="1020"]
 
 The idea of this diagram is to present a focus on the assignment process. All the methods used in the messages are meant to evolve later in our project, for now, they simply allow us to describe the principle of our program. We renounced to produce a function that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers (for example, we are thinking of a decrementation of the number of teaching hours for a teacher assigned to a class and displaying it to the Admin). As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (like link:Documents\services_MIDO.xls[“services MIDO.ods”], link:Documents\Fiche_de_service.png[“Fiche de service.png”] and link:Documents\FichierAgrege.pdf[“Fichier Agrégé.pdf”] fully completed). The Admin will receive all these files and will send the “Fiche de service.png” specific to each teacher. 
 
 [[ClassDiag]]
 = Class diagrams doc :
 == Base classes :
-image::Images\Diag_Class_1.PNG[width="881", height="1180"]
+image::Images\Class_assignment.PNG[width="881", height="1180"]
 
 The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers. The *TeacherAssignment* class stores the number of TD, TP, CM groups assigned to one teacher in the selected course. +
 
@@ -57,27 +57,27 @@ The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
 We'll add getters in the classes as we work on them because it's hard to know exactly what we will need.
 
 == Gui classes :
-image::Images\Class_Gui.PNG[width="700", height="423"]
+image::Images\Class_Gui.PNG[width="979", height="390"]
 
 The GuiPref class creates the shell and manages it. 
 The GuiLib class links the gui with the rest of the classes. The function extractPreferenceItems converts the preference information contained in CalcData instances into items that can be inserted in the tables of the gui (left or middle table).
 The function createAssignments generates the assignment instances after the the user has validated his choices (by clicking on submit in the gui).
 
 == Ods Reader classes :
-image::Images\Class_OdsRead_diag.PNG[width="1360", height="801"]
+image::Images\Class_ODS_Read.PNG[width="1360", height="801"]
 
 The main goal of these classes is to read information from an link:https://github.com/Sarah-Elhelw/teach_spreadsheets/blob/master/Doc/Documents/AA_Saisie_des_voeux_2016-2017.ods[ods file] and create the corresponding CalcData object. The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
 FilesReader reads all the ods files present in a certain folder via the readFilesFromFolder function.After the reading is done and assuming that there was no error, this class can return the Course instances via the getCourses function (not represented in the diagram).
 
 
 == Ods Write classes :
-image::Images\Class_OdsWrite_diag.png[width="350", height="150"]
+image::Images\Class_ODS_Write.PNG[width="590", height="170"]
 
 This class has been already implemented in the first java itération. We will add new classes to this diagram very soon. We are thinking about the best solution to create new Calc Documents to summarize the assignment per teacher and the global assignment. You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\TeachersPreferences.ods[“TeachersPreferences.ods”]. +
 
 
 == Json Read classes:
-image::Images\Class_Json_Read.png[width="450", height="350"]
+image::Images\Class_Json_Read.png[width="710", height="450"]
 
 The main goal of *JsonReader* is to read teachers and courses informations presented in a Json format. These informations are found in RefRof and in files in the class path. RefRof's logins are stored in a file the methods reading RefRof's content need to access.
 
