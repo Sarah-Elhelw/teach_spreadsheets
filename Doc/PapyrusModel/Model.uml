@@ -419,8 +419,67 @@
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_zMLY8JuXEeqi_K2iLQMdMg" name="OdsSummarizer"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="_21gQEJuXEeqi_K2iLQMdMg" name="AssignmentPerTeacher"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_zMLY8JuXEeqi_K2iLQMdMg" name="OdsSummarizer">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_lZ3i0JubEeqoL5c5DKW5Kw" name="allCourses" type="_XVBhkGBfEeq31cSPSR9mAA"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_wkF_kJubEeqoL5c5DKW5Kw" name="prefs" type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_1IIygJubEeqoL5c5DKW5Kw" name="allCoursesAssigned" type="__FiFYGEnEeqMmJrPvsnLhQ"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_JXCKMJubEeqoL5c5DKW5Kw" name="headersToOds" visibility="private" isStatic="true">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_TBdBEJubEeqoL5c5DKW5Kw" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_6u6NwJubEeqoL5c5DKW5Kw" name="setPrefs">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_Hb76AJucEeqoL5c5DKW5Kw" name="prefsToBeSet" type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_KLQnAJucEeqoL5c5DKW5Kw" name="setAllCoursesAssigned">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_OJeJAJucEeqoL5c5DKW5Kw" name="assignmentsToBeSet" type="__FiFYGEnEeqMmJrPvsnLhQ"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_RUGR8JucEeqoL5c5DKW5Kw" name="setSummarizedFileForGroup" visibility="private">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_VqtF0JucEeqoL5c5DKW5Kw" name="ods" type="_FCjZgIegEeq_vJIT4Zoedw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_XyB-sJucEeqoL5c5DKW5Kw" name="table" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_aDGCYJucEeqoL5c5DKW5Kw" name="line">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_dVeZIJucEeqoL5c5DKW5Kw" name="course" type="_XVBhkGBfEeq31cSPSR9mAA"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_fT9fEJucEeqoL5c5DKW5Kw" name="group">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_iu1DcJucEeqoL5c5DKW5Kw" name="teacherAssigned" type="_NuzqEG9ZEeqks-MRezUMyA"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_mmQoAJucEeqoL5c5DKW5Kw" name="line" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_vPGtIJucEeqoL5c5DKW5Kw" name="createSummary">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_zv4wsJucEeqoL5c5DKW5Kw" type="_UJcaMIceEeqUqZA2AF_9Pw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_21gQEJuXEeqi_K2iLQMdMg" name="AssignmentPerTeacher">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_o7TUIJuZEeqoL5c5DKW5Kw" name="headersToOds" visibility="private" isStatic="true">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_tIY_oJuZEeqoL5c5DKW5Kw" name="table" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_MngHUJuZEeqoL5c5DKW5Kw" name="findCoursesAssigned " visibility="private" isStatic="true">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_UKW0wJuZEeqoL5c5DKW5Kw" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_dQUTsJuZEeqoL5c5DKW5Kw" name="allCoursesAssigned" type="__FiFYGEnEeqMmJrPvsnLhQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_EkzmwJuaEeqoL5c5DKW5Kw" type="_XVBhkGBfEeq31cSPSR9mAA" direction="return"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_eqlc0JuaEeqoL5c5DKW5Kw" name="completeCourses" visibility="private" isStatic="true">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_j0YBIJuaEeqoL5c5DKW5Kw" name="ods" type="_FCjZgIegEeq_vJIT4Zoedw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_m3z88JuaEeqoL5c5DKW5Kw" name="line">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_qJcs0JuaEeqoL5c5DKW5Kw" name="ta" type="_NuzqEG9ZEeqks-MRezUMyA"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_vPq_wJuaEeqoL5c5DKW5Kw" name="courseAssigned" type="_XVBhkGBfEeq31cSPSR9mAA"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_xRzPkJuaEeqoL5c5DKW5Kw" name="group">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_2hrNwJuaEeqoL5c5DKW5Kw" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_42qIIJuaEeqoL5c5DKW5Kw" name="createAssignmentPerTeacher" isStatic="true">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_9f0EkJuaEeqoL5c5DKW5Kw" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="___ek8JuaEeqoL5c5DKW5Kw" name="allCoursesAssigned" type="__FiFYGEnEeqMmJrPvsnLhQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_C1qH4JubEeqoL5c5DKW5Kw" name="doc" type="_UJcaMIceEeqUqZA2AF_9Pw" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_i4FkMJs7EeqkfLOOhPUFxQ" name="Gui">
         <packagedElement xmi:type="uml:Class" xmi:id="_ki1OwJs7EeqkfLOOhPUFxQ" name="GuiPref">

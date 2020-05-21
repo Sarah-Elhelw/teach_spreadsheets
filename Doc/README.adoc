@@ -82,6 +82,8 @@ The class OdsSummarizer creates a Calc like link:Documents\FichierAgrege.pdf[“
 
 You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\OdsSummarizer.ods[“OdsSummarizer.ods”]. +
 
+The class OdsHelper has some useful functionalities that we use in the two other writing classes.
+
 
 == Json Read classes:
 image::Images\Class_Json_Read.png[width="710", height="450"]
