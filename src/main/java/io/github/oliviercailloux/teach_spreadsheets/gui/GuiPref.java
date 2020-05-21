@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
@@ -44,26 +45,25 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
 public class GuiPref {
 	private final static Logger LOGGER = LoggerFactory.getLogger(GuiPref.class);
-	
+
 	private Display display;
 	private Shell shell;
-	
 
-	
 	private Composite allPrefrences;
 	private Composite chosenPrefrences;
 	private Composite courses;
-	
+
 	private Composite allPrefrencesContent = null;
 	private Composite chosenPrefrencesContent = null;
 	private Composite coursesContent = null;
-	
+
 	private Composite submit;
-	
+
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-			GuiPref gui = new GuiPref();
-			gui.initializeGui();
-		}
+		GuiPref gui = new GuiPref();
+		gui.initializeGui();
+	}
+
 	public void initializeGui() {
 		display = new Display();
 		shell = new Shell(display, SWT.SHELL_TRIM);
@@ -73,25 +73,29 @@ public class GuiPref {
 		Image logo = new Image(display, GuiPref.class.getResourceAsStream("configuration.png"));
 		shell.setImage(logo);
 
-		
 		this.allPrefrences = new Composite(shell, SWT.BORDER);
 		allPrefrencesContent = new Composite(allPrefrences, SWT.NONE);
 		Image logoAllPreferences = new Image(display, GuiPref.class.getResourceAsStream("paper.png"));
-		setCompositePreferenceTable(allPrefrences,allPrefrencesContent,"All prefrences",logoAllPreferences);
-		
+		Table allPreferencesTable = setCompositePreferenceTable(allPrefrences, allPrefrencesContent, "All preferences", logoAllPreferences);
+
 		this.chosenPrefrences = new Composite(shell, SWT.BORDER);
-		chosenPrefrencesContent= new Composite(chosenPrefrences, SWT.NONE);
-		Image logoChosenPrefrences  = new Image(display, GuiPref.class.getResourceAsStream("check.png"));
-		setCompositePreferenceTable(chosenPrefrences,chosenPrefrencesContent,"Chosen prefrences",logoChosenPrefrences);
+		chosenPrefrencesContent = new Composite(chosenPrefrences, SWT.NONE);
+		Image logoChosenPrefrences = new Image(display, GuiPref.class.getResourceAsStream("check.png"));
+		Table chosenPreferencesTable = setCompositePreferenceTable(chosenPrefrences, chosenPrefrencesContent, "Chosen preferences",
+				logoChosenPrefrences);
 		
+		populateTables(allPreferencesTable, chosenPreferencesTable);
+		addListenerPreferences(allPreferencesTable, chosenPreferencesTable);
+		addListenerPreferences(chosenPreferencesTable, allPreferencesTable);
+
 		this.courses = new Composite(shell, SWT.BORDER);
-		coursesContent= new Composite(courses, SWT.NONE);
+		coursesContent = new Composite(courses, SWT.NONE);
 		Image logoCourses = new Image(display, GuiPref.class.getResourceAsStream("education.png"));
-		setCompositeCourseTable(courses,coursesContent,"Courses",logoCourses);
-		
+		setCompositeCourseTable(courses, coursesContent, "Courses", logoCourses);
+
 		prefShell();
 		setAndCreateBoutonSubmit();
-		
+
 		shell.pack();
 		shell.open();
 		while (!shell.isDisposed()) {
@@ -102,21 +106,21 @@ public class GuiPref {
 		display.dispose();
 		LOGGER.info("Display well closed");
 	}
-	
+
 	private void prefShell() {
 		GridData prefData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		GridData chosenPrefData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		GridData coursesData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		Point size = shell.getSize();
-		prefData.widthHint=size.x/3;
-		chosenPrefData.widthHint=size.x/3;
-		coursesData.widthHint=size.x-(prefData.widthHint+chosenPrefData.widthHint);
+		prefData.widthHint = size.x / 3;
+		chosenPrefData.widthHint = size.x / 3;
+		coursesData.widthHint = size.x - (prefData.widthHint + chosenPrefData.widthHint);
 		this.allPrefrences.setLayoutData(prefData);
 		this.chosenPrefrences.setLayoutData(chosenPrefData);
 		this.courses.setLayoutData(coursesData);
 
-		}
-	
+	}
+
 	/**
 	 * This method closes a Shell if the user confirms it (by pressing YES button)
 	 */
@@ -131,6 +135,7 @@ public class GuiPref {
 		}
 		return false;
 	}
+
 	/**
 	 * This method closes the display.
 	 */
@@ -144,77 +149,103 @@ public class GuiPref {
 			System.exit(0);
 		}
 	}
-	private void setCompositePreferenceTable(Composite parentComposite,Composite content, String headerText, Image logo) {
+
+	private Table setCompositePreferenceTable(Composite parentComposite, Composite content, String headerText,
+			Image logo) {
 		parentComposite.setLayout(new GridLayout(1, true));
-		
+
 		Composite header = new Composite(content, SWT.NONE);
 		header.setLayout(new GridLayout(2, false));
 		Label labelImg = new Label(header, SWT.LEFT);
 		labelImg.setImage(logo);
 		Label txt = new Label(header, SWT.RIGHT);
 		txt.setText(headerText);
-		
-		
+
 		content.setLayout(new GridLayout(1, false));
 
-		Table t = new Table(content,SWT.BORDER | SWT.V_SCROLL);
+		Table t = new Table(content, SWT.BORDER | SWT.V_SCROLL);
 		GridData gd_table = new GridData(SWT.FILL, SWT.FILL, true, true);
-		//à modifier pour qu'elle s'adapte automatiquement!!!!
-        gd_table.heightHint = 400;
-        t.setLayoutData(gd_table);
-        
+		// à modifier pour qu'elle s'adapte automatiquement!!!!
+		gd_table.heightHint = 400;
+		t.setLayoutData(gd_table);
 
 		TableColumn teacher = new TableColumn(t, SWT.NONE);
 		TableColumn course = new TableColumn(t, SWT.NONE);
 		TableColumn groupType = new TableColumn(t, SWT.NONE);
 		TableColumn choice = new TableColumn(t, SWT.NONE);
-		
 
 		teacher.setText("Teacher");
 		course.setText("Course");
 		groupType.setText("Group type");
 		choice.setText("Choice");
 
-
 		teacher.setWidth(70);
 		course.setWidth(70);
 		groupType.setWidth(70);
 		choice.setWidth(70);
-
 		t.setHeaderVisible(true);
-		// à modifier !!!!!!!
-		for(Integer i=0;i<50;i++) {
-			LinkedHashMap<TableItem,CoursePref> mapPreference=new LinkedHashMap<>();
-			TableItem item = new TableItem(t, SWT.NONE);
-			item.setText(new String[] {"testTeacher","testCourse","testGroup","testchoice"});
+		
+		return t;
+	}
+	
+	private void addListenerPreferences(Table source, Table target) {
+		source.addListener(SWT.MouseDoubleClick, new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				Point pt = new Point(event.x, event.y);
+	            TableItem item = source.getItem(pt);
+	            if (item != null) {
+	            	ArrayList<String> texts = new ArrayList<>();
+	            	int i = 0;
+	            	while (item.getText(i) != "") {
+	            		texts.add(item.getText(i));
+	            		i += 1;
+	            	}
+	            	String[] textToSet = new String[texts.size()];
+	            	for (i = 0; i < textToSet.length; i++) {
+	            		textToSet[i] = texts.get(i);
+	            	}
+	            	
+	            	TableItem newItem = new TableItem(target, SWT.NONE);
+	                newItem.setText(textToSet);
+	                item.dispose();
+	            }
+			}
+		});
+	}
+	
+	private void populateTables(Table allPreferencesTable, Table chosenPreferencesTable) {
+		for (Integer i = 0; i < 20; i++) {
+			TableItem item = new TableItem(allPreferencesTable, SWT.NONE);
+			item.setText(new String[] { "testTeacher", "testCourse", "testGroup", "testchoice" });
 		}
 	}
-	private void setCompositeCourseTable(Composite parentComposite,Composite content, String headerText, Image logo) {
+
+	private void setCompositeCourseTable(Composite parentComposite, Composite content, String headerText, Image logo) {
 		parentComposite.setLayout(new GridLayout(1, true));
-		
+
 		Composite header = new Composite(content, SWT.NONE);
 		header.setLayout(new GridLayout(2, false));
 		Label labelImg = new Label(header, SWT.LEFT);
 		labelImg.setImage(logo);
 		Label txt = new Label(header, SWT.RIGHT);
 		txt.setText(headerText);
-		
+
 		content.setLayout(new GridLayout(1, false));
 
 		Table t = new Table(content, SWT.BORDER | SWT.V_SCROLL);
 		GridData gd_table = new GridData(SWT.FILL, SWT.FILL, true, true);
-		//à modifier pour qu'elle s'adapte automatiquement!!!!
-        gd_table.heightHint = 400;
-        t.setLayoutData(gd_table);
-		
+		// à modifier pour qu'elle s'adapte automatiquement!!!!
+		gd_table.heightHint = 400;
+		t.setLayoutData(gd_table);
+
 		TableColumn course = new TableColumn(t, SWT.NONE);
 		TableColumn groupType = new TableColumn(t, SWT.NONE);
 		TableColumn count = new TableColumn(t, SWT.NONE);
-		
+
 		course.setText("Course");
 		groupType.setText("Group type");
 		count.setText("Count");
-
 
 		course.setWidth(70);
 		groupType.setWidth(90);
@@ -222,28 +253,33 @@ public class GuiPref {
 
 		t.setHeaderVisible(true);
 		// à modifier !!!!!!!
-			TableItem item = new TableItem(t, SWT.NONE);
-			item.setText(new String[] {"testCourse","testGroup","testcount"});
+		TableItem item = new TableItem(t, SWT.NONE);
+		item.setText(new String[] { "testCourse", "testGroup", "testcount" });
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void setAndCreateBoutonSubmit() {
-		//skip two columns of the grid ,expliquer le supess warning
-		
+		// skip two columns of the grid ,expliquer le supess warning
+
 		new Label(shell, SWT.NONE);
 		new Label(shell, SWT.NONE);
-		
+
 		submit = new Composite(shell, SWT.NONE);
 		GridLayout gl = new GridLayout(1, true);
 		submit.setLayout(gl);
 		submit.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
 		// Button to submit the preferences for a specified course
 		Button buttonSubmit;
-		
+
 		buttonSubmit = new Button(submit, SWT.NONE);
 		buttonSubmit.setText("Submit ");
-
-
+		
+		buttonSubmit.addListener(SWT.MouseDown, new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				//TODO: lancer la fonction adéquate
+			}
+		});
 	}
-	
+
 }
