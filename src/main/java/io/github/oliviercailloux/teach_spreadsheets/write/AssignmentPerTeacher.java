@@ -131,8 +131,7 @@ public class AssignmentPerTeacher {
 			teachersAssigned = ca.getTeacherAssignments();
 			for (TeacherAssignment ta : teachersAssigned) {
 
-				if (teacher.getFirstName().equals(ta.getTeacher().getFirstName())
-						&& teacher.getLastName().equals(ta.getTeacher().getLastName())) {
+				if (teacher.equals(ta.getTeacher())) {
 					coursesAssigned.add(ca.getCourse());
 
 				}
@@ -204,8 +203,7 @@ public class AssignmentPerTeacher {
 
 			for (TeacherAssignment ta : teachersAssigned) {
 
-				if (teacher.getFirstName().equals(ta.getTeacher().getFirstName())
-						&& teacher.getLastName().equals(ta.getTeacher().getLastName())) {
+				if (teacher.equals(ta.getTeacher())) {
 					courseAssigned = ca.getCourse();
 
 					ods.setValueAt(courseAssigned.getStudyYear(), line, 0);
@@ -222,6 +220,8 @@ public class AssignmentPerTeacher {
 		line += 3;
 		ods.setValueAt("TOTAL", line, 3);
 		ods.setValueAt(String.valueOf(totalNumberMinutes), line, 4);
+		
+		totalNumberMinutes = 0;
 		
 		document.save("target//AssignmentPerTeacher.ods");
 
