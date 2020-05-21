@@ -56,7 +56,7 @@ The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
 *CoursePref* represents preferences from a teacher for a specified course.
 We'll add getters in the classes as we work on them because it's hard to know exactly what we will need.
 
-== Gui classes
+== Gui classes :
 image::Images\Class_Gui.png[width="800", height="950"]
 
 The GuiPref class creates the shell and manages it. 
