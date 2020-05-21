@@ -419,6 +419,8 @@
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_zMLY8JuXEeqi_K2iLQMdMg" name="OdsSummarizer"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_21gQEJuXEeqi_K2iLQMdMg" name="AssignmentPerTeacher"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_i4FkMJs7EeqkfLOOhPUFxQ" name="Gui">
         <packagedElement xmi:type="uml:Class" xmi:id="_ki1OwJs7EeqkfLOOhPUFxQ" name="GuiPref">
