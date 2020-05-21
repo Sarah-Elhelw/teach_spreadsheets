@@ -115,30 +115,25 @@ public class AssignmentPerTeacher {
 	}
 
 	/**
-	 * This method finds the courses assigned to the teacher
+	 * This method finds the teachers assignments where the teacher appears
 	 * 
 	 * @param teacher            The teacher we want to complete the Fichedeservice
 	 * @param allCoursesAssigned A complete set of CourseAssignment
-	 * @return a set of Courses assigned to the teacher
+	 * @return a set of assignments of the teacher
 	 */
-	private static Set<Course> findCoursesAssigned(Teacher teacher, Set<CourseAssignment> allCoursesAssigned) {
+	private static Set<TeacherAssignment> findTeacherAssignments(Teacher teacher, Set<CourseAssignment> allCoursesAssigned) {
 
-		Set<Course> coursesAssigned = new LinkedHashSet<>();
-		Set<TeacherAssignment> teachersAssigned;
+		Set<TeacherAssignment> assignments = new LinkedHashSet<>();		
 
 		for (CourseAssignment ca : allCoursesAssigned) {
-
-			teachersAssigned = ca.getTeacherAssignments();
-			for (TeacherAssignment ta : teachersAssigned) {
-
+			for (TeacherAssignment ta : ca.getTeacherAssignments()) {
 				if (teacher.equals(ta.getTeacher())) {
-					coursesAssigned.add(ca.getCourse());
-
+					assignments.add(ta);
 				}
 			}
 		}
 
-		return coursesAssigned;
+		return assignments;
 
 	}
 
@@ -154,13 +149,13 @@ public class AssignmentPerTeacher {
 	 * @return the updated index of line
 	 */
 
-	private static int completeCourses(OdsHelper ods, int line, TeacherAssignment ta, Course courseAssigned,
+	private static int completeCourses(OdsHelper ods, int line, TeacherAssignment ta,
 			String group) {
 
 		if (ta.getCountGroups(group) != 0) {
 			ods.setValueAt(group, line, 3);
-			ods.setValueAt(String.valueOf(courseAssigned.getNbMinutes(group)), line, 4);
-			totalNumberMinutes += courseAssigned.getNbMinutes(group);
+			ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group)), line, 4);
+			totalNumberMinutes += ta.getCourse().getNbMinutes(group);
 			line++;
 		}
 		return line;
@@ -192,28 +187,16 @@ public class AssignmentPerTeacher {
 		int line = 16;
 		totalNumberMinutes = 0;
 
-		Set<TeacherAssignment> teachersAssigned;
-		Course courseAssigned;
+		Set<TeacherAssignment> assignments = findTeacherAssignments(teacher, allCoursesAssigned);
+		
+		for (TeacherAssignment ta : assignments) {
+			
+			ods.setValueAt(ta.getCourse().getStudyYear(), line, 0);
+			ods.setValueAt(String.valueOf(ta.getCourse().getSemester()), line, 1);
+			ods.setValueAt(ta.getCourse().getName(), line, 2);
 
-		Set<Course> coursesAssigned = findCoursesAssigned(teacher, allCoursesAssigned);
-
-		for (CourseAssignment ca : allCoursesAssigned) {
-
-			teachersAssigned = ca.getTeacherAssignments();
-
-			for (TeacherAssignment ta : teachersAssigned) {
-
-				if (teacher.equals(ta.getTeacher())) {
-					courseAssigned = ca.getCourse();
-
-					ods.setValueAt(courseAssigned.getStudyYear(), line, 0);
-					ods.setValueAt(String.valueOf(courseAssigned.getSemester()), line, 1);
-					ods.setValueAt(courseAssigned.getName(), line, 2);
-
-					for (String group : GROUPS) {
-						line = completeCourses(ods, line, ta, courseAssigned, group);
-					}
-				}
+			for (String group : GROUPS) {
+				line = completeCourses(ods, line, ta, group);
 			}
 		}
 
