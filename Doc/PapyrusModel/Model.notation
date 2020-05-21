@@ -1790,17 +1790,9 @@
           <element xmi:type="uml:Operation" href="Model.uml#_K0cDIIehEeq_vJIT4Zoedw"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_K3qWQYehEeq_vJIT4Zoedw"/>
         </children>
-        <children xmi:type="notation:Shape" xmi:id="_VxpXkIehEeq_vJIT4Zoedw" type="Operation_ClassOperationLabel">
-          <element xmi:type="uml:Operation" href="Model.uml#_Vxj4AIehEeq_vJIT4Zoedw"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_VxpXkYehEeq_vJIT4Zoedw"/>
-        </children>
         <children xmi:type="notation:Shape" xmi:id="_AnAJUIeiEeq_vJIT4Zoedw" type="Operation_ClassOperationLabel">
           <element xmi:type="uml:Operation" href="Model.uml#_Am6pwIeiEeq_vJIT4Zoedw"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_AnAJUYeiEeq_vJIT4Zoedw"/>
-        </children>
-        <children xmi:type="notation:Shape" xmi:id="_eSQRQIeiEeq_vJIT4Zoedw" type="Operation_ClassOperationLabel">
-          <element xmi:type="uml:Operation" href="Model.uml#_eSKKoIeiEeq_vJIT4Zoedw"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_eSQRQYeiEeq_vJIT4Zoedw"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_FGCLWIegEeq_vJIT4Zoedw"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_FGCLWYegEeq_vJIT4Zoedw"/>
@@ -1814,7 +1806,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FGCyZIegEeq_vJIT4Zoedw"/>
       </children>
       <element xmi:type="uml:Class" href="Model.uml#_FCjZgIegEeq_vJIT4Zoedw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FEO0gYegEeq_vJIT4Zoedw" x="160" y="180"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FEO0gYegEeq_vJIT4Zoedw" x="220" y="80"/>
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_EF488YegEeq_vJIT4Zoedw" name="diagram_compatibility_version" stringValue="1.4.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_EF488oegEeq_vJIT4Zoedw"/>
