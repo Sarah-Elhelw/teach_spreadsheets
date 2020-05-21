@@ -433,6 +433,13 @@
           <ownedOperation xmi:type="uml:Operation" xmi:id="_tFJYoJs8EeqkfLOOhPUFxQ" name="setCompositePreferenceTable" visibility="private"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_vq7IEJs8EeqkfLOOhPUFxQ" name="setCompositeCourseTable" visibility="private"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_yJqbYJs8EeqkfLOOhPUFxQ" name="setAndCreateBoutonSubmit" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_PyyewJtxEeqdz4L_R9L93Q" name="populatePreferencesTable" visibility="private">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_PyyewZtxEeqdz4L_R9L93Q" name="allPreferencesTable" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_jjwH0JtxEeqdz4L_R9L93Q" name="addListenerPreferences" visibility="private">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_jjwH0ZtxEeqdz4L_R9L93Q" name="allPreferencesTable" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_jjwH0ptxEeqdz4L_R9L93Q" name="chosenPreferencesTable" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
+          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_mYyDwJs7EeqkfLOOhPUFxQ" name="GuiLib">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_itiPIJs9EeqkfLOOhPUFxQ" name="extractPreferenceItems">
