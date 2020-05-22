@@ -59,9 +59,22 @@ We'll add getters in the classes as we work on them because it's hard to know ex
 == Gui classes :
 image::Images\Class_Gui.PNG[width="979", height="390"]
 
-The GuiPref class creates the shell and manages it. 
-The GuiLib class links the gui with the rest of the classes. The function extractPreferenceItems converts the preference information contained in CalcData instances into items that can be inserted in the tables of the gui (left or middle table).
+The View class creates the shell and manages it. 
+For the Controller: The function extractPreferenceItems converts the preference information contained in CalcData instances into items that can be inserted in the tables of the gui (left or middle table).
 The function createAssignments generates the assignment instances after the the user has validated his choices (by clicking on submit in the gui).
+
+Here is the process : 
+At first View sends a signal to Model to set its Data (setData operation in Model), then View populates its tables thanks to updatePreferencesTables operation.
+
+Model contains the preferences that are supposed to be shown in the UI : allPreferencesData for the left column and chosenPreferencesData for the column in the middle (see image of the UI at the end of this document). At the start of the program, chosenPreferencesData is empty.
+
+The View implements listeners that call the callbackListener operation from Controller, when a preference has been double clicked to move it from one column to the other.
+
+The Controller :
+- sends a signal to Model to update its data according to the preference that has been clicked (updatePreferences operation in Model).
+- sends a signal to View to update its tables according to the new data from Model (updatePreferencesTables operation in View).
+
+We have tried our best to follow the MVC architecture.
 
 == Ods Reader classes :
 image::Images\Class_ODS_Read.PNG[width="1360", height="801"]

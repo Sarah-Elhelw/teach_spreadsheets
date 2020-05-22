@@ -63,6 +63,8 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_FRQz0Js8EeqkfLOOhPUFxQ" name="Gui">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_5jHxsJs7EeqkfLOOhPUFxQ" name="use" client="_ki1OwJs7EeqkfLOOhPUFxQ" supplier="_mYyDwJs7EeqkfLOOhPUFxQ"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_CTfzwJxQEeqP0PGWWkkdZQ" name="use" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_mYyDwJs7EeqkfLOOhPUFxQ"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_FtuXkJxTEeqP0PGWWkkdZQ" name="use" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_T5jLgJs_EeqkfLOOhPUFxQ"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_K_8HYHDKEequm7xLIeERRg" name="Classes">
@@ -421,22 +423,17 @@
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_i4FkMJs7EeqkfLOOhPUFxQ" name="Gui">
-        <packagedElement xmi:type="uml:Class" xmi:id="_ki1OwJs7EeqkfLOOhPUFxQ" name="GuiPref">
+        <packagedElement xmi:type="uml:Class" xmi:id="_ki1OwJs7EeqkfLOOhPUFxQ" name="View">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_bCoOYJs8EeqkfLOOhPUFxQ" name="initializeGui"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_htRhcJs8EeqkfLOOhPUFxQ" name="createPrefShell" visibility="private"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_leM1YJs8EeqkfLOOhPUFxQ" name="exitShell" visibility="private"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_tFJYoJs8EeqkfLOOhPUFxQ" name="setCompositePreferenceTable" visibility="private"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_vq7IEJs8EeqkfLOOhPUFxQ" name="setCompositeCourseTable" visibility="private"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_yJqbYJs8EeqkfLOOhPUFxQ" name="setAndCreateBoutonSubmit" visibility="private"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_PyyewJtxEeqdz4L_R9L93Q" name="populatePreferencesTable" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_PyyewZtxEeqdz4L_R9L93Q" name="allPreferencesTable" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_jjwH0JtxEeqdz4L_R9L93Q" name="addListenerPreferences" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_jjwH0ZtxEeqdz4L_R9L93Q" name="allPreferencesTable" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_jjwH0ptxEeqdz4L_R9L93Q" name="chosenPreferencesTable" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
-          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_jjwH0JtxEeqdz4L_R9L93Q" name="addListenerPreferences" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_2L-TMJxNEeqP0PGWWkkdZQ" name="updatePreferencesTables" visibility="public"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_mYyDwJs7EeqkfLOOhPUFxQ" name="GuiLib">
+        <packagedElement xmi:type="uml:Class" xmi:id="_mYyDwJs7EeqkfLOOhPUFxQ" name="Controller">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_itiPIJs9EeqkfLOOhPUFxQ" name="extractPreferenceItems">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_itiPIZs9EeqkfLOOhPUFxQ" name="table" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_itiPIps9EeqkfLOOhPUFxQ" name="calcs" type="_0YeooGYQEeqq2pYv3YMNcA"/>
@@ -445,6 +442,25 @@
           <ownedOperation xmi:type="uml:Operation" xmi:id="_zSGNoJs9EeqkfLOOhPUFxQ" name="createAssignments">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_zSGNoZs9EeqkfLOOhPUFxQ" name="tableItems" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_zSGNops9EeqkfLOOhPUFxQ" name="mapPreference"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_br1m8JxOEeqP0PGWWkkdZQ" name="callbackListener">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_sTvNUJxOEeqP0PGWWkkdZQ" name="tableItem" type="_kQBOgJxOEeqP0PGWWkkdZQ"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_3yM0sJxOEeqP0PGWWkkdZQ" name="Model">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_RJZGcJxPEeqP0PGWWkkdZQ" name="allPreferencesData" visibility="private" isStatic="true" type="_bv1kcGIqEeq7OdFZt-_k0Q">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SD0HUJxPEeqP0PGWWkkdZQ"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SEAUkJxPEeqP0PGWWkkdZQ" value="*"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_Wwgf8JxPEeqP0PGWWkkdZQ" name="chosenPreferencesData" visibility="private" isStatic="true" type="_bv1kcGIqEeq7OdFZt-_k0Q">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xs1lUJxPEeqP0PGWWkkdZQ"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xs_9YJxPEeqP0PGWWkkdZQ" value="*"/>
+          </ownedAttribute>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_e40D0JxPEeqP0PGWWkkdZQ" name="setData" isStatic="true"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_0iN1MJxPEeqP0PGWWkkdZQ" name="updatePreferences" isStatic="true">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0iN1MZxPEeqP0PGWWkkdZQ" name="preferenceItem">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
           </ownedOperation>
         </packagedElement>
       </packagedElement>
@@ -620,6 +636,7 @@
     <packagedElement xmi:type="uml:DataType" xmi:id="_CvFKMIcgEeqUqZA2AF_9Pw" name="Table"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_Dbm5wIe0EeqbHs-aXdOJpQ" name="Object"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_F4qgIJs-EeqkfLOOhPUFxQ" name="org.eclipse.swt.widgets.Table"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_kQBOgJxOEeqP0PGWWkkdZQ" name="org.eclipse.swt.widgets.TableItem"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KB-vkGFOEeq7OdFZt-_k0Q">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KCBL0GFOEeq7OdFZt-_k0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
