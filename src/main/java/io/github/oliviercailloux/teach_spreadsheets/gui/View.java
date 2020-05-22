@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -43,8 +44,8 @@ import com.google.common.collect.ImmutableMap;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
-public class GuiPref {
-	private final static Logger LOGGER = LoggerFactory.getLogger(GuiPref.class);
+public class View {
+	private final static Logger LOGGER = LoggerFactory.getLogger(View.class);
 
 	private Display display;
 	private Shell shell;
@@ -56,11 +57,14 @@ public class GuiPref {
 	private Composite allPrefrencesContent = null;
 	private Composite chosenPrefrencesContent = null;
 	private Composite coursesContent = null;
+	
+	private Table allPreferencesTable;
+	private Table chosenPreferencesTable;
 
 	private Composite submit;
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		GuiPref gui = new GuiPref();
+		View gui = new View();
 		gui.initializeGui();
 	}
 
@@ -70,27 +74,28 @@ public class GuiPref {
 		shell.setMaximized(true);
 		shell.setText("Preferences selection");
 		shell.setLayout(new GridLayout(3, false));
-		Image logo = new Image(display, GuiPref.class.getResourceAsStream("configuration.png"));
+		Image logo = new Image(display, View.class.getResourceAsStream("configuration.png"));
 		shell.setImage(logo);
 
 		this.allPrefrences = new Composite(shell, SWT.BORDER);
 		allPrefrencesContent = new Composite(allPrefrences, SWT.NONE);
-		Image logoAllPreferences = new Image(display, GuiPref.class.getResourceAsStream("paper.png"));
-		Table allPreferencesTable = setCompositePreferenceTable(allPrefrences, allPrefrencesContent, "All preferences", logoAllPreferences);
+		Image logoAllPreferences = new Image(display, View.class.getResourceAsStream("paper.png"));
+		allPreferencesTable = setCompositePreferenceTable(allPrefrences, allPrefrencesContent, "All preferences", logoAllPreferences);
 
 		this.chosenPrefrences = new Composite(shell, SWT.BORDER);
 		chosenPrefrencesContent = new Composite(chosenPrefrences, SWT.NONE);
-		Image logoChosenPrefrences = new Image(display, GuiPref.class.getResourceAsStream("check.png"));
-		Table chosenPreferencesTable = setCompositePreferenceTable(chosenPrefrences, chosenPrefrencesContent, "Chosen preferences",
+		Image logoChosenPrefrences = new Image(display, View.class.getResourceAsStream("check.png"));
+		chosenPreferencesTable = setCompositePreferenceTable(chosenPrefrences, chosenPrefrencesContent, "Chosen preferences",
 				logoChosenPrefrences);
 		
-		populateTables(allPreferencesTable, chosenPreferencesTable);
-		addListenerPreferences(allPreferencesTable, chosenPreferencesTable);
-		addListenerPreferences(chosenPreferencesTable, allPreferencesTable);
+		Model.setData();
+		updatePreferences();
+		addListenerPreferences(allPreferencesTable, true);
+		addListenerPreferences(chosenPreferencesTable, false);
 
 		this.courses = new Composite(shell, SWT.BORDER);
 		coursesContent = new Composite(courses, SWT.NONE);
-		Image logoCourses = new Image(display, GuiPref.class.getResourceAsStream("education.png"));
+		Image logoCourses = new Image(display, View.class.getResourceAsStream("education.png"));
 		setCompositeCourseTable(courses, coursesContent, "Courses", logoCourses);
 
 		prefShell();
@@ -105,6 +110,24 @@ public class GuiPref {
 
 		display.dispose();
 		LOGGER.info("Display well closed");
+	}
+	
+	private static void addListenerPreferences(Table source, boolean toChosenPreferences)  {
+		source.addListener(SWT.MouseDoubleClick, new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				Point pt = new Point(event.x, event.y);
+				TableItem item = source.getItem(pt);
+				Controller.callbackListener(item, toChosenPreferences);
+			}
+		});
+	}
+	
+	/**
+	 * Récupère allPreferences et chosenPreferences dans Model pour mettre à jour les tableaux
+	 */
+	public static void updatePreferences() {
+		
 	}
 
 	private void prefShell() {
@@ -186,39 +209,6 @@ public class GuiPref {
 		t.setHeaderVisible(true);
 		
 		return t;
-	}
-	
-	private void addListenerPreferences(Table source, Table target) {
-		source.addListener(SWT.MouseDoubleClick, new Listener() {
-			@Override
-			public void handleEvent(Event event) {
-				Point pt = new Point(event.x, event.y);
-	            TableItem item = source.getItem(pt);
-	            if (item != null) {
-	            	ArrayList<String> texts = new ArrayList<>();
-	            	int i = 0;
-	            	while (item.getText(i) != "") {
-	            		texts.add(item.getText(i));
-	            		i += 1;
-	            	}
-	            	String[] textToSet = new String[texts.size()];
-	            	for (i = 0; i < textToSet.length; i++) {
-	            		textToSet[i] = texts.get(i);
-	            	}
-	            	
-	            	TableItem newItem = new TableItem(target, SWT.NONE);
-	                newItem.setText(textToSet);
-	                item.dispose();
-	            }
-			}
-		});
-	}
-	
-	private void populateTables(Table allPreferencesTable, Table chosenPreferencesTable) {
-		for (Integer i = 0; i < 20; i++) {
-			TableItem item = new TableItem(allPreferencesTable, SWT.NONE);
-			item.setText(new String[] { "testTeacher", "testCourse", "testGroup", "testchoice" });
-		}
 	}
 
 	private void setCompositeCourseTable(Composite parentComposite, Composite content, String headerText, Image logo) {
