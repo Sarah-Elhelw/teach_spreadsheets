@@ -64,6 +64,7 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_FRQz0Js8EeqkfLOOhPUFxQ" name="Gui">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_5jHxsJs7EeqkfLOOhPUFxQ" name="use" client="_ki1OwJs7EeqkfLOOhPUFxQ" supplier="_mYyDwJs7EeqkfLOOhPUFxQ"/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_RefbQJwkEeqnwtyuSDALCg" name="Write"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_K_8HYHDKEequm7xLIeERRg" name="Classes">
       <packagedElement xmi:type="uml:Package" xmi:id="_nX8wEIcWEeqUqZA2AF_9Pw" name="BaseAndAssignment">
