@@ -48,7 +48,7 @@ public class AssignmentPerTeacherTests {
 
 		Course course1 = courseBuilder1.build();
 
-		TeacherAssignment teacherAssignment = TeacherAssignment.Builder.newInstance(teacher1).setCountGroupsTD(1)
+		TeacherAssignment teacherAssignment = TeacherAssignment.Builder.newInstance(course1, teacher1).setCountGroupsTD(1)
 				.build();
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course1);
 		courseAssignmentBuilder.addTeacherAssignment(teacherAssignment);

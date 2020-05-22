@@ -2,9 +2,6 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.Objects;
-
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
@@ -72,34 +69,6 @@ public class Course {
 
 	public int getCountGroupsCM() {
 		return countGroupsCM;
-	}
-	
-	/**
-	 * This method is a standardized getter for the groups.
-	 * 
-	 * @param group - the name of the group whose number we want to get.
-	 * 
-	 * @return - the number of CM or TD or TP or CMTD or CMTP groups depending on
-	 *         the value of the parameter group.
-	 * 
-	 * @throws IllegalArgumentException if group is not equal to "CM" or "TD" or
-	 *                                  "TP" or "CMTD" or "CMTP".
-	 */
-	public int getCountGroups(String group) {
-		switch (group) {
-		case "CM":
-			return getCountGroupsCM();
-		case "TD":
-			return getCountGroupsTD();
-		case "TP":
-			return getCountGroupsTP();
-		case "CMTD":
-			return getCountGroupsCMTD();
-		case "CMTP":
-			return getCountGroupsCMTP();
-		default:
-			throw new IllegalArgumentException("The argument must be CM, TD, TP, CMTD or CMTP.");
-		}
 	}
 
 	public int getNbMinutesTD() {
@@ -256,29 +225,6 @@ public class Course {
 			return this;
 		}
 	}
-	
-	@Override
-	public boolean equals(Object o2) {
-		if (!(o2 instanceof Course)) {
-			return false;
-		}
-		if (this == o2) {
-			return true;
-		}
-		Course c2 = (Course) o2;
-		/**
-		 * We consider that two courses are equal if they have the same name. As the
-		 * number of groups may vary from a year to another, we also consider the study
-		 * year to determine if have two same courses.
-		 */
-		return name.equals(c2.name) && studyYear.equals(c2.studyYear);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(name, studyYear);
-	}
-	
 	
 	@Override
 	public String toString() {

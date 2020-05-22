@@ -8,9 +8,7 @@ import org.odftoolkit.simple.table.Table;
 
 import com.google.common.collect.ImmutableList;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
-
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 
