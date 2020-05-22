@@ -80,36 +80,37 @@ public class AssignmentPerTeacher {
 	 */
 	private static void formatHeaders(Table table) {
 		checkNotNull(table, "The sheet should not be null.");
-		
+
 		Set<String> headersPositions = Set.of(TEACHER_FIRST_NAME_POSITION, TEACHER_LAST_NAME_POSITION, STATUS_POSITION,
 				OFFICE_POSITION, PERSONAL_EMAIL_POSITION, DAUPHINE_EMAIL_POSITION, PERSONAL_PHONE_POSITION,
 				MOBILE_PHONE_POSITION, DAUPHINE_PHONE_NUMBER_POSITION);
-		
+
 		Set<String> valuesPositions = Set.of(TEACHER_FIRST_NAME_POSITION_VALUE, TEACHER_LAST_NAME_POSITION_VALUE,
 				STATUS_POSITION_VALUE, OFFICE_POSITION_VALUE, PERSONAL_EMAIL_POSITION_VALUE,
 				DAUPHINE_EMAIL_POSITION_VALUE, PERSONAL_PHONE_POSITION_VALUE, MOBILE_PHONE_POSITION_VALUE,
 				DAUPHINE_PHONE_NUMBER_POSITION_VALUE);
-		
-		Set<String> titlesPositions = Set.of(TITLE_POSITION, YEAR_POSITION, SEMESTER_POSITION, COURSE_POSITION, TYPE_POSITION, NUMBER_HOURS_POSITION);
-		
+
+		Set<String> titlesPositions = Set.of(TITLE_POSITION, YEAR_POSITION, SEMESTER_POSITION, COURSE_POSITION,
+				TYPE_POSITION, NUMBER_HOURS_POSITION);
+
 		for (String position : headersPositions) {
 			table.getCellByPosition(position).setFont(new Font("Arial", FontStyle.BOLD, 9.0, Color.BLACK));
 		}
-		
+
 		for (String position : valuesPositions) {
 			table.getCellByPosition(position).setBorders(CellBordersType.ALL_FOUR,
 					new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		}
-		
+
 		for (String position : titlesPositions) {
 			table.getCellByPosition(position).setFont(new Font("Arial", FontStyle.BOLD, 12.0, new Color(42, 96, 153)));
 			if (!position.contentEquals(TITLE_POSITION)) {
 				table.getCellByPosition(position).setHorizontalAlignment(HorizontalAlignmentType.CENTER);
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * This method adds the headers to this new document.
 	 * 
@@ -122,8 +123,8 @@ public class AssignmentPerTeacher {
 	 */
 	private static void headersToOds(Table table, Teacher teacher) {
 		checkNotNull(table, "The sheet should not be null.");
-		checkNotNull(teacher,"The teacher should not be null.");
-		
+		checkNotNull(teacher, "The teacher should not be null.");
+
 		table.getCellByPosition(TITLE_POSITION).setStringValue("Assignment per Teacher");
 
 		table.getCellByPosition(TEACHER_FIRST_NAME_POSITION).setStringValue("FIRST NAME");
@@ -162,7 +163,7 @@ public class AssignmentPerTeacher {
 		table.getCellByPosition(TYPE_POSITION).setStringValue("TYPE");
 
 		table.getCellByPosition(NUMBER_HOURS_POSITION).setStringValue("Nbr H");
-		
+
 		formatHeaders(table);
 	}
 
@@ -176,11 +177,12 @@ public class AssignmentPerTeacher {
 	 * 
 	 * @throws NullPointerException if a parameter is null
 	 */
-	private static Set<TeacherAssignment> findTeacherAssignments(Teacher teacher, Set<CourseAssignment> allCoursesAssigned) {
+	private static Set<TeacherAssignment> findTeacherAssignments(Teacher teacher,
+			Set<CourseAssignment> allCoursesAssigned) {
 		checkNotNull(teacher, "The teacher should not be null.");
 		checkNotNull(allCoursesAssigned, "The set of courses assigned must not be null.");
-		
-		Set<TeacherAssignment> assignments = new LinkedHashSet<>();		
+
+		Set<TeacherAssignment> assignments = new LinkedHashSet<>();
 
 		for (CourseAssignment ca : allCoursesAssigned) {
 			for (TeacherAssignment ta : ca.getTeacherAssignments()) {
@@ -209,34 +211,33 @@ public class AssignmentPerTeacher {
 	 * @throws NullPointerException if a parameter is null
 	 */
 
-	private static int completeCourses(OdsHelper ods, int line, TeacherAssignment ta,
-			String group) {
+	private static int completeCourses(OdsHelper ods, int line, TeacherAssignment ta, String group) {
 		checkNotNull(ods, "The ods must not be null.");
 		checkNotNull(ta, "The teacher assignment must not be null.");
 		checkNotNull(group, "The group must not be null.");
-		
+
 		if (ta.getCountGroups(group) != 0) {
 			ods.setValueAt(group, line, 3);
-			ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group)/60), line, 4);
-			totalNumberMinutes += ta.getCourse().getNbMinutes(group)/60;
+			ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group) / 60), line, 4);
+			totalNumberMinutes += ta.getCourse().getNbMinutes(group) / 60;
 			line++;
 		}
 		return line;
 	}
-	
+
 	/**
 	 * This method draws the main table in the file Fiche de service.
 	 * 
 	 * @param table - the sheet where the table is
-	 * @param line - the line where the table starts
+	 * @param line  - the line where the table starts
 	 * 
 	 * @throws NullPointerException if the table is null
 	 */
 	private static void drawTable(Table table, int line) {
 		checkNotNull(table, "The sheet should not be null.");
-		
-		for(int j = 0; j <= 4; j++) {
-			for(int i = 15; i < line; i++) {
+
+		for (int j = 0; j <= 4; j++) {
+			for (int i = 15; i < line; i++) {
 				table.getCellByPosition(j, i).setBorders(CellBordersType.ALL_FOUR,
 						new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 			}
@@ -255,7 +256,7 @@ public class AssignmentPerTeacher {
 	 *                           assigned
 	 * @return A document completed with all the courses a specific teacher will
 	 *         teach
-	 *         
+	 * 
 	 * @throws IOException if the document could not be correctly completed
 	 */
 
@@ -264,7 +265,7 @@ public class AssignmentPerTeacher {
 
 		checkNotNull(teacher, "The teacher must not be null.");
 		checkNotNull(allCoursesAssigned, "The set of courses assigned must not be null.");
-		
+
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
 		OdsHelper ods = OdsHelper.newInstance(summary);
@@ -274,9 +275,9 @@ public class AssignmentPerTeacher {
 		totalNumberMinutes = 0;
 
 		Set<TeacherAssignment> assignments = findTeacherAssignments(teacher, allCoursesAssigned);
-		
+
 		for (TeacherAssignment ta : assignments) {
-			
+
 			ods.setValueAt(ta.getCourse().getStudyYear(), line, 0);
 			ods.setValueAt(String.valueOf(ta.getCourse().getSemester()), line, 1);
 			ods.setValueAt(ta.getCourse().getName(), line, 2);
@@ -287,18 +288,18 @@ public class AssignmentPerTeacher {
 		}
 
 		drawTable(summary, line);
-		
+
 		line += 3;
-		
+
 		ods.setValueAt("TOTAL", line, 3);
 		summary.getCellByPosition(3, line).setFont(new Font("Arial", FontStyle.BOLD, 12.0, new Color(42, 96, 153)));
-		
+
 		ods.setValueAt(String.valueOf(totalNumberMinutes), line, 4);
 		summary.getCellByPosition(4, line).setBorders(CellBordersType.ALL_FOUR,
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		
+
 		totalNumberMinutes = 0;
-		
+
 		return document;
 	}
 
