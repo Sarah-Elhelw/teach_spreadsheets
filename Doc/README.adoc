@@ -80,7 +80,7 @@ The class AssignmentPerTeacher creates a Calc like link:Documents\Fiche_de_servi
 The class OdsSummarizer creates a Calc like link:Documents\FichierAgrege.pdf[“FichierAgrege.pdf”]. This document shows all the teachers' preferences for a list of courses. Also, if desired, this class can complete the column Assignment in order to show the possible Assignments our program suggest to do.
 
 
-You can see what the final result will look like in this files :  link:Documents\AssigmentPerTeacher.ods[“AssigmentPerTeacher.ods”] and link:Documents\OdsSummarizer.ods[“OdsSummarizer.ods”]. +
+You can see what the final result will look like in this files :  link:Documents\AssignmentPerTeacher.ods[“AssignmentPerTeacher.ods”] and link:Documents\OdsSummarizer.ods[“OdsSummarizer.ods”]. +
 
 The class OdsHelper has some useful functionalities that we use in the two other writing classes.
 
