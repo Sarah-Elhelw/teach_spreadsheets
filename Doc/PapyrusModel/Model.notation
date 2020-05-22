@@ -1864,7 +1864,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fIMQyZuYEeqoL5c5DKW5Kw"/>
       </children>
       <element xmi:type="uml:Class" href="Model.uml#_zMLY8JuXEeqi_K2iLQMdMg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fILCoZuYEeqoL5c5DKW5Kw" x="800" y="280"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fILCoZuYEeqoL5c5DKW5Kw" x="780" y="280"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_gylWAJuYEeqoL5c5DKW5Kw" type="Class_Shape">
       <children xmi:type="notation:DecorationNode" xmi:id="_gylWApuYEeqoL5c5DKW5Kw" type="Class_NameLabel"/>
