@@ -55,8 +55,9 @@ Model contains the preferences that are supposed to be shown in the UI : allPref
 The View implements listeners that call the callbackListener operation from Controller, when a preference has been double clicked to move it from one column to the other.
 
 The Controller :
-- sends a signal to Model to update its data according to the preference that has been clicked (updatePreferences operation in Model).
-- sends a signal to View to update its tables according to the new data from Model (updatePreferencesTables operation in View).
+
+* sends a signal to Model to update its data according to the preference that has been clicked (updatePreferences operation in Model).
+* sends a signal to View to update its tables according to the new data from Model (updatePreferencesTables operation in View).
 
 We have tried our best to follow the MVC architecture.
 
