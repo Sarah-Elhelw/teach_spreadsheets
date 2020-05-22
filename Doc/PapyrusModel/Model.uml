@@ -507,6 +507,8 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_C1qH4JubEeqoL5c5DKW5Kw" name="doc" type="_UJcaMIceEeqUqZA2AF_9Pw" direction="return"/>
           </ownedOperation>
         </packagedElement>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_Fg6jEJwxEeqwT532HYtLXQ" client="_21gQEJuXEeqi_K2iLQMdMg" supplier="_FCjZgIegEeq_vJIT4Zoedw"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_Hl0aEJwxEeqwT532HYtLXQ" client="_zMLY8JuXEeqi_K2iLQMdMg" supplier="_FCjZgIegEeq_vJIT4Zoedw"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_i4FkMJs7EeqkfLOOhPUFxQ" name="Gui">
         <packagedElement xmi:type="uml:Class" xmi:id="_ki1OwJs7EeqkfLOOhPUFxQ" name="GuiPref">
