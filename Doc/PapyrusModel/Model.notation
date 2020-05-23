@@ -1553,11 +1553,7 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_XDTxw5s_EeqkfLOOhPUFxQ" type="Class_FloatingNameLabel">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_XDTxxJs_EeqkfLOOhPUFxQ" y="15"/>
       </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_XDTxxZs_EeqkfLOOhPUFxQ" type="Class_AttributeCompartment">
-        <children xmi:type="notation:Shape" xmi:id="_K4sHoJtCEeqkfLOOhPUFxQ" type="Property_ClassAttributeLabel">
-          <element xmi:type="uml:Property" href="Model.uml#_Z9QIcJtBEeqkfLOOhPUFxQ"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_K4sHoZtCEeqkfLOOhPUFxQ"/>
-        </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_XDTxxZs_EeqkfLOOhPUFxQ" visible="false" type="Class_AttributeCompartment">
         <styles xmi:type="notation:TitleStyle" xmi:id="_XDTxxps_EeqkfLOOhPUFxQ"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_XDTxx5s_EeqkfLOOhPUFxQ"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_XDTxyJs_EeqkfLOOhPUFxQ"/>
@@ -1567,10 +1563,6 @@
         <children xmi:type="notation:Shape" xmi:id="_K4sHoptCEeqkfLOOhPUFxQ" type="Operation_ClassOperationLabel">
           <element xmi:type="uml:Operation" href="Model.uml#_l7lisJtBEeqkfLOOhPUFxQ"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_K4sHo5tCEeqkfLOOhPUFxQ"/>
-        </children>
-        <children xmi:type="notation:Shape" xmi:id="_K4sHpJtCEeqkfLOOhPUFxQ" type="Operation_ClassOperationLabel">
-          <element xmi:type="uml:Operation" href="Model.uml#_GI9CEJtCEeqkfLOOhPUFxQ"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_K4sHpZtCEeqkfLOOhPUFxQ"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_XDTxy5s_EeqkfLOOhPUFxQ"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_XDTxzJs_EeqkfLOOhPUFxQ"/>
@@ -1584,7 +1576,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XDTx05s_EeqkfLOOhPUFxQ"/>
       </children>
       <element xmi:type="uml:Class" href="Model.uml#_T5jLgJs_EeqkfLOOhPUFxQ"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XDTxwZs_EeqkfLOOhPUFxQ" x="180" y="-160" width="480"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_XDTxwZs_EeqkfLOOhPUFxQ" x="180" y="-140" width="480" height="61"/>
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_js6BsYcWEeqUqZA2AF_9Pw" name="diagram_compatibility_version" stringValue="1.4.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_js6BsocWEeqUqZA2AF_9Pw"/>

@@ -323,19 +323,10 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_TPnu0JttEeqdz4L_R9L93Q" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" direction="return"/>
           </ownedOperation>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_T5jLgJs_EeqkfLOOhPUFxQ" name="FilesReader" visibility="public">
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_Z9QIcJtBEeqkfLOOhPUFxQ" name="courses" type="_XVBhkGBfEeq31cSPSR9mAA"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_T5jLgJs_EeqkfLOOhPUFxQ" name="MultipleOdsPrefReader" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_l7lisJtBEeqkfLOOhPUFxQ" name="readFilesFromFolder">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_l7lisZtBEeqkfLOOhPUFxQ" name="pathToFolder" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_w6DXYJttEeqdz4L_R9L93Q" name="calcDataList" type="_0YeooGYQEeqq2pYv3YMNcA" direction="return">
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5VmnYJttEeqdz4L_R9L93Q" value="*"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_GI9CEJtCEeqkfLOOhPUFxQ" name="extractCoursesFromCalcData" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_GI9CEZtCEeqkfLOOhPUFxQ" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_13_4EJttEeqdz4L_R9L93Q" name="courseList" type="_XVBhkGBfEeq31cSPSR9mAA" direction="return">
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_31YKwJttEeqdz4L_R9L93Q" value="*"/>
-            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_w6DXYJttEeqdz4L_R9L93Q" name="aggregatedData" type="_a4w-cGwuEeqdw6kasHCXew" direction="return"/>
           </ownedOperation>
         </packagedElement>
       </packagedElement>
