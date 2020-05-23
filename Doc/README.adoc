@@ -65,7 +65,7 @@ We have tried our best to follow the MVC architecture.
 image::Images\Class_ODS_Read.PNG[{fullWifth}]
 
 The main goal of these classes is to read information from an link:https://github.com/Sarah-Elhelw/teach_spreadsheets/blob/master/Doc/Documents/AA_Saisie_des_voeux_2016-2017.ods[ods file] and create the corresponding CalcData object. The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
-FilesReader reads all the ods files present in a certain folder via the readFilesFromFolder function.After the reading is done and assuming that there was no error, this class can return the Course instances via the getCourses function (not represented in the diagram).
+MultipleOdsPrefReader reads all the ods files present in a certain folder via the readFilesFromFolder function.
 
 
 == Ods Write classes
@@ -93,6 +93,8 @@ The main goal of *JsonReader* is to read teachers and courses informations prese
 
 [[GuiDescription]]
 = Gui description
+
+The aim of this gui is to simplify the assignment process by displaying all the theachers' preferences and the courses in one place.In addition, the user can do the assignment via this gui.
 
 image::Images\gui.png[{fullWifth}]
 
