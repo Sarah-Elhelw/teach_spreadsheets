@@ -9,7 +9,7 @@ Here is the list of the modifications that were made by each one :
 
 ** Sarah EL HEWL : 
 
-*** Correcting some Mr.Cailloux's remarks about Iteration 3 UML.
+*** Correcting some Mr.Cailloux's remarks about Iteration 3 UML
 *** Updating the JSON classes and its documentation
 *** Updating the root README.adoc with what we will do at the java's iteration 3 
 *** Updating the screenshot of all the diagram (when it's necessary)
@@ -25,7 +25,6 @@ Here is the list of the modifications that were made by each one :
 *** Making the it4.adoc
 *** Correcting some Mr.Cailloux's remarks about Iteration 3 UML.
 *** Improving documents files
-
 
 
 
