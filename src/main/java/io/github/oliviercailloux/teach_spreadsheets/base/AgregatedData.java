@@ -44,7 +44,8 @@ public class AgregatedData {
 	 * @throws IllegalArgumentException if the CalcData we want to add does not
 	 *                                  contain the expected courses or contains the
 	 *                                  preferences of a Teacher that were already
-	 *                                  added.
+	 *                                  added. Beware : the courses in the calcDatas
+	 *                                  must be in the same order.
 	 */
 	public void addCalcData(CalcData calcData) {
 		checkNotNull(calcData, "The CalcData must not be null");
@@ -66,5 +67,7 @@ public class AgregatedData {
 			checkArgument(!elt.getTeacher().equals(calcData.getTeacher()),
 					"You cannot add twice all the preferences of a teacher.");
 		}
+		
+		calcDatas.add(calcData);
 	}
 }
