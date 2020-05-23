@@ -1,0 +1,58 @@
+= Iteration 4 UML 
+
+The aim of this iteration is to correct and improve UML Iteration 3 by taking into consideration Mr. Cailloux’s remarks. We also did new GUI classes.
+
+
+Here is the list of the modifications that were made by each one : 
+
+* The group constituted of Sarah EL HEWL, Semida BUZDUGAN and Inès DRAREDJA divided the corrections as follows: 
+
+** Sarah EL HEWL : 
+
+*** Correcting some Mr.Cailloux's remarks about Iteration 3 UML.
+*** Updating the JSON classes and its documentation
+*** Updating the root README.adoc with what we will do at the java's iteration 3 
+*** Updating the screenshot of all the diagram (when it's necessary)
+
+** Semida BUZDUGAN : 
+
+*** Adding the new writing ODS and documenting it in the README.adoc
+*** Adding (when it's necessary) the types of returns to the method Class_Class_ODS_Write and updating the image in the README
+
+
+** Inès DRAREDJA
+
+*** Making the it4.adoc
+*** Correcting some Mr.Cailloux's remarks about Iteration 3 UML.
+*** Improving documents files
+
+
+
+
+* The group constituted of Hedi GUEDIDI and Mike SANTANGELO divided the corrections as follows: 
+
+** Hedi GUEDIDI
+ 
+*** For the class diagrams :
+**** Creating the class diagram for the GUI
+**** Updating the class diagram Read
+*** For the GUI:
+**** Creating the model of the principal GUI
+**** Creating the model of the affectation GUI
+
+
+*** For the documentation :
+**** Adding a new screenshot for the Class_ODS_Read
+**** Adding text for the new screenshot of the GUI
+
+
+** Mike SANTANGELO 
+
+*** For the class diagrams :
+**** Adding (when it's necessary) the type of return to Class_assignment and updating the image in the README
+**** Adding (when it's necessary) the type of return to Class_ODS_Read and updating the image in the README
+**** Adding more details for the GUI classes
+
+
+*** For the documentation:
+**** Adding a new screenshot of the Class_ODS_Read in the documentation
