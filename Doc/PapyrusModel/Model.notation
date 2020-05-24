@@ -173,6 +173,19 @@
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2sQ-wG6YEeqIeI1UFw-5OA" id="(0.5,0.7728571428571429)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2sQ-wW6YEeqIeI1UFw-5OA" id="(0.5,0.7728571428571429)"/>
     </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_DRntwJ2hEeqgYtA4nJO78A" type="Message_SynchEdge" source="_Ql6XgGBaEeq31cSPSR9mAA" target="_N7v3UGBaEeq31cSPSR9mAA">
+      <children xmi:type="notation:DecorationNode" xmi:id="_DRntw52hEeqgYtA4nJO78A" type="Message_SynchNameLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_DRntxJ2hEeqgYtA4nJO78A" x="-4" y="-10"/>
+      </children>
+      <children xmi:type="notation:DecorationNode" xmi:id="_DRntxZ2hEeqgYtA4nJO78A" type="Message_SynchStereotypeLabel">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_DRntxp2hEeqgYtA4nJO78A" x="1" y="-33"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_DRntwZ2hEeqgYtA4nJO78A"/>
+      <element xmi:type="uml:Message" href="Model.uml#_DRaSYJ2hEeqgYtA4nJO78A"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_DRntwp2hEeqgYtA4nJO78A" points="[-7, 0, 224, 0]$[-223, 0, 8, 0]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_DR3lYJ2hEeqgYtA4nJO78A" id="(0.5,0.48714285714285704)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_DR4McJ2hEeqgYtA4nJO78A" id="(0.5,0.48714285714285716)"/>
+    </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_ThoEMGEqEeqMmJrPvsnLhQ" type="PapyrusUMLClassDiagram" name="Class_assignment" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_UJZO0GEqEeqMmJrPvsnLhQ" type="Class_Shape">
@@ -2033,10 +2046,6 @@
         <children xmi:type="notation:Shape" xmi:id="_b9hecIe2EeqbHs-aXdOJpQ" type="Operation_ClassOperationLabel">
           <element xmi:type="uml:Operation" href="Model.uml#_DDS1gIe2EeqbHs-aXdOJpQ"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_b9hecYe2EeqbHs-aXdOJpQ"/>
-        </children>
-        <children xmi:type="notation:Shape" xmi:id="_cZ6fgIe2EeqbHs-aXdOJpQ" type="Operation_ClassOperationLabel">
-          <element xmi:type="uml:Operation" href="Model.uml#_H7f6kIe2EeqbHs-aXdOJpQ"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_cZ6fgYe2EeqbHs-aXdOJpQ"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_T4ZxeIe2EeqbHs-aXdOJpQ"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_T4ZxeYe2EeqbHs-aXdOJpQ"/>
