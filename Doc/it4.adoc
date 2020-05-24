@@ -1,23 +1,25 @@
 = Iteration 4 UML 
 
-The aim of this iteration is to correct and improve UML Iteration 3 by taking into consideration Mr. Cailloux’s remarks. We also did new GUI classes.
+The aim of this iteration is to correct and improve UML Iteration 3 by taking into consideration Mr. Cailloux’s remarks. 
+We also corrected some classes according to Java Iteration 2 and added new GUI classes.
 
 
 Here is the list of the modifications that were made by each one : 
 
-* The group constituted of Sarah EL HEWL, Semida BUZDUGAN and Inès DRAREDJA divided the corrections as follows: 
+* The group constituted of Sarah EL HELW, Semida BUZDUGAN and Inès DRAREDJA divided the corrections as follows: 
 
-** Sarah EL HEWL : 
+** Sarah EL HELW : 
 
 *** Correcting some Mr.Cailloux's remarks about Iteration 3 UML
-*** Updating the JSON classes and its documentation
-*** Updating the root README.adoc with what we will do at the java's iteration 3 
-*** Updating the screenshot of all the diagram (when it's necessary)
+*** Updating the JSON classes and the associated documentation
+*** Updating the AgregatedData class
+*** Updating the root README.adoc with what we will do in the java's iteration 3 
+*** Updating the screenshot of all the diagram
 
 ** Semida BUZDUGAN : 
 
-*** Adding the new writing ODS and documenting it in the README.adoc
-*** Adding (when it's necessary) the types of returns to the method Class_Class_ODS_Write and updating the image in the README
+*** Adding the new writing ODS classes and documenting it in the README.adoc
+*** Adding (when it's necessary) the return types to the methods in Class_ODS_Write and updating the image in the README
 
 
 ** Inès DRAREDJA
@@ -49,8 +51,8 @@ Here is the list of the modifications that were made by each one :
 ** Mike SANTANGELO 
 
 *** For the class diagrams :
-**** Adding (when it's necessary) the types of return to Class_assignment and updating the image in the README
-**** Adding (when it's necessary) the types of return to Class_ODS_Read and updating the image in the README
+**** Adding (when it's necessary) the return types to the methods in Class_assignment and updating the image in the README
+**** Adding (when it's necessary) the return types to the methods in Class_ODS_Read and updating the image in the README
 **** Adding more details for the GUI classes
 
 

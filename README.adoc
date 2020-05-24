@@ -29,11 +29,13 @@ The classes that we plan to implement are described in the link:Doc\README.adoc#
 
 ** Fixing issue from iteration 2 about assignment package and correcting this package according to the needs of Group 2
 
-** Correcting json package according iteration 2 comments in order to merge it into master
+** Correcting json package according to iteration 2 comments in order to merge it into master
 
 ** Reviewing the structure of the classes in the package write (to avoid code duplication), correcting this package according iteration 2 comments in order to merge it into master and adding more fonctionalities to improve the aesthetic of the created files
 
 ** Correcting diverse classes of the project : removing warnings, adding a studyLevel attribute in Course class and changing the value of studyYear according to iteration 2 issue
+
+** Creating AgregatedData class
 
 == What was done in the first java iteration  
 
