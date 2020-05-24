@@ -35,25 +35,21 @@ Here is the list of the modifications that were made by each one :
 ** Hedi GUEDIDI
  
 *** For the class diagrams :
-**** Creating the class diagram for the GUI
-**** Updating the class diagram Read
+**** Updating the Read class diagram with the MultipleOdsPrefReader class and its documentation
+**** Creating the View class in the Gui classes
 
-*** For the GUI:
-**** Creating the model of the principal GUI
-**** Creating the model of the affectation GUI
-
-
-*** For the documentation :
-**** Adding a new screenshot to the Class_ODS_Read
-**** Adding text for the new screenshot of the GUI
+*** For the GUI :
+**** Designing the mock-up of the GUI
+**** Creating the Gui description section in the documentation (Screenshot of the gui + some brief explanation of how the gui is supposed to work)
 
 
 ** Mike SANTANGELO 
 
 *** For the class diagrams :
+**** Creating the Gui classes diagram and its documentation
 **** Adding (when it's necessary) the return types to the methods in Class_assignment and updating the image in the README
 **** Adding (when it's necessary) the return types to the methods in Class_ODS_Read and updating the image in the README
-**** Adding more details for the GUI classes
+
 
 
 *** For the documentation:
