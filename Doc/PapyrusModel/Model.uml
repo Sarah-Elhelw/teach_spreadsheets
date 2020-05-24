@@ -42,6 +42,12 @@
           </ownedEnd>
           <ownedEnd xmi:type="uml:Property" xmi:id="_C3h9kWwvEeqdw6kasHCXew" name="aggregatedata" type="_0YeooGYQEeqq2pYv3YMNcA" association="_C3gvcGwvEeqdw6kasHCXew"/>
         </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_Ggvk4J2QEeqgYtA4nJO78A" memberEnd="_GgyBIJ2QEeqgYtA4nJO78A _Gg0dYp2QEeqgYtA4nJO78A">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ggvk4Z2QEeqgYtA4nJO78A" source="org.eclipse.papyrus">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ggvk4p2QEeqgYtA4nJO78A" key="nature" value="UML_Nature"/>
+          </eAnnotations>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_Gg0dYp2QEeqgYtA4nJO78A" name="aggregateddata" type="_a4w-cGwuEeqdw6kasHCXew" association="_Ggvk4J2QEeqgYtA4nJO78A"/>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_CZVycIcaEeqUqZA2AF_9Pw" name="Read">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_7zSg8IcYEeqUqZA2AF_9Pw" client="_PDkJsIcXEeqUqZA2AF_9Pw" supplier="_IG1BEIcXEeqUqZA2AF_9Pw"/>
@@ -94,7 +100,15 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_xkFWYJtuEeqdz4L_R9L93Q" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA" direction="return"/>
           </ownedOperation>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_a4w-cGwuEeqdw6kasHCXew" name="AggregatedData"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_a4w-cGwuEeqdw6kasHCXew" name="AggregatedData">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_GgyBIJ2QEeqgYtA4nJO78A" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_Ggvk4J2QEeqgYtA4nJO78A">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Gg0dYJ2QEeqgYtA4nJO78A"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Gg0dYZ2QEeqgYtA4nJO78A" value="*"/>
+          </ownedAttribute>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_iqgr8J2QEeqgYtA4nJO78A" name="addCalcData">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_qZyEwJ2QEeqgYtA4nJO78A" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA"/>
+          </ownedOperation>
+        </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_NuzqEG9ZEeqks-MRezUMyA" name="TeacherAssignment">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_KxCNwGEpEeqMmJrPvsnLhQ" name="countGroupsTD" visibility="public">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
@@ -118,7 +132,7 @@
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           </ownedAttribute>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_IixF8GFWEeq7OdFZt-_k0Q" name="studyYear" visibility="public">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
           </ownedAttribute>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_LQScIGFWEeq7OdFZt-_k0Q" name="semester" visibility="public">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
@@ -152,6 +166,9 @@
           </ownedAttribute>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_tJ_W8GFVEeq7OdFZt-_k0Q" name="nbMinutesCMTP" visibility="public">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_ggJioJ2PEeqgYtA4nJO78A" name="studyLevel" visibility="public" aggregation="shared">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           </ownedAttribute>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_wsm04GBfEeq31cSPSR9mAA" name="Program"/>
@@ -409,10 +426,10 @@
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_a3NGsIeiEeq_vJIT4Zoedw" name="row">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_cyyCkIeiEeq_vJIT4Zoedw" name="column">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
@@ -448,7 +465,7 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_VqtF0JucEeqoL5c5DKW5Kw" name="ods" type="_FCjZgIegEeq_vJIT4Zoedw"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_XyB-sJucEeqoL5c5DKW5Kw" name="table" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_aDGCYJucEeqoL5c5DKW5Kw" name="line">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_dVeZIJucEeqoL5c5DKW5Kw" name="course" type="_XVBhkGBfEeq31cSPSR9mAA"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_fT9fEJucEeqoL5c5DKW5Kw" name="group">
@@ -458,8 +475,8 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_71LWAJwOEeqwT532HYtLXQ"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_71RcoJwOEeqwT532HYtLXQ" value="*"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_mmQoAJucEeqoL5c5DKW5Kw" name="line" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_mmQoAJucEeqoL5c5DKW5Kw" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_vPGtIJucEeqoL5c5DKW5Kw" name="createSummary">
@@ -485,14 +502,14 @@
           <ownedOperation xmi:type="uml:Operation" xmi:id="_eqlc0JuaEeqoL5c5DKW5Kw" name="completeCourses" visibility="private" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_j0YBIJuaEeqoL5c5DKW5Kw" name="ods" type="_FCjZgIegEeq_vJIT4Zoedw"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_m3z88JuaEeqoL5c5DKW5Kw" name="line">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_qJcs0JuaEeqoL5c5DKW5Kw" name="ta" type="_NuzqEG9ZEeqks-MRezUMyA"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_xRzPkJuaEeqoL5c5DKW5Kw" name="group">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_2hrNwJuaEeqoL5c5DKW5Kw" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_42qIIJuaEeqoL5c5DKW5Kw" name="createAssignmentPerTeacher" isStatic="true">
