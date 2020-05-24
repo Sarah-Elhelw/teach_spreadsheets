@@ -48,6 +48,15 @@
           </eAnnotations>
           <ownedEnd xmi:type="uml:Property" xmi:id="_Gg0dYp2QEeqgYtA4nJO78A" name="aggregateddata" type="_a4w-cGwuEeqdw6kasHCXew" association="_Ggvk4J2QEeqgYtA4nJO78A"/>
         </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_H5a38J2kEeqgYtA4nJO78A" memberEnd="_H5cGEp2kEeqgYtA4nJO78A _H5cGFZ2kEeqgYtA4nJO78A">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_H5cGEJ2kEeqgYtA4nJO78A" source="org.eclipse.papyrus">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_H5cGEZ2kEeqgYtA4nJO78A" key="nature" value="UML_Nature"/>
+          </eAnnotations>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_H5cGFZ2kEeqgYtA4nJO78A" name="teacherassignment" type="_NuzqEG9ZEeqks-MRezUMyA" association="_H5a38J2kEeqgYtA4nJO78A">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rx4JAJ2kEeqgYtA4nJO78A"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ryHZkJ2kEeqgYtA4nJO78A" value="*"/>
+          </ownedEnd>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_CZVycIcaEeqUqZA2AF_9Pw" name="Read">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_7zSg8IcYEeqUqZA2AF_9Pw" client="_PDkJsIcXEeqUqZA2AF_9Pw" supplier="_IG1BEIcXEeqUqZA2AF_9Pw"/>
@@ -126,6 +135,7 @@
           <ownedAttribute xmi:type="uml:Property" xmi:id="_1aLdQIctEeqUqZA2AF_9Pw" name="countGroupsCMTP" visibility="public">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
           </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_H5cGEp2kEeqgYtA4nJO78A" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_H5a38J2kEeqgYtA4nJO78A"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_XVBhkGBfEeq31cSPSR9mAA" name="Course">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_Yts48GFVEeq7OdFZt-_k0Q" name="name" visibility="public">
