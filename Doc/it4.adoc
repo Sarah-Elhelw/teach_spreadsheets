@@ -36,11 +36,11 @@ Here is the list of the modifications that were made by each one :
  
 *** For the class diagrams :
 **** Updating the Read class diagram with the MultipleOdsPrefReader class and its documentation
-**** Creating the View class in the Gui classes
+**** Creating the View class in the Gui classes diagram 
 
 *** For the GUI :
 **** Designing the mock-up of the GUI
-**** Creating the Gui description section in the documentation (Screenshot of the gui + some brief explanation of how the gui is supposed to work)
+**** Creating the Gui description section in the documentation (Screenshot of the gui + some brief explanation of how the GUI is supposed to work)
 
 
 ** Mike SANTANGELO 
