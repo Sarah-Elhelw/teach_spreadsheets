@@ -57,7 +57,7 @@ The View implements listeners that call the *callbackListener* operation from Co
 
 The *Controller* :
 
-* sends a signal to Model to update its data according to the preference that has been clicked (updatePreferences operation in Model).
+* sends a signal to Model to update its data according to the preference that has been clicked (*updatePreferences* operation in Model).
 * sends a signal to View to update its tables according to the new data from Model (updatePreferencesTables operation in View).
 
 We have tried our best to follow the MVC architecture.
@@ -66,7 +66,7 @@ We have tried our best to follow the MVC architecture.
 image::Images\Class_ODS_Read.PNG[{fullWifth}]
 
 The main goal of these classes is to read information from an link:https://github.com/Sarah-Elhelw/teach_spreadsheets/blob/master/Doc/Documents/AA_Saisie_des_voeux_2016-2017.ods[ods file] and create the corresponding CalcData object. The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
-MultipleOdsPrefReader reads all the ods files present in a certain folder via the readFilesFromFolder function.
+*MultipleOdsPrefReader* reads all the ods files present in a certain folder via the *readFilesFromFolder* function.
 
 
 == Ods Write classes
