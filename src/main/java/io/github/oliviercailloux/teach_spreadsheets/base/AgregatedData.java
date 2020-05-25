@@ -67,7 +67,7 @@ public class AgregatedData {
 			checkArgument(!elt.getTeacher().equals(calcData.getTeacher()),
 					"You cannot add twice all the preferences of a teacher.");
 		}
-		
+
 		calcDatas.add(calcData);
 	}
 }
