@@ -137,7 +137,7 @@ public class Course {
 		}
 
 		public Builder setStudyYear(int studyYear) {
-			checkNotNull(studyYear, EXCEPTION_STRING);
+			checkArgument(studyYear > 0, EXCEPTION_INT);
 			this.courseToBuild.studyYear = studyYear;
 			return this;
 		}
