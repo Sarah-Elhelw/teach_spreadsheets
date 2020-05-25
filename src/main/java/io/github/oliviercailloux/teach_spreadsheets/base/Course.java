@@ -13,7 +13,7 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public class Course {
 	private static final String EXCEPTION_STRING = "String must not be null.";
-	private static final String EXCEPTION_INT = "int must not be positive.";
+	private static final String EXCEPTION_INT = "int must be positive.";
 
 	private String name;
 	private String studyLevel;
