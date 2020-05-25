@@ -212,7 +212,7 @@ public class Course {
 		/**
 		 * We consider that two courses are equal if they have the same name. As the
 		 * number of groups may vary from a year to another, we also consider the study
-		 * year to determine if have two same courses.
+		 * year to determine if we have two same courses.
 		 */
 		return name.equals(c2.name) && studyYear.equals(c2.studyYear);
 	}
