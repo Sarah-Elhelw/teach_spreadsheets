@@ -9,7 +9,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import java.io.InputStream;
-import java.nio.file.Files;	
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Set;
 
