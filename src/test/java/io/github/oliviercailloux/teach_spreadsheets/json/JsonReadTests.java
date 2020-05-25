@@ -59,7 +59,7 @@ public class JsonReadTests {
 		});
 		assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
 	}
-	
+
 	@Test
 	void testDemonstratingNeedForFormatToArray() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("Courses.json");

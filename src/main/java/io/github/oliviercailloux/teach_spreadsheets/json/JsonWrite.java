@@ -28,8 +28,7 @@ public class JsonWrite {
 		String serialized = null;
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			serialized = jsonb.toJson(courses.toArray());
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
 		}
 		verify(serialized != null, "The serialization process returned null");
@@ -52,7 +51,7 @@ public class JsonWrite {
 		String serialized = serializeSet(courses);
 		Files.writeString(filePath, serialized, StandardCharsets.UTF_8);
 	}
-	
+
 	/**
 	 * Serializes a Set of Course objects and writes it into a Writer
 	 * 

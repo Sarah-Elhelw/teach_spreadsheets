@@ -38,7 +38,7 @@ public class JsonRead {
 				"The parameter must contain a single array.");
 		return textArray.substring(leftSquareBracket, rightSquareBracket + 1);
 	}
-	
+
 	/**
 	 * This method deserializes a json string into an ImmutableSet of courses. The
 	 * lines of code that deserialize the json string are inspired from
@@ -77,5 +77,5 @@ public class JsonRead {
 			throw new IllegalArgumentException(e);
 		}
 	}
-	
+
 }
