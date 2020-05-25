@@ -1,0 +1,30 @@
+# Workflow name
+name: Maven CI
+
+# This workflow is triggered on every pushes to the repository. (We can use a matrix system for example)
+# To see all events, https://help.github.com/en/actions/reference/events-that-trigger-workflows
+on:
+  [push]
+
+# We only use one job in this example
+jobs:
+  build:
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    # We have 3 steps: two which call existing actions and one which is a command given to the runner (Ubuntu)
+    steps:
+      # STEP 1
+      # Actions repository : https://github.com/actions/checkout
+      # We can also found this action in the MarketPlace : https://github.com/marketplace/actions/checkout
+      - uses: actions/checkout@v2
+      # STEP 2
+      # Actions repository : https://github.com/actions/setup-java
+      # We can also found this action in the MarketPlace : https://github.com/marketplace/actions/setup-java
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with: # We pass an argument to the Github actions "setup-java" (see README of repository setup-java for more information)
+          java-version: 11
+      # STEP 3
+      # We don't use a specific action but just a command which will be run on Ubuntu
+      - name: Verify maven
+        run: mvn -B test --file pom.xml
