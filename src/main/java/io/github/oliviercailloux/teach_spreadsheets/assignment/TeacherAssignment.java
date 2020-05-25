@@ -163,7 +163,7 @@ public class TeacherAssignment {
 	public Course getCourse() {
 		return course;
 	}
-	
+
 	public Teacher getTeacher() {
 		return teacher;
 	}
@@ -190,15 +190,10 @@ public class TeacherAssignment {
 
 	@Override
 	public String toString() {
-		return MoreObjects.toStringHelper(this)
-		   .add("Course", course.getName())
-	       .add("First name", teacher.getFirstName())
-	       .add("Last name", teacher.getLastName())
-	       .add("Number of TD groups", countGroupsTD)
-	       .add("Number of TP groups", countGroupsTP)
-	       .add("Number of CMTD groups", countGroupsCMTD)
-	       .add("Number of CMTP groups", countGroupsCMTP)
-	       .add("Number of CM groups", countGroupsCM)
-	       .toString();
+		return MoreObjects.toStringHelper(this).add("Course", course.getName())
+				.add("First name", teacher.getFirstName()).add("Last name", teacher.getLastName())
+				.add("Number of TD groups", countGroupsTD).add("Number of TP groups", countGroupsTP)
+				.add("Number of CMTD groups", countGroupsCMTD).add("Number of CMTP groups", countGroupsCMTP)
+				.add("Number of CM groups", countGroupsCM).toString();
 	}
 }

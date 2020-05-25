@@ -26,10 +26,10 @@ public class CourseAssignmentTests {
 
 	@Test
 	void testAddTeacherAssignmentWithExceedingCountGroupsTD() {
-		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(course, teacher1).setCountGroupsTD(2)
-				.build();
-		TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(course, teacher2).setCountGroupsTD(2)
-				.build();
+		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(course, teacher1)
+				.setCountGroupsTD(2).build();
+		TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(course, teacher2)
+				.setCountGroupsTD(2).build();
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course);
 		courseAssignmentBuilder.addTeacherAssignment(teacherAssignment1);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -49,7 +49,7 @@ public class CourseAssignmentTests {
 		});
 		assertEquals("An assignment must have at least one assigned group.", exception.getMessage());
 	}
-	
+
 	@Test
 	void testNewInstanceWithTwoParametersWithNoTeacherAssignment() {
 		Throwable exception = assertThrows(IllegalStateException.class, () -> {
