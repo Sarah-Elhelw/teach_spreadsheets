@@ -3,7 +3,6 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Immutable Class used to store a course information. Uses Builder pattern
@@ -109,16 +108,16 @@ public class Course {
 		}
 
 		public Course build() {
-			checkNotNull(courseToBuild.name);
-			checkNotNull(courseToBuild.studyLevel);
-			checkState(courseToBuild.semester == 1 || courseToBuild.semester == 2);
-			checkState(courseToBuild.countGroupsCM + courseToBuild.countGroupsCMTD + courseToBuild.countGroupsCMTP
-					+ courseToBuild.countGroupsTD + courseToBuild.countGroupsTP > 0);
-			checkState(courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
-					+ courseToBuild.nbMinutesTD + courseToBuild.nbMinutesTP > 0);
-			checkState(!courseToBuild.name.isEmpty());
-			checkState(!courseToBuild.studyLevel.isEmpty());
-			checkState(courseToBuild.studyYear != 0);
+			checkNotNull(courseToBuild.name, "The course name cannot be null.");
+			checkNotNull(courseToBuild.studyLevel, "The study level cannot be null.");
+			checkArgument(courseToBuild.semester == 1 || courseToBuild.semester == 2, "The semester must be 1 or 2.");
+			checkArgument(courseToBuild.countGroupsCM + courseToBuild.countGroupsCMTD + courseToBuild.countGroupsCMTP
+					+ courseToBuild.countGroupsTD + courseToBuild.countGroupsTP > 0, "There must be at least one group for the course.");
+			checkArgument(courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
+					+ courseToBuild.nbMinutesTD + courseToBuild.nbMinutesTP > 0, "There must be time to spend in teaching the course.");
+			checkArgument(!courseToBuild.name.isEmpty(), "The course name must be specified.");
+			checkArgument(!courseToBuild.studyLevel.isEmpty(), "The study level must be specified.");
+			checkArgument(courseToBuild.studyYear != 0, "The study year must be specified.");
 			Course courseBuilt = courseToBuild;
 			courseToBuild = new Course();
 			return courseBuilt;
@@ -178,31 +177,31 @@ public class Course {
 			return this;
 		}
 
-		public Builder setnbMinutesTD(int nbMinutesTD) {
+		public Builder setNbMinutesTD(int nbMinutesTD) {
 			checkArgument(nbMinutesTD >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesTD = nbMinutesTD;
 			return this;
 		}
 
-		public Builder setnbMinutesTP(int nbMinutesTP) {
+		public Builder setNbMinutesTP(int nbMinutesTP) {
 			checkArgument(nbMinutesTP >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesTP = nbMinutesTP;
 			return this;
 		}
 
-		public Builder setnbMinutesCMTD(int nbMinutesCMTD) {
+		public Builder setNbMinutesCMTD(int nbMinutesCMTD) {
 			checkArgument(nbMinutesCMTD >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesCMTD = nbMinutesCMTD;
 			return this;
 		}
 
-		public Builder setnbMinutesCMTP(int nbMinutesCMTP) {
+		public Builder setNbMinutesCMTP(int nbMinutesCMTP) {
 			checkArgument(nbMinutesCMTP >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesCMTP = nbMinutesCMTP;
 			return this;
 		}
 
-		public Builder setnbMinutesCM(int nbMinutesCM) {
+		public Builder setNbMinutesCM(int nbMinutesCM) {
 			checkArgument(nbMinutesCM >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesCM = nbMinutesCM;
 			return this;

@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,87 +14,47 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class CalcDataTests {
+	
 	@Test
-	void testNewInstance() {
-		Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
-		teacherBuilder.setAddress("Pont du maréchal de lattre de tassigny");
-		teacherBuilder.setLastName("Doe");
-		Teacher teacher = teacherBuilder.build();
+	void testNewInstanceWithSameCoursesNames() {
 
-		Course.Builder courseBuilder = Course.Builder.newInstance();
-		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setnbMinutesCM(20);
-		courseBuilder.setName("Analyse de données");
-		courseBuilder.setStudyYear(2012);
-		courseBuilder.setStudyLevel("DE1");
-		courseBuilder.setSemester(1);
+		Teacher teacher = Teacher.Builder.newInstance().setAddress("Pont du maréchal de lattre de tassigny")
+				.setLastName("Doe").build();
 
-		CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(), teacher);
-		coursePrefBuilder.setPrefCM(Preference.A);
+		Course course1 = Course.Builder.newInstance().setCountGroupsCM(1).setNbMinutesCM(600)
+				.setName("Analyse de données").setStudyYear(2012).setStudyLevel("DE1").setSemester(1).build();
+		Course course2 = Course.Builder.newInstance().setCountGroupsCM(1).setNbMinutesCM(600)
+				.setName("Analyse de données").setStudyYear(2012).setStudyLevel("DE1").setSemester(1).build();
 
-		CoursePref coursePref1 = coursePrefBuilder.build();
-
-		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setnbMinutesCM(20);
-		courseBuilder.setName("Java");
-		courseBuilder.setStudyYear(2012);
-		courseBuilder.setStudyLevel("DE1");
-		courseBuilder.setSemester(1);
-
-		coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(), teacher);
-
-		coursePrefBuilder.setPrefCM(Preference.A);
-
-		CoursePref coursePref2 = coursePrefBuilder.build();
-
+		CoursePref coursePref1 = CoursePref.Builder.newInstance(course1, teacher).setPrefCM(Preference.A).build();
+		CoursePref coursePref2 = CoursePref.Builder.newInstance(course2, teacher).setPrefCM(Preference.B).build();
 		ImmutableSet<CoursePref> coursePrefs = ImmutableSet.copyOf(new CoursePref[] { coursePref1, coursePref2 });
 
-		CalcData calcData = CalcData.newInstance(coursePrefs, teacher);
-		String actual = calcData.toString();
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+			CalcData.newInstance(coursePrefs, teacher);
+		});
+		assertEquals("You can't have two courses of the same name.", exception.getMessage());
 
-		String expected = "CalcData{coursePrefs=[CoursePref{prefCM=A, prefTD=UNSPECIFIED, prefCMTD=UNSPECIFIED, prefTP=UNSPECIFIED, prefCMTP=UNSPECIFIED, prefNbGroupsCM=0, prefNbGroupsTD=0, prefNbGroupsCMTD=0, prefNbGroupsTP=0, prefNbGroupsCMTP=0, Course=Course{name=Analyse de données, countGroupsTD=0, countGroupsCMTD=0, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=10, nbMinutesTD=0, nbMinutesCMTD=0, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=20, studyLevel=DE1, studyYear=2012, semester=1}, Teacher=Teacher{lastName=Doe, firstName=, address=Pont du maréchal de lattre de tassigny, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}, CoursePref{prefCM=A, prefTD=UNSPECIFIED, prefCMTD=UNSPECIFIED, prefTP=UNSPECIFIED, prefCMTP=UNSPECIFIED, prefNbGroupsCM=0, prefNbGroupsTD=0, prefNbGroupsCMTD=0, prefNbGroupsTP=0, prefNbGroupsCMTP=0, Course=Course{name=Java, countGroupsTD=0, countGroupsCMTD=0, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=10, nbMinutesTD=0, nbMinutesCMTD=0, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=20, studyLevel=DE1, studyYear=2012, semester=1}, Teacher=Teacher{lastName=Doe, firstName=, address=Pont du maréchal de lattre de tassigny, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}], teacher=Teacher{lastName=Doe, firstName=, address=Pont du maréchal de lattre de tassigny, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}";
-		assertEquals(expected, actual);
 	}
 
 	@Test
-	void testGetCoursePref() {
-		Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
-		teacherBuilder.setAddress("Pont du maréchal de lattre de tassigny");
-		teacherBuilder.setLastName("Doe");
-		Teacher teacher = teacherBuilder.build();
+	void testGetCoursePrefWithNotMatchingCourse() {
+		Teacher teacher = Teacher.Builder.newInstance().setAddress("Elysee").setLastName("Smith").build();
 
-		Course.Builder courseBuilder = Course.Builder.newInstance();
-		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setnbMinutesCM(20);
-		courseBuilder.setName("Analyse de données");
-		courseBuilder.setStudyYear(2012);
-		courseBuilder.setStudyLevel("DE2");
-		courseBuilder.setSemester(1);
+		Course course1 = Course.Builder.newInstance().setCountGroupsCM(1).setNbMinutesCM(900).setName("Java")
+				.setStudyYear(2012).setStudyLevel("DE2").setSemester(2).build();
 
-		CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(), teacher);
-		coursePrefBuilder.setPrefCM(Preference.A);
+		CoursePref coursePref1 = CoursePref.Builder.newInstance(course1, teacher).setPrefCM(Preference.UNSPECIFIED)
+				.build();
 
-		CoursePref coursePref1 = coursePrefBuilder.build();
-
-		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setnbMinutesCM(20);
-		courseBuilder.setName("Java");
-		courseBuilder.setStudyYear(2013);
-		courseBuilder.setStudyLevel("DE1");
-		courseBuilder.setSemester(2);
-
-		coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(), teacher);
-
-		coursePrefBuilder.setPrefCM(Preference.A);
-
-		CoursePref coursePref2 = coursePrefBuilder.build();
-
-		ImmutableSet<CoursePref> coursePrefs = ImmutableSet.copyOf(new CoursePref[] { coursePref1, coursePref2 });
+		ImmutableSet<CoursePref> coursePrefs = ImmutableSet.copyOf(new CoursePref[] { coursePref1 });
 
 		CalcData calcData = CalcData.newInstance(coursePrefs, teacher);
-		String actual = calcData.getCoursePref("Java").toString();
 
-		String expected = "CoursePref{prefCM=A, prefTD=UNSPECIFIED, prefCMTD=UNSPECIFIED, prefTP=UNSPECIFIED, prefCMTP=UNSPECIFIED, prefNbGroupsCM=0, prefNbGroupsTD=0, prefNbGroupsCMTD=0, prefNbGroupsTP=0, prefNbGroupsCMTP=0, Course=Course{name=Java, countGroupsTD=0, countGroupsCMTD=0, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=10, nbMinutesTD=0, nbMinutesCMTD=0, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=20, studyLevel=DE1, studyYear=2013, semester=2}, Teacher=Teacher{lastName=Doe, firstName=, address=Pont du maréchal de lattre de tassigny, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}";
-		assertEquals(expected, actual);
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+			calcData.getCoursePref("Algèbre");
+		});
+		assertEquals("The name given in parameter does not match any course.", exception.getMessage());
+
 	}
 }
