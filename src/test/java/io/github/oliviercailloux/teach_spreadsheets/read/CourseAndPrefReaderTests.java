@@ -43,7 +43,7 @@ public class CourseAndPrefReaderTests {
 	}
 	
 	@Test
-	void testSetInfoPref() throws Exception { 
+	void testSetInfoPref() throws Exception {
 		/** Checking the preferences for "PRE-RENTREE : Mathématiques" */
 		CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();
 		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
@@ -56,10 +56,10 @@ public class CourseAndPrefReaderTests {
 				Course course = courseBuilder.build();
 
 				CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(course, teacher);
-				
+
 				courseAndPrefReader.setInfoPref(sheet, coursePrefBuilder, 9, 3);
 				CoursePref coursePref = coursePrefBuilder.build();
-				
+
 				/** Checking the filling : */
 				assertEquals(Preference.UNSPECIFIED, coursePref.getPrefCM());
 				assertEquals(Preference.UNSPECIFIED, coursePref.getPrefTD());
@@ -71,7 +71,7 @@ public class CourseAndPrefReaderTests {
 				assertEquals(1, coursePref.getPrefNbGroupsCMTD());
 				assertEquals(0, coursePref.getPrefNbGroupsTP());
 				assertEquals(0, coursePref.getPrefNbGroupsCMTP());
-				
+
 			}
 		}
 	}
@@ -85,12 +85,12 @@ public class CourseAndPrefReaderTests {
 				CourseAndPrefReader courseAndPrefReader = CourseAndPrefReader.newInstance();
 
 				ImmutableSet<CoursePref> coursePrefList = courseAndPrefReader.readSemester(sheet, teacher);
-				
+
 				CoursePref coursePref = coursePrefList.asList().get(3);
 				Course course = coursePref.getCourse();
-				
-				/** Checking the filling of the course line 7, semester 1:*/
-				
+
+				/** Checking the filling of the course line 7, semester 1: */
+
 				assertEquals("Algorithmique et programmation 1", course.getName());
 				assertEquals(2016, course.getStudyYear());
 				assertEquals("DE1", course.getStudyLevel());
@@ -98,7 +98,7 @@ public class CourseAndPrefReaderTests {
 				assertEquals(1800, course.getNbMinutesCMTP());
 				assertEquals(4, course.getCountGroupsCMTD());
 				assertEquals(5, course.getCountGroupsCMTP());
-				
+
 				assertEquals(Preference.UNSPECIFIED, coursePref.getPrefCM());
 				assertEquals(Preference.UNSPECIFIED, coursePref.getPrefTD());
 				assertEquals(Preference.C, coursePref.getPrefCMTD());

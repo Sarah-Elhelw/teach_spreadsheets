@@ -30,21 +30,21 @@ public class PrefsInitializerTests {
 
 				Course course;
 				CoursePref coursePref;
-				
+
 				/**
 				 * Checking the preferences for the course in cell P12 in the sheet DE1 : the
 				 * aim here is to test that we can read course preferences in the semester 2.
 				 */
-				
+
 				coursePref = coursePrefsSet.asList().get(18);
 				course = coursePref.getCourse();
-				
+
 				assertEquals("Anglais 2", course.getName());
 				assertEquals(2016, course.getStudyYear());
 				assertEquals("DE1", course.getStudyLevel());
 				assertEquals(1170, course.getNbMinutesCMTD());
 				assertEquals(12, course.getCountGroupsCMTD());
-				
+
 				assertEquals(Preference.UNSPECIFIED, coursePref.getPrefCM());
 				assertEquals(Preference.UNSPECIFIED, coursePref.getPrefTD());
 				assertEquals(Preference.A, coursePref.getPrefCMTD());
@@ -55,23 +55,23 @@ public class PrefsInitializerTests {
 				assertEquals(2, coursePref.getPrefNbGroupsCMTD());
 				assertEquals(0, coursePref.getPrefNbGroupsTP());
 				assertEquals(0, coursePref.getPrefNbGroupsCMTP());
-				
+
 				/**
 				 * Checking the preferences for the course in cell B4 in the sheet DE2 : the aim
 				 * here is to test that we can read course preferences in another sheet than
 				 * DE1.
 				 */
-				
+
 				coursePref = coursePrefsSet.asList().get(22);
 				course = coursePref.getCourse();
-				
+
 				assertEquals("TestCoursDE2S1", course.getName());
 				assertEquals(2016, course.getStudyYear());
 				assertEquals("DE2", course.getStudyLevel());
 				assertEquals(60, course.getNbMinutesCM());
 				assertEquals(60, course.getNbMinutesCMTD());
 				assertEquals(1, course.getCountGroupsCMTD());
-				
+
 			}
 		}
 	}

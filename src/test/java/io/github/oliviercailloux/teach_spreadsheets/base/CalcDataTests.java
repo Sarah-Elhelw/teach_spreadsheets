@@ -14,7 +14,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class CalcDataTests {
-	
+
 	@Test
 	void testNewInstanceWithSameCoursesNames() {
 
@@ -39,6 +39,7 @@ public class CalcDataTests {
 
 	@Test
 	void testGetCoursePrefWithNotMatchingCourse() {
+
 		Teacher teacher = Teacher.Builder.newInstance().setAddress("Elysee").setLastName("Smith").build();
 
 		Course course1 = Course.Builder.newInstance().setCountGroupsCM(1).setNbMinutesCM(900).setName("Java")

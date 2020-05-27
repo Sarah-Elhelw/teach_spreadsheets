@@ -13,7 +13,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 public class CoursePrefTests {
 	@Test
 	void testCoherence() {
-		
+
 		Teacher teacher = Teacher.Builder.newInstance().setAddress("Pont du maréchal de lattre de tassigny")
 				.setLastName("Doe").build();
 
