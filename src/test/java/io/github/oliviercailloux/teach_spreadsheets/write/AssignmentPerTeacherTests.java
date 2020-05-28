@@ -2,6 +2,9 @@ package io.github.oliviercailloux.teach_spreadsheets.write;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.InputStream;
+import java.net.URL;
+
 import org.junit.jupiter.api.Test;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
@@ -48,8 +51,8 @@ public class AssignmentPerTeacherTests {
 
 		Course course1 = courseBuilder1.build();
 
-		TeacherAssignment teacherAssignment = TeacherAssignment.Builder.newInstance(course1, teacher1).setCountGroupsTD(1)
-				.build();
+		TeacherAssignment teacherAssignment = TeacherAssignment.Builder.newInstance(course1, teacher1)
+				.setCountGroupsTD(1).build();
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course1);
 		courseAssignmentBuilder.addTeacherAssignment(teacherAssignment);
 
@@ -57,15 +60,25 @@ public class AssignmentPerTeacherTests {
 
 		ImmutableSet<CourseAssignment> allCoursesAssigned = ImmutableSet.of(courseAssignment);
 
-		try (SpreadsheetDocument document = AssignmentPerTeacher.createAssignmentPerTeacher(teacher1,
-				allCoursesAssigned)) {
+		URL resourceUrl = AssignmentPerTeacher.class.getResource("AssignmentPerTeacher.ods");
+		try (InputStream stream = resourceUrl.openStream()) {
+			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 
-			Table table = document.getTableByName("Summary");
+				try (SpreadsheetDocument documentCreated = AssignmentPerTeacher.createAssignmentPerTeacher(teacher1,
+						allCoursesAssigned)) {
 
-			assertEquals("teacher1FirstName", table.getCellByPosition("A4").getDisplayText());
-			assertEquals("teacher1@dauphine.fr", table.getCellByPosition("C10").getDisplayText());
-			assertEquals("testcourse1", table.getCellByPosition("C17").getDisplayText());
+					Table tableCreated = documentCreated.getTableByName("Summary");
+					Table table = document.getTableByName("Summary");
 
+					assertEquals(table.getCellByPosition("A4").getDisplayText(),
+							tableCreated.getCellByPosition("A4").getDisplayText());
+					assertEquals(table.getCellByPosition("C10").getDisplayText(),
+							tableCreated.getCellByPosition("C10").getDisplayText());
+					assertEquals(table.getCellByPosition("C17").getDisplayText(),
+							tableCreated.getCellByPosition("C17").getDisplayText());
+
+				}
+			}
 		}
 	}
 }
