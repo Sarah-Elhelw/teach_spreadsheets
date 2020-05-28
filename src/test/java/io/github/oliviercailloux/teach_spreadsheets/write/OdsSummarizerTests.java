@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -100,23 +102,36 @@ public class OdsSummarizerTests {
 		Set<CourseAssignment> allCoursesAssigned = new LinkedHashSet<>();
 		allCoursesAssigned.add(courseAssignment1);
 		allCoursesAssigned.add(courseAssignment2);
-		
+
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.setPrefs(prefs);
 		ods.setAllCoursesAssigned(allCoursesAssigned);
-		
-		
-		try (SpreadsheetDocument document = ods.createSummary()) {
-			Table table = document.getTableByName("Summary");
 
-			assertEquals("testcourse1", table.getCellByPosition("C4").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("F5").getDisplayText());
-			assertEquals("A", table.getCellByPosition("H5").getDisplayText());
-			assertEquals("testcourse2", table.getCellByPosition("C10").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("F11").getDisplayText());
-			assertEquals("C", table.getCellByPosition("H11").getDisplayText());
-			assertEquals("teacher1FirstName", table.getCellByPosition("I8").getDisplayText());
+		URL resourceUrl = OdsSummarizer.class.getResource("OdsSummarizer.ods");
+		try (InputStream stream = resourceUrl.openStream()) {
+			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 
+				try (SpreadsheetDocument documentCreated = ods.createSummary()) {
+					Table tableCreated = documentCreated.getTableByName("Summary");
+					Table table = document.getTableByName("Summary");
+
+					assertEquals(table.getCellByPosition("C4").getDisplayText(),
+							tableCreated.getCellByPosition("C4").getDisplayText());
+					assertEquals(table.getCellByPosition("F5").getDisplayText(),
+							tableCreated.getCellByPosition("F5").getDisplayText());
+					assertEquals(table.getCellByPosition("H5").getDisplayText(),
+							tableCreated.getCellByPosition("H5").getDisplayText());
+					assertEquals(table.getCellByPosition("C10").getDisplayText(),
+							tableCreated.getCellByPosition("C10").getDisplayText());
+					assertEquals(table.getCellByPosition("F11").getDisplayText(),
+							tableCreated.getCellByPosition("F11").getDisplayText());
+					assertEquals(table.getCellByPosition("H11").getDisplayText(),
+							tableCreated.getCellByPosition("H11").getDisplayText());
+					assertEquals(table.getCellByPosition("I8").getDisplayText(),
+							tableCreated.getCellByPosition("I8").getDisplayText());
+
+				}
+			}
 		}
 
 	}
