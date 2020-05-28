@@ -10,7 +10,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-public class AgregatedDataTests {
+public class AggregatedDataTests {
 
 	private static Teacher teacher1 = Teacher.Builder.newInstance().setLastName("Dupond")
 			.setDauphineEmail("jack.dupond@dauphine.fr").build();
@@ -35,20 +35,20 @@ public class AgregatedDataTests {
 
 	@Test
 	void testAddCalcDataWithDifferentCourses() {
-		AgregatedData agregatedData = AgregatedData.newInstance();
-		agregatedData.addCalcData(calcData1);
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
+		aggregatedDataBuilder.addCalcData(calcData1);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			agregatedData.addCalcData(calcData2);
+			aggregatedDataBuilder.addCalcData(calcData2);
 		});
 		assertEquals("You cannot add twice all the preferences of a teacher.", exception.getMessage());
 	}
 
 	@Test
 	void testAddCalcDataWithSameTeacher() {
-		AgregatedData agregatedData = AgregatedData.newInstance();
-		agregatedData.addCalcData(calcData1);
+		AggregatedData.Builder aggregatedData = AggregatedData.Builder.newInstance();
+		aggregatedData.addCalcData(calcData1);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			agregatedData.addCalcData(calcData3);
+			aggregatedData.addCalcData(calcData3);
 		});
 		assertEquals("There must be the same courses in the calc datas.", exception.getMessage());
 	}
@@ -59,22 +59,23 @@ public class AgregatedDataTests {
 	 */
 	@Test
 	void testAddCalcDataConcretely() throws Exception {
-		URL resourceUrl1 = AgregatedData.class.getResource("Saisie_des_voeux_format simple1.ods");
+		URL resourceUrl1 = AggregatedData.class.getResource("Saisie_des_voeux_format simple1.ods");
 		CalcData cd1;
 		try (InputStream stream = resourceUrl1.openStream()) {
 			cd1 = CalcData.getData(stream);
 		}
 
-		URL resourceUrl2 = AgregatedData.class.getResource("Saisie_des_voeux_format simple2.ods");
+		URL resourceUrl2 = AggregatedData.class.getResource("Saisie_des_voeux_format simple2.ods");
 		CalcData cd2;
 		try (InputStream stream = resourceUrl2.openStream()) {
 			cd2 = CalcData.getData(stream);
 		}
 
-		AgregatedData agregatedData = AgregatedData.newInstance();
-		agregatedData.addCalcData(cd1);
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
+		aggregatedDataBuilder.addCalcData(cd1);
 		assertAll(() -> {
-			agregatedData.addCalcData(cd2);
+			aggregatedDataBuilder.addCalcData(cd2);
+			aggregatedDataBuilder.build();
 		});
 
 	}
