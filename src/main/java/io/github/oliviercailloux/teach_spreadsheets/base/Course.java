@@ -15,7 +15,15 @@ public class Course {
 	private static final String EXCEPTION_INT = "int must be positive.";
 
 	private String name;
+	/**
+	 * This attribute corresponds to the academic level of the course. For example :
+	 * DE1, DE2...
+	 */
 	private String studyLevel;
+	/**
+	 * This attribute corresponds to the beginning year of study of the course. For example,
+	 * if the year is 2016/2017, studyYear = 2016.
+	 */
 	private int studyYear;
 	private int semester;
 

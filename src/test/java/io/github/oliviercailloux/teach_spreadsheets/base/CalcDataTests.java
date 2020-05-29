@@ -48,7 +48,7 @@ public class CalcDataTests {
 		CoursePref coursePref1 = CoursePref.Builder.newInstance(course1, teacher).setPrefCM(Preference.UNSPECIFIED)
 				.build();
 
-		ImmutableSet<CoursePref> coursePrefs = ImmutableSet.copyOf(new CoursePref[] { coursePref1 });
+		ImmutableSet<CoursePref> coursePrefs = ImmutableSet.of(coursePref1);
 
 		CalcData calcData = CalcData.newInstance(coursePrefs, teacher);
 
