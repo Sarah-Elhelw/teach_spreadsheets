@@ -1,14 +1,9 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-
-import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
@@ -20,15 +15,11 @@ import static com.google.common.base.Preconditions.checkArgument;
  */
 public class AggregatedData {
 	private ImmutableSet<CalcData> calcDatas;
-	/**
-	 * List is preferable over Set because some courses have the same name and we
-	 * want to have exactly the same courses in each CalcData.
-	 */
-	private ImmutableList<Course> courses;
+	private ImmutableSet<Course> courses;
 
-	private AggregatedData(Set<CalcData> calcDatas, List<Course> courses) {
+	private AggregatedData(Set<CalcData> calcDatas, Set<Course> courses) {
 		this.calcDatas = ImmutableSet.copyOf(calcDatas);
-		this.courses = ImmutableList.copyOf(courses);
+		this.courses = ImmutableSet.copyOf(courses);
 	}
 
 	public static class Builder {
@@ -37,12 +28,12 @@ public class AggregatedData {
 		 * Set of {@link TeacherAssignment} : it is used to build (by adding) calcDatas.
 		 */
 		private Set<CalcData> tempCalcDatas;
-		private List<Course> tempCourses;
+		private Set<Course> tempCourses;
 		private int reading;
 
 		private Builder() {
 			tempCalcDatas = new LinkedHashSet<>();
-			tempCourses = new ArrayList<>();
+			tempCourses = new LinkedHashSet<>();
 		}
 
 		public static Builder newInstance() {
@@ -68,7 +59,7 @@ public class AggregatedData {
 		public void addCalcData(CalcData calcData) {
 			checkNotNull(calcData, "The CalcData must not be null");
 
-			List<Course> calcDataCourses = new ArrayList<>();
+			Set<Course> calcDataCourses = new LinkedHashSet<>();
 			for (CoursePref coursePref : calcData.getCoursePrefs()) {
 				calcDataCourses.add(coursePref.getCourse());
 			}
@@ -94,8 +85,70 @@ public class AggregatedData {
 		return calcDatas;
 	}
 
-	public List<Course> getCourses() {
+	public Set<Course> getCourses() {
 		return courses;
+	}
+	
+	/**
+	 * This methods gets all the preferences of a given Teacher.
+	 * 
+	 * @param teacher - the Teacher whose preferences we want to get.
+	 * 
+	 * @return all the preferences of the given Teacher
+	 * 
+	 * @throws IllegalArgumentException if there is no preference referenced for the
+	 *                                  given teacher.
+	 */
+	public ImmutableSet<CoursePref> getTeacherPrefs(Teacher teacher) {
+		checkNotNull(teacher, "The teacher must not be null.");
+		for (CalcData calcData : calcDatas) {
+			if (teacher.equals(calcData.getTeacher())) {
+				return calcData.getCoursePrefs();
+			}
+		}
+		throw new IllegalArgumentException("There is no preference referenced for this teacher.");
+	}
+
+	/**
+	 * This methods gets all the preferences of a given Teacher identified by his
+	 * first name and last name.
+	 * 
+	 * @param lastName  - the last name of the teacher whose preferences we want to
+	 *                  get.
+	 * @param firstName - the first name of the teacher whose preferences we want to
+	 *                  get.
+	 * 
+	 * @return all the preferences of the given Teacher
+	 * 
+	 * @throws IllegalArgumentException if there is no preference referenced for the
+	 *                                  given teacher.
+	 */
+	public Set<CoursePref> getTeacherPrefsByName(String lastName, String firstName) {
+		checkNotNull(lastName, "The teacher must not be null.");
+		for (CalcData calcData : calcDatas) {
+			if (lastName.equals(calcData.getTeacher().getLastName())
+					&& firstName.equals(calcData.getTeacher().getFirstName())) {
+				return calcData.getCoursePrefs();
+			}
+		}
+		throw new IllegalArgumentException("There is no preference referenced for this teacher.");
+	}
+
+	/**
+	 * This method gets all the preferences expressed for a given Course.
+	 * 
+	 * @param course - the course whose preferences for we want to get.
+	 * 
+	 * @return all the preferences expressed for the given Course.
+	 * 
+	 */
+	public Set<CoursePref> getCoursePrefs(Course course) {
+		checkNotNull(course, "The course must not be null.");
+		Set<CoursePref> coursePrefs = new LinkedHashSet<>();
+		for (CalcData calcData : calcDatas) {
+			coursePrefs.add(calcData.getCoursePref(course));
+		}
+		return coursePrefs;
 	}
 
 }
