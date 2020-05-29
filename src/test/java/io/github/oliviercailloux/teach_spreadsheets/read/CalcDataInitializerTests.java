@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 
@@ -63,7 +62,8 @@ public class CalcDataInitializerTests {
 			assertEquals(0, actualCourse.getNbMinutesTP());
 			assertEquals(0, actualCourse.getNbMinutesCMTP());
 			assertEquals(1170, actualCourse.getNbMinutesCM());
-			assertEquals("2016/2017", actualCourse.getStudyYear());
+			assertEquals("DE1", actualCourse.getStudyLevel());
+			assertEquals(2016, actualCourse.getStudyYear());
 			assertEquals(2, actualCourse.getSemester());
 			assertEquals(actualTeacher, acutalTeacherInPref);
 		}
