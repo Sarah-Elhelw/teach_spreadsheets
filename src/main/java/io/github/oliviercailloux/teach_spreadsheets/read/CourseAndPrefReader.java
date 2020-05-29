@@ -9,6 +9,8 @@ import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
 
 import com.google.common.collect.ImmutableSet;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
@@ -160,7 +162,7 @@ public class CourseAndPrefReader {
 		String[] cellData;
 
 		courseBuilder.setSemester(semester);
-
+		courseBuilder.setStudyLevel(currentSheet.getTableName());
 		courseBuilder.setName(cellText.replaceAll("\n", " "));
 
 		actualCell = currentSheet.getCellByPosition(SEMESTER_POSITION);
@@ -168,7 +170,11 @@ public class CourseAndPrefReader {
 		if (cellData.length != 2) {
 			throw new IllegalStateException("The semester cell isn't in the right format");
 		}
-		courseBuilder.setStudyYear(cellData[1]);
+		
+		String studyYear = cellData[1];
+		checkNotNull(studyYear);
+		checkState(studyYear.indexOf('/') != -1);
+		courseBuilder.setStudyYear(Integer.parseInt(studyYear.substring(0,studyYear.indexOf('/'))));
 
 		j += 4;
 
@@ -176,11 +182,11 @@ public class CourseAndPrefReader {
 		cellText = actualCell.getDisplayText();
 
 		if (ReaderLib.isDiagonalBorder(currentSheet, j, i) || "".equals(cellText)) {
-			courseBuilder.setnbMinutesCM(0);
+			courseBuilder.setNbMinutesCM(0);
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
-			courseBuilder.setnbMinutesCM(ReaderLib.hoursToMinutes(hourTab[0]));
+			courseBuilder.setNbMinutesCM(ReaderLib.hoursToMinutes(hourTab[0]));
 			courseBuilder.setCountGroupsCM(ReaderLib.hoursToMinutes(hourTab[0]));
 			flagCM = true;
 		}
@@ -190,16 +196,16 @@ public class CourseAndPrefReader {
 		cellText = actualCell.getDisplayText();
 
 		if (ReaderLib.isDiagonalBorder(currentSheet, j, i) || "".equals(cellText)) {
-			courseBuilder.setnbMinutesTD(0);
-			courseBuilder.setnbMinutesCMTD(0);
+			courseBuilder.setNbMinutesTD(0);
+			courseBuilder.setNbMinutesCMTD(0);
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
 			if (hourStr.contains(COURSETD)) {
-				courseBuilder.setnbMinutesCMTD(ReaderLib.hoursToMinutes(hourTab[0]));
+				courseBuilder.setNbMinutesCMTD(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagCMTD = true;
 			} else if (hourStr.contains(TD)) {
-				courseBuilder.setnbMinutesTD(ReaderLib.hoursToMinutes(hourTab[0]));
+				courseBuilder.setNbMinutesTD(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagTD = true;
 			}
 		}
@@ -209,16 +215,16 @@ public class CourseAndPrefReader {
 		cellText = actualCell.getDisplayText();
 
 		if (ReaderLib.isDiagonalBorder(currentSheet, j, i) || "".equals(cellText)) {
-			courseBuilder.setnbMinutesTP(0);
+			courseBuilder.setNbMinutesTP(0);
 			courseBuilder.setCountGroupsCMTP(0);
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
 			if (hourStr.contains(COURSETP)) {
-				courseBuilder.setnbMinutesCMTP(ReaderLib.hoursToMinutes(hourTab[0]));
+				courseBuilder.setNbMinutesCMTP(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagCMTP = true;
 			} else if (hourStr.contains(TP)) {
-				courseBuilder.setnbMinutesTP(ReaderLib.hoursToMinutes(hourTab[0]));
+				courseBuilder.setNbMinutesTP(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagTP = true;
 			}
 
