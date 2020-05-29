@@ -44,7 +44,7 @@ public class CourseTests {
 				.setName("LV2 (Allemand / Espagnol)").setStudyYear(2016).setStudyLevel("DE1").setSemester(1).build();
 		Course course3 = Course.Builder.newInstance().setCountGroupsCMTD(5).setNbMinutesCMTD(1080)
 				.setName("LV2 (Allemand / Espagnol)").setStudyYear(2016).setStudyLevel("DE1").setSemester(2).build();
-		
+
 		assertTrue(course1.equals(course2));
 		assertFalse(course1.equals(course3));
 	}

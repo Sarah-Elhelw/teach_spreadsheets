@@ -34,7 +34,7 @@ public class CalcData {
 			for (CoursePref otherCoursePref : coursePrefs) {
 				if (coursePref != otherCoursePref
 						&& coursePref.getCourse().equals(otherCoursePref.getCourse())) {
-					throw new IllegalArgumentException("You can't have two courses of the same name.");
+					throw new IllegalArgumentException("You can't have twice the preferences of a course.");
 				}
 			}
 		}

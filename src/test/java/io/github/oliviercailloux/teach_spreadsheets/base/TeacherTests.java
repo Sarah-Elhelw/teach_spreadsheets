@@ -22,7 +22,7 @@ public class TeacherTests {
 		assertEquals("The dauphine email must be specified.", exception.getMessage());
 
 	}
-	
+
 	@Test
 	void testEquals() {
 		Teacher teacher1 = Teacher.Builder.newInstance().setAddress("Pont du maréchal de lattre de tassigny")
@@ -31,7 +31,7 @@ public class TeacherTests {
 				.setFirstName("John").setLastName("Doe").setDauphineEmail("john.doe@dauphine.fr").build();
 		Teacher teacher3 = Teacher.Builder.newInstance().setAddress("Pont du maréchal de lattre de tassigny")
 				.setFirstName("Jane").setLastName("Doe").setDauphineEmail("jane.doe@dauphine.fr").build();
-		
+
 		assertTrue(teacher1.equals(teacher2));
 		assertFalse(teacher1.equals(teacher3));
 	}
