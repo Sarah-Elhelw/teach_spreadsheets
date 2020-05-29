@@ -2,7 +2,8 @@
 	[
 	  {
 		"name": "PRE-RENTREE : Mathématiques",
-		"studyYear": "2016/2017",
+		"studyYear": 2016,
+		"studyLevel": "DE1",
 		"semester": 1,
 		"countGroupsTD": 0,
 		"countGroupsTP": 0,
@@ -17,7 +18,8 @@
 	  },
 	  {
 		"name": "Analyse 1",
-		"studyYear": "2016/2017",
+		"studyYear": 2016,
+		"studyLevel": "DE1",
 		"semester": 1,
 		"countGroupsTD": 0,
 		"countGroupsTP": 0,

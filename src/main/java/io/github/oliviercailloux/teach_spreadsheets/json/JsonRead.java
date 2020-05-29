@@ -57,7 +57,7 @@ public class JsonRead {
 			 * Course objects :
 			 */
 			List<Course.Builder> coursesB = jsonb.fromJson(fileContent, new ArrayList<Course.Builder>() {
-				private static final long serialVersionUID = -7485196487129232750L;
+				private static final long serialVersionUID = -7485196487129232751L;
 			}.getClass().getGenericSuperclass());
 			List<Course> courses = new ArrayList<>();
 			for (Course.Builder cb : coursesB) {

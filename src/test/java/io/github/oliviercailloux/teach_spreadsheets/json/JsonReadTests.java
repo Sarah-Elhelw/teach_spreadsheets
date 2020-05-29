@@ -39,7 +39,8 @@ public class JsonReadTests {
 		assertEquals(0, actualCourse.getNbMinutesTP());
 		assertEquals(0, actualCourse.getNbMinutesCMTP());
 		assertEquals(0, actualCourse.getNbMinutesCM());
-		assertEquals("2016/2017", actualCourse.getStudyYear());
+		assertEquals(2016, actualCourse.getStudyYear());
+		assertEquals("DE1", actualCourse.getStudyLevel());
 		assertEquals(1, actualCourse.getSemester());
 
 	}
