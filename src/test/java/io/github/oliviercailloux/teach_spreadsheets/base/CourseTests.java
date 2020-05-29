@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CourseTests {
 	@Test
@@ -32,5 +34,18 @@ public class CourseTests {
 		});
 		assertEquals("The study level must be specified.", exception.getMessage());
 
+	}
+	
+	@Test
+	void testEquals() {
+		Course course1 = Course.Builder.newInstance().setCountGroupsCMTD(5).setNbMinutesCMTD(1080)
+				.setName("LV2 (Allemand / Espagnol)").setStudyYear(2016).setStudyLevel("DE1").setSemester(1).build();
+		Course course2 = Course.Builder.newInstance().setCountGroupsCMTD(5).setNbMinutesCMTD(1080)
+				.setName("LV2 (Allemand / Espagnol)").setStudyYear(2016).setStudyLevel("DE1").setSemester(1).build();
+		Course course3 = Course.Builder.newInstance().setCountGroupsCMTD(5).setNbMinutesCMTD(1080)
+				.setName("LV2 (Allemand / Espagnol)").setStudyYear(2016).setStudyLevel("DE1").setSemester(2).build();
+		
+		assertTrue(course1.equals(course2));
+		assertFalse(course1.equals(course3));
 	}
 }

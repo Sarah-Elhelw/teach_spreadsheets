@@ -15,7 +15,7 @@ public class CoursePrefTests {
 	void testCoherence() {
 
 		Teacher teacher = Teacher.Builder.newInstance().setAddress("Pont du maréchal de lattre de tassigny")
-				.setLastName("Doe").build();
+				.setFirstName("John").setLastName("Doe").setDauphineEmail("john.doe@dauphine.fr").build();
 
 		Course course = Course.Builder.newInstance().setCountGroupsCMTD(10).setNbMinutesCMTD(20)
 				.setName("Analyse de données").setStudyYear(2012).setStudyLevel("DE1").setSemester(1).build();

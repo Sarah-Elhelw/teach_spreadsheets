@@ -62,7 +62,7 @@ public class Teacher {
 			checkNotNull(teacherToBuild.lastName);
 			if (teacherToBuild.lastName.isEmpty())
 				throw new IllegalArgumentException();
-			checkArgument(!teacherToBuild.dauphineEmail.isEmpty(), "The dauphine email must be specified");
+			checkArgument(!teacherToBuild.dauphineEmail.isEmpty(), "The dauphine email must be specified.");
 			Teacher teacherBuilt = teacherToBuild;
 			teacherToBuild = new Teacher();
 			return teacherBuilt;
@@ -200,7 +200,8 @@ public class Teacher {
 		Teacher t2 = (Teacher) o2;
 		/**
 		 * We consider that two teachers are equal if they have the same dauphine e-mail
-		 * as e-mails guarantee uniqueness.
+		 * as e-mails guarantee uniqueness and as a teacher necessarily has a dauphine
+		 * e-mail.
 		 */
 		return dauphineEmail.equals(t2.dauphineEmail);
 	}

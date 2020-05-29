@@ -20,7 +20,8 @@ import io.github.oliviercailloux.teach_spreadsheets.read.CourseAndPrefReader;
 public class CourseAndPrefReaderTests {
 
 	/** Creating a fake teacher :*/
-	static Teacher teacher = Teacher.Builder.newInstance().setLastName("Doe").build();
+	static Teacher teacher = Teacher.Builder.newInstance().setAddress("Pont du maréchal de lattre de tassigny")
+			.setFirstName("John").setLastName("Doe").setDauphineEmail("john.doe@dauphine.fr").build();
 
 	@Test
 	void testSetInfoCourse() throws Exception {

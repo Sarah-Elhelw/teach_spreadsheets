@@ -229,16 +229,22 @@ public class Course {
 		}
 		Course c2 = (Course) o2;
 		/**
-		 * We consider that two courses are equal if they have the same name. As the
-		 * number of groups may vary from a year to another, we also consider the study
-		 * year to determine if we have two same courses.
+		 * We consider that two courses are equal if they have the same studyLevel, the
+		 * same semester and the same name. As the number of groups may vary from a year
+		 * to another, we also consider the study year to determine if we have two same
+		 * courses.
+		 * 
+		 * All these criteria seem to be necessary as we need to take into consideration
+		 * the case of "LV2 (Allemand / Espagnol)" course in "AA Saisie des voeux.ods"
+		 * that has the same name no matter the semester or study level.
 		 */
-		return name.equals(c2.name) && studyYear.equals(c2.studyYear);
+		return studyYear == c2.studyYear && studyLevel.equals(c2.studyLevel) && semester == c2.semester
+				&& name.equals(c2.name);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, studyYear);
+		return Objects.hash(studyYear, studyLevel, semester, name);
 	}
 	
 	@Override

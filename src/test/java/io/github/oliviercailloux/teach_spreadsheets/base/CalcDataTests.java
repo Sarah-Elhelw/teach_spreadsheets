@@ -19,7 +19,7 @@ public class CalcDataTests {
 	void testNewInstanceWithSameCoursesNames() {
 
 		Teacher teacher = Teacher.Builder.newInstance().setAddress("Pont du maréchal de lattre de tassigny")
-				.setLastName("Doe").build();
+				.setFirstName("John").setLastName("Doe").setDauphineEmail("john.doe@dauphine.fr").build();
 
 		Course course1 = Course.Builder.newInstance().setCountGroupsCM(1).setNbMinutesCM(600)
 				.setName("Analyse de données").setStudyYear(2012).setStudyLevel("DE1").setSemester(1).build();
@@ -40,7 +40,8 @@ public class CalcDataTests {
 	@Test
 	void testGetCoursePrefWithNotMatchingCourse() {
 
-		Teacher teacher = Teacher.Builder.newInstance().setAddress("Elysee").setLastName("Smith").build();
+		Teacher teacher = Teacher.Builder.newInstance().setAddress("Elysee").setFirstName("John").setLastName("Smith")
+				.setDauphineEmail("john.smith@dauphine.fr").build();
 
 		Course course1 = Course.Builder.newInstance().setCountGroupsCM(1).setNbMinutesCM(900).setName("Java")
 				.setStudyYear(2012).setStudyLevel("DE2").setSemester(2).build();
