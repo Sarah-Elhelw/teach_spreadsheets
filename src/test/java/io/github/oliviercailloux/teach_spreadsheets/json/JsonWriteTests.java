@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.json;
 
+import static com.google.common.base.Verify.verify;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.InputStream;
@@ -25,7 +26,8 @@ public class JsonWriteTests {
 	@Test
 	void testWriteCourses() throws Exception {
 		URL url = CalcDataInitializerTests.class.getResource("Saisie_des_voeux_format simple.ods");
-
+		verify(url != null);
+		
 		try (InputStream odsStream = url.openStream()) {
 			CalcData calcData = CalcData.getData(odsStream);
 

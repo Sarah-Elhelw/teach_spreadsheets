@@ -24,9 +24,9 @@ public class JsonReadTests {
 		URL resourceUrl = JsonRead.class.getResource("Courses.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
-		final String fileContent = JsonRead.formatToArray(Files.readString(path));
+		final String formattedFileContent = JsonRead.formatToArray(Files.readString(path));
 
-		Course actualCourse = JsonRead.getSetOfCoursesInfo(fileContent).asList().get(1);
+		Course actualCourse = JsonRead.getSetOfCoursesInfo(formattedFileContent).asList().get(1);
 
 		assertEquals("Analyse 1", actualCourse.getName());
 		assertEquals(0, actualCourse.getCountGroupsTD());
@@ -54,9 +54,9 @@ public class JsonReadTests {
 		URL resourceUrl = JsonRead.class.getResource("CoursesWithNullName.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
-		final String fileContent = JsonRead.formatToArray(Files.readString(path));
+		final String formattedFileContent = JsonRead.formatToArray(Files.readString(path));
 		Throwable exception = assertThrows(JsonbException.class, () -> {
-			JsonRead.getSetOfCoursesInfo(fileContent);
+			JsonRead.getSetOfCoursesInfo(formattedFileContent);
 		});
 		assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
 	}
