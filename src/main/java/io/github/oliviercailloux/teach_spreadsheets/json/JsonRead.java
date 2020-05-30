@@ -52,6 +52,7 @@ public class JsonRead {
 	 * 
 	 */
 	public static ImmutableSet<Course> getSetOfCoursesInfo(String formattedFileContent) {
+		checkNotNull(formattedFileContent, "The String must not be null.");
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/**
 			 * We first build each course to make sure they represent proper and acceptable
