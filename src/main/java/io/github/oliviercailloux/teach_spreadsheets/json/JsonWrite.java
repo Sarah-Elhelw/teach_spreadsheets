@@ -22,6 +22,12 @@ public class JsonWrite {
 	 * Serializes a Set of Course objects
 	 * 
 	 * @param courses a collection of Course objects with no duplicate elements
+	 * 
+	 * @return the serialized set
+	 * 
+	 * @throws NullPointerException     if the parameter is null
+	 * @throws IllegalArgumentException if the conversion failed because of the
+	 *                                  parameter given to the method
 	 */
 	private static String serializeSet(Set<Course> courses) {
 		checkNotNull(courses, "The courses must not be null");

@@ -50,6 +50,12 @@ public class JsonRead {
 	 * 
 	 * @return an ImmutableSet of courses.
 	 * 
+	 * @throws NullPointerException     if the parameter is null
+	 * @throws JsonbException           if any unexpected error(s) occur(s) during
+	 *                                  deserialization.
+	 * @throws IllegalArgumentException if the conversion failed because of the
+	 *                                  parameter given to the method
+	 * 
 	 */
 	public static ImmutableSet<Course> getSetOfCoursesInfo(String formattedFileContent) {
 		checkNotNull(formattedFileContent, "The String must not be null.");
