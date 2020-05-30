@@ -6,9 +6,8 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
@@ -26,13 +25,12 @@ public class JsonWriteTests {
 	@Test
 	void testWriteCourses() throws Exception {
 		URL url = CalcDataInitializerTests.class.getResource("Saisie_des_voeux_format simple.ods");
-		Path odsPath = Path.of(url.toURI());
 
-		try (InputStream odsStream = Files.newInputStream(odsPath)) {
+		try (InputStream odsStream = url.openStream()) {
 			CalcData calcData = CalcData.getData(odsStream);
 
 			ImmutableSet<CoursePref> coursePrefs = calcData.getCoursePrefs();
-			HashSet<Course> courses = new HashSet<>();
+			Set<Course> courses = new LinkedHashSet<>();
 			for (CoursePref coursePref : coursePrefs) {
 				courses.add(coursePref.getCourse());
 			}
