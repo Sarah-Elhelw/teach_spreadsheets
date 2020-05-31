@@ -70,30 +70,28 @@ public class OdsSummarizerTests {
 		ods.setAllCoursesAssigned(allCoursesAssigned);
 
 		URL resourceUrl = OdsSummarizer.class.getResource("OdsSummarizer.ods");
-		try (InputStream stream = resourceUrl.openStream()) {
-			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
+		try (InputStream stream = resourceUrl.openStream();
+				SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
+				SpreadsheetDocument documentCreated = ods.createSummary()) {
 
-				try (SpreadsheetDocument documentCreated = ods.createSummary()) {
-					Table tableCreated = documentCreated.getTableByName("Summary");
-					Table table = document.getTableByName("Summary");
+			Table tableCreated = documentCreated.getTableByName("Summary");
+			Table table = document.getTableByName("Summary");
 
-					assertEquals(table.getCellByPosition("C4").getDisplayText(),
-							tableCreated.getCellByPosition("C4").getDisplayText());
-					assertEquals(table.getCellByPosition("F5").getDisplayText(),
-							tableCreated.getCellByPosition("F5").getDisplayText());
-					assertEquals(table.getCellByPosition("H5").getDisplayText(),
-							tableCreated.getCellByPosition("H5").getDisplayText());
-					assertEquals(table.getCellByPosition("C10").getDisplayText(),
-							tableCreated.getCellByPosition("C10").getDisplayText());
-					assertEquals(table.getCellByPosition("F11").getDisplayText(),
-							tableCreated.getCellByPosition("F11").getDisplayText());
-					assertEquals(table.getCellByPosition("H11").getDisplayText(),
-							tableCreated.getCellByPosition("H11").getDisplayText());
-					assertEquals(table.getCellByPosition("I8").getDisplayText(),
-							tableCreated.getCellByPosition("I8").getDisplayText());
+			assertEquals(table.getCellByPosition("C4").getDisplayText(),
+					tableCreated.getCellByPosition("C4").getDisplayText());
+			assertEquals(table.getCellByPosition("F5").getDisplayText(),
+					tableCreated.getCellByPosition("F5").getDisplayText());
+			assertEquals(table.getCellByPosition("H5").getDisplayText(),
+					tableCreated.getCellByPosition("H5").getDisplayText());
+			assertEquals(table.getCellByPosition("C10").getDisplayText(),
+					tableCreated.getCellByPosition("C10").getDisplayText());
+			assertEquals(table.getCellByPosition("F11").getDisplayText(),
+					tableCreated.getCellByPosition("F11").getDisplayText());
+			assertEquals(table.getCellByPosition("H11").getDisplayText(),
+					tableCreated.getCellByPosition("H11").getDisplayText());
+			assertEquals(table.getCellByPosition("I8").getDisplayText(),
+					tableCreated.getCellByPosition("I8").getDisplayText());
 
-				}
-			}
 		}
 
 	}
