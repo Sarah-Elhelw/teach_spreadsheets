@@ -21,62 +21,24 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 public class OdsSummarizerTests {
 
 	@Test
-
-	/**
-	 * This Test verifies if the summarized document is correctly completed
-	 * 
-	 */
-
 	void testCreateGlobalAssignment() throws Exception {
 
-		Course.Builder courseBuilder1 = Course.Builder.newInstance();
-		Course.Builder courseBuilder2 = Course.Builder.newInstance();
-		courseBuilder1.setName("testcourse1");
-		courseBuilder1.setStudyYear("2016/2017");
-		courseBuilder1.setSemester(1);
-		courseBuilder1.setCountGroupsCM(3);
-		courseBuilder1.setCountGroupsTD(4);
-		courseBuilder1.setnbMinutesCM(60);
-		courseBuilder1.setnbMinutesTD(60);
+		Course course1 = Course.Builder.newInstance().setName("testcourse1").setStudyYear("2016/2017").setSemester(1)
+				.setCountGroupsCM(3).setCountGroupsTD(4).setnbMinutesCM(60).setnbMinutesTD(60).build();
+		Course course2 = Course.Builder.newInstance().setName("testcourse2").setStudyYear("2016/2017").setSemester(1)
+				.setCountGroupsTP(3).setCountGroupsTD(4).setnbMinutesTP(60).setnbMinutesTD(60).build();
 
-		courseBuilder2.setName("testcourse2");
-		courseBuilder2.setStudyYear("2016/2017");
-		courseBuilder2.setSemester(1);
-		courseBuilder2.setCountGroupsTP(3);
-		courseBuilder2.setCountGroupsTD(4);
-		courseBuilder2.setnbMinutesTP(60);
-		courseBuilder2.setnbMinutesTD(60);
+		Teacher teacher1 = Teacher.Builder.newInstance().setFirstName("teacher1FirstName")
+				.setLastName("teacher1LastName").setDauphineEmail("teacher1@dauphine.eu").build();
+		Teacher teacher2 = Teacher.Builder.newInstance().setFirstName("teacher2FirstName")
+				.setLastName("teacher2LastName").setDauphineEmail("teacher2@dauphine.eu").build();
 
-		Course course1 = courseBuilder1.build();
-		Course course2 = courseBuilder2.build();
-
-		Teacher.Builder teacherBuilder1 = Teacher.Builder.newInstance();
-		Teacher.Builder teacherBuilder2 = Teacher.Builder.newInstance();
-		teacherBuilder1.setFirstName("teacher1FirstName");
-		teacherBuilder1.setLastName("teacher1LastName");
-		teacherBuilder1.setDauphineEmail("teacher1@dauphine.eu");
-		teacherBuilder2.setFirstName("teacher2FirstName");
-		teacherBuilder2.setLastName("teacher2LastName");
-		teacherBuilder1.setDauphineEmail("teacher2@dauphine.eu");
-		Teacher teacher1 = teacherBuilder1.build();
-		Teacher teacher2 = teacherBuilder2.build();
-
-		CoursePref.Builder prefBuilder1 = CoursePref.Builder.newInstance(course1, teacher1);
-		CoursePref.Builder prefBuilder2 = CoursePref.Builder.newInstance(course1, teacher2);
-		CoursePref.Builder prefBuilder3 = CoursePref.Builder.newInstance(course2, teacher1);
-
-		prefBuilder1.setPrefCM(Preference.A);
-		prefBuilder1.setPrefTD(Preference.B);
-
-		prefBuilder2.setPrefCM(Preference.C);
-		prefBuilder2.setPrefTD(Preference.A);
-
-		prefBuilder3.setPrefTP(Preference.B);
-		prefBuilder3.setPrefTD(Preference.C);
-
-		CoursePref pref1 = prefBuilder1.build();
-		CoursePref pref2 = prefBuilder2.build();
-		CoursePref pref3 = prefBuilder3.build();
+		CoursePref pref1 = CoursePref.Builder.newInstance(course1, teacher1).setPrefCM(Preference.A)
+				.setPrefTD(Preference.B).build();
+		CoursePref pref2 = CoursePref.Builder.newInstance(course1, teacher2).setPrefCM(Preference.C)
+				.setPrefTD(Preference.A).build();
+		CoursePref pref3 = CoursePref.Builder.newInstance(course2, teacher1).setPrefTP(Preference.B)
+				.setPrefTD(Preference.C).build();
 
 		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(teacher1).setCountGroupsTD(1)
 				.build();
