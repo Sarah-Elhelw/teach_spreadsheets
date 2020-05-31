@@ -38,24 +38,21 @@ public class AssignmentPerTeacherTests {
 		ImmutableSet<CourseAssignment> allCoursesAssigned = ImmutableSet.of(courseAssignment);
 
 		URL resourceUrl = AssignmentPerTeacher.class.getResource("AssignmentPerTeacher.ods");
-		try (InputStream stream = resourceUrl.openStream()) {
-			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
-
-				try (SpreadsheetDocument documentCreated = AssignmentPerTeacher.createAssignmentPerTeacher(teacher1,
+		try (InputStream stream = resourceUrl.openStream();
+				SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
+				SpreadsheetDocument documentCreated = AssignmentPerTeacher.createAssignmentPerTeacher(teacher1,
 						allCoursesAssigned)) {
 
-					Table tableCreated = documentCreated.getTableByName("Summary");
-					Table table = document.getTableByName("Summary");
+			Table tableCreated = documentCreated.getTableByName("Summary");
+			Table table = document.getTableByName("Summary");
 
-					assertEquals(table.getCellByPosition("A4").getDisplayText(),
-							tableCreated.getCellByPosition("A4").getDisplayText());
-					assertEquals(table.getCellByPosition("C10").getDisplayText(),
-							tableCreated.getCellByPosition("C10").getDisplayText());
-					assertEquals(table.getCellByPosition("C17").getDisplayText(),
-							tableCreated.getCellByPosition("C17").getDisplayText());
+			assertEquals(table.getCellByPosition("A4").getDisplayText(),
+					tableCreated.getCellByPosition("A4").getDisplayText());
+			assertEquals(table.getCellByPosition("C10").getDisplayText(),
+					tableCreated.getCellByPosition("C10").getDisplayText());
+			assertEquals(table.getCellByPosition("C17").getDisplayText(),
+					tableCreated.getCellByPosition("C17").getDisplayText());
 
-				}
-			}
 		}
 	}
 }
