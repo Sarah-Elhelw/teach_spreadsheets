@@ -251,7 +251,7 @@ public class OdsSummarizer {
 			
 			ods.setValueAt(group, line, 2);
 			ods.setValueAt(String.valueOf(course.getCountGroups(group)), line, 3);
-			ods.setValueAt(String.valueOf(course.getNbMinutes(group)/60), line, 4);
+			ods.setValueAt(String.valueOf(course.getNbMinutes(group)/60.0), line, 4);
 
 			formatGroups(table, line);
 
