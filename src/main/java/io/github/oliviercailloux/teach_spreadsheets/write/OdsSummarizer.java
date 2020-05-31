@@ -21,30 +21,14 @@ import com.google.common.collect.ImmutableSet;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 
+import static com.google.common.base.Verify.verify;
+
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 
 public class OdsSummarizer {
-
-	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
-
-	private ImmutableSet<Course> allCourses;
-	private Set<CoursePref> prefs;
-	private Optional<Set<CourseAssignment>> allCoursesAssigned;
-		
-	private OdsSummarizer(Set<Course> allCourses) {
-		this.allCourses = ImmutableSet.copyOf(allCourses);
-		prefs = new LinkedHashSet<CoursePref>();
-		allCoursesAssigned = Optional.empty();
-	}
-	
-	public static OdsSummarizer newInstance(Set<Course> allCourses) {
-		checkNotNull(allCourses, "The set of courses should not be null.");
-		return new OdsSummarizer(allCourses);
-	}
-	
 
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
@@ -60,7 +44,27 @@ public class OdsSummarizer {
 	private final static String CANDIDATES_LAST_NAME_POSITION = "G3";
 	private final static String CHOICES_POSITION = "H3";
 	private final static String ASSIGNMENT_POSITION = "I3";
-	
+
+	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
+
+	private OdsHelper ods;
+	private int line;
+
+	private ImmutableSet<Course> allCourses;
+	private Set<CoursePref> prefs;
+	private Optional<Set<CourseAssignment>> allCoursesAssigned;
+
+	private OdsSummarizer(Set<Course> allCourses) {
+		this.allCourses = ImmutableSet.copyOf(allCourses);
+		prefs = new LinkedHashSet<>();
+		allCoursesAssigned = Optional.empty();
+	}
+
+	public static OdsSummarizer newInstance(Set<Course> allCourses) {
+		checkNotNull(allCourses, "The set of courses should not be null.");
+		return new OdsSummarizer(allCourses);
+	}
+
 	/**
 	 * This method sets the Teachers' preferences for the courses : it adds new
 	 * teacher's preferences for a course.
@@ -72,9 +76,8 @@ public class OdsSummarizer {
 	 * @throws IllegalArgumentException if we want to add a teacher's preference for
 	 *                                  a course that is not in allCourses or if we
 	 *                                  want to add a teacher's preferences for a
-	 *                                  course while their is already one in prefs.
+	 *                                  course while there is already one in prefs.
 	 */
-
 	public void setPrefs(Set<CoursePref> prefsToBeSet) {
 		checkNotNull(prefsToBeSet, "The preferences must not be null.");
 
@@ -92,7 +95,7 @@ public class OdsSummarizer {
 						"The preferences of a teacher for a course should be set once.");
 			}
 		}
-		
+
 		prefs.addAll(prefsToBeSet);
 	}
 
@@ -101,15 +104,14 @@ public class OdsSummarizer {
 	 * teach_spreadsheets project will work, a set of all the courses' assignments
 	 * will be provided to create the summarized assignment ods file. In this class,
 	 * the assignments are set as optional in the case only the teachers'
-	 * preferences are wanted : an empty optional means there are no assignment
-	 * informations to display.
+	 * preferences are available : an empty optional means there are no assignment
+	 * information to display.
 	 * 
-	 * @param assignmentsToBeSet - These are all the courses Assignment to be written
-	 *                           in the FichierAgrege
+	 * @param assignmentsToBeSet - These are all the courses Assignment to be
+	 *                           written in the FichierAgrege
 	 * 
 	 * @throws NullPointerException if the parameter is null
 	 */
-
 	public void setAllCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
 		checkNotNull(assignmentsToBeSet, "The course assignments should not be null.");
 
@@ -119,95 +121,88 @@ public class OdsSummarizer {
 		}
 		checkArgument(allCourses.containsAll(coursesInAssignments),
 				"The assignments must be for courses specified in allCourses attribute.");
-		
+
 		allCoursesAssigned = Optional.of(assignmentsToBeSet);
 	}
 
 	/**
-	 * This methods sets the main borders of the unique table in the ods summarized
-	 * file.
+	 * This methods sets the main borders of the unique table in the sheet.
 	 * 
-	 * @param table - the sheet where the table is.
-	 * @param line - the current line.
-	 * 
-	 * @throws NullPointerException if the parameter is null
 	 */
-	private void putBorders(Table table, int line) {
-		checkNotNull(table, "The sheet should not be null.");
+	private void putBorders() {
+		Table table = ods.getTable();
+
 		for (int col = 0; col <= 9; col++) {
 			for (int row = 3; row <= line; row++) {
 				if (!(new Font("Arial", FontStyle.BOLD, 11.0, Color.BLACK)
-						.equals(table.getCellByPosition(2, row).getFont()))) {
+						.equals(table.getCellByPosition(2, row).getFont())) || col == 0 || col == 1) {
 					table.getCellByPosition(col, row).setBorders(CellBordersType.LEFT_RIGHT,
 							new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+				} else {
+					if (col == 9) {
+						table.getCellByPosition(col, row).setBorders(CellBordersType.RIGHT,
+								new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+					}
+
 				}
-				table.getCellByPosition(col, row).setBorders(CellBordersType.LEFT_RIGHT,
-						new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 			}
 			table.getCellByPosition(col, line).setBorders(CellBordersType.BOTTOM,
 					new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		}
 	}
-	
+
 	/**
 	 * This method formats the headers of the table in the sheet.
 	 * 
-	 * @param table - the sheet where the table is
-	 * 
-	 * @throws NullPointerException if the parameter is null
 	 */
-	private static void formatHeaders(Table table) {
-		checkNotNull(table, "The sheet should not be null.");
+	private void formatHeaders() {
+		Table table = ods.getTable();
+
 		table.getCellByPosition(TITLE_POSITION)
 				.setFont(new Font("Arial", FontStyle.BOLD, 15.0, new Color(201, 33, 30)));
+
 		Set<String> headersPositions = Set.of(YEAR_POSITION, SEMESTER_POSITION, COURSE_TYPE_POSITION,
 				GROUPS_NUMBER_POSITION, NUMBER_HOURS_POSITION, CANDIDATES_FIRST_NAME_POSITION,
-				CANDIDATES_LAST_NAME_POSITION, CHOICES_POSITION, ASSIGNMENT_POSITION);
+				CANDIDATES_LAST_NAME_POSITION, CHOICES_POSITION, ASSIGNMENT_POSITION, "J3");
+
 		for (String position : headersPositions) {
 			table.getCellByPosition(position).setCellBackgroundColor(new Color(255, 182, 108));
 			table.getCellByPosition(position).setFont(new Font("Arial", FontStyle.BOLD, 12.0, Color.BLACK));
 			table.getCellByPosition(position).setBorders(CellBordersType.ALL_FOUR,
 					new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		}
-		table.getCellByPosition("J3").setCellBackgroundColor(new Color(255, 182, 108));
-		table.getCellByPosition("J3").setBorders(CellBordersType.ALL_FOUR,
-				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		table.getCellByPosition(ASSIGNMENT_POSITION).setBorders(CellBordersType.TOP_BOTTOM,
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 	}
-	
-	/**
-	 * This method adds the headers to this new document.
-	 * 
-	 * @param table - this is the main table of the ods document to be completed
-	 */
 
-	private static void headersToOds(Table table) {
+	/**
+	 * This method adds the headers to the sheet.
+	 * 
+	 */
+	private void headersToOds() {
+		Table table = ods.getTable();
 
 		table.getCellByPosition(TITLE_POSITION).setStringValue("Teachers Preferences and Assignment");
 		table.getCellByPosition(YEAR_POSITION).setStringValue("Year of study");
 		table.getCellByPosition(SEMESTER_POSITION).setStringValue("Semester");
 		table.getCellByPosition(COURSE_TYPE_POSITION).setStringValue("Course Type");
-		table.getCellByPosition(GROUPS_NUMBER_POSITION).setStringValue("Numbers of groups");
-		table.getCellByPosition(NUMBER_HOURS_POSITION).setStringValue("Number of hours weekly");
-		table.getCellByPosition(CANDIDATES_FIRST_NAME_POSITION).setStringValue("Candidates' First Name");
-		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setStringValue("Candidates' Last Name");
-		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choices");
+		table.getCellByPosition(GROUPS_NUMBER_POSITION).setStringValue("Number of groups");
+		table.getCellByPosition(NUMBER_HOURS_POSITION).setStringValue("Number of hours");
+		table.getCellByPosition(CANDIDATES_FIRST_NAME_POSITION).setStringValue("Candidate's First Name");
+		table.getCellByPosition(CANDIDATES_LAST_NAME_POSITION).setStringValue("Candidate's Last Name");
+		table.getCellByPosition(CHOICES_POSITION).setStringValue("Choice");
 		table.getCellByPosition(ASSIGNMENT_POSITION).setStringValue("Assignment");
-		
-		formatHeaders(table);
+
+		formatHeaders();
 	}
 
 	/**
-	 * This method formats the cells containing informations about a course group.
+	 * This method formats the cells containing information about a course group.
 	 * 
-	 * @param table - the sheet where the table is
-	 * @param line - the line where the course group information are
-	 * 
-	 * @throws NullPointerException if the parameter is null
 	 */
-	private void formatGroups(Table table, int line) {
-		checkNotNull(table, "The sheet should not be null.");
+	private void formatGroups() {
+		Table table = ods.getTable();
+
 		table.getCellByPosition(2, line).setHorizontalAlignment(HorizontalAlignmentType.RIGHT);
 		table.getCellByPosition(3, line).setHorizontalAlignment(HorizontalAlignmentType.CENTER);
 		for (int col = 2; col <= 9; col++) {
@@ -218,91 +213,78 @@ public class OdsSummarizer {
 
 	/**
 	 * This method sets teachers' preferences and assignments for a given course
-	 * group in an ods document.
+	 * group in the sheet.
 	 * 
-	 * @param ods              - the ods document to complete
-	 * @param line             - the starting line in the ods document where to
-	 *                         write
 	 * @param course           - the given course
-	 * @param prefs            - a set of teachers' preferences for the given
-	 *                         course. There should be no duplicates of teachers'
-	 *                         preferences.
 	 * @param group            - the group type of the given course
+	 * @param prefsForGroup    - the set of teachers' preferences for the given
+	 *                         group
 	 * @param teachersAssigned - the set of teachers assigned to the given course
 	 * 
-	 * @return line - the updated index of line
 	 * 
 	 * @throws NullPointerException if one of the parameters is null
 	 */
-	private int setSummarizedFileForGroup(OdsHelper ods, Table table, int line, Course course, String group,
+	private int setSummarizedFileForGroup(Course course, String group, Set<CoursePref> prefsForGroup,
 			Optional<Set<TeacherAssignment>> teachersAssigned) {
 
-		checkNotNull(ods, "The ods component should not be null");
-		checkNotNull(table, "The sheet should not be null.");
 		checkNotNull(course, "The course should not be null.");
 		checkNotNull(group, "The group should not be null.");
+		checkNotNull(prefsForGroup, "The set of preferences for the group should not be null.");
 		checkNotNull(teachersAssigned, "The teacher's assignments should not be null.");
-		
+
 		boolean courseHasTeacher = false;
 
-		if (course.getCountGroups(group) > 0) {
+		line++;
 
-			line++;
-			
-			ods.setValueAt(group, line, 2);
-			ods.setValueAt(String.valueOf(course.getCountGroups(group)), line, 3);
-			ods.setValueAt(String.valueOf(course.getNbMinutes(group)/60.0), line, 4);
+		ods.setValueAt(group, line, 2);
+		ods.setValueAt(String.valueOf(course.getCountGroups(group)), line, 3);
+		ods.setValueAt(String.valueOf(course.getNbMinutes(group) / 60.0), line, 4);
 
-			formatGroups(table, line);
+		formatGroups();
 
-			for (CoursePref p : prefs) {
+		for (CoursePref p : prefsForGroup) {
 
-				if (course.equals(p.getCourse()) && !p.getPref(group).toString().equals("UNSPECIFIED")) {
+			courseHasTeacher = true;
 
-					courseHasTeacher = true;
-					
-					ods.setValueAt(p.getTeacher().getFirstName(), line, 5);					
-					ods.setValueAt(p.getTeacher().getLastName(), line, 6);					
-					ods.setValueAt(p.getPref(group).toString(), line, 7);
+			ods.setValueAt(p.getTeacher().getFirstName(), line, 5);
+			ods.setValueAt(p.getTeacher().getLastName(), line, 6);
+			ods.setValueAt(p.getPref(group).toString(), line, 7);
 
-					if (teachersAssigned.isPresent()) {
-						for (TeacherAssignment ta : teachersAssigned.get()) {
-							if (p.getTeacher().equals(ta.getTeacher()) && ta.getCountGroups(group) != 0) {
-								ods.setValueAt(ta.getTeacher().getFirstName(), line, 8);								
-								ods.setValueAt(ta.getTeacher().getLastName(), line, 9);
+			if (teachersAssigned.isPresent()) {
+				for (TeacherAssignment ta : teachersAssigned.get()) {
+					if (p.getTeacher().equals(ta.getTeacher()) && ta.getCountGroups(group) != 0) {
+						ods.setValueAt(ta.getTeacher().getFirstName(), line, 8);
+						ods.setValueAt(ta.getTeacher().getLastName(), line, 9);
 
-							}
-						}
 					}
-
-					line++;
 				}
 			}
 
-			if (!courseHasTeacher) {
-				line++;
-			}
-
+			line++;
 		}
+
+		if (!courseHasTeacher) {
+			line++;
+		}
+
 		return line;
 	}
-	
+
 	/**
-	 * This method formats the cells containing informations about a course.
+	 * This method formats the cells containing information about a course.
 	 * 
-	 * @param table - the sheet where the table is
-	 * @param line - the line where the course information are
-	 * 
-	 * @throws NullPointerException if the parameter is null
 	 */
-	public void formatCourseHeader(Table table, int line) {
-		checkNotNull(table, "The sheet should not be null.");
-		
-		table.getCellByPosition(0, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		table.getCellByPosition(1, line).setBorders(CellBordersType.TOP, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
-		for (int col = 2; col<=9; col++) {
+	public void formatCourseHeader() {
+		Table table = ods.getTable();
+
+		table.getCellByPosition(0, line).setBorders(CellBordersType.TOP,
+				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		table.getCellByPosition(1, line).setBorders(CellBordersType.TOP,
+				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+		for (int col = 2; col <= 9; col++) {
 			table.getCellByPosition(col, line).setCellBackgroundColor(Color.SILVER);
-			table.getCellByPosition(col, line).setBorders(CellBordersType.TOP_BOTTOM, new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+			table.getCellByPosition(col, line).setBorders(CellBordersType.TOP_BOTTOM,
+					new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		}
 		table.getCellByPosition(2, line).setFont(new Font("Arial", FontStyle.BOLD, 11.0, Color.BLACK));
 	}
@@ -310,55 +292,63 @@ public class OdsSummarizer {
 	/**
 	 * This method creates a summarized Ods like FichierAgrege.pdf. For each course,
 	 * it writes all the teachers who want to teach the course, their preferences
-	 * and the possible assignment.
+	 * and the possible assignments.
 	 * 
-	 * @param allCourses         This is a complete set of Courses.
-	 * @param prefs              This is a complete set of Preferences.
-	 * @param allCoursesAssigned This is a complete set of CourseAssignment (courses
-	 *                           which has been assigned to teachers)
 	 * @return A document competed with all the courses, all the preferences of the
-	 *         teachers and the possible assignment for each course
-	 * @throws Throwable if the document could not be correctly completed
+	 *         teachers and the possible assignments for each course
+	 * 
+	 * @throws IOException if the Ods could not be created
 	 */
-
 	public SpreadsheetDocument createSummary() throws IOException {
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
-		Table summary = document.appendSheet("Summary");
-		OdsHelper ods = OdsHelper.newInstance(summary);
+		ods = OdsHelper.newInstance(document.appendSheet("Summary"));
+		verify(ods != null);
 
-		headersToOds(summary);
-		int line = 3;
+		headersToOds();
+
+		line = 3;
 
 		for (Course course : allCourses) {
 
 			ods.setValueAt(course.getStudyYear(), line, 0);
 			ods.setValueAt(String.valueOf(course.getSemester()), line, 1);
 			ods.setValueAt(course.getName(), line, 2);
-			
-			formatCourseHeader(summary, line);
-			
-			line++;
 
+			formatCourseHeader();
+
+			Set<TeacherAssignment> ta = new LinkedHashSet<>();
 			Optional<Set<TeacherAssignment>> teachersAssigned = Optional.empty();
 
 			if (allCoursesAssigned.isPresent()) {
 				for (CourseAssignment ca : allCoursesAssigned.get()) {
 					if (course.equals(ca.getCourse())) {
-						teachersAssigned = Optional.of(ca.getTeacherAssignments());
-						break;
+						ta.addAll(ca.getTeacherAssignments());
 					}
 				}
+				teachersAssigned = Optional.of(ta);
 			}
 
-			line--;
+			Set<CoursePref> prefsForGroup;
 			for (String group : GROUPS) {
-				line = setSummarizedFileForGroup(ods, summary, line, course, group, teachersAssigned);
+				prefsForGroup = new LinkedHashSet<>();
+
+				if (course.getCountGroups(group) > 0) {
+
+					for (CoursePref p : prefs) {
+						if (course.equals(p.getCourse()) && !p.getPref(group).toString().equals("UNSPECIFIED")) {
+							prefsForGroup.add(p);
+						}
+					}
+
+					line = setSummarizedFileForGroup(course, group, prefsForGroup, teachersAssigned);
+				}
+
 			}
 		}
-		
-		putBorders(summary, line);
-				
+
+		putBorders();
+
 		return document;
 
 	}

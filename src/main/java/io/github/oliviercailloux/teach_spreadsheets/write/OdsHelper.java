@@ -10,7 +10,11 @@ import java.io.IOException;
 
 class OdsHelper {
 
-	static Table table;
+	private Table table;
+	
+	public Table getTable() {
+		return table;
+	}
 
 	/**
 	 * This is the constructor of the class
@@ -45,7 +49,7 @@ class OdsHelper {
 			document.removeSheet(0);
 			return document;
 		} catch(Exception e) {
-			throw new IOException();
+			throw new IOException(e);
 		}
 		
 	}
@@ -64,16 +68,6 @@ class OdsHelper {
 		Cell cell = table.getCellByPosition(column, row);
 		cell.setDisplayText(info);
 
-	}
-
-	/**
-	 * This method can convert an ods to pdf
-	 * 
-	 * @param ods document
-	 * @return a pdf
-	 */
-	public void odsToPdf(SpreadsheetDocument document) {
-		// TODO
 	}
 
 }
