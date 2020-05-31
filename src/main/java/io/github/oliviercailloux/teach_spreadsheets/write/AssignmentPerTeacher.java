@@ -218,8 +218,8 @@ public class AssignmentPerTeacher {
 
 		if (ta.getCountGroups(group) != 0) {
 			ods.setValueAt(group, line, 3);
-			ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group) / 60), line, 4);
-			totalNumberMinutes += ta.getCourse().getNbMinutes(group) / 60;
+			ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group) / 60.0), line, 4);
+			totalNumberMinutes += ta.getCourse().getNbMinutes(group) / 60.0;
 			line++;
 		}
 		return line;
