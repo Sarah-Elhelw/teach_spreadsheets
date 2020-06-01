@@ -33,5 +33,4 @@ public class CourseTests {
 		assertEquals("The study level must be specified.", exception.getMessage());
 
 	}
-	
 }
