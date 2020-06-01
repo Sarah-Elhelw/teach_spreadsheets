@@ -25,11 +25,10 @@ public class JsonReadTests {
 		URL resourceUrl = JsonRead.class.getResource("Courses.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
-		final String formattedFileContent = JsonRead.formatToArray(Files.readString(path));
 
-		ImmutableSet<Course> courses = JsonRead.getSetOfCoursesInfo(formattedFileContent);
+		ImmutableSet<Course> courses = JsonRead.getSetOfCoursesInfo(Files.readString(path));
 		assertTrue(courses.size() == 2);
-		
+
 		Course actualCourse = courses.asList().get(1);
 		assertEquals("Analyse 1", actualCourse.getName());
 		assertEquals(0, actualCourse.getCountGroupsTD());
@@ -57,21 +56,22 @@ public class JsonReadTests {
 		URL resourceUrl = JsonRead.class.getResource("CoursesWithNullName.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
-		final String formattedFileContent = JsonRead.formatToArray(Files.readString(path));
 		Throwable exception = assertThrows(JsonbException.class, () -> {
-			JsonRead.getSetOfCoursesInfo(formattedFileContent);
+			JsonRead.getSetOfCoursesInfo(Files.readString(path));
 		});
 		assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
 	}
 
 	@Test
 	void testDemonstratingNeedForFormatToArray() throws Exception {
-		URL resourceUrl = JsonRead.class.getResource("Courses.json");
+		URL resourceUrl = JsonRead.class.getResource("CoursesWithWrongFormat.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
-		final String fileContent = Files.readString(path);
 
-		assertEquals(ImmutableSet.of(), JsonRead.getSetOfCoursesInfo(fileContent));
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+			JsonRead.getSetOfCoursesInfo(Files.readString(path));
+		});
+		assertEquals("The file does not contain a single array.", exception.getMessage());
 	}
 
 }

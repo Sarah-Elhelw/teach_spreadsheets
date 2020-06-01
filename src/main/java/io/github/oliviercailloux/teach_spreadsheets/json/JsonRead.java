@@ -1,42 +1,37 @@
 package io.github.oliviercailloux.teach_spreadsheets.json;
 
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.Json;
+import javax.json.JsonReader;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbException;
+import javax.json.stream.JsonParsingException;
 
 import com.google.common.base.VerifyException;
 import com.google.common.collect.ImmutableSet;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkArgument;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
 public class JsonRead {
 
 	/**
-	 * This method formats a json text, that contains a single array, to extract
-	 * this array from it.
+	 * This method checks that the String represents a JsonArray.
 	 * 
-	 * @param textArray - the json text containing an array.
+	 * @param textArray - the json text we want to make sure contains a single array
 	 * 
-	 * @return the formatted json text to suit Jsonb deserializer.
-	 * 
-	 * @throws IllegalArgumentException if the parameter does not contain an array
-	 *                                  or contains several arrays.
+	 * @throws IllegalArgumentException if the parameter is not a single json array
 	 */
-	public static String formatToArray(String textArray) {
-		checkNotNull(textArray, "The String must not be null.");
-		int leftSquareBracket = textArray.indexOf('[');
-		int rightSquareBracket = textArray.indexOf(']');
-		checkArgument(leftSquareBracket != -1 && rightSquareBracket != -1,
-				"The parameter must be a json text containing an array.");
-		checkArgument(
-				leftSquareBracket == textArray.lastIndexOf('[') && rightSquareBracket == textArray.lastIndexOf(']'),
-				"The parameter must contain a single array.");
-		return textArray.substring(leftSquareBracket, rightSquareBracket + 1);
+	private static void checkFormat(String textArray) {
+		try (JsonReader jr = Json.createReader(new StringReader(textArray))) {
+			jr.readArray();
+		} catch (JsonParsingException jpe) {
+			throw new IllegalArgumentException("The file does not contain a single array.", jpe);
+		}
 	}
 
 	/**
@@ -45,8 +40,7 @@ public class JsonRead {
 	 * <a href="http://json-b.net/docs/user-guide.html">this website</a>. The json
 	 * string read must contain a single array.
 	 * 
-	 * @param formattedFileContent - the json string containing only a list of
-	 *                             courses.
+	 * @param fileContent - the json string containing only a list of courses.
 	 * 
 	 * @return an ImmutableSet of courses.
 	 * 
@@ -55,14 +49,16 @@ public class JsonRead {
 	 * @throws VerifyException if the conversion failed
 	 * 
 	 */
-	public static ImmutableSet<Course> getSetOfCoursesInfo(String formattedFileContent) {
-		checkNotNull(formattedFileContent, "The String must not be null.");
+	public static ImmutableSet<Course> getSetOfCoursesInfo(String fileContent) {
+		checkNotNull(fileContent, "The String must not be null.");
+		checkFormat(fileContent);
+
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/**
 			 * We first build each course to make sure they represent proper and acceptable
 			 * Course objects :
 			 */
-			List<Course.Builder> coursesB = jsonb.fromJson(formattedFileContent, new ArrayList<Course.Builder>() {
+			List<Course.Builder> coursesB = jsonb.fromJson(fileContent, new ArrayList<Course.Builder>() {
 				private static final long serialVersionUID = -7485196487129232751L;
 			}.getClass().getGenericSuperclass());
 			List<Course> courses = new ArrayList<>();
