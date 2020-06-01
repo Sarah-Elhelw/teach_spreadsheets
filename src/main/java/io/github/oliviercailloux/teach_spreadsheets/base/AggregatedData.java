@@ -110,31 +110,6 @@ public class AggregatedData {
 	}
 
 	/**
-	 * This methods gets all the preferences of a given Teacher identified by his
-	 * first name and last name.
-	 * 
-	 * @param lastName  - the last name of the teacher whose preferences we want to
-	 *                  get.
-	 * @param firstName - the first name of the teacher whose preferences we want to
-	 *                  get.
-	 * 
-	 * @return all the preferences of the given Teacher
-	 * 
-	 * @throws IllegalArgumentException if there is no preference referenced for the
-	 *                                  given teacher.
-	 */
-	public Set<CoursePref> getTeacherPrefsByName(String lastName, String firstName) {
-		checkNotNull(lastName, "The teacher must not be null.");
-		for (CalcData calcData : calcDatas) {
-			if (lastName.equals(calcData.getTeacher().getLastName())
-					&& firstName.equals(calcData.getTeacher().getFirstName())) {
-				return calcData.getCoursePrefs();
-			}
-		}
-		throw new IllegalArgumentException("There is no preference referenced for this teacher.");
-	}
-
-	/**
 	 * This method gets all the preferences expressed for a given Course.
 	 * 
 	 * @param course - the course whose preferences for we want to get.
