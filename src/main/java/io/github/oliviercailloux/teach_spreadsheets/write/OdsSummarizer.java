@@ -224,7 +224,7 @@ public class OdsSummarizer {
 	 * 
 	 * @throws NullPointerException if one of the parameters is null
 	 */
-	private int setSummarizedFileForGroup(Course course, String group, Set<CoursePref> prefsForGroup,
+	private void setSummarizedFileForGroup(Course course, String group, Set<CoursePref> prefsForGroup,
 			Optional<Set<TeacherAssignment>> teachersAssigned) {
 
 		checkNotNull(course, "The course should not be null.");
@@ -267,7 +267,6 @@ public class OdsSummarizer {
 			line++;
 		}
 
-		return line;
 	}
 
 	/**
@@ -341,7 +340,7 @@ public class OdsSummarizer {
 						}
 					}
 
-					line = setSummarizedFileForGroup(course, group, prefsForGroup, teachersAssigned);
+					setSummarizedFileForGroup(course, group, prefsForGroup, teachersAssigned);
 				}
 
 			}
