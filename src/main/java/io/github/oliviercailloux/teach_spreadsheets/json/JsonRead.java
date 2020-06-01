@@ -20,7 +20,9 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 public class JsonRead {
 
 	/**
-	 * This method checks that the String represents a JsonArray.
+	 * This method checks that the String represents a JsonArray. Having only a
+	 * JsonArray is necessary for the deserialization process to work properly,
+	 * otherwise, it invariably returns an empty set which we do not want.
 	 * 
 	 * @param textArray - the json text we want to make sure contains a single array
 	 * 
