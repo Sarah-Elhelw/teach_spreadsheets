@@ -223,17 +223,18 @@ public class Teacher {
 			 * information too. These verifications allow us to see if there are bugs in our
 			 * program.
 			 */
-			verify(lastName.equals(t2.lastName));
-			verify(firstName.equals(t2.firstName));
-			verify(address.equals(t2.address));
-			verify(postCode.equals(t2.postCode));
-			verify(city.equals(t2.city));
-			verify(personalPhone.equals(t2.personalPhone));
-			verify(mobilePhone.equals(t2.mobilePhone));
-			verify(dauphinePhoneNumber.equals(t2.dauphinePhoneNumber));
-			verify(personalEmail.equals(t2.personalEmail));
-			verify(status.equals(t2.status));
-			verify(office.equals(t2.office));
+			verify(lastName.equals(t2.lastName), "Two equal teachers must have the same last name.");
+			verify(firstName.equals(t2.firstName), "Two equal teachers must have the same first name.");
+			verify(address.equals(t2.address), "Two equal teachers must have the same address.");
+			verify(postCode.equals(t2.postCode), "Two equal teachers must have the same post code.");
+			verify(city.equals(t2.city), "Two equal teachers must have the same city.");
+			verify(personalPhone.equals(t2.personalPhone), "Two equal teachers must have the same personal phone.");
+			verify(mobilePhone.equals(t2.mobilePhone), "Two equal teachers must have the same mobile phone.");
+			verify(dauphinePhoneNumber.equals(t2.dauphinePhoneNumber),
+					"Two equal teachers must have the same dauphine phone number.");
+			verify(personalEmail.equals(t2.personalEmail), "Two equal teachers must have the same personal email.");
+			verify(status.equals(t2.status), "Two equal teachers must have the same status.");
+			verify(office.equals(t2.office), "Two equal teachers must have the same office.");
 		}
 
 		return equals;
