@@ -3,6 +3,8 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkState;
+
 
 import java.util.Objects;
 
@@ -189,6 +191,18 @@ public class Teacher {
 		return office;
 	}
 	
+	/**
+	 * We consider that two teachers are equal if they have the same dauphine e-mail
+	 * as e-mails guarantee uniqueness and as a teacher necessarily has a dauphine
+	 * e-mail.
+	 * 
+	 * @throws IllegalStateException if two teachers, considered as equal, have
+	 *                               different last names, or first names, or
+	 *                               addresses, or post codes, or cities, or
+	 *                               personal phones, or mobile phones, or dauphine
+	 *                               phone numbers, or personal emails, or statuses,
+	 *                               or offices.
+	 */
 	@Override
 	public boolean equals(Object o2) {
 		if (!(o2 instanceof Teacher)) {
@@ -198,12 +212,24 @@ public class Teacher {
 			return true;
 		}
 		Teacher t2 = (Teacher) o2;
-		/**
-		 * We consider that two teachers are equal if they have the same dauphine e-mail
-		 * as e-mails guarantee uniqueness and as a teacher necessarily has a dauphine
-		 * e-mail.
-		 */
-		return dauphineEmail.equals(t2.dauphineEmail);
+
+		boolean equals = dauphineEmail.equals(t2.dauphineEmail);
+
+		if (equals) {
+			checkState(lastName.equals(t2.lastName));
+			checkState(firstName.equals(t2.firstName));
+			checkState(address.equals(t2.address));
+			checkState(postCode.equals(t2.postCode));
+			checkState(city.equals(t2.city));
+			checkState(personalPhone.equals(t2.personalPhone));
+			checkState(mobilePhone.equals(t2.mobilePhone));
+			checkState(dauphinePhoneNumber.equals(t2.dauphinePhoneNumber));
+			checkState(personalEmail.equals(t2.personalEmail));
+			checkState(status.equals(t2.status));
+			checkState(office.equals(t2.office));
+		}
+
+		return equals;
 	}
 
 	@Override

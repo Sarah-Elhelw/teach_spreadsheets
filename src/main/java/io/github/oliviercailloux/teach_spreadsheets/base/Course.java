@@ -6,6 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Objects;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Immutable Class used to store a course information. Uses Builder pattern
@@ -219,6 +220,19 @@ public class Course {
 		}
 	}
 	
+	/**
+	 * We consider that two courses are equal if they have the same studyLevel, the
+	 * same semester and the same name. As the number of groups may vary from a year
+	 * to another, we also consider the study year to determine if we have two same
+	 * courses.
+	 * 
+	 * All these criteria seem to be necessary as we need to take into consideration
+	 * the case of "LV2 (Allemand / Espagnol)" course in "AA Saisie des voeux.ods"
+	 * that has the same name no matter the semester or study level.
+	 * 
+	 * @throws IllegalStateException if two courses, considered as equal, have
+	 *                               different number of groups or teaching minutes
+	 */
 	@Override
 	public boolean equals(Object o2) {
 		if (!(o2 instanceof Course)) {
@@ -228,18 +242,32 @@ public class Course {
 			return true;
 		}
 		Course c2 = (Course) o2;
-		/**
-		 * We consider that two courses are equal if they have the same studyLevel, the
-		 * same semester and the same name. As the number of groups may vary from a year
-		 * to another, we also consider the study year to determine if we have two same
-		 * courses.
-		 * 
-		 * All these criteria seem to be necessary as we need to take into consideration
-		 * the case of "LV2 (Allemand / Espagnol)" course in "AA Saisie des voeux.ods"
-		 * that has the same name no matter the semester or study level.
-		 */
-		return studyYear == c2.studyYear && studyLevel.equals(c2.studyLevel) && semester == c2.semester
+
+		boolean equals = studyYear == c2.studyYear && studyLevel.equals(c2.studyLevel) && semester == c2.semester
 				&& name.equals(c2.name);
+
+		if (equals) {
+			checkState(countGroupsCM == c2.countGroupsCM, "Two equal courses must have the same number of CM groups.");
+			checkState(countGroupsTD == c2.countGroupsTD, "Two equal courses must have the same number of TD groups.");
+			checkState(countGroupsTP == c2.countGroupsTP, "Two equal courses must have the same number of TP groups.");
+			checkState(countGroupsCMTD == c2.countGroupsCMTD,
+					"Two equal courses must have the same number of CMTD groups.");
+			checkState(countGroupsCMTP == c2.countGroupsCMTP,
+					"Two equal courses must have the same number of CMTP groups.");
+
+			checkState(nbMinutesCM == c2.nbMinutesCM,
+					"Two equal courses must have the same number of CM teaching minutes.");
+			checkState(nbMinutesTD == c2.nbMinutesTD,
+					"Two equal courses must have the same number of TD teaching minutes.");
+			checkState(nbMinutesTP == c2.nbMinutesTP,
+					"Two equal courses must have the same number of TP teaching minutes.");
+			checkState(nbMinutesCMTD == c2.nbMinutesCMTD,
+					"Two equal courses must have the same number of CMTD teaching minutes.");
+			checkState(nbMinutesCMTP == c2.nbMinutesCMTP,
+					"Two equal courses must have the same number of CMTP teaching minutes.");
+		}
+
+		return equals;
 	}
 
 	@Override
