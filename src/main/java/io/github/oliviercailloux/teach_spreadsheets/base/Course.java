@@ -25,8 +25,8 @@ public class Course {
 	 */
 	private String studyLevel;
 	/**
-	 * This attribute corresponds to the beginning year of study of the course. For example,
-	 * if the year is 2016/2017, studyYear = 2016.
+	 * This attribute corresponds to the beginning year of study of the course. For
+	 * example, if the year is 2016/2017, studyYear = 2016.
 	 */
 	private int studyYear;
 	private int semester;
@@ -55,7 +55,7 @@ public class Course {
 	public String getName() {
 		return name;
 	}
-	
+
 	public String getStudyLevel() {
 		return studyLevel;
 	}
@@ -123,10 +123,14 @@ public class Course {
 			checkNotNull(courseToBuild.name, "The course name cannot be null.");
 			checkNotNull(courseToBuild.studyLevel, "The study level cannot be null.");
 			checkArgument(courseToBuild.semester == 1 || courseToBuild.semester == 2, "The semester must be 1 or 2.");
-			checkArgument(courseToBuild.countGroupsCM + courseToBuild.countGroupsCMTD + courseToBuild.countGroupsCMTP
-					+ courseToBuild.countGroupsTD + courseToBuild.countGroupsTP > 0, "There must be at least one group for the course.");
-			checkArgument(courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
-					+ courseToBuild.nbMinutesTD + courseToBuild.nbMinutesTP > 0, "There must be time to spend in teaching the course.");
+			checkArgument(
+					courseToBuild.countGroupsCM + courseToBuild.countGroupsCMTD + courseToBuild.countGroupsCMTP
+							+ courseToBuild.countGroupsTD + courseToBuild.countGroupsTP > 0,
+					"There must be at least one group for the course.");
+			checkArgument(
+					courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
+							+ courseToBuild.nbMinutesTD + courseToBuild.nbMinutesTP > 0,
+					"There must be time to spend in teaching the course.");
 			checkArgument(!courseToBuild.name.isEmpty(), "The course name must be specified.");
 			checkArgument(!courseToBuild.studyLevel.isEmpty(), "The study level must be specified.");
 			checkArgument(courseToBuild.studyYear != 0, "The study year must be specified.");
@@ -140,7 +144,7 @@ public class Course {
 			this.courseToBuild.name = name;
 			return this;
 		}
-		
+
 		public Builder setStudyLevel(String studyLevel) {
 			checkNotNull(studyLevel, EXCEPTION_STRING);
 			this.courseToBuild.studyLevel = studyLevel;
@@ -219,16 +223,21 @@ public class Course {
 			return this;
 		}
 	}
-	
+
 	/**
 	 * We consider that two courses are equal if they have the same studyLevel, the
 	 * same semester and the same name. As the number of groups may vary from a year
 	 * to another, we also consider the study year to determine if we have two same
-	 * courses.
+	 * courses. We also check if the courses have the same number of groups and the
+	 * same number of minutes in order to avoid bugs.
 	 * 
 	 * All these criteria seem to be necessary as we need to take into consideration
 	 * the case of "LV2 (Allemand / Espagnol)" course in "AA Saisie des voeux.ods"
 	 * that has the same name no matter the semester or study level.
+	 * 
+	 * 
+	 * @return true if the object in parameter is equal to the course and false if
+	 *         is not equal
 	 * 
 	 * @throws IllegalStateException if two courses, considered as equal, have
 	 *                               different number of groups or teaching minutes
@@ -247,6 +256,13 @@ public class Course {
 				&& name.equals(c2.name);
 
 		if (equals) {
+
+			/**
+			 * Normally, 2 equals courses have the same number of groups and the same number
+			 * of minutes. That's why we check if the reality is like this. These checks
+			 * allows us to see if there are bugs in our program.
+			 */
+
 			checkState(countGroupsCM == c2.countGroupsCM, "Two equal courses must have the same number of CM groups.");
 			checkState(countGroupsTD == c2.countGroupsTD, "Two equal courses must have the same number of TD groups.");
 			checkState(countGroupsTP == c2.countGroupsTP, "Two equal courses must have the same number of TP groups.");
@@ -274,7 +290,7 @@ public class Course {
 	public int hashCode() {
 		return Objects.hash(studyYear, studyLevel, semester, name);
 	}
-	
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("name", name)

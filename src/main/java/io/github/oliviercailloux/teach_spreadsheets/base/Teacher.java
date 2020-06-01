@@ -5,7 +5,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkState;
 
-
 import java.util.Objects;
 
 /**
@@ -190,11 +189,15 @@ public class Teacher {
 	public String getOffice() {
 		return office;
 	}
-	
+
 	/**
 	 * We consider that two teachers are equal if they have the same dauphine e-mail
 	 * as e-mails guarantee uniqueness and as a teacher necessarily has a dauphine
-	 * e-mail.
+	 * e-mail. To be sure and to avoid bug, we also check if the other personal
+	 * informations are equals too
+	 * 
+	 * @return true if the object in parameter is equal to the teacher and false if
+	 *         is not equal
 	 * 
 	 * @throws IllegalStateException if two teachers, considered as equal, have
 	 *                               different last names, or first names, or
@@ -216,6 +219,12 @@ public class Teacher {
 		boolean equals = dauphineEmail.equals(t2.dauphineEmail);
 
 		if (equals) {
+
+			/**
+			 * We check if 2 teachers supposed to be equals have the same personal
+			 * information too. In this way, we can avoid bugs.
+			 */
+
 			checkState(lastName.equals(t2.lastName));
 			checkState(firstName.equals(t2.firstName));
 			checkState(address.equals(t2.address));
@@ -236,7 +245,7 @@ public class Teacher {
 	public int hashCode() {
 		return Objects.hash(dauphineEmail);
 	}
-	
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("lastName", lastName).add("firstName", firstName)
