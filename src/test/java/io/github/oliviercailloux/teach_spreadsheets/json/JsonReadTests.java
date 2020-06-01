@@ -2,6 +2,7 @@ package io.github.oliviercailloux.teach_spreadsheets.json;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.net.URL;
 import java.nio.file.Files;
@@ -26,8 +27,10 @@ public class JsonReadTests {
 		final Path path = Path.of(resourceUrl.toURI());
 		final String formattedFileContent = JsonRead.formatToArray(Files.readString(path));
 
-		Course actualCourse = JsonRead.getSetOfCoursesInfo(formattedFileContent).asList().get(1);
-
+		ImmutableSet<Course> courses = JsonRead.getSetOfCoursesInfo(formattedFileContent);
+		assertTrue(courses.size() == 2);
+		
+		Course actualCourse = courses.asList().get(1);
 		assertEquals("Analyse 1", actualCourse.getName());
 		assertEquals(0, actualCourse.getCountGroupsTD());
 		assertEquals(5, actualCourse.getCountGroupsCMTD());

@@ -7,6 +7,7 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbException;
 
+import com.google.common.base.VerifyException;
 import com.google.common.collect.ImmutableSet;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
@@ -23,7 +24,6 @@ public class JsonRead {
 	 * 
 	 * @return the formatted json text to suit Jsonb deserializer.
 	 * 
-	 * @throws NullPointerException     if the parameter is null
 	 * @throws IllegalArgumentException if the parameter does not contain an array
 	 *                                  or contains several arrays.
 	 */
@@ -50,11 +50,9 @@ public class JsonRead {
 	 * 
 	 * @return an ImmutableSet of courses.
 	 * 
-	 * @throws NullPointerException     if the parameter is null
-	 * @throws JsonbException           if any unexpected error(s) occur(s) during
-	 *                                  deserialization.
-	 * @throws IllegalArgumentException if the conversion failed because of the
-	 *                                  parameter given to the method
+	 * @throws JsonbException  if any unexpected error(s) occur(s) during
+	 *                         deserialization.
+	 * @throws VerifyException if the conversion failed
 	 * 
 	 */
 	public static ImmutableSet<Course> getSetOfCoursesInfo(String formattedFileContent) {
@@ -82,7 +80,7 @@ public class JsonRead {
 		catch (JsonbException je) {
 			throw je;
 		} catch (Exception e) {
-			throw new IllegalArgumentException(e);
+			throw new VerifyException(e);
 		}
 	}
 

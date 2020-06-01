@@ -10,6 +10,8 @@ import java.util.Set;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 
+import com.google.common.base.VerifyException;
+
 import static com.google.common.base.Verify.verify;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -25,9 +27,7 @@ public class JsonWrite {
 	 * 
 	 * @return the serialized set
 	 * 
-	 * @throws NullPointerException     if the parameter is null
-	 * @throws IllegalArgumentException if the conversion failed because of the
-	 *                                  parameter given to the method
+	 * @throws VerifyException if the conversion failed
 	 */
 	private static String serializeSet(Set<Course> courses) {
 		checkNotNull(courses, "The courses must not be null");
@@ -35,7 +35,7 @@ public class JsonWrite {
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			serialized = jsonb.toJson(courses.toArray());
 		} catch (Exception e) {
-			throw new IllegalArgumentException(e);
+			throw new VerifyException(e);
 		}
 		verify(serialized != null, "The serialization process returned null");
 		return serialized;
