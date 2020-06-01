@@ -1,0 +1,56 @@
+= Iteration 4 UML 
+
+The aim of this iteration is to correct and improve UML Iteration 3 by taking into consideration Mr. Cailloux’s remarks. 
+We also corrected some classes according to Java Iteration 2 and added new GUI classes.
+
+
+Here is the list of the modifications that were made by each one : 
+
+* The group constituted of Sarah EL HELW, Semida BUZDUGAN and Inès DRAREDJA divided the corrections as follows: 
+
+** Sarah EL HELW : 
+
+*** Correcting some Mr.Cailloux's remarks about Iteration 3 UML
+*** Updating the JSON classes and the associated documentation
+*** Updating the AgregatedData class
+*** Updating the root README.adoc with what we will do in the java's iteration 3 
+*** Updating the screenshot of all the diagram
+
+** Semida BUZDUGAN : 
+
+*** Adding the new writing ODS classes and documenting it in the README.adoc
+*** Adding (when it's necessary) the return types to the methods in Class_ODS_Write and updating the image in the README
+*** Adding links to the new documents AssigmentPerTeacher.ods and TeachersPreferences.ods in the Docs README.adoc 
+
+** Inès DRAREDJA
+
+*** Making the it4.adoc
+*** Correcting some Mr.Cailloux's remarks about Iteration 3 UML.
+*** Improving documents files
+
+
+
+* The group constituted of Hedi GUEDIDI and Mike SANTANGELO divided the corrections as follows: 
+
+** Hedi GUEDIDI
+ 
+*** For the class diagrams :
+**** Updating the Read class diagram with the MultipleOdsPrefReader class and its documentation
+**** Creating the View class in the Gui classes diagram 
+
+*** For the GUI :
+**** Designing the mock-up of the GUI
+**** Creating the Gui description section in the documentation (Screenshot of the gui + some brief explanation of how the GUI is supposed to work)
+
+
+** Mike SANTANGELO 
+
+*** For the class diagrams :
+**** Creating the Gui classes diagram and its documentation
+**** Adding (when it's necessary) the return types to the methods in Class_assignment and updating the image in the README
+**** Adding (when it's necessary) the return types to the methods in Class_ODS_Read and updating the image in the README
+
+
+
+*** For the documentation:
+**** Adding a new screenshot to the Class_ODS_Read in the documentation
