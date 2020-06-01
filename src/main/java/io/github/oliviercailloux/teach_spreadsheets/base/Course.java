@@ -6,8 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Objects;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkState;
-
+import static com.google.common.base.Verify.verify;
 /**
  * Immutable Class used to store a course information. Uses Builder pattern
  * implementation.
@@ -238,7 +237,7 @@ public class Course {
 	 * @return true if the object in parameter is equal to the course and false if
 	 *         it is not equal
 	 * 
-	 * @throws IllegalStateException if two courses, considered as equal, have
+	 * @throws VerifyException if two courses, considered as equal, have
 	 *                               different number of groups or teaching minutes
 	 */
 	@Override
@@ -258,26 +257,26 @@ public class Course {
 
 			/**
 			 * Normally, two equal courses have the same number of groups and the same number
-			 * of teaching minutes. These checks allow us to see if there are bugs in our
+			 * of teaching minutes. These verifications allow us to see if there are bugs in our
 			 * program.
 			 */
-			checkState(countGroupsCM == c2.countGroupsCM, "Two equal courses must have the same number of CM groups.");
-			checkState(countGroupsTD == c2.countGroupsTD, "Two equal courses must have the same number of TD groups.");
-			checkState(countGroupsTP == c2.countGroupsTP, "Two equal courses must have the same number of TP groups.");
-			checkState(countGroupsCMTD == c2.countGroupsCMTD,
+			verify(countGroupsCM == c2.countGroupsCM, "Two equal courses must have the same number of CM groups.");
+			verify(countGroupsTD == c2.countGroupsTD, "Two equal courses must have the same number of TD groups.");
+			verify(countGroupsTP == c2.countGroupsTP, "Two equal courses must have the same number of TP groups.");
+			verify(countGroupsCMTD == c2.countGroupsCMTD,
 					"Two equal courses must have the same number of CMTD groups.");
-			checkState(countGroupsCMTP == c2.countGroupsCMTP,
+			verify(countGroupsCMTP == c2.countGroupsCMTP,
 					"Two equal courses must have the same number of CMTP groups.");
 
-			checkState(nbMinutesCM == c2.nbMinutesCM,
+			verify(nbMinutesCM == c2.nbMinutesCM,
 					"Two equal courses must have the same number of CM teaching minutes.");
-			checkState(nbMinutesTD == c2.nbMinutesTD,
+			verify(nbMinutesTD == c2.nbMinutesTD,
 					"Two equal courses must have the same number of TD teaching minutes.");
-			checkState(nbMinutesTP == c2.nbMinutesTP,
+			verify(nbMinutesTP == c2.nbMinutesTP,
 					"Two equal courses must have the same number of TP teaching minutes.");
-			checkState(nbMinutesCMTD == c2.nbMinutesCMTD,
+			verify(nbMinutesCMTD == c2.nbMinutesCMTD,
 					"Two equal courses must have the same number of CMTD teaching minutes.");
-			checkState(nbMinutesCMTP == c2.nbMinutesCMTP,
+			verify(nbMinutesCMTP == c2.nbMinutesCMTP,
 					"Two equal courses must have the same number of CMTP teaching minutes.");
 		}
 

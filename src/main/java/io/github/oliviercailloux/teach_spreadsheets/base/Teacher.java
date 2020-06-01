@@ -3,7 +3,7 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkState;
+import static com.google.common.base.Verify.verify;
 
 import java.util.Objects;
 
@@ -198,7 +198,7 @@ public class Teacher {
 	 * @return true if the object in parameter is equal to the teacher and false if
 	 *         it is not equal
 	 * 
-	 * @throws IllegalStateException if two teachers, considered as equal, have
+	 * @throws VerifyException if two teachers, considered as equal, have
 	 *                               different last names, first names, addresses,
 	 *                               post codes, cities, personal phones, mobile
 	 *                               phones, dauphine phone numbers, personal
@@ -220,20 +220,20 @@ public class Teacher {
 
 			/**
 			 * Normally, two teachers supposed to be equal have the same personal
-			 * information too. These checks allow us to see if there are bugs in our
+			 * information too. These verifications allow us to see if there are bugs in our
 			 * program.
 			 */
-			checkState(lastName.equals(t2.lastName));
-			checkState(firstName.equals(t2.firstName));
-			checkState(address.equals(t2.address));
-			checkState(postCode.equals(t2.postCode));
-			checkState(city.equals(t2.city));
-			checkState(personalPhone.equals(t2.personalPhone));
-			checkState(mobilePhone.equals(t2.mobilePhone));
-			checkState(dauphinePhoneNumber.equals(t2.dauphinePhoneNumber));
-			checkState(personalEmail.equals(t2.personalEmail));
-			checkState(status.equals(t2.status));
-			checkState(office.equals(t2.office));
+			verify(lastName.equals(t2.lastName));
+			verify(firstName.equals(t2.firstName));
+			verify(address.equals(t2.address));
+			verify(postCode.equals(t2.postCode));
+			verify(city.equals(t2.city));
+			verify(personalPhone.equals(t2.personalPhone));
+			verify(mobilePhone.equals(t2.mobilePhone));
+			verify(dauphinePhoneNumber.equals(t2.dauphinePhoneNumber));
+			verify(personalEmail.equals(t2.personalEmail));
+			verify(status.equals(t2.status));
+			verify(office.equals(t2.office));
 		}
 
 		return equals;
