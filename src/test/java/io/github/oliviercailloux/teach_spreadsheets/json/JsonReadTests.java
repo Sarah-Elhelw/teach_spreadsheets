@@ -63,7 +63,7 @@ public class JsonReadTests {
 	}
 
 	@Test
-	void testDemonstratingNeedForFormatToArray() throws Exception {
+	void testCheckFormat() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("CoursesWithWrongFormat.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
