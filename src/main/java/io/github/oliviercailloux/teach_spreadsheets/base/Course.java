@@ -228,8 +228,7 @@ public class Course {
 	 * We consider that two courses are equal if they have the same studyLevel, the
 	 * same semester and the same name. As the number of groups may vary from a year
 	 * to another, we also consider the study year to determine if we have two same
-	 * courses. We also check if the courses have the same number of groups and the
-	 * same number of minutes in order to avoid bugs.
+	 * courses.
 	 * 
 	 * All these criteria seem to be necessary as we need to take into consideration
 	 * the case of "LV2 (Allemand / Espagnol)" course in "AA Saisie des voeux.ods"
@@ -237,7 +236,7 @@ public class Course {
 	 * 
 	 * 
 	 * @return true if the object in parameter is equal to the course and false if
-	 *         is not equal
+	 *         it is not equal
 	 * 
 	 * @throws IllegalStateException if two courses, considered as equal, have
 	 *                               different number of groups or teaching minutes
@@ -258,11 +257,10 @@ public class Course {
 		if (equals) {
 
 			/**
-			 * Normally, 2 equals courses have the same number of groups and the same number
-			 * of minutes. That's why we check if the reality is like this. These checks
-			 * allows us to see if there are bugs in our program.
+			 * Normally, two equal courses have the same number of groups and the same number
+			 * of teaching minutes. These checks allow us to see if there are bugs in our
+			 * program.
 			 */
-
 			checkState(countGroupsCM == c2.countGroupsCM, "Two equal courses must have the same number of CM groups.");
 			checkState(countGroupsTD == c2.countGroupsTD, "Two equal courses must have the same number of TD groups.");
 			checkState(countGroupsTP == c2.countGroupsTP, "Two equal courses must have the same number of TP groups.");

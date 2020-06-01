@@ -193,18 +193,16 @@ public class Teacher {
 	/**
 	 * We consider that two teachers are equal if they have the same dauphine e-mail
 	 * as e-mails guarantee uniqueness and as a teacher necessarily has a dauphine
-	 * e-mail. To be sure and to avoid bug, we also check if the other personal
-	 * informations are equals too
+	 * e-mail.
 	 * 
 	 * @return true if the object in parameter is equal to the teacher and false if
-	 *         is not equal
+	 *         it is not equal
 	 * 
 	 * @throws IllegalStateException if two teachers, considered as equal, have
-	 *                               different last names, or first names, or
-	 *                               addresses, or post codes, or cities, or
-	 *                               personal phones, or mobile phones, or dauphine
-	 *                               phone numbers, or personal emails, or statuses,
-	 *                               or offices.
+	 *                               different last names, first names, addresses,
+	 *                               post codes, cities, personal phones, mobile
+	 *                               phones, dauphine phone numbers, personal
+	 *                               emails, statuses, or offices.
 	 */
 	@Override
 	public boolean equals(Object o2) {
@@ -221,10 +219,10 @@ public class Teacher {
 		if (equals) {
 
 			/**
-			 * We check if 2 teachers supposed to be equals have the same personal
-			 * information too. In this way, we can avoid bugs.
+			 * Normally, two teachers supposed to be equal have the same personal
+			 * information too. These checks allow us to see if there are bugs in our
+			 * program.
 			 */
-
 			checkState(lastName.equals(t2.lastName));
 			checkState(firstName.equals(t2.firstName));
 			checkState(address.equals(t2.address));
