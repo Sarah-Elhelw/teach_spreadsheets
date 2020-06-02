@@ -35,7 +35,7 @@ public class OdsSummarizer {
 	 * Course, Teacher's name and the various preferences and assignment.
 	 */
 	private final static String TITLE_POSITION = "A1";
-	private final static String YEAR_POSITION = "A3";
+	private final static String STUDY_LEVEL_POSITION = "A3";
 	private final static String SEMESTER_POSITION = "B3";
 	private final static String COURSE_TYPE_POSITION = "C3";
 	private final static String GROUPS_NUMBER_POSITION = "D3";
@@ -160,7 +160,7 @@ public class OdsSummarizer {
 		table.getCellByPosition(TITLE_POSITION)
 				.setFont(new Font("Arial", FontStyle.BOLD, 15.0, new Color(201, 33, 30)));
 
-		Set<String> headersPositions = Set.of(YEAR_POSITION, SEMESTER_POSITION, COURSE_TYPE_POSITION,
+		Set<String> headersPositions = Set.of(STUDY_LEVEL_POSITION, SEMESTER_POSITION, COURSE_TYPE_POSITION,
 				GROUPS_NUMBER_POSITION, NUMBER_HOURS_POSITION, CANDIDATES_FIRST_NAME_POSITION,
 				CANDIDATES_LAST_NAME_POSITION, CHOICES_POSITION, ASSIGNMENT_POSITION, "J3");
 
@@ -182,7 +182,7 @@ public class OdsSummarizer {
 		Table table = ods.getTable();
 
 		table.getCellByPosition(TITLE_POSITION).setStringValue("Teachers Preferences and Assignment");
-		table.getCellByPosition(YEAR_POSITION).setStringValue("Year of study");
+		table.getCellByPosition(STUDY_LEVEL_POSITION).setStringValue("Study Level");
 		table.getCellByPosition(SEMESTER_POSITION).setStringValue("Semester");
 		table.getCellByPosition(COURSE_TYPE_POSITION).setStringValue("Course Type");
 		table.getCellByPosition(GROUPS_NUMBER_POSITION).setStringValue("Number of groups");
@@ -304,11 +304,13 @@ public class OdsSummarizer {
 
 		headersToOds();
 
-		line = 3;
+		line = 2;
 
 		for (Course course : allCourses) {
+			
+			line++;
 
-			ods.setValueAt(String.valueOf(course.getStudyYear()), line, 0);
+			ods.setValueAt(String.valueOf(course.getStudyLevel()), line, 0);
 			ods.setValueAt(String.valueOf(course.getSemester()), line, 1);
 			ods.setValueAt(course.getName(), line, 2);
 
@@ -346,6 +348,12 @@ public class OdsSummarizer {
 
 		putBorders();
 
+		try {
+			document.save("target//OdsSummarizer.ods");
+		} catch (Exception e) {
+			System.out.println("pas enregistré");
+			e.printStackTrace();
+		}
 		return document;
 
 	}

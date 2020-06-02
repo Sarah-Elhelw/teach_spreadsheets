@@ -83,12 +83,12 @@ public class OdsSummarizerTests {
 					tableCreated.getCellByPosition("F5").getDisplayText());
 			assertEquals(table.getCellByPosition("H5").getDisplayText(),
 					tableCreated.getCellByPosition("H5").getDisplayText());
-			assertEquals(table.getCellByPosition("C10").getDisplayText(),
-					tableCreated.getCellByPosition("C10").getDisplayText());
-			assertEquals(table.getCellByPosition("F11").getDisplayText(),
-					tableCreated.getCellByPosition("F11").getDisplayText());
-			assertEquals(table.getCellByPosition("H11").getDisplayText(),
-					tableCreated.getCellByPosition("H11").getDisplayText());
+			assertEquals(table.getCellByPosition("C11").getDisplayText(),
+					tableCreated.getCellByPosition("C11").getDisplayText());
+			assertEquals(table.getCellByPosition("F12").getDisplayText(),
+					tableCreated.getCellByPosition("F12").getDisplayText());
+			assertEquals(table.getCellByPosition("H12").getDisplayText(),
+					tableCreated.getCellByPosition("H12").getDisplayText());
 			assertEquals(table.getCellByPosition("I8").getDisplayText(),
 					tableCreated.getCellByPosition("I8").getDisplayText());
 
