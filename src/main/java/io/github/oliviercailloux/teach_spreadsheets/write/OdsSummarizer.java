@@ -308,7 +308,7 @@ public class OdsSummarizer {
 
 		for (Course course : allCourses) {
 
-			ods.setValueAt(course.getStudyYear(), line, 0);
+			ods.setValueAt(String.valueOf(course.getStudyYear()), line, 0);
 			ods.setValueAt(String.valueOf(course.getSemester()), line, 1);
 			ods.setValueAt(course.getName(), line, 2);
 

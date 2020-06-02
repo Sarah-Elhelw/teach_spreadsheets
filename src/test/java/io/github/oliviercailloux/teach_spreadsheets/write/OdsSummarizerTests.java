@@ -23,10 +23,10 @@ public class OdsSummarizerTests {
 	@Test
 	void testCreateGlobalAssignment() throws Exception {
 
-		Course course1 = Course.Builder.newInstance().setName("testcourse1").setStudyYear("2016/2017").setSemester(1)
-				.setCountGroupsCM(3).setCountGroupsTD(4).setnbMinutesCM(60).setnbMinutesTD(60).build();
-		Course course2 = Course.Builder.newInstance().setName("testcourse2").setStudyYear("2016/2017").setSemester(1)
-				.setCountGroupsTP(3).setCountGroupsTD(4).setnbMinutesTP(60).setnbMinutesTD(60).build();
+		Course course1 = Course.Builder.newInstance().setName("testcourse1").setStudyYear(2016).setStudyLevel("DE1")
+				.setSemester(1).setCountGroupsCM(3).setCountGroupsTD(4).setNbMinutesCM(60).setNbMinutesTD(60).build();
+		Course course2 = Course.Builder.newInstance().setName("testcourse2").setStudyYear(2016).setStudyLevel("DE1")
+				.setSemester(1).setCountGroupsTP(3).setCountGroupsTD(4).setNbMinutesTP(60).setNbMinutesTD(60).build();
 
 		Teacher teacher1 = Teacher.Builder.newInstance().setFirstName("teacher1FirstName")
 				.setLastName("teacher1LastName").setDauphineEmail("teacher1@dauphine.eu").build();
