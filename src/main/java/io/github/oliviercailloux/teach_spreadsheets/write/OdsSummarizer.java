@@ -110,7 +110,6 @@ public class OdsSummarizer {
 	 * @param assignmentsToBeSet - These are all the courses Assignment to be
 	 *                           written in the FichierAgrege
 	 * 
-	 * @throws NullPointerException if the parameter is null
 	 */
 	public void setAllCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
 		checkNotNull(assignmentsToBeSet, "The course assignments should not be null.");
@@ -222,7 +221,6 @@ public class OdsSummarizer {
 	 * @param teachersAssigned - the set of teachers assigned to the given course
 	 * 
 	 * 
-	 * @throws NullPointerException if one of the parameters is null
 	 */
 	private void setSummarizedFileForGroup(Course course, String group, Set<CoursePref> prefsForGroup,
 			Optional<Set<TeacherAssignment>> teachersAssigned) {
