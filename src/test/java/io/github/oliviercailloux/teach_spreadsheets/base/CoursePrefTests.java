@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,26 +12,19 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class CoursePrefTests {
 	@Test
-	void testToString() {
-		Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
-		teacherBuilder.setAddress("Pont du maréchal de lattre de tassigny");
-		teacherBuilder.setLastName("Doe");
+	void testCoherence() {
 
-		Course.Builder courseBuilder = Course.Builder.newInstance();
-		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setnbMinutesCM(20);
-		courseBuilder.setName("Analyse de données");
-		courseBuilder.setStudyYear("2012");
-		courseBuilder.setSemester(1);
+		Teacher teacher = Teacher.Builder.newInstance().setAddress("Pont du maréchal de lattre de tassigny")
+				.setLastName("Doe").build();
 
-		CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(),
-				teacherBuilder.build());
-		coursePrefBuilder.setPrefCM(Preference.A);
-		coursePrefBuilder.setPrefCMTD(Preference.B);
+		Course course = Course.Builder.newInstance().setCountGroupsCMTD(10).setNbMinutesCMTD(20)
+				.setName("Analyse de données").setStudyYear(2012).setStudyLevel("DE1").setSemester(1).build();
 
-		String actual = coursePrefBuilder.build().toString();
-		String expected = "CoursePref{prefCM=A, prefTD=UNSPECIFIED, prefCMTD=B, prefTP=UNSPECIFIED, prefCMTP=UNSPECIFIED, prefNbGroupsCM=0, prefNbGroupsTD=0, prefNbGroupsCMTD=0, prefNbGroupsTP=0, prefNbGroupsCMTP=0, Course=Course{name=Analyse de données, countGroupsTD=0, countGroupsCMTD=0, countGroupsTP=0, countGroupsCMTP=0, countGroupsCM=10, nbMinutesTD=0, nbMinutesCMTD=0, nbMinutesTP=0, nbMinutesCMTP=0, nbMinutesCM=20, studyYear=2012, semester=1}, Teacher=Teacher{lastName=Doe, firstName=, address=Pont du maréchal de lattre de tassigny, postCode=, city=, personalPhone=, mobilePhone=, personalEmail=, dauphineEmail=, status=, dauphinePhoneNumber=, office=}}";
-		assertEquals(expected, actual);
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+			CoursePref.Builder.newInstance(course, teacher).setPrefTP(Preference.A).build();
+		});
+		assertEquals("You can't have a preference for a type of course that won't have sessions.",
+				exception.getMessage());
 
 	}
 }

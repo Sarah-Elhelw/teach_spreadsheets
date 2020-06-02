@@ -12,8 +12,8 @@ import io.github.oliviercailloux.teach_spreadsheets.base.*;
 public class CourseAssignmentTests {
 
 	private static Teacher teacher = Teacher.Builder.newInstance().setLastName("Doe").setFirstName("John").build();
-	private static Course course = Course.Builder.newInstance().setName("Java").setCountGroupsTD(2).setnbMinutesTD(900)
-			.setSemester(1).setStudyYear("2016").build();
+	private static Course course = Course.Builder.newInstance().setName("Java").setCountGroupsTD(2).setNbMinutesTD(900)
+			.setSemester(1).setStudyLevel("DE1").setStudyYear(2016).build();
 
 	@Test
 	void testSetCourseWithNullCourse() {
