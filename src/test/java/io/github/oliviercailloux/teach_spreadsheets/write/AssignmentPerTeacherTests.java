@@ -48,31 +48,31 @@ public class AssignmentPerTeacherTests {
 
 			assertEquals(table.getCellByPosition("A4").getDisplayText(),
 					tableCreated.getCellByPosition("A4").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("C4").getDisplayText(),
 					tableCreated.getCellByPosition("C4").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("B6").getDisplayText(),
 					tableCreated.getCellByPosition("B6").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("C8").getDisplayText(),
 					tableCreated.getCellByPosition("C8").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("C10").getDisplayText(),
 					tableCreated.getCellByPosition("C10").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("C13").getDisplayText(),
 					tableCreated.getCellByPosition("C13").getDisplayText());
 
 			assertEquals(table.getCellByPosition("B17").getDisplayText(),
 					tableCreated.getCellByPosition("B17").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("C17").getDisplayText(),
 					tableCreated.getCellByPosition("C17").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("D17").getDisplayText(),
 					tableCreated.getCellByPosition("D17").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("E21").getDisplayText(),
 					tableCreated.getCellByPosition("E21").getDisplayText());
 

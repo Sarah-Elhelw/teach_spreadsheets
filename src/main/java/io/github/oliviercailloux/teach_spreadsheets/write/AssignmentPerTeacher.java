@@ -76,7 +76,6 @@ public class AssignmentPerTeacher {
 	 * 
 	 * @param table - the sheet where the table is
 	 * 
-	 * @throws NullPointerException if the parameter is null
 	 */
 	private static void formatHeaders(Table table) {
 		checkNotNull(table, "The sheet should not be null.");
@@ -118,8 +117,7 @@ public class AssignmentPerTeacher {
 	 *                complete
 	 * @param teacher This is the Teacher for who we want to do the summarized Fiche
 	 *                de service
-	 * 
-	 * @throws NullPointerException if a parameter is null
+	 *
 	 */
 	private static void headersToOds(Table table, Teacher teacher) {
 		checkNotNull(table, "The sheet should not be null.");
@@ -175,7 +173,6 @@ public class AssignmentPerTeacher {
 	 * 
 	 * @return a set of assignments of the teacher
 	 * 
-	 * @throws NullPointerException if a parameter is null
 	 */
 	private static Set<TeacherAssignment> findTeacherAssignments(Teacher teacher,
 			Set<CourseAssignment> allCoursesAssigned) {
@@ -207,8 +204,6 @@ public class AssignmentPerTeacher {
 	 * @param group          the group type of the given course
 	 * 
 	 * @return the updated index of line
-	 * 
-	 * @throws NullPointerException if a parameter is null
 	 */
 
 	private static int completeCourses(OdsHelper ods, int line, TeacherAssignment ta, String group) {
@@ -231,7 +226,6 @@ public class AssignmentPerTeacher {
 	 * @param table - the sheet where the table is
 	 * @param line  - the line where the table starts
 	 * 
-	 * @throws NullPointerException if the table is null
 	 */
 	private static void drawTable(Table table, int line) {
 		checkNotNull(table, "The sheet should not be null.");
@@ -256,7 +250,7 @@ public class AssignmentPerTeacher {
 	 *                           assigned
 	 * @return A document completed with all the courses a specific teacher will
 	 *         teach
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 
 	public static SpreadsheetDocument createAssignmentPerTeacher(Teacher teacher,
@@ -298,7 +292,7 @@ public class AssignmentPerTeacher {
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 
 		totalNumberMinutes = 0;
-		
+
 		document.save("target//AssignmentPerTeacher.ods");
 		return document;
 	}

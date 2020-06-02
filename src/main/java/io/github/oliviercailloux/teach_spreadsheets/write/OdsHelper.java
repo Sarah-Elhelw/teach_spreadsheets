@@ -39,15 +39,15 @@ class OdsHelper {
 	 * @throws IOException if the Ods could not be created
 	 */
 	public static SpreadsheetDocument createAnEmptyOds() throws IOException {
-		try{
+		try {
 			SpreadsheetDocument document = SpreadsheetDocument.newSpreadsheetDocument();
 			/** The default sheet should be removed : */
 			document.removeSheet(0);
 			return document;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			throw new IOException();
 		}
-		
+
 	}
 
 	/**
@@ -64,16 +64,6 @@ class OdsHelper {
 		Cell cell = table.getCellByPosition(column, row);
 		cell.setDisplayText(info);
 
-	}
-
-	/**
-	 * This method can convert an ods to pdf
-	 * 
-	 * @param ods document
-	 * @return a pdf
-	 */
-	public void odsToPdf(SpreadsheetDocument document) {
-		// TODO
 	}
 
 }
