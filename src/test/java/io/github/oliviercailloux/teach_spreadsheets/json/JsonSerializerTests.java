@@ -24,7 +24,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.read.CalcDataInitializerTests;
 
-public class JsonWriteTests {
+public class JsonSerializerTests {
 	@Test
 	void testSerializeSet() throws Exception {
 		URL url = CalcDataInitializerTests.class.getResource("Saisie_des_voeux_format simple.ods");
@@ -39,7 +39,7 @@ public class JsonWriteTests {
 				courses.add(coursePref.getCourse());
 			}
 
-			String serializedSet = JsonWrite.serializeSet(courses);
+			String serializedSet = JsonSerializer.serializeSet(courses);
 
 			try (JsonReader jr = Json.createReader(new StringReader(serializedSet))) {
 				JsonArray ja = jr.readArray();

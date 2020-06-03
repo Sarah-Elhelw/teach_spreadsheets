@@ -18,15 +18,15 @@ import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
-public class JsonReadTests {
+public class JsonDeserializerTests {
 
 	@Test
 	void testToCourses() throws Exception {
-		URL resourceUrl = JsonRead.class.getResource("Courses.json");
+		URL resourceUrl = JsonDeserializer.class.getResource("Courses.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
 
-		ImmutableSet<Course> courses = JsonRead.toCourses(Files.readString(path));
+		ImmutableSet<Course> courses = JsonDeserializer.toCourses(Files.readString(path));
 		assertTrue(courses.size() == 2);
 
 		Course actualCourse = courses.asList().get(1);
@@ -53,18 +53,18 @@ public class JsonReadTests {
 	 */
 	@Test
 	void testGetSetOfCoursesInfoWithNullName() throws Exception {
-		URL resourceUrl = JsonRead.class.getResource("CoursesWithNullName.json");
+		URL resourceUrl = JsonDeserializer.class.getResource("CoursesWithNullName.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
 		Throwable exception = assertThrows(JsonbException.class, () -> {
-			JsonRead.toCourses(Files.readString(path));
+			JsonDeserializer.toCourses(Files.readString(path));
 		});
 		assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
 	}
 
 	@Test
 	void testDemonstratingNeedForCheckFormat() throws Exception {
-		URL resourceUrl = JsonRead.class.getResource("CoursesWithWrongFormat.json");
+		URL resourceUrl = JsonDeserializer.class.getResource("CoursesWithWrongFormat.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
 
@@ -75,7 +75,7 @@ public class JsonReadTests {
 		 * array, the program continues after returning an empty ImmutableSet (which is
 		 * wrong) without us knowing there is a bug in the program.
 		 */
-		assertEquals(ImmutableSet.of(), JsonRead.toCourses(json));
+		assertEquals(ImmutableSet.of(), JsonDeserializer.toCourses(json));
 		
 		/**
 		 * When using checkFormat(), the program immediately stops and throws an
@@ -83,7 +83,7 @@ public class JsonReadTests {
 		 * read.
 		 */
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			JsonRead.checkFormat(json);
+			JsonDeserializer.checkFormat(json);
 		});
 		assertEquals("The file does not contain a single array.", exception.getMessage());
 	}

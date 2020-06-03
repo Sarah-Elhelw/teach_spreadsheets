@@ -16,7 +16,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
-public class JsonRead {
+public class JsonDeserializer {
 
 	/**
 	 * This method checks that the String represents a JsonArray. Having only a

@@ -13,7 +13,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class JsonWrite {
+public class JsonSerializer {
 
 	/**
 	 * Serializes a Set of Course objects
