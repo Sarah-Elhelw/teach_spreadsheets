@@ -4,6 +4,7 @@ import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import javax.json.bind.annotation.JsonbCreator;
+import javax.json.bind.annotation.JsonbPropertyOrder;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -13,6 +14,9 @@ import static com.google.common.base.Preconditions.checkArgument;
  * 
  * @see https://codereview.stackexchange.com/questions/127391/simple-builder-pattern-implementation-for-building-immutable-objects/127509#127509
  */
+@JsonbPropertyOrder({ "name", "studyLevel", "studyYear", "semester", "countGroupsTD", "countGroupsTP",
+		"countGroupsCMTD", "countGroupsCMTP", "countGroupsCM", "nbMinutesTD", "nbMinutesTP", "nbMinutesCMTD",
+		"nbMinutesCMTP", "nbMinutesCM" })
 public class Course {
 	private static final String EXCEPTION_STRING = "String must not be null.";
 	private static final String EXCEPTION_INT = "int must be positive.";

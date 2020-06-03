@@ -8,7 +8,6 @@ import javax.json.Json;
 import javax.json.JsonReader;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
-import javax.json.bind.JsonbException;
 import javax.json.stream.JsonParsingException;
 
 import com.google.common.base.VerifyException;
@@ -75,8 +74,8 @@ public class JsonRead {
 		 * it as it is (and not as a new IllegalArgumentException) to get the root
 		 * cause.
 		 */
-		catch (JsonbException je) {
-			throw je;
+		catch (RuntimeException re) {
+			throw re;
 		} catch (Exception e) {
 			throw new VerifyException(e);
 		}
