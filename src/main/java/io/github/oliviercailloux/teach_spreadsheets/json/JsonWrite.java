@@ -1,10 +1,5 @@
 package io.github.oliviercailloux.teach_spreadsheets.json;
 
-import java.io.IOException;
-import java.io.Writer;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Set;
 
 import javax.json.bind.Jsonb;
@@ -29,48 +24,15 @@ public class JsonWrite {
 	 * 
 	 * @throws VerifyException if the conversion failed
 	 */
-	private static String serializeSet(Set<Course> courses) {
+	public static String serializeSet(Set<Course> courses) {
 		checkNotNull(courses, "The courses must not be null");
 		String serialized = null;
 		try (Jsonb jsonb = JsonbBuilder.create()) {
-			serialized = jsonb.toJson(courses.toArray());
+			serialized = jsonb.toJson(courses);
 		} catch (Exception e) {
 			throw new VerifyException(e);
 		}
 		verify(serialized != null, "The serialization process returned null");
 		return serialized;
-	}
-
-	/**
-	 * Serializes a Set of Course objects and writes it into a file
-	 * 
-	 * @param filePath the file path where we store the serialized courses
-	 * @param courses  a collection of Course objects with no duplicate elements
-	 * 
-	 * @throws if an I/O error occurs writing to or creating the file, or the text
-	 *            cannot be encoded using the specified charset
-	 */
-	public static void writeCoursesInAJsonFile(Path filePath, Set<Course> courses) throws IOException {
-		checkNotNull(filePath, "The filePath must not be null");
-		checkNotNull(courses, "The courses must not be null");
-
-		String serialized = serializeSet(courses);
-		Files.writeString(filePath, serialized, StandardCharsets.UTF_8);
-	}
-
-	/**
-	 * Serializes a Set of Course objects and writes it into a Writer
-	 * 
-	 * @param writer  the Writer where we store the serialized courses
-	 * @param courses a collection of Course objects with no duplicate elements
-	 * 
-	 * @throws IOException if an I/O error occurs
-	 */
-	public static void writeCoursesInAWriter(Writer writer, Set<Course> courses) throws IOException {
-		checkNotNull(writer, "The writer must not be null.");
-		checkNotNull(courses, "The courses must not be null");
-
-		String serialized = serializeSet(courses);
-		writer.write(serialized);
 	}
 }

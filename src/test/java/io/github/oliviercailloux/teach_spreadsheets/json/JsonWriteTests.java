@@ -4,14 +4,16 @@ import static com.google.common.base.Verify.verify;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.InputStream;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.StringReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +26,7 @@ import io.github.oliviercailloux.teach_spreadsheets.read.CalcDataInitializerTest
 
 public class JsonWriteTests {
 	@Test
-	void testWriteCourses() throws Exception {
+	void testSerializeSet() throws Exception {
 		URL url = CalcDataInitializerTests.class.getResource("Saisie_des_voeux_format simple.ods");
 		verify(url != null);
 		
@@ -37,13 +39,31 @@ public class JsonWriteTests {
 				courses.add(coursePref.getCourse());
 			}
 
-			Writer writer = new StringWriter();
-			JsonWrite.writeCoursesInAWriter(writer, courses);
+			String serializedSet = JsonWrite.serializeSet(courses);
 
-			try (Jsonb jsonb = JsonbBuilder.create()) {
-				String expected = jsonb.toJson(courses.toArray());
-				String actual = writer.toString();
-				assertEquals(expected, actual);
+			try (JsonReader jr = Json.createReader(new StringReader(serializedSet))) {
+				JsonArray ja = jr.readArray();
+				
+				assertEquals(ja.size(), courses.size());
+				
+				JsonObject actual = ja.getJsonObject(0);
+				Course expected = new ArrayList<Course>(courses).get(0);
+				
+				assertEquals(expected.getName(), actual.getString("name"));
+				assertEquals(expected.getStudyLevel(), actual.getString("studyLevel"));
+				assertEquals(expected.getStudyYear(), actual.getInt("studyYear"));
+				assertEquals(expected.getSemester(), actual.getInt("semester"));
+				assertEquals(expected.getCountGroupsTD(), actual.getInt("countGroupsTD"));
+				assertEquals(expected.getCountGroupsTP(), actual.getInt("countGroupsTP"));
+				assertEquals(expected.getCountGroupsCMTD(), actual.getInt("countGroupsCMTD"));
+				assertEquals(expected.getCountGroupsCMTP(), actual.getInt("countGroupsCMTP"));
+				assertEquals(expected.getCountGroupsCM(), actual.getInt("countGroupsCM"));
+				assertEquals(expected.getNbMinutesTD(), actual.getInt("nbMinutesTD"));
+				assertEquals(expected.getNbMinutesTP(), actual.getInt("nbMinutesTP"));
+				assertEquals(expected.getNbMinutesCMTD(), actual.getInt("nbMinutesCMTD"));
+				assertEquals(expected.getNbMinutesCMTP(), actual.getInt("nbMinutesCMTP"));
+				assertEquals(expected.getNbMinutesCM(), actual.getInt("nbMinutesCM"));
+				
 			}
 		}
 	}

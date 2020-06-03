@@ -21,12 +21,12 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 public class JsonReadTests {
 
 	@Test
-	void testGetSetOfCoursesInfo() throws Exception {
+	void testToCourses() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("Courses.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
 
-		ImmutableSet<Course> courses = JsonRead.getSetOfCoursesInfo(Files.readString(path));
+		ImmutableSet<Course> courses = JsonRead.toCourses(Files.readString(path));
 		assertTrue(courses.size() == 2);
 
 		Course actualCourse = courses.asList().get(1);
@@ -57,7 +57,7 @@ public class JsonReadTests {
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
 		Throwable exception = assertThrows(JsonbException.class, () -> {
-			JsonRead.getSetOfCoursesInfo(Files.readString(path));
+			JsonRead.toCourses(Files.readString(path));
 		});
 		assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
 	}
@@ -69,7 +69,7 @@ public class JsonReadTests {
 		final Path path = Path.of(resourceUrl.toURI());
 
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			JsonRead.getSetOfCoursesInfo(Files.readString(path));
+			JsonRead.toCourses(Files.readString(path));
 		});
 		assertEquals("The file does not contain a single array.", exception.getMessage());
 	}

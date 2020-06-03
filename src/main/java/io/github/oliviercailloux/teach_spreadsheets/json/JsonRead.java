@@ -41,7 +41,7 @@ public class JsonRead {
 	 * <a href="http://json-b.net/docs/user-guide.html">this website</a>. The json
 	 * string read must contain a single array.
 	 * 
-	 * @param fileContent - the json string containing only a list of courses.
+	 * @param json - the json string containing only a list of courses.
 	 * 
 	 * @return an ImmutableSet of courses.
 	 * 
@@ -50,16 +50,16 @@ public class JsonRead {
 	 * @throws VerifyException if the conversion failed
 	 * 
 	 */
-	public static ImmutableSet<Course> getSetOfCoursesInfo(String fileContent) {
-		checkNotNull(fileContent, "The String must not be null.");
-		checkFormat(fileContent);
+	public static ImmutableSet<Course> toCourses(String json) {
+		checkNotNull(json, "The String must not be null.");
+		checkFormat(json);
 
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/**
 			 * We first build each course to make sure they represent proper and acceptable
 			 * Course objects :
 			 */
-			List<Course.Builder> coursesB = jsonb.fromJson(fileContent, new ArrayList<Course.Builder>() {
+			List<Course.Builder> coursesB = jsonb.fromJson(json, new ArrayList<Course.Builder>() {
 				private static final long serialVersionUID = -7485196487129232751L;
 			}.getClass().getGenericSuperclass());
 			List<Course> courses = new ArrayList<>();
