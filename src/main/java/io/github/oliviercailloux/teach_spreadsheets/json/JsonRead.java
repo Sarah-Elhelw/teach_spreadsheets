@@ -45,9 +45,9 @@ public class JsonRead {
 	 * 
 	 * @return an ImmutableSet of courses.
 	 * 
-	 * @throws JsonbException  if any unexpected error(s) occur(s) during
-	 *                         deserialization.
-	 * @throws VerifyException if the conversion failed
+	 * @throws RuntimeException if any unexpected error(s) occur(s) during
+	 *                          deserialization.
+	 * @throws VerifyException  if the conversion failed
 	 * 
 	 */
 	public static ImmutableSet<Course> toCourses(String json) {
