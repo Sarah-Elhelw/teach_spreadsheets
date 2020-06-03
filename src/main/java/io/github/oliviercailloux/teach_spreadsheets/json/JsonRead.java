@@ -27,7 +27,7 @@ public class JsonRead {
 	 * 
 	 * @throws IllegalArgumentException if the parameter is not a single json array
 	 */
-	private static void checkFormat(String textArray) {
+	public static void checkFormat(String textArray) {
 		try (JsonReader jr = Json.createReader(new StringReader(textArray))) {
 			jr.readArray();
 		} catch (JsonParsingException jpe) {
@@ -52,7 +52,6 @@ public class JsonRead {
 	 */
 	public static ImmutableSet<Course> toCourses(String json) {
 		checkNotNull(json, "The String must not be null.");
-		checkFormat(json);
 
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/**

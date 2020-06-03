@@ -63,13 +63,27 @@ public class JsonReadTests {
 	}
 
 	@Test
-	void testCheckFormat() throws Exception {
+	void testDemonstratingNeedForCheckFormat() throws Exception {
 		URL resourceUrl = JsonRead.class.getResource("CoursesWithWrongFormat.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
 
+		String json = Files.readString(path);
+		
+		/**
+		 * When not using checkFormat(), if the file read does not contain only a single
+		 * array, the program continues after returning an empty ImmutableSet (which is
+		 * wrong) without us knowing there is a bug in the program.
+		 */
+		assertEquals(ImmutableSet.of(), JsonRead.toCourses(json));
+		
+		/**
+		 * When using checkFormat(), the program immediately stops and throws an
+		 * IllegalArgumentException if there is not only a single array in the file
+		 * read.
+		 */
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			JsonRead.toCourses(Files.readString(path));
+			JsonRead.checkFormat(json);
 		});
 		assertEquals("The file does not contain a single array.", exception.getMessage());
 	}
