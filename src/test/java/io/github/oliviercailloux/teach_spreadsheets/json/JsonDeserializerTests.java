@@ -52,7 +52,7 @@ public class JsonDeserializerTests {
 	 * setters in {@link Course} class.
 	 */
 	@Test
-	void testGetSetOfCoursesInfoWithNullName() throws Exception {
+	void testToCoursesWithNullName() throws Exception {
 		URL resourceUrl = JsonDeserializer.class.getResource("CoursesWithNullName.json");
 		verify(resourceUrl != null);
 		final Path path = Path.of(resourceUrl.toURI());
