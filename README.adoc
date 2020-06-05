@@ -17,6 +17,8 @@ The classes that we plan to implement are described in the link:Doc\README.adoc#
 
 ** Adding loggers in the code
 
+** Verifies that the merges are not problematic
+
 * Group 2 : Hedi and Mike
 
 ** Fixing issues from iteration 1 about base package
