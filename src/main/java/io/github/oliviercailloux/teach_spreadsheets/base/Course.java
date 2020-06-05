@@ -212,4 +212,16 @@ public class Course {
 
 				.toString();
 	}
+	
+	@Override
+	public boolean equals(Object o2) {
+		if (!(o2 instanceof Course)) {
+			return false;
+		}
+		if (this == o2) {
+			return true;
+		}
+		Course course = (Course) o2;
+		return this.name.equals(course.name) && this.studyYear.equals(course.studyYear) && this.semester == course.semester;
+	}
 }

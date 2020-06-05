@@ -2,10 +2,14 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
@@ -24,50 +28,11 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
+import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
 
 public class Controller {
-
-	public static ImmutableSet<TableItem> extractPreferenceItems(Table t, ImmutableSet<CalcData> calcs,
-			Map<TableItem, CoursePref> mapPreference) {
-		checkNotNull(mapPreference);
-		LinkedHashSet<TableItem> result = new LinkedHashSet<>();
-		for (CalcData calc : calcs) {
-			for (CoursePref coursePref : calc.getCoursePrefs()) {
-				if (!coursePref.getPrefCM().equals(Preference.UNSPECIFIED)) {
-					result.add(convertCoursePrefToItem(t, "CM", coursePref.getPrefCM(), coursePref, mapPreference));
-
-				}
-				if (!coursePref.getPrefTD().equals(Preference.UNSPECIFIED)) {
-					result.add(convertCoursePrefToItem(t, "TD", coursePref.getPrefTD(), coursePref, mapPreference));
-
-				}
-				if (!coursePref.getPrefCMTD().equals(Preference.UNSPECIFIED)) {
-					result.add(convertCoursePrefToItem(t, "CMTD", coursePref.getPrefCMTD(), coursePref, mapPreference));
-				}
-				if (!coursePref.getPrefTP().equals(Preference.UNSPECIFIED)) {
-					result.add(convertCoursePrefToItem(t, "TP", coursePref.getPrefTP(), coursePref, mapPreference));
-				}
-				if (!coursePref.getPrefCMTP().equals(Preference.UNSPECIFIED)) {
-					result.add(convertCoursePrefToItem(t, "CMTP", coursePref.getPrefCMTP(), coursePref, mapPreference));
-
-				}
-			}
-		}
-		return ImmutableSet.copyOf(result);
-	}
-
-	private static TableItem convertCoursePrefToItem(Table t, String courseType, Preference preference,
-			CoursePref coursePref, Map<TableItem, CoursePref> mapPreference) {
-		String[] temp = new String[4];
-		temp[0] = coursePref.getTeacher().getFirstName() + " " + coursePref.getTeacher().getLastName();
-		temp[1] = coursePref.getCourse().getName();
-		temp[2] = courseType;
-		temp[3] = preference.toString();
-		TableItem item = new TableItem(t, SWT.NONE);
-		item.setText(temp);
-		mapPreference.put(item, coursePref);
-		return item;
-	}
+	
+	private static View gui;
 
 	public static ImmutableSet<TeacherAssignment> createAssignments(ImmutableSet<TableItem> tableItems,
 			ImmutableMap<TableItem, CoursePref> mapPreference) {
@@ -99,7 +64,9 @@ public class Controller {
 	}
 	
 	/**
-	 * get string array from item
+	 * regarder à quel objet dans Model correspond le TableItem:
+	 * enlever cet objet puis le mettre dans l'autre liste de Model,
+	 * puis 
 	 * @param item
 	 * @param toChosenPreferences
 	 */
@@ -108,9 +75,10 @@ public class Controller {
 		ArrayList<String> texts = new ArrayList<>();
 		while (!item.getText(i).equals("")) {
 			texts.add(item.getText(i));
+			i += 1;
 		}
 		Model.updatePreferences(texts, toChosenPreferences);
-		View.updatePreferences();
+		gui.moveTableItem(item, texts, toChosenPreferences);;
 	}
 
 	// ajouter la fonctionalité pour incrementer la valeur du nb de groupe affectés
@@ -131,6 +99,23 @@ public class Controller {
 			// increment countGroupTP
 		}
 
+	}
+	
+	public static void setModelData() throws Exception {
+		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
+		try (InputStream stream = resourceUrl.openStream()) {
+			CalcData calcData = CalcData.getData(stream);
+			Model.setData(calcData);
+		}
+	}
+	
+	public static void main(String[] args) throws Exception {
+		gui = new View();
+		gui.initializeGui();
+		setModelData();
+		Set<CoursePrefElement> allPreferences = Model.getAllPreferences();
+		gui.initPreferences(allPreferences);
+		gui.show();
 	}
 
 }
