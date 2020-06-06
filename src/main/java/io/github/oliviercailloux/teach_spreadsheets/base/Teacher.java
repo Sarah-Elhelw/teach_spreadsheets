@@ -204,6 +204,10 @@ public class Teacher {
 		}
 		Teacher t2 = (Teacher) o2;
 
+		/**
+		 * Checking equality for all the attributes of a Teacher seems necessary as
+		 * they will be used to fill the Fiche de service.
+		 */
 		return lastName.equals(t2.lastName) && firstName.equals(t2.firstName) && address.equals(t2.address)
 				&& postCode.equals(t2.postCode) && city.equals(t2.city) && personalPhone.equals(t2.personalPhone)
 				&& mobilePhone.equals(t2.mobilePhone) && dauphinePhoneNumber.equals(t2.dauphinePhoneNumber)
