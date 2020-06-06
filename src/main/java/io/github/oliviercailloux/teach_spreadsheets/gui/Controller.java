@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
+import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
@@ -26,6 +27,7 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment.Builder;
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
+import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
@@ -38,15 +40,15 @@ public class Controller {
 	public static ImmutableSet<TeacherAssignment> createAssignments() {
 		
 		Set<CoursePrefElement> chosenPreferences = Model.getChosenPreferences();
-		LinkedHashMap<String, TeacherAssignment.Builder> mapTeacherBuilder = new LinkedHashMap<>();
+		com.google.common.collect.Table<Teacher, Course, TeacherAssignment.Builder> teacherAssignmentMapTable = HashBasedTable.create();
 		
 		for (CoursePrefElement coursePrefElement : chosenPreferences) {
 
 			Teacher teacher = coursePrefElement.getCoursePref().getTeacher();
-			String teacherName = teacher.getLastName() + " " + teacher.getFirstName();
 			String courseType = coursePrefElement.getCourseType().name();
+			Course course = coursePrefElement.getCoursePref().getCourse();
 			
-			if (!mapTeacherBuilder.containsKey(teacherName)) {
+			if (!teacherAssignmentMapTable.contains(teacher, course)) {
 				TeacherAssignment.Builder assignmentBuilder = TeacherAssignment.Builder
 						.newInstance(teacher);
 				assignmentBuilder.setCountGroupsCM(0);
@@ -57,15 +59,15 @@ public class Controller {
 				
 				assignGroup(assignmentBuilder, courseType);
 				
-				mapTeacherBuilder.put(teacherName, assignmentBuilder);
+				teacherAssignmentMapTable.put(teacher,course,assignmentBuilder);
 			} else {
-				TeacherAssignment.Builder assignmentBuilder = mapTeacherBuilder.get(teacherName);
+				TeacherAssignment.Builder assignmentBuilder = teacherAssignmentMapTable.get(teacher,course);
 				assignGroup(assignmentBuilder, courseType);
 			}
 
 		}
 		LinkedHashSet<TeacherAssignment> result = new LinkedHashSet<>();
-		for (TeacherAssignment.Builder builder : mapTeacherBuilder.values()) {
+		for (TeacherAssignment.Builder builder : teacherAssignmentMapTable.values()) {
 			result.add(builder.build());
 		}
 		return ImmutableSet.copyOf(result);
