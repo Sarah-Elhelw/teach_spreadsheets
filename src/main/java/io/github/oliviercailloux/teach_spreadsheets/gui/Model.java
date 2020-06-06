@@ -16,8 +16,8 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class Model {
-	public static Set<CoursePrefElement> allPreferencesData;
-	public static Set<CoursePrefElement> chosenPreferencesData;
+	private static Set<CoursePrefElement> allPreferencesData;
+	private static Set<CoursePrefElement> chosenPreferencesData;
 
 	public static void setData(CalcData calcData) {
 		allPreferencesData = new HashSet<>();
@@ -49,6 +49,10 @@ public class Model {
 
 	public static Set<CoursePrefElement> getAllPreferences() {
 		return allPreferencesData;
+	}
+	
+	public static Set<CoursePrefElement> getChosenPreferences() {
+		return chosenPreferencesData;
 	}
 
 	/**
@@ -89,7 +93,8 @@ public class Model {
 						break;
 					default:
 				}
-				if (!(teacherName.equals(texts.get(0)) && courseName.equals(texts.get(1)) && groupType.equals(texts.get(2)) && choice.equals(texts.get(3)))) {
+				
+				if (teacherName.equals(texts.get(0)) && courseName.equals(texts.get(1)) && groupType.equals(texts.get(2)) && choice.equals(texts.get(3))) {
 					allPreferencesData.remove(coursePrefElement);
 					chosenPreferencesData.add(coursePrefElement);
 					break;
@@ -123,7 +128,7 @@ public class Model {
 						break;
 					default:
 				}
-				if (!(teacherName.equals(texts.get(0)) && courseName.equals(texts.get(1)) && groupType.equals(texts.get(2)) && choice.equals(texts.get(3)))) {
+				if (teacherName.equals(texts.get(0)) && courseName.equals(texts.get(1)) && groupType.equals(texts.get(2)) && choice.equals(texts.get(3))) {
 					chosenPreferencesData.remove(coursePrefElement);
 					allPreferencesData.add(coursePrefElement);
 					break;

@@ -23,6 +23,9 @@ import org.eclipse.swt.widgets.TableItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.ImmutableSet;
+
+import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
@@ -195,7 +198,7 @@ public class View {
 	/**
 	 * This method closes the application.
 	 */
-	private void exitApplication() {
+	public void exitApplication() {
 		MessageBox messageBox = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
 		messageBox.setMessage("Do you really want to quit the application?");
 		messageBox.setText("Closing the application");
@@ -299,7 +302,8 @@ public class View {
 		buttonSubmit.addListener(SWT.MouseDown, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				// TODO: lancer la fonction adéquate
+				ImmutableSet<TeacherAssignment> t = Controller.createAssignments();
+				System.out.println(t);
 			}
 		});
 	}

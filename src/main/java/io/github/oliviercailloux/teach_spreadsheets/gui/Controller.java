@@ -28,28 +28,39 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
+import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
 
 public class Controller {
 	
 	private static View gui;
 
-	public static ImmutableSet<TeacherAssignment> createAssignments(ImmutableSet<TableItem> tableItems,
-			ImmutableMap<TableItem, CoursePref> mapPreference) {
+	public static ImmutableSet<TeacherAssignment> createAssignments() {
+		
+		Set<CoursePrefElement> chosenPreferences = Model.getChosenPreferences();
 		LinkedHashMap<String, TeacherAssignment.Builder> mapTeacherBuilder = new LinkedHashMap<>();
-		for (TableItem tableItem : tableItems) {
-			if (!mapTeacherBuilder.containsKey(tableItem.getText(0))) {
+		
+		for (CoursePrefElement coursePrefElement : chosenPreferences) {
+
+			Teacher teacher = coursePrefElement.getCoursePref().getTeacher();
+			String teacherName = teacher.getLastName() + " " + teacher.getFirstName();
+			String courseType = coursePrefElement.getCourseType().name();
+			
+			if (!mapTeacherBuilder.containsKey(teacherName)) {
 				TeacherAssignment.Builder assignmentBuilder = TeacherAssignment.Builder
-						.newInstance(mapPreference.get(tableItem).getTeacher());
+						.newInstance(teacher);
 				assignmentBuilder.setCountGroupsCM(0);
 				assignmentBuilder.setCountGroupsCMTD(0);
 				assignmentBuilder.setCountGroupsCMTP(0);
 				assignmentBuilder.setCountGroupsTD(0);
 				assignmentBuilder.setCountGroupsTP(0);
-				assignGroup(assignmentBuilder, tableItem.getText(2));
+				
+				assignGroup(assignmentBuilder, courseType);
+				
+				mapTeacherBuilder.put(teacherName, assignmentBuilder);
 			} else {
-				TeacherAssignment.Builder assignmentBuilder = mapTeacherBuilder.get(tableItem.getText(0));
-				assignGroup(assignmentBuilder, tableItem.getText(2));
+				TeacherAssignment.Builder assignmentBuilder = mapTeacherBuilder.get(teacherName);
+				assignGroup(assignmentBuilder, courseType);
 			}
 
 		}
@@ -75,6 +86,7 @@ public class Controller {
 			texts.add(item.getText(i));
 			i += 1;
 		}
+
 		Model.updatePreferences(texts, toChosenPreferences);
 		gui.moveTableItem(item, texts, toChosenPreferences);
 	}
@@ -87,7 +99,7 @@ public class Controller {
 			teacherAssignmentBuilder.setCountGroupsCMTD((teacherAssignmentBuilder.getCountGroupsCMTD()+1));
 		}
 		if (choiceGroup.equals("TD")) {
-			teacherAssignmentBuilder.setCountGroupsTP((teacherAssignmentBuilder.getCountGroupsTP()+1));
+			teacherAssignmentBuilder.setCountGroupsTD((teacherAssignmentBuilder.getCountGroupsTD()+1));
 		}
 		if (choiceGroup.equals("CMTP")) {
 			teacherAssignmentBuilder.setCountGroupsCMTP((teacherAssignmentBuilder.getCountGroupsCMTP()+1));
