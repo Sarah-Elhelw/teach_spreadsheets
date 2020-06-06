@@ -19,8 +19,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 public class PrefsInitializerTests {
 
 	/** Creating a fake teacher : */
-	static Teacher teacher = Teacher.Builder.newInstance().setAddress("Pont du maréchal de lattre de tassigny")
-			.setFirstName("John").setLastName("Doe").setDauphineEmail("john.doe@dauphine.fr").build();
+	static Teacher teacher = Teacher.Builder.newInstance().setLastName("Doe").build();
 
 	@Test
 	void testCreatePrefsList() throws Exception {

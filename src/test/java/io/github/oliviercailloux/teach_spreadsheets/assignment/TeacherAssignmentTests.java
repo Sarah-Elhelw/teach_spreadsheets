@@ -18,8 +18,7 @@ import org.junit.jupiter.api.Assertions;
  */
 public class TeacherAssignmentTests {
 
-	private static Teacher teacher = Teacher.Builder.newInstance().setLastName("Doe").setFirstName("John")
-			.setDauphineEmail("john.doe@dauphine.fr").build();
+	private static Teacher teacher = Teacher.Builder.newInstance().setLastName("Doe").setFirstName("John").build();
 
 	@Test
 	void testBuilderWithNegativeCountGroupsTD() {

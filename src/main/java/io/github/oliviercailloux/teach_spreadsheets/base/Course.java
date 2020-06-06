@@ -6,7 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Objects;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Verify.verify;
+
 /**
  * Immutable Class used to store a course information. Uses Builder pattern
  * implementation.
@@ -224,21 +224,12 @@ public class Course {
 	}
 
 	/**
-	 * We consider that two courses are equal if they have the same studyLevel, the
-	 * same semester and the same name. As the number of groups may vary from a year
-	 * to another, we also consider the study year to determine if we have two same
-	 * courses.
-	 * 
-	 * All these criteria seem to be necessary as we need to take into consideration
-	 * the case of "LV2 (Allemand / Espagnol)" course in "AA Saisie des voeux.ods"
-	 * that has the same name no matter the semester or study level.
+	 * We consider that two courses are equal if all their attributes are equal.
 	 * 
 	 * 
 	 * @return true if the object in parameter is equal to the course and false if
 	 *         it is not equal
 	 * 
-	 * @throws VerifyException if two courses, considered as equal, have
-	 *                               different number of groups or teaching minutes
 	 */
 	@Override
 	public boolean equals(Object o2) {
@@ -250,42 +241,18 @@ public class Course {
 		}
 		Course c2 = (Course) o2;
 
-		boolean equals = studyYear == c2.studyYear && studyLevel.equals(c2.studyLevel) && semester == c2.semester
-				&& name.equals(c2.name);
-
-		if (equals) {
-
-			/**
-			 * Normally, two equal courses have the same number of groups and the same number
-			 * of teaching minutes. These verifications allow us to see if there are bugs in our
-			 * program.
-			 */
-			verify(countGroupsCM == c2.countGroupsCM, "Two equal courses must have the same number of CM groups.");
-			verify(countGroupsTD == c2.countGroupsTD, "Two equal courses must have the same number of TD groups.");
-			verify(countGroupsTP == c2.countGroupsTP, "Two equal courses must have the same number of TP groups.");
-			verify(countGroupsCMTD == c2.countGroupsCMTD,
-					"Two equal courses must have the same number of CMTD groups.");
-			verify(countGroupsCMTP == c2.countGroupsCMTP,
-					"Two equal courses must have the same number of CMTP groups.");
-
-			verify(nbMinutesCM == c2.nbMinutesCM,
-					"Two equal courses must have the same number of CM teaching minutes.");
-			verify(nbMinutesTD == c2.nbMinutesTD,
-					"Two equal courses must have the same number of TD teaching minutes.");
-			verify(nbMinutesTP == c2.nbMinutesTP,
-					"Two equal courses must have the same number of TP teaching minutes.");
-			verify(nbMinutesCMTD == c2.nbMinutesCMTD,
-					"Two equal courses must have the same number of CMTD teaching minutes.");
-			verify(nbMinutesCMTP == c2.nbMinutesCMTP,
-					"Two equal courses must have the same number of CMTP teaching minutes.");
-		}
-
-		return equals;
+		return name.equals(c2.name) && studyLevel.equals(c2.studyLevel) && studyYear == c2.studyYear
+				&& semester == c2.semester && countGroupsTD == c2.countGroupsTD && countGroupsTP == c2.countGroupsTP
+				&& countGroupsCMTD == c2.countGroupsCMTD && countGroupsCMTP == c2.countGroupsCMTP
+				&& countGroupsCM == c2.countGroupsCM && nbMinutesTD == c2.nbMinutesTD && nbMinutesTP == c2.nbMinutesTP
+				&& nbMinutesCMTD == c2.nbMinutesCMTD && nbMinutesCMTP == c2.nbMinutesCMTP
+				&& nbMinutesCM == c2.nbMinutesCM;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(studyYear, studyLevel, semester, name);
+		return Objects.hash(name, studyLevel, studyYear, semester, countGroupsTD, countGroupsTP, countGroupsCMTD,
+				countGroupsCMTP, countGroupsCM, nbMinutesTD, nbMinutesTP, nbMinutesCMTD, nbMinutesCMTP, nbMinutesCM);
 	}
 
 	@Override

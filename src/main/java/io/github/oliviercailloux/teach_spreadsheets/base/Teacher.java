@@ -2,8 +2,6 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Verify.verify;
 
 import java.util.Objects;
 
@@ -63,7 +61,6 @@ public class Teacher {
 			checkNotNull(teacherToBuild.lastName);
 			if (teacherToBuild.lastName.isEmpty())
 				throw new IllegalArgumentException();
-			checkArgument(!teacherToBuild.dauphineEmail.isEmpty(), "The dauphine email must be specified.");
 			Teacher teacherBuilt = teacherToBuild;
 			teacherToBuild = new Teacher();
 			return teacherBuilt;
@@ -191,18 +188,11 @@ public class Teacher {
 	}
 
 	/**
-	 * We consider that two teachers are equal if they have the same dauphine e-mail
-	 * as e-mails guarantee uniqueness and as a teacher necessarily has a dauphine
-	 * e-mail.
+	 * We consider that two teachers are equal if all their attributes are equal.
 	 * 
 	 * @return true if the object in parameter is equal to the teacher and false if
 	 *         it is not equal
 	 * 
-	 * @throws VerifyException if two teachers, considered as equal, have
-	 *                               different last names, first names, addresses,
-	 *                               post codes, cities, personal phones, mobile
-	 *                               phones, dauphine phone numbers, personal
-	 *                               emails, statuses, or offices.
 	 */
 	@Override
 	public boolean equals(Object o2) {
@@ -214,35 +204,17 @@ public class Teacher {
 		}
 		Teacher t2 = (Teacher) o2;
 
-		boolean equals = dauphineEmail.equals(t2.dauphineEmail);
-
-		if (equals) {
-
-			/**
-			 * Normally, two teachers supposed to be equal have the same personal
-			 * information too. These verifications allow us to see if there are bugs in our
-			 * program.
-			 */
-			verify(lastName.equals(t2.lastName), "Two equal teachers must have the same last name.");
-			verify(firstName.equals(t2.firstName), "Two equal teachers must have the same first name.");
-			verify(address.equals(t2.address), "Two equal teachers must have the same address.");
-			verify(postCode.equals(t2.postCode), "Two equal teachers must have the same post code.");
-			verify(city.equals(t2.city), "Two equal teachers must have the same city.");
-			verify(personalPhone.equals(t2.personalPhone), "Two equal teachers must have the same personal phone.");
-			verify(mobilePhone.equals(t2.mobilePhone), "Two equal teachers must have the same mobile phone.");
-			verify(dauphinePhoneNumber.equals(t2.dauphinePhoneNumber),
-					"Two equal teachers must have the same dauphine phone number.");
-			verify(personalEmail.equals(t2.personalEmail), "Two equal teachers must have the same personal email.");
-			verify(status.equals(t2.status), "Two equal teachers must have the same status.");
-			verify(office.equals(t2.office), "Two equal teachers must have the same office.");
-		}
-
-		return equals;
+		return lastName.equals(t2.lastName) && firstName.equals(t2.firstName) && address.equals(t2.address)
+				&& postCode.equals(t2.postCode) && city.equals(t2.city) && personalPhone.equals(t2.personalPhone)
+				&& mobilePhone.equals(t2.mobilePhone) && dauphinePhoneNumber.equals(t2.dauphinePhoneNumber)
+				&& personalEmail.equals(t2.personalEmail) && dauphineEmail.equals(t2.dauphineEmail)
+				&& status.equals(t2.status) && office.equals(t2.office);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dauphineEmail);
+		return Objects.hash(lastName, firstName, address, postCode, city, personalPhone, mobilePhone,
+				dauphinePhoneNumber, personalEmail, dauphineEmail, status, office);
 	}
 
 	@Override
