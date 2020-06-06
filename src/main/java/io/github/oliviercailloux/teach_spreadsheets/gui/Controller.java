@@ -37,6 +37,10 @@ public class Controller {
 	
 	private static View gui;
 
+	/**
+	 * callback function called when the user clicks on submit button.
+	 * @return an ImmutableSet of teacher assignments corresponding to the chosen preferences table in the GUI.
+	 */
 	public static ImmutableSet<TeacherAssignment> createAssignments() {
 		
 		Set<CoursePrefElement> chosenPreferences = Model.getChosenPreferences();
@@ -75,13 +79,15 @@ public class Controller {
 	}
 	
 	/**
-	 * regarder à quel objet dans Model correspond le TableItem:
-	 * enlever cet objet puis le mettre dans l'autre liste de Model,
-	 * puis 
-	 * @param item
-	 * @param toChosenPreferences
+	 * Callback function for the Table listeners in View.
+	 * Updates Model, then updates View according to the input of the user.
+	 * @param item the table item that has been clicked
+	 * @param toChosenPreferences true iff the table item that has been clicked was on the table All Preferences
 	 */
 	public static void callbackListener(TableItem item, boolean toChosenPreferences) {
+		checkNotNull(item);
+		checkNotNull(toChosenPreferences);
+		
 		int i = 0;
 		ArrayList<String> texts = new ArrayList<>();
 		while (!item.getText(i).equals("")) {
@@ -111,6 +117,10 @@ public class Controller {
 		}
 	}
 	
+	/**
+	 * Populates Model data with the ods files
+	 * @throws Exception
+	 */
 	public static void setModelData() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
 		try (InputStream stream = resourceUrl.openStream()) {
