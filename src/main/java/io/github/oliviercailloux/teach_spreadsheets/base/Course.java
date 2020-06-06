@@ -15,10 +15,19 @@ import static com.google.common.base.Preconditions.checkArgument;
  */
 public class Course {
 	private static final String EXCEPTION_STRING = "String must not be null.";
-	private static final String EXCEPTION_INT = "int must not be positive.";
+	private static final String EXCEPTION_INT = "int must be positive.";
 
 	private String name;
-	private String studyYear;
+	/**
+	 * This attribute corresponds to the academic level of the course. For example :
+	 * DE1, DE2...
+	 */
+	private String studyLevel;
+	/**
+	 * This attribute corresponds to the beginning year of study of the course. For example,
+	 * if the year is 2016/2017, studyYear = 2016.
+	 */
+	private int studyYear;
 	private int semester;
 
 	private int countGroupsTD;
@@ -35,7 +44,7 @@ public class Course {
 
 	private Course() {
 		name = "";
-		studyYear = "";
+		studyLevel = "";
 		semester = 0;
 
 		// by default, semester, nbMinutes and countGroups variables are initialized at
@@ -45,8 +54,12 @@ public class Course {
 	public String getName() {
 		return name;
 	}
+	
+	public String getStudyLevel() {
+		return studyLevel;
+	}
 
-	public String getStudyYear() {
+	public int getStudyYear() {
 		return studyYear;
 	}
 
@@ -106,16 +119,16 @@ public class Course {
 		}
 
 		public Course build() {
-			checkNotNull(courseToBuild.name);
-			checkNotNull(courseToBuild.studyYear);
-			checkArgument(courseToBuild.semester == 1 || courseToBuild.semester == 2);
+			checkNotNull(courseToBuild.name, "The course name cannot be null.");
+			checkNotNull(courseToBuild.studyLevel, "The study level cannot be null.");
+			checkArgument(courseToBuild.semester == 1 || courseToBuild.semester == 2, "The semester must be 1 or 2.");
 			checkArgument(courseToBuild.countGroupsCM + courseToBuild.countGroupsCMTD + courseToBuild.countGroupsCMTP
-					+ courseToBuild.countGroupsTD + courseToBuild.countGroupsTP > 0);
+					+ courseToBuild.countGroupsTD + courseToBuild.countGroupsTP > 0, "There must be at least one group for the course.");
 			checkArgument(courseToBuild.nbMinutesCM + courseToBuild.nbMinutesCMTD + courseToBuild.nbMinutesCMTP
-					+ courseToBuild.nbMinutesTD + courseToBuild.nbMinutesTP > 0);
-			if (courseToBuild.name.isEmpty() || courseToBuild.studyYear.isEmpty())
-				throw new IllegalStateException();
-
+					+ courseToBuild.nbMinutesTD + courseToBuild.nbMinutesTP > 0, "There must be time to spend in teaching the course.");
+			checkArgument(!courseToBuild.name.isEmpty(), "The course name must be specified.");
+			checkArgument(!courseToBuild.studyLevel.isEmpty(), "The study level must be specified.");
+			checkArgument(courseToBuild.studyYear != 0, "The study year must be specified.");
 			Course courseBuilt = courseToBuild;
 			courseToBuild = new Course();
 			return courseBuilt;
@@ -126,9 +139,15 @@ public class Course {
 			this.courseToBuild.name = name;
 			return this;
 		}
+		
+		public Builder setStudyLevel(String studyLevel) {
+			checkNotNull(studyLevel, EXCEPTION_STRING);
+			this.courseToBuild.studyLevel = studyLevel;
+			return this;
+		}
 
-		public Builder setStudyYear(String studyYear) {
-			checkNotNull(studyYear, EXCEPTION_STRING);
+		public Builder setStudyYear(int studyYear) {
+			checkArgument(studyYear > 0, EXCEPTION_INT);
 			this.courseToBuild.studyYear = studyYear;
 			return this;
 		}
@@ -169,31 +188,31 @@ public class Course {
 			return this;
 		}
 
-		public Builder setnbMinutesTD(int nbMinutesTD) {
+		public Builder setNbMinutesTD(int nbMinutesTD) {
 			checkArgument(nbMinutesTD >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesTD = nbMinutesTD;
 			return this;
 		}
 
-		public Builder setnbMinutesTP(int nbMinutesTP) {
+		public Builder setNbMinutesTP(int nbMinutesTP) {
 			checkArgument(nbMinutesTP >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesTP = nbMinutesTP;
 			return this;
 		}
 
-		public Builder setnbMinutesCMTD(int nbMinutesCMTD) {
+		public Builder setNbMinutesCMTD(int nbMinutesCMTD) {
 			checkArgument(nbMinutesCMTD >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesCMTD = nbMinutesCMTD;
 			return this;
 		}
 
-		public Builder setnbMinutesCMTP(int nbMinutesCMTP) {
+		public Builder setNbMinutesCMTP(int nbMinutesCMTP) {
 			checkArgument(nbMinutesCMTP >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesCMTP = nbMinutesCMTP;
 			return this;
 		}
 
-		public Builder setnbMinutesCM(int nbMinutesCM) {
+		public Builder setNbMinutesCM(int nbMinutesCM) {
 			checkArgument(nbMinutesCM >= 0, EXCEPTION_INT);
 			this.courseToBuild.nbMinutesCM = nbMinutesCM;
 			return this;
@@ -233,7 +252,7 @@ public class Course {
 				.add("nbMinutesTD", nbMinutesTD).add("nbMinutesCMTD", nbMinutesCMTD).add("nbMinutesTP", nbMinutesTP)
 				.add("nbMinutesCMTP", nbMinutesCMTP).add("nbMinutesCM", nbMinutesCM)
 
-				.add("studyYear", studyYear).add("semester", semester)
+				.add("studyLevel", studyLevel).add("studyYear", studyYear).add("semester", semester)
 
 				.toString();
 	}
