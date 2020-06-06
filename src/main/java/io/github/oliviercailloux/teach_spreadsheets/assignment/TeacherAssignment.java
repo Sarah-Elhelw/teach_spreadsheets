@@ -133,6 +133,7 @@ public class TeacherAssignment {
 			this.teacherAssignmentToBuild.countGroupsCM = countGroupsCM;
 			return this;
 		}
+
 		public int getCountGroupsTD() {
 			return this.teacherAssignmentToBuild.countGroupsTD;
 		}
@@ -152,7 +153,6 @@ public class TeacherAssignment {
 		public int getCountGroupsCM() {
 			return this.teacherAssignmentToBuild.countGroupsCM;
 		}
-
 
 	}
 
@@ -182,14 +182,9 @@ public class TeacherAssignment {
 
 	@Override
 	public String toString() {
-		return MoreObjects.toStringHelper(this)
-	       .add("First name", teacher.getFirstName())
-	       .add("Last name", teacher.getLastName())
-	       .add("Number of TD groups", countGroupsTD)
-	       .add("Number of TP groups", countGroupsTP)
-	       .add("Number of CMTD groups", countGroupsCMTD)
-	       .add("Number of CMTP groups", countGroupsCMTP)
-	       .add("Number of CM groups", countGroupsCM)
-	       .toString();
+		return MoreObjects.toStringHelper(this).add("First name", teacher.getFirstName())
+				.add("Last name", teacher.getLastName()).add("Number of TD groups", countGroupsTD)
+				.add("Number of TP groups", countGroupsTP).add("Number of CMTD groups", countGroupsCMTD)
+				.add("Number of CMTP groups", countGroupsCMTP).add("Number of CM groups", countGroupsCM).toString();
 	}
 }
