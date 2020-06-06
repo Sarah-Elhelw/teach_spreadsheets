@@ -69,23 +69,22 @@ public class JsonDeserializerTests {
 		final Path path = Path.of(resourceUrl.toURI());
 
 		String json = Files.readString(path);
-		
+
 		/**
-		 * When not using checkFormat(), if the file read does not contain only a single
-		 * array, the program continues after returning an empty ImmutableSet (which is
-		 * wrong) without us knowing there is a bug in the program.
+		 * When not using checkFormat(), if the file read does not contain only a
+		 * JsonArray, the program continues after returning an empty ImmutableSet (which
+		 * is wrong) without us knowing there is a bug in the program.
 		 */
 		assertEquals(ImmutableSet.of(), JsonDeserializer.toCourses(json));
-		
+
 		/**
 		 * When using checkFormat(), the program immediately stops and throws an
-		 * IllegalArgumentException if there is not only a single array in the file
-		 * read.
+		 * IllegalArgumentException if there is not only a JsonArray in the file read.
 		 */
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			JsonDeserializer.checkFormat(json);
 		});
-		assertEquals("The file does not contain a single array.", exception.getMessage());
+		assertEquals("The string does not contain only a JsonArray.", exception.getMessage());
 	}
 
 }

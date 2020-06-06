@@ -23,7 +23,7 @@ public class JsonDeserializer {
 	 * JsonArray is necessary for the deserialization process to work properly,
 	 * otherwise, it invariably returns an empty set which we do not want.
 	 * 
-	 * @param textArray - the json text we want to make sure contains a single array
+	 * @param textArray - the json text we want to make sure contains only a JsonArray
 	 * 
 	 * @throws IllegalArgumentException if the parameter is not a single json array
 	 */
@@ -31,7 +31,7 @@ public class JsonDeserializer {
 		try (JsonReader jr = Json.createReader(new StringReader(textArray))) {
 			jr.readArray();
 		} catch (JsonParsingException jpe) {
-			throw new IllegalArgumentException("The file does not contain a single array.", jpe);
+			throw new IllegalArgumentException("The string does not contain only a JsonArray.", jpe);
 		}
 	}
 

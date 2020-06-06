@@ -18,7 +18,7 @@ public class JsonSerializer {
 	/**
 	 * Serializes a Set of Course objects
 	 * 
-	 * @param courses a collection of Course objects with no duplicate elements
+	 * @param courses - a set of Course objects
 	 * 
 	 * @return the serialized set
 	 * 

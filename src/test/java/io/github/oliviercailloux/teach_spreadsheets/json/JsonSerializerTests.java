@@ -29,7 +29,7 @@ public class JsonSerializerTests {
 	void testSerializeSet() throws Exception {
 		URL url = CalcDataInitializerTests.class.getResource("Saisie_des_voeux_format simple.ods");
 		verify(url != null);
-		
+
 		try (InputStream odsStream = url.openStream()) {
 			CalcData calcData = CalcData.getData(odsStream);
 
@@ -43,12 +43,12 @@ public class JsonSerializerTests {
 
 			try (JsonReader jr = Json.createReader(new StringReader(serializedSet))) {
 				JsonArray ja = jr.readArray();
-				
-				assertEquals(ja.size(), courses.size());
-				
+
+				assertEquals(courses.size(), ja.size());
+
 				JsonObject actual = ja.getJsonObject(0);
 				Course expected = new ArrayList<Course>(courses).get(0);
-				
+
 				assertEquals(expected.getName(), actual.getString("name"));
 				assertEquals(expected.getStudyLevel(), actual.getString("studyLevel"));
 				assertEquals(expected.getStudyYear(), actual.getInt("studyYear"));
@@ -63,7 +63,7 @@ public class JsonSerializerTests {
 				assertEquals(expected.getNbMinutesCMTD(), actual.getInt("nbMinutesCMTD"));
 				assertEquals(expected.getNbMinutesCMTP(), actual.getInt("nbMinutesCMTP"));
 				assertEquals(expected.getNbMinutesCM(), actual.getInt("nbMinutesCM"));
-				
+
 			}
 		}
 	}
