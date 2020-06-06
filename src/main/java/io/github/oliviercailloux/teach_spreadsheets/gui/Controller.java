@@ -47,11 +47,9 @@ public class Controller {
 				assignmentBuilder.setCountGroupsTD(0);
 				assignmentBuilder.setCountGroupsTP(0);
 				assignGroup(assignmentBuilder, tableItem.getText(2));
-				// assignmentBuilder.setCourse(mapPreference.get(tableItem).getCourse());
 			} else {
 				TeacherAssignment.Builder assignmentBuilder = mapTeacherBuilder.get(tableItem.getText(0));
 				assignGroup(assignmentBuilder, tableItem.getText(2));
-				// assignmentBuilder.setCourse(mapPreference.get(tableItem).getCourse());
 			}
 
 		}
