@@ -3,8 +3,6 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import javax.json.bind.annotation.JsonbCreator;
-
 /**
  * Immutable. Class used to store a teacher's information. The minimum
  * information required is lastName. Uses Builder pattern implementation.
@@ -49,7 +47,6 @@ public class Teacher {
 	public static class Builder {
 		private Teacher teacherToBuild;
 
-		@JsonbCreator
 		public static Builder newInstance() {
 			return new Builder();
 		}
