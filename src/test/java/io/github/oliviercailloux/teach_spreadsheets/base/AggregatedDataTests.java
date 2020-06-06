@@ -17,10 +17,10 @@ public class AggregatedDataTests {
 	private static Teacher teacher2 = Teacher.Builder.newInstance().setLastName("Dupont")
 			.setDauphineEmail("jane.dupont@dauphine.fr").build();
 
-	private static Course course1 = Course.Builder.newInstance().setName("Algèbre").setStudyYear("2016").setSemester(1)
-			.setCountGroupsTD(6).setnbMinutesTD(900).build();
-	private static Course course2 = Course.Builder.newInstance().setName("Analyse").setStudyYear("2016").setSemester(1)
-			.setCountGroupsTD(5).setnbMinutesTD(700).build();
+	private static Course course1 = Course.Builder.newInstance().setName("Algèbre").setStudyYear(2016)
+			.setStudyLevel("DE1").setSemester(1).setCountGroupsTD(6).setNbMinutesTD(900).build();
+	private static Course course2 = Course.Builder.newInstance().setName("Analyse").setStudyYear(2016)
+			.setStudyLevel("DE1").setSemester(1).setCountGroupsTD(5).setNbMinutesTD(700).build();
 
 	private static CoursePref coursepref1 = CoursePref.Builder.newInstance(course1, teacher1).setPrefTD(Preference.A)
 			.build();
