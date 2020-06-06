@@ -219,7 +219,7 @@ public class View {
 
 		content.setLayout(new GridLayout(1, false));
 
-		Table t = new Table(content, SWT.BORDER | SWT.V_SCROLL);
+		Table t = new Table(content, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		GridData gd_table = new GridData(SWT.FILL, SWT.FILL, true, true);
 		// à modifier pour qu'elle s'adapte automatiquement!!!!
 		gd_table.heightHint = 400;
@@ -256,7 +256,7 @@ public class View {
 
 		content.setLayout(new GridLayout(1, false));
 
-		Table t = new Table(content, SWT.BORDER | SWT.V_SCROLL);
+		Table t = new Table(content, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		GridData gd_table = new GridData(SWT.FILL, SWT.FILL, true, true);
 		// à modifier pour qu'elle s'adapte automatiquement!!!!
 		gd_table.heightHint = 400;
