@@ -47,10 +47,6 @@ public class CourseAndPrefReader {
 
 	int currentSemester = 1;
 
-	/**
-	 * Stores the courses for future use when we'll try to open more than one file.
-	 */
-
 	public static CourseAndPrefReader newInstance() {
 		return new CourseAndPrefReader();
 	}
