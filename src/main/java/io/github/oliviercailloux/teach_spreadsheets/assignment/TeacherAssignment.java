@@ -133,6 +133,26 @@ public class TeacherAssignment {
 			this.teacherAssignmentToBuild.countGroupsCM = countGroupsCM;
 			return this;
 		}
+		public int getCountGroupsTD() {
+			return this.teacherAssignmentToBuild.countGroupsTD;
+		}
+
+		public int getCountGroupsTP() {
+			return this.teacherAssignmentToBuild.countGroupsTP;
+		}
+
+		public int getCountGroupsCMTD() {
+			return this.teacherAssignmentToBuild.countGroupsCMTD;
+		}
+
+		public int getCountGroupsCMTP() {
+			return this.teacherAssignmentToBuild.countGroupsCMTP;
+		}
+
+		public int getCountGroupsCM() {
+			return this.teacherAssignmentToBuild.countGroupsCM;
+		}
+
 
 	}
 
