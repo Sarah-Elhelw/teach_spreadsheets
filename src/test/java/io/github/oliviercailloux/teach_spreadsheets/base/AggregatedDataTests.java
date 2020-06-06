@@ -79,5 +79,27 @@ public class AggregatedDataTests {
 		});
 
 	}
+	
+	@Test
+	void testGetTeacherPrefs() {
+		AggregatedData.Builder aggregatedData = AggregatedData.Builder.newInstance();
+		
+		
+		Teacher teacherNull = null;
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+			aggregatedData.getTeacherPrefs(teacherNull);
+		});
+		assertEquals("", exception.getMessage());
+	}
+	
+	
+	
+	@Test
+	void testGetCooursePrefs() {
+		AggregatedData.Builder aggregatedData = AggregatedData.Builder.newInstance();
+		aggregatedData.addCalcData(calcData1);
+		
+	}
+	
 
 }
