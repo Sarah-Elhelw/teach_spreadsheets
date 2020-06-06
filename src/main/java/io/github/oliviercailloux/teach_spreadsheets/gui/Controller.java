@@ -46,11 +46,11 @@ public class Controller {
 				assignmentBuilder.setCountGroupsCMTP(0);
 				assignmentBuilder.setCountGroupsTD(0);
 				assignmentBuilder.setCountGroupsTP(0);
-				assignToCourseType(assignmentBuilder, tableItem.getText(2));
+				assignGroup(assignmentBuilder, tableItem.getText(2));
 				// assignmentBuilder.setCourse(mapPreference.get(tableItem).getCourse());
 			} else {
 				TeacherAssignment.Builder assignmentBuilder = mapTeacherBuilder.get(tableItem.getText(0));
-				assignToCourseType(assignmentBuilder, tableItem.getText(2));
+				assignGroup(assignmentBuilder, tableItem.getText(2));
 				// assignmentBuilder.setCourse(mapPreference.get(tableItem).getCourse());
 			}
 
@@ -81,8 +81,7 @@ public class Controller {
 		gui.moveTableItem(item, texts, toChosenPreferences);
 	}
 
-
-	private static void assignToCourseType(TeacherAssignment.Builder teacherAssignmentBuilder, String choiceGroup) {
+	private static void assignGroup(TeacherAssignment.Builder teacherAssignmentBuilder, String choiceGroup) {
 		if (choiceGroup.equals("CM")) {
 			teacherAssignmentBuilder.setCountGroupsCM((teacherAssignmentBuilder.getCountGroupsCM()+1));
 		}
