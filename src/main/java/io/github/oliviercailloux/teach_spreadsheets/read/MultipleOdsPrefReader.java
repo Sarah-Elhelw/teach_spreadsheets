@@ -2,6 +2,7 @@ package io.github.oliviercailloux.teach_spreadsheets.read;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,16 +14,16 @@ import java.util.stream.Stream;
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 
 /**
- * this class reads 
+ * This class contains the function that enables the reading of multiple Ods Pref files.
  */
 public class MultipleOdsPrefReader {
 	/**
-	 * Read the Ods Pref files from the path in the parameter
-	 * @param pathToFolder the path to the folder where all the ods files
-	 * @return a set containing all the CalcDatas from all the files reads
-	 * @throws Exception
+	 * Reads the Ods Pref files from the path given in the parameter.
+	 * @param pathToFolder the path to the folder where all the Ods files are.This path should not be null.
+	 * @return a set containing all the CalcDatas from all the read files.
+	 * @throws Exception 
 	 */
-	public static Set<CalcData> readFilesFromFolder(Path pathToFolder) throws Exception {
+	public static Set<CalcData> readFilesFromFolder(Path pathToFolder) throws Exception{
 		checkNotNull(pathToFolder);
 		Set<CalcData> calcDataSet = new LinkedHashSet<>();
 		try (Stream<Path> walk = Files.walk(pathToFolder)) {

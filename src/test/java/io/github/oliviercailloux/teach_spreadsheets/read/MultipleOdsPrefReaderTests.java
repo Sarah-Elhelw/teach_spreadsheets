@@ -23,15 +23,18 @@ public class MultipleOdsPrefReaderTests {
 		assertEquals(2, calcDatas.size());
 		for (CalcData calcData : calcDatas) {
 			if (calcData.getTeacher().getFirstName().equals("John")) {
-				checkInformationOfCalcDataJoe(calcData);
+				checkInformationOfCalcDataJohn(calcData);
 			}
 			if (calcData.getTeacher().getFirstName().equals("Jane")) {
 				checkInformationOfCalcDataJane(calcData);
 			}
 		}
 	}
-
-	private void checkInformationOfCalcDataJoe(CalcData calcData) {
+	
+	/**
+	 * Checks information read from the John Ods Pref file.
+	 */
+	private void checkInformationOfCalcDataJohn(CalcData calcData) {
 		/** Checking the informations of the teacher: */
 		Teacher actualTeacher = calcData.getTeacher();
 		assertEquals("Doe", actualTeacher.getLastName());
@@ -77,6 +80,9 @@ public class MultipleOdsPrefReaderTests {
 		assertEquals(actualTeacher, acutalTeacherInPref);
 	}
 
+	/**
+	 * Checks the information read from the Jane Ods Pref file.
+	 */
 	private void checkInformationOfCalcDataJane(CalcData calcData) {
 		/** Checking the informations of the teacher: */
 		Teacher actualTeacher = calcData.getTeacher();
