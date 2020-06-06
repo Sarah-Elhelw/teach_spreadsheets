@@ -78,27 +78,26 @@ public class Controller {
 			i += 1;
 		}
 		Model.updatePreferences(texts, toChosenPreferences);
-		gui.moveTableItem(item, texts, toChosenPreferences);;
+		gui.moveTableItem(item, texts, toChosenPreferences);
 	}
 
-	// ajouter la fonctionalité pour incrementer la valeur du nb de groupe affectés
-	private static void assignToCourseType(TeacherAssignment.Builder assignmentBuilder, String choiceGroup) {
+
+	private static void assignToCourseType(TeacherAssignment.Builder teacherAssignmentBuilder, String choiceGroup) {
 		if (choiceGroup.equals("CM")) {
-			// increment countGroupCM
+			teacherAssignmentBuilder.setCountGroupsCM((teacherAssignmentBuilder.getCountGroupsCM()+1));
 		}
 		if (choiceGroup.equals("CMTD")) {
-			// increment countGroupCMTD
+			teacherAssignmentBuilder.setCountGroupsCMTD((teacherAssignmentBuilder.getCountGroupsCMTD()+1));
 		}
 		if (choiceGroup.equals("TD")) {
-			// increment countGroupTD
+			teacherAssignmentBuilder.setCountGroupsTP((teacherAssignmentBuilder.getCountGroupsTP()+1));
 		}
 		if (choiceGroup.equals("CMTP")) {
-			// increment countGroupCMTP
+			teacherAssignmentBuilder.setCountGroupsCMTP((teacherAssignmentBuilder.getCountGroupsCMTP()+1));
 		}
 		if (choiceGroup.equals("TP")) {
-			// increment countGroupTP
+			teacherAssignmentBuilder.setCountGroupsTP((teacherAssignmentBuilder.getCountGroupsTP()+1));
 		}
-
 	}
 	
 	public static void setModelData() throws Exception {
