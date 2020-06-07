@@ -4,6 +4,8 @@ import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import java.util.Objects;
+
 /**
  * Immutable. Class used to store a teacher's information. The minimum
  * information required is lastName. Uses Builder pattern implementation.
@@ -184,7 +186,41 @@ public class Teacher {
 	public String getOffice() {
 		return office;
 	}
-	
+
+	/**
+	 * We consider that two teachers are equal if all their attributes are equal.
+	 * 
+	 * @return true if the object in parameter is equal to the teacher and false if
+	 *         it is not equal
+	 * 
+	 */
+	@Override
+	public boolean equals(Object o2) {
+		if (!(o2 instanceof Teacher)) {
+			return false;
+		}
+		if (this == o2) {
+			return true;
+		}
+		Teacher t2 = (Teacher) o2;
+
+		/**
+		 * Checking equality for all the attributes of a Teacher seems necessary as
+		 * they will be used to fill the Fiche de service.
+		 */
+		return lastName.equals(t2.lastName) && firstName.equals(t2.firstName) && address.equals(t2.address)
+				&& postCode.equals(t2.postCode) && city.equals(t2.city) && personalPhone.equals(t2.personalPhone)
+				&& mobilePhone.equals(t2.mobilePhone) && dauphinePhoneNumber.equals(t2.dauphinePhoneNumber)
+				&& personalEmail.equals(t2.personalEmail) && dauphineEmail.equals(t2.dauphineEmail)
+				&& status.equals(t2.status) && office.equals(t2.office);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(lastName, firstName, address, postCode, city, personalPhone, mobilePhone,
+				dauphinePhoneNumber, personalEmail, dauphineEmail, status, office);
+	}
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("lastName", lastName).add("firstName", firstName)
