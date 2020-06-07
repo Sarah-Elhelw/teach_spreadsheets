@@ -2,10 +2,12 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
+
+import javax.json.bind.annotation.JsonbCreator;
+import javax.json.bind.annotation.JsonbPropertyOrder;
 
 import java.util.Objects;
-
-import static com.google.common.base.Preconditions.checkArgument;
 
 /**
  * Immutable Class used to store a course information. Uses Builder pattern
@@ -13,6 +15,9 @@ import static com.google.common.base.Preconditions.checkArgument;
  * 
  * @see https://codereview.stackexchange.com/questions/127391/simple-builder-pattern-implementation-for-building-immutable-objects/127509#127509
  */
+@JsonbPropertyOrder({ "name", "studyLevel", "studyYear", "semester", "countGroupsTD", "countGroupsTP",
+		"countGroupsCMTD", "countGroupsCMTP", "countGroupsCM", "nbMinutesTD", "nbMinutesTP", "nbMinutesCMTD",
+		"nbMinutesCMTP", "nbMinutesCM" })
 public class Course {
 	private static final String EXCEPTION_STRING = "String must not be null.";
 	private static final String EXCEPTION_INT = "int must be positive.";
@@ -110,6 +115,7 @@ public class Course {
 	public static class Builder {
 		private Course courseToBuild;
 
+		@JsonbCreator
 		public static Builder newInstance() {
 			return new Builder();
 		}
