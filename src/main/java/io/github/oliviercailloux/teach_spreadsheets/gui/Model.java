@@ -105,6 +105,9 @@ public class Model {
 	 *                            the Table named all preferences
 	 */
 	public static void updatePreferences(ArrayList<String> texts, boolean toChosenPreferences) {
+		checkNotNull(texts);
+		checkArgument(texts.size() == 4);
+		
 		if (toChosenPreferences) {
 			updateSet(texts, allPreferences, chosenPreferences);
 		}
