@@ -33,6 +33,9 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
 
+/**
+ * Manages the View and Model classes via callback functions.
+ */
 public class Controller {
 
 	private static View gui;
@@ -114,22 +117,22 @@ public class Controller {
 		checkNotNull(choiceGroup);
 
 		switch (choiceGroup) {
-			case "CM":
-				teacherAssignmentBuilder.setCountGroupsCM((teacherAssignmentBuilder.getCountGroupsCM() + 1));
-				break;
-			case "CMTD":
-				teacherAssignmentBuilder.setCountGroupsCMTD((teacherAssignmentBuilder.getCountGroupsCMTD() + 1));
-				break;
-			case "TD":
-				teacherAssignmentBuilder.setCountGroupsTD((teacherAssignmentBuilder.getCountGroupsTD() + 1));
-				break;
-			case "CMTP":
-				teacherAssignmentBuilder.setCountGroupsCMTP((teacherAssignmentBuilder.getCountGroupsCMTP() + 1));
-				break;
-			case "TP":
-				teacherAssignmentBuilder.setCountGroupsTP((teacherAssignmentBuilder.getCountGroupsTP() + 1));
-				break;
-			default:
+		case "CM":
+			teacherAssignmentBuilder.setCountGroupsCM((teacherAssignmentBuilder.getCountGroupsCM() + 1));
+			break;
+		case "CMTD":
+			teacherAssignmentBuilder.setCountGroupsCMTD((teacherAssignmentBuilder.getCountGroupsCMTD() + 1));
+			break;
+		case "TD":
+			teacherAssignmentBuilder.setCountGroupsTD((teacherAssignmentBuilder.getCountGroupsTD() + 1));
+			break;
+		case "CMTP":
+			teacherAssignmentBuilder.setCountGroupsCMTP((teacherAssignmentBuilder.getCountGroupsCMTP() + 1));
+			break;
+		case "TP":
+			teacherAssignmentBuilder.setCountGroupsTP((teacherAssignmentBuilder.getCountGroupsTP() + 1));
+			break;
+		default:
 		}
 	}
 
@@ -146,6 +149,10 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * the only purpose of this main is to test the gui.This is not the main
+	 * function of this program.
+	 */
 	public static void main(String[] args) throws Exception {
 		gui = new View();
 		gui.initializeGui();

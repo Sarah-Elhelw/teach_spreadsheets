@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.teach_spreadsheets.gui;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +31,13 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
+/**
+ * The View class creates the shell and manages it. Some of the code in this
+ * class is inspired from
+ * <a href="https://github.com/oliviercailloux/Teach-spreadsheets">teach
+ * spreadsheets</a> class and more specifically from the class <a href=
+ * "https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/java/io/github/oliviercailloux/y2018/teach_spreadsheets/gui/GUIPref.java">GUIPref</a>.
+ */
 public class View {
 	private final static Logger LOGGER = LoggerFactory.getLogger(View.class);
 
@@ -49,6 +58,9 @@ public class View {
 
 	private Composite submit;
 
+	/**
+	 * Creates the Gui components.
+	 */
 	public void initializeGui() {
 		display = new Display();
 		shell = new Shell(display, SWT.SHELL_TRIM);
@@ -79,9 +91,12 @@ public class View {
 		coursesTable = setCompositeCourseTable(courses, coursesContent, "Courses", logoCourses);
 
 		prefShell();
-		setAndCreateSubmitButton();
+		createAndSetSubmitButton();
 	}
 
+	/**
+	 * Shows the gui.
+	 */
 	public void show() {
 		shell.pack();
 		shell.open();
@@ -94,6 +109,11 @@ public class View {
 		LOGGER.info("Display well closed");
 	}
 
+	/**
+	 * 
+	 * @param source
+	 * @param toChosenPreferences
+	 */
 	private static void addListenerPreferences(Table source, boolean toChosenPreferences) {
 		source.addListener(SWT.MouseDoubleClick, new Listener() {
 			@Override
@@ -105,7 +125,12 @@ public class View {
 		});
 	}
 
-	// https://stackoverflow.com/questions/5374311/convert-arrayliststring-to-string-array
+	/**
+	 * 
+	 * @param tableItem
+	 * @param texts
+	 * @param toChosenPreferences
+	 */
 	public void moveTableItem(TableItem tableItem, ArrayList<String> texts, boolean toChosenPreferences) {
 		tableItem.dispose();
 		TableItem newItem;
@@ -118,6 +143,12 @@ public class View {
 		newItem.setText(texts.toArray(new String[0]));
 	}
 
+	/**
+	 * Initializes the courses and allPreferences tables.
+	 * 
+	 * @param allPreferences a set of CoursePrefElement containing all the
+	 *                       information about the preferences
+	 */
 	public void initPreferences(Set<CoursePrefElement> allPreferences) {
 		ArrayList<Course> coursesShown = new ArrayList<>();
 
@@ -160,6 +191,9 @@ public class View {
 		}
 	}
 
+	/**
+	 * Creates the 3 tables of the Gui (allPrefrences,chosenPrefrences,courses).
+	 */
 	private void prefShell() {
 		GridData prefData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		GridData chosenPrefData = new GridData(SWT.FILL, SWT.FILL, true, true);
@@ -171,15 +205,14 @@ public class View {
 		this.allPrefrences.setLayoutData(prefData);
 		this.chosenPrefrences.setLayoutData(chosenPrefData);
 		this.courses.setLayoutData(coursesData);
-
 	}
 
 	/**
 	 * This method closes the application.
 	 */
-	public void exitApplication() {
+	private void exitApplication() {
 		MessageBox messageBox = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
-		messageBox.setMessage("Do you really want to quit the application?");
+		messageBox.setMessage("Your choices have been submitted. Do you want to exit the application?");
 		messageBox.setText("Closing the application");
 		int response = messageBox.open();
 		if (response == SWT.YES) {
@@ -188,29 +221,45 @@ public class View {
 		}
 	}
 
+	/**
+	 * Sets a preference table composite parameters and creates the table for this
+	 * composite.
+	 * 
+	 * @param parentComposite the parent of the composite to be set, should not be
+	 *                        null
+	 * @param content         the content composite of the PreferenceTable, should
+	 *                        not be null
+	 * @param headerText      a title to be displayed above the table
+	 * @param logo            a logo to be displayed next to the title
+	 * @return the table created
+	 */
 	private Table setCompositePreferenceTable(Composite parentComposite, Composite content, String headerText,
 			Image logo) {
+		checkNotNull(parentComposite);
+		checkNotNull(content);
+		checkNotNull(headerText);
+		checkNotNull(logo);
+
 		parentComposite.setLayout(new GridLayout(1, true));
 
 		Composite header = new Composite(content, SWT.NONE);
 		header.setLayout(new GridLayout(2, false));
 		Label labelImg = new Label(header, SWT.LEFT);
 		labelImg.setImage(logo);
-		Label txt = new Label(header, SWT.RIGHT);
-		txt.setText(headerText);
+		Label label = new Label(header, SWT.RIGHT);
+		label.setText(headerText);
 
 		content.setLayout(new GridLayout(1, false));
 
-		Table t = new Table(content, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
+		Table table = new Table(content, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		GridData gd_table = new GridData(SWT.FILL, SWT.FILL, true, true);
-		// à modifier pour qu'elle s'adapte automatiquement!!!!
 		gd_table.heightHint = 400;
-		t.setLayoutData(gd_table);
+		table.setLayoutData(gd_table);
 
-		TableColumn teacher = new TableColumn(t, SWT.NONE);
-		TableColumn course = new TableColumn(t, SWT.NONE);
-		TableColumn groupType = new TableColumn(t, SWT.NONE);
-		TableColumn choice = new TableColumn(t, SWT.NONE);
+		TableColumn teacher = new TableColumn(table, SWT.NONE);
+		TableColumn course = new TableColumn(table, SWT.NONE);
+		TableColumn groupType = new TableColumn(table, SWT.NONE);
+		TableColumn choice = new TableColumn(table, SWT.NONE);
 
 		teacher.setText("Teacher");
 		course.setText("Course");
@@ -221,12 +270,28 @@ public class View {
 		course.setWidth(130);
 		groupType.setWidth(80);
 		choice.setWidth(70);
-		t.setHeaderVisible(true);
+		table.setHeaderVisible(true);
 
-		return t;
+		return table;
 	}
 
+	/**
+	 * Same as setCompositePreferenceTable but for courses. Sets a course table
+	 * composite parameters and creates the table for this composite
+	 * 
+	 * @param parentComposite parentComposite the parent of the composite to be set,
+	 *                        should not be null
+	 * @param content         the content composite of the course table , should not
+	 *                        be null
+	 * @param headerText      headerText a title to be displayed above the table
+	 * @param logo            a logo to be displayed next to the title
+	 * @return the table created
+	 */
 	private Table setCompositeCourseTable(Composite parentComposite, Composite content, String headerText, Image logo) {
+		checkNotNull(parentComposite);
+		checkNotNull(content);
+		checkNotNull(headerText);
+		checkNotNull(logo);
 		parentComposite.setLayout(new GridLayout(1, true));
 
 		Composite header = new Composite(content, SWT.NONE);
@@ -240,7 +305,6 @@ public class View {
 
 		Table t = new Table(content, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		GridData gd_table = new GridData(SWT.FILL, SWT.FILL, true, true);
-		// à modifier pour qu'elle s'adapte automatiquement!!!!
 		gd_table.heightHint = 400;
 		t.setLayoutData(gd_table);
 
@@ -261,10 +325,19 @@ public class View {
 		return t;
 	}
 
+	/**
+	 * this @SuppressWarnings is needed because the two labels created won't be
+	 * used.they are only used to skip two columns so that the submit button is on
+	 * the bottom far right of the window.
+	 */
 	@SuppressWarnings("unused")
-	private void setAndCreateSubmitButton() {
-		// skip two columns of the grid ,expliquer le supess warning
-
+	/**
+	 * Sets and creates the submit Button.
+	 */
+	private void createAndSetSubmitButton() {
+		/**
+		 * skip two columns of the grid
+		 */
 		new Label(shell, SWT.NONE);
 		new Label(shell, SWT.NONE);
 
@@ -272,7 +345,7 @@ public class View {
 		GridLayout gl = new GridLayout(1, true);
 		submit.setLayout(gl);
 		submit.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
-		// Button to submit the preferences for a specified course
+
 		Button buttonSubmit;
 
 		buttonSubmit = new Button(submit, SWT.NONE);
@@ -281,8 +354,10 @@ public class View {
 		buttonSubmit.addListener(SWT.MouseDown, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				ImmutableSet<TeacherAssignment> t = Controller.createAssignments();
-				System.out.println(t);
+				ImmutableSet<TeacherAssignment> teacherAssignments = Controller.createAssignments();
+				// remplacer avec un log juste avant la PR
+				System.out.println(teacherAssignments);
+				exitApplication();
 			}
 		});
 	}
