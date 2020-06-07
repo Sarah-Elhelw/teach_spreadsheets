@@ -62,29 +62,4 @@ public class JsonDeserializerTests {
 		assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
 	}
 
-	@Test
-	void testDemonstratingNeedForCheckFormat() throws Exception {
-		URL resourceUrl = JsonDeserializer.class.getResource("CoursesWithWrongFormat.json");
-		verify(resourceUrl != null);
-		final Path path = Path.of(resourceUrl.toURI());
-
-		String json = Files.readString(path);
-
-		/**
-		 * When not using checkFormat(), if the file read does not contain only a
-		 * JsonArray, the program continues after returning an empty ImmutableSet (which
-		 * is wrong) without us knowing there is a bug in the program.
-		 */
-		assertEquals(ImmutableSet.of(), JsonDeserializer.toCourses(json));
-
-		/**
-		 * When using checkFormat(), the program immediately stops and throws an
-		 * IllegalArgumentException if there is not only a JsonArray in the file read.
-		 */
-		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			JsonDeserializer.checkFormat(json);
-		});
-		assertEquals("The string does not contain only a JsonArray.", exception.getMessage());
-	}
-
 }

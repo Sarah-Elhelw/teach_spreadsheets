@@ -27,7 +27,7 @@ public class JsonDeserializer {
 	 * 
 	 * @throws IllegalArgumentException if the parameter is not a single json array
 	 */
-	public static void checkFormat(String textArray) {
+	private static void checkFormat(String textArray) {
 		try (JsonReader jr = Json.createReader(new StringReader(textArray))) {
 			jr.readArray();
 		} catch (JsonParsingException jpe) {
@@ -52,6 +52,7 @@ public class JsonDeserializer {
 	 */
 	public static ImmutableSet<Course> toCourses(String json) {
 		checkNotNull(json, "The String must not be null.");
+		checkFormat(json);
 
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			/**
@@ -68,11 +69,6 @@ public class JsonDeserializer {
 			ImmutableSet<Course> is = ImmutableSet.copyOf(courses);
 			return is;
 		}
-		/**
-		 * If an exception is thrown by the initialization of coursesB, we want to throw
-		 * it as it is (and not as a new IllegalArgumentException) to get the root
-		 * cause.
-		 */
 		catch (RuntimeException re) {
 			throw re;
 		} catch (Exception e) {
