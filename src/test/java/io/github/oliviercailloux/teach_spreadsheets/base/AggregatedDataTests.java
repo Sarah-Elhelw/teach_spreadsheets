@@ -10,6 +10,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import com.google.common.collect.ImmutableSet;
+
 public class AggregatedDataTests {
 
 	private static Teacher teacher1 = Teacher.Builder.newInstance().setLastName("Dupond")
@@ -83,22 +85,31 @@ public class AggregatedDataTests {
 	@Test
 	void testGetTeacherPrefs() {
 		AggregatedData.Builder aggregatedData = AggregatedData.Builder.newInstance();
+		aggregatedData.addCalcData(calcData1);
+		aggregatedData.addCalcData(calcData3);
 		
+		AggregatedData aggData = aggregatedData.build();
 		
-		Teacher teacherNull = null;
-		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			aggregatedData.getTeacherPrefs(teacherNull);
-		});
-		assertEquals("", exception.getMessage());
+		ImmutableSet<CoursePref> coursePrefAggregated = aggData.getTeacherPrefs(teacher1);
+		ImmutableSet<CoursePref> coursePrefSupposed = ImmutableSet.of(calcData1.getCoursePref(course1));
+		
+		assertEquals(coursePrefAggregated, coursePrefSupposed);
 	}
 	
 	
 	
 	@Test
-	void testGetCooursePrefs() {
+	void testGetCoursePrefs() {
 		AggregatedData.Builder aggregatedData = AggregatedData.Builder.newInstance();
 		aggregatedData.addCalcData(calcData1);
+		aggregatedData.addCalcData(calcData3);
 		
+		AggregatedData aggData = aggregatedData.build();
+		
+		Set<CoursePref> coursePrefAggregated = aggData.getCoursePrefs(course1);
+		Set<CoursePref> coursePrefSupposed = Set.of(calcData1.getCoursePref(course1));
+		
+		assertEquals(coursePrefAggregated, coursePrefSupposed);
 	}
 	
 
