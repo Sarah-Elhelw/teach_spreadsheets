@@ -111,10 +111,13 @@ public class View {
 	}
 
 	/**
-	 * adds listeners for table items in "All preferences" and "Chosen preferences" tables in the GUI.
-	 * Inspired from : https://stackoverflow.com/a/14398495
-	 * @param source the table where we want to add a listener
-	 * @param toChosenPreferences true iff the table is "all preferences". This value is later used for callback functions in Controller class.
+	 * adds listeners for table items in "All preferences" and "Chosen preferences"
+	 * tables in the GUI. Inspired from : https://stackoverflow.com/a/14398495
+	 * 
+	 * @param source              the table where we want to add a listener
+	 * @param toChosenPreferences true iff the table is "all preferences". This
+	 *                            value is later used for callback functions in
+	 *                            Controller class.
 	 */
 	private static void addListenerPreferences(Table source, boolean toChosenPreferences) {
 		source.addListener(SWT.MouseDoubleClick, new Listener() {
@@ -128,16 +131,22 @@ public class View {
 	}
 
 	/**
-	 * moves a table item from "All preferences" table to "Chosen preferences" table, or the other way around.
-	 * @param tableItem the table item that needs to be moved
-	 * @param texts the strings shown from the table item. Its size is 4 : first element is teacher name, second is course name, third is group type and fourth is teacher choice
-	 * @param toChosenPreferences true iff the table item needs to be moved to "Chosen preferences" table
+	 * moves a table item from "All preferences" table to "Chosen preferences"
+	 * table, or the other way around.
+	 * 
+	 * @param tableItem           the table item that needs to be moved
+	 * @param texts               the strings shown from the table item. Its size is
+	 *                            4 : first element is teacher name, second is
+	 *                            course name, third is group type and fourth is
+	 *                            teacher choice
+	 * @param toChosenPreferences true iff the table item needs to be moved to
+	 *                            "Chosen preferences" table
 	 */
 	public void moveTableItem(TableItem tableItem, ArrayList<String> texts, boolean toChosenPreferences) {
 		checkNotNull(tableItem);
 		checkNotNull(texts);
 		checkArgument(texts.size() == 4);
-		
+
 		tableItem.dispose();
 		TableItem newItem;
 
@@ -148,21 +157,21 @@ public class View {
 		}
 		newItem.setText(texts.toArray(new String[0]));
 	}
-	
+
 	/**
 	 * Adds one course to "Courses" table
-	 * @param nbGroups the number of groups for this course
+	 * 
+	 * @param nbGroups   the number of groups for this course
 	 * @param courseName the name of the course
 	 * @param courseType the type of the course : CM, TD, TP, CMTD or CMTP
 	 */
 	private void addCourseToCoursesTable(int nbGroups, String courseName, CourseType courseType) {
 		checkNotNull(courseName);
 		checkNotNull(courseType);
-		
+
 		if (nbGroups != 0) {
 			TableItem tableItem = new TableItem(coursesTable, SWT.NONE);
-			tableItem.setText(new String[] { courseName, courseType.name(),
-					String.valueOf(nbGroups) });
+			tableItem.setText(new String[] { courseName, courseType.name(), String.valueOf(nbGroups) });
 		}
 	}
 
@@ -174,7 +183,7 @@ public class View {
 	 */
 	public void initPreferences(Set<CoursePrefElement> allPreferences) {
 		checkNotNull(allPreferences);
-		
+
 		ArrayList<Course> coursesShown = new ArrayList<>();
 
 		for (CoursePrefElement coursePrefElement : allPreferences) {
@@ -183,7 +192,7 @@ public class View {
 
 			if (!coursesShown.contains(course)) {
 				coursesShown.add(course);
-				
+
 				addCourseToCoursesTable(course.getCountGroupsCM(), course.getName(), CourseType.CM);
 				addCourseToCoursesTable(course.getCountGroupsTD(), course.getName(), CourseType.TD);
 				addCourseToCoursesTable(course.getCountGroupsTP(), course.getName(), CourseType.TP);
