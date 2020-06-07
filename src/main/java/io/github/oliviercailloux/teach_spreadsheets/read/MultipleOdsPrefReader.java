@@ -21,9 +21,9 @@ public class MultipleOdsPrefReader {
 	 * Reads the Ods Pref files from the path given in the parameter.
 	 * @param pathToFolder the path to the folder where all the Ods files are.This path should not be null.
 	 * @return a set containing all the CalcDatas from all the read files.
-	 * @throws Exception 
+	 * @throws IOException, Exception
 	 */
-	public static Set<CalcData> readFilesFromFolder(Path pathToFolder) throws Exception{
+	public static Set<CalcData> readFilesFromFolder(Path pathToFolder) throws IOException, Exception {
 		checkNotNull(pathToFolder);
 		Set<CalcData> calcDataSet = new LinkedHashSet<>();
 		try (Stream<Path> walk = Files.walk(pathToFolder)) {

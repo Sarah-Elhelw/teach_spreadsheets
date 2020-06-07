@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.teach_spreadsheets.read;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -22,15 +23,20 @@ public class MultipleOdsPrefReaderTests {
 		Set<CalcData> calcDatas = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()));
 		assertEquals(2, calcDatas.size());
 		for (CalcData calcData : calcDatas) {
-			if (calcData.getTeacher().getFirstName().equals("John")) {
+			switch (calcData.getTeacher().getFirstName()) {
+			case "John":
 				checkInformationOfCalcDataJohn(calcData);
-			}
-			if (calcData.getTeacher().getFirstName().equals("Jane")) {
+				break;
+			case "Jane":
 				checkInformationOfCalcDataJane(calcData);
+				break;
+			default:
+				fail("The file read doesn't correspond to John nor Jane");
+				break;
 			}
 		}
 	}
-	
+
 	/**
 	 * Checks information read from the John Ods Pref file.
 	 */
