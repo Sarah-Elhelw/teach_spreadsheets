@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -11,31 +12,19 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class CoursePrefTests {
 	@Test
-	void testBuild() {
-		Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
-		teacherBuilder.setLastName("Doe");
+	void testCoherence() {
 
-		Course.Builder courseBuilder = Course.Builder.newInstance();
-		courseBuilder.setCountGroupsCM(10);
-		courseBuilder.setnbMinutesCM(20);
-		courseBuilder.setSemester(1);
-		courseBuilder.setName("Programmation");
-		courseBuilder.setStudyYear("2020");
+		Teacher teacher = Teacher.Builder.newInstance().setAddress("Pont du maréchal de lattre de tassigny")
+				.setLastName("Doe").build();
 
-		CoursePref.Builder coursePrefBuilder = CoursePref.Builder.newInstance(courseBuilder.build(),
-				teacherBuilder.build());
-		coursePrefBuilder.setPrefCM(Preference.A);
-		coursePrefBuilder.setPrefCMTD(Preference.B);
-		
-		assertThrows(IllegalStateException.class, () -> {
-			coursePrefBuilder.build();
+		Course course = Course.Builder.newInstance().setCountGroupsCMTD(10).setNbMinutesCMTD(20)
+				.setName("Analyse de données").setStudyYear(2012).setStudyLevel("DE1").setSemester(1).build();
+
+		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+			CoursePref.Builder.newInstance(course, teacher).setPrefTP(Preference.A).build();
 		});
-		
-		coursePrefBuilder.setPrefCMTD(Preference.UNSPECIFIED);
-		coursePrefBuilder.setPrefNbGroupsCM(11);
-		
-		assertThrows(IllegalStateException.class, () -> {
-			coursePrefBuilder.build();
-		});
+		assertEquals("You can't have a preference for a type of course that won't have sessions.",
+				exception.getMessage());
+
 	}
 }
