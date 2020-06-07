@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -31,6 +32,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
+import io.github.oliviercailloux.teach_spreadsheets.read.MultipleOdsPrefReader;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
 
 /**
@@ -142,10 +144,10 @@ public class Controller {
 	 * @throws Exception
 	 */
 	public static void setModelData() throws Exception {
-		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
+		URL resourceUrl = PrefsInitializer.class.getResource("multipleOdsFolder");
 		try (InputStream stream = resourceUrl.openStream()) {
-			CalcData calcData = CalcData.getData(stream);
-			Model.setData(calcData);
+			Set<CalcData> calcDatas = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()));
+			Model.setDataFromSet(calcDatas);
 		}
 	}
 

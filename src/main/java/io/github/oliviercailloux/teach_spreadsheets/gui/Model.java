@@ -66,6 +66,19 @@ public class Model {
 			addToAllPreferences(CourseType.CMTP, coursePref, coursePref.getPrefNbGroupsCMTP());
 		}
 	}
+	
+	/**
+	 * Populates allPreferences from a set of CalcData instance
+	 * 
+	 * @param calcData
+	 */
+	public static void setDataFromSet(Set<CalcData> calcDataSet) {
+		checkNotNull(calcDataSet);
+		checkNotNull(allPreferences);
+		for(CalcData calcData : calcDataSet) {
+			setData(calcData);
+		}
+	}
 
 	public static Set<CoursePrefElement> getAllPreferences() {
 		return allPreferences;
