@@ -250,11 +250,11 @@ public class AssignmentPerTeacher {
 	 *                           assigned
 	 * @return A document completed with all the courses a specific teacher will
 	 *         teach
-	 * @throws Exception
+	 * @throws IOException
 	 */
 
 	public static SpreadsheetDocument createAssignmentPerTeacher(Teacher teacher,
-			Set<CourseAssignment> allCoursesAssigned) throws Exception {
+			Set<CourseAssignment> allCoursesAssigned) throws IOException {
 
 		checkNotNull(teacher, "The teacher must not be null.");
 		checkNotNull(allCoursesAssigned, "The set of courses assigned must not be null.");
@@ -292,8 +292,7 @@ public class AssignmentPerTeacher {
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 
 		totalNumberMinutes = 0;
-
-		document.save("target//AssignmentPerTeacher.ods");
+		
 		return document;
 	}
 
