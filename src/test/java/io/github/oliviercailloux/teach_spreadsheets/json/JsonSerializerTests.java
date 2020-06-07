@@ -45,7 +45,7 @@ public class JsonSerializerTests {
 					assertEquals(courses.size(), ja.size());
 
 					JsonObject actual = ja.getJsonObject(0);
-					Course expected = new ArrayList<Course>(courses).get(0);
+					Course expected = new ArrayList<>(courses).get(0);
 
 					assertEquals(expected.getName(), actual.getString("name"));
 					assertEquals(expected.getStudyLevel(), actual.getString("studyLevel"));
