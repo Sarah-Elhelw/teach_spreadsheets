@@ -148,6 +148,23 @@ public class View {
 		}
 		newItem.setText(texts.toArray(new String[0]));
 	}
+	
+	/**
+	 * Adds one course to "Courses" table
+	 * @param nbGroups the number of groups for this course
+	 * @param courseName the name of the course
+	 * @param courseType the type of the course : CM, TD, TP, CMTD or CMTP
+	 */
+	private void addCourseToCoursesTable(int nbGroups, String courseName, CourseType courseType) {
+		checkNotNull(courseName);
+		checkNotNull(courseType);
+		
+		if (nbGroups != 0) {
+			TableItem tableItem = new TableItem(coursesTable, SWT.NONE);
+			tableItem.setText(new String[] { courseName, courseType.name(),
+					String.valueOf(nbGroups) });
+		}
+	}
 
 	/**
 	 * Initializes the courses and allPreferences tables.
@@ -156,6 +173,8 @@ public class View {
 	 *                       information about the preferences
 	 */
 	public void initPreferences(Set<CoursePrefElement> allPreferences) {
+		checkNotNull(allPreferences);
+		
 		ArrayList<Course> coursesShown = new ArrayList<>();
 
 		for (CoursePrefElement coursePrefElement : allPreferences) {
@@ -164,31 +183,12 @@ public class View {
 
 			if (!coursesShown.contains(course)) {
 				coursesShown.add(course);
-				if (course.getCountGroupsCM() != 0) {
-					TableItem tableItem = new TableItem(coursesTable, SWT.NONE);
-					tableItem.setText(new String[] { course.getName(), CourseType.CM.name(),
-							String.valueOf(course.getCountGroupsCM()) });
-				}
-				if (course.getCountGroupsTD() != 0) {
-					TableItem tableItem = new TableItem(coursesTable, SWT.NONE);
-					tableItem.setText(new String[] { course.getName(), CourseType.TD.name(),
-							String.valueOf(course.getCountGroupsTD()) });
-				}
-				if (course.getCountGroupsTP() != 0) {
-					TableItem tableItem = new TableItem(coursesTable, SWT.NONE);
-					tableItem.setText(new String[] { course.getName(), CourseType.TP.name(),
-							String.valueOf(course.getCountGroupsTP()) });
-				}
-				if (course.getCountGroupsCMTP() != 0) {
-					TableItem tableItem = new TableItem(coursesTable, SWT.NONE);
-					tableItem.setText(new String[] { course.getName(), CourseType.CMTP.name(),
-							String.valueOf(course.getCountGroupsCMTP()) });
-				}
-				if (course.getCountGroupsCMTD() != 0) {
-					TableItem tableItem = new TableItem(coursesTable, SWT.NONE);
-					tableItem.setText(new String[] { course.getName(), CourseType.CMTD.name(),
-							String.valueOf(course.getCountGroupsCMTD()) });
-				}
+				
+				addCourseToCoursesTable(course.getCountGroupsCM(), course.getName(), CourseType.CM);
+				addCourseToCoursesTable(course.getCountGroupsTD(), course.getName(), CourseType.TD);
+				addCourseToCoursesTable(course.getCountGroupsTP(), course.getName(), CourseType.TP);
+				addCourseToCoursesTable(course.getCountGroupsCMTD(), course.getName(), CourseType.CMTD);
+				addCourseToCoursesTable(course.getCountGroupsCMTP(), course.getName(), CourseType.CMTP);
 			}
 
 			List<String> data = coursePrefElement.getDataForTableItem();
