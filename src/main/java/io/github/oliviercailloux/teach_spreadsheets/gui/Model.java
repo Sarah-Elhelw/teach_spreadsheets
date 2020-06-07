@@ -1,7 +1,11 @@
 package io.github.oliviercailloux.teach_spreadsheets.gui;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.swt.SWT;
@@ -18,14 +22,19 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 public class Model {
 	private static Set<CoursePrefElement> allPreferences;
 	private static Set<CoursePrefElement> chosenPreferences;
-
+	
+	public static void initData() {
+		allPreferences = new HashSet<>();
+		chosenPreferences = new HashSet<>();
+	}
+	
 	/**
-	 * 
+	 * Populates all preferences data from a CalcData instance
 	 * @param calcData
 	 */
 	public static void setData(CalcData calcData) {
-		allPreferences = new HashSet<>();
-		chosenPreferences = new HashSet<>();
+		checkNotNull(calcData);
+		
 		ImmutableSet<CoursePref> coursePrefs = calcData.getCoursePrefs();
 		for (CoursePref coursePref : coursePrefs) {
 			CourseType courseType = CourseType.CM;
@@ -61,44 +70,22 @@ public class Model {
 	
 	/**
 	 * Updates sets of CoursePrefElement thanks to the data retrieved from a table item
-	 * @param texts the data retrieved from the table item. texts size is 4 : first element is teacher name, second is course name, third is group type and fourth is teacher choice
-	 * @param source the set where we want to find the CoursePrefElement object corresponding to texts
-	 * @param target the set where we want to add the CoursePrefElement object corresponding to texts
+	 * @param stringTableItem the strings shown from the table item. Its size is 4 : first element is teacher name, second is course name, third is group type and fourth is teacher choice
+	 * @param source the set where we want to find the CoursePrefElement object corresponding to stringTableItem
+	 * @param target the set where we want to add the CoursePrefElement object corresponding to stringTableItem
 	 */
-	private static void updateSet(ArrayList<String> texts, Set<CoursePrefElement> source, Set<CoursePrefElement> target) {
+	private static void updateSet(List<String> stringTableItem, Set<CoursePrefElement> source, Set<CoursePrefElement> target) {
+		checkNotNull(stringTableItem);
+		checkArgument(stringTableItem.size() == 4);
+		checkNotNull(source);
+		checkNotNull(target);
 		
 		for (CoursePrefElement coursePrefElement : source) {
 			
-			CoursePref coursePref = coursePrefElement.getCoursePref();
-			Teacher teacher = coursePref.getTeacher();
-			Course course = coursePref.getCourse();
+			List<String> stringCoursePrefElement = coursePrefElement.getDataForTableItem();
 
-			String teacherName = teacher.getLastName() + " " + teacher.getFirstName();
-			String courseName = course.getName();
-			String groupType = coursePrefElement.getCourseType().name();
-			String choice = "";
-			
-			switch (groupType) {
-			case "CM":
-				choice = coursePref.getPrefCM().name();
-				break;
-			case "TD":
-				choice = coursePref.getPrefTD().name();
-				break;
-			case "CMTD":
-				choice = coursePref.getPrefCMTD().name();
-				break;
-			case "TP":
-				choice = coursePref.getPrefTP().name();
-				break;
-			case "CMTP":
-				choice = coursePref.getPrefCMTP().name();
-				break;
-			default:
-			}
-
-			if (teacherName.equals(texts.get(0)) && courseName.equals(texts.get(1))
-					&& groupType.equals(texts.get(2)) && choice.equals(texts.get(3))) {
+			if (stringCoursePrefElement.get(0).equals(stringTableItem.get(0)) && stringCoursePrefElement.get(1).equals(stringTableItem.get(1))
+					&& stringCoursePrefElement.get(2).equals(stringTableItem.get(2)) && stringCoursePrefElement.get(3).equals(stringTableItem.get(3))) {
 				source.remove(coursePrefElement);
 				target.add(coursePrefElement);
 				break;
@@ -109,7 +96,7 @@ public class Model {
 	/**
 	 * This method is called from Controller class when a table item has been clicked.
 	 * Updates the data from Model thanks to the table item data.
-	 * @param texts               the strings retrieved from the table item. texts'
+	 * @param texts               the strings shown from the table item. texts'
 	 *                            size is 4 : first element is teacher name, second is
 	 *                            course name, third is group type and fourth is teacher choice
 	 * @param toChosenPreferences true iff the element that has been clicked is on

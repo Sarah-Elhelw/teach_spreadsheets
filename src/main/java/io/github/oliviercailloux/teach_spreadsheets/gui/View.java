@@ -79,7 +79,7 @@ public class View {
 		coursesTable = setCompositeCourseTable(courses, coursesContent, "Courses", logoCourses);
 
 		prefShell();
-		setAndCreateBoutonSubmit();
+		setAndCreateSubmitButton();
 	}
 
 	public void show() {
@@ -154,30 +154,9 @@ public class View {
 				}
 			}
 
-			String teacher = coursePref.getTeacher().getLastName() + " " + coursePref.getTeacher().getFirstName();
-			String courseName = course.getName();
-			String groupType = coursePrefElement.getCourseType().name();
-			String choice = ""; // A, B, C ou autres
-			switch (groupType) {
-			case "CM":
-				choice = coursePref.getPrefCM().name();
-				break;
-			case "TD":
-				choice = coursePref.getPrefTD().name();
-				break;
-			case "CMTD":
-				choice = coursePref.getPrefCMTD().name();
-				break;
-			case "TP":
-				choice = coursePref.getPrefTP().name();
-				break;
-			case "CMTP":
-				choice = coursePref.getPrefCMTP().name();
-				break;
-			default:
-			}
+			List<String> data = coursePrefElement.getDataForTableItem();
 			TableItem tableItem = new TableItem(allPreferencesTable, SWT.NONE);
-			tableItem.setText(new String[] { teacher, courseName, groupType, choice });
+			tableItem.setText(data.toArray(new String[0]));
 		}
 	}
 
@@ -283,7 +262,7 @@ public class View {
 	}
 
 	@SuppressWarnings("unused")
-	private void setAndCreateBoutonSubmit() {
+	private void setAndCreateSubmitButton() {
 		// skip two columns of the grid ,expliquer le supess warning
 
 		new Label(shell, SWT.NONE);

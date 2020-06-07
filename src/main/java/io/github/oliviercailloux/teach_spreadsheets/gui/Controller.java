@@ -100,20 +100,23 @@ public class Controller {
 	}
 
 	private static void assignGroup(TeacherAssignment.Builder teacherAssignmentBuilder, String choiceGroup) {
-		if (choiceGroup.equals("CM")) {
-			teacherAssignmentBuilder.setCountGroupsCM((teacherAssignmentBuilder.getCountGroupsCM()+1));
-		}
-		if (choiceGroup.equals("CMTD")) {
-			teacherAssignmentBuilder.setCountGroupsCMTD((teacherAssignmentBuilder.getCountGroupsCMTD()+1));
-		}
-		if (choiceGroup.equals("TD")) {
-			teacherAssignmentBuilder.setCountGroupsTD((teacherAssignmentBuilder.getCountGroupsTD()+1));
-		}
-		if (choiceGroup.equals("CMTP")) {
-			teacherAssignmentBuilder.setCountGroupsCMTP((teacherAssignmentBuilder.getCountGroupsCMTP()+1));
-		}
-		if (choiceGroup.equals("TP")) {
-			teacherAssignmentBuilder.setCountGroupsTP((teacherAssignmentBuilder.getCountGroupsTP()+1));
+		switch (choiceGroup) {
+			case "CM":
+				teacherAssignmentBuilder.setCountGroupsCM((teacherAssignmentBuilder.getCountGroupsCM()+1));
+				break;
+			case "CMTD":
+				teacherAssignmentBuilder.setCountGroupsCMTD((teacherAssignmentBuilder.getCountGroupsCMTD()+1));
+				break;
+			case "TD":
+				teacherAssignmentBuilder.setCountGroupsTD((teacherAssignmentBuilder.getCountGroupsTD()+1));
+				break;
+			case "CMTP":
+				teacherAssignmentBuilder.setCountGroupsCMTP((teacherAssignmentBuilder.getCountGroupsCMTP()+1));
+				break;
+			case "TP":
+				teacherAssignmentBuilder.setCountGroupsTP((teacherAssignmentBuilder.getCountGroupsTP()+1));
+				break;
+			default:
 		}
 	}
 	
@@ -132,6 +135,7 @@ public class Controller {
 	public static void main(String[] args) throws Exception {
 		gui = new View();
 		gui.initializeGui();
+		Model.initData();
 		setModelData();
 		Set<CoursePrefElement> allPreferences = Model.getAllPreferences();
 		gui.initPreferences(allPreferences);

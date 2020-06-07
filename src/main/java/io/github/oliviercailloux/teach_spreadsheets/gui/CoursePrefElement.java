@@ -2,6 +2,9 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.common.base.MoreObjects;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -23,6 +26,7 @@ public class CoursePrefElement {
 	public static CoursePrefElement newInstance(CourseType courseType1, CoursePref coursePref1) {
 		checkNotNull(courseType1);
 		checkNotNull(coursePref1);
+		
 		CoursePrefElement coursePrefElement = new CoursePrefElement();
 		coursePrefElement.courseType = courseType1;
 		coursePrefElement.coursePref = coursePref1;
@@ -36,16 +40,23 @@ public class CoursePrefElement {
 	public CourseType getCourseType() {
 		return courseType;
 	}
-
-	@Override
-	public String toString() {
+	
+	/**
+	 * returns the strings that are needed to be shown in the GUI for this element
+	 * @return a list of 4 strings : first is teacher name, second is course name, third is group type and fourth is teacher choice for this course
+	 */
+	public List<String> getDataForTableItem() {
+		ArrayList<String> strings = new ArrayList<>();
+		
 		Teacher teacher = coursePref.getTeacher();
 		Course course = coursePref.getCourse();
 
 		String teacherName = teacher.getLastName() + " " + teacher.getFirstName();
 		String courseName = course.getName();
 		String groupType = getCourseType().name();
+		
 		String choice = "";
+		
 		switch (groupType) {
 			case "CM":
 				choice = coursePref.getPrefCM().name();
@@ -65,6 +76,11 @@ public class CoursePrefElement {
 			default:
 		}
 		
-		return teacherName + ", " + courseName + ", " + groupType + ", " + choice;
+		strings.add(teacherName);
+		strings.add(courseName);
+		strings.add(groupType);
+		strings.add(choice);
+		
+		return strings;
 	}
 }
