@@ -34,38 +34,40 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
 
 public class Controller {
-	
+
 	private static View gui;
 
 	/**
-	 * callback function called when the user clicks on submit button.
-	 * @return an ImmutableSet of teacher assignments corresponding to the chosen preferences table in the GUI.
+	 * callback function called when the user clicks on submit button in the GUI.
+	 * 
+	 * @return an ImmutableSet of teacher assignments corresponding to the chosen
+	 *         preferences table in the GUI.
 	 */
 	public static ImmutableSet<TeacherAssignment> createAssignments() {
-		
+
 		Set<CoursePrefElement> chosenPreferences = Model.getChosenPreferences();
-		com.google.common.collect.Table<Teacher, Course, TeacherAssignment.Builder> teacherAssignmentMapTable = HashBasedTable.create();
-		
+		com.google.common.collect.Table<Teacher, Course, TeacherAssignment.Builder> teacherAssignmentMapTable = HashBasedTable
+				.create();
+
 		for (CoursePrefElement coursePrefElement : chosenPreferences) {
 
 			Teacher teacher = coursePrefElement.getCoursePref().getTeacher();
 			String courseType = coursePrefElement.getCourseType().name();
 			Course course = coursePrefElement.getCoursePref().getCourse();
-			
+
 			if (!teacherAssignmentMapTable.contains(teacher, course)) {
-				TeacherAssignment.Builder assignmentBuilder = TeacherAssignment.Builder
-						.newInstance(teacher);
+				TeacherAssignment.Builder assignmentBuilder = TeacherAssignment.Builder.newInstance(teacher);
 				assignmentBuilder.setCountGroupsCM(0);
 				assignmentBuilder.setCountGroupsCMTD(0);
 				assignmentBuilder.setCountGroupsCMTP(0);
 				assignmentBuilder.setCountGroupsTD(0);
 				assignmentBuilder.setCountGroupsTP(0);
-				
+
 				assignGroup(assignmentBuilder, courseType);
-				
-				teacherAssignmentMapTable.put(teacher,course,assignmentBuilder);
+
+				teacherAssignmentMapTable.put(teacher, course, assignmentBuilder);
 			} else {
-				TeacherAssignment.Builder assignmentBuilder = teacherAssignmentMapTable.get(teacher,course);
+				TeacherAssignment.Builder assignmentBuilder = teacherAssignmentMapTable.get(teacher, course);
 				assignGroup(assignmentBuilder, courseType);
 			}
 
@@ -77,17 +79,19 @@ public class Controller {
 		return ImmutableSet.copyOf(result);
 
 	}
-	
+
 	/**
-	 * Callback function for the Table listeners in View.
-	 * Updates Model, then updates View according to the input of the user.
-	 * @param item the table item that has been clicked
-	 * @param toChosenPreferences true iff the table item that has been clicked was on the table All Preferences
+	 * Callback function for the Table listeners in View. Updates Model, then
+	 * updates View according to the input of the user.
+	 * 
+	 * @param item                the table item that has been clicked
+	 * @param toChosenPreferences true iff the table item that has been clicked was
+	 *                            on the table All Preferences
 	 */
 	public static void callbackListener(TableItem item, boolean toChosenPreferences) {
 		checkNotNull(item);
 		checkNotNull(toChosenPreferences);
-		
+
 		int i = 0;
 		ArrayList<String> texts = new ArrayList<>();
 		while (!item.getText(i).equals("")) {
@@ -99,29 +103,39 @@ public class Controller {
 		gui.moveTableItem(item, texts, toChosenPreferences);
 	}
 
+	/**
+	 * adds one group to a teacher assignment.
+	 * 
+	 * @param teacherAssignmentBuilder
+	 * @param choiceGroup
+	 */
 	private static void assignGroup(TeacherAssignment.Builder teacherAssignmentBuilder, String choiceGroup) {
+		checkNotNull(teacherAssignmentBuilder);
+		checkNotNull(choiceGroup);
+
 		switch (choiceGroup) {
 			case "CM":
-				teacherAssignmentBuilder.setCountGroupsCM((teacherAssignmentBuilder.getCountGroupsCM()+1));
+				teacherAssignmentBuilder.setCountGroupsCM((teacherAssignmentBuilder.getCountGroupsCM() + 1));
 				break;
 			case "CMTD":
-				teacherAssignmentBuilder.setCountGroupsCMTD((teacherAssignmentBuilder.getCountGroupsCMTD()+1));
+				teacherAssignmentBuilder.setCountGroupsCMTD((teacherAssignmentBuilder.getCountGroupsCMTD() + 1));
 				break;
 			case "TD":
-				teacherAssignmentBuilder.setCountGroupsTD((teacherAssignmentBuilder.getCountGroupsTD()+1));
+				teacherAssignmentBuilder.setCountGroupsTD((teacherAssignmentBuilder.getCountGroupsTD() + 1));
 				break;
 			case "CMTP":
-				teacherAssignmentBuilder.setCountGroupsCMTP((teacherAssignmentBuilder.getCountGroupsCMTP()+1));
+				teacherAssignmentBuilder.setCountGroupsCMTP((teacherAssignmentBuilder.getCountGroupsCMTP() + 1));
 				break;
 			case "TP":
-				teacherAssignmentBuilder.setCountGroupsTP((teacherAssignmentBuilder.getCountGroupsTP()+1));
+				teacherAssignmentBuilder.setCountGroupsTP((teacherAssignmentBuilder.getCountGroupsTP() + 1));
 				break;
 			default:
 		}
 	}
-	
+
 	/**
 	 * Populates Model data with the ods files
+	 * 
 	 * @throws Exception
 	 */
 	public static void setModelData() throws Exception {
@@ -131,12 +145,14 @@ public class Controller {
 			Model.setData(calcData);
 		}
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		gui = new View();
 		gui.initializeGui();
+
 		Model.initData();
 		setModelData();
+
 		Set<CoursePrefElement> allPreferences = Model.getAllPreferences();
 		gui.initPreferences(allPreferences);
 		gui.show();

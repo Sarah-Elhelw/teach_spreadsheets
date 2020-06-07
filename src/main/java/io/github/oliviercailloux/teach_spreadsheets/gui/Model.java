@@ -2,6 +2,7 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,34 +30,35 @@ public class Model {
 	}
 	
 	/**
-	 * Populates all preferences data from a CalcData instance
+	 * Adds CoursePrefElement objects to allPreferences
+	 * @param courseType the CourseType of the CoursePrefElement objects to be added
+	 * @param coursePref the CoursePref of the CoursePrefElement objects to be added
+	 * @param nbGroups the number of elements to be added
+	 */
+	private static void addToAllPreferences(CourseType courseType, CoursePref coursePref, int nbGroups) {
+		checkNotNull(courseType);
+		checkNotNull(coursePref);
+		checkNotNull(allPreferences);
+		
+		for (int i = 0; i < nbGroups; i++)
+			allPreferences.add(CoursePrefElement.newInstance(courseType, coursePref));
+	}
+	
+	/**
+	 * Populates allPreferences from a CalcData instance
 	 * @param calcData
 	 */
 	public static void setData(CalcData calcData) {
 		checkNotNull(calcData);
+		checkNotNull(allPreferences);
 		
 		ImmutableSet<CoursePref> coursePrefs = calcData.getCoursePrefs();
 		for (CoursePref coursePref : coursePrefs) {
-			CourseType courseType = CourseType.CM;
-			for (int i = 0; i < coursePref.getPrefNbGroupsCM(); i++) {
-				allPreferences.add(CoursePrefElement.newInstance(courseType, coursePref));
-			}
-			courseType = CourseType.TD;
-			for (int i = 0; i < coursePref.getPrefNbGroupsTD(); i++) {
-				allPreferences.add(CoursePrefElement.newInstance(courseType, coursePref));
-			}
-			courseType = CourseType.TP;
-			for (int i = 0; i < coursePref.getPrefNbGroupsTP(); i++) {
-				allPreferences.add(CoursePrefElement.newInstance(courseType, coursePref));
-			}
-			courseType = CourseType.CMTD;
-			for (int i = 0; i < coursePref.getPrefNbGroupsCMTD(); i++) {
-				allPreferences.add(CoursePrefElement.newInstance(courseType, coursePref));
-			}
-			courseType = CourseType.CMTP;
-			for (int i = 0; i < coursePref.getPrefNbGroupsCMTP(); i++) {
-				allPreferences.add(CoursePrefElement.newInstance(courseType, coursePref));
-			}
+			addToAllPreferences(CourseType.CM, coursePref, coursePref.getPrefNbGroupsCM());
+			addToAllPreferences(CourseType.TD, coursePref, coursePref.getPrefNbGroupsTD());
+			addToAllPreferences(CourseType.TP, coursePref, coursePref.getPrefNbGroupsTP());
+			addToAllPreferences(CourseType.CMTD, coursePref, coursePref.getPrefNbGroupsCMTD());
+			addToAllPreferences(CourseType.CMTP, coursePref, coursePref.getPrefNbGroupsCMTP());
 		}
 	}
 
