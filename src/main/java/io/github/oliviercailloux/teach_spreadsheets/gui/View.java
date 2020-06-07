@@ -370,7 +370,7 @@ public class View {
 			@Override
 			public void handleEvent(Event event) {
 				ImmutableSet<TeacherAssignment> teacherAssignments = Controller.createAssignments();
-				LOGGER.info(teacherAssignments.toString());
+				LOGGER.info("Submitted assignments: "+teacherAssignments.toString());
 				exitApplication();
 			}
 		});
