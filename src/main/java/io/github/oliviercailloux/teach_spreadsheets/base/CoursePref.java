@@ -216,6 +216,14 @@ public class CoursePref {
 		}
 	}
 	
+	/**
+	 * We consider that two coursePrefs are equal if all their attributes are equal.
+	 * 
+	 * 
+	 * @return true if the object in parameter is equal to the coursePref and false
+	 *         if it is not equal
+	 * 
+	 */
 	@Override
 	public boolean equals(Object o2) {
 		if (!(o2 instanceof CoursePref)) {
