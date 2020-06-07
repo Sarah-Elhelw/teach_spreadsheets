@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.gui;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
@@ -110,9 +111,10 @@ public class View {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param toChosenPreferences
+	 * adds listeners for table items in "All preferences" and "Chosen preferences" tables in the GUI.
+	 * Inspired from : https://stackoverflow.com/a/14398495
+	 * @param source the table where we want to add a listener
+	 * @param toChosenPreferences true iff the table is "all preferences". This value is later used for callback functions in Controller class.
 	 */
 	private static void addListenerPreferences(Table source, boolean toChosenPreferences) {
 		source.addListener(SWT.MouseDoubleClick, new Listener() {
@@ -126,12 +128,16 @@ public class View {
 	}
 
 	/**
-	 * 
-	 * @param tableItem
-	 * @param texts
-	 * @param toChosenPreferences
+	 * moves a table item from "All preferences" table to "Chosen preferences" table, or the other way around.
+	 * @param tableItem the table item that needs to be moved
+	 * @param texts the strings shown from the table item. Its size is 4 : first element is teacher name, second is course name, third is group type and fourth is teacher choice
+	 * @param toChosenPreferences true iff the table item needs to be moved to "Chosen preferences" table
 	 */
 	public void moveTableItem(TableItem tableItem, ArrayList<String> texts, boolean toChosenPreferences) {
+		checkNotNull(tableItem);
+		checkNotNull(texts);
+		checkArgument(texts.size() == 4);
+		
 		tableItem.dispose();
 		TableItem newItem;
 
@@ -355,8 +361,7 @@ public class View {
 			@Override
 			public void handleEvent(Event event) {
 				ImmutableSet<TeacherAssignment> teacherAssignments = Controller.createAssignments();
-				// remplacer avec un log juste avant la PR
-				System.out.println(teacherAssignments);
+				LOGGER.info(teacherAssignments.toString());
 				exitApplication();
 			}
 		});
