@@ -347,13 +347,6 @@ public class OdsSummarizer {
 		}
 
 		putBorders();
-
-		try {
-			document.save("target//OdsSummarizer.ods");
-		} catch (Exception e) {
-			System.out.println("pas enregistré");
-			e.printStackTrace();
-		}
 		return document;
 
 	}
