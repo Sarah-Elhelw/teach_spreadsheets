@@ -24,16 +24,19 @@ public class AggregatedDataTests {
 	private static Course course2 = Course.Builder.newInstance().setName("Analyse").setStudyYear(2016)
 			.setStudyLevel("DE1").setSemester(1).setCountGroupsTD(5).setNbMinutesTD(700).build();
 
-	private static CoursePref coursepref1 = CoursePref.Builder.newInstance(course1, teacher1).setPrefTD(Preference.A)
+	private static CoursePref coursePref1 = CoursePref.Builder.newInstance(course1, teacher1).setPrefTD(Preference.A)
 			.build();
-	private static CoursePref coursepref2 = CoursePref.Builder.newInstance(course1, teacher1).setPrefTD(Preference.B)
+	private static CoursePref coursePref2 = CoursePref.Builder.newInstance(course1, teacher1).setPrefTD(Preference.B)
 			.build();
-	private static CoursePref coursepref3 = CoursePref.Builder.newInstance(course2, teacher2).setPrefTD(Preference.C)
+	private static CoursePref coursePref3 = CoursePref.Builder.newInstance(course2, teacher2).setPrefTD(Preference.C)
+			.build();
+	private static CoursePref coursePref4 = CoursePref.Builder.newInstance(course1, teacher2).setPrefTD(Preference.C)
 			.build();
 
-	private static CalcData calcData1 = CalcData.newInstance(Set.of(coursepref1), teacher1);
-	private static CalcData calcData2 = CalcData.newInstance(Set.of(coursepref2), teacher1);
-	private static CalcData calcData3 = CalcData.newInstance(Set.of(coursepref3), teacher2);
+	private static CalcData calcData1 = CalcData.newInstance(Set.of(coursePref1), teacher1);
+	private static CalcData calcData2 = CalcData.newInstance(Set.of(coursePref2), teacher1);
+	private static CalcData calcData3 = CalcData.newInstance(Set.of(coursePref3), teacher2);
+	private static CalcData calcData4 = CalcData.newInstance(Set.of(coursePref4), teacher2);
 
 	@Test
 	void testAddCalcDataWithDifferentCourses() {
@@ -84,32 +87,24 @@ public class AggregatedDataTests {
 	
 	@Test
 	void testGetTeacherPrefs() {
-		AggregatedData.Builder aggregatedData = AggregatedData.Builder.newInstance();
-		aggregatedData.addCalcData(calcData1);
-		aggregatedData.addCalcData(calcData3);
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
+		aggregatedDataBuilder.addCalcData(calcData1);
+		aggregatedDataBuilder.addCalcData(calcData4);
+		AggregatedData aggregatedData = aggregatedDataBuilder.build();
 		
-		AggregatedData aggData = aggregatedData.build();
-		
-		ImmutableSet<CoursePref> coursePrefAggregated = aggData.getTeacherPrefs(teacher1);
-		ImmutableSet<CoursePref> coursePrefSupposed = ImmutableSet.of(calcData1.getCoursePref(course1));
-		
-		assertEquals(coursePrefAggregated, coursePrefSupposed);
+		assertEquals(ImmutableSet.of(coursePref1), aggregatedData.getTeacherPrefs(teacher1));
 	}
 	
 	
 	
 	@Test
 	void testGetCoursePrefs() {
-		AggregatedData.Builder aggregatedData = AggregatedData.Builder.newInstance();
-		aggregatedData.addCalcData(calcData1);
-		aggregatedData.addCalcData(calcData3);
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
+		aggregatedDataBuilder.addCalcData(calcData1);
+		aggregatedDataBuilder.addCalcData(calcData4);
+		AggregatedData aggregatedData = aggregatedDataBuilder.build();
 		
-		AggregatedData aggData = aggregatedData.build();
-		
-		Set<CoursePref> coursePrefAggregated = aggData.getCoursePrefs(course1);
-		Set<CoursePref> coursePrefSupposed = Set.of(calcData1.getCoursePref(course1));
-		
-		assertEquals(coursePrefAggregated, coursePrefSupposed);
+		assertEquals(ImmutableSet.of(coursePref1, coursePref4), aggregatedData.getCoursePrefs(course1));
 	}
 	
 
