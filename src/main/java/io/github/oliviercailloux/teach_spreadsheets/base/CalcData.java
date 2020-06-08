@@ -66,7 +66,7 @@ public class CalcData {
 		checkArgument(cp != null, "The name given in parameter does not match any course.");
 		return cp;
 	}
-	
+
 	/**
 	 * This methods gets the preferences for a given course in the CalcData.
 	 * 

@@ -215,7 +215,7 @@ public class CoursePref {
 			return this;
 		}
 	}
-	
+
 	/**
 	 * We consider that two coursePrefs are equal if all their attributes are equal.
 	 * 
@@ -246,7 +246,7 @@ public class CoursePref {
 		return Objects.hash(course, teacher, prefCM, prefTD, prefCMTD, prefTP, prefCMTP, prefNbGroupsCM, prefNbGroupsTD,
 				prefNbGroupsCMTD, prefNbGroupsTP, prefNbGroupsCMTP);
 	}
-	
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("prefCM", prefCM).add("prefTD", prefTD).add("prefCMTD", prefCMTD)
