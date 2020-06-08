@@ -270,7 +270,7 @@ public class OdsSummarizer {
 	 * This method formats the cells containing information about a course.
 	 * 
 	 */
-	public void formatCourseHeader() {
+	private void formatCourseHeader() {
 		Table table = ods.getTable();
 
 		table.getCellByPosition(0, line).setBorders(CellBordersType.TOP,
@@ -346,6 +346,7 @@ public class OdsSummarizer {
 		}
 
 		putBorders();
+		
 		return document;
 
 	}
