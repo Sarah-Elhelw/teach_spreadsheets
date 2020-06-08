@@ -45,7 +45,6 @@ public class CoursePref {
 	private static void checkCoherence(int nbGroups, int nbGroupsPref, int nbMinutes, Preference preference) {
 		checkArgument((nbGroups != 0 && nbMinutes != 0) || preference == Preference.UNSPECIFIED, "Preference can't be specified if there are 0 groups and 0 minutes for a given type of course.");
 		checkArgument(nbGroupsPref == 0 || preference != Preference.UNSPECIFIED, "Preference needs to be specified if there is more than 1 group that the teacher wants to get for a given type of course.");
-		checkArgument(nbGroupsPref != 0 || preference == Preference.UNSPECIFIED, "There can't be a preference if the teacher does not want any group for a given type of course.");
 		checkArgument(nbGroupsPref <= nbGroups, "The number of groups the teacher wants can't be greater than the number of groups.");
 	}
 

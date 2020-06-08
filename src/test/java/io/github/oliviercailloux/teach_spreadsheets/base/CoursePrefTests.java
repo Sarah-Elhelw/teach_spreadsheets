@@ -27,12 +27,6 @@ public class CoursePrefTests {
 				exception.getMessage());
 		
 		exception = assertThrows(IllegalArgumentException.class, () -> {
-			CoursePref.Builder.newInstance(course, teacher).setPrefCMTD(Preference.A).build();
-		});
-		assertEquals("There can't be a preference if the teacher does not want any group for a given type of course.",
-				exception.getMessage());
-		
-		exception = assertThrows(IllegalArgumentException.class, () -> {
 			CoursePref.Builder.newInstance(course, teacher).setPrefCMTD(Preference.A).setPrefNbGroupsCMTD(21).build();
 		});
 		assertEquals("The number of groups the teacher wants can't be greater than the number of groups.",
