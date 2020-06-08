@@ -34,7 +34,8 @@ public class CoursePref {
 	private int prefNbGroupsCMTP;
 
 	/**
-	 * Checks the coherence of these arguments. If it's not coherent this method will throw an IllegalArgumentException.
+	 * Checks the coherence of these arguments. If it's not coherent this method
+	 * will throw an IllegalArgumentException.
 	 * 
 	 * @param nbGroups     the number of groups to assign to this type of course
 	 * @param nbGroupsPref the preferred number of groups for the teacher
@@ -43,9 +44,12 @@ public class CoursePref {
 	 * @param preference   the preference of the teacher for this type of course
 	 */
 	private static void checkCoherence(int nbGroups, int nbGroupsPref, int nbMinutes, Preference preference) {
-		checkArgument((nbGroups != 0 && nbMinutes != 0) || preference == Preference.UNSPECIFIED, "Preference can't be specified if there are 0 groups and 0 minutes for a given type of course.");
-		checkArgument(nbGroupsPref == 0 || preference != Preference.UNSPECIFIED, "Preference needs to be specified if there is more than 1 group that the teacher wants to get for a given type of course.");
-		checkArgument(nbGroupsPref <= nbGroups, "The number of groups the teacher wants can't be greater than the number of groups.");
+		checkArgument((nbGroups != 0 && nbMinutes != 0) || preference == Preference.UNSPECIFIED,
+				"Preference can't be specified if there are 0 groups and 0 minutes for a given type of course.");
+		checkArgument(nbGroupsPref == 0 || preference != Preference.UNSPECIFIED,
+				"Preference needs to be specified if there is more than 1 group that the teacher wants to get for a given type of course.");
+		checkArgument(nbGroupsPref <= nbGroups,
+				"The number of groups the teacher wants can't be greater than the number of groups.");
 	}
 
 	/**

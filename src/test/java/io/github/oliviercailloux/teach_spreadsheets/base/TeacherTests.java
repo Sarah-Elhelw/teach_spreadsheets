@@ -17,7 +17,7 @@ public class TeacherTests {
 			teacherBuilder.build();
 		});
 		assertEquals("Last name must be set.", exception.getMessage());
-		
+
 		teacherBuilder.setLastName("");
 		exception = assertThrows(IllegalArgumentException.class, () -> {
 			teacherBuilder.build();

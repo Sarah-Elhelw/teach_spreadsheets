@@ -25,17 +25,18 @@ public class CoursePrefTests {
 		});
 		assertEquals("Preference can't be specified if there are 0 groups and 0 minutes for a given type of course.",
 				exception.getMessage());
-		
+
 		exception = assertThrows(IllegalArgumentException.class, () -> {
 			CoursePref.Builder.newInstance(course, teacher).setPrefCMTD(Preference.A).setPrefNbGroupsCMTD(21).build();
 		});
 		assertEquals("The number of groups the teacher wants can't be greater than the number of groups.",
 				exception.getMessage());
-		
+
 		exception = assertThrows(IllegalArgumentException.class, () -> {
 			CoursePref.Builder.newInstance(course, teacher).setPrefNbGroupsCMTD(1).build();
 		});
-		assertEquals("Preference needs to be specified if there is more than 1 group that the teacher wants to get for a given type of course.",
+		assertEquals(
+				"Preference needs to be specified if there is more than 1 group that the teacher wants to get for a given type of course.",
 				exception.getMessage());
 
 	}
