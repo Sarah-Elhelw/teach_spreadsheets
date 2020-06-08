@@ -7,9 +7,10 @@ import com.google.common.collect.ImmutableSet;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
- * Immutable. This class aggregates the calc datas built from the reading of
+ * Immutable. This class aggregates the CalcDatas built from the reading of
  * several input vows files.
  *
  */
@@ -25,7 +26,7 @@ public class AggregatedData {
 	public static class Builder {
 
 		/**
-		 * Set of {@link TeacherAssignment} : it is used to build (by adding) calcDatas.
+		 * Set of CalcDatas : it is used to build (by adding) calcDatas attribute.
 		 */
 		private Set<CalcData> tempCalcDatas;
 		private Set<Course> tempCourses;
@@ -41,20 +42,19 @@ public class AggregatedData {
 		}
 
 		public AggregatedData build() {
+			checkState(tempCalcDatas.size() >= 1, "An AggregatedData must contain at least one CalcData.");
 			return new AggregatedData(tempCalcDatas, tempCourses);
 		}
 
 		/**
-		 * This method adds a {@link CalcData} to the set of calc datas of the object.
+		 * This method adds a CalcData to the set of CalcDatas of the object.
 		 * 
 		 * @param calcData - the CalcData to be added
 		 * 
-		 * @throws NullPointerException     if the parameter is null
 		 * @throws IllegalArgumentException if the CalcData we want to add does not
 		 *                                  contain the expected courses or contains the
-		 *                                  preferences of a Teacher that were already
-		 *                                  added. Beware : the courses in the calcDatas
-		 *                                  must be in the same order.
+		 *                                  preferences of a Teacher that was already
+		 *                                  added.
 		 */
 		public void addCalcData(CalcData calcData) {
 			checkNotNull(calcData, "The CalcData must not be null");
@@ -88,7 +88,7 @@ public class AggregatedData {
 	public Set<Course> getCourses() {
 		return courses;
 	}
-	
+
 	/**
 	 * This methods gets all the preferences of a given Teacher.
 	 * 

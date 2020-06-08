@@ -70,7 +70,7 @@ public class CalcData {
 	/**
 	 * This methods gets the preferences for a given course in the CalcData.
 	 * 
-	 * @param course - the Course whose preferences we want to get.
+	 * @param course - the Course whose preferences for we want to get.
 	 * 
 	 * @return the CoursePref corresponding to course.
 	 * 
@@ -78,7 +78,6 @@ public class CalcData {
 	 *                                   match any course.
 	 */
 	public CoursePref getCoursePref(Course course) {
-		checkNotNull(coursePrefs);
 		checkNotNull(course);
 
 		for (CoursePref coursePref : coursePrefs) {

@@ -14,10 +14,8 @@ import com.google.common.collect.ImmutableSet;
 
 public class AggregatedDataTests {
 
-	private static Teacher teacher1 = Teacher.Builder.newInstance().setLastName("Dupond")
-			.setDauphineEmail("jack.dupond@dauphine.fr").build();
-	private static Teacher teacher2 = Teacher.Builder.newInstance().setLastName("Dupont")
-			.setDauphineEmail("jane.dupont@dauphine.fr").build();
+	private static Teacher teacher1 = Teacher.Builder.newInstance().setLastName("Dupond").setFirstName("Jack").build();
+	private static Teacher teacher2 = Teacher.Builder.newInstance().setLastName("Dupont").setFirstName("Jane").build();
 
 	private static Course course1 = Course.Builder.newInstance().setName("Algèbre").setStudyYear(2016)
 			.setStudyLevel("DE1").setSemester(1).setCountGroupsTD(6).setNbMinutesTD(900).build();
@@ -39,7 +37,7 @@ public class AggregatedDataTests {
 	private static CalcData calcData4 = CalcData.newInstance(Set.of(coursePref4), teacher2);
 
 	@Test
-	void testAddCalcDataWithDifferentCourses() {
+	void testAddCalcDataWithSameTeacher() {
 		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
 		aggregatedDataBuilder.addCalcData(calcData1);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -49,7 +47,7 @@ public class AggregatedDataTests {
 	}
 
 	@Test
-	void testAddCalcDataWithSameTeacher() {
+	void testAddCalcDataWithDifferentCourses() {
 		AggregatedData.Builder aggregatedData = AggregatedData.Builder.newInstance();
 		aggregatedData.addCalcData(calcData1);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -84,28 +82,25 @@ public class AggregatedDataTests {
 		});
 
 	}
-	
+
 	@Test
 	void testGetTeacherPrefs() {
 		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
 		aggregatedDataBuilder.addCalcData(calcData1);
 		aggregatedDataBuilder.addCalcData(calcData4);
 		AggregatedData aggregatedData = aggregatedDataBuilder.build();
-		
+
 		assertEquals(ImmutableSet.of(coursePref1), aggregatedData.getTeacherPrefs(teacher1));
 	}
-	
-	
-	
+
 	@Test
 	void testGetCoursePrefs() {
 		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
 		aggregatedDataBuilder.addCalcData(calcData1);
 		aggregatedDataBuilder.addCalcData(calcData4);
 		AggregatedData aggregatedData = aggregatedDataBuilder.build();
-		
+
 		assertEquals(ImmutableSet.of(coursePref1, coursePref4), aggregatedData.getCoursePrefs(course1));
 	}
-	
 
 }
