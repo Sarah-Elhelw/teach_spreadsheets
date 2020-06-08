@@ -33,8 +33,8 @@ public class CalcData {
 		for (CoursePref coursePref : coursePrefs) {
 			for (CoursePref otherCoursePref : coursePrefs) {
 				if (coursePref != otherCoursePref
-						&& coursePref.getCourse().getName().equals(otherCoursePref.getCourse().getName())) {
-					throw new IllegalArgumentException("You can't have two courses of the same name.");
+						&& coursePref.getCourse().equals(otherCoursePref.getCourse())) {
+					throw new IllegalArgumentException("You can't have twice the preferences of a course.");
 				}
 			}
 		}
@@ -72,24 +72,6 @@ public class CalcData {
 		return MoreObjects.toStringHelper(this).add("coursePrefs", coursePrefs).add("teacher", teacher).toString();
 	}
 
-	/**
-	 * Gets the data from a JSON API
-	 * 
-	 * @param filePath the path to the json file
-	 * @return the JSON string
-	 */
-	public static String fromJSON(String filePath) {
-		return null;
-	}
-
-	/**
-	 * @param data is the parsed data returned by getDataFromJSON
-	 * @return an instance of CalcData containing the information from the parameter
-	 *         data
-	 */
-	public static CalcData populateDataFromJSON(String data) {
-		return null;
-	}
 	/**
 	 * Opens and creates a {@link CalcData} from a document whose path is passed as
 	 * a parameter.
