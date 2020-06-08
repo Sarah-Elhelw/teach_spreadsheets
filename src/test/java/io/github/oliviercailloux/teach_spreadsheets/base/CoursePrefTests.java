@@ -23,7 +23,25 @@ public class CoursePrefTests {
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			CoursePref.Builder.newInstance(course, teacher).setPrefTP(Preference.A).build();
 		});
-		assertEquals("You can't have a preference for a type of course that won't have sessions.",
+		assertEquals("Preference can't be specified if there are 0 groups and 0 minutes for a given type of course.",
+				exception.getMessage());
+		
+		exception = assertThrows(IllegalArgumentException.class, () -> {
+			CoursePref.Builder.newInstance(course, teacher).setPrefCMTD(Preference.A).build();
+		});
+		assertEquals("There can't be a preference if the teacher does not want any group for a given type of course.",
+				exception.getMessage());
+		
+		exception = assertThrows(IllegalArgumentException.class, () -> {
+			CoursePref.Builder.newInstance(course, teacher).setPrefCMTD(Preference.A).setPrefNbGroupsCMTD(21).build();
+		});
+		assertEquals("The number of groups the teacher wants can't be greater than the number of groups.",
+				exception.getMessage());
+		
+		exception = assertThrows(IllegalArgumentException.class, () -> {
+			CoursePref.Builder.newInstance(course, teacher).setPrefNbGroupsCMTD(1).build();
+		});
+		assertEquals("Preference needs to be specified if there is more than 1 group that the teacher wants to get for a given type of course.",
 				exception.getMessage());
 
 	}

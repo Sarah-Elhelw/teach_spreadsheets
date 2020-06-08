@@ -3,7 +3,6 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkState;
 
 /**
  * ImmutableSet. Class used to store a teacher's preference for one course. Uses
@@ -13,8 +12,6 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public class CoursePref {
 	private static final String EXCEPTION = "A preferred number of groups needs to be positive.";
-	private static final String EXCEPTION_PREFERENCE = "You can't have a preference for a type of course that won't have sessions, the preference must be complete and you can't have a preferred number of groups greater than the actual number of groups.";
-
 	private Course course;
 	private Teacher teacher;
 
@@ -37,40 +34,31 @@ public class CoursePref {
 	private int prefNbGroupsCMTP;
 
 	/**
-	 * Given a CM, TD, CMTD, TP or CMTP :
+	 * Checks the coherence of these arguments. If it's not coherent this method will throw an IllegalArgumentException.
 	 * 
 	 * @param nbGroups     the number of groups to assign to this type of course
 	 * @param nbGroupsPref the preferred number of groups for the teacher
 	 * @param nbMinutes    the number of minutes for the sessions of this type of
 	 *                     course
 	 * @param preference   the preference of the teacher for this type of course
-	 * @return false iff (there is 0 group or 0 minutes for this type of course, but the teacher has a preference for it, 
-	 *         or the preference is partially completed,
-	 *         or the preferred number of groups is greater than the number of groups)
 	 */
-	private static boolean isPreferenceCoherent(int nbGroups, int nbGroupsPref, int nbMinutes, Preference preference) {
-		return !(((nbGroups == 0 || nbMinutes == 0) && preference != Preference.UNSPECIFIED)
-				|| (nbGroupsPref != 0 && preference == Preference.UNSPECIFIED)
-				|| (nbGroupsPref == 0 && preference != Preference.UNSPECIFIED)
-				|| nbGroupsPref > nbGroups);
+	private static void checkCoherence(int nbGroups, int nbGroupsPref, int nbMinutes, Preference preference) {
+		checkArgument((nbGroups != 0 && nbMinutes != 0) || preference == Preference.UNSPECIFIED, "Preference can't be specified if there are 0 groups and 0 minutes for a given type of course.");
+		checkArgument(nbGroupsPref == 0 || preference != Preference.UNSPECIFIED, "Preference needs to be specified if there is more than 1 group that the teacher wants to get for a given type of course.");
+		checkArgument(nbGroupsPref != 0 || preference == Preference.UNSPECIFIED, "There can't be a preference if the teacher does not want any group for a given type of course.");
+		checkArgument(nbGroupsPref <= nbGroups, "The number of groups the teacher wants can't be greater than the number of groups.");
 	}
 
 	/**
 	 * checks if the values for the preferences are valid according to the course
 	 */
-	private void checkCoherence() {
+	private void checkCoherences() {
 		checkNotNull(course);
-		checkState(isPreferenceCoherent(course.getCountGroupsCM(), getPrefNbGroupsCM(), course.getNbMinutesCM(),
-				getPrefCM())
-				&& isPreferenceCoherent(course.getCountGroupsCMTD(), getPrefNbGroupsCMTD(), course.getNbMinutesCMTD(),
-						getPrefCMTD())
-				&& isPreferenceCoherent(course.getCountGroupsCMTP(), getPrefNbGroupsCMTP(), course.getNbMinutesCMTP(),
-						getPrefCMTP())
-				&& isPreferenceCoherent(course.getCountGroupsTD(), getPrefNbGroupsTD(), course.getNbMinutesTD(),
-						getPrefTD())
-				&& isPreferenceCoherent(course.getCountGroupsTP(), getPrefNbGroupsTP(), course.getNbMinutesTP(),
-						getPrefTP()),
-				EXCEPTION_PREFERENCE);
+		checkCoherence(course.getCountGroupsCM(), getPrefNbGroupsCM(), course.getNbMinutesCM(), getPrefCM());
+		checkCoherence(course.getCountGroupsCMTD(), getPrefNbGroupsCMTD(), course.getNbMinutesCMTD(), getPrefCMTD());
+		checkCoherence(course.getCountGroupsCMTP(), getPrefNbGroupsCMTP(), course.getNbMinutesCMTP(), getPrefCMTP());
+		checkCoherence(course.getCountGroupsTD(), getPrefNbGroupsTD(), course.getNbMinutesTD(), getPrefTD());
+		checkCoherence(course.getCountGroupsTP(), getPrefNbGroupsTP(), course.getNbMinutesTP(), getPrefTP());
 	}
 
 	private CoursePref() {
@@ -144,7 +132,7 @@ public class CoursePref {
 		}
 
 		public CoursePref build() {
-			coursePrefToBuild.checkCoherence();
+			coursePrefToBuild.checkCoherences();
 			CoursePref coursePrefBuilt = coursePrefToBuild;
 			coursePrefToBuild = new CoursePref();
 			return coursePrefBuilt;
