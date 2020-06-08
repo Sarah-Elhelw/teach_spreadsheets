@@ -220,7 +220,7 @@ public class Teacher {
 		return Objects.hash(lastName, firstName, address, postCode, city, personalPhone, mobilePhone,
 				dauphinePhoneNumber, personalEmail, dauphineEmail, status, office);
 	}
-	
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("lastName", lastName).add("firstName", firstName)
