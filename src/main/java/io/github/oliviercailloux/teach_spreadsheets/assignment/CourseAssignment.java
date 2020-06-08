@@ -25,8 +25,8 @@ public class CourseAssignment {
 	}
 
 	/**
-	 * The second parameter is declared as a Set to remind the user that there
-	 * should be no duplicates of teachers'assignments in a course assignment.
+	 * The second parameter is declared as a Set to remind the user that there should be no
+	 * duplicates of teachers'assignments in a course assignment.
 	 * 
 	 */
 	public static CourseAssignment newInstance(Course course, Set<TeacherAssignment> finalTeacherAssignments) {
@@ -66,8 +66,7 @@ public class CourseAssignment {
 		 * 
 		 */
 		public CourseAssignment build() {
-			checkState(tempTeacherAssignments.size() >= 1,
-					"The course assignment must contain at least one teacher assignment.");
+			checkState(tempTeacherAssignments.size() >= 1, "The course assignment must contain at least one teacher assignment.");
 			courseAssignmentToBuild.teacherAssignments = ImmutableSet.copyOf(tempTeacherAssignments);
 			return courseAssignmentToBuild;
 		}
