@@ -21,7 +21,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 public class OdsSummarizerTests {
 
 	@Test
-	void testCreateGlobalAssignment() throws Exception {
+	void testCreateSummary() throws Exception {
 
 		Course course1 = Course.Builder.newInstance().setName("testcourse1").setStudyYear(2016).setStudyLevel("DE1")
 				.setSemester(1).setCountGroupsCM(3).setCountGroupsTD(4).setNbMinutesCM(60).setNbMinutesTD(60).build();
