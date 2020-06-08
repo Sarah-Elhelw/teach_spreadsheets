@@ -24,12 +24,20 @@ public class TeacherAssignmentTests {
 	private static Teacher teacher = Teacher.Builder.newInstance().setLastName("Doe").setFirstName("John").build();
 
 	@Test
-	void testBuilderWithNegativeCountGroupsTD() {
+	void testBuilderWithIncorrectCountGroupsTD() {
 		TeacherAssignment.Builder teacherAssignmentBuilder = TeacherAssignment.Builder.newInstance(course, teacher);
+		
 		Throwable exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			teacherAssignmentBuilder.setCountGroupsTD(-1);
 		});
 		Assertions.assertEquals("The number of TD groups must be positive.", exception.getMessage());
+
+		exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			teacherAssignmentBuilder.setCountGroupsTD(3);
+		});
+		Assertions.assertEquals(
+				"The number of TD groups assigned must not exceed the number of TD groups of the course.",
+				exception.getMessage());
 	}
 
 	@Test

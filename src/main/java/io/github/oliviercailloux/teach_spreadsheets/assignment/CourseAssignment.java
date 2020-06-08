@@ -43,7 +43,7 @@ public class CourseAssignment {
 	public static class Builder {
 		/**
 		 * Set of {@link TeacherAssignment} : it is used to build (by adding) the
-		 * finalTeacherAssignments.
+		 * teacherAssignments.
 		 */
 		private Set<TeacherAssignment> tempTeacherAssignments;
 		private CourseAssignment courseAssignmentToBuild;
