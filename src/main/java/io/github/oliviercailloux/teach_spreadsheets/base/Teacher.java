@@ -1,6 +1,8 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
+
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Objects;
@@ -59,7 +61,7 @@ public class Teacher {
 
 		public Teacher build() {
 			checkNotNull(teacherToBuild.lastName, "Last name must be set.");
-			if (teacherToBuild.lastName.isEmpty()) throw new IllegalArgumentException("Last name must be set.");
+			checkArgument(!teacherToBuild.lastName.isEmpty(), "Last name must be set.");
 			Teacher teacherBuilt = teacherToBuild;
 			teacherToBuild = new Teacher();
 			return teacherBuilt;
