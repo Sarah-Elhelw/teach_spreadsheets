@@ -141,8 +141,8 @@ public class Course {
 	}
 	
 	/**
-	 * This method is a standardized getter for the number of minutes of a group
-	 * course.
+	 * This method is a standardized getter for the number of minutes of a course
+	 * group.
 	 * 
 	 * @param group - the name of the group whose number of minutes we want to get.
 	 * 
