@@ -114,34 +114,15 @@ public class CourseAssignment {
 				sumAssignedGroupsCMTP += ta.getCountGroupsCMTP();
 				sumAssignedGroupsCM += ta.getCountGroupsCM();
 			}
-
-			checkArgument(
-					sumAssignedGroupsTD + teacherAssignment.getCountGroupsTD() <= courseAssignmentToBuild.course
-							.getCountGroupsTD(),
-					"The number of assigned TD groups must not exceed the number of TD groups associated to the course.");
-			checkArgument(
-					sumAssignedGroupsTP + teacherAssignment.getCountGroupsTP() <= courseAssignmentToBuild.course
-							.getCountGroupsTP(),
-					"The number of assigned TP groups must not exceed the number of TP groups associated to the course.");
-			checkArgument(
-					sumAssignedGroupsCMTD + teacherAssignment.getCountGroupsCMTD() <= courseAssignmentToBuild.course
-							.getCountGroupsCMTD(),
-					"The number of assigned CMTD groups must not exceed the number of CMTD groups associated to the course.");
-			checkArgument(
-					sumAssignedGroupsCMTP + teacherAssignment.getCountGroupsCMTP() <= courseAssignmentToBuild.course
-							.getCountGroupsCMTP(),
-					"The number of assigned CMTP groups must not exceed the number of CMTP groups associated to the course.");
-			checkArgument(
-					sumAssignedGroupsCM + teacherAssignment.getCountGroupsCM() <= courseAssignmentToBuild.course
-							.getCountGroupsCM(),
-					"The number of assigned CM groups must not exceed the number of CM groups associated to the course.");
-
-			checkArgument(
-					teacherAssignment.getCountGroupsTD() != 0 || teacherAssignment.getCountGroupsTP() != 0
-							|| teacherAssignment.getCountGroupsCMTD() != 0
-							|| teacherAssignment.getCountGroupsCMTP() != 0 || teacherAssignment.getCountGroupsCM() != 0,
-					"An assignment must have at least one assigned group.");
-
+			
+			checkArgument(sumAssignedGroupsTD+teacherAssignment.getCountGroupsTD() <= courseAssignmentToBuild.course.getCountGroupsTD(), "The number of assigned TD groups must not exceed the number of TD groups associated to the course.");
+			checkArgument(sumAssignedGroupsTP+teacherAssignment.getCountGroupsTP() <= courseAssignmentToBuild.course.getCountGroupsTP(), "The number of assigned TP groups must not exceed the number of TP groups associated to the course.");
+			checkArgument(sumAssignedGroupsCMTD+teacherAssignment.getCountGroupsCMTD() <= courseAssignmentToBuild.course.getCountGroupsCMTD(), "The number of assigned CMTD groups must not exceed the number of CMTD groups associated to the course.");
+			checkArgument(sumAssignedGroupsCMTP+teacherAssignment.getCountGroupsCMTP() <= courseAssignmentToBuild.course.getCountGroupsCMTP(), "The number of assigned CMTP groups must not exceed the number of CMTP groups associated to the course.");
+			checkArgument(sumAssignedGroupsCM+teacherAssignment.getCountGroupsCM() <= courseAssignmentToBuild.course.getCountGroupsCM(), "The number of assigned CM groups must not exceed the number of CM groups associated to the course.");
+			
+			checkArgument(teacherAssignment.getCountGroupsTD() != 0 || teacherAssignment.getCountGroupsTP() != 0 || teacherAssignment.getCountGroupsCMTD() !=0 || teacherAssignment.getCountGroupsCMTP() !=0 || teacherAssignment.getCountGroupsCM() !=0, "An assignment must have at least one assigned group.");
+			
 			tempTeacherAssignments.add(teacherAssignment);
 		}
 	}
@@ -156,7 +137,9 @@ public class CourseAssignment {
 
 	@Override
 	public String toString() {
-		return MoreObjects.toStringHelper(this).add("Course", course.getName())
-				.add("Set of Teachers'Assignments", teacherAssignments).toString();
+		return MoreObjects.toStringHelper(this)
+	       .add("Course", course.getName())
+	       .add("Set of Teachers'Assignments", teacherAssignments)
+	       .toString();
 	}
 }

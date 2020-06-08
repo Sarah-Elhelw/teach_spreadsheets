@@ -2,7 +2,6 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
-
 import static com.google.common.base.Preconditions.checkArgument;
 
 import javax.json.bind.annotation.JsonbCreator;
