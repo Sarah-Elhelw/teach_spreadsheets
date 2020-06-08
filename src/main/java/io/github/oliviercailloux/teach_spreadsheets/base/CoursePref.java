@@ -246,7 +246,6 @@ public class CoursePref {
 		return Objects.hash(course, teacher, prefCM, prefTD, prefCMTD, prefTP, prefCMTP, prefNbGroupsCM, prefNbGroupsTD,
 				prefNbGroupsCMTD, prefNbGroupsTP, prefNbGroupsCMTP);
 	}
-
 	
 	@Override
 	public String toString() {
