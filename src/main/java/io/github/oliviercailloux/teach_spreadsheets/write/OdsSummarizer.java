@@ -31,8 +31,9 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 public class OdsSummarizer {
 
 	/**
-	 * These Strings are the positions in the Summarized Ods of the Year, Semester,
-	 * Course, Teacher's name and the various preferences and assignment.
+	 * These Strings are the positions in the Summarized Ods of the study level,
+	 * semester, course information, teacher's name and the various preferences and
+	 * assignments.
 	 */
 	private final static String TITLE_POSITION = "A1";
 	private final static String STUDY_LEVEL_POSITION = "A3";
@@ -66,19 +67,17 @@ public class OdsSummarizer {
 	}
 
 	/**
-	 * This method sets the Teachers' preferences for the courses : it adds new
-	 * teacher's preferences for a course.
+	 * This method adds new teacher's preferences for courses.
 	 * 
-	 * @param prefsToBeSet - These are all the courses preferences to be written in
-	 *                     the FichierAgrege
+	 * @param prefsToBeSet - These are the courses preferences to be written in the
+	 *                     FichierAgrege
 	 * 
-	 * @throws NullPointerException     if the parameter is null
 	 * @throws IllegalArgumentException if we want to add a teacher's preference for
 	 *                                  a course that is not in allCourses or if we
 	 *                                  want to add a teacher's preferences for a
 	 *                                  course while there is already one in prefs.
 	 */
-	public void setPrefs(Set<CoursePref> prefsToBeSet) {
+	public void addPrefs(Set<CoursePref> prefsToBeSet) {
 		checkNotNull(prefsToBeSet, "The preferences must not be null.");
 
 		Set<Course> coursesInPrefs = new LinkedHashSet<>();
@@ -102,12 +101,12 @@ public class OdsSummarizer {
 	/**
 	 * This method sets all the assignments for the courses. According to the way
 	 * teach_spreadsheets project will work, a set of all the courses' assignments
-	 * will be provided to create the summarized assignment ods file. In this class,
-	 * the assignments are set as optional in the case only the teachers'
-	 * preferences are available : an empty optional means there are no assignment
-	 * information to display.
+	 * will be provided to create the summarized ods file. In this class, the
+	 * assignments are set as optional in the case only the teachers' preferences
+	 * are available : an empty optional means there are no assignment information
+	 * to display.
 	 * 
-	 * @param assignmentsToBeSet - These are all the courses Assignment to be
+	 * @param assignmentsToBeSet - These are all the courses' assignments to be
 	 *                           written in the FichierAgrege
 	 * 
 	 */
@@ -228,7 +227,7 @@ public class OdsSummarizer {
 		checkNotNull(course, "The course should not be null.");
 		checkNotNull(group, "The group should not be null.");
 		checkNotNull(prefsForGroup, "The set of preferences for the group should not be null.");
-		checkNotNull(teachersAssigned, "The teacher's assignments should not be null.");
+		checkNotNull(teachersAssigned, "The teachers' assignments should not be null.");
 
 		boolean courseHasTeacher = false;
 
@@ -289,9 +288,9 @@ public class OdsSummarizer {
 	/**
 	 * This method creates a summarized Ods like FichierAgrege.pdf. For each course,
 	 * it writes all the teachers who want to teach the course, their preferences
-	 * and the possible assignments.
+	 * and, possibly, their assignments.
 	 * 
-	 * @return A document competed with all the courses, all the preferences of the
+	 * @return A document completed with all the courses, all the preferences of the
 	 *         teachers and the possible assignments for each course
 	 * 
 	 * @throws IOException if the Ods could not be created
@@ -307,7 +306,7 @@ public class OdsSummarizer {
 		line = 2;
 
 		for (Course course : allCourses) {
-			
+
 			line++;
 
 			ods.setValueAt(String.valueOf(course.getStudyLevel()), line, 0);

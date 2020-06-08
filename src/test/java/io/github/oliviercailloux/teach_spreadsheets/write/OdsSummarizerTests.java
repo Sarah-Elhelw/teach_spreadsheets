@@ -29,9 +29,9 @@ public class OdsSummarizerTests {
 				.setSemester(1).setCountGroupsTP(3).setCountGroupsTD(4).setNbMinutesTP(60).setNbMinutesTD(60).build();
 
 		Teacher teacher1 = Teacher.Builder.newInstance().setFirstName("teacher1FirstName")
-				.setLastName("teacher1LastName").setDauphineEmail("teacher1@dauphine.eu").build();
+				.setLastName("teacher1LastName").build();
 		Teacher teacher2 = Teacher.Builder.newInstance().setFirstName("teacher2FirstName")
-				.setLastName("teacher2LastName").setDauphineEmail("teacher2@dauphine.eu").build();
+				.setLastName("teacher2LastName").build();
 
 		CoursePref pref1 = CoursePref.Builder.newInstance(course1, teacher1).setPrefCM(Preference.A)
 				.setPrefTD(Preference.B).build();
@@ -66,7 +66,7 @@ public class OdsSummarizerTests {
 		allCoursesAssigned.add(courseAssignment2);
 
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
-		ods.setPrefs(prefs);
+		ods.addPrefs(prefs);
 		ods.setAllCoursesAssigned(allCoursesAssigned);
 
 		URL resourceUrl = OdsSummarizer.class.getResource("OdsSummarizer.ods");

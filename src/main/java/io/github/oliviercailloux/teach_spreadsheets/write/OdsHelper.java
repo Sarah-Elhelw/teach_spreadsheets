@@ -11,22 +11,17 @@ import java.io.IOException;
 class OdsHelper {
 
 	private Table table;
-	
+
 	public Table getTable() {
 		return table;
 	}
 
-	/**
-	 * This is the constructor of the class
-	 * 
-	 * @param tableGiven - the table of a document that we want to modify
-	 */
 	private OdsHelper(Table tableGiven) {
 		table = tableGiven;
 	}
 
 	/**
-	 * This is the factory of this class
+	 * This is the factory of this class.
 	 * 
 	 * @param tableGiven - the table of a document that we want to modify
 	 * @return a new instance of OdsHelper
@@ -39,31 +34,28 @@ class OdsHelper {
 	/**
 	 * This method creates an empty Ods and removes the default sheet
 	 * 
-	 * @return a new Ods empty document
+	 * @return a new empty Ods document
 	 * @throws IOException if the Ods could not be created
 	 */
 	public static SpreadsheetDocument createAnEmptyOds() throws IOException {
-		try{
+		try {
 			SpreadsheetDocument document = SpreadsheetDocument.newSpreadsheetDocument();
 			/** The default sheet should be removed : */
 			document.removeSheet(0);
 			return document;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			throw new IOException(e);
 		}
-		
+
 	}
 
 	/**
 	 * This method sets a value at a specific cell of an ods document
 	 * 
-	 * @param table  This is the main table of the ods document that we want to
-	 *               complete
-	 * @param info   This is the string that we would like to set at a specific cell
-	 * @param row    The value is set at this specific row number
-	 * @param column The value is set at this specific column number
+	 * @param info   - the string that we would like to set at a specific cell
+	 * @param row    - the row number
+	 * @param column - the column number
 	 */
-
 	public void setValueAt(String info, int row, int column) {
 		Cell cell = table.getCellByPosition(column, row);
 		cell.setDisplayText(info);
