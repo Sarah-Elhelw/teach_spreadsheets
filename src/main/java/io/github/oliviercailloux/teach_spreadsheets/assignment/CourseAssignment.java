@@ -137,8 +137,8 @@ public class CourseAssignment {
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this)
-		.add("Course", course.getName())
-		.add("Set of Teachers'Assignments", teacherAssignments)
-		.toString();
+	       .add("Course", course.getName())
+	       .add("Set of Teachers'Assignments", teacherAssignments)
+	       .toString();
 	}
 }
