@@ -66,6 +66,27 @@ public class CalcData {
 		checkArgument(cp != null, "The name given in parameter does not match any course.");
 		return cp;
 	}
+
+	/**
+	 * This methods gets the preferences for a given course in the CalcData.
+	 * 
+	 * @param course - the Course whose preferences for we want to get.
+	 * 
+	 * @return the CoursePref corresponding to course.
+	 * 
+	 * @throws IllegaleArgumentException if the course given in parameter does not
+	 *                                   match any course.
+	 */
+	public CoursePref getCoursePref(Course course) {
+		checkNotNull(course);
+
+		for (CoursePref coursePref : coursePrefs) {
+			if (coursePref.getCourse().equals(course)) {
+				return coursePref;
+			}
+		}
+		throw new IllegalArgumentException("The course given in parameter does not match any course.");
+	}
 	
 	@Override
 	public String toString() {
