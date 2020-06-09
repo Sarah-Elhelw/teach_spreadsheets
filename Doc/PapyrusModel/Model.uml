@@ -79,6 +79,7 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_FRQz0Js8EeqkfLOOhPUFxQ" name="Gui">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_6xCDIKqNEeqhf_6YD4kl5g" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_3yM0sJxOEeqP0PGWWkkdZQ"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_GmQksKqOEeqhf_6YD4kl5g" name="uses" client="_ki1OwJs7EeqkfLOOhPUFxQ" supplier="_mYyDwJs7EeqkfLOOhPUFxQ"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_S-wV8KqPEeqhf_6YD4kl5g" name="uses" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_RDv-oKqLEeqhf_6YD4kl5g"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_RefbQJwkEeqnwtyuSDALCg" name="Write">
         <packagedElement xmi:type="uml:Usage" xmi:id="_Fg6jEJwxEeqwT532HYtLXQ" client="_21gQEJuXEeqi_K2iLQMdMg" supplier="_FCjZgIegEeq_vJIT4Zoedw"/>
@@ -529,7 +530,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_i4FkMJs7EeqkfLOOhPUFxQ" name="Gui">
         <ownedComment xmi:type="uml:Comment" xmi:id="_IQCl8KqOEeqhf_6YD4kl5g">
-          <body>In fact the Controller contains the call back functions needed by the gui</body>
+          <body>In fact the Controller contains the call back functions needed by the View</body>
         </ownedComment>
         <packagedElement xmi:type="uml:Class" xmi:id="_ki1OwJs7EeqkfLOOhPUFxQ" name="View" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_bCoOYJs8EeqkfLOOhPUFxQ" name="initializeGui"/>
@@ -652,7 +653,6 @@
           <ownedAttribute xmi:type="uml:Property" xmi:id="_NiKU8KqQEeqhf_6YD4kl5g" name="coursePref" type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_RPN1gKqQEeqhf_6YD4kl5g" name="getDataForTableItem"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_S-wV8KqPEeqhf_6YD4kl5g" name="uses" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_RDv-oKqLEeqhf_6YD4kl5g"/>
       </packagedElement>
     </packagedElement>
   </packagedElement>
