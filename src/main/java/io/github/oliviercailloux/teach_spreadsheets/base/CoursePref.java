@@ -2,6 +2,9 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.Objects;
+
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
@@ -240,7 +243,38 @@ public class CoursePref {
 			return this;
 		}
 	}
-	
+
+	/**
+	 * We consider that two coursePrefs are equal if all their attributes are equal.
+	 * 
+	 * 
+	 * @return true if the object in parameter is equal to the coursePref and false
+	 *         if it is not equal
+	 * 
+	 */
+	@Override
+	public boolean equals(Object o2) {
+		if (!(o2 instanceof CoursePref)) {
+			return false;
+		}
+		if (this == o2) {
+			return true;
+		}
+		CoursePref cp2 = (CoursePref) o2;
+
+		return course.equals(cp2.course) && teacher.equals(cp2.teacher) && prefCM.equals(cp2.prefCM)
+				&& prefTD.equals(cp2.prefTD) && prefCMTD.equals(cp2.prefCMTD) && prefTP.equals(cp2.prefTP)
+				&& prefCMTP.equals(cp2.prefCMTP) && prefNbGroupsCM == cp2.prefNbGroupsCM
+				&& prefNbGroupsTD == cp2.prefNbGroupsTD && prefNbGroupsCMTD == cp2.prefNbGroupsCMTD
+				&& prefNbGroupsTP == cp2.prefNbGroupsTP && prefNbGroupsCMTP == cp2.prefNbGroupsCMTP;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(course, teacher, prefCM, prefTD, prefCMTD, prefTP, prefCMTP, prefNbGroupsCM, prefNbGroupsTD,
+				prefNbGroupsCMTD, prefNbGroupsTP, prefNbGroupsCMTP);
+	}
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("prefCM", prefCM).add("prefTD", prefTD).add("prefCMTD", prefCMTD)
