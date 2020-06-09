@@ -2,7 +2,6 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -77,10 +76,8 @@ public class AggregatedDataTests {
 
 		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
 		aggregatedDataBuilder.addCalcData(cd1);
-		assertAll(() -> {
-			aggregatedDataBuilder.addCalcData(cd2);
-			aggregatedDataBuilder.build();
-		});
+		aggregatedDataBuilder.addCalcData(cd2);
+		aggregatedDataBuilder.build();
 
 	}
 

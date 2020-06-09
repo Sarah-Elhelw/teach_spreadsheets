@@ -35,6 +35,7 @@ public class AggregatedData {
 		private Builder() {
 			tempCalcDatas = new LinkedHashSet<>();
 			tempCourses = new LinkedHashSet<>();
+			reading = 0;
 		}
 
 		public static Builder newInstance() {
@@ -74,8 +75,8 @@ public class AggregatedData {
 
 			for (CalcData elt : tempCalcDatas) {
 				checkArgument(!elt.getTeacher().equals(calcData.getTeacher()),
-						"You cannot add twice all the preferences of the teacher : " + elt.getTeacher().getFirstName()
-								+ " " + elt.getTeacher().getLastName());
+						"You cannot add twice all the preferences of the teacher : "
+								+ calcData.getTeacher().getFirstName() + " " + calcData.getTeacher().getLastName());
 			}
 
 			tempCalcDatas.add(calcData);
