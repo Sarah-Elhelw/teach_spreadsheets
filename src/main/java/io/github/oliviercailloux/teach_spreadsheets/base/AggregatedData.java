@@ -74,18 +74,19 @@ public class AggregatedData {
 
 			for (CalcData elt : tempCalcDatas) {
 				checkArgument(!elt.getTeacher().equals(calcData.getTeacher()),
-						"You cannot add twice all the preferences of a teacher.");
+						"You cannot add twice all the preferences the teacher : " + elt.getTeacher().getFirstName()
+								+ elt.getTeacher().getLastName());
 			}
 
 			tempCalcDatas.add(calcData);
 		}
 	}
 
-	public Set<CalcData> getCalcDatas() {
+	public ImmutableSet<CalcData> getCalcDatas() {
 		return calcDatas;
 	}
 
-	public Set<Course> getCourses() {
+	public ImmutableSet<Course> getCourses() {
 		return courses;
 	}
 
@@ -117,13 +118,13 @@ public class AggregatedData {
 	 * @return all the preferences expressed for the given Course.
 	 * 
 	 */
-	public Set<CoursePref> getCoursePrefs(Course course) {
+	public ImmutableSet<CoursePref> getCoursePrefs(Course course) {
 		checkNotNull(course, "The course must not be null.");
 		Set<CoursePref> coursePrefs = new LinkedHashSet<>();
 		for (CalcData calcData : calcDatas) {
 			coursePrefs.add(calcData.getCoursePref(course));
 		}
-		return coursePrefs;
+		return ImmutableSet.copyOf(coursePrefs);
 	}
 
 }
