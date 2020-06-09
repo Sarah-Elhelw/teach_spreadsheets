@@ -206,6 +206,8 @@
 			<version>3.13.2</version>
 			<exclusions>
 				<exclusion>
+					<groupId>com.sun</groupId>
+					<artifactId>tools</artifactId>
 					<groupId>org.eclipse.platform</groupId>
 					<artifactId>org.eclipse.swt</artifactId>
 				</exclusion>
