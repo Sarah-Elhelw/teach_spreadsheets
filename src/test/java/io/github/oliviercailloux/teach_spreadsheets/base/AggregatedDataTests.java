@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -75,9 +76,11 @@ public class AggregatedDataTests {
 
 		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
 		aggregatedDataBuilder.addCalcData(cd1);
-		aggregatedDataBuilder.addCalcData(cd2);
-		aggregatedDataBuilder.build();
-
+		assertDoesNotThrow(() -> {
+			aggregatedDataBuilder.addCalcData(cd2);
+			aggregatedDataBuilder.build();
+		});
+		
 	}
 
 	@Test
