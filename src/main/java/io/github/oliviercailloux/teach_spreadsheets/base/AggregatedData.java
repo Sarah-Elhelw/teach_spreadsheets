@@ -74,8 +74,8 @@ public class AggregatedData {
 
 			for (CalcData elt : tempCalcDatas) {
 				checkArgument(!elt.getTeacher().equals(calcData.getTeacher()),
-						"You cannot add twice all the preferences the teacher : " + elt.getTeacher().getFirstName()
-								+ elt.getTeacher().getLastName());
+						"You cannot add twice all the preferences of the teacher : " + elt.getTeacher().getFirstName()
+								+ " " + elt.getTeacher().getLastName());
 			}
 
 			tempCalcDatas.add(calcData);

@@ -43,7 +43,8 @@ public class AggregatedDataTests {
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			aggregatedDataBuilder.addCalcData(calcData2);
 		});
-		assertEquals("You cannot add twice all the preferences of a teacher.", exception.getMessage());
+		assertEquals("You cannot add twice all the preferences of the teacher : " + teacher1.getFirstName() + " "
+				+ teacher1.getLastName(), exception.getMessage());
 	}
 
 	@Test
