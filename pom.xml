@@ -206,8 +206,6 @@
 			<version>3.13.2</version>
 			<exclusions>
 				<exclusion>
-					<groupId>com.sun</groupId>
-					<artifactId>tools</artifactId>
 					<groupId>org.eclipse.platform</groupId>
 					<artifactId>org.eclipse.swt</artifactId>
 				</exclusion>
@@ -266,7 +264,6 @@
 			<version>1.0.3</version>
 			<scope>runtime</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>jakarta.ws.rs</groupId>
 			<artifactId>jakarta.ws.rs-api</artifactId>
