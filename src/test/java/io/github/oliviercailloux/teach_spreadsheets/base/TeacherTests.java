@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -13,15 +12,13 @@ public class TeacherTests {
 		Teacher.Builder teacherBuilder = Teacher.Builder.newInstance();
 		teacherBuilder.setAddress("Pont du maréchal de lattre de tassigny");
 
-		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			teacherBuilder.build();
 		});
-		assertEquals("Last name must be set.", exception.getMessage());
 
 		teacherBuilder.setLastName("");
-		exception = assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			teacherBuilder.build();
 		});
-		assertEquals("Last name must be set.", exception.getMessage());
 	}
 }

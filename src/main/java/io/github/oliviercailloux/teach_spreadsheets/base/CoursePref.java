@@ -46,7 +46,7 @@ public class CoursePref {
 	 *                     course
 	 * @param preference   the preference of the teacher for this type of course
 	 */
-	private static void checkCoherence(int nbGroups, int nbGroupsPref, int nbMinutes, Preference preference) {
+	private static void checkPreferenceCoherence(int nbGroups, int nbGroupsPref, int nbMinutes, Preference preference) {
 		checkArgument((nbGroups != 0 && nbMinutes != 0) || preference == Preference.UNSPECIFIED,
 				"Preference can't be specified if there are 0 groups and 0 minutes for a given type of course.");
 		checkArgument(nbGroupsPref == 0 || preference != Preference.UNSPECIFIED,
@@ -58,13 +58,13 @@ public class CoursePref {
 	/**
 	 * checks if the values for the preferences are valid according to the course
 	 */
-	private void checkCoherences() {
+	private void checkCoherence() {
 		checkNotNull(course);
-		checkCoherence(course.getCountGroupsCM(), getPrefNbGroupsCM(), course.getNbMinutesCM(), getPrefCM());
-		checkCoherence(course.getCountGroupsCMTD(), getPrefNbGroupsCMTD(), course.getNbMinutesCMTD(), getPrefCMTD());
-		checkCoherence(course.getCountGroupsCMTP(), getPrefNbGroupsCMTP(), course.getNbMinutesCMTP(), getPrefCMTP());
-		checkCoherence(course.getCountGroupsTD(), getPrefNbGroupsTD(), course.getNbMinutesTD(), getPrefTD());
-		checkCoherence(course.getCountGroupsTP(), getPrefNbGroupsTP(), course.getNbMinutesTP(), getPrefTP());
+		checkPreferenceCoherence(course.getCountGroupsCM(), getPrefNbGroupsCM(), course.getNbMinutesCM(), getPrefCM());
+		checkPreferenceCoherence(course.getCountGroupsCMTD(), getPrefNbGroupsCMTD(), course.getNbMinutesCMTD(), getPrefCMTD());
+		checkPreferenceCoherence(course.getCountGroupsCMTP(), getPrefNbGroupsCMTP(), course.getNbMinutesCMTP(), getPrefCMTP());
+		checkPreferenceCoherence(course.getCountGroupsTD(), getPrefNbGroupsTD(), course.getNbMinutesTD(), getPrefTD());
+		checkPreferenceCoherence(course.getCountGroupsTP(), getPrefNbGroupsTP(), course.getNbMinutesTP(), getPrefTP());
 	}
 
 	private CoursePref() {
@@ -138,7 +138,7 @@ public class CoursePref {
 		}
 
 		public CoursePref build() {
-			coursePrefToBuild.checkCoherences();
+			coursePrefToBuild.checkCoherence();
 			CoursePref coursePrefBuilt = coursePrefToBuild;
 			coursePrefToBuild = new CoursePref();
 			return coursePrefBuilt;
