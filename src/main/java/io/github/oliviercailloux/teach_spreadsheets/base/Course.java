@@ -168,6 +168,7 @@ public class Course {
 			checkArgument(!courseToBuild.name.isEmpty(), "The course name must be specified.");
 			checkArgument(!courseToBuild.studyLevel.isEmpty(), "The study level must be specified.");
 			checkArgument(courseToBuild.studyYear != 0, "The study year must be specified.");
+			
 			Course courseBuilt = courseToBuild;
 			courseToBuild = new Course();
 			return courseBuilt;
