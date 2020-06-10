@@ -61,7 +61,7 @@ public class Controller {
 			Course course = coursePrefElement.getCoursePref().getCourse();
 
 			if (!teacherAssignmentMapTable.contains(teacher, course)) {
-				TeacherAssignment.Builder assignmentBuilder = TeacherAssignment.Builder.newInstance(teacher);
+				TeacherAssignment.Builder assignmentBuilder = TeacherAssignment.Builder.newInstance(course,teacher);
 				assignmentBuilder.setCountGroupsCM(0);
 				assignmentBuilder.setCountGroupsCMTD(0);
 				assignmentBuilder.setCountGroupsCMTP(0);
