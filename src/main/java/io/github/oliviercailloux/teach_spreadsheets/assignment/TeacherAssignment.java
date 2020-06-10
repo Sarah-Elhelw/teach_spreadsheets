@@ -2,9 +2,6 @@ package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.Objects;
-
 import static com.google.common.base.Preconditions.checkArgument;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
