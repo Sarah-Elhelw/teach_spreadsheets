@@ -5,6 +5,9 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.slf4j.LoggerFactory;
+
 import java.util.LinkedHashSet;
 
 import com.google.common.base.MoreObjects;
@@ -20,6 +23,8 @@ import java.util.logging.Level;
  *
  */
 public class CourseAssignment {
+	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CourseAssignment.class);
+	
 	private final Course course;
 	
 	private ImmutableSet<TeacherAssignment> teacherAssignments;
@@ -139,14 +144,5 @@ public class CourseAssignment {
 	       .add("Set of Teachers'Assignments", teacherAssignments)
 	       .toString();
 	}
-	
-	@SuppressWarnings("unused")
-	private final static void logger() {
-
-		Logger logger = Logger.getLogger("logger");
-
-		logger.log(Level.INFO, "The CourseAssignment class represents the assignment of only one course to a number of teachers. ");	 
-
-		}
 	
 }

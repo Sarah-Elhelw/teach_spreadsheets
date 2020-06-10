@@ -181,12 +181,4 @@ public class TeacherAssignment {
 	}
 	
 
-	private final static void logger() {
-
-		Logger logger = Logger.getLogger("logger");
-
-		logger.log(Level.INFO, 
-				"The TeacherAssignment class stores the number of TD, TP, CM groups assigned to one teacher in the selected course.");
-		 
-	}
 }

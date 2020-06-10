@@ -108,13 +108,13 @@ public class CalcData {
 
 	}
 	
-	@SuppressWarnings("unused")
-	private final static void logger() {
+	//@SuppressWarnings("unused")
+	//private final static void logger() {
 
-		Logger logger = Logger.getLogger("logger");
+	//	Logger logger = Logger.getLogger("logger");
 
-		logger.log(Level.INFO, "CalcData represents the data that we can get from the files that the university gives us.");	 
+	//	logger.log(Level.INFO, "CalcData represents the data that we can get from the files that the university gives us.");	 
 
-		}
+	//	}
 	
 }
