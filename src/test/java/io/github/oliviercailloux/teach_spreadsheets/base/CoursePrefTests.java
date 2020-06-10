@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -20,11 +19,17 @@ public class CoursePrefTests {
 		Course course = Course.Builder.newInstance().setCountGroupsCMTD(10).setNbMinutesCMTD(20)
 				.setName("Analyse de données").setStudyYear(2012).setStudyLevel("DE1").setSemester(1).build();
 
-		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			CoursePref.Builder.newInstance(course, teacher).setPrefTP(Preference.A).build();
 		});
-		assertEquals("You can't have a preference for a type of course that won't have sessions.",
-				exception.getMessage());
+
+		assertThrows(IllegalArgumentException.class, () -> {
+			CoursePref.Builder.newInstance(course, teacher).setPrefCMTD(Preference.A).setPrefNbGroupsCMTD(21).build();
+		});
+
+		assertThrows(IllegalArgumentException.class, () -> {
+			CoursePref.Builder.newInstance(course, teacher).setPrefNbGroupsCMTD(1).build();
+		});
 
 	}
 }
