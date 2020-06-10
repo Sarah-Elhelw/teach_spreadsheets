@@ -222,26 +222,6 @@ public class Teacher {
 	}
 
 	@Override
-	public boolean equals(Object o2) {
-		if (!(o2 instanceof Teacher)) {
-			return false;
-		}
-		if (this == o2) {
-			return true;
-		}
-		Teacher t2 = (Teacher) o2;
-		/**
-		 * We consider that two teachers are equal if they have the same dauphine e-mail as e-mails guarantee uniqueness.
-		 */
-		return dauphineEmail.equals(t2.dauphineEmail);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(dauphineEmail);
-	}
-	
-	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("lastName", lastName).add("firstName", firstName)
 				.add("address", address).add("postCode", postCode).add("city", city).add("personalPhone", personalPhone)

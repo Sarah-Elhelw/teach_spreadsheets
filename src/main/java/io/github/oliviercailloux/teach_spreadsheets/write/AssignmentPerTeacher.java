@@ -211,13 +211,14 @@ public class AssignmentPerTeacher {
 		checkNotNull(ta, "The teacher assignment must not be null.");
 		checkNotNull(group, "The group must not be null.");
 
+		int newLine = line;
 		if (ta.getCountGroups(group) != 0) {
-			ods.setValueAt(group, line, 3);
-			ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group) / 60.0), line, 4);
+			ods.setValueAt(group, newLine, 3);
+			ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group) / 60.0), newLine, 4);
 			totalNumberMinutes += ta.getCourse().getNbMinutes(group) / 60.0;
-			line++;
+			newLine++;
 		}
-		return line;
+		return newLine;
 	}
 
 	/**
@@ -271,7 +272,7 @@ public class AssignmentPerTeacher {
 
 		for (TeacherAssignment ta : assignments) {
 
-			ods.setValueAt(ta.getCourse().getStudyYear(), line, 0);
+			ods.setValueAt(String.valueOf(ta.getCourse().getStudyYear()), line, 0);
 			ods.setValueAt(String.valueOf(ta.getCourse().getSemester()), line, 1);
 			ods.setValueAt(ta.getCourse().getName(), line, 2);
 
