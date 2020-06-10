@@ -139,7 +139,7 @@ public class CourseAssignment {
 	 * This method finds the teacher's assignments in a set of course assignments
 	 * for a given teacher.
 	 * 
-	 * @param teacher            - The teacher whose assignments we want to get.
+	 * @param teacher           - The teacher whose assignments we want to get.
 	 * @param courseAssignments - A complete set of CourseAssignment
 	 * 
 	 * @return - a set of assignments of the teacher
