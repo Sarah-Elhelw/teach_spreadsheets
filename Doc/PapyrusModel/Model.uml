@@ -559,7 +559,10 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuY6qaEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_OyqiQKqKEeqhf_6YD4kl5g" name="initPreferences" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_OyqiQaqKEeqhf_6YD4kl5g" name="allPreferences"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_OyqiQaqKEeqhf_6YD4kl5g" name="allPreferences" type="_RDv-oKqLEeqhf_6YD4kl5g">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7dg3wKsTEeqj0paka7FkFA"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6DS8gKsTEeqj0paka7FkFA" value="*"/>
+            </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_htRhcJs8EeqkfLOOhPUFxQ" name="createPrefShell" visibility="private"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_a1xu0KqKEeqhf_6YD4kl5g" name="prefShell" visibility="private"/>
@@ -576,7 +579,7 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_2rfG4qqJEeqhf_6YD4kl5g" name="courseName">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_TAnJYKqKEeqhf_6YD4kl5g" name="courseType"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_TAnJYKqKEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_gMPdMKqKEeqhf_6YD4kl5g" name="exitApplication" visibility="private"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_r1TLAKqKEeqhf_6YD4kl5g" name="setCompositePreferenceTable" visibility="private">
@@ -608,17 +611,17 @@
           <ownedOperation xmi:type="uml:Operation" xmi:id="_peC4YKqNEeqhf_6YD4kl5g" name="setModelData" isStatic="true"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_3yM0sJxOEeqP0PGWWkkdZQ" name="Model">
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_RJZGcJxPEeqP0PGWWkkdZQ" name="allPreferencesData" visibility="private" isStatic="true" type="_bv1kcGIqEeq7OdFZt-_k0Q">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_RJZGcJxPEeqP0PGWWkkdZQ" name="allPreferences" visibility="private" isStatic="true" type="_RDv-oKqLEeqhf_6YD4kl5g">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SD0HUJxPEeqP0PGWWkkdZQ"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SEAUkJxPEeqP0PGWWkkdZQ" value="*"/>
           </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_Wwgf8JxPEeqP0PGWWkkdZQ" name="chosenPreferencesData" visibility="private" isStatic="true" type="_bv1kcGIqEeq7OdFZt-_k0Q">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_Wwgf8JxPEeqP0PGWWkkdZQ" name="chosenPreferences" visibility="private" isStatic="true" type="_RDv-oKqLEeqhf_6YD4kl5g">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xs1lUJxPEeqP0PGWWkkdZQ"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xs_9YJxPEeqP0PGWWkkdZQ" value="*"/>
           </ownedAttribute>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_8PNjQKqLEeqhf_6YD4kl5g" name="addToAllPreferences" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8PNjQaqLEeqhf_6YD4kl5g" name="CourseType "/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8PNjQqqLEeqhf_6YD4kl5g" name="CoursePref " type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8PNjQaqLEeqhf_6YD4kl5g" name="courseType "/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8PNjQqqLEeqhf_6YD4kl5g" name="coursePref " type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_8PNjQ6qLEeqhf_6YD4kl5g" name="nbGroups">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
