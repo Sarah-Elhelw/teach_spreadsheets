@@ -1,7 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.write;
 
 import java.io.IOException;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.odftoolkit.odfdom.type.Color;
@@ -61,7 +60,7 @@ public class AssignmentPerTeacher {
 	private final static String DAUPHINE_PHONE_NUMBER_POSITION = "E12";
 	private final static String DAUPHINE_PHONE_NUMBER_POSITION_VALUE = "E13";
 
-	private final static String YEAR_POSITION = "A16";
+	private final static String STUDY_LEVEL_POSITION = "A16";
 
 	private final static String SEMESTER_POSITION = "B16";
 
@@ -89,7 +88,7 @@ public class AssignmentPerTeacher {
 				DAUPHINE_EMAIL_POSITION_VALUE, PERSONAL_PHONE_POSITION_VALUE, MOBILE_PHONE_POSITION_VALUE,
 				DAUPHINE_PHONE_NUMBER_POSITION_VALUE);
 
-		Set<String> headersPositions = Set.of(TITLE_POSITION, YEAR_POSITION, SEMESTER_POSITION, COURSE_POSITION,
+		Set<String> headersPositions = Set.of(TITLE_POSITION, STUDY_LEVEL_POSITION, SEMESTER_POSITION, COURSE_POSITION,
 				TYPE_POSITION, NUMBER_HOURS_POSITION);
 
 		for (String position : personalInfoPositions) {
@@ -151,7 +150,7 @@ public class AssignmentPerTeacher {
 		table.getCellByPosition(DAUPHINE_PHONE_NUMBER_POSITION).setStringValue("DAUPHINE PHONE NUMBER");
 		table.getCellByPosition(DAUPHINE_PHONE_NUMBER_POSITION_VALUE).setStringValue(teacher.getDauphinePhoneNumber());
 
-		table.getCellByPosition(YEAR_POSITION).setStringValue("YEAR");
+		table.getCellByPosition(STUDY_LEVEL_POSITION).setStringValue("STUDY LEVEL");
 
 		table.getCellByPosition(SEMESTER_POSITION).setStringValue("SEMESTER");
 
@@ -213,7 +212,7 @@ public class AssignmentPerTeacher {
 
 		for (TeacherAssignment ta : assignments) {
 
-			ods.setValueAt(String.valueOf(ta.getCourse().getStudyYear()), line, 0);
+			ods.setValueAt(String.valueOf(ta.getCourse().getStudyLevel()), line, 0);
 			ods.setValueAt(String.valueOf(ta.getCourse().getSemester()), line, 1);
 			ods.setValueAt(ta.getCourse().getName(), line, 2);
 
@@ -239,7 +238,12 @@ public class AssignmentPerTeacher {
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 
 		totalNumberMinutes = 0;
-
+		
+		try {
+			document.save("target//AssignmentPerTeacher.ods");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return document;
 	}
 

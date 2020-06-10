@@ -73,8 +73,8 @@ public class AssignmentPerTeacherTests {
 			assertEquals(table.getCellByPosition("D17").getDisplayText(),
 					tableCreated.getCellByPosition("D17").getDisplayText());
 
-			assertEquals(table.getCellByPosition("E21").getDisplayText(),
-					tableCreated.getCellByPosition("E21").getDisplayText());
+			assertEquals(table.getCellByPosition("A17").getDisplayText(),
+					tableCreated.getCellByPosition("A17").getDisplayText());
 
 		}
 	}
