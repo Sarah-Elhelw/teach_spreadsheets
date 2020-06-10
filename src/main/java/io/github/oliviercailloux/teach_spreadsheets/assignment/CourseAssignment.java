@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableSet;
  */
 public class CourseAssignment {
 	private final Course course;
-	
+
 	private ImmutableSet<TeacherAssignment> teacherAssignments;
 
 	private CourseAssignment(Course course) {
@@ -36,14 +36,14 @@ public class CourseAssignment {
 			courseAssignmentBuilder.addTeacherAssignment(ta);
 		}
 		CourseAssignment courseAssignment = courseAssignmentBuilder.build();
-		
+
 		return courseAssignment;
 	}
 
 	public static class Builder {
 		/**
 		 * Set of {@link TeacherAssignment} : it is used to build (by adding) the
-		 * finalTeacherAssignments.
+		 * teacherAssignments.
 		 */
 		private Set<TeacherAssignment> tempTeacherAssignments;
 		private CourseAssignment courseAssignmentToBuild;
@@ -125,15 +125,15 @@ public class CourseAssignment {
 			tempTeacherAssignments.add(teacherAssignment);
 		}
 	}
-	
+
 	public Course getCourse() {
 		return course;
 	}
-	
-	public Set<TeacherAssignment> getTeacherAssignments(){
+
+	public ImmutableSet<TeacherAssignment> getTeacherAssignments() {
 		return teacherAssignments;
 	}
-	
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this)
