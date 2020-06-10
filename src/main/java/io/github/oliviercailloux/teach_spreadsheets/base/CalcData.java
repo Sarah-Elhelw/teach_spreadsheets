@@ -9,8 +9,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Set;
 
 import org.odftoolkit.simple.SpreadsheetDocument;
@@ -35,8 +33,8 @@ public class CalcData {
 		for (CoursePref coursePref : coursePrefs) {
 			for (CoursePref otherCoursePref : coursePrefs) {
 				if (coursePref != otherCoursePref
-						&& coursePref.getCourse().getName().equals(otherCoursePref.getCourse().getName())) {
-					throw new IllegalArgumentException("You can't have two courses of the same name.");
+						&& coursePref.getCourse().equals(otherCoursePref.getCourse())) {
+					throw new IllegalArgumentException("You can't have twice the preferences of a course.");
 				}
 			}
 		}
@@ -68,30 +66,33 @@ public class CalcData {
 		checkArgument(cp != null, "The name given in parameter does not match any course.");
 		return cp;
 	}
+
+	/**
+	 * This methods gets the preferences for a given course in the CalcData.
+	 * 
+	 * @param course - the Course whose preferences for we want to get.
+	 * 
+	 * @return the CoursePref corresponding to course.
+	 * 
+	 * @throws IllegaleArgumentException if the course given in parameter does not
+	 *                                   match any course.
+	 */
+	public CoursePref getCoursePref(Course course) {
+		checkNotNull(course);
+
+		for (CoursePref coursePref : coursePrefs) {
+			if (coursePref.getCourse().equals(course)) {
+				return coursePref;
+			}
+		}
+		throw new IllegalArgumentException("The course given in parameter does not match any course.");
+	}
 	
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("coursePrefs", coursePrefs).add("teacher", teacher).toString();
 	}
 
-	/**
-	 * Gets the data from a JSON API
-	 * 
-	 * @param filePath the path to the json file
-	 * @return the JSON string
-	 */
-	public static String fromJSON(String filePath) {
-		return null;
-	}
-
-	/**
-	 * @param data is the parsed data returned by getDataFromJSON
-	 * @return an instance of CalcData containing the information from the parameter
-	 *         data
-	 */
-	public static CalcData populateDataFromJSON(String data) {
-		return null;
-	}
 	/**
 	 * Opens and creates a {@link CalcData} from a document whose path is passed as
 	 * a parameter.
