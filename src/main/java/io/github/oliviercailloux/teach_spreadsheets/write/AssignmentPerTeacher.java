@@ -239,11 +239,6 @@ public class AssignmentPerTeacher {
 
 		totalNumberMinutes = 0;
 		
-		try {
-			document.save("target//AssignmentPerTeacher.ods");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return document;
 	}
 

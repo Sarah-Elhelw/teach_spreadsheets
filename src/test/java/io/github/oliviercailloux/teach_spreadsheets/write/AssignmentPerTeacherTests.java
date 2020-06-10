@@ -63,6 +63,9 @@ public class AssignmentPerTeacherTests {
 
 			assertEquals(table.getCellByPosition("C13").getDisplayText(),
 					tableCreated.getCellByPosition("C13").getDisplayText());
+			
+			assertEquals(table.getCellByPosition("A17").getDisplayText(),
+					tableCreated.getCellByPosition("A17").getDisplayText());
 
 			assertEquals(table.getCellByPosition("B17").getDisplayText(),
 					tableCreated.getCellByPosition("B17").getDisplayText());
@@ -72,9 +75,12 @@ public class AssignmentPerTeacherTests {
 
 			assertEquals(table.getCellByPosition("D17").getDisplayText(),
 					tableCreated.getCellByPosition("D17").getDisplayText());
-
-			assertEquals(table.getCellByPosition("A17").getDisplayText(),
-					tableCreated.getCellByPosition("A17").getDisplayText());
+			
+			assertEquals(table.getCellByPosition("E17").getDisplayText(),
+					tableCreated.getCellByPosition("E17").getDisplayText());
+			
+			assertEquals(table.getCellByPosition("E21").getDisplayText(),
+					tableCreated.getCellByPosition("E21").getDisplayText());
 
 		}
 	}
