@@ -26,7 +26,7 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 public class AssignmentPerTeacher {
 
 	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
-	static int totalNumberMinutes;
+	private static int totalNumberMinutes;
 
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Teachers'
