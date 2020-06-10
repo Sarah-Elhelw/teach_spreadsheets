@@ -15,6 +15,7 @@ import org.odftoolkit.simple.style.StyleTypeDefinitions.SupportedLinearMeasure;
 import org.odftoolkit.simple.table.Table;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -25,13 +26,12 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 public class AssignmentPerTeacher {
 
 	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
-	static int totalNumberMinutes = 0;
+	static int totalNumberMinutes;
 
 	/**
 	 * These Strings are the positions in the Summarized Ods of the Teachers'
 	 * personal information and the document's headers
 	 */
-
 	private final static String TITLE_POSITION = "A1";
 
 	private final static String TEACHER_FIRST_NAME_POSITION = "A3";
@@ -80,19 +80,19 @@ public class AssignmentPerTeacher {
 	private static void formatHeaders(Table table) {
 		checkNotNull(table, "The sheet should not be null.");
 
-		Set<String> headersPositions = Set.of(TEACHER_FIRST_NAME_POSITION, TEACHER_LAST_NAME_POSITION, STATUS_POSITION,
-				OFFICE_POSITION, PERSONAL_EMAIL_POSITION, DAUPHINE_EMAIL_POSITION, PERSONAL_PHONE_POSITION,
-				MOBILE_PHONE_POSITION, DAUPHINE_PHONE_NUMBER_POSITION);
+		Set<String> personalInfoPositions = Set.of(TEACHER_FIRST_NAME_POSITION, TEACHER_LAST_NAME_POSITION,
+				STATUS_POSITION, OFFICE_POSITION, PERSONAL_EMAIL_POSITION, DAUPHINE_EMAIL_POSITION,
+				PERSONAL_PHONE_POSITION, MOBILE_PHONE_POSITION, DAUPHINE_PHONE_NUMBER_POSITION);
 
 		Set<String> valuesPositions = Set.of(TEACHER_FIRST_NAME_POSITION_VALUE, TEACHER_LAST_NAME_POSITION_VALUE,
 				STATUS_POSITION_VALUE, OFFICE_POSITION_VALUE, PERSONAL_EMAIL_POSITION_VALUE,
 				DAUPHINE_EMAIL_POSITION_VALUE, PERSONAL_PHONE_POSITION_VALUE, MOBILE_PHONE_POSITION_VALUE,
 				DAUPHINE_PHONE_NUMBER_POSITION_VALUE);
 
-		Set<String> titlesPositions = Set.of(TITLE_POSITION, YEAR_POSITION, SEMESTER_POSITION, COURSE_POSITION,
+		Set<String> headersPositions = Set.of(TITLE_POSITION, YEAR_POSITION, SEMESTER_POSITION, COURSE_POSITION,
 				TYPE_POSITION, NUMBER_HOURS_POSITION);
 
-		for (String position : headersPositions) {
+		for (String position : personalInfoPositions) {
 			table.getCellByPosition(position).setFont(new Font("Arial", FontStyle.BOLD, 9.0, Color.BLACK));
 		}
 
@@ -101,7 +101,7 @@ public class AssignmentPerTeacher {
 					new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 		}
 
-		for (String position : titlesPositions) {
+		for (String position : headersPositions) {
 			table.getCellByPosition(position).setFont(new Font("Arial", FontStyle.BOLD, 12.0, new Color(42, 96, 153)));
 			if (!position.contentEquals(TITLE_POSITION)) {
 				table.getCellByPosition(position).setHorizontalAlignment(HorizontalAlignmentType.CENTER);
@@ -113,10 +113,9 @@ public class AssignmentPerTeacher {
 	/**
 	 * This method adds the headers to this new document.
 	 * 
-	 * @param table   This is the main table of the ods document that we want to
-	 *                complete
-	 * @param teacher This is the Teacher for who we want to do the summarized Fiche
-	 *                de service
+	 * @param table   - the main sheet of the ods document that we want to complete
+	 * @param teacher - the teacher for who we want to do the summarized Fiche de
+	 *                service
 	 *
 	 */
 	private static void headersToOds(Table table, Teacher teacher) {
@@ -166,62 +165,6 @@ public class AssignmentPerTeacher {
 	}
 
 	/**
-	 * This method finds the teachers assignments where the teacher appears
-	 * 
-	 * @param teacher            The teacher we want to complete the Fichedeservice
-	 * @param allCoursesAssigned A complete set of CourseAssignment
-	 * 
-	 * @return a set of assignments of the teacher
-	 * 
-	 */
-	private static Set<TeacherAssignment> findTeacherAssignments(Teacher teacher,
-			Set<CourseAssignment> allCoursesAssigned) {
-		checkNotNull(teacher, "The teacher should not be null.");
-		checkNotNull(allCoursesAssigned, "The set of courses assigned must not be null.");
-
-		Set<TeacherAssignment> assignments = new LinkedHashSet<>();
-
-		for (CourseAssignment ca : allCoursesAssigned) {
-			for (TeacherAssignment ta : ca.getTeacherAssignments()) {
-				if (teacher.equals(ta.getTeacher())) {
-					assignments.add(ta);
-				}
-			}
-		}
-
-		return assignments;
-
-	}
-
-	/**
-	 * This method writes in the calc the courses Assigned to a teacher
-	 * 
-	 * @param ods            the ods document to complete
-	 * @param line           the starting line in the ods document where to write
-	 * @param ta             a TeacherAssignment in order to get the number of
-	 *                       groups assigned to a specific teacher
-	 * @param courseAssigned a Course assigned to the Teacher
-	 * @param group          the group type of the given course
-	 * 
-	 * @return the updated index of line
-	 */
-
-	private static int completeCourses(OdsHelper ods, int line, TeacherAssignment ta, String group) {
-		checkNotNull(ods, "The ods must not be null.");
-		checkNotNull(ta, "The teacher assignment must not be null.");
-		checkNotNull(group, "The group must not be null.");
-
-		int newLine = line;
-		if (ta.getCountGroups(group) != 0) {
-			ods.setValueAt(group, newLine, 3);
-			ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group) / 60.0), newLine, 4);
-			totalNumberMinutes += ta.getCourse().getNbMinutes(group) / 60.0;
-			newLine++;
-		}
-		return newLine;
-	}
-
-	/**
 	 * This method draws the main table in the file Fiche de service.
 	 * 
 	 * @param table - the sheet where the table is
@@ -240,25 +183,22 @@ public class AssignmentPerTeacher {
 	}
 
 	/**
-	 * This method creates a summarized Ods like Fiche de service.png. For each
+	 * This method creates a summarized Ods like Fiche de service.png. For a given
 	 * teacher, it writes all the courses he/she will teach.
 	 * 
-	 * @param teacher            This is the teacher for who we want to do the
-	 *                           summarized Fiche de service
-	 * @param allCoursesAssigned This is a complete set of CourseAssignment (courses
-	 *                           which has been assigned to teachers). It will help
-	 *                           us to know to which classes the teacher has been
-	 *                           assigned
-	 * @return A document completed with all the courses a specific teacher will
-	 *         teach
-	 * @throws IOException
+	 * @param teacher            - the teacher for who we want to do the summarized
+	 *                           Fiche de service
+	 * @param allCoursesAssigned - a complete set of CourseAssignment (it represents
+	 *                           all the assignments that were made).
+	 * @return - A document completed with all the courses the given teacher will
+	 *         teach.
+	 * @throws IOException if the Ods could not be created
 	 */
-
 	public static SpreadsheetDocument createAssignmentPerTeacher(Teacher teacher,
 			Set<CourseAssignment> allCoursesAssigned) throws IOException {
 
-		checkNotNull(teacher, "The teacher must not be null.");
-		checkNotNull(allCoursesAssigned, "The set of courses assigned must not be null.");
+		checkNotNull(teacher, "The teacher should not be null.");
+		checkNotNull(allCoursesAssigned, "The set of courses assigned should not be null.");
 
 		SpreadsheetDocument document = OdsHelper.createAnEmptyOds();
 		Table summary = document.appendSheet("Summary");
@@ -268,7 +208,8 @@ public class AssignmentPerTeacher {
 		int line = 16;
 		totalNumberMinutes = 0;
 
-		Set<TeacherAssignment> assignments = findTeacherAssignments(teacher, allCoursesAssigned);
+		ImmutableSet<TeacherAssignment> assignments = CourseAssignment.getTeacherAssignments(teacher,
+				allCoursesAssigned);
 
 		for (TeacherAssignment ta : assignments) {
 
@@ -277,7 +218,12 @@ public class AssignmentPerTeacher {
 			ods.setValueAt(ta.getCourse().getName(), line, 2);
 
 			for (String group : GROUPS) {
-				line = completeCourses(ods, line, ta, group);
+				if (ta.getCountGroups(group) != 0) {
+					ods.setValueAt(group, line, 3);
+					ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group) / 60.0), line, 4);
+					totalNumberMinutes += ta.getCourse().getNbMinutes(group);
+					line++;
+				}
 			}
 		}
 
@@ -288,12 +234,12 @@ public class AssignmentPerTeacher {
 		ods.setValueAt("TOTAL", line, 3);
 		summary.getCellByPosition(3, line).setFont(new Font("Arial", FontStyle.BOLD, 12.0, new Color(42, 96, 153)));
 
-		ods.setValueAt(String.valueOf(totalNumberMinutes), line, 4);
+		ods.setValueAt(String.valueOf(totalNumberMinutes / 60.0), line, 4);
 		summary.getCellByPosition(4, line).setBorders(CellBordersType.ALL_FOUR,
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 
 		totalNumberMinutes = 0;
-		
+
 		return document;
 	}
 

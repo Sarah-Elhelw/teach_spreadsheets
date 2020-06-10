@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
+import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 import java.util.Set;
 import java.util.LinkedHashSet;
@@ -132,6 +133,35 @@ public class CourseAssignment {
 
 	public ImmutableSet<TeacherAssignment> getTeacherAssignments() {
 		return teacherAssignments;
+	}
+	
+	/**
+	 * This method finds the teacher's assignments in a set of course assignments
+	 * for a given teacher.
+	 * 
+	 * @param teacher            - The teacher whose assignments we want to get.
+	 * @param courseAssignments - A complete set of CourseAssignment
+	 * 
+	 * @return - a set of assignments of the teacher
+	 * 
+	 */
+	public static ImmutableSet<TeacherAssignment> getTeacherAssignments(Teacher teacher,
+			Set<CourseAssignment> courseAssignments) {
+		checkNotNull(teacher, "The teacher should not be null.");
+		checkNotNull(courseAssignments, "The set of course assignments should not be null.");
+
+		Set<TeacherAssignment> assignments = new LinkedHashSet<>();
+
+		for (CourseAssignment ca : courseAssignments) {
+			for (TeacherAssignment ta : ca.getTeacherAssignments()) {
+				if (teacher.equals(ta.getTeacher())) {
+					assignments.add(ta);
+				}
+			}
+		}
+
+		return ImmutableSet.copyOf(assignments);
+
 	}
 
 	@Override
