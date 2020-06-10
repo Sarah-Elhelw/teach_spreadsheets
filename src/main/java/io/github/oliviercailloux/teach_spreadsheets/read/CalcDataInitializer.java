@@ -34,11 +34,6 @@ public class CalcDataInitializer {
 		return CalcData.newInstance(coursePrefs, teacher);
 	}
 	
-	public static void main(String[] args) {
 
-	Logger logger = Logger.getLogger("logger");
-
-	logger.log(Level.INFO, "à complter");
-	}
 
 }

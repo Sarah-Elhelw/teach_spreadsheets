@@ -151,7 +151,7 @@ public class CourseAssignment {
 
 		Logger logger = Logger.getLogger("logger");
 
-		logger.log(Level.INFO, " à completer");
+		logger.log(Level.INFO, "The CourseAssignment class represents the assignment of only one course to a number of teachers.");
 		 
 
 		}

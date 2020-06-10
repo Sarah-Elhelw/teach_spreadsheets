@@ -54,11 +54,6 @@ public class PrefsInitializer {
 		return ImmutableSet.copyOf(prefsList);
 	}
 	
-	public static void main(String[] args) {
 
-	Logger logger = Logger.getLogger("logger");
-
-	logger.log(Level.INFO, "à complter");
-	}
 
 }

@@ -246,6 +246,6 @@ public class Course {
 
 	Logger logger = Logger.getLogger("logger");
 
-	logger.log(Level.INFO, "à complter");
+	logger.log(Level.INFO, "The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).");
 	}
 }
