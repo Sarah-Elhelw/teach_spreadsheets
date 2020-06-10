@@ -1,7 +1,16 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
+
+import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
+
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.slf4j.LoggerFactory;
+
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
@@ -11,6 +20,7 @@ import static com.google.common.base.Preconditions.checkArgument;
  * @see https://codereview.stackexchange.com/questions/127391/simple-builder-pattern-implementation-for-building-immutable-objects/127509#127509
  */
 public class CoursePref {
+	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CourseAssignment.class);
 	private static final String EXCEPTION = "A preferred number of groups needs to be positive.";
 	private static final String EXCEPTION_PREFERENCE = "You can't have a preference for a type of course that won't have sessions.";
 
@@ -225,5 +235,12 @@ public class CoursePref {
 				.add("Course", course.toString()).add("Teacher", teacher.toString())
 
 				.toString();
+	}
+	
+	public static void main(String[] args) {
+
+	Logger logger = Logger.getLogger("logger");
+
+	logger.log(Level.INFO, "à complter");
 	}
 }

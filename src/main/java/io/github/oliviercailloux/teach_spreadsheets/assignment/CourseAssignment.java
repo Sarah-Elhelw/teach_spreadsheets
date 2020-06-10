@@ -144,5 +144,16 @@ public class CourseAssignment {
 	       .add("Set of Teachers'Assignments", teacherAssignments)
 	       .toString();
 	}
+
+	
+	
+	public static void main(String[] args) {
+
+		Logger logger = Logger.getLogger("logger");
+
+		logger.log(Level.INFO, " à completer");
+		 
+
+		}
 	
 }

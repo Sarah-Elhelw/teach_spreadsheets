@@ -3,6 +3,8 @@ package io.github.oliviercailloux.teach_spreadsheets.assignment;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
@@ -18,7 +20,9 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
  */
 
 
+
 public class TeacherAssignment {
+	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(TeacherAssignment.class);
 	private final Teacher teacher;
 	private int countGroupsTD;
 	private int countGroupsTP;
@@ -180,5 +184,13 @@ public class TeacherAssignment {
 	       .toString();
 	}
 	
+	public static void main(String[] args) {
+
+		Logger logger = Logger.getLogger("logger");
+
+		logger.log(Level.INFO, " à completer");
+		 
+
+		}
 
 }

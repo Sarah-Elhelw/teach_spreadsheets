@@ -1,7 +1,16 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
+
+import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
+
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.slf4j.LoggerFactory;
+
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
@@ -11,6 +20,7 @@ import static com.google.common.base.Preconditions.checkArgument;
  * @see https://codereview.stackexchange.com/questions/127391/simple-builder-pattern-implementation-for-building-immutable-objects/127509#127509
  */
 public class Course {
+	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CourseAssignment.class);
 	private static final String EXCEPTION_STRING = "String must not be null.";
 	private static final String EXCEPTION_INT = "int must be positive.";
 
@@ -230,5 +240,12 @@ public class Course {
 				.add("studyLevel", studyLevel).add("studyYear", studyYear).add("semester", semester)
 
 				.toString();
+	}
+	
+	public static void main(String[] args) {
+
+	Logger logger = Logger.getLogger("logger");
+
+	logger.log(Level.INFO, "à complter");
 	}
 }

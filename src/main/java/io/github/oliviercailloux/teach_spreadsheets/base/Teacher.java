@@ -1,7 +1,15 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
+
+import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
+
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.slf4j.LoggerFactory;
 
 /**
  * Immutable. Class used to store a teacher's information. The minimum
@@ -10,6 +18,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @see https://codereview.stackexchange.com/questions/127391/simple-builder-pattern-implementation-for-building-immutable-objects/127509#127509
  */
 public class Teacher {
+	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CourseAssignment.class);
+
 	private static final String EXCEPTION = "String must not be null.";
 
 	private String lastName;
@@ -191,5 +201,12 @@ public class Teacher {
 				.add("address", address).add("postCode", postCode).add("city", city).add("personalPhone", personalPhone)
 				.add("mobilePhone", mobilePhone).add("personalEmail", personalEmail).add("dauphineEmail", dauphineEmail)
 				.add("status", status).add("dauphinePhoneNumber", dauphinePhoneNumber).add("office", office).toString();
+	}
+	
+	public static void main(String[] args) {
+
+	Logger logger = Logger.getLogger("logger");
+
+	logger.log(Level.INFO, "à complter");
 	}
 }

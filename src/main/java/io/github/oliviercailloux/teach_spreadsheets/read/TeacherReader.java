@@ -1,10 +1,14 @@
 package io.github.oliviercailloux.teach_spreadsheets.read;
 
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
+import org.slf4j.LoggerFactory;
 
+import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.base.*;
 
 /**
@@ -18,6 +22,8 @@ import io.github.oliviercailloux.teach_spreadsheets.base.*;
  *
  */
 public class TeacherReader {
+	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CourseAssignment.class);
+
 	private final static String SHEET_NAME = "Emplois du temps";
 	private final static String LAST_NAME_POSITION = "B2";
 	private final static String FIRST_NAME_POSITION = "F2";
@@ -99,5 +105,12 @@ public class TeacherReader {
 		teacherBuilder.setDauphinePhoneNumber(dauphinePhoneNumber);
 		teacherBuilder.setOffice(office);
 		return teacherBuilder.build();
+	}
+	
+	public static void main(String[] args) {
+
+	Logger logger = Logger.getLogger("logger");
+
+	logger.log(Level.INFO, "à complter");
 	}
 }

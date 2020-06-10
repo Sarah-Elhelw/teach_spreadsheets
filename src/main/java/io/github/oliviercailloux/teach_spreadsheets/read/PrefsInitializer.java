@@ -2,6 +2,8 @@ package io.github.oliviercailloux.teach_spreadsheets.read;
 
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.ArrayList;
 
 import org.odftoolkit.simple.SpreadsheetDocument;
@@ -50,6 +52,13 @@ public class PrefsInitializer {
 			prefsList.addAll(reader.readSemester(sheet, teacher));
 		}
 		return ImmutableSet.copyOf(prefsList);
+	}
+	
+	public static void main(String[] args) {
+
+	Logger logger = Logger.getLogger("logger");
+
+	logger.log(Level.INFO, "à complter");
 	}
 
 }

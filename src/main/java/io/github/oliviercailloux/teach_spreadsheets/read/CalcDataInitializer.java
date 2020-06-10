@@ -1,5 +1,8 @@
 package io.github.oliviercailloux.teach_spreadsheets.read;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.odftoolkit.simple.SpreadsheetDocument;
 
 import com.google.common.collect.ImmutableSet;
@@ -29,6 +32,13 @@ public class CalcDataInitializer {
 		Teacher teacher = teacherReader.createTeacherFromCalc(document);
 		ImmutableSet<CoursePref> coursePrefs = PrefsInitializer.createPrefslist(document, teacher);
 		return CalcData.newInstance(coursePrefs, teacher);
+	}
+	
+	public static void main(String[] args) {
+
+	Logger logger = Logger.getLogger("logger");
+
+	logger.log(Level.INFO, "à complter");
 	}
 
 }

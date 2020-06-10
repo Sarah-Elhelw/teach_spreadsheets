@@ -1,5 +1,8 @@
 package io.github.oliviercailloux.teach_spreadsheets.read;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.odftoolkit.simple.style.StyleTypeDefinitions.CellBordersType;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.Table;
@@ -108,4 +111,10 @@ class ReaderLib {
 		return (int) (Double.parseDouble(hours) * 60);
 	}
 
+	public static void main(String[] args) {
+
+	Logger logger = Logger.getLogger("logger");
+
+	logger.log(Level.INFO, "à complter");
+	}
 }

@@ -2,6 +2,8 @@ package io.github.oliviercailloux.teach_spreadsheets.read;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -264,5 +266,12 @@ public class CourseAndPrefReader {
 			}
 
 		}
+	}
+	
+	public static void main(String[] args) {
+
+	Logger logger = Logger.getLogger("logger");
+
+	logger.log(Level.INFO, "à complter");
 	}
 }

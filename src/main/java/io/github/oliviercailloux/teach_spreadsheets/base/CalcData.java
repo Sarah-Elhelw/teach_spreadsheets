@@ -3,6 +3,7 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
 
+import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.read.CalcDataInitializer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -14,12 +15,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.odftoolkit.simple.SpreadsheetDocument;
+import org.slf4j.LoggerFactory;
 
 /**
  * Immutable. Class used to store information from an excel spreadsheet : one
  * teacher, multiple courses and his/her preferences for these courses.
  */
 public class CalcData {
+	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CourseAssignment.class);
 	private ImmutableSet<CoursePref> coursePrefs;
 	private Teacher teacher;
 
@@ -108,13 +111,12 @@ public class CalcData {
 
 	}
 	
-	//@SuppressWarnings("unused")
-	//private final static void logger() {
+	public static void main(String[] args) {
 
-	//	Logger logger = Logger.getLogger("logger");
+	Logger logger = Logger.getLogger("logger");
 
-	//	logger.log(Level.INFO, "CalcData represents the data that we can get from the files that the university gives us.");	 
+	logger.log(Level.INFO, "CalcData represents the data that we can get from the files that the university gives us.");	 
 
-	//	}
+	}
 	
 }
