@@ -620,7 +620,7 @@
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Xs_9YJxPEeqP0PGWWkkdZQ" value="*"/>
           </ownedAttribute>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_8PNjQKqLEeqhf_6YD4kl5g" name="addToAllPreferences" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8PNjQaqLEeqhf_6YD4kl5g" name="courseType "/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_8PNjQaqLEeqhf_6YD4kl5g" name="courseType " type="_l6njAKqPEeqhf_6YD4kl5g"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_8PNjQqqLEeqhf_6YD4kl5g" name="coursePref " type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_8PNjQ6qLEeqhf_6YD4kl5g" name="nbGroups">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
