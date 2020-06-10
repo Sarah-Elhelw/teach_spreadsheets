@@ -44,6 +44,8 @@ We'll add getters in the classes as we work on them because it's hard to know ex
 == Gui classes
 image::Images\Class_Gui.PNG[{fullWifth}]
 
+CoursePrefElement lists in Model are used to represent instances of table items in the GUI.
+
 Here is the process :
 
 Controller initializes the View (*initializeGui* in View) and sets the Model data (*setModelData* in Controller) from ods files thanks to *readFilesFromFolder* in MultipleOdsPrefReader class.
