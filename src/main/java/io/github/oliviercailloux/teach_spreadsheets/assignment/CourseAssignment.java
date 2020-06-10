@@ -3,6 +3,8 @@ package io.github.oliviercailloux.teach_spreadsheets.assignment;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.LinkedHashSet;
 
 import com.google.common.base.MoreObjects;
@@ -10,6 +12,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.base.Preconditions.checkArgument;
 import com.google.common.collect.ImmutableSet;
+import java.util.logging.Level;
+
 
 /**
  * Immutable. This class assigns a set of teachers'assignments to a course.
@@ -135,4 +139,14 @@ public class CourseAssignment {
 	       .add("Set of Teachers'Assignments", teacherAssignments)
 	       .toString();
 	}
+	
+	@SuppressWarnings("unused")
+	private final static void logger() {
+
+		Logger logger = Logger.getLogger("logger");
+
+		logger.log(Level.INFO, "The CourseAssignment class represents the assignment of only one course to a number of teachers. ");	 
+
+		}
+	
 }

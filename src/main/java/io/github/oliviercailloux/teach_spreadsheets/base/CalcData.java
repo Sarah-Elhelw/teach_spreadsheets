@@ -10,6 +10,8 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 import java.io.InputStream;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.odftoolkit.simple.SpreadsheetDocument;
 
@@ -105,4 +107,14 @@ public class CalcData {
 			}
 
 	}
+	
+	@SuppressWarnings("unused")
+	private final static void logger() {
+
+		Logger logger = Logger.getLogger("logger");
+
+		logger.log(Level.INFO, "CalcData represents the data that we can get from the files that the university gives us.");	 
+
+		}
+	
 }

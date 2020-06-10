@@ -1,9 +1,14 @@
 package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
+
+
 
 /**
  * Immutable. This class provides, for a given course, a teacher that was
@@ -11,6 +16,8 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
  * teacher will have to give lessons to.
  *
  */
+
+
 public class TeacherAssignment {
 	private final Teacher teacher;
 	private int countGroupsTD;
@@ -171,5 +178,15 @@ public class TeacherAssignment {
 	       .add("Number of CMTP groups", countGroupsCMTP)
 	       .add("Number of CM groups", countGroupsCM)
 	       .toString();
+	}
+	
+
+	private final static void logger() {
+
+		Logger logger = Logger.getLogger("logger");
+
+		logger.log(Level.INFO, 
+				"The TeacherAssignment class stores the number of TD, TP, CM groups assigned to one teacher in the selected course.");
+		 
 	}
 }
