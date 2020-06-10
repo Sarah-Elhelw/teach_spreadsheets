@@ -1,6 +1,8 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
+
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Objects;
@@ -58,9 +60,8 @@ public class Teacher {
 		}
 
 		public Teacher build() {
-			checkNotNull(teacherToBuild.lastName);
-			if (teacherToBuild.lastName.isEmpty())
-				throw new IllegalArgumentException();
+			checkNotNull(teacherToBuild.lastName, "Last name must be set.");
+			checkArgument(!teacherToBuild.lastName.isEmpty(), "Last name must be set.");
 			Teacher teacherBuilt = teacherToBuild;
 			teacherToBuild = new Teacher();
 			return teacherBuilt;
@@ -205,8 +206,8 @@ public class Teacher {
 		Teacher t2 = (Teacher) o2;
 
 		/**
-		 * Checking equality for all the attributes of a Teacher seems necessary as
-		 * they will be used to fill the Fiche de service.
+		 * Checking equality for all the attributes of a Teacher seems necessary as they
+		 * will be used to fill the Fiche de service.
 		 */
 		return lastName.equals(t2.lastName) && firstName.equals(t2.firstName) && address.equals(t2.address)
 				&& postCode.equals(t2.postCode) && city.equals(t2.city) && personalPhone.equals(t2.personalPhone)
