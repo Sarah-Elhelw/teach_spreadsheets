@@ -15,8 +15,6 @@ import static com.google.common.base.Preconditions.checkArgument;
  */
 public class CoursePref {
 	private static final String EXCEPTION = "A preferred number of groups needs to be positive.";
-	private static final String EXCEPTION_PREFERENCE = "You can't have a preference for a type of course that won't have sessions.";
-
 	private Course course;
 	private Teacher teacher;
 
@@ -39,31 +37,36 @@ public class CoursePref {
 	private int prefNbGroupsCMTP;
 
 	/**
-	 * Given a CM, TD, CMTD, TP or CMTP :
+	 * Checks the coherence of these arguments. If it's not coherent this method
+	 * will throw an IllegalArgumentException.
 	 * 
-	 * @param nbGroups   the number of groups to assign to this type of course
-	 * @param nbMinutes  the number of minutes for the sessions of this type of
-	 *                   course
-	 * @param preference the preference of the teacher for this type of course
-	 * @return false iff there is 0 group or 0 minutes for this type of course, but
-	 *         the teacher has a preference for it
+	 * @param nbGroups     the number of groups to assign to this type of course
+	 * @param nbGroupsPref the preferred number of groups for the teacher
+	 * @param nbMinutes    the number of minutes for the sessions of this type of
+	 *                     course
+	 * @param preference   the preference of the teacher for this type of course
 	 */
-	private static boolean isPreferenceCoherent(int nbGroups, int nbMinutes, Preference preference) {
-		return !((nbGroups == 0 || nbMinutes == 0) && preference != Preference.UNSPECIFIED);
+	private static void checkPreferenceCoherence(int nbGroups, int nbGroupsPref, int nbMinutes, Preference preference) {
+		checkArgument((nbGroups != 0 && nbMinutes != 0) || preference == Preference.UNSPECIFIED,
+				"Preference can't be specified if there are 0 groups and 0 minutes for a given type of course.");
+		checkArgument(nbGroupsPref == 0 || preference != Preference.UNSPECIFIED,
+				"Preference needs to be specified if there is more than 1 group that the teacher wants to get for a given type of course.");
+		checkArgument(nbGroupsPref <= nbGroups,
+				"The number of groups the teacher wants can't be greater than the number of groups.");
 	}
 
 	/**
-	 * @return true iff the values for the preferences are valid according to the
-	 *         course
+	 * checks if the values for the preferences are valid according to the course
 	 */
 	private void checkCoherence() {
 		checkNotNull(course);
-		if (!(isPreferenceCoherent(course.getCountGroupsCM(), course.getNbMinutesCM(), getPrefCM())
-				&& isPreferenceCoherent(course.getCountGroupsCMTD(), course.getNbMinutesCMTD(), getPrefCMTD())
-				&& isPreferenceCoherent(course.getCountGroupsCMTP(), course.getNbMinutesCMTP(), getPrefCMTP())
-				&& isPreferenceCoherent(course.getCountGroupsTD(), course.getNbMinutesTD(), getPrefTD())
-				&& isPreferenceCoherent(course.getCountGroupsTP(), course.getNbMinutesTP(), getPrefTP())))
-			throw new IllegalArgumentException(EXCEPTION_PREFERENCE);
+		checkPreferenceCoherence(course.getCountGroupsCM(), getPrefNbGroupsCM(), course.getNbMinutesCM(), getPrefCM());
+		checkPreferenceCoherence(course.getCountGroupsCMTD(), getPrefNbGroupsCMTD(), course.getNbMinutesCMTD(),
+				getPrefCMTD());
+		checkPreferenceCoherence(course.getCountGroupsCMTP(), getPrefNbGroupsCMTP(), course.getNbMinutesCMTP(),
+				getPrefCMTP());
+		checkPreferenceCoherence(course.getCountGroupsTD(), getPrefNbGroupsTD(), course.getNbMinutesTD(), getPrefTD());
+		checkPreferenceCoherence(course.getCountGroupsTP(), getPrefNbGroupsTP(), course.getNbMinutesTP(), getPrefTP());
 	}
 
 	private CoursePref() {
