@@ -61,8 +61,10 @@ public class CoursePref {
 	private void checkCoherence() {
 		checkNotNull(course);
 		checkPreferenceCoherence(course.getCountGroupsCM(), getPrefNbGroupsCM(), course.getNbMinutesCM(), getPrefCM());
-		checkPreferenceCoherence(course.getCountGroupsCMTD(), getPrefNbGroupsCMTD(), course.getNbMinutesCMTD(), getPrefCMTD());
-		checkPreferenceCoherence(course.getCountGroupsCMTP(), getPrefNbGroupsCMTP(), course.getNbMinutesCMTP(), getPrefCMTP());
+		checkPreferenceCoherence(course.getCountGroupsCMTD(), getPrefNbGroupsCMTD(), course.getNbMinutesCMTD(),
+				getPrefCMTD());
+		checkPreferenceCoherence(course.getCountGroupsCMTP(), getPrefNbGroupsCMTP(), course.getNbMinutesCMTP(),
+				getPrefCMTP());
 		checkPreferenceCoherence(course.getCountGroupsTD(), getPrefNbGroupsTD(), course.getNbMinutesTD(), getPrefTD());
 		checkPreferenceCoherence(course.getCountGroupsTP(), getPrefNbGroupsTP(), course.getNbMinutesTP(), getPrefTP());
 	}
@@ -216,7 +218,7 @@ public class CoursePref {
 			return this;
 		}
 	}
-	
+
 	/**
 	 * We consider that two coursePrefs are equal if all their attributes are equal.
 	 * 
