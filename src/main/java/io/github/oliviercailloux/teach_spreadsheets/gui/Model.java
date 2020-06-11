@@ -2,35 +2,32 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableItem;
-
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
-import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
-import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 /**
  * Model contains the preferences that are supposed to be shown in the UI.
  */
 public class Model {
-	private static Set<CoursePrefElement> allPreferences;
-	private static Set<CoursePrefElement> chosenPreferences;
-
-	public static void initData() {
-		allPreferences = new HashSet<>();
-		chosenPreferences = new HashSet<>();
+	private Set<CoursePrefElement> allPreferences;
+	private Set<CoursePrefElement> chosenPreferences;
+	
+	public static Model newInstance() {
+		Model model = new Model();
+		model.allPreferences = new HashSet<>();
+		model.chosenPreferences = new HashSet<>();
+		return model;
 	}
+	
+	private Model() {}
 
 	/**
 	 * Adds CoursePrefElement objects to allPreferences
@@ -39,7 +36,7 @@ public class Model {
 	 * @param coursePref the CoursePref of the CoursePrefElement objects to be added
 	 * @param nbGroups   the number of elements to be added
 	 */
-	private static void addToAllPreferences(CourseType courseType, CoursePref coursePref, int nbGroups) {
+	private void addToAllPreferences(CourseType courseType, CoursePref coursePref, int nbGroups) {
 		checkNotNull(courseType);
 		checkNotNull(coursePref);
 		checkNotNull(allPreferences);
@@ -53,7 +50,7 @@ public class Model {
 	 * 
 	 * @param calcData
 	 */
-	public static void setData(CalcData calcData) {
+	private void setData(CalcData calcData) {
 		checkNotNull(calcData);
 		checkNotNull(allPreferences);
 
@@ -72,7 +69,7 @@ public class Model {
 	 * 
 	 * @param calcData
 	 */
-	public static void setDataFromSet(Set<CalcData> calcDataSet) {
+	public void setDataFromSet(Set<CalcData> calcDataSet) {
 		checkNotNull(calcDataSet);
 		checkNotNull(allPreferences);
 		for (CalcData calcData : calcDataSet) {
@@ -80,11 +77,11 @@ public class Model {
 		}
 	}
 
-	public static Set<CoursePrefElement> getAllPreferences() {
+	public Set<CoursePrefElement> getAllPreferences() {
 		return allPreferences;
 	}
 
-	public static Set<CoursePrefElement> getChosenPreferences() {
+	public Set<CoursePrefElement> getChosenPreferences() {
 		return chosenPreferences;
 	}
 
@@ -100,7 +97,7 @@ public class Model {
 	 * @param target          the set where we want to add the CoursePrefElement
 	 *                        object corresponding to stringTableItem
 	 */
-	private static void updateSet(List<String> stringTableItem, Set<CoursePrefElement> source,
+	private void updateSet(List<String> stringTableItem, Set<CoursePrefElement> source,
 			Set<CoursePrefElement> target) {
 		checkNotNull(stringTableItem);
 		checkArgument(stringTableItem.size() == 4);
@@ -133,7 +130,7 @@ public class Model {
 	 * @param toChosenPreferences true iff the element that has been clicked is on
 	 *                            the Table named all preferences
 	 */
-	public static void updatePreferences(ArrayList<String> texts, boolean toChosenPreferences) {
+	public void updatePreferences(ArrayList<String> texts, boolean toChosenPreferences) {
 		checkNotNull(texts);
 		checkArgument(texts.size() == 4);
 

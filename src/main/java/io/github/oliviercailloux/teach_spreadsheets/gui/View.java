@@ -15,9 +15,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
@@ -26,9 +24,6 @@ import org.eclipse.swt.widgets.TableItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.ImmutableSet;
-
-import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
@@ -45,54 +40,65 @@ public class View {
 	private Display display;
 	private Shell shell;
 
-	private Composite allPrefrences;
-	private Composite chosenPrefrences;
-	private Composite courses;
-
-	private Composite allPrefrencesContent = null;
-	private Composite chosenPrefrencesContent = null;
-	private Composite coursesContent = null;
+	private Composite allPreferencesComposite;
+	private Composite chosenPreferencesComposite;
+	private Composite coursesComposite;
 
 	private Table allPreferencesTable;
 	private Table chosenPreferencesTable;
 	private Table coursesTable;
+	
+	private Button buttonSubmit;
 
-	private Composite submit;
-
+	private View() {}
+	
 	/**
 	 * Creates the Gui components.
 	 */
-	public void initializeGui() {
-		display = new Display();
-		shell = new Shell(display, SWT.SHELL_TRIM);
-		shell.setMaximized(true);
-		shell.setText("Preferences selection");
-		shell.setLayout(new GridLayout(3, false));
-		Image logo = new Image(display, View.class.getResourceAsStream("configuration.png"));
-		shell.setImage(logo);
+	public static View initializeGui() {
+		View view = new View();
+		
+		view.display = new Display();
+		view.shell = new Shell(view.display, SWT.SHELL_TRIM);
+		view.shell.setMaximized(true);
+		view.shell.setText("Preferences selection");
+		view.shell.setLayout(new GridLayout(3, false));
+		Image logo = new Image(view.display, View.class.getResourceAsStream("configuration.png"));
+		view.shell.setImage(logo);
 
-		this.allPrefrences = new Composite(shell, SWT.BORDER);
-		allPrefrencesContent = new Composite(allPrefrences, SWT.NONE);
-		Image logoAllPreferences = new Image(display, View.class.getResourceAsStream("paper.png"));
-		allPreferencesTable = setCompositePreferenceTable(allPrefrences, allPrefrencesContent, "All preferences",
+		view.allPreferencesComposite = new Composite(view.shell, SWT.BORDER);
+		Composite allPreferencesContent = new Composite(view.allPreferencesComposite, SWT.NONE);
+		Image logoAllPreferences = new Image(view.display, View.class.getResourceAsStream("paper.png"));
+		view.allPreferencesTable = setCompositePreferenceTable(view.allPreferencesComposite, allPreferencesContent, "All preferences",
 				logoAllPreferences);
 
-		this.chosenPrefrences = new Composite(shell, SWT.BORDER);
-		chosenPrefrencesContent = new Composite(chosenPrefrences, SWT.NONE);
-		Image logoChosenPrefrences = new Image(display, View.class.getResourceAsStream("check.png"));
-		chosenPreferencesTable = setCompositePreferenceTable(chosenPrefrences, chosenPrefrencesContent,
-				"Chosen preferences", logoChosenPrefrences);
+		view.chosenPreferencesComposite = new Composite(view.shell, SWT.BORDER);
+		Composite chosenPreferencesContent = new Composite(view.chosenPreferencesComposite, SWT.NONE);
+		Image logoChosenPreferences = new Image(view.display, View.class.getResourceAsStream("check.png"));
+		view.chosenPreferencesTable = setCompositePreferenceTable(view.chosenPreferencesComposite, chosenPreferencesContent,
+				"Chosen preferences", logoChosenPreferences);
 
-		addListenerPreferences(allPreferencesTable, true);
-		addListenerPreferences(chosenPreferencesTable, false);
+		view.coursesComposite = new Composite(view.shell, SWT.BORDER);
+		Composite coursesContent = new Composite(view.coursesComposite, SWT.NONE);
+		Image logoCourses = new Image(view.display, View.class.getResourceAsStream("education.png"));
+		view.coursesTable = setCompositeCourseTable(view.coursesComposite, coursesContent, "Courses", logoCourses);
 
-		this.courses = new Composite(shell, SWT.BORDER);
-		coursesContent = new Composite(courses, SWT.NONE);
-		Image logoCourses = new Image(display, View.class.getResourceAsStream("education.png"));
-		coursesTable = setCompositeCourseTable(courses, coursesContent, "Courses", logoCourses);
-
-		prefShell();
-		createAndSetSubmitButton();
+		view.prefShell();
+		view.createAndSetSubmitButton();
+		
+		return view;
+	}
+	
+	public Table getAllPreferencesTable() {
+		return allPreferencesTable;
+	}
+	
+	public Table getChosenPreferencesTable() {
+		return chosenPreferencesTable;
+	}
+	
+	public Button getSubmitButton() {
+		return buttonSubmit;
 	}
 
 	/**
@@ -111,26 +117,6 @@ public class View {
 	}
 
 	/**
-	 * adds listeners for table items in "All preferences" and "Chosen preferences"
-	 * tables in the GUI. Inspired from : https://stackoverflow.com/a/14398495
-	 * 
-	 * @param source              the table where we want to add a listener
-	 * @param toChosenPreferences true iff the table is "all preferences". This
-	 *                            value is later used for callback functions in
-	 *                            Controller class.
-	 */
-	private static void addListenerPreferences(Table source, boolean toChosenPreferences) {
-		source.addListener(SWT.MouseDoubleClick, new Listener() {
-			@Override
-			public void handleEvent(Event event) {
-				Point pt = new Point(event.x, event.y);
-				TableItem item = source.getItem(pt);
-				Controller.callbackListener(item, toChosenPreferences);
-			}
-		});
-	}
-
-	/**
 	 * moves a table item from "All preferences" table to "Chosen preferences"
 	 * table, or the other way around.
 	 * 
@@ -142,10 +128,10 @@ public class View {
 	 * @param toChosenPreferences true iff the table item needs to be moved to
 	 *                            "Chosen preferences" table
 	 */
-	public void moveTableItem(TableItem tableItem, ArrayList<String> texts, boolean toChosenPreferences) {
+	public void moveTableItem(TableItem tableItem, String[] texts, boolean toChosenPreferences) {
 		checkNotNull(tableItem);
 		checkNotNull(texts);
-		checkArgument(texts.size() == 4);
+		checkArgument(texts.length == 4);
 
 		tableItem.dispose();
 		TableItem newItem;
@@ -155,7 +141,7 @@ public class View {
 		} else {
 			newItem = new TableItem(allPreferencesTable, SWT.NONE);
 		}
-		newItem.setText(texts.toArray(new String[0]));
+		newItem.setText(texts);
 	}
 
 	/**
@@ -207,7 +193,7 @@ public class View {
 	}
 
 	/**
-	 * Creates the 3 tables of the Gui (allPrefrences,chosenPrefrences,courses).
+	 * Creates the 3 tables of the Gui (allPreferences,chosenPreferences,courses).
 	 */
 	private void prefShell() {
 		GridData prefData = new GridData(SWT.FILL, SWT.FILL, true, true);
@@ -217,15 +203,15 @@ public class View {
 		prefData.widthHint = size.x / 3;
 		chosenPrefData.widthHint = size.x / 3;
 		coursesData.widthHint = size.x - (prefData.widthHint + chosenPrefData.widthHint);
-		this.allPrefrences.setLayoutData(prefData);
-		this.chosenPrefrences.setLayoutData(chosenPrefData);
-		this.courses.setLayoutData(coursesData);
+		this.allPreferencesComposite.setLayoutData(prefData);
+		this.chosenPreferencesComposite.setLayoutData(chosenPrefData);
+		this.coursesComposite.setLayoutData(coursesData);
 	}
 
 	/**
 	 * This method closes the application.
 	 */
-	private void exitApplication() {
+	public void exitApplication() {
 		MessageBox messageBox = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
 		messageBox.setMessage("Your choices have been submitted. Do you want to exit the application?");
 		messageBox.setText("Closing the application");
@@ -248,7 +234,7 @@ public class View {
 	 * @param logo            a logo to be displayed next to the title
 	 * @return the table created
 	 */
-	private Table setCompositePreferenceTable(Composite parentComposite, Composite content, String headerText,
+	private static Table setCompositePreferenceTable(Composite parentComposite, Composite content, String headerText,
 			Image logo) {
 		checkNotNull(parentComposite);
 		checkNotNull(content);
@@ -302,7 +288,7 @@ public class View {
 	 * @param logo            a logo to be displayed next to the title
 	 * @return the table created
 	 */
-	private Table setCompositeCourseTable(Composite parentComposite, Composite content, String headerText, Image logo) {
+	private static Table setCompositeCourseTable(Composite parentComposite, Composite content, String headerText, Image logo) {
 		checkNotNull(parentComposite);
 		checkNotNull(content);
 		checkNotNull(headerText);
@@ -356,24 +342,13 @@ public class View {
 		new Label(shell, SWT.NONE);
 		new Label(shell, SWT.NONE);
 
-		submit = new Composite(shell, SWT.NONE);
+		Composite submit = new Composite(shell, SWT.NONE);
 		GridLayout gl = new GridLayout(1, true);
 		submit.setLayout(gl);
 		submit.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
 
-		Button buttonSubmit;
-
 		buttonSubmit = new Button(submit, SWT.NONE);
 		buttonSubmit.setText("Submit ");
-
-		buttonSubmit.addListener(SWT.MouseDown, new Listener() {
-			@Override
-			public void handleEvent(Event event) {
-				ImmutableSet<TeacherAssignment> teacherAssignments = Controller.createAssignments();
-				LOGGER.info("Submitted assignments: "+teacherAssignments.toString());
-				exitApplication();
-			}
-		});
 	}
 
 }
