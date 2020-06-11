@@ -76,9 +76,22 @@ public class OdsSummarizerTests {
 
 			Table tableCreated = documentCreated.getTableByName("Summary");
 			Table table = document.getTableByName("Summary");
-
-			assertEquals(table.getCellByPosition("C4").getDisplayText(),
-					tableCreated.getCellByPosition("C4").getDisplayText());
+			/*if(table.equals(tableCreated)) {
+				assertEquals("true", "true");
+			}else {
+				assertEquals("true", "false");
+			}
+			
+			if(table.getCellRangeByPosition("A1", "H12")
+					.equals(tableCreated.getCellRangeByPosition("A1", "H12"))) {
+				assertEquals("true", "true");
+			}else {
+				assertEquals("true", "false");
+			}
+			assertEquals(table.getCellRangeByPosition("A1", "H12"),
+					tableCreated.getCellRangeByPosition("A1", "H12"));
+			
+			assertEquals(table, tableCreated);*/
 			assertEquals(table.getCellByPosition("F5").getDisplayText(),
 					tableCreated.getCellByPosition("F5").getDisplayText());
 			assertEquals(table.getCellByPosition("H5").getDisplayText(),

@@ -15,7 +15,6 @@ import org.odftoolkit.simple.style.StyleTypeDefinitions.HorizontalAlignmentType;
 import org.odftoolkit.simple.style.StyleTypeDefinitions.SupportedLinearMeasure;
 import org.odftoolkit.simple.table.Table;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -45,8 +44,14 @@ public class OdsSummarizer {
 	private final static String CANDIDATES_LAST_NAME_POSITION = "G3";
 	private final static String CHOICES_POSITION = "H3";
 	private final static String ASSIGNMENT_POSITION = "I3";
-
-	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
+	
+	enum SubCourseKind{
+		CM,
+		CMTD,
+		CMTP,
+		TD,
+		TP
+	}
 
 	private OdsHelper ods;
 	private int line;
@@ -99,9 +104,7 @@ public class OdsSummarizer {
 	}
 
 	/**
-	 * This method sets all the assignments for the courses. According to the way
-	 * teach_spreadsheets project will work, a set of all the courses' assignments
-	 * will be provided to create the summarized ods file. In this class, the
+	 * This method sets all the assignments for the courses. In this class, the
 	 * assignments are set as optional in the case only the teachers' preferences
 	 * are available : an empty optional means there are no assignment information
 	 * to display.
@@ -328,18 +331,18 @@ public class OdsSummarizer {
 			}
 
 			Set<CoursePref> prefsForGroup;
-			for (String group : GROUPS) {
+			for (SubCourseKind group : SubCourseKind.values()) {
 				prefsForGroup = new LinkedHashSet<>();
 
-				if (course.getCountGroups(group) > 0) {
+				if (course.getCountGroups(group.toString()) > 0) {
 
 					for (CoursePref p : prefs) {
-						if (course.equals(p.getCourse()) && !p.getPref(group).toString().equals("UNSPECIFIED")) {
+						if (course.equals(p.getCourse()) && !p.getPref(group.toString()).toString().equals("UNSPECIFIED")) {
 							prefsForGroup.add(p);
 						}
 					}
 
-					setSummarizedFileForGroup(course, group, prefsForGroup, teachersAssigned);
+					setSummarizedFileForGroup(course, group.toString(), prefsForGroup, teachersAssigned);
 				}
 
 			}
