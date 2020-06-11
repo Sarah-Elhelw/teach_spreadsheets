@@ -3,6 +3,7 @@ package io.github.oliviercailloux.teach_spreadsheets.write;
 import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.odftoolkit.odfdom.type.Color;
 import org.odftoolkit.simple.SpreadsheetDocument;
@@ -105,10 +106,9 @@ public class OdsSummarizer {
 	public void setAllCoursesAssigned(Set<CourseAssignment> assignmentsToBeSet) {
 		checkNotNull(assignmentsToBeSet, "The course assignments should not be null.");
 
-		Set<Course> coursesInAssignments = new LinkedHashSet<>();
-		for (CourseAssignment courseAssignment : assignmentsToBeSet) {
-			coursesInAssignments.add(courseAssignment.getCourse());
-		}
+		Set<Course> coursesInAssignments = assignmentsToBeSet.stream().map(CourseAssignment::getCourse)
+				.collect(Collectors.toSet());
+
 		checkArgument(allCourses.containsAll(coursesInAssignments),
 				"The assignments must be for courses specified in allCourses attribute.");
 
