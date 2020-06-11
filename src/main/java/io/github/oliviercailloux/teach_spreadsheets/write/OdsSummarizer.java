@@ -55,7 +55,7 @@ public class OdsSummarizer {
 	private OdsSummarizer(Set<Course> allCourses) {
 		this.allCourses = ImmutableSet.copyOf(allCourses);
 		prefs = new LinkedHashSet<>();
-		allCoursesAssigned = null;
+		allCoursesAssigned = new LinkedHashSet<>();
 	}
 
 	public static OdsSummarizer newInstance(Set<Course> allCourses) {
@@ -96,8 +96,7 @@ public class OdsSummarizer {
 	}
 
 	/**
-	 * This method sets all the assignments for the courses. The assignments can be
-	 * equals to null if there are no assignments
+	 * This method sets all the assignments for the courses.
 	 * 
 	 * @param assignmentsToBeSet - These are all the courses' assignments to be
 	 *                           written in the FichierAgrege
@@ -240,13 +239,11 @@ public class OdsSummarizer {
 			ods.setValueAt(p.getTeacher().getLastName(), line, 6);
 			ods.setValueAt(p.getPref(group).toString(), line, 7);
 
-			if (teachersAssigned != null) {
-				for (TeacherAssignment ta : teachersAssigned) {
-					if (p.getTeacher().equals(ta.getTeacher()) && ta.getCountGroups(group) != 0) {
-						ods.setValueAt(ta.getTeacher().getFirstName(), line, 8);
-						ods.setValueAt(ta.getTeacher().getLastName(), line, 9);
+			for (TeacherAssignment ta : teachersAssigned) {
+				if (p.getTeacher().equals(ta.getTeacher()) && ta.getCountGroups(group) != 0) {
+					ods.setValueAt(ta.getTeacher().getFirstName(), line, 8);
+					ods.setValueAt(ta.getTeacher().getLastName(), line, 9);
 
-					}
 				}
 			}
 
@@ -308,16 +305,12 @@ public class OdsSummarizer {
 
 			formatCourseHeader();
 
-			Set<TeacherAssignment> ta = new LinkedHashSet<>();
-			Set<TeacherAssignment> teachersAssigned = null;
+			Set<TeacherAssignment> teachersAssigned = new LinkedHashSet<>();
 
-			if (allCoursesAssigned != null) {
-				for (CourseAssignment ca : allCoursesAssigned) {
-					if (course.equals(ca.getCourse())) {
-						ta.addAll(ca.getTeacherAssignments());
-					}
+			for (CourseAssignment courseAssignment : allCoursesAssigned) {
+				if (course.equals(courseAssignment.getCourse())) {
+					teachersAssigned.addAll(courseAssignment.getTeacherAssignments());
 				}
-				teachersAssigned = ta;
 			}
 
 			Set<CoursePref> prefsForGroup;
