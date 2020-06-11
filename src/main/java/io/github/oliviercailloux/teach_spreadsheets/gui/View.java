@@ -343,8 +343,8 @@ public class View {
 		new Label(shell, SWT.NONE);
 
 		Composite submit = new Composite(shell, SWT.NONE);
-		GridLayout gl = new GridLayout(1, true);
-		submit.setLayout(gl);
+		GridLayout gridLayout = new GridLayout(1, true);
+		submit.setLayout(gridLayout);
 		submit.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
 
 		buttonSubmit = new Button(submit, SWT.NONE);
