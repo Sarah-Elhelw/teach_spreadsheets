@@ -238,7 +238,7 @@ public class AssignmentPerTeacher {
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 
 		totalNumberMinutes = 0;
-		
+
 		return document;
 	}
 
