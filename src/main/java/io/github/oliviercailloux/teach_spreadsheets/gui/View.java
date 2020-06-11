@@ -304,14 +304,14 @@ public class View {
 
 		content.setLayout(new GridLayout(1, false));
 
-		Table t = new Table(content, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
+		Table table = new Table(content, SWT.BORDER | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		GridData gd_table = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gd_table.heightHint = 400;
-		t.setLayoutData(gd_table);
+		table.setLayoutData(gd_table);
 
-		TableColumn course = new TableColumn(t, SWT.NONE);
-		TableColumn groupType = new TableColumn(t, SWT.NONE);
-		TableColumn count = new TableColumn(t, SWT.NONE);
+		TableColumn course = new TableColumn(table, SWT.NONE);
+		TableColumn groupType = new TableColumn(table, SWT.NONE);
+		TableColumn count = new TableColumn(table, SWT.NONE);
 
 		course.setText("Course");
 		groupType.setText("Group type");
@@ -321,9 +321,9 @@ public class View {
 		groupType.setWidth(80);
 		count.setWidth(70);
 
-		t.setHeaderVisible(true);
+		table.setHeaderVisible(true);
 
-		return t;
+		return table;
 	}
 
 	/**
