@@ -103,17 +103,17 @@ public class Course {
 	 * @throws IllegalArgumentException if group is not equal to "CM" or "TD" or
 	 *                                  "TP" or "CMTD" or "CMTP".
 	 */
-	public int getCountGroups(String group) {
+	public int getCountGroups(SubCourseKind group) {
 		switch (group) {
-		case "CM":
+		case CM:
 			return getCountGroupsCM();
-		case "TD":
+		case TD:
 			return getCountGroupsTD();
-		case "TP":
+		case TP:
 			return getCountGroupsTP();
-		case "CMTD":
+		case CMTD:
 			return getCountGroupsCMTD();
-		case "CMTP":
+		case CMTP:
 			return getCountGroupsCMTP();
 		default:
 			throw new IllegalArgumentException("The argument must be CM, TD, TP, CMTD or CMTP.");
@@ -152,17 +152,17 @@ public class Course {
 	 * @throws IllegalArgumentException if group is not equal to "CM" or "TD" or
 	 *                                  "TP" or "CMTD" or "CMTP".
 	 */
-	public int getNbMinutes(String group) {
+	public int getNbMinutes(SubCourseKind group) {
 		switch (group) {
-		case "CM":
+		case CM:
 			return getNbMinutesCM();
-		case "TD":
+		case TD:
 			return getNbMinutesTD();
-		case "TP":
+		case TP:
 			return getNbMinutesTP();
-		case "CMTD":
+		case CMTD:
 			return getNbMinutesCMTD();
-		case "CMTP":
+		case CMTP:
 			return getNbMinutesCMTP();
 		default:
 			throw new IllegalArgumentException("The argument must be CM, TD, TP, CMTD or CMTP.");

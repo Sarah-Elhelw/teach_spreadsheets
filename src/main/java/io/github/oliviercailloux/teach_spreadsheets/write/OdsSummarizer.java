@@ -23,6 +23,7 @@ import static com.google.common.base.Verify.verify;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 
@@ -43,10 +44,6 @@ public class OdsSummarizer {
 	private final static String CANDIDATES_LAST_NAME_POSITION = "G3";
 	private final static String CHOICES_POSITION = "H3";
 	private final static String ASSIGNMENT_POSITION = "I3";
-
-	enum SubCourseKind {
-		CM, CMTD, CMTP, TD, TP
-	}
 
 	private OdsHelper ods;
 	private int line;
@@ -217,7 +214,7 @@ public class OdsSummarizer {
 	 * 
 	 * 
 	 */
-	private void setSummarizedFileForGroup(Course course, String group, Set<CoursePref> prefsForGroup,
+	private void setSummarizedFileForGroup(Course course, SubCourseKind group, Set<CoursePref> prefsForGroup,
 			Set<TeacherAssignment> teachersAssigned) {
 
 		checkNotNull(course, "The course should not be null.");
@@ -229,7 +226,7 @@ public class OdsSummarizer {
 
 		line++;
 
-		ods.setValueAt(group, line, 2);
+		ods.setValueAt(group.toString(), line, 2);
 		ods.setValueAt(String.valueOf(course.getCountGroups(group)), line, 3);
 		ods.setValueAt(String.valueOf(course.getNbMinutes(group) / 60.0), line, 4);
 
@@ -327,16 +324,16 @@ public class OdsSummarizer {
 			for (SubCourseKind group : SubCourseKind.values()) {
 				prefsForGroup = new LinkedHashSet<>();
 
-				if (course.getCountGroups(group.toString()) > 0) {
+				if (course.getCountGroups(group) > 0) {
 
 					for (CoursePref p : prefs) {
 						if (course.equals(p.getCourse())
-								&& !p.getPref(group.toString()).toString().equals("UNSPECIFIED")) {
+								&& !p.getPref(group).toString().equals("UNSPECIFIED")) {
 							prefsForGroup.add(p);
 						}
 					}
 
-					setSummarizedFileForGroup(course, group.toString(), prefsForGroup, teachersAssigned);
+					setSummarizedFileForGroup(course, group, prefsForGroup, teachersAssigned);
 				}
 
 			}

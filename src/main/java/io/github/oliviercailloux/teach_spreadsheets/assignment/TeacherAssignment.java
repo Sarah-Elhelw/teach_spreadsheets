@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
+import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 /**
@@ -199,17 +200,17 @@ public class TeacherAssignment {
 	 * @throws IllegalArgumentException if group is not equal to "CM" or "TD" or
 	 *                                  "TP" or "CMTD" or "CMTP".
 	 */
-	public int getCountGroups(String group) {
+	public int getCountGroups(SubCourseKind group) {
 		switch (group) {
-		case "CM":
+		case CM:
 			return getCountGroupsCM();
-		case "TD":
+		case TD:
 			return getCountGroupsTD();
-		case "TP":
+		case TP:
 			return getCountGroupsTP();
-		case "CMTD":
+		case CMTD:
 			return getCountGroupsCMTD();
-		case "CMTP":
+		case CMTP:
 			return getCountGroupsCMTP();
 		default:
 			throw new IllegalArgumentException("The argument must be CM, TD, TP, CMTD or CMTP.");

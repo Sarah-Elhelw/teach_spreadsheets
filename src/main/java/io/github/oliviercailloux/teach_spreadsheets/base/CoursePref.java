@@ -116,17 +116,17 @@ public class CoursePref {
 	 * @throws IllegalArgumentException if group is not equal to "CM" or "TD" or
 	 *                                  "TP" or "CMTD" or "CMTP".
 	 */
-	public Preference getPref(String group) {
+	public Preference getPref(SubCourseKind group) {
 		switch (group) {
-		case "CM":
+		case CM:
 			return getPrefCM();
-		case "TD":
+		case TD:
 			return getPrefTD();
-		case "TP":
+		case TP:
 			return getPrefTP();
-		case "CMTD":
+		case CMTD:
 			return getPrefCMTD();
-		case "CMTP":
+		case CMTP:
 			return getPrefCMTP();
 		default:
 			throw new IllegalArgumentException("The argument must be CM, TD, TP, CMTD or CMTP.");
