@@ -2,7 +2,6 @@ package io.github.oliviercailloux.teach_spreadsheets.write;
 
 import java.io.IOException;
 import java.util.LinkedHashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import org.odftoolkit.odfdom.type.Color;
@@ -58,12 +57,12 @@ public class OdsSummarizer {
 
 	private ImmutableSet<Course> allCourses;
 	private Set<CoursePref> prefs;
-	private Optional<Set<CourseAssignment>> allCoursesAssigned;
+	private Set<CourseAssignment> allCoursesAssigned;
 
 	private OdsSummarizer(Set<Course> allCourses) {
 		this.allCourses = ImmutableSet.copyOf(allCourses);
 		prefs = new LinkedHashSet<>();
-		allCoursesAssigned = Optional.empty();
+		allCoursesAssigned = null;
 	}
 
 	public static OdsSummarizer newInstance(Set<Course> allCourses) {
@@ -123,7 +122,7 @@ public class OdsSummarizer {
 		checkArgument(allCourses.containsAll(coursesInAssignments),
 				"The assignments must be for courses specified in allCourses attribute.");
 
-		allCoursesAssigned = Optional.of(assignmentsToBeSet);
+		allCoursesAssigned = assignmentsToBeSet;
 	}
 
 	/**
@@ -225,7 +224,7 @@ public class OdsSummarizer {
 	 * 
 	 */
 	private void setSummarizedFileForGroup(Course course, String group, Set<CoursePref> prefsForGroup,
-			Optional<Set<TeacherAssignment>> teachersAssigned) {
+			Set<TeacherAssignment> teachersAssigned) {
 
 		checkNotNull(course, "The course should not be null.");
 		checkNotNull(group, "The group should not be null.");
@@ -250,8 +249,8 @@ public class OdsSummarizer {
 			ods.setValueAt(p.getTeacher().getLastName(), line, 6);
 			ods.setValueAt(p.getPref(group).toString(), line, 7);
 
-			if (teachersAssigned.isPresent()) {
-				for (TeacherAssignment ta : teachersAssigned.get()) {
+			if (teachersAssigned != null) {
+				for (TeacherAssignment ta : teachersAssigned) {
 					if (p.getTeacher().equals(ta.getTeacher()) && ta.getCountGroups(group) != 0) {
 						ods.setValueAt(ta.getTeacher().getFirstName(), line, 8);
 						ods.setValueAt(ta.getTeacher().getLastName(), line, 9);
@@ -319,15 +318,15 @@ public class OdsSummarizer {
 			formatCourseHeader();
 
 			Set<TeacherAssignment> ta = new LinkedHashSet<>();
-			Optional<Set<TeacherAssignment>> teachersAssigned = Optional.empty();
+			Set<TeacherAssignment> teachersAssigned = null;
 
-			if (allCoursesAssigned.isPresent()) {
-				for (CourseAssignment ca : allCoursesAssigned.get()) {
+			if (allCoursesAssigned != null) {
+				for (CourseAssignment ca : allCoursesAssigned) {
 					if (course.equals(ca.getCourse())) {
 						ta.addAll(ca.getTeacherAssignments());
 					}
 				}
-				teachersAssigned = Optional.of(ta);
+				teachersAssigned = ta;
 			}
 
 			Set<CoursePref> prefsForGroup;
