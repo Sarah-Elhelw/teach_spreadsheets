@@ -43,13 +43,9 @@ public class OdsSummarizer {
 	private final static String CANDIDATES_LAST_NAME_POSITION = "G3";
 	private final static String CHOICES_POSITION = "H3";
 	private final static String ASSIGNMENT_POSITION = "I3";
-	
-	enum SubCourseKind{
-		CM,
-		CMTD,
-		CMTP,
-		TD,
-		TP
+
+	enum SubCourseKind {
+		CM, CMTD, CMTP, TD, TP
 	}
 
 	private OdsHelper ods;
@@ -103,10 +99,8 @@ public class OdsSummarizer {
 	}
 
 	/**
-	 * This method sets all the assignments for the courses. In this class, the
-	 * assignments are set as optional in the case only the teachers' preferences
-	 * are available : an empty optional means there are no assignment information
-	 * to display.
+	 * This method sets all the assignments for the courses. The assignments can be
+	 * equals to null if there are no assignments
 	 * 
 	 * @param assignmentsToBeSet - These are all the courses' assignments to be
 	 *                           written in the FichierAgrege
@@ -336,7 +330,8 @@ public class OdsSummarizer {
 				if (course.getCountGroups(group.toString()) > 0) {
 
 					for (CoursePref p : prefs) {
-						if (course.equals(p.getCourse()) && !p.getPref(group.toString()).toString().equals("UNSPECIFIED")) {
+						if (course.equals(p.getCourse())
+								&& !p.getPref(group.toString()).toString().equals("UNSPECIFIED")) {
 							prefsForGroup.add(p);
 						}
 					}
@@ -348,7 +343,7 @@ public class OdsSummarizer {
 		}
 
 		putBorders();
-		
+
 		return document;
 
 	}
