@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.teach_spreadsheets.write;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.odftoolkit.simple.SpreadsheetDocument;
@@ -76,35 +77,27 @@ public class OdsSummarizerTests {
 
 			Table tableCreated = documentCreated.getTableByName("Summary");
 			Table table = document.getTableByName("Summary");
-			/*if(table.equals(tableCreated)) {
-				assertEquals("true", "true");
-			}else {
-				assertEquals("true", "false");
-			}
 			
-			if(table.getCellRangeByPosition("A1", "H12")
-					.equals(tableCreated.getCellRangeByPosition("A1", "H12"))) {
-				assertEquals("true", "true");
-			}else {
-				assertEquals("true", "false");
-			}
-			assertEquals(table.getCellRangeByPosition("A1", "H12"),
-					tableCreated.getCellRangeByPosition("A1", "H12"));
+			assertEquals(table.getCellByPosition("C4").getDisplayText(),
+					tableCreated.getCellByPosition("C4").getDisplayText());
 			
-			assertEquals(table, tableCreated);*/
 			assertEquals(table.getCellByPosition("F5").getDisplayText(),
 					tableCreated.getCellByPosition("F5").getDisplayText());
 			assertEquals(table.getCellByPosition("H5").getDisplayText(),
 					tableCreated.getCellByPosition("H5").getDisplayText());
+			
+			assertEquals(table.getCellByPosition("I8").getDisplayText(),
+					tableCreated.getCellByPosition("I8").getDisplayText());
+			
 			assertEquals(table.getCellByPosition("C11").getDisplayText(),
 					tableCreated.getCellByPosition("C11").getDisplayText());
+			
 			assertEquals(table.getCellByPosition("F12").getDisplayText(),
 					tableCreated.getCellByPosition("F12").getDisplayText());
 			assertEquals(table.getCellByPosition("H12").getDisplayText(),
 					tableCreated.getCellByPosition("H12").getDisplayText());
-			assertEquals(table.getCellByPosition("I8").getDisplayText(),
-					tableCreated.getCellByPosition("I8").getDisplayText());
-
+			
+			
 		}
 
 	}
