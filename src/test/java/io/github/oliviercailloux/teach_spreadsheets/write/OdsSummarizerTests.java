@@ -41,15 +41,15 @@ public class OdsSummarizerTests {
 		CoursePref pref3 = CoursePref.Builder.newInstance(course2, teacher1).setPrefTP(Preference.B)
 				.setPrefTD(Preference.C).build();
 
-		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(course1, teacher1).setCountGroupsTD(1)
-				.build();
+		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(course1, teacher1)
+				.setCountGroupsTD(1).build();
 		CourseAssignment.Builder courseAssignmentBuilder1 = CourseAssignment.Builder.newInstance(course1);
 		courseAssignmentBuilder1.addTeacherAssignment(teacherAssignment1);
 
 		CourseAssignment courseAssignment1 = courseAssignmentBuilder1.build();
 
-		TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(course2, teacher1).setCountGroupsTD(1)
-				.build();
+		TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(course2, teacher1)
+				.setCountGroupsTD(1).build();
 		CourseAssignment.Builder courseAssignmentBuilder2 = CourseAssignment.Builder.newInstance(course2);
 		courseAssignmentBuilder2.addTeacherAssignment(teacherAssignment2);
 
@@ -77,27 +77,26 @@ public class OdsSummarizerTests {
 
 			Table tableCreated = documentCreated.getTableByName("Summary");
 			Table table = document.getTableByName("Summary");
-			
+
 			assertEquals(table.getCellByPosition("C4").getDisplayText(),
 					tableCreated.getCellByPosition("C4").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("F5").getDisplayText(),
 					tableCreated.getCellByPosition("F5").getDisplayText());
 			assertEquals(table.getCellByPosition("H5").getDisplayText(),
 					tableCreated.getCellByPosition("H5").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("I8").getDisplayText(),
 					tableCreated.getCellByPosition("I8").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("C11").getDisplayText(),
 					tableCreated.getCellByPosition("C11").getDisplayText());
-			
+
 			assertEquals(table.getCellByPosition("F12").getDisplayText(),
 					tableCreated.getCellByPosition("F12").getDisplayText());
 			assertEquals(table.getCellByPosition("H12").getDisplayText(),
 					tableCreated.getCellByPosition("H12").getDisplayText());
-			
-			
+
 		}
 
 	}

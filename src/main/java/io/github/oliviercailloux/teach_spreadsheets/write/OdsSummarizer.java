@@ -320,8 +320,7 @@ public class OdsSummarizer {
 				if (course.getCountGroups(group) > 0) {
 
 					for (CoursePref p : prefs) {
-						if (course.equals(p.getCourse())
-								&& !p.getPref(group).toString().equals("UNSPECIFIED")) {
+						if (course.equals(p.getCourse()) && !p.getPref(group).toString().equals("UNSPECIFIED")) {
 							prefsForGroup.add(p);
 						}
 					}
