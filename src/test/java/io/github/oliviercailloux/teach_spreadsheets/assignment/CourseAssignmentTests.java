@@ -2,10 +2,7 @@ package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableSet;
-
 import java.util.LinkedHashSet;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
