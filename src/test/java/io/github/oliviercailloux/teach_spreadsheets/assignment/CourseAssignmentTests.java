@@ -16,10 +16,8 @@ public class CourseAssignmentTests {
 
 	private static Teacher teacher1 = Teacher.Builder.newInstance().setLastName("Doe").setFirstName("John").build();
 	private static Teacher teacher2 = Teacher.Builder.newInstance().setLastName("Doe").setFirstName("Jane").build();
-	private static Course course1 = Course.Builder.newInstance().setName("Java").setCountGroupsTD(2).setNbMinutesTD(900)
+	private static Course course = Course.Builder.newInstance().setName("Java").setCountGroupsTD(2).setNbMinutesTD(900)
 			.setSemester(1).setStudyLevel("DE1").setStudyYear(2016).build();
-	private static Course course2 = Course.Builder.newInstance().setName("C").setCountGroupsTD(3).setNbMinutesTD(1000)
-			.setSemester(2).setStudyLevel("DE1").setStudyYear(2016).build();
 
 	@Test
 	void testSetCourseWithNullCourse() {
@@ -31,11 +29,11 @@ public class CourseAssignmentTests {
 
 	@Test
 	void testAddTeacherAssignmentWithExceedingCountGroupsTD() {
-		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(course1, teacher1)
+		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(course, teacher1)
 				.setCountGroupsTD(2).build();
-		TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(course1, teacher2)
+		TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(course, teacher2)
 				.setCountGroupsTD(2).build();
-		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course1);
+		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course);
 		courseAssignmentBuilder.addTeacherAssignment(teacherAssignment1);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			courseAssignmentBuilder.addTeacherAssignment(teacherAssignment2);
@@ -47,8 +45,8 @@ public class CourseAssignmentTests {
 
 	@Test
 	void testAddTeacherAssignmentWithZeroGroupsAssigned() {
-		TeacherAssignment teacherAssignment0 = TeacherAssignment.Builder.newInstance(course1, teacher1).build();
-		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course1);
+		TeacherAssignment teacherAssignment0 = TeacherAssignment.Builder.newInstance(course, teacher1).build();
+		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			courseAssignmentBuilder.addTeacherAssignment(teacherAssignment0);
 		});
@@ -58,34 +56,8 @@ public class CourseAssignmentTests {
 	@Test
 	void testNewInstanceWithTwoParametersWithNoTeacherAssignment() {
 		Throwable exception = assertThrows(IllegalStateException.class, () -> {
-			CourseAssignment.newInstance(course1, new LinkedHashSet<TeacherAssignment>());
+			CourseAssignment.newInstance(course, new LinkedHashSet<TeacherAssignment>());
 		});
 		assertEquals("The course assignment must contain at least one teacher assignment.", exception.getMessage());
-	}
-	
-	@Test
-	void testGetTeachersAssignments() {
-		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(course1, teacher1)
-				.setCountGroupsTD(1).build();
-		TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(course2, teacher2)
-				.setCountGroupsTD(1).build();
-		TeacherAssignment teacherAssignment3 = TeacherAssignment.Builder.newInstance(course2, teacher1)
-				.setCountGroupsTD(2).build();
-		
-		CourseAssignment.Builder courseAssignmentBuilder1 = CourseAssignment.Builder.newInstance(course1);
-		courseAssignmentBuilder1.addTeacherAssignment(teacherAssignment1);
-		CourseAssignment courseAssignment1 = courseAssignmentBuilder1.build();
-		
-		CourseAssignment.Builder courseAssignmentBuilder2 = CourseAssignment.Builder.newInstance(course2);
-		courseAssignmentBuilder2.addTeacherAssignment(teacherAssignment2);
-		courseAssignmentBuilder2.addTeacherAssignment(teacherAssignment3);
-		CourseAssignment courseAssignment2 = courseAssignmentBuilder2.build();
-		
-		Set<CourseAssignment> courseAssignments = new LinkedHashSet<>();
-		courseAssignments.add(courseAssignment1);
-		courseAssignments.add(courseAssignment2);
-		
-		assertEquals(ImmutableSet.of(teacherAssignment1, teacherAssignment3).toString(),
-				CourseAssignment.getTeacherAssignments(teacher1, courseAssignments).toString());
 	}
 }
