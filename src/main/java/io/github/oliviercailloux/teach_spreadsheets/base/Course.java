@@ -113,8 +113,8 @@ public class Course {
 	}
 	
 	/**
-	 * This method is a standardized getter for the number of minutes of a group
-	 * course.
+	 * This method is a standardized getter for the number of minutes of a course
+	 * group.
 	 * 
 	 * @param group - the name of the group whose number of minutes we want to get.
 	 * 
@@ -124,17 +124,17 @@ public class Course {
 	 * @throws IllegalArgumentException if group is not equal to "CM" or "TD" or
 	 *                                  "TP" or "CMTD" or "CMTP".
 	 */
-	public int getNbMinutes(String group) {
+	public int getNbMinutes(SubCourseKind group) {
 		switch (group) {
-		case "CM":
+		case CM:
 			return getNbMinutesCM();
-		case "TD":
+		case TD:
 			return getNbMinutesTD();
-		case "TP":
+		case TP:
 			return getNbMinutesTP();
-		case "CMTD":
+		case CMTD:
 			return getNbMinutesCMTD();
-		case "CMTP":
+		case CMTP:
 			return getNbMinutesCMTP();
 		default:
 			throw new IllegalArgumentException("The argument must be CM, TD, TP, CMTD or CMTP.");

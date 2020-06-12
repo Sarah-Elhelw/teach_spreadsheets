@@ -85,9 +85,6 @@ public class CourseAssignmentTests {
 		courseAssignments.add(courseAssignment1);
 		courseAssignments.add(courseAssignment2);
 		
-		System.out.println(ImmutableSet.of(teacherAssignment1, teacherAssignment3));
-		System.out.println(CourseAssignment.getTeacherAssignments(teacher1, courseAssignments));
-		
 		assertEquals(ImmutableSet.of(teacherAssignment1, teacherAssignment3).toString(),
 				CourseAssignment.getTeacherAssignments(teacher1, courseAssignments).toString());
 	}

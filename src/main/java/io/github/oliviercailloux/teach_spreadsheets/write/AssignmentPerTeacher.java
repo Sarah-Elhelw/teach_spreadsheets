@@ -18,13 +18,13 @@ import com.google.common.collect.ImmutableSet;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 
 public class AssignmentPerTeacher {
 
-	private static final ImmutableList<String> GROUPS = ImmutableList.of("CM", "CMTD", "CMTP", "TD", "TP");
 	private static int totalNumberMinutes;
 
 	/**
@@ -216,9 +216,9 @@ public class AssignmentPerTeacher {
 			ods.setValueAt(String.valueOf(ta.getCourse().getSemester()), line, 1);
 			ods.setValueAt(ta.getCourse().getName(), line, 2);
 
-			for (String group : GROUPS) {
+			for (SubCourseKind group : SubCourseKind.values()) {
 				if (ta.getCountGroups(group) != 0) {
-					ods.setValueAt(group, line, 3);
+					ods.setValueAt(group.toString(), line, 3);
 					ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group) / 60.0), line, 4);
 					totalNumberMinutes += ta.getCourse().getNbMinutes(group);
 					line++;
