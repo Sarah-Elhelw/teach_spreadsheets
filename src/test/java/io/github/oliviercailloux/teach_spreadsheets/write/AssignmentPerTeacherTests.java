@@ -46,8 +46,8 @@ public class AssignmentPerTeacherTests {
 			Table tableCreated = documentCreated.getTableByName("Summary");
 			Table table = document.getTableByName("Summary");
 
-			for (int i=0; i<12; i++) {
-				for (int j=0; j<8; j++) {
+			for (int i=0; i<5; i++) {
+				for (int j=0; j<21; j++) {
 					assertEquals(table.getCellByPosition(i, j).getDisplayText(),
 							tableCreated.getCellByPosition(i, j).getDisplayText());
 				}
