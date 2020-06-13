@@ -71,39 +71,6 @@ public class JsonDeserializerTests {
 		
 	}
 	
-	
-	public class Person {
-		private String firstName;
-		private String lastName;
-		
-		@JsonbCreator
-		public Person(){
-			firstName = "";
-			lastName = "";
-		}
-		
-		public String getFirstName() {
-			return firstName;
-		}
-		public String getLastName() {
-			return lastName;
-		}
-		
-		public void setFirstName(String firstName) {
-			this.firstName = firstName;
-		}
-		public void setLastName(String lastName) {
-			this.lastName = lastName;
-		}
-		
-		@Override
-		public String toString() {
-			return MoreObjects.toStringHelper(this).add("firstName=", firstName).add("lastName=", lastName)
-					.toString();
-		}
-		
-	}
-	
 	@Test
 	void testBug() throws Exception {
 		
@@ -134,7 +101,7 @@ public class JsonDeserializerTests {
 			}.getClass().getGenericSuperclass());
 			
 			/** The deserialization process works properly: */
-			assertEquals(List.of(), list);
+			assertEquals("[Person{firstName=John, lastName=Doe}]", list.toString());
 		}
 	}
 
