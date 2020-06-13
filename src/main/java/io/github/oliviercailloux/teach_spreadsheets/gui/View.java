@@ -209,20 +209,6 @@ public class View {
 	}
 
 	/**
-	 * This method closes the application.
-	 */
-	public void exitApplication() {
-		MessageBox messageBox = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
-		messageBox.setMessage("Your choices have been submitted. Do you want to exit the application?");
-		messageBox.setText("Closing the application");
-		int response = messageBox.open();
-		if (response == SWT.YES) {
-			LOGGER.info("The application has been closed.");
-			System.exit(0);
-		}
-	}
-
-	/**
 	 * Sets a preference table composite parameters and creates the table for this
 	 * composite.
 	 * 

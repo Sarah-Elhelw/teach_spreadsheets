@@ -83,7 +83,7 @@ public class Controller {
 			public void handleEvent(Event event) {
 				Point pt = new Point(event.x, event.y);
 				TableItem item = source.getItem(pt);
-				callbackListener(item, toChosenPreferences);
+				updateModelAndView(item, toChosenPreferences);
 			}
 		};
 	}
@@ -97,7 +97,6 @@ public class Controller {
 			@Override
 			public void handleEvent(Event event) {
 				LOGGER.info("Submitted assignments: " + createAssignments().toString());
-				view.exitApplication();
 			}
 		};
 	}
@@ -110,7 +109,7 @@ public class Controller {
 	 * @param toChosenPreferences true iff the table item that has been clicked was
 	 *                            on the table All Preferences
 	 */
-	public void callbackListener(TableItem item, boolean toChosenPreferences) {
+	public void updateModelAndView(TableItem item, boolean toChosenPreferences) {
 		checkNotNull(item);
 		checkNotNull(view);
 		checkNotNull(model);
@@ -132,7 +131,7 @@ public class Controller {
 	 * 
 	 * @throws Exception
 	 */
-	public void setModelData() throws Exception {
+	private void setModelData() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("multipleOdsFolder");
 		try (InputStream stream = resourceUrl.openStream()) {
 			Set<CalcData> calcDatas = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()));
@@ -146,7 +145,7 @@ public class Controller {
 	 * @return an ImmutableSet of teacher assignments corresponding to the chosen
 	 *         preferences table in the GUI.
 	 */
-	public ImmutableSet<TeacherAssignment> createAssignments() {
+	private ImmutableSet<TeacherAssignment> createAssignments() {
 
 		Set<CoursePrefElement> chosenPreferences = model.getChosenPreferences();
 		com.google.common.collect.Table<Teacher, Course, TeacherAssignment.Builder> teacherAssignmentMapTable = HashBasedTable
