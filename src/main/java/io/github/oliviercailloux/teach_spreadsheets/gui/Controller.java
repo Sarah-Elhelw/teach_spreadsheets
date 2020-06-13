@@ -8,6 +8,7 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.swt.SWT;
@@ -25,6 +26,7 @@ import com.google.common.collect.ImmutableSet;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
+import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 import io.github.oliviercailloux.teach_spreadsheets.read.MultipleOdsPrefReader;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
@@ -121,7 +123,7 @@ public class Controller {
 			i += 1;
 		}
 
-		model.updatePreferences(texts, toChosenPreferences);
+		updatePreferences(texts, toChosenPreferences);
 		view.moveTableItem(item, texts.toArray(new String[0]), toChosenPreferences);
 	}
 	
@@ -210,8 +212,109 @@ public class Controller {
 			break;
 		default:
 		}
-	}
+	}	
+	/**
+	 * returns the strings that are needed to be shown in the GUI for this element
+	 * 
+	 * @return a list of 4 strings : first is teacher name, second is course name,
+	 *         third is group type and fourth is teacher choice for this course
+	 */
+	private List<String> getDataForTableItem(CoursePrefElement coursePrefElement) {
+		ArrayList<String> strings = new ArrayList<>();
+		
+		CoursePref coursePref= coursePrefElement.getCoursePref();
+		
+		Teacher teacher = coursePref.getTeacher();
+		Course course = coursePref.getCourse();
 
+		String teacherName = teacher.getLastName() + " " + teacher.getFirstName();
+		String courseName = course.getName();
+		String groupType = coursePrefElement.getCourseType().name();
+
+		String choice = "";
+
+		switch (groupType) {
+		case "CM":
+			choice = coursePref.getPrefCM().name();
+			break;
+		case "TD":
+			choice = coursePref.getPrefTD().name();
+			break;
+		case "CMTD":
+			choice = coursePref.getPrefCMTD().name();
+			break;
+		case "TP":
+			choice = coursePref.getPrefTP().name();
+			break;
+		case "CMTP":
+			choice = coursePref.getPrefCMTP().name();
+			break;
+		default:
+		}
+
+		strings.add(teacherName);
+		strings.add(courseName);
+		strings.add(groupType);
+		strings.add(choice);
+
+		return strings;
+	}
+	/**
+	 * Updates sets of CoursePrefElement thanks to the data retrieved from a table
+	 * item
+	 * 
+	 * @param stringTableItem the strings shown from the table item. Its size is 4 :
+	 *                        first element is teacher name, second is course name,
+	 *                        third is group type and fourth is teacher choice
+	 * @param source          the set where we want to find the CoursePrefElement
+	 *                        object corresponding to stringTableItem
+	 * @param target          the set where we want to add the CoursePrefElement
+	 *                        object corresponding to stringTableItem
+	 */
+	private void updateSet(List<String> stringTableItem, Set<CoursePrefElement> source,
+			Set<CoursePrefElement> target) {
+		checkNotNull(stringTableItem);
+		checkArgument(stringTableItem.size() == 4);
+		checkNotNull(source);
+		checkNotNull(target);
+
+		for (CoursePrefElement coursePrefElement : source) {
+
+			List<String> stringCoursePrefElement = getDataForTableItem(coursePrefElement);
+
+			if (stringCoursePrefElement.get(0).equals(stringTableItem.get(0))
+					&& stringCoursePrefElement.get(1).equals(stringTableItem.get(1))
+					&& stringCoursePrefElement.get(2).equals(stringTableItem.get(2))
+					&& stringCoursePrefElement.get(3).equals(stringTableItem.get(3))) {
+				source.remove(coursePrefElement);
+				target.add(coursePrefElement);
+				break;
+			}
+		}
+	}
+	/**
+	 * This method is called from Controller class when a table item has been
+	 * clicked. Updates the data from Model thanks to the table item data.In order to call this
+	 * function the model must already be set.
+	 * 
+	 * @param texts               the strings shown from the table item. texts' size
+	 *                            is 4 : first element is teacher name, second is
+	 *                            course name, third is group type and fourth is
+	 *                            teacher choice
+	 * @param toChosenPreferences true iff the element that has been clicked is on
+	 *                            the Table named all preferences
+	 */
+	public void updatePreferences(ArrayList<String> texts, boolean toChosenPreferences) {
+		checkNotNull(texts);
+		checkArgument(texts.size() == 4);
+		checkNotNull(model);
+
+		if (toChosenPreferences) {
+			updateSet(texts,model.getAllPreferences(), model.getChosenPreferences());
+		} else {
+			updateSet(texts, model.getChosenPreferences(), model.getAllPreferences());
+		}
+	}
 	/**
 	 * the only purpose of this main is to test the gui.This is not the main
 	 * function of this program.

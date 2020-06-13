@@ -39,49 +39,4 @@ public class CoursePrefElement {
 	public CourseType getCourseType() {
 		return courseType;
 	}
-
-	/**
-	 * returns the strings that are needed to be shown in the GUI for this element
-	 * 
-	 * @return a list of 4 strings : first is teacher name, second is course name,
-	 *         third is group type and fourth is teacher choice for this course
-	 */
-	public List<String> getDataForTableItem() {
-		ArrayList<String> strings = new ArrayList<>();
-
-		Teacher teacher = coursePref.getTeacher();
-		Course course = coursePref.getCourse();
-
-		String teacherName = teacher.getLastName() + " " + teacher.getFirstName();
-		String courseName = course.getName();
-		String groupType = getCourseType().name();
-
-		String choice = "";
-
-		switch (groupType) {
-		case "CM":
-			choice = coursePref.getPrefCM().name();
-			break;
-		case "TD":
-			choice = coursePref.getPrefTD().name();
-			break;
-		case "CMTD":
-			choice = coursePref.getPrefCMTD().name();
-			break;
-		case "TP":
-			choice = coursePref.getPrefTP().name();
-			break;
-		case "CMTP":
-			choice = coursePref.getPrefCMTP().name();
-			break;
-		default:
-		}
-
-		strings.add(teacherName);
-		strings.add(courseName);
-		strings.add(groupType);
-		strings.add(choice);
-
-		return strings;
-	}
 }
