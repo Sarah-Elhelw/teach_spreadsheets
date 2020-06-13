@@ -8,10 +8,14 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	
-	@JsonbCreator
 	public Person(){
 		firstName = "";
 		lastName = "";
+	}
+	
+	@JsonbCreator
+	public static Person newInstance() {
+		return new Person();
 	}
 	
 	public String getFirstName() {
@@ -21,11 +25,13 @@ public class Person {
 		return lastName;
 	}
 	
-	public void setFirstName(String firstName) {
+	public Person setFirstName(String firstName) {
 		this.firstName = firstName;
+		return this;
 	}
-	public void setLastName(String lastName) {
+	public Person setLastName(String lastName) {
 		this.lastName = lastName;
+		return this;
 	}
 	
 	@Override
