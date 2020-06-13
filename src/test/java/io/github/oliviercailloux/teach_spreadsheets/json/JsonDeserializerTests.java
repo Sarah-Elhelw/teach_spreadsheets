@@ -7,12 +7,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbException;
+import javax.json.bind.annotation.JsonbCreator;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.junit.jupiter.api.Test;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -63,6 +69,73 @@ public class JsonDeserializerTests {
 			assertEquals("String must not be null.", ExceptionUtils.getRootCause(exception).getMessage());
 		}
 		
+	}
+	
+	
+	public class Person {
+		private String firstName;
+		private String lastName;
+		
+		@JsonbCreator
+		public Person(){
+			firstName = "";
+			lastName = "";
+		}
+		
+		public String getFirstName() {
+			return firstName;
+		}
+		public String getLastName() {
+			return lastName;
+		}
+		
+		public void setFirstName(String firstName) {
+			this.firstName = firstName;
+		}
+		public void setLastName(String lastName) {
+			this.lastName = lastName;
+		}
+		
+		@Override
+		public String toString() {
+			return MoreObjects.toStringHelper(this).add("firstName=", firstName).add("lastName=", lastName)
+					.toString();
+		}
+		
+	}
+	
+	@Test
+	void testBug() throws Exception {
+		
+		/** Deserialization with a wrongly formatted json file: */
+		
+		URL resourceUrl1 = JsonDeserializer.class.getResource("WrongFormat.json");
+		final Path path1 = Path.of(resourceUrl1.toURI());
+		String json1 = Files.readString(path1);
+		
+		try (Jsonb jsonb = JsonbBuilder.create()) {
+			List<Person> list = jsonb.fromJson(json1, new ArrayList<Person>() {
+				private static final long serialVersionUID = -7485196487128234751L;
+			}.getClass().getGenericSuperclass());
+			
+			/** The deserialization process returns an empty list instead of failing fast: */
+			assertEquals(List.of(), list);
+		}
+		
+		/** Deserialization with a rightly formatted json file: */
+		
+		URL resourceUrl2 = JsonDeserializer.class.getResource("RightFormat.json");
+		final Path path2 = Path.of(resourceUrl2.toURI());
+		String json2 = Files.readString(path2);
+		
+		try (Jsonb jsonb = JsonbBuilder.create()) {
+			List<Person> list = jsonb.fromJson(json2, new ArrayList<Person>() {
+				private static final long serialVersionUID = -7485196487128234751L;
+			}.getClass().getGenericSuperclass());
+			
+			/** The deserialization process works properly: */
+			assertEquals(List.of(), list);
+		}
 	}
 
 }
