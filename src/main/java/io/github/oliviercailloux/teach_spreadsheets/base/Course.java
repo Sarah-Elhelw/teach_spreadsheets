@@ -1,6 +1,8 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
+import com.google.common.base.VerifyException;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -91,6 +93,34 @@ public class Course {
 	public int getCountGroupsCM() {
 		return countGroupsCM;
 	}
+	
+	/**
+	 * This method is a standardized getter for the groups.
+	 * 
+	 * @param group - the name of the group whose number we want to get.
+	 * 
+	 * @return - the number of CM or TD or TP or CMTD or CMTP groups depending on
+	 *         the value of the parameter group.
+	 * 
+	 * @throws VerifyException if group is not equal to "CM" or "TD" or "TP" or
+	 *                         "CMTD" or "CMTP".
+	 */
+	public int getCountGroups(SubCourseKind group) {
+		switch (group) {
+		case CM:
+			return getCountGroupsCM();
+		case TD:
+			return getCountGroupsTD();
+		case TP:
+			return getCountGroupsTP();
+		case CMTD:
+			return getCountGroupsCMTD();
+		case CMTP:
+			return getCountGroupsCMTP();
+		default:
+			throw new VerifyException("The argument must be CM, TD, TP, CMTD or CMTP.");
+		}
+	}
 
 	public int getNbMinutesTD() {
 		return nbMinutesTD;
@@ -110,6 +140,35 @@ public class Course {
 
 	public int getNbMinutesCM() {
 		return nbMinutesCM;
+	}
+	
+	/**
+	 * This method is a standardized getter for the number of minutes of a course
+	 * group.
+	 * 
+	 * @param group - the name of the group whose number of minutes we want to get.
+	 * 
+	 * @return - the number of minutes of CM or TD or TP or CMTD or CMTP groups
+	 *         depending on the value of the parameter group.
+	 * 
+	 * @throws VerifyException if group is not equal to "CM" or "TD" or "TP" or
+	 *                         "CMTD" or "CMTP".
+	 */
+	public int getNbMinutes(SubCourseKind group) {
+		switch (group) {
+		case CM:
+			return getNbMinutesCM();
+		case TD:
+			return getNbMinutesTD();
+		case TP:
+			return getNbMinutesTP();
+		case CMTD:
+			return getNbMinutesCMTD();
+		case CMTP:
+			return getNbMinutesCMTP();
+		default:
+			throw new VerifyException("The argument must be CM, TD, TP, CMTD or CMTP.");
+		}
 	}
 
 	public static class Builder {
