@@ -33,7 +33,7 @@ public class CalcDataTests {
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			CalcData.newInstance(coursePrefs, teacher);
 		});
-		assertEquals("You can't have two courses of the same name.", exception.getMessage());
+		assertEquals("You can't have twice the preferences of a course.", exception.getMessage());
 
 	}
 

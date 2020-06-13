@@ -6,8 +6,13 @@ import java.util.logging.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Preconditions;
+import com.google.common.base.VerifyException;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
+
+import io.github.oliviercailloux.teach_spreadsheets.base.Course;
+import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 
@@ -23,6 +28,7 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class TeacherAssignment {
 	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(TeacherAssignment.class);
+	private final Course course;
 	private final Teacher teacher;
 	private int countGroupsTD;
 	private int countGroupsTP;
@@ -30,8 +36,9 @@ public class TeacherAssignment {
 	private int countGroupsCMTP;
 	private int countGroupsCM;
 
-	private TeacherAssignment(Teacher teacher) {
-		this.teacher = Preconditions.checkNotNull(teacher, "The teacher assigned must not be null.");
+	private TeacherAssignment(Course course, Teacher teacher) {
+		this.course = checkNotNull(course, "The course must not be null.");
+		this.teacher = checkNotNull(teacher, "The teacher assigned must not be null.");
 		countGroupsTD = 0;
 		countGroupsTP = 0;
 		countGroupsCMTD = 0;
@@ -42,12 +49,12 @@ public class TeacherAssignment {
 	public static class Builder {
 		private TeacherAssignment teacherAssignmentToBuild;
 
-		private Builder(Teacher teacher) {
-			teacherAssignmentToBuild = new TeacherAssignment(teacher);
+		private Builder(Course course, Teacher teacher) {
+			teacherAssignmentToBuild = new TeacherAssignment(course, teacher);
 		}
 
-		public static Builder newInstance(Teacher teacher) {
-			return new Builder(teacher);
+		public static Builder newInstance(Course course, Teacher teacher) {
+			return new Builder(course, teacher);
 		}
 
 		/**
@@ -62,89 +69,113 @@ public class TeacherAssignment {
 
 		/**
 		 * Sets the value of the attribute countGroupsTD of teacherAssignmentToBuild.
-		 * This value must be positive.
+		 * This value must be positive and inferior to the number of TD groups of the
+		 * course.
 		 * 
 		 * @param countGroupsTD - the integer used to set the value of the attribute
 		 *                      countGroupsTD
 		 * 
 		 * @return this - the object that called the method
 		 * 
-		 * @throws IllegalArgumentException if the parameter is negative
+		 * @throws IllegalArgumentException if the parameter is negative or exceeds the
+		 *                                  number of TD groups of the course
 		 */
 		public Builder setCountGroupsTD(int countGroupsTD) {
-			Preconditions.checkArgument(countGroupsTD >= 0, "The number of TD groups must be positive.");
+			checkArgument(countGroupsTD >= 0, "The number of TD groups must be positive.");
+			checkArgument(countGroupsTD <= teacherAssignmentToBuild.course.getCountGroupsTD(),
+					"The number of TD groups assigned must not exceed the number of TD groups of the course.");
 			this.teacherAssignmentToBuild.countGroupsTD = countGroupsTD;
 			return this;
 		}
 
 		/**
 		 * Sets the value of the attribute countGroupsTP of teacherAssignmentToBuild.
-		 * This value must be positive.
+		 * This value must be positive and inferior to the number of TP groups of the
+		 * course.
 		 * 
 		 * @param countGroupsTP - the integer used to set the value of the attribute
 		 *                      countGroupsTP
 		 * 
 		 * @return this - the object that called the method
 		 * 
-		 * @throws IllegalArgumentException if the parameter is negative
+		 * @throws IllegalArgumentException if the parameter is negative or exceeds the
+		 *                                  number of TP groups of the course
 		 */
 		public Builder setCountGroupsTP(int countGroupsTP) {
-			Preconditions.checkArgument(countGroupsTP >= 0, "The number of TP groups must be positive.");
+			checkArgument(countGroupsTP >= 0, "The number of TP groups must be positive.");
+			checkArgument(countGroupsTP <= teacherAssignmentToBuild.course.getCountGroupsTP(),
+					"The number of TP groups assigned must not exceed the number of TP groups of the course.");
 			this.teacherAssignmentToBuild.countGroupsTP = countGroupsTP;
 			return this;
 		}
 
 		/**
 		 * Sets the value of the attribute countGroupsCMTD of teacherAssignmentToBuild.
-		 * This value must be positive.
+		 * This value must be positive and inferior to the number of CMTD groups of the
+		 * course.
 		 * 
 		 * @param countGroupsCMTD - the integer used to set the value of the attribute
 		 *                        countGroupsCMTD
 		 * 
 		 * @return this - the object that called the method
 		 * 
-		 * @throws IllegalArgumentException if the parameter is negative
+		 * @throws IllegalArgumentException if the parameter is negative or exceeds the
+		 *                                  number of CMTD groups of the course
 		 */
 		public Builder setCountGroupsCMTD(int countGroupsCMTD) {
-			Preconditions.checkArgument(countGroupsCMTD >= 0, "The number of CMTD groups must be positive.");
+			checkArgument(countGroupsCMTD >= 0, "The number of CMTD groups must be positive.");
+			checkArgument(countGroupsCMTD <= teacherAssignmentToBuild.course.getCountGroupsCMTD(),
+					"The number of CMTD groups assigned must not exceed the number of CMTD groups of the course.");
 			this.teacherAssignmentToBuild.countGroupsCMTD = countGroupsCMTD;
 			return this;
 		}
 
 		/**
 		 * Sets the value of the attribute countGroupsCMTP of teacherAssignmentToBuild.
-		 * This value must be positive.
+		 * This value must be positive and inferior to the number of CMTP groups of the
+		 * course.
 		 * 
 		 * @param countGroupsCMTP - the integer used to set the value of the attribute
 		 *                        countGroupsCMTP
 		 * 
 		 * @return this - the object that called the method
 		 * 
-		 * @throws IllegalArgumentException if the parameter is negative
+		 * @throws IllegalArgumentException if the parameter is negative or exceeds the
+		 *                                  number of CMTP groups of the course
 		 */
 		public Builder setCountGroupsCMTP(int countGroupsCMTP) {
-			Preconditions.checkArgument(countGroupsCMTP >= 0, "The number of CMTP groups must be positive.");
+			checkArgument(countGroupsCMTP >= 0, "The number of CMTP groups must be positive.");
+			checkArgument(countGroupsCMTP <= teacherAssignmentToBuild.course.getCountGroupsCMTP(),
+					"The number of CMTP groups assigned must not exceed the number of CMTP groups of the course.");
 			this.teacherAssignmentToBuild.countGroupsCMTP = countGroupsCMTP;
 			return this;
 		}
 
 		/**
 		 * Sets the value of the attribute countGroupsCM of teacherAssignmentToBuild.
-		 * This value must be positive.
+		 * This value must be positive and inferior to the number of CM groups of the
+		 * course.
 		 * 
 		 * @param countGroupsCM - the integer used to set the value of the attribute
 		 *                      countGroupsCM
 		 * 
 		 * @return this - the object that called the method
 		 * 
-		 * @throws IllegalArgumentException if the parameter is negative
+		 * @throws IllegalArgumentException if the parameter is negative or exceeds the
+		 *                                  number of CM groups of the course
 		 */
 		public Builder setCountGroupsCM(int countGroupsCM) {
-			Preconditions.checkArgument(countGroupsCM >= 0, "The number of CM groups must be positive.");
+			checkArgument(countGroupsCM >= 0, "The number of CM groups must be positive.");
+			checkArgument(countGroupsCM <= teacherAssignmentToBuild.course.getCountGroupsCM(),
+					"The number of CM groups assigned must not exceed the number of CM groups of the course.");
 			this.teacherAssignmentToBuild.countGroupsCM = countGroupsCM;
 			return this;
 		}
 
+	}
+
+	public Course getCourse() {
+		return course;
 	}
 
 	public Teacher getTeacher() {
@@ -170,18 +201,42 @@ public class TeacherAssignment {
 	public int getCountGroupsCM() {
 		return countGroupsCM;
 	}
+	
+	/**
+	 * This method is a standardized getter for the groups.
+	 * 
+	 * @param group - the name of the group whose number we want to get.
+	 * 
+	 * @return - the number of CM or TD or TP or CMTD or CMTP groups depending on
+	 *         the value of the parameter group.
+	 * 
+	 * @throws VerifyException if group is not equal to "CM" or "TD" or "TP" or
+	 *                         "CMTD" or "CMTP".
+	 */
+	public int getCountGroups(SubCourseKind group) {
+		switch (group) {
+		case CM:
+			return getCountGroupsCM();
+		case TD:
+			return getCountGroupsTD();
+		case TP:
+			return getCountGroupsTP();
+		case CMTD:
+			return getCountGroupsCMTD();
+		case CMTP:
+			return getCountGroupsCMTP();
+		default:
+			throw new VerifyException("The argument must be CM, TD, TP, CMTD or CMTP.");
+		}
+	}
 
 	@Override
 	public String toString() {
-		return MoreObjects.toStringHelper(this)
-	       .add("First name", teacher.getFirstName())
-	       .add("Last name", teacher.getLastName())
-	       .add("Number of TD groups", countGroupsTD)
-	       .add("Number of TP groups", countGroupsTP)
-	       .add("Number of CMTD groups", countGroupsCMTD)
-	       .add("Number of CMTP groups", countGroupsCMTP)
-	       .add("Number of CM groups", countGroupsCM)
-	       .toString();
+		return MoreObjects.toStringHelper(this).add("Course", course.getName())
+				.add("First name", teacher.getFirstName()).add("Last name", teacher.getLastName())
+				.add("Number of TD groups", countGroupsTD).add("Number of TP groups", countGroupsTP)
+				.add("Number of CMTD groups", countGroupsCMTD).add("Number of CMTP groups", countGroupsCMTP)
+				.add("Number of CM groups", countGroupsCM).toString();
 	}
 	
 	public static void main(String[] args) {

@@ -1,6 +1,7 @@
 package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
+import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 import java.util.Set;
 import java.util.logging.Level;
@@ -26,7 +27,7 @@ public class CourseAssignment {
 	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CourseAssignment.class);
 	
 	private final Course course;
-	
+
 	private ImmutableSet<TeacherAssignment> teacherAssignments;
 
 	private CourseAssignment(Course course) {
@@ -45,14 +46,14 @@ public class CourseAssignment {
 			courseAssignmentBuilder.addTeacherAssignment(ta);
 		}
 		CourseAssignment courseAssignment = courseAssignmentBuilder.build();
-		
+
 		return courseAssignment;
 	}
 
 	public static class Builder {
 		/**
 		 * Set of {@link TeacherAssignment} : it is used to build (by adding) the
-		 * finalTeacherAssignments.
+		 * teacherAssignments.
 		 */
 		private Set<TeacherAssignment> tempTeacherAssignments;
 		private CourseAssignment courseAssignmentToBuild;
@@ -81,17 +82,21 @@ public class CourseAssignment {
 		}
 
 		/**
-		 * Adds a teacher's assignment to the teacherAssignments. The total numbers of
-		 * assigned TD, TP, CMTD, CMTP and CM groups to the course must not exceed the
-		 * numbers of TD, TP, CMTD, CMTP and CM groups that are associated to the given
-		 * course. Moreover, we cannot add a teacher's assignment were the numbers of
-		 * assigned TD, TP, CMTD, CMTP and CM are all equal to zero.
+		 * Adds a teacher's assignment to the teacherAssignments. The teacher assignment
+		 * added must have the same course as the one in the course assignment.
+		 * Moreover, the total numbers of assigned TD, TP, CMTD, CMTP and CM groups to
+		 * the course must not exceed the numbers of TD, TP, CMTD, CMTP and CM groups
+		 * that are associated to the given course. Finally, we cannot add a teacher's
+		 * assignment were the numbers of assigned TD, TP, CMTD, CMTP and CM are all
+		 * equal to zero.
 		 * 
 		 * @param teacherAssignment - the object representing a new teacher's assignment
 		 *                          to the set of teacher's assignments.
 		 * 
 		 * @throws NullPointerException     if the parameter is null
-		 * @throws IllegalArgumentException if the total numbers of assigned TD, TP,
+		 * @throws IllegalArgumentException if the teacher assignment's course is not
+		 *                                  the same as the one in the course assignment
+		 *                                  or if the total numbers of assigned TD, TP,
 		 *                                  CMTD, CMTP and CM groups to the course
 		 *                                  exceed the numbers of TD, TP, CMTD, CMTP and
 		 *                                  CM groups that are associated to the given
@@ -102,6 +107,8 @@ public class CourseAssignment {
 		public void addTeacherAssignment(TeacherAssignment teacherAssignment) {
 			checkNotNull(courseAssignmentToBuild.course, "The Course must be set first.");
 			checkNotNull(teacherAssignment, "The teacherAssignment must not be null.");
+			checkArgument(teacherAssignment.getCourse().equals(courseAssignmentToBuild.course),
+					"The teacher assignment's course must be the same as the one in the course assignment.");
 
 			int sumAssignedGroupsTD = 0;
 			int sumAssignedGroupsTP = 0;
@@ -128,15 +135,44 @@ public class CourseAssignment {
 			tempTeacherAssignments.add(teacherAssignment);
 		}
 	}
-	
+
 	public Course getCourse() {
 		return course;
 	}
-	
-	public Set<TeacherAssignment> getTeacherAssignments(){
+
+	public ImmutableSet<TeacherAssignment> getTeacherAssignments() {
 		return teacherAssignments;
 	}
 	
+	/**
+	 * This method finds the teacher's assignments in a set of course assignments
+	 * for a given teacher.
+	 * 
+	 * @param teacher           - The teacher whose assignments we want to get.
+	 * @param courseAssignments - A complete set of CourseAssignment
+	 * 
+	 * @return - a set of assignments of the teacher
+	 * 
+	 */
+	public static ImmutableSet<TeacherAssignment> getTeacherAssignments(Teacher teacher,
+			Set<CourseAssignment> courseAssignments) {
+		checkNotNull(teacher, "The teacher should not be null.");
+		checkNotNull(courseAssignments, "The set of course assignments should not be null.");
+
+		Set<TeacherAssignment> assignments = new LinkedHashSet<>();
+
+		for (CourseAssignment ca : courseAssignments) {
+			for (TeacherAssignment ta : ca.getTeacherAssignments()) {
+				if (teacher.equals(ta.getTeacher())) {
+					assignments.add(ta);
+				}
+			}
+		}
+
+		return ImmutableSet.copyOf(assignments);
+
+	}
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this)
@@ -157,3 +193,4 @@ public class CourseAssignment {
 		}
 	
 }
+

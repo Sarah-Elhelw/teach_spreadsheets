@@ -1,7 +1,6 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
-
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -10,6 +9,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.slf4j.LoggerFactory;
+import com.google.common.base.VerifyException;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.Objects;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -22,8 +26,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 public class CoursePref {
 	private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CourseAssignment.class);
 	private static final String EXCEPTION = "A preferred number of groups needs to be positive.";
-	private static final String EXCEPTION_PREFERENCE = "You can't have a preference for a type of course that won't have sessions.";
-
 	private Course course;
 	private Teacher teacher;
 
@@ -46,31 +48,36 @@ public class CoursePref {
 	private int prefNbGroupsCMTP;
 
 	/**
-	 * Given a CM, TD, CMTD, TP or CMTP :
+	 * Checks the coherence of these arguments. If it's not coherent this method
+	 * will throw an IllegalArgumentException.
 	 * 
-	 * @param nbGroups   the number of groups to assign to this type of course
-	 * @param nbMinutes  the number of minutes for the sessions of this type of
-	 *                   course
-	 * @param preference the preference of the teacher for this type of course
-	 * @return false iff there is 0 group or 0 minutes for this type of course, but
-	 *         the teacher has a preference for it
+	 * @param nbGroups     the number of groups to assign to this type of course
+	 * @param nbGroupsPref the preferred number of groups for the teacher
+	 * @param nbMinutes    the number of minutes for the sessions of this type of
+	 *                     course
+	 * @param preference   the preference of the teacher for this type of course
 	 */
-	private static boolean isPreferenceCoherent(int nbGroups, int nbMinutes, Preference preference) {
-		return !((nbGroups == 0 || nbMinutes == 0) && preference != Preference.UNSPECIFIED);
+	private static void checkPreferenceCoherence(int nbGroups, int nbGroupsPref, int nbMinutes, Preference preference) {
+		checkArgument((nbGroups != 0 && nbMinutes != 0) || preference == Preference.UNSPECIFIED,
+				"Preference can't be specified if there are 0 groups and 0 minutes for a given type of course.");
+		checkArgument(nbGroupsPref == 0 || preference != Preference.UNSPECIFIED,
+				"Preference needs to be specified if there is more than 1 group that the teacher wants to get for a given type of course.");
+		checkArgument(nbGroupsPref <= nbGroups,
+				"The number of groups the teacher wants can't be greater than the number of groups.");
 	}
 
 	/**
-	 * @return true iff the values for the preferences are valid according to the
-	 *         course
+	 * checks if the values for the preferences are valid according to the course
 	 */
 	private void checkCoherence() {
 		checkNotNull(course);
-		if (!(isPreferenceCoherent(course.getCountGroupsCM(), course.getNbMinutesCM(), getPrefCM())
-				&& isPreferenceCoherent(course.getCountGroupsCMTD(), course.getNbMinutesCMTD(), getPrefCMTD())
-				&& isPreferenceCoherent(course.getCountGroupsCMTP(), course.getNbMinutesCMTP(), getPrefCMTP())
-				&& isPreferenceCoherent(course.getCountGroupsTD(), course.getNbMinutesTD(), getPrefTD())
-				&& isPreferenceCoherent(course.getCountGroupsTP(), course.getNbMinutesTP(), getPrefTP())))
-			throw new IllegalArgumentException(EXCEPTION_PREFERENCE);
+		checkPreferenceCoherence(course.getCountGroupsCM(), getPrefNbGroupsCM(), course.getNbMinutesCM(), getPrefCM());
+		checkPreferenceCoherence(course.getCountGroupsCMTD(), getPrefNbGroupsCMTD(), course.getNbMinutesCMTD(),
+				getPrefCMTD());
+		checkPreferenceCoherence(course.getCountGroupsCMTP(), getPrefNbGroupsCMTP(), course.getNbMinutesCMTP(),
+				getPrefCMTP());
+		checkPreferenceCoherence(course.getCountGroupsTD(), getPrefNbGroupsTD(), course.getNbMinutesTD(), getPrefTD());
+		checkPreferenceCoherence(course.getCountGroupsTP(), getPrefNbGroupsTP(), course.getNbMinutesTP(), getPrefTP());
 	}
 
 	private CoursePref() {
@@ -107,6 +114,34 @@ public class CoursePref {
 
 	public Preference getPrefCMTP() {
 		return prefCMTP;
+	}
+	
+	/**
+	 * This method is a standardized getter for the preferences for a group.
+	 * 
+	 * @param group - the name of the group whose teacher's preference we want to
+	 *              get.
+	 * 
+	 * @return - the preference of a teacher for the group.
+	 * 
+	 * @throws VerifyException if group is not equal to "CM" or "TD" or "TP" or
+	 *                         "CMTD" or "CMTP".
+	 */
+	public Preference getPref(SubCourseKind group) {
+		switch (group) {
+		case CM:
+			return getPrefCM();
+		case TD:
+			return getPrefTD();
+		case TP:
+			return getPrefTP();
+		case CMTD:
+			return getPrefCMTD();
+		case CMTP:
+			return getPrefCMTP();
+		default:
+			throw new VerifyException("The argument must be CM, TD, TP, CMTD or CMTP.");
+		}
 	}
 
 	public int getPrefNbGroupsCM() {
@@ -222,7 +257,38 @@ public class CoursePref {
 			return this;
 		}
 	}
-	
+
+	/**
+	 * We consider that two coursePrefs are equal if all their attributes are equal.
+	 * 
+	 * 
+	 * @return true if the object in parameter is equal to the coursePref and false
+	 *         if it is not equal
+	 * 
+	 */
+	@Override
+	public boolean equals(Object o2) {
+		if (!(o2 instanceof CoursePref)) {
+			return false;
+		}
+		if (this == o2) {
+			return true;
+		}
+		CoursePref cp2 = (CoursePref) o2;
+
+		return course.equals(cp2.course) && teacher.equals(cp2.teacher) && prefCM.equals(cp2.prefCM)
+				&& prefTD.equals(cp2.prefTD) && prefCMTD.equals(cp2.prefCMTD) && prefTP.equals(cp2.prefTP)
+				&& prefCMTP.equals(cp2.prefCMTP) && prefNbGroupsCM == cp2.prefNbGroupsCM
+				&& prefNbGroupsTD == cp2.prefNbGroupsTD && prefNbGroupsCMTD == cp2.prefNbGroupsCMTD
+				&& prefNbGroupsTP == cp2.prefNbGroupsTP && prefNbGroupsCMTP == cp2.prefNbGroupsCMTP;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(course, teacher, prefCM, prefTD, prefCMTD, prefTP, prefCMTP, prefNbGroupsCM, prefNbGroupsTD,
+				prefNbGroupsCMTD, prefNbGroupsTP, prefNbGroupsCMTP);
+	}
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("prefCM", prefCM).add("prefTD", prefTD).add("prefCMTD", prefCMTD)

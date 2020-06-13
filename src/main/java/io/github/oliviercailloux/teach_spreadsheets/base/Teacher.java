@@ -10,6 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.slf4j.LoggerFactory;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.Objects;
 
 /**
  * Immutable. Class used to store a teacher's information. The minimum
@@ -66,9 +70,8 @@ public class Teacher {
 		}
 
 		public Teacher build() {
-			checkNotNull(teacherToBuild.lastName);
-			if (teacherToBuild.lastName.isEmpty())
-				throw new IllegalArgumentException();
+			checkNotNull(teacherToBuild.lastName, "Last name must be set.");
+			checkArgument(!teacherToBuild.lastName.isEmpty(), "Last name must be set.");
 			Teacher teacherBuilt = teacherToBuild;
 			teacherToBuild = new Teacher();
 			return teacherBuilt;
@@ -194,7 +197,41 @@ public class Teacher {
 	public String getOffice() {
 		return office;
 	}
-	
+
+	/**
+	 * We consider that two teachers are equal if all their attributes are equal.
+	 * 
+	 * @return true if the object in parameter is equal to the teacher and false if
+	 *         it is not equal
+	 * 
+	 */
+	@Override
+	public boolean equals(Object o2) {
+		if (!(o2 instanceof Teacher)) {
+			return false;
+		}
+		if (this == o2) {
+			return true;
+		}
+		Teacher t2 = (Teacher) o2;
+
+		/**
+		 * Checking equality for all the attributes of a Teacher seems necessary as they
+		 * will be used to fill the Fiche de service.
+		 */
+		return lastName.equals(t2.lastName) && firstName.equals(t2.firstName) && address.equals(t2.address)
+				&& postCode.equals(t2.postCode) && city.equals(t2.city) && personalPhone.equals(t2.personalPhone)
+				&& mobilePhone.equals(t2.mobilePhone) && dauphinePhoneNumber.equals(t2.dauphinePhoneNumber)
+				&& personalEmail.equals(t2.personalEmail) && dauphineEmail.equals(t2.dauphineEmail)
+				&& status.equals(t2.status) && office.equals(t2.office);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(lastName, firstName, address, postCode, city, personalPhone, mobilePhone,
+				dauphinePhoneNumber, personalEmail, dauphineEmail, status, office);
+	}
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).add("lastName", lastName).add("firstName", firstName)
@@ -210,3 +247,4 @@ public class Teacher {
 	logger.log(Level.INFO, "The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).");
 	}
 }
+

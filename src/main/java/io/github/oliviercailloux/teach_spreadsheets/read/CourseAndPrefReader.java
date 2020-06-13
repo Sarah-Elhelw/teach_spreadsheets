@@ -49,17 +49,11 @@ public class CourseAndPrefReader {
 
 	int currentSemester = 1;
 
-	/**
-	 * Stores the courses for future use when we'll try to open more than one file.
-	 */
-	Set<Course> courses;
-
 	public static CourseAndPrefReader newInstance() {
 		return new CourseAndPrefReader();
 	}
 
 	private CourseAndPrefReader() {
-		courses = new LinkedHashSet<>();
 	}
 
 	/**
@@ -78,7 +72,6 @@ public class CourseAndPrefReader {
 			Course.Builder courseBuilder = Course.Builder.newInstance();
 			setInfoCourse(sheet, courseBuilder, currentCol, currentRow, currentSemester);
 			Course course = courseBuilder.build();
-			courses.add(course);
 
 			CoursePref.Builder prefBuilder = CoursePref.Builder.newInstance(course, teacher);
 			/** Beware, there are hidden columns in the odsfile. */
