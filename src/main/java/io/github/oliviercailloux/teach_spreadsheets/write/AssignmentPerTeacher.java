@@ -218,7 +218,7 @@ public class AssignmentPerTeacher {
 			for (SubCourseKind group : SubCourseKind.values()) {
 				if (ta.getCountGroups(group) != 0) {
 					ods.setValueAt(group.toString(), line, 3);
-					ods.setValueAt(String.valueOf((int) (ta.getCourse().getNbMinutes(group) / 60.0)), line, 4);
+					ods.setValueAt(String.valueOf(ta.getCourse().getNbMinutes(group) / 60.0), line, 4);
 					totalNumberMinutes += ta.getCourse().getNbMinutes(group);
 					line++;
 				}
@@ -232,7 +232,7 @@ public class AssignmentPerTeacher {
 		ods.setValueAt("TOTAL", line, 3);
 		summary.getCellByPosition(3, line).setFont(new Font("Arial", FontStyle.BOLD, 12.0, new Color(42, 96, 153)));
 
-		ods.setValueAt(String.valueOf((int) (totalNumberMinutes / 60.0)), line, 4);
+		ods.setValueAt(String.valueOf(totalNumberMinutes / 60.0), line, 4);
 		summary.getCellByPosition(4, line).setBorders(CellBordersType.ALL_FOUR,
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 
