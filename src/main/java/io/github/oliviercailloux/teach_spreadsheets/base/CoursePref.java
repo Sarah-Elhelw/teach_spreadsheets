@@ -1,6 +1,8 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
 import com.google.common.base.MoreObjects;
+import com.google.common.base.VerifyException;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Objects;
@@ -103,6 +105,34 @@ public class CoursePref {
 
 	public Preference getPrefCMTP() {
 		return prefCMTP;
+	}
+	
+	/**
+	 * This method is a standardized getter for the preferences for a group.
+	 * 
+	 * @param group - the name of the group whose teacher's preference we want to
+	 *              get.
+	 * 
+	 * @return - the preference of a teacher for the group.
+	 * 
+	 * @throws VerifyException if group is not equal to "CM" or "TD" or "TP" or
+	 *                         "CMTD" or "CMTP".
+	 */
+	public Preference getPref(SubCourseKind group) {
+		switch (group) {
+		case CM:
+			return getPrefCM();
+		case TD:
+			return getPrefTD();
+		case TP:
+			return getPrefTP();
+		case CMTD:
+			return getPrefCMTD();
+		case CMTP:
+			return getPrefCMTP();
+		default:
+			throw new VerifyException("The argument must be CM, TD, TP, CMTD or CMTP.");
+		}
 	}
 
 	public int getPrefNbGroupsCM() {

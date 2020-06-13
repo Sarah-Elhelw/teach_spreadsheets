@@ -93,6 +93,34 @@ public class Course {
 	public int getCountGroupsCM() {
 		return countGroupsCM;
 	}
+	
+	/**
+	 * This method is a standardized getter for the groups.
+	 * 
+	 * @param group - the name of the group whose number we want to get.
+	 * 
+	 * @return - the number of CM or TD or TP or CMTD or CMTP groups depending on
+	 *         the value of the parameter group.
+	 * 
+	 * @throws VerifyException if group is not equal to "CM" or "TD" or "TP" or
+	 *                         "CMTD" or "CMTP".
+	 */
+	public int getCountGroups(SubCourseKind group) {
+		switch (group) {
+		case CM:
+			return getCountGroupsCM();
+		case TD:
+			return getCountGroupsTD();
+		case TP:
+			return getCountGroupsTP();
+		case CMTD:
+			return getCountGroupsCMTD();
+		case CMTP:
+			return getCountGroupsCMTP();
+		default:
+			throw new VerifyException("The argument must be CM, TD, TP, CMTD or CMTP.");
+		}
+	}
 
 	public int getNbMinutesTD() {
 		return nbMinutesTD;
