@@ -1,6 +1,8 @@
 package io.github.oliviercailloux.teach_spreadsheets.assignment;
 
 import com.google.common.base.MoreObjects;
+import com.google.common.base.VerifyException;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -213,7 +215,7 @@ public class TeacherAssignment {
 		case CMTP:
 			return getCountGroupsCMTP();
 		default:
-			throw new IllegalArgumentException("The argument must be CM, TD, TP, CMTD or CMTP.");
+			throw new VerifyException("The argument must be CM, TD, TP, CMTD or CMTP.");
 		}
 	}
 
