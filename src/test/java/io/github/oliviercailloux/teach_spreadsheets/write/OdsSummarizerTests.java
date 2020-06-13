@@ -77,8 +77,8 @@ public class OdsSummarizerTests {
 			Table tableCreated = documentCreated.getTableByName("Summary");
 			Table table = document.getTableByName("Summary");
 
-			for (int i = 0; i < 15; i++) {
-				for (int j = 0; j < 10; j++) {
+			for (int i = 0; i < 10; i++) {
+				for (int j = 0; j < 15; j++) {
 					assertEquals(table.getCellByPosition(i, j).getDisplayText(),
 							tableCreated.getCellByPosition(i, j).getDisplayText());
 				}
