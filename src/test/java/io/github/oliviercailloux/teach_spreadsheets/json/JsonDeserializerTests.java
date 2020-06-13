@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.json.bind.JsonbException;
@@ -15,7 +14,6 @@ import javax.json.bind.JsonbException;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.junit.jupiter.api.Test;
 
-import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -70,30 +68,31 @@ public class JsonDeserializerTests {
 	
 	@Test
 	void testBug() throws Exception {
-		
-		/** Deserialization with a wrongly formatted json file: */
-		
+
+		/** CASE 1 : Deserialization with a wrongly formatted json file: */
+
 		URL resourceUrl1 = JsonDeserializer.class.getResource("WrongFormat.json");
 		final Path path1 = Path.of(resourceUrl1.toURI());
 		String json1 = Files.readString(path1);
-		
+
 		List<Person> list1 = Person.toPersons(json1);
-		
+
 		/** The deserialization process returns an empty list instead of failing fast: */
 		assertEquals(List.of(), list1);
 		
-		/** Control: */
-		
+
+		/** CASE 2 : Control: */
+
 		URL resourceUrl2 = JsonDeserializer.class.getResource("RightFormat.json");
 		final Path path2 = Path.of(resourceUrl2.toURI());
 		String json2 = Files.readString(path2);
-		
+
 		List<Person> list2 = Person.toPersons(json2);
-		
+
 		/** The deserialization process works properly: */
-		
+
 		assertTrue(list2.size() == 1);
-		
+
 		Person actual = list2.get(0);
 		Person expected = Person.newInstance().setFirstName("John").setLastName("Doe");
 		assertEquals(expected, actual);
