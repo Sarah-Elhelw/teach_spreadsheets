@@ -102,8 +102,8 @@ public class Course {
 	 * @return - the number of CM or TD or TP or CMTD or CMTP groups depending on
 	 *         the value of the parameter group.
 	 * 
-	 * @throws IllegalArgumentException if group is not equal to "CM" or "TD" or
-	 *                                  "TP" or "CMTD" or "CMTP".
+	 * @throws VerifyException if group is not equal to "CM" or "TD" or "TP" or
+	 *                         "CMTD" or "CMTP".
 	 */
 	public int getCountGroups(SubCourseKind group) {
 		switch (group) {
@@ -151,8 +151,8 @@ public class Course {
 	 * @return - the number of minutes of CM or TD or TP or CMTD or CMTP groups
 	 *         depending on the value of the parameter group.
 	 * 
-	 * @throws IllegalArgumentException if group is not equal to "CM" or "TD" or
-	 *                                  "TP" or "CMTD" or "CMTP".
+	 * @throws VerifyException if group is not equal to "CM" or "TD" or "TP" or
+	 *                         "CMTD" or "CMTP".
 	 */
 	public int getNbMinutes(SubCourseKind group) {
 		switch (group) {

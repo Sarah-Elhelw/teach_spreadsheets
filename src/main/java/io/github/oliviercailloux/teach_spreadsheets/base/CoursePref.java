@@ -115,8 +115,8 @@ public class CoursePref {
 	 * 
 	 * @return - the preference of a teacher for the group.
 	 * 
-	 * @throws IllegalArgumentException if group is not equal to "CM" or "TD" or
-	 *                                  "TP" or "CMTD" or "CMTP".
+	 * @throws VerifyException if group is not equal to "CM" or "TD" or "TP" or
+	 *                         "CMTD" or "CMTP".
 	 */
 	public Preference getPref(SubCourseKind group) {
 		switch (group) {
