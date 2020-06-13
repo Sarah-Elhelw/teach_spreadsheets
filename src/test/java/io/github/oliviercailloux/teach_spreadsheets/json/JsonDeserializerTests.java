@@ -10,8 +10,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbException;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -79,29 +77,26 @@ public class JsonDeserializerTests {
 		final Path path1 = Path.of(resourceUrl1.toURI());
 		String json1 = Files.readString(path1);
 		
-		try (Jsonb jsonb = JsonbBuilder.create()) {
-			List<Person> list = jsonb.fromJson(json1, new ArrayList<Person>() {
-				private static final long serialVersionUID = -7485196487128234751L;
-			}.getClass().getGenericSuperclass());
-			
-			/** The deserialization process returns an empty list instead of failing fast: */
-			assertEquals(List.of(), list);
-		}
+		List<Person> list1 = Person.toPersons(json1);
 		
-		/** Deserialization with a rightly formatted json file: */
+		/** The deserialization process returns an empty list instead of failing fast: */
+		assertEquals(List.of(), list1);
+		
+		/** Control: */
 		
 		URL resourceUrl2 = JsonDeserializer.class.getResource("RightFormat.json");
 		final Path path2 = Path.of(resourceUrl2.toURI());
 		String json2 = Files.readString(path2);
 		
-		try (Jsonb jsonb = JsonbBuilder.create()) {
-			List<Person> list = jsonb.fromJson(json2, new ArrayList<Person>() {
-				private static final long serialVersionUID = -7485196487128234751L;
-			}.getClass().getGenericSuperclass());
-			
-			/** The deserialization process works properly: */
-			assertEquals("[Person{firstName=John, lastName=Doe}]", list.toString());
-		}
+		List<Person> list2 = Person.toPersons(json2);
+		
+		/** The deserialization process works properly: */
+		
+		assertTrue(list2.size() == 1);
+		
+		Person actual = list2.get(0);
+		Person expected = Person.newInstance().setFirstName("John").setLastName("Doe");
+		assertEquals(expected, actual);
 	}
 
 }
