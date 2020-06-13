@@ -46,41 +46,12 @@ public class AssignmentPerTeacherTests {
 			Table tableCreated = documentCreated.getTableByName("Summary");
 			Table table = document.getTableByName("Summary");
 
-			assertEquals(table.getCellByPosition("A4").getDisplayText(),
-					tableCreated.getCellByPosition("A4").getDisplayText());
-
-			assertEquals(table.getCellByPosition("C4").getDisplayText(),
-					tableCreated.getCellByPosition("C4").getDisplayText());
-
-			assertEquals(table.getCellByPosition("B6").getDisplayText(),
-					tableCreated.getCellByPosition("B6").getDisplayText());
-
-			assertEquals(table.getCellByPosition("C8").getDisplayText(),
-					tableCreated.getCellByPosition("C8").getDisplayText());
-
-			assertEquals(table.getCellByPosition("C10").getDisplayText(),
-					tableCreated.getCellByPosition("C10").getDisplayText());
-
-			assertEquals(table.getCellByPosition("C13").getDisplayText(),
-					tableCreated.getCellByPosition("C13").getDisplayText());
-			
-			assertEquals(table.getCellByPosition("A17").getDisplayText(),
-					tableCreated.getCellByPosition("A17").getDisplayText());
-
-			assertEquals(table.getCellByPosition("B17").getDisplayText(),
-					tableCreated.getCellByPosition("B17").getDisplayText());
-
-			assertEquals(table.getCellByPosition("C17").getDisplayText(),
-					tableCreated.getCellByPosition("C17").getDisplayText());
-
-			assertEquals(table.getCellByPosition("D17").getDisplayText(),
-					tableCreated.getCellByPosition("D17").getDisplayText());
-			
-			assertEquals(table.getCellByPosition("E17").getDisplayText(),
-					tableCreated.getCellByPosition("E17").getDisplayText());
-			
-			assertEquals(table.getCellByPosition("E21").getDisplayText(),
-					tableCreated.getCellByPosition("E21").getDisplayText());
+			for (int i=0; i<12; i++) {
+				for (int j=0; j<8; j++) {
+					assertEquals(table.getCellByPosition(i, j).getDisplayText(),
+							tableCreated.getCellByPosition(i, j).getDisplayText());
+				}
+			}
 
 		}
 	}
