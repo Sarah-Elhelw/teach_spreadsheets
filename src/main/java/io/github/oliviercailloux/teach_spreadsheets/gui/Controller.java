@@ -16,6 +16,8 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Widget;
@@ -64,7 +66,7 @@ public class Controller {
 	 * @param widget
 	 * @param eventType
 	 */
-	public void registerListener(Listener listener, Widget widget, int eventType) {
+	private void registerListener(Listener listener, Widget widget, int eventType) {
 		checkNotNull(widget);
 		checkNotNull(listener);
 
@@ -79,7 +81,7 @@ public class Controller {
 	 * @return a listener that retrieves the table item that has been clicked from
 	 *         source and calls callbackListener
 	 */
-	public Listener createListenerPreferences(Table source) {
+	private Listener createListenerPreferences(Table source) {
 		checkNotNull(source);
 		checkNotNull(view);
 		checkArgument(source == view.getAllPreferencesTable() || source == view.getChosenPreferencesTable(),
@@ -103,7 +105,7 @@ public class Controller {
 	 * @return a listener that calls createAssignments, logs the results and prompts
 	 *         the user to exit the application.
 	 */
-	public Listener createListenerSubmitButton() {
+	private Listener createListenerSubmitButton() {
 		return new Listener() {
 			@Override
 			public void handleEvent(Event event) {
@@ -120,7 +122,7 @@ public class Controller {
 	 * @param toChosenPreferences true iff the table item that has been clicked was
 	 *                            on the table All Preferences
 	 */
-	public void updateModelAndView(TableItem item, boolean toChosenPreferences) {
+	private void updateModelAndView(TableItem item, boolean toChosenPreferences) {
 		checkNotNull(item);
 		checkNotNull(view);
 		checkNotNull(model);
@@ -333,7 +335,7 @@ public class Controller {
 	 * @param toChosenPreferences true iff the element that has been clicked is on
 	 *                            the Table named all preferences
 	 */
-	public void updatePreferences(String[] texts, boolean toChosenPreferences) {
+	private void updatePreferences(String[] texts, boolean toChosenPreferences) {
 		checkNotNull(texts);
 		checkArgument(texts.length == 4);
 		checkNotNull(model);
@@ -342,6 +344,22 @@ public class Controller {
 			updateSet(texts, model.getAllPreferences(), model.getChosenPreferences());
 		} else {
 			updateSet(texts, model.getChosenPreferences(), model.getAllPreferences());
+		}
+	}
+	
+	/**
+	 * This method closes the application. model must not be null
+	 */
+	public void exitApplication() {
+		checkNotNull(view);
+		Shell shell=view.getShell();
+		MessageBox messageBox = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
+		messageBox.setMessage("Your choices have been submitted. Do you want to exit the application?");
+		messageBox.setText("Closing the application");
+		int response = messageBox.open();
+		if (response == SWT.YES) {
+			LOGGER.info("The application has been closed.");
+			System.exit(0);
 		}
 	}
 

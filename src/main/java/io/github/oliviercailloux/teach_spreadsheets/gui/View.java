@@ -97,6 +97,9 @@ public class View {
 	public Button getSubmitButton() {
 		return buttonSubmit;
 	}
+	public Shell getShell() {
+		return shell;
+	}
 
 	/**
 	 * Shows the gui.
