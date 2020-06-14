@@ -3,7 +3,6 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -16,7 +15,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -25,7 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
-import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
 /**
  * The View class creates the shell and manages it. Some of the code in this
@@ -160,35 +157,35 @@ public class View {
 			tableItem.setText(new String[] { courseName, courseType.name(), String.valueOf(nbGroups) });
 		}
 	}
+	
+	/**
+	 * Populates the courses table.
+	 * 
+	 * @param allPreferences a set of courses containing all the
+	 *                       information to show
+	 */
+	public void populateCourses(Set<Course> courses) {
+		checkNotNull(courses);
+
+		for (Course course : courses) {
+			addCourseToCoursesTable(course.getCountGroupsCM(), course.getName(), CourseType.CM);
+			addCourseToCoursesTable(course.getCountGroupsTD(), course.getName(), CourseType.TD);
+			addCourseToCoursesTable(course.getCountGroupsTP(), course.getName(), CourseType.TP);
+			addCourseToCoursesTable(course.getCountGroupsCMTD(), course.getName(), CourseType.CMTD);
+			addCourseToCoursesTable(course.getCountGroupsCMTP(), course.getName(), CourseType.CMTP);
+		}
+	}
 
 	/**
-	 * Initializes the courses and allPreferences tables.
-	 * 
-	 * @param allPreferences a set of CoursePrefElement containing all the
-	 *                       information about the preferences
+	 * Populates the All Preferences Table
+	 * @param stringsToShow a list of arrays of strings to set the texts for table items
 	 */
-	public void initPreferences(Set<CoursePrefElement> allPreferences) {
-		checkNotNull(allPreferences);
-
-		ArrayList<Course> coursesShown = new ArrayList<>();
-
-		for (CoursePrefElement coursePrefElement : allPreferences) {
-			CoursePref coursePref = coursePrefElement.getCoursePref();
-			Course course = coursePref.getCourse();
-
-			if (!coursesShown.contains(course)) {
-				coursesShown.add(course);
-
-				addCourseToCoursesTable(course.getCountGroupsCM(), course.getName(), CourseType.CM);
-				addCourseToCoursesTable(course.getCountGroupsTD(), course.getName(), CourseType.TD);
-				addCourseToCoursesTable(course.getCountGroupsTP(), course.getName(), CourseType.TP);
-				addCourseToCoursesTable(course.getCountGroupsCMTD(), course.getName(), CourseType.CMTD);
-				addCourseToCoursesTable(course.getCountGroupsCMTP(), course.getName(), CourseType.CMTP);
-			}
-
-			List<String> data = coursePrefElement.getDataForTableItem();
+	public void populateAllPreferences(List<String[]> stringsToShow) {
+		checkNotNull(stringsToShow);
+		
+		for (String[] coursePrefElement : stringsToShow) {
 			TableItem tableItem = new TableItem(allPreferencesTable, SWT.NONE);
-			tableItem.setText(data.toArray(new String[0]));
+			tableItem.setText(coursePrefElement);
 		}
 	}
 

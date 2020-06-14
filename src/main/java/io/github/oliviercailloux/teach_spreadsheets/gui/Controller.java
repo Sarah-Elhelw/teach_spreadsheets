@@ -42,21 +42,24 @@ public class Controller {
 	private View view;
 	private Model model;
 	private final static Logger LOGGER = LoggerFactory.getLogger(View.class);
-	
+
 	public static Controller newInstance(View view, Model model) {
 		checkNotNull(view);
 		checkNotNull(model);
-		
+
 		Controller controller = new Controller();
 		controller.view = view;
 		controller.model = model;
 		return controller;
 	}
-	
-	private Controller() {}
-	
+
+	private Controller() {
+	}
+
 	/**
-	 * Registers a listener for the widget in parameter. This listener will be triggered depending on eventType.
+	 * Registers a listener for the widget in parameter. This listener will be
+	 * triggered depending on eventType.
+	 * 
 	 * @param listener
 	 * @param widget
 	 * @param eventType
@@ -64,22 +67,26 @@ public class Controller {
 	public void registerListener(Listener listener, Widget widget, int eventType) {
 		checkNotNull(widget);
 		checkNotNull(listener);
-		
+
 		widget.addListener(eventType, listener);
 	}
-	
+
 	/**
 	 * Creates a new listener for a preferences Table in the GUI.
-	 * @param source the table for which we want to create the listener. It must one of the tables from view.
-	 * @return a listener that retrieves the table item that has been clicked from source and calls callbackListener
+	 * 
+	 * @param source the table for which we want to create the listener. It must one
+	 *               of the tables from view.
+	 * @return a listener that retrieves the table item that has been clicked from
+	 *         source and calls callbackListener
 	 */
 	public Listener createListenerPreferences(Table source) {
 		checkNotNull(source);
 		checkNotNull(view);
-		checkArgument(source == view.getAllPreferencesTable() || source == view.getChosenPreferencesTable(), "The table needs to be one of the two tables stored in view.");
-		
-		boolean toChosenPreferences = (view.getAllPreferencesTable() == source); 
-		
+		checkArgument(source == view.getAllPreferencesTable() || source == view.getChosenPreferencesTable(),
+				"The table needs to be one of the two tables stored in view.");
+
+		boolean toChosenPreferences = (view.getAllPreferencesTable() == source);
+
 		return new Listener() {
 			@Override
 			public void handleEvent(Event event) {
@@ -89,10 +96,12 @@ public class Controller {
 			}
 		};
 	}
-	
+
 	/**
 	 * Creates a listener for the submit button.
-	 * @return a listener that calls createAssignments, logs the results and prompts the user to exit the application.
+	 * 
+	 * @return a listener that calls createAssignments, logs the results and prompts
+	 *         the user to exit the application.
 	 */
 	public Listener createListenerSubmitButton() {
 		return new Listener() {
@@ -123,10 +132,9 @@ public class Controller {
 			i += 1;
 		}
 
-		updatePreferences(texts, toChosenPreferences);
+		updatePreferences(texts.toArray(new String[0]), toChosenPreferences);
 		view.moveTableItem(item, texts.toArray(new String[0]), toChosenPreferences);
 	}
-	
 
 	/**
 	 * Populates Model data with the ods files
@@ -140,7 +148,7 @@ public class Controller {
 			model.setDataFromSet(calcDatas);
 		}
 	}
-	
+
 	/**
 	 * callback function called when the user clicks on submit button in the GUI.
 	 * 
@@ -160,7 +168,7 @@ public class Controller {
 			Course course = coursePrefElement.getCoursePref().getCourse();
 
 			if (!teacherAssignmentMapTable.contains(teacher, course)) {
-				TeacherAssignment.Builder assignmentBuilder = TeacherAssignment.Builder.newInstance(course,teacher);
+				TeacherAssignment.Builder assignmentBuilder = TeacherAssignment.Builder.newInstance(course, teacher);
 				assignmentBuilder.setCountGroupsCM(0);
 				assignmentBuilder.setCountGroupsCMTD(0);
 				assignmentBuilder.setCountGroupsCMTP(0);
@@ -212,18 +220,38 @@ public class Controller {
 			break;
 		default:
 		}
-	}	
+	}
+
+	/**
+	 * returns the strings that are needed to be shown in the GUI for these elements
+	 * 
+	 * @return a list of arrays of strings : first element of array is teacher name,
+	 *         second is course name, third is group type and fourth is teacher
+	 *         choice for this course
+	 */
+	private List<String[]> getDataForTableItems(Set<CoursePrefElement> coursePrefElements) {
+		checkNotNull(coursePrefElements);
+		
+		ArrayList<String[]> stringsToShow = new ArrayList<>();
+
+		for (CoursePrefElement coursePrefElement : coursePrefElements) {
+			stringsToShow.add(getDataForTableItem(coursePrefElement));
+		}
+
+		return stringsToShow;
+	}
+
 	/**
 	 * returns the strings that are needed to be shown in the GUI for this element
 	 * 
-	 * @return a list of 4 strings : first is teacher name, second is course name,
+	 * @return an array of 4 strings : first is teacher name, second is course name,
 	 *         third is group type and fourth is teacher choice for this course
 	 */
-	private List<String> getDataForTableItem(CoursePrefElement coursePrefElement) {
+	private String[] getDataForTableItem(CoursePrefElement coursePrefElement) {
 		ArrayList<String> strings = new ArrayList<>();
-		
-		CoursePref coursePref= coursePrefElement.getCoursePref();
-		
+
+		CoursePref coursePref = coursePrefElement.getCoursePref();
+
 		Teacher teacher = coursePref.getTeacher();
 		Course course = coursePref.getCourse();
 
@@ -257,8 +285,9 @@ public class Controller {
 		strings.add(groupType);
 		strings.add(choice);
 
-		return strings;
+		return strings.toArray(new String[0]);
 	}
+
 	/**
 	 * Updates sets of CoursePrefElement thanks to the data retrieved from a table
 	 * item
@@ -271,31 +300,31 @@ public class Controller {
 	 * @param target          the set where we want to add the CoursePrefElement
 	 *                        object corresponding to stringTableItem
 	 */
-	private void updateSet(List<String> stringTableItem, Set<CoursePrefElement> source,
-			Set<CoursePrefElement> target) {
+	private void updateSet(String[] stringTableItem, Set<CoursePrefElement> source, Set<CoursePrefElement> target) {
 		checkNotNull(stringTableItem);
-		checkArgument(stringTableItem.size() == 4);
+		checkArgument(stringTableItem.length == 4);
 		checkNotNull(source);
 		checkNotNull(target);
 
 		for (CoursePrefElement coursePrefElement : source) {
 
-			List<String> stringCoursePrefElement = getDataForTableItem(coursePrefElement);
+			String[] stringCoursePrefElement = getDataForTableItem(coursePrefElement);
 
-			if (stringCoursePrefElement.get(0).equals(stringTableItem.get(0))
-					&& stringCoursePrefElement.get(1).equals(stringTableItem.get(1))
-					&& stringCoursePrefElement.get(2).equals(stringTableItem.get(2))
-					&& stringCoursePrefElement.get(3).equals(stringTableItem.get(3))) {
+			if (stringCoursePrefElement[0].equals(stringTableItem[0])
+					&& stringCoursePrefElement[1].equals(stringTableItem[1])
+					&& stringCoursePrefElement[2].equals(stringTableItem[2])
+					&& stringCoursePrefElement[3].equals(stringTableItem[3])) {
 				source.remove(coursePrefElement);
 				target.add(coursePrefElement);
 				break;
 			}
 		}
 	}
+
 	/**
 	 * This method is called from Controller class when a table item has been
-	 * clicked. Updates the data from Model thanks to the table item data.In order to call this
-	 * function the model must already be set.
+	 * clicked. Updates the data from Model thanks to the table item data.In order
+	 * to call this function the model must already be set.
 	 * 
 	 * @param texts               the strings shown from the table item. texts' size
 	 *                            is 4 : first element is teacher name, second is
@@ -304,36 +333,40 @@ public class Controller {
 	 * @param toChosenPreferences true iff the element that has been clicked is on
 	 *                            the Table named all preferences
 	 */
-	public void updatePreferences(ArrayList<String> texts, boolean toChosenPreferences) {
+	public void updatePreferences(String[] texts, boolean toChosenPreferences) {
 		checkNotNull(texts);
-		checkArgument(texts.size() == 4);
+		checkArgument(texts.length == 4);
 		checkNotNull(model);
 
 		if (toChosenPreferences) {
-			updateSet(texts,model.getAllPreferences(), model.getChosenPreferences());
+			updateSet(texts, model.getAllPreferences(), model.getChosenPreferences());
 		} else {
 			updateSet(texts, model.getChosenPreferences(), model.getAllPreferences());
 		}
 	}
+
 	/**
 	 * the only purpose of this main is to test the gui.This is not the main
 	 * function of this program.
 	 */
 	public static void main(String[] args) throws Exception {
-		View view = View.initializeGui(); 
+		View view = View.initializeGui();
 		Model model = Model.newInstance();
 		Controller controller = Controller.newInstance(view, model);
-		
+
 		Table allPreferencesTable = view.getAllPreferencesTable();
 		Table chosenPreferencesTable = view.getChosenPreferencesTable();
 		Button submitButton = view.getSubmitButton();
-		
+
 		controller.setModelData();
-		Set<CoursePrefElement> allPreferences = model.getAllPreferences();
-		view.initPreferences(allPreferences);
-		
-		controller.registerListener(controller.createListenerPreferences(allPreferencesTable), allPreferencesTable, SWT.MouseDoubleClick);
-		controller.registerListener(controller.createListenerPreferences(chosenPreferencesTable), chosenPreferencesTable, SWT.MouseDoubleClick);
+		List<String[]> stringsToShowAllPreferences = controller.getDataForTableItems(model.getAllPreferences());
+		view.populateCourses(model.getCourses());
+		view.populateAllPreferences(stringsToShowAllPreferences);
+
+		controller.registerListener(controller.createListenerPreferences(allPreferencesTable), allPreferencesTable,
+				SWT.MouseDoubleClick);
+		controller.registerListener(controller.createListenerPreferences(chosenPreferencesTable),
+				chosenPreferencesTable, SWT.MouseDoubleClick);
 		controller.registerListener(controller.createListenerSubmitButton(), submitButton, SWT.MouseDown);
 
 		view.show();

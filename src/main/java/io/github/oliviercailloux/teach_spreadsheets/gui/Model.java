@@ -1,16 +1,14 @@
 package io.github.oliviercailloux.teach_spreadsheets.gui;
 
-import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
+import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 
 /**
@@ -83,5 +81,21 @@ public class Model {
 
 	public Set<CoursePrefElement> getChosenPreferences() {
 		return chosenPreferences;
+	}
+	
+	/**
+	 * @return all of the courses contained in allPreferences
+	 */
+	public Set<Course> getCourses() {
+		HashSet<Course> courses = new HashSet<>();
+		
+		for (CoursePrefElement coursePrefElement : allPreferences) {
+			Course course = coursePrefElement.getCoursePref().getCourse();
+			if (!courses.contains(course)) {
+				courses.add(course);
+			}
+		}
+		
+		return courses;
 	}
 }
