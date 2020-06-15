@@ -3,7 +3,6 @@ package io.github.oliviercailloux.teach_spreadsheets.read;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.Set;

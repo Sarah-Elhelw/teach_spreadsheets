@@ -87,4 +87,42 @@ public class OdsSummarizerTests {
 		}
 
 	}
+
+	@Test
+	void testWriting100() throws Exception {
+		Set<Course> courses = new LinkedHashSet<>();
+		Set<CoursePref> prefs = new LinkedHashSet<>();
+
+		for (int i = 1; i <= 100; i++) {
+			Course course = Course.Builder.newInstance().setName("testcourse" + i).setStudyYear(2016)
+					.setStudyLevel("DE1").setSemester(1).setCountGroupsCM(3).setCountGroupsTD(4).setNbMinutesCM(60)
+					.setNbMinutesTD(60).build();
+			courses.add(course);
+			Teacher teacher = Teacher.Builder.newInstance().setFirstName("teacher" + i + "FirstName")
+					.setLastName("teacher" + i + "LastName").build();
+			prefs.add(CoursePref.Builder.newInstance(course, teacher).setPrefCM(Preference.A).setPrefTD(Preference.B)
+					.build());
+
+		}
+
+		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
+		ods.addPrefs(prefs);
+
+		URL resourceUrl = OdsSummarizer.class.getResource("OdsSummarizer100.ods");
+		try (InputStream stream = resourceUrl.openStream();
+				SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
+				SpreadsheetDocument documentCreated = ods.createSummary()) {
+
+			Table tableCreated = documentCreated.getTableByName("Summary");
+			Table table = document.getTableByName("Summary");
+
+			for (int i = 0; i < 10; i++) {
+				for (int j = 0; j < 15; j++) {
+					assertEquals(table.getCellByPosition(i, j).getDisplayText(),
+							tableCreated.getCellByPosition(i, j).getDisplayText());
+				}
+			}
+
+		}
+	}
 }
