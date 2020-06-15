@@ -93,25 +93,15 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_K_8HYHDKEequm7xLIeERRg" name="Classes">
       <packagedElement xmi:type="uml:Package" xmi:id="_nX8wEIcWEeqUqZA2AF_9Pw" name="BaseAndAssignment">
-        <packagedElement xmi:type="uml:Class" xmi:id="_0YeooGYQEeqq2pYv3YMNcA" name="CalcData">
+        <packagedElement xmi:type="uml:Class" xmi:id="_0YeooGYQEeqq2pYv3YMNcA" name="TeacherPrefs">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_BJkVgmYREeqq2pYv3YMNcA" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_BJjHYGYREeqq2pYv3YMNcA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dSDDIGYREeqq2pYv3YMNcA"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dSJw0GYREeqq2pYv3YMNcA" value="*"/>
           </ownedAttribute>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_5iQB0K8tEeqv9K-cWDl50w" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_5iGQ0K8tEeqv9K-cWDl50w"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_3puhgGYREeqq2pYv3YMNcA" name="getDataFromODS" isStatic="true">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_3puhgGYREeqq2pYv3YMNcA" name="getData" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_EElfsGYSEeqq2pYv3YMNcA" name="filePath" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_3wXScJtuEeqdz4L_R9L93Q" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA" direction="return"/>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_o1DIkGwtEeqdw6kasHCXew" name="fromJSON" visibility="public" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_udq98GwtEeqdw6kasHCXew" name="filePath" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_gyuSAJtuEeqdz4L_R9L93Q" name="data" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_soo-4IccEeqUqZA2AF_9Pw" name="populateDataFromJSON" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_soo-4YccEeqUqZA2AF_9Pw" name="data" type="_Dbm5wIe0EeqbHs-aXdOJpQ"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_xkFWYJtuEeqdz4L_R9L93Q" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA" direction="return"/>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_a4w-cGwuEeqdw6kasHCXew" name="AggregatedData">
@@ -119,9 +109,16 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Gg0dYJ2QEeqgYtA4nJO78A"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Gg0dYZ2QEeqgYtA4nJO78A" value="*"/>
           </ownedAttribute>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_iqgr8J2QEeqgYtA4nJO78A" name="addCalcData">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_qZyEwJ2QEeqgYtA4nJO78A" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_iqgr8J2QEeqgYtA4nJO78A" name="addTeacherPrefs">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_qZyEwJ2QEeqgYtA4nJO78A" name="teacherPrefs" type="_0YeooGYQEeqq2pYv3YMNcA"/>
           </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_iGrjsK83Eeqv9K-cWDl50w" name="addCoursePrefs">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_sXg6UK83Eeqv9K-cWDl50w" name="coursePrefs" type="_bv1kcGIqEeq7OdFZt-_k0Q">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_udzRYK83Eeqv9K-cWDl50w"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ud70QK83Eeqv9K-cWDl50w" value="*"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8ufv0K83Eeqv9K-cWDl50w" name="mapToTeacherPrefs" visibility="private"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_NuzqEG9ZEeqks-MRezUMyA" name="TeacherAssignment">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_KxCNwGEpEeqMmJrPvsnLhQ" name="countGroupsTD" visibility="public">
@@ -261,8 +258,8 @@
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_upoN8IcWEeqUqZA2AF_9Pw" name="Read">
-        <packagedElement xmi:type="uml:Class" xmi:id="_Eu9GUIcXEeqUqZA2AF_9Pw" name="CalcDataInitializer" visibility="public">
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_MbJ40IceEeqUqZA2AF_9Pw" name="createCalcData" isStatic="true">
+        <packagedElement xmi:type="uml:Class" xmi:id="_Eu9GUIcXEeqUqZA2AF_9Pw" name="TeacherPrefsInitializer" visibility="public">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_MbJ40IceEeqUqZA2AF_9Pw" name="createTeacherPrefs" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_MbJ40YceEeqUqZA2AF_9Pw" name="document" type="_UJcaMIceEeqUqZA2AF_9Pw"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_JsxKcJtrEeqdz4L_R9L93Q" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA" direction="return"/>
           </ownedOperation>
