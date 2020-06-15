@@ -8,6 +8,8 @@ import org.odftoolkit.simple.table.Table;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -89,7 +91,7 @@ public class OdsSummarizerTests {
 	}
 
 	@Test
-	void testWriting100() throws Exception {
+	void testWriting100Summary() throws Exception {
 		Set<Course> courses = new LinkedHashSet<>();
 		Set<CoursePref> prefs = new LinkedHashSet<>();
 
@@ -107,22 +109,10 @@ public class OdsSummarizerTests {
 
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.addPrefs(prefs);
-
-		URL resourceUrl = OdsSummarizer.class.getResource("OdsSummarizer100.ods");
-		try (InputStream stream = resourceUrl.openStream();
-				SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
-				SpreadsheetDocument documentCreated = ods.createSummary()) {
-
-			Table tableCreated = documentCreated.getTableByName("Summary");
-			Table table = document.getTableByName("Summary");
-
-			for (int i = 0; i < 10; i++) {
-				for (int j = 0; j < 503; j++) {
-					assertEquals(table.getCellByPosition(i, j).getDisplayText(),
-							tableCreated.getCellByPosition(i, j).getDisplayText());
-				}
-			}
-
+		try (SpreadsheetDocument documentCreated = ods.createSummary()) {
+			if(!Files.exists(Path.of("output"))){
+			Files.createDirectory(Path.of("output"));}
+			documentCreated.save("output//testWriting100.ods");
 		}
 	}
 }
