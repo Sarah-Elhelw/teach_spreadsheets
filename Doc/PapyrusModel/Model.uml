@@ -103,6 +103,16 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_EElfsGYSEeqq2pYv3YMNcA" name="filePath" type="_QtxbAIcSEeqUqZA2AF_9Pw"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_3wXScJtuEeqdz4L_R9L93Q" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA" direction="return"/>
           </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_3lQOAK9LEeqv9K-cWDl50w" name="getCoursePref">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_-fh4gK9LEeqv9K-cWDl50w" type="_bv1kcGIqEeq7OdFZt-_k0Q" direction="return"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_LgbjAK9MEeqv9K-cWDl50w" name="courseName">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_U-WO8K9MEeqv9K-cWDl50w" name="getCoursePref">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_b3TDwK9MEeqv9K-cWDl50w" name="course" type="_XVBhkGBfEeq31cSPSR9mAA"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_fKZzQK9MEeqv9K-cWDl50w" type="_bv1kcGIqEeq7OdFZt-_k0Q" direction="return"/>
+          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_a4w-cGwuEeqdw6kasHCXew" name="AggregatedData">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_GgyBIJ2QEeqgYtA4nJO78A" type="_XVBhkGBfEeq31cSPSR9mAA" association="_Ggvk4J2QEeqgYtA4nJO78A">
