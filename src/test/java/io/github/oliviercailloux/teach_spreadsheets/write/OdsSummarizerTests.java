@@ -133,4 +133,30 @@ public class OdsSummarizerTests {
 			documentCreated.save("output//testOdsSummary100.ods");
 		}
 	}
+	
+	@Test
+	void testWriting100Summary() throws Exception {
+		Set<Course> courses = new LinkedHashSet<>();
+		Set<CoursePref> prefs = new LinkedHashSet<>();
+
+		for (int i = 1; i <= 100; i++) {
+			Course course = Course.Builder.newInstance().setName("testcourse" + i).setStudyYear(2016)
+					.setStudyLevel("DE1").setSemester(1).setCountGroupsCM(3).setCountGroupsTD(4).setNbMinutesCM(60)
+					.setNbMinutesTD(60).build();
+			courses.add(course);
+			Teacher teacher = Teacher.Builder.newInstance().setFirstName("teacher" + i + "FirstName")
+					.setLastName("teacher" + i + "LastName").build();
+			prefs.add(CoursePref.Builder.newInstance(course, teacher).setPrefCM(Preference.A).setPrefTD(Preference.B)
+					.build());
+
+		}
+
+		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
+		ods.addPrefs(prefs);
+		try (SpreadsheetDocument documentCreated = ods.createSummary()) {
+			if(!Files.exists(Path.of("output"))){
+			Files.createDirectory(Path.of("output"));}
+			documentCreated.save("output//testWriting100.ods");
+		}
+	}
 }
