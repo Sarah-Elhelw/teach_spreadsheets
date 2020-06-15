@@ -118,7 +118,21 @@
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ud70QK83Eeqv9K-cWDl50w" value="*"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_8ufv0K83Eeqv9K-cWDl50w" name="mapToTeacherPrefs" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8ufv0K83Eeqv9K-cWDl50w" name="completeAndAddTeacherPrefs" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8XI3YK9FEeqv9K-cWDl50w" name="getTeacherPrefs">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_FtoFoK9GEeqv9K-cWDl50w" type="_bv1kcGIqEeq7OdFZt-_k0Q" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Gx6NIK9GEeqv9K-cWDl50w"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GyElMK9GEeqv9K-cWDl50w" value="*"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_YnWksK9GEeqv9K-cWDl50w" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_at4W4K9HEeqv9K-cWDl50w" name="getCoursePrefs">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_i6l5oK9HEeqv9K-cWDl50w" type="_bv1kcGIqEeq7OdFZt-_k0Q" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kGZlcK9HEeqv9K-cWDl50w"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kGgTIK9HEeqv9K-cWDl50w" value="*"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_oqDW0K9HEeqv9K-cWDl50w" name="course" type="_XVBhkGBfEeq31cSPSR9mAA"/>
+          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_NuzqEG9ZEeqks-MRezUMyA" name="TeacherAssignment">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_KxCNwGEpEeqMmJrPvsnLhQ" name="countGroupsTD" visibility="public">
