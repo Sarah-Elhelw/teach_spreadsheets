@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
+import com.google.common.collect.ImmutableSet;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
@@ -91,7 +93,7 @@ public class OdsSummarizerTests {
 	}
 
 	@Test
-	void testWriting100Summary() throws Exception {
+	void testWritingSummaryAndAssignmentPerTeacher100() throws Exception {
 		Set<Course> courses = new LinkedHashSet<>();
 		Set<CoursePref> prefs = new LinkedHashSet<>();
 
@@ -105,14 +107,30 @@ public class OdsSummarizerTests {
 			prefs.add(CoursePref.Builder.newInstance(course, teacher).setPrefCM(Preference.A).setPrefTD(Preference.B)
 					.build());
 
+			TeacherAssignment teacherAssignment = TeacherAssignment.Builder.newInstance(course, teacher)
+					.setCountGroupsTD(1).build();
+			CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course);
+			courseAssignmentBuilder.addTeacherAssignment(teacherAssignment);
+
+			CourseAssignment courseAssignment = courseAssignmentBuilder.build();
+
+			ImmutableSet<CourseAssignment> allCoursesAssigned = ImmutableSet.of(courseAssignment);
+			try (SpreadsheetDocument documentCreated = AssignmentPerTeacher.createAssignmentPerTeacher(teacher,
+					allCoursesAssigned)) {
+				if (!Files.exists(Path.of("output"))) {
+					Files.createDirectory(Path.of("output"));
+				}
+				documentCreated.save("output//teacherAssignment" + i + ".ods");
+			}
 		}
 
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.addPrefs(prefs);
 		try (SpreadsheetDocument documentCreated = ods.createSummary()) {
-			if(!Files.exists(Path.of("output"))){
-			Files.createDirectory(Path.of("output"));}
-			documentCreated.save("output//testWriting100.ods");
+			if (!Files.exists(Path.of("output"))) {
+				Files.createDirectory(Path.of("output"));
+			}
+			documentCreated.save("output//testOdsSummary100.ods");
 		}
 	}
 }
