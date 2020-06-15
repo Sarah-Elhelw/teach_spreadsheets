@@ -87,9 +87,7 @@ public class OdsSummarizerTests {
 							tableCreated.getCellByPosition(i, j).getDisplayText());
 				}
 			}
-
 		}
-
 	}
 
 	@Test
@@ -133,7 +131,7 @@ public class OdsSummarizerTests {
 			documentCreated.save("output//testOdsSummary100.ods");
 		}
 	}
-	
+
 	@Test
 	void testWriting100Summary() throws Exception {
 		Set<Course> courses = new LinkedHashSet<>();
@@ -154,8 +152,9 @@ public class OdsSummarizerTests {
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.addPrefs(prefs);
 		try (SpreadsheetDocument documentCreated = ods.createSummary()) {
-			if(!Files.exists(Path.of("output"))){
-			Files.createDirectory(Path.of("output"));}
+			if (!Files.exists(Path.of("output"))) {
+				Files.createDirectory(Path.of("output"));
+			}
 			documentCreated.save("output//testWriting100.ods");
 		}
 	}
