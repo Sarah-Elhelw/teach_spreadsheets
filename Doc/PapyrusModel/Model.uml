@@ -381,7 +381,7 @@
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_z60P8Ie0EeqbHs-aXdOJpQ" name="JsonRead" visibility="public">
+        <packagedElement xmi:type="uml:Class" xmi:id="_z60P8Ie0EeqbHs-aXdOJpQ" name="JsonDeserializer" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_eUlR4Ie1EeqbHs-aXdOJpQ" name="getSetOfTeachersInfo" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_EA264Ie_EeqbHs-aXdOJpQ" name="httpAddress">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
