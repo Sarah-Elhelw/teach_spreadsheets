@@ -82,7 +82,7 @@ The class *OdsHelper* has some useful functionalities that we use in the two oth
 
 
 == JsonDeserializer class
-image::Images\Class_Json_Deserializer.png[{fullWifth}]
+image::Images\Class_Json_Deserializer.PNG[{fullWifth}]
 
 The main goal of *JsonDeserializer* is to read courses information presented in a Json Array format.
 
