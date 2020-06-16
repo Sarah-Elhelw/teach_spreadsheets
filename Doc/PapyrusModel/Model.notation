@@ -80,7 +80,7 @@
           <children xmi:type="notation:DecorationNode" xmi:id="_fpt38ZdPEeqZR-Nl_eMGbQ" type="InteractionUse_TypeLabel"/>
           <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_fpsp0ZdPEeqZR-Nl_eMGbQ"/>
           <element xmi:type="uml:InteractionUse" href="Model.uml#_fpa9AJdPEeqZR-Nl_eMGbQ"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fpsp0pdPEeqZR-Nl_eMGbQ" x="234" y="431" width="679" height="60"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fpsp0pdPEeqZR-Nl_eMGbQ" x="474" y="431" width="439" height="60"/>
         </children>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CwuwZGBaEeq31cSPSR9mAA"/>
       </children>
