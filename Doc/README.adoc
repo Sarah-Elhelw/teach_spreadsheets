@@ -27,7 +27,7 @@ If desired by the Admin, our program can end with the generation of the aggregat
 
 image::Images\Sequence_Assignment.PNG[{fullWifth}]
 
-The idea of this diagram is to present a focus on the assignment process. We renounced to produce a function that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers. As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fiche%20de%20service.png[“Fiche de service.png”] and link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”] fully completed).
+The idea of this diagram is to present a focus on the assignment process. We renounced to produce a link:Advice.adoc#Assignment[function] that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers. As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fiche%20de%20service.png[“Fiche de service.png”] and link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”] fully completed).
 
 [[ClassDiag]]
 = Class diagrams doc
@@ -63,7 +63,7 @@ image::Images\Class_ODS_Read.PNG[{fullWifth}]
 The main goal of these classes is to read information from an link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[ods file] and create the corresponding TeacherPrefs object. The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in Json format the list of courses available in the input file).
 *MultipleOdsPrefReader* reads all the ods files present in a certain folder via the *readFilesFromFolder* function.
 
-*JsonSerializer*, through *serializeSet*, builds a string json array of all the courses' information collected from the ods files.
+*JsonSerializer*, through *serializeSet*, builds a string json array of all the courses' information collected from the ods files. This concept may be link:Advice.adoc#JsonSerializer[generalized].
 
 
 == Ods Write classes
@@ -78,13 +78,15 @@ The class *OdsSummarizer* creates a Calc like link:https://github.com/oliviercai
 
 You can see what the final result will look like in this files :  link:Documents\AssignmentPerTeacher.ods[“AssignmentPerTeacher.ods”] and link:Documents\OdsSummarizer.ods[“OdsSummarizer.ods”]. +
 
+The functionalities of the package write could be extended to generate link:Advice.adoc#Write[other formats] of summarized files.
+
 The class *OdsHelper* has some useful functionalities that we use in the two other writing classes.
 
 
 == JsonDeserializer class
 image::Images\Class_Json_Deserializer.PNG[{fullWifth}]
 
-The main goal of *JsonDeserializer* is to read courses information, presented in a Json Array format, to build a set of courses.
+The main goal of *JsonDeserializer* is to read courses information, presented in a Json Array format, to build a set of courses. This concept may be link:Advice.adoc#JsonDeserializer[generalized] and adapted to read from RefRof.
 
 
 *InputVowsFile* deals with the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”]. The method *createPersonalizedFiles* creates personalized calc files, by completing the sheet "Emploi du temps", and puts them in a specified directory. This class was not implemented because we renounced working on RefRof to get the teachers' information.
