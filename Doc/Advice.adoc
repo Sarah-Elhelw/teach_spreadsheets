@@ -17,7 +17,7 @@ In our program, the Admin assigns the teachers to the courses using our GUI. Ano
 [[JsonSerializer]]
 *JsonSerializer*’s functionalities could be extended to get json array strings of teacher and more. Indeed, json format is appreciated by the administration programming services.
 
-=== Package write:
+=== Package write
 
 [[Write]]
 It would be interesting to generate as well https://github.com/oliviercailloux/projets/raw/master/Voeux/services%20MIDO.xls[services MIDO.xls]. In particular, *Affectations* sheet would then present a summary of the assignments from the teachers’ perspective (our program showing a summary from the courses’ perspective). Furthermore, *donnees* sheet would then offer a raw presentation of all the assignments.
