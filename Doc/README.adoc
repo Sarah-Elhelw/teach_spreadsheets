@@ -18,28 +18,29 @@ The Use Case diagram describes the main functionalities the project will impleme
 
 image::Images\Sequence_Global_context.PNG[{fullWifth}]
 
-The idea of this diagram is to present a global view of our project. The program starts by receiving all the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”] already completed by each teacher. *getDataFromODS()* is the function used to register in a variable of type CalcData the information read in the files “AA-Saisie voeux 2016-2017.ods”. Then, once all the data caught and ordered in variables, the program can generate a file similar to link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”] that summarizes thus all the files “AA-Saisie voeux 2016-2017.ods” loaded.  The function *createSummary()* writes in a Calc to produce a document similar to “Fichier Agrégé.pdf” given in the subject.
-Our program, through *writeCoursesInAJsonFile()*, will also generate a json file containing a list of all the courses in the vows files.
+The idea of this diagram is to present a global view of our project. The program starts by receiving all the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”] already completed by each teacher. *readFilesFromFolder* is the function used to register in a variable of type AggregatedData all the information read in the files “AA-Saisie voeux 2016-2017.ods”. Then, the function *createSummary* writes in a Calc to produce a document similar to https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”] given in the subject.This Calc summarizes thus all the files “AA-Saisie voeux 2016-2017.ods” loaded.
+Our program, through *writeCoursesInAJsonFile*, will also generate a json file containing a list of all the courses in the vows files.
 
-If desired by the Admin, our program can end with the generation of the aggregated file. Else, if required by the Admin, our program can continue to help the admin make an assignment. The Assignment process is described in the second sequence diagram (“Sequence_Assignment”), which is refered to in this diagram.
+If desired by the Admin, our program can end with the generation of the aggregated files. Else, if required by the Admin, our program can continue to help the admin make an assignment. The Assignment process is described in the second sequence diagram (“Sequence_Assignment”), which is refered to in this diagram. If the assignment process took place, the admin will, eventually, send the “Fiche de service.ods” specific to each teacher. 
 
 == Assignment
 
 image::Images\Sequence_Assignment.PNG[{fullWifth}]
 
-The idea of this diagram is to present a focus on the assignment process. All the methods used in the messages are meant to evolve later in our project, for now, they simply allow us to describe the principle of our program. We renounced to produce a function that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers. As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fiche%20de%20service.png[“Fiche de service.png”] and link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”] fully completed). The Admin will receive all these files and will send the “Fiche de service.ods” specific to each teacher. 
+The idea of this diagram is to present a focus on the assignment process. We renounced to produce a function that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers. As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fiche%20de%20service.png[“Fiche de service.png”] and link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”] fully completed).
 
 [[ClassDiag]]
 = Class diagrams doc
 == Base classes
 image::Images\Class_assignment.PNG[{fullWifth}]
 
-The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers. The *TeacherAssignment* class stores the number of TD, TP, CM groups assigned to one teacher in the selected course. +
-
-*CalcData* represents the data that we can get from the files that the university gives us. The function *getDataFromODS* reads all the necessary informations in the calc link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”] to build and return a CalcData.
+*TeacherPrefs* represents the data that we can get from the files that the university gives us. The function *fromOds* reads all the necessary information in the calc link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”] to build and return a TeacherPrefs.
 The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
 *CoursePref* represents preferences from a teacher for a specified course.
-We'll add getters in the classes as we work on them because it's hard to know exactly what we will need.
+
+*AggregatedData* represents an aggregation of all the TeacherPrefs built in our program.
+
+The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers. The *TeacherAssignment* class stores the number of TD, TP, CM groups assigned to one teacher in the selected course. +
 
 == Gui classes
 image::Images\Class_Gui.PNG[{fullWifth}]
@@ -59,8 +60,10 @@ A listener is also set for the submit button in View. This listener calls *creat
 == Ods Reader classes
 image::Images\Class_ODS_Read.PNG[{fullWifth}]
 
-The main goal of these classes is to read information from an link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[ods file] and create the corresponding CalcData object. The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
+The main goal of these classes is to read information from an link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[ods file] and create the corresponding CalcData object. The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in Json format the list of courses available in the input file).
 *MultipleOdsPrefReader* reads all the ods files present in a certain folder via the *readFilesFromFolder* function.
+
+*JsonSerializer*, through *serializeSet*, builds a string json array of all the courses' information collected from the ods files.
 
 
 == Ods Write classes
@@ -78,13 +81,13 @@ You can see what the final result will look like in this files :  link:Documents
 The class *OdsHelper* has some useful functionalities that we use in the two other writing classes.
 
 
-== Json Read classes
-image::Images\Class_Json_Read.png[{fullWifth}]
+== JsonDeserializer class
+image::Images\Class_Json_Deserializer.png[{fullWifth}]
 
-The main goal of *JsonReader* is to read teachers and courses informations presented in a Json format. These informations are found in RefRof and in files in the class path. RefRof's logins are stored in a file the methods reading RefRof's content need to access.
+The main goal of *JsonDeserializer* is to read courses information presented in a Json Array format.
 
 
-*InputVowsFile* deals with the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”]. The method *createPersonalizedFiles* creates personalized calc files, by completing the sheet "Emploi du temps", and puts them in a specified directory.
+*InputVowsFile* deals with the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”]. The method *createPersonalizedFiles* creates personalized calc files, by completing the sheet "Emploi du temps", and puts them in a specified directory. This class was not implemented because we renounced working on RefRof to get the teachers' information.
 
 [[GuiDescription]]
 = Gui description
