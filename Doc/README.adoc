@@ -84,7 +84,7 @@ The class *OdsHelper* has some useful functionalities that we use in the two oth
 == JsonDeserializer class
 image::Images\Class_Json_Deserializer.PNG[{fullWifth}]
 
-The main goal of *JsonDeserializer* is to read courses information presented in a Json Array format.
+The main goal of *JsonDeserializer* is to read courses information, presented in a Json Array format, to build a set of courses.
 
 
 *InputVowsFile* deals with the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”]. The method *createPersonalizedFiles* creates personalized calc files, by completing the sheet "Emploi du temps", and puts them in a specified directory. This class was not implemented because we renounced working on RefRof to get the teachers' information.
