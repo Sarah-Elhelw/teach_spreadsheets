@@ -94,6 +94,8 @@ public class OdsSummarizerTests {
 	void testWritingSummaryAndAssignmentPerTeacher100() throws Exception {
 		Set<Course> courses = new LinkedHashSet<>();
 		Set<CoursePref> prefs = new LinkedHashSet<>();
+		
+		ImmutableSet<CourseAssignment> allCoursesAssigned=ImmutableSet.of();
 
 		for (int i = 1; i <= 100; i++) {
 			Course course = Course.Builder.newInstance().setName("testcourse" + i).setStudyYear(2016)
@@ -112,7 +114,7 @@ public class OdsSummarizerTests {
 
 			CourseAssignment courseAssignment = courseAssignmentBuilder.build();
 
-			ImmutableSet<CourseAssignment> allCoursesAssigned = ImmutableSet.of(courseAssignment);
+			allCoursesAssigned = ImmutableSet.of(courseAssignment);
 			try (SpreadsheetDocument documentCreated = AssignmentPerTeacher.createAssignmentPerTeacher(teacher,
 					allCoursesAssigned)) {
 				if (!Files.exists(Path.of("output"))) {
@@ -124,6 +126,7 @@ public class OdsSummarizerTests {
 
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.addPrefs(prefs);
+		ods.setAllCoursesAssigned(allCoursesAssigned);
 		try (SpreadsheetDocument documentCreated = ods.createSummary()) {
 			if (!Files.exists(Path.of("output"))) {
 				Files.createDirectory(Path.of("output"));
@@ -136,6 +139,8 @@ public class OdsSummarizerTests {
 	void testWriting100Summary() throws Exception {
 		Set<Course> courses = new LinkedHashSet<>();
 		Set<CoursePref> prefs = new LinkedHashSet<>();
+		
+		ImmutableSet<CourseAssignment> allCoursesAssigned=ImmutableSet.of();
 
 		for (int i = 1; i <= 100; i++) {
 			Course course = Course.Builder.newInstance().setName("testcourse" + i).setStudyYear(2016)
@@ -146,11 +151,19 @@ public class OdsSummarizerTests {
 					.setLastName("teacher" + i + "LastName").build();
 			prefs.add(CoursePref.Builder.newInstance(course, teacher).setPrefCM(Preference.A).setPrefTD(Preference.B)
 					.build());
+			TeacherAssignment teacherAssignment = TeacherAssignment.Builder.newInstance(course, teacher)
+					.setCountGroupsTD(1).build();
+			CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course);
+			courseAssignmentBuilder.addTeacherAssignment(teacherAssignment);
+			CourseAssignment courseAssignment = courseAssignmentBuilder.build();
 
 		}
+		
+		// allCoursesAssigned = ImmutableSet.of(courseAssignment);
 
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.addPrefs(prefs);
+		ods.setAllCoursesAssigned(allCoursesAssigned);
 		try (SpreadsheetDocument documentCreated = ods.createSummary()) {
 			if (!Files.exists(Path.of("output"))) {
 				Files.createDirectory(Path.of("output"));
