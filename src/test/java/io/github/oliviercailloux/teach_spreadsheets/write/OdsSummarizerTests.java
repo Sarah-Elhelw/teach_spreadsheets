@@ -161,7 +161,7 @@ public class OdsSummarizerTests {
 		}
 		long elapsedNanosWriteAndAssign = System.nanoTime() - startTimeAddingAssignement;
 		long elapsedNanosWrite = System.nanoTime() - startTimeWriting;
-		LOGGER.info("100 affectations : Time to write and assign : "
+		LOGGER.info("100 assignments : Time to write and assign : "
 				+ TimeUnit.NANOSECONDS.toSeconds(elapsedNanosWriteAndAssign) + "s" + " " + "Time to write : "
 				+ TimeUnit.NANOSECONDS.toSeconds(elapsedNanosWrite) + "s");
 	}
