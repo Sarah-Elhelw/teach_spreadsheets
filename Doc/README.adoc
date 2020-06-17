@@ -1,3 +1,7 @@
+= Initial project
+
+You can find here the initial project : link:https://github.com/oliviercailloux/projets/blob/master/%C3%89nonc%C3%A9s/Teach%20spreadsheets.adoc[“Teach spreadsheets”]
+
 [[UseCaseDiag]]
 = Use Case doc
 
@@ -58,7 +62,7 @@ During the initialization of the GUI, listeners for table items are set in View.
 A listener is also set for the submit button in View. This listener calls *createAssignments* in Controller. This function retrieves the data from Model to return the assignments for the teachers.
 
 == Ods Reader classes
-image::Images\Class_ODS_Read.PNG[{fullWifth}]
+image::Images\Class_Ods_Read.PNG[{fullWifth}]
 
 The main goal of these classes is to read information from an link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[ods file] and create the corresponding TeacherPrefs object. The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in Json format the list of courses available in the input file).
 *MultipleOdsPrefReader* reads all the ods files present in a certain folder via the *readFilesFromFolder* function.
@@ -67,7 +71,7 @@ The main goal of these classes is to read information from an link:https://githu
 
 
 == Ods Write classes
-image::Images\Class_ODS_Write.PNG[{fullWifth}]
+image::Images\Class_Ods_Write.PNG[{fullWifth}]
 
 We have 2 main writing classes. +
 
