@@ -66,12 +66,7 @@ public class Controller {
 	 * @param widget
 	 * @param eventType
 	 */
-	private void registerListener(Listener listener, Widget widget, int eventType) {
-		checkNotNull(widget);
-		checkNotNull(listener);
 
-		widget.addListener(eventType, listener);
-	}
 
 	/**
 	 * Creates a new listener for a preferences Table in the GUI.
@@ -81,6 +76,7 @@ public class Controller {
 	 * @return a listener that retrieves the table item that has been clicked from
 	 *         source and calls callbackListener
 	 */
+	
 	private Listener createListenerPreferences(Table source) {
 		checkNotNull(source);
 		checkNotNull(view);
