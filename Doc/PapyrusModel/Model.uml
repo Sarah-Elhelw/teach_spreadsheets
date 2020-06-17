@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_s6OXIGBZEeq31cSPSR9mAA" name="Model" visibility="public">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_RmG98LCjEeq9oMIwiA5ngQ">
+    <body>In the class AssignmentPerTeacher, there are other private methods which format
+the ods : formatHeaders (Table table) and drawTable (Table table, int line)</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_4FmtQLCkEeq9oMIwiA5ngQ">
+    <body>In the class OdsSummarizer,
+there are other private methods which format the ods : putBorders(), formatheaders(), formatGroups() and formatCourseHeader()</body>
+  </ownedComment>
   <packagedElement xmi:type="uml:Package" xmi:id="_-5Ki0HDJEequm7xLIeERRg" name="ClassesAndAssociations">
     <packagedElement xmi:type="uml:Package" xmi:id="_H5908HDKEequm7xLIeERRg" name="Associations">
       <packagedElement xmi:type="uml:Package" xmi:id="_9MCnIIcZEeqUqZA2AF_9Pw" name="BaseAndAssignment">
@@ -427,6 +435,10 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_8yeicIfbEeqw0tXzRKMkvg" name="Write" URI="">
         <packagedElement xmi:type="uml:Class" xmi:id="_FCjZgIegEeq_vJIT4Zoedw" name="OdsHelper">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_kDwmALCYEeq9oMIwiA5ngQ" name="table" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_FMUiULCZEeq9oMIwiA5ngQ" name="getTable">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_NIE38LCZEeq9oMIwiA5ngQ" name="table" type="_CvFKMIcgEeqUqZA2AF_9Pw" direction="return"/>
+          </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_K0cDIIehEeq_vJIT4Zoedw" name="createAnEmptyOds" visibility="public" isStatic="true" concurrency="concurrent">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_2-kBEJt5EeqoL5c5DKW5Kw" name="doc" type="_UJcaMIceEeqUqZA2AF_9Pw" direction="return"/>
           </ownedOperation>
@@ -441,6 +453,10 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_cyyCkIeiEeq_vJIT4Zoedw" name="column">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_1UC2gLCiEeq9oMIwiA5ngQ" name="newInstance">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_5rfX4LCiEeq9oMIwiA5ngQ" name="tableGiven" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_-YD0sLCiEeq9oMIwiA5ngQ" type="_FCjZgIegEeq_vJIT4Zoedw" direction="return"/>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_zMLY8JuXEeqi_K2iLQMdMg" name="OdsSummarizer">
@@ -459,7 +475,7 @@
           <ownedOperation xmi:type="uml:Operation" xmi:id="_JXCKMJubEeqoL5c5DKW5Kw" name="headersToOds" visibility="private" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_27AiEJwOEeqwT532HYtLXQ" name="table" type="_CvFKMIcgEeqUqZA2AF_9Pw"/>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_6u6NwJubEeqoL5c5DKW5Kw" name="setPrefs">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_6u6NwJubEeqoL5c5DKW5Kw" name="addPrefs">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_Hb76AJucEeqoL5c5DKW5Kw" name="prefsToBeSet" type="_bv1kcGIqEeq7OdFZt-_k0Q">
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_weZA8JwvEeqwT532HYtLXQ"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rcTDEJwOEeqwT532HYtLXQ" value="*"/>
