@@ -377,13 +377,13 @@ public class Controller {
 		view.populateCourses(model.getCourses());
 		view.populateAllPreferences(stringsToShowAllPreferences);
 
-		controller.registerListener(controller.createListenerPreferences(allPreferencesTable), allPreferencesTable,
-				SWT.MouseDoubleClick);
-		controller.registerListener(controller.createListenerPreferences(chosenPreferencesTable),
-				chosenPreferencesTable, SWT.MouseDoubleClick);
-		controller.registerListener(controller.createListenerSubmitButton(), submitButton, SWT.MouseDown);
-
+		
+		allPreferencesTable.addListener(SWT.MouseDoubleClick, controller.createListenerPreferences(allPreferencesTable));
+		chosenPreferencesTable.addListener(SWT.MouseDoubleClick, controller.createListenerPreferences(chosenPreferencesTable));
+		submitButton.addListener(SWT.MouseDown, controller.createListenerSubmitButton());
+		
 		view.show();
 	}
+
 
 }
