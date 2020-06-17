@@ -79,6 +79,14 @@ public class AggregatedData {
 			tempTeacherPrefsSet.add(teacherPrefs);
 		}
 		
+		public void addTeacherPrefsSet(Set<TeacherPrefs> teacherPrefsSet) {
+			checkNotNull(teacherPrefsSet, "The set of TeacherPrefs must not be null.");
+			
+			for (TeacherPrefs teacherPrefs : teacherPrefsSet) {
+				addTeacherPrefs(teacherPrefs);
+			}
+		}
+		
 		/**
 		 * This method allows to build an AggregatedData by adding a set of CoursePref.
 		 * 

@@ -42,10 +42,7 @@ public class MultipleOdsPrefReader {
 		if (teacherPrefsSet.size() >= 1) {
 			AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder
 					.newInstance(teacherPrefsSet.asList().get(0).getCourses());
-			for (TeacherPrefs teacherPrefs : teacherPrefsSet) {
-				aggregatedDataBuilder.addTeacherPrefs(teacherPrefs);
-			}
-
+			aggregatedDataBuilder.addTeacherPrefsSet(teacherPrefsSet);
 			return aggregatedDataBuilder.build();
 		} else {
 			throw new IllegalArgumentException(
