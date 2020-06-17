@@ -1,7 +1,10 @@
 package io.github.oliviercailloux.teach_spreadsheets.base;
 
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -10,80 +13,122 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
- * Immutable. This class aggregates the CalcDatas built from the reading of
+ * Immutable. This class aggregates the TeacherPrefs built from the reading of
  * several input vows files.
  *
  */
 public class AggregatedData {
-	private ImmutableSet<CalcData> calcDatas;
+	private ImmutableSet<TeacherPrefs> TeacherPrefsSet;
 	private ImmutableSet<Course> courses;
 
-	private AggregatedData(Set<CalcData> calcDatas, Set<Course> courses) {
-		this.calcDatas = ImmutableSet.copyOf(calcDatas);
+	private AggregatedData(Set<TeacherPrefs> TeacherPrefsSet, Set<Course> courses) {
+		this.TeacherPrefsSet = ImmutableSet.copyOf(TeacherPrefsSet);
 		this.courses = ImmutableSet.copyOf(courses);
 	}
 
 	public static class Builder {
 
 		/**
-		 * Set of CalcDatas : it is used to build (by adding) calcDatas attribute.
+		 * Set of TeacherPrefs : it is used to build (by adding) TeacherPrefsSet attribute.
 		 */
-		private Set<CalcData> tempCalcDatas;
-		private Set<Course> tempCourses;
-		private int reading;
+		private Set<TeacherPrefs> tempTeacherPrefsSet;
+		private Map<Teacher, Set<CoursePref>> tempCoursePrefs;
+		private Set<Course> courses;
 
-		private Builder() {
-			tempCalcDatas = new LinkedHashSet<>();
-			tempCourses = new LinkedHashSet<>();
-			reading = 0;
+		private Builder(Set<Course> courses) {
+			checkNotNull(courses, "The set of courses must not be null.");
+			tempTeacherPrefsSet = new LinkedHashSet<>();
+			tempCoursePrefs = new LinkedHashMap<>();
+			this.courses = courses;
 		}
 
-		public static Builder newInstance() {
-			return new Builder();
+		public static Builder newInstance(Set<Course> courses) {
+			return new Builder(courses);
 		}
 
 		public AggregatedData build() {
-			checkState(tempCalcDatas.size() >= 1, "An AggregatedData must contain at least one CalcData.");
-			return new AggregatedData(tempCalcDatas, tempCourses);
+			mapToTeacherPrefs();
+			checkState(tempTeacherPrefsSet.size() >= 1, "An AggregatedData must contain at least one TeacherPrefs.");
+			return new AggregatedData(tempTeacherPrefsSet, courses);
 		}
 
 		/**
-		 * This method adds a CalcData to the set of CalcDatas of the object.
+		 * This method adds a TeacherPrefs to the tempTeacherPrefsSet object.
 		 * 
-		 * @param calcData - the CalcData to be added
+		 * @param teacherPrefs - the TeacherPrefs to be added
 		 * 
-		 * @throws IllegalArgumentException if the CalcData we want to add does not
+		 * @throws IllegalArgumentException if the TeacherPrefs we want to add does not
 		 *                                  contain the expected courses or contains the
 		 *                                  preferences of a Teacher that was already
 		 *                                  added.
 		 */
-		public void addCalcData(CalcData calcData) {
-			checkNotNull(calcData, "The CalcData must not be null");
+		public void addTeacherPrefs(TeacherPrefs teacherPrefs) {
+			checkNotNull(teacherPrefs, "The TeacherPrefs must not be null");
 
-			Set<Course> calcDataCourses = new LinkedHashSet<>();
-			for (CoursePref coursePref : calcData.getCoursePrefs()) {
-				calcDataCourses.add(coursePref.getCourse());
+			Set<Course> teacherPrefsCourses = new LinkedHashSet<>();
+			for (CoursePref coursePref : teacherPrefs.getCoursePrefs()) {
+				teacherPrefsCourses.add(coursePref.getCourse());
+			}
+			checkArgument(courses.equals(teacherPrefsCourses), "There must be the same courses in the calc datas.");
+
+			for (TeacherPrefs elt : tempTeacherPrefsSet) {
+				checkArgument(!elt.getTeacher().equals(teacherPrefs.getTeacher()),
+						"You cannot add twice all the preferences of the teacher : " + teacherPrefs.getTeacher());
 			}
 
-			reading++;
-
-			if (reading == 1) {
-				tempCourses = calcDataCourses;
-			} else {
-				checkArgument(tempCourses.equals(calcDataCourses), "There must be the same courses in the calc datas.");
+			tempTeacherPrefsSet.add(teacherPrefs);
+		}
+		
+		/**
+		 * This method allows to build an AggregatedData by adding a set of CoursePref.
+		 * 
+		 * @param coursePrefs - the Set of coursePref to be added
+		 * 
+		 */
+		public void addCoursePrefs(Set<CoursePref> coursePrefs) {
+			checkNotNull(coursePrefs, "The set of CoursePref must not be null.");
+			for (CoursePref coursePref : coursePrefs) {
+				checkNotNull(coursePref);
+				if(tempCoursePrefs.containsKey(coursePref.getTeacher())) {
+					tempCoursePrefs.get(coursePref.getTeacher()).add(coursePref);
+				}
+				else {
+					tempCoursePrefs.put(coursePref.getTeacher(), Set.of(coursePref));
+				}
 			}
-
-			for (CalcData elt : tempCalcDatas) {
-				checkArgument(!elt.getTeacher().equals(calcData.getTeacher()),
-						"You cannot add twice all the preferences of the teacher : " + calcData.getTeacher());
+		}
+		
+		/**
+		 * This method builds complete TeacherPrefs objects, using the CoursePrefs given
+		 * and stored in tempCoursePrefs, to complete tempTeacherPrefsSet the Set of TeacherPrefs
+		 * stored in the AggregatedData object.
+		 */
+		private void mapToTeacherPrefs() {
+			for (Teacher teacher : tempCoursePrefs.keySet()) {
+				Set<CoursePref> coursePrefs = tempCoursePrefs.get(teacher);
+				
+				Set<Course> courses = Set.copyOf(this.courses);
+				Set<Course> coursesInCoursePrefs = coursePrefs.stream().map(CoursePref::getCourse)
+				.collect(Collectors.toSet());
+				courses.removeAll(coursesInCoursePrefs);
+				
+				for (Course course : courses) {
+					CoursePref coursePref = CoursePref.Builder.newInstance(course, teacher)
+							.setPrefCM(Preference.UNSPECIFIED).setPrefTD(Preference.UNSPECIFIED)
+							.setPrefTP(Preference.UNSPECIFIED).setPrefCMTD(Preference.UNSPECIFIED)
+							.setPrefCMTP(Preference.UNSPECIFIED).build();
+					coursePrefs.add(coursePref);
+				}
+				
+				TeacherPrefs teacherPrefs = TeacherPrefs.newInstance(coursePrefs, teacher);
+				
+				this.addTeacherPrefs(teacherPrefs);
 			}
-
-			tempCalcDatas.add(calcData);
 		}
 	}
 
-	public ImmutableSet<CalcData> getCalcDatas() {
-		return calcDatas;
+	public ImmutableSet<TeacherPrefs> getTeacherPrefsSet() {
+		return TeacherPrefsSet;
 	}
 
 	public ImmutableSet<Course> getCourses() {
@@ -102,9 +147,9 @@ public class AggregatedData {
 	 */
 	public ImmutableSet<CoursePref> getTeacherPrefs(Teacher teacher) {
 		checkNotNull(teacher, "The teacher must not be null.");
-		for (CalcData calcData : calcDatas) {
-			if (teacher.equals(calcData.getTeacher())) {
-				return calcData.getCoursePrefs();
+		for (TeacherPrefs teacherPrefs : TeacherPrefsSet) {
+			if (teacher.equals(teacherPrefs.getTeacher())) {
+				return teacherPrefs.getCoursePrefs();
 			}
 		}
 		throw new IllegalArgumentException("There is no preference referenced for this teacher.");
@@ -121,8 +166,8 @@ public class AggregatedData {
 	public ImmutableSet<CoursePref> getCoursePrefs(Course course) {
 		checkNotNull(course, "The course must not be null.");
 		Set<CoursePref> coursePrefs = new LinkedHashSet<>();
-		for (CalcData calcData : calcDatas) {
-			coursePrefs.add(calcData.getCoursePref(course));
+		for (TeacherPrefs teacherPrefs : TeacherPrefsSet) {
+			coursePrefs.add(teacherPrefs.getCoursePref(course));
 		}
 		return ImmutableSet.copyOf(coursePrefs);
 	}

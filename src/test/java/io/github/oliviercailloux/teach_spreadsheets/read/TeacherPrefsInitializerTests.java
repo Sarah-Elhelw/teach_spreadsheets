@@ -7,23 +7,23 @@ import java.net.URL;
 
 import org.junit.jupiter.api.Test;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
+import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 
-public class CalcDataInitializerTests {
+public class TeacherPrefsInitializerTests {
 
 	@Test
 	void testreadDocument() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
 
 		try (InputStream stream = resourceUrl.openStream()) {
-			CalcData calcData = CalcData.getData(stream);
+			TeacherPrefs teacherPrefs = TeacherPrefs.getData(stream);
 
 			/** Checking the informations of the teacher: */
-			Teacher actualTeacher = calcData.getTeacher();
+			Teacher actualTeacher = teacherPrefs.getTeacher();
 			assertEquals("Doe", actualTeacher.getLastName());
 			assertEquals("John", actualTeacher.getFirstName());
 			assertEquals("19 rue Jacques Louvel-Tessier", actualTeacher.getAddress());
@@ -38,7 +38,7 @@ public class CalcDataInitializerTests {
 			assertEquals("B048", actualTeacher.getOffice());
 
 			/** Checking the information of the course in the cell P11 of the sheet DE1: */
-			CoursePref actualCoursePref = calcData.getCoursePref("Macroéconomie : analyse de long terme");
+			CoursePref actualCoursePref = teacherPrefs.getCoursePref("Macroéconomie : analyse de long terme");
 			Course actualCourse = actualCoursePref.getCourse();
 			Teacher acutalTeacherInPref = actualCoursePref.getTeacher();
 			assertEquals(Preference.UNSPECIFIED, actualCoursePref.getPrefCM());

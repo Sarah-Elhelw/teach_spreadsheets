@@ -3,14 +3,13 @@ package io.github.oliviercailloux.teach_spreadsheets.read;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
+import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
@@ -20,15 +19,15 @@ public class MultipleOdsPrefReaderTests {
 	@Test
 	void testReadFilesFromFolder() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("testFolder");
-		Set<CalcData> calcDatas = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()));
-		assertEquals(2, calcDatas.size());
-		for (CalcData calcData : calcDatas) {
-			switch (calcData.getTeacher().getFirstName()) {
+		Set<TeacherPrefs> teacherPrefsSet = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()));
+		assertEquals(2, teacherPrefsSet.size());
+		for (TeacherPrefs teacherPrefs : teacherPrefsSet) {
+			switch (teacherPrefs.getTeacher().getFirstName()) {
 			case "John":
-				checkInformationOfCalcDataJohn(calcData);
+				checkInformationOfTeacherPrefsJohn(teacherPrefs);
 				break;
 			case "Jane":
-				checkInformationOfCalcDataJane(calcData);
+				checkInformationOfTeacherPrefsJane(teacherPrefs);
 				break;
 			default:
 				fail("The file read doesn't correspond to John nor Jane");
@@ -40,9 +39,9 @@ public class MultipleOdsPrefReaderTests {
 	/**
 	 * Checks information read from the John Ods Pref file.
 	 */
-	private void checkInformationOfCalcDataJohn(CalcData calcData) {
+	private void checkInformationOfTeacherPrefsJohn(TeacherPrefs teacherPrefs) {
 		/** Checking the informations of the teacher: */
-		Teacher actualTeacher = calcData.getTeacher();
+		Teacher actualTeacher = teacherPrefs.getTeacher();
 		assertEquals("Doe", actualTeacher.getLastName());
 		assertEquals("John", actualTeacher.getFirstName());
 		assertEquals("19 rue Jacques Louvel-Tessier", actualTeacher.getAddress());
@@ -57,7 +56,7 @@ public class MultipleOdsPrefReaderTests {
 		assertEquals("B048", actualTeacher.getOffice());
 
 		/** Checking the information of the course in the cell P11 of the sheet DE1: */
-		CoursePref actualCoursePref = calcData.getCoursePref("Macroéconomie : analyse de long terme");
+		CoursePref actualCoursePref = teacherPrefs.getCoursePref("Macroéconomie : analyse de long terme");
 		Course actualCourse = actualCoursePref.getCourse();
 		Teacher acutalTeacherInPref = actualCoursePref.getTeacher();
 		assertEquals(Preference.UNSPECIFIED, actualCoursePref.getPrefCM());
@@ -89,9 +88,9 @@ public class MultipleOdsPrefReaderTests {
 	/**
 	 * Checks the information read from the Jane Ods Pref file.
 	 */
-	private void checkInformationOfCalcDataJane(CalcData calcData) {
+	private void checkInformationOfTeacherPrefsJane(TeacherPrefs teacherPrefs) {
 		/** Checking the informations of the teacher: */
-		Teacher actualTeacher = calcData.getTeacher();
+		Teacher actualTeacher = teacherPrefs.getTeacher();
 		assertEquals("Doe", actualTeacher.getLastName());
 		assertEquals("Jane", actualTeacher.getFirstName());
 		assertEquals("19 rue Jacques Louvel-Tessier", actualTeacher.getAddress());
@@ -106,7 +105,7 @@ public class MultipleOdsPrefReaderTests {
 		assertEquals("B048", actualTeacher.getOffice());
 
 		/** Checking the information of the course in the cell P11 of the sheet DE1: */
-		CoursePref actualCoursePref = calcData.getCoursePref("Macroéconomie : analyse de long terme");
+		CoursePref actualCoursePref = teacherPrefs.getCoursePref("Macroéconomie : analyse de long terme");
 		Course actualCourse = actualCoursePref.getCourse();
 		Teacher acutalTeacherInPref = actualCoursePref.getTeacher();
 		assertEquals(Preference.UNSPECIFIED, actualCoursePref.getPrefCM());
