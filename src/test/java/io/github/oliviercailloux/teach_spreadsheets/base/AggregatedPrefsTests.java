@@ -74,6 +74,20 @@ public class AggregatedPrefsTests {
 		assertEquals(aggregatedPrefs.getTeacherPrefs(teacher1), teacherPrefs5.getCoursePrefs());
 		assertEquals(aggregatedPrefs.getTeacherPrefs(teacher2), teacherPrefs6.getCoursePrefs());
 	}
+	
+	@Test
+	void testBuildAggregatedPrefsWithCoursePrefsAndTeacherPrefs() {
+		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses2);
+		aggregatedPrefsBuilder.addCoursePrefs(Set.of(coursePref3, coursePref4));
+		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs5);
+		
+		AggregatedPrefs aggregatedPrefs = aggregatedPrefsBuilder.build();
+		
+		assertTrue(aggregatedPrefs.getTeacherPrefsSet().size() == 2);
+		
+		assertEquals(aggregatedPrefs.getTeacherPrefs(teacher1), teacherPrefs5.getCoursePrefs());
+		assertEquals(aggregatedPrefs.getTeacherPrefs(teacher2), teacherPrefs6.getCoursePrefs());
+	}
 
 	/**
 	 * The aim of this method is to test that when we will concretely and
