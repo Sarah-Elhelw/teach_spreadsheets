@@ -54,7 +54,7 @@ public class AggregatedDataTests {
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			aggregatedData.addTeacherPrefs(teacherPrefs3);
 		});
-		assertEquals("There must be the same courses in the calc datas.", exception.getMessage());
+		assertEquals("There must be the same courses in the teacherPrefs.", exception.getMessage());
 	}
 
 	/**

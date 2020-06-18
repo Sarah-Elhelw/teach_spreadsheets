@@ -71,12 +71,9 @@ public class AggregatedData {
 		public void addTeacherPrefs(TeacherPrefs teacherPrefs) {
 			checkNotNull(teacherPrefs, "The TeacherPrefs must not be null");
 
-			Set<Course> teacherPrefsCourses = new LinkedHashSet<>();
-			for (CoursePref coursePref : teacherPrefs.getCoursePrefs()) {
-				teacherPrefsCourses.add(coursePref.getCourse());
-			}
-			checkArgument(courses.equals(teacherPrefsCourses), "There must be the same courses in the calc datas.");
-
+			Set<Course> teacherPrefsCourses = teacherPrefs.getCoursePrefs().stream().map(CoursePref::getCourse)
+					.collect(Collectors.toSet());
+			checkArgument(courses.equals(teacherPrefsCourses), "There must be the same courses in the teacherPrefs.");
 			for (TeacherPrefs elt : tempTeacherPrefsSet) {
 				checkArgument(!elt.getTeacher().equals(teacherPrefs.getTeacher()),
 						"You cannot add twice all the preferences of the teacher : " + teacherPrefs.getTeacher());
