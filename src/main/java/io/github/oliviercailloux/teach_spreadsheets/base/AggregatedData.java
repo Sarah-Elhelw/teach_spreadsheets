@@ -36,13 +36,19 @@ public class AggregatedData {
 		private Set<Course> courses;
 
 		private Builder(Set<Course> courses) {
-			checkNotNull(courses, "The set of courses must not be null.");
 			tempTeacherPrefsSet = new LinkedHashSet<>();
 			tempCoursePrefs = new LinkedHashMap<>();
 			this.courses = courses;
 		}
 
+		/**
+		 * This is the static factory method of the class AggregatedData.Builder. To
+		 * build an AggregatedData, possibly from only CoursePrefs, a set of Course is
+		 * necessary to serve as a reference.
+		 * 
+		 */
 		public static Builder newInstance(Set<Course> courses) {
+			checkNotNull(courses, "The set of courses must not be null.");
 			return new Builder(courses);
 		}
 
