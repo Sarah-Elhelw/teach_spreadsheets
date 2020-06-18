@@ -16,7 +16,7 @@ The classes that we plan to implement are described in the link:Doc\README.adoc#
 * Group 1: SM/PO: Sarah
 
 ** Fixing as many issues as possible : Issues 22, 25, 32, 33 ... 
-** Adding teacherAssignmentsSetToCourseAssignmentsSet() in CourseAssignment
+** Adding teacherAssignmentsToCourseAssignments() in CourseAssignment
 
 * Group 2 : Hedi and Semida
 
