@@ -125,7 +125,7 @@
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ud70QK83Eeqv9K-cWDl50w" value="*"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_8ufv0K83Eeqv9K-cWDl50w" name="completeAndAddTeacherPrefs" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_8ufv0K83Eeqv9K-cWDl50w" name="mapToTeacherPrefs" visibility="private"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_8XI3YK9FEeqv9K-cWDl50w" name="getTeacherPrefs">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_FtoFoK9GEeqv9K-cWDl50w" type="_bv1kcGIqEeq7OdFZt-_k0Q" direction="return">
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Gx6NIK9GEeqv9K-cWDl50w"/>
