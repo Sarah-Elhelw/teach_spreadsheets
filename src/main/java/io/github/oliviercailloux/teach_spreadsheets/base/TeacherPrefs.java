@@ -32,6 +32,10 @@ public class TeacherPrefs {
 		checkNotNull(teacher);
 
 		for (CoursePref coursePref : coursePrefs) {
+
+			checkArgument(teacher.equals(coursePref.getTeacher()),
+					"The set of CoursePref must concern the same Teacher as the one specified.");
+
 			for (CoursePref otherCoursePref : coursePrefs) {
 				if (coursePref != otherCoursePref
 						&& coursePref.getCourse().equals(otherCoursePref.getCourse())) {
