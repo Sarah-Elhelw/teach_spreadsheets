@@ -23,7 +23,7 @@ The Use Case diagram describes the main functionalities the project will impleme
 image::Images\Sequence_Global_context.PNG[{fullWifth}]
 
 The idea of this diagram is to present a global view of our project. The program starts by receiving all the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”] already completed by each teacher. *readFilesFromFolder* is the function used to register in a variable of type AggregatedData all the information read in the files “AA-Saisie voeux 2016-2017.ods”. Then, the function *createSummary* writes in a Calc to produce a document similar to https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”] given in the subject.This Calc summarizes thus all the files “AA-Saisie voeux 2016-2017.ods” loaded.
-Our program, through *writeCoursesInAJsonFile*, will also generate a json file containing a list of all the courses in the vows files.
+Our program, through *writeCoursesInAJsonFile*, will also generate a Json file containing a list of all the courses in the vows files.
 
 If desired by the Admin, our program can end with the generation of the aggregated files. Else, if required by the Admin, our program can continue to help the admin make an assignment. The Assignment process is described in the second sequence diagram (“Sequence_Assignment”), which is refered to in this diagram. If the assignment process took place, the admin will, eventually, send the link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fiche%20de%20service.png[“Fiche de service.ods”] specific to each teacher. 
 
@@ -53,7 +53,7 @@ CoursePrefElement lists in Model are used to represent instances of table items 
 
 Here is the process :
 
-Controller initializes the View (*initializeGui* in View) and sets the Model data (*setModelData* in Controller) from ods files thanks to *readFilesFromFolder* in MultipleOdsPrefReader class.
+Controller initializes the View (*initializeGui* in View) and sets the Model data (*setModelData* in Controller) from Ods files thanks to *readFilesFromFolder* in MultipleOdsPrefReader class.
 
 Then the Controller calls the *initPreferences* function in View with the data retrieved from Model. The GUI is now set.
 
@@ -65,9 +65,9 @@ A listener is also set for the submit button in View. This listener calls *creat
 image::Images\Class_ODS_Read.PNG[{fullWifth}]
 
 The main goal of these classes is to read information from an link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[ods file] and create the corresponding TeacherPrefs object. The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in Json format the list of courses available in the input file).
-*MultipleOdsPrefReader* reads all the ods files present in a certain folder via the *readFilesFromFolder* function.
+*MultipleOdsPrefReader* reads all the Ods files present in a certain folder via the *readFilesFromFolder* function.
 
-*JsonSerializer*, through *serializeSet*, builds a string json array of all the courses' information collected from the ods files. This concept may be link:Advice.adoc#JsonSerializer[generalized].
+*JsonSerializer*, through *serializeSet*, builds a string Json array of all the courses' information collected from the Ods files. This concept may be link:Advice.adoc#JsonSerializer[generalized].
 
 
 == Ods Write classes
