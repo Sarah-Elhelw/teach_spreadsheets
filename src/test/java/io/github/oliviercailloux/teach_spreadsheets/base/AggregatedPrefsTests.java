@@ -3,6 +3,7 @@ package io.github.oliviercailloux.teach_spreadsheets.base;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -21,7 +22,8 @@ public class AggregatedPrefsTests {
 			.setStudyLevel("DE1").setSemester(1).setCountGroupsTD(6).setNbMinutesTD(900).build();
 	private static Course course2 = Course.Builder.newInstance().setName("Analyse").setStudyYear(2016)
 			.setStudyLevel("DE1").setSemester(1).setCountGroupsTD(5).setNbMinutesTD(700).build();
-	private static Set<Course> courses = Set.of(course1);
+	private static Set<Course> courses1 = Set.of(course1);
+	private static Set<Course> courses2 = Set.of(course1, course2);
 	
 	private static CoursePref coursePref1 = CoursePref.Builder.newInstance(course1, teacher1).setPrefTD(Preference.A)
 			.build();
@@ -31,15 +33,19 @@ public class AggregatedPrefsTests {
 			.build();
 	private static CoursePref coursePref4 = CoursePref.Builder.newInstance(course1, teacher2).setPrefTD(Preference.C)
 			.build();
+	private static CoursePref coursePref5 = CoursePref.Builder.newInstance(course2, teacher1).build();
 
 	private static TeacherPrefs teacherPrefs1 = TeacherPrefs.newInstance(Set.of(coursePref1), teacher1);
 	private static TeacherPrefs teacherPrefs2 = TeacherPrefs.newInstance(Set.of(coursePref2), teacher1);
 	private static TeacherPrefs teacherPrefs3 = TeacherPrefs.newInstance(Set.of(coursePref3), teacher2);
 	private static TeacherPrefs teacherPrefs4 = TeacherPrefs.newInstance(Set.of(coursePref4), teacher2);
+	
+	private static TeacherPrefs teacherPrefs5 = TeacherPrefs.newInstance(Set.of(coursePref1, coursePref5), teacher1);
+	private static TeacherPrefs teacherPrefs6 = TeacherPrefs.newInstance(Set.of(coursePref3, coursePref4), teacher2);
 
 	@Test
 	void testAddTeacherPrefsWithSameTeacher() {
-		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses);
+		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses1);
 		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs1);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs2);
@@ -49,12 +55,24 @@ public class AggregatedPrefsTests {
 
 	@Test
 	void testAddTeacherPrefsWithDifferentCourses() {
-		AggregatedPrefs.Builder aggregatedPrefs = AggregatedPrefs.Builder.newInstance(courses);
+		AggregatedPrefs.Builder aggregatedPrefs = AggregatedPrefs.Builder.newInstance(courses1);
 		aggregatedPrefs.addTeacherPrefs(teacherPrefs1);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
 			aggregatedPrefs.addTeacherPrefs(teacherPrefs3);
 		});
 		assertEquals("There must be the same courses in the teacherPrefs.", exception.getMessage());
+	}
+	
+	@Test
+	void testBuildAggregatedPrefsWithCoursePrefs() {
+		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses2);
+		aggregatedPrefsBuilder.addCoursePrefs(Set.of(coursePref1, coursePref3, coursePref4));
+		AggregatedPrefs aggregatedPrefs = aggregatedPrefsBuilder.build();
+		
+		assertTrue(aggregatedPrefs.getTeacherPrefsSet().size() == 2);
+		
+		assertEquals(aggregatedPrefs.getTeacherPrefs(teacher1), teacherPrefs5.getCoursePrefs());
+		assertEquals(aggregatedPrefs.getTeacherPrefs(teacher2), teacherPrefs6.getCoursePrefs());
 	}
 
 	/**
@@ -88,7 +106,7 @@ public class AggregatedPrefsTests {
 
 	@Test
 	void testGetTeacherPrefs() {
-		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses);
+		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses1);
 		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs1);
 		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs4);
 		AggregatedPrefs aggregatedPrefs = aggregatedPrefsBuilder.build();
@@ -98,7 +116,7 @@ public class AggregatedPrefsTests {
 
 	@Test
 	void testGetCoursePrefs() {
-		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses);
+		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses1);
 		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs1);
 		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs4);
 		AggregatedPrefs aggregatedPrefs = aggregatedPrefsBuilder.build();

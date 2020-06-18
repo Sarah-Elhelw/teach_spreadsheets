@@ -104,7 +104,8 @@ public class AggregatedPrefs {
 					tempCoursePrefs.get(coursePref.getTeacher()).add(coursePref);
 				}
 				else {
-					tempCoursePrefs.put(coursePref.getTeacher(), Set.of(coursePref));
+					Set<CoursePref> newSet = new LinkedHashSet<>(Set.of(coursePref));
+					tempCoursePrefs.put(coursePref.getTeacher(), newSet);
 				}
 			}
 		}
@@ -118,16 +119,13 @@ public class AggregatedPrefs {
 			for (Teacher teacher : tempCoursePrefs.keySet()) {
 				Set<CoursePref> coursePrefs = tempCoursePrefs.get(teacher);
 				
-				Set<Course> courses = Set.copyOf(this.courses);
+				Set<Course> courses = new LinkedHashSet<>(this.courses);
 				Set<Course> coursesInCoursePrefs = coursePrefs.stream().map(CoursePref::getCourse)
 				.collect(Collectors.toSet());
 				courses.removeAll(coursesInCoursePrefs);
 				
 				for (Course course : courses) {
-					CoursePref coursePref = CoursePref.Builder.newInstance(course, teacher)
-							.setPrefCM(Preference.UNSPECIFIED).setPrefTD(Preference.UNSPECIFIED)
-							.setPrefTP(Preference.UNSPECIFIED).setPrefCMTD(Preference.UNSPECIFIED)
-							.setPrefCMTP(Preference.UNSPECIFIED).build();
+					CoursePref coursePref = CoursePref.Builder.newInstance(course, teacher).build();
 					coursePrefs.add(coursePref);
 				}
 				
