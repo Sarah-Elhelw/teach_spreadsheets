@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedData;
+import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 
 /**
@@ -23,10 +23,10 @@ public class MultipleOdsPrefReader {
 	/**
 	 * Reads the Ods Pref files from the path given in the parameter.
 	 * @param pathToFolder the path to the folder where all the Ods files are.This path should not be null.
-	 * @return an AggregatedData containing all the TeacherPrefs from all the read files.
+	 * @return an AggregatedPrefs containing all the TeacherPrefs from all the read files.
 	 * @throws IOException, Exception
 	 */
-	public static AggregatedData readFilesFromFolder(Path pathToFolder) throws IOException, Exception {
+	public static AggregatedPrefs readFilesFromFolder(Path pathToFolder) throws IOException, Exception {
 		checkNotNull(pathToFolder);
 		Set<TeacherPrefs> tempTeacherPrefsSet = new LinkedHashSet<>();
 		try (Stream<Path> walk = Files.walk(pathToFolder)) {
@@ -40,13 +40,13 @@ public class MultipleOdsPrefReader {
 		}
 		ImmutableSet<TeacherPrefs> teacherPrefsSet = ImmutableSet.copyOf(tempTeacherPrefsSet);
 		if (teacherPrefsSet.size() >= 1) {
-			AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder
+			AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder
 					.newInstance(teacherPrefsSet.asList().get(0).getCourses());
-			aggregatedDataBuilder.addTeacherPrefsSet(teacherPrefsSet);
-			return aggregatedDataBuilder.build();
+			aggregatedPrefsBuilder.addTeacherPrefsSet(teacherPrefsSet);
+			return aggregatedPrefsBuilder.build();
 		} else {
 			throw new IllegalArgumentException(
-					"The path does not contain an input vows file. An AggregatedData cannot be created.");
+					"The path does not contain an input vows file. An AggregatedPrefs cannot be created.");
 		}
 	}
 }
