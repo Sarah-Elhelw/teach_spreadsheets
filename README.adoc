@@ -11,11 +11,12 @@ You can see how our program's gui looks like in link:Doc\README.adoc#GuiDescript
 The way we imagine the process of assignment is described in the link:Doc\README.adoc#SeqDiag[sequence diagram]. +
 The classes that we plan to implement are described in the link:Doc\README.adoc#ClassDiag[class diagram].
 
-== Forth java iteration
+== Fourth java iteration
 
 * Group 1: SM/PO: Sarah
 
 ** Fixing as many issues as possible : Issues 22, 25, 32, 33 ... 
+** Adding teacherAssignmentsSetToCourseAssignmentsSet() in CourseAssignment
 
 * Group 2 : Hedi and Semida
 
@@ -25,8 +26,6 @@ The classes that we plan to implement are described in the link:Doc\README.adoc#
 
 
 * Group 3 : Mike and Inès
-
-** Adding loggers
 
 ** Completing the GUI for Assignment
 
