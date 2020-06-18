@@ -646,7 +646,7 @@ there are other private methods which format the ods : putBorders(), formatheade
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_e40D0JxPEeqP0PGWWkkdZQ" name="setData">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_ceVfsKqYEeqhf_6YD4kl5g" name="calcData" type="_0YeooGYQEeqq2pYv3YMNcA"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_ceVfsKqYEeqhf_6YD4kl5g" name="teacherPrefs" type="_0YeooGYQEeqq2pYv3YMNcA"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_RgH8IKqMEeqhf_6YD4kl5g" name="setDataFromSet">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_RgH8IaqMEeqhf_6YD4kl5g" name="teacherPrefsSet" type="_0YeooGYQEeqq2pYv3YMNcA">
