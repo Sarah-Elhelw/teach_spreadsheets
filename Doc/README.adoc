@@ -22,7 +22,7 @@ The Use Case diagram describes the main functionalities the project will impleme
 
 image::Images\Sequence_Global_context.PNG[{fullWifth}]
 
-The idea of this diagram is to present a global view of our project. The program starts by receiving all the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”] already completed by each teacher. *readFilesFromFolder* is the function used to register in a variable of type AggregatedData all the information read in the files “AA-Saisie voeux 2016-2017.ods”. Then, the function *createSummary* writes in a Calc to produce a document similar to https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”] given in the subject.This Calc summarizes thus all the files “AA-Saisie voeux 2016-2017.ods” loaded.
+The idea of this diagram is to present a global view of our project. The program starts by receiving all the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”] already completed by each teacher. *readFilesFromFolder* is the function used to register in a variable of type AggregatedPrefs all the information read in the files “AA-Saisie voeux 2016-2017.ods”. Then, the function *createSummary* writes in a Calc to produce a document similar to https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”] given in the subject.This Calc summarizes thus all the files “AA-Saisie voeux 2016-2017.ods” loaded.
 Our program, through *writeCoursesInAJsonFile*, will also generate a Json file containing a list of all the courses in the vows files.
 
 If desired by the Admin, our program can end with the generation of the aggregated files. Else, if required by the Admin, our program can continue to help the admin make an assignment. The Assignment process is described in the second sequence diagram (“Sequence_Assignment”), which is refered to in this diagram. If the assignment process took place, the admin will, eventually, send the link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fiche%20de%20service.png[“Fiche de service.ods”] specific to each teacher. 
@@ -42,7 +42,7 @@ image::Images\Class_assignment.PNG[{fullWifth}]
 The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
 *CoursePref* represents preferences from a teacher for a specified course.
 
-*AggregatedData* represents an aggregation of all the TeacherPrefs built in our program.
+*AggregatedPrefs* represents an aggregation of all the TeacherPrefs built in our program.
 
 The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers. The *TeacherAssignment* class stores the number of TD, TP, CM groups assigned to one teacher in the selected course. +
 
