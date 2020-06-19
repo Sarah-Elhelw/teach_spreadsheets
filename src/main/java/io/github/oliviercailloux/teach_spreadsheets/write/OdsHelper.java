@@ -7,6 +7,8 @@ import org.odftoolkit.simple.table.Table;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 class OdsHelper {
 
@@ -59,6 +61,22 @@ class OdsHelper {
 	public void setValueAt(String info, int row, int column) {
 		Cell cell = table.getCellByPosition(column, row);
 		cell.setDisplayText(info);
+
+	}
+
+	/**
+	 * This method opens a document from an URL and returns it.
+	 * 
+	 * @param resourceUrl The URL from which we want to open the document
+	 * @return the document open from the URL
+	 * @throws Exception if the document could not be open from the URL
+	 */
+
+	public static SpreadsheetDocument docFromUrl(URL resourceUrl) throws Exception {
+		InputStream stream = resourceUrl.openStream();
+		SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream); 
+		stream.close();
+		return document;
 
 	}
 

@@ -1,0 +1,23 @@
+= Some advice for future generations
+
+== Global remarks on the project
+
+=== Assignment process
+
+[[Assignment]]
+In our program, the Admin assigns the teachers to the courses using our GUI. Another interesting direction to take would have been to let the program assign the teachers to the courses. To do so, one should contact or directly get the program of Axel Faure, a previous intern at Dauphine, who wrote a code to assign teachers; the idea would be then to adapt the latter code to one’s program. Please talk to Mr Olivier Cailloux for further information.
+
+== Advice per java package
+
+=== Package json
+
+[[JsonDeserializer]]
+*JsonDeserializer* could also deserialize a json array of teachers, with teachers’ information coming from RefRof. To deal with RefRof content, it is strongly advised to draw one’s inspiration from the code accessible with https://github.com/Dauphine-MIDO/plaquette-MIDO[this link]. Indeed, one must not directly read json from RefRof but read XML for more durability of the code, XML being less impacted by format changes.
+
+[[JsonSerializer]]
+*JsonSerializer*’s functionalities could be extended to get json array strings of teacher and more. Indeed, json format is appreciated by the administration programming services.
+
+=== Package write
+
+[[Write]]
+It would be interesting to generate as well https://github.com/oliviercailloux/projets/raw/master/Voeux/services%20MIDO.xls[services MIDO.xls]. In particular, *Affectations* sheet would then present a summary of the assignments from the teachers’ perspective (our program showing a summary from the courses’ perspective). Furthermore, *donnees* sheet would then offer a raw presentation of all the assignments.
