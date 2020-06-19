@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -69,9 +67,8 @@ public class OdsSummarizerTests {
 		ods.addPrefs(prefs);
 		ods.setAllCoursesAssigned(allCoursesAssigned);
 
-		URL resourceUrl = OdsSummarizer.class.getResource("OdsSummarizer.ods");
-		try (InputStream stream = resourceUrl.openStream();
-				SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
+		try (SpreadsheetDocument document = OdsHelper
+				.docFromUrl(AssignmentPerTeacher.class.getResource("OdsSummarizer.ods"));
 				SpreadsheetDocument documentCreated = ods.createSummary()) {
 
 			Table tableCreated = documentCreated.getTableByName("Summary");
