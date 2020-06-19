@@ -73,11 +73,9 @@ class OdsHelper {
 	 */
 
 	public static SpreadsheetDocument docFromUrl(URL resourceUrl) throws Exception {
-		InputStream stream = resourceUrl.openStream();
-		SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream); 
-		stream.close();
-		return document;
-
+		try (InputStream stream = resourceUrl.openStream()) {
+			SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
+			return document;
+		}
 	}
-
 }
