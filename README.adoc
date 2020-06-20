@@ -13,6 +13,7 @@ The Icons used in the gui are made by link:https://www.flaticon.com/authors/free
 The main functionalities that this project will implement are described in the link:Doc\README.adoc#UseCaseDiag[use case diagram]. +
 You can see how our program's gui looks like in link:Doc\README.adoc#GuiDescription[gui description]. +
 The way we imagine the process of assignment is described in the link:Doc\README.adoc#SeqDiag[sequence diagram]. +
+The packages in our program are modelled in the link:Doc\README.adoc#Package[package diagram]. +
 The classes implemented are described in the link:Doc\README.adoc#ClassDiag[class diagram].
 
 == Fourth java iteration

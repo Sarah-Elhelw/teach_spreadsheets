@@ -33,6 +33,13 @@ image::Images\Sequence_Assignment.PNG[{fullWifth}]
 
 The idea of this diagram is to present a focus on the assignment process. We renounced to produce a link:Advice.adoc#Assignment[function] that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers. As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fiche%20de%20service.png[“Fiche de service.ods”] and link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.ods”] fully completed).
 
+[[Package]]
+= Package diagram doc
+
+image::Images\Packages_program.PNG[{fullWifth}]
+
+This diagram presents all the packages of our program. It allows to have the furthest view and a larger comprehension of our program. It shows the interactions between the different packages : the associations represent the imports needed in the java code. In the packages, the most important and representative classes are specified.
+
 [[ClassDiag]]
 = Class diagrams doc
 == Base classes
