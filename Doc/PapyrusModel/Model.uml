@@ -573,15 +573,6 @@ there are other private methods which format the ods : putBorders(), formatheade
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_JFRuYKqaEeqhf_6YD4kl5g" name="addCourseToCoursesTable" visibility="public">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuYaqaEeqhf_6YD4kl5g" name="nbGroups">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuYqqaEeqhf_6YD4kl5g" name="courseName">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuY6qaEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
-          </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_a1xu0KqKEeqhf_6YD4kl5g" name="prefShell" visibility="public"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_r1TLAKqKEeqhf_6YD4kl5g" name="setCompositePreferenceTable" visibility="public">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAaqKEeqhf_6YD4kl5g" name="parentComposite" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
@@ -600,6 +591,17 @@ there are other private methods which format the ods : putBorders(), formatheade
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxdKqKEeqhf_6YD4kl5g" name="logo" type="_N5iy8LLPEeq9PNqz_vvy7Q"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_2Mj5wKqKEeqhf_6YD4kl5g" name="createAndSetSubmitButton" visibility="public"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_WtnZkLMwEeqJINLMnmuenw" name="populateCourses">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_dMzqkLMwEeqJINLMnmuenw" name="courses" type="_XVBhkGBfEeq31cSPSR9mAA">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eQHhsLMwEeqJINLMnmuenw" value="*"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_jFTH8LMwEeqJINLMnmuenw" name="populateAllPreferences">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_ppSZYLMwEeqJINLMnmuenw" name="texts">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qvqyoLMwEeqJINLMnmuenw" value="*"/>
+            </ownedParameter>
+          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_mYyDwJs7EeqkfLOOhPUFxQ" name="Controller">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_zSGNoJs9EeqkfLOOhPUFxQ" name="createAssignments" visibility="private"/>
