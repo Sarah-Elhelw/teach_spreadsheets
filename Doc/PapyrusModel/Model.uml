@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_s6OXIGBZEeq31cSPSR9mAA" name="Model" visibility="public">
-  <packagedElement xmi:type="uml:Package" xmi:id="_-5Ki0HDJEequm7xLIeERRg" name="ClassesAndAssociations">
+  <packagedElement xmi:type="uml:Package" xmi:id="_-5Ki0HDJEequm7xLIeERRg" name="PackagesAndAssociations">
     <packagedElement xmi:type="uml:Package" xmi:id="_H5908HDKEequm7xLIeERRg" name="Associations">
-      <packagedElement xmi:type="uml:Package" xmi:id="_9MCnIIcZEeqUqZA2AF_9Pw" name="BaseAndAssignment">
+      <packagedElement xmi:type="uml:Package" xmi:id="_9MCnIIcZEeqUqZA2AF_9Pw" name="base_assignment">
         <packagedElement xmi:type="uml:Association" xmi:id="_UY9N4G9ZEeqks-MRezUMyA" memberEnd="_UY_DEG9ZEeqks-MRezUMyA _UZEioG9ZEeqks-MRezUMyA">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_UY-cAG9ZEeqks-MRezUMyA" source="org.eclipse.papyrus">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_UY-cAW9ZEeqks-MRezUMyA" key="nature" value="UML_Nature"/>
@@ -60,8 +60,9 @@
           </eAnnotations>
           <ownedEnd xmi:type="uml:Property" xmi:id="_5iQo4a8tEeqv9K-cWDl50w" name="teacherPrefs" type="_0YeooGYQEeqq2pYv3YMNcA" association="_5iGQ0K8tEeqv9K-cWDl50w"/>
         </packagedElement>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_2RWkwLM-Eeq87etjnwv5qQ" name="uses" client="_kQkAMLM7Eeq87etjnwv5qQ" supplier="_nX8wEIcWEeqUqZA2AF_9Pw"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_CZVycIcaEeqUqZA2AF_9Pw" name="Read">
+      <packagedElement xmi:type="uml:Package" xmi:id="_CZVycIcaEeqUqZA2AF_9Pw" name="read">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_7zSg8IcYEeqUqZA2AF_9Pw" client="_PDkJsIcXEeqUqZA2AF_9Pw" supplier="_IG1BEIcXEeqUqZA2AF_9Pw"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_DSnZQIcZEeqUqZA2AF_9Pw" name="use" client="_s6OXIGBZEeq31cSPSR9mAA" supplier="_PDkJsIcXEeqUqZA2AF_9Pw"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_R23F0IcZEeqUqZA2AF_9Pw" name="use" client="_PDkJsIcXEeqUqZA2AF_9Pw" supplier="_IG1BEIcXEeqUqZA2AF_9Pw"/>
@@ -74,24 +75,33 @@
         <packagedElement xmi:type="uml:Dependency" xmi:id="_PDFEsIcbEeqUqZA2AF_9Pw" name="create" client="_PDkJsIcXEeqUqZA2AF_9Pw" supplier="_bv1kcGIqEeq7OdFZt-_k0Q"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_Td_JwIcbEeqUqZA2AF_9Pw" name="create" client="_s6OXIGBZEeq31cSPSR9mAA" supplier="_s6OXIGBZEeq31cSPSR9mAA"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_9f3XQJs_EeqkfLOOhPUFxQ" name="use" client="_T5jLgJs_EeqkfLOOhPUFxQ" supplier="_0YeooGYQEeqq2pYv3YMNcA"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_3HB4UK_4EeqrAKLPKD0YxA" name="create" client="_T5jLgJs_EeqkfLOOhPUFxQ" supplier="_a4w-cGwuEeqdw6kasHCXew"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_mnJVsLM-Eeq87etjnwv5qQ" name="uses" client="_upoN8IcWEeqUqZA2AF_9Pw" supplier="_nX8wEIcWEeqUqZA2AF_9Pw"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_wHJfIIe2EeqbHs-aXdOJpQ" name="Json">
+      <packagedElement xmi:type="uml:Package" xmi:id="_wHJfIIe2EeqbHs-aXdOJpQ" name="json">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_b5uHEIe3EeqbHs-aXdOJpQ" name="use" client="_s6OXIGBZEeq31cSPSR9mAA" supplier="_z60P8Ie0EeqbHs-aXdOJpQ"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_hV3xQIe4EeqbHs-aXdOJpQ" name="use" client="_oSoE0Ie0EeqbHs-aXdOJpQ" supplier="_s6OXIGBZEeq31cSPSR9mAA _a4w-cGwuEeqdw6kasHCXew"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_8BoWwLM9Eeq87etjnwv5qQ" name="uses" client="_gSygcIe0EeqbHs-aXdOJpQ" supplier="_nX8wEIcWEeqUqZA2AF_9Pw"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_FRQz0Js8EeqkfLOOhPUFxQ" name="Gui">
+      <packagedElement xmi:type="uml:Package" xmi:id="_FRQz0Js8EeqkfLOOhPUFxQ" name="gui">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_6xCDIKqNEeqhf_6YD4kl5g" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_3yM0sJxOEeqP0PGWWkkdZQ"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_S-wV8KqPEeqhf_6YD4kl5g" name="uses" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_s6OXIGBZEeq31cSPSR9mAA"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_2Q3ZALLwEeq9PNqz_vvy7Q" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_zMLY8JuXEeqi_K2iLQMdMg"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_JmM2ALLxEeq9PNqz_vvy7Q" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_T5jLgJs_EeqkfLOOhPUFxQ"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_18SFIKwWEeqEa6Mf8u6JHg" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_ki1OwJs7EeqkfLOOhPUFxQ"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_9sMbILM9Eeq87etjnwv5qQ" name="uses" client="_s6OXIGBZEeq31cSPSR9mAA" supplier="_nX8wEIcWEeqUqZA2AF_9Pw"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_vIPNALM-Eeq87etjnwv5qQ" name="uses" client="_i4FkMJs7EeqkfLOOhPUFxQ" supplier="_kQkAMLM7Eeq87etjnwv5qQ"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_yishsLM-Eeq87etjnwv5qQ" name="uses" client="_i4FkMJs7EeqkfLOOhPUFxQ" supplier="_8yeicIfbEeqw0tXzRKMkvg"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_RefbQJwkEeqnwtyuSDALCg" name="Write">
+      <packagedElement xmi:type="uml:Package" xmi:id="_RefbQJwkEeqnwtyuSDALCg" name="write">
         <packagedElement xmi:type="uml:Usage" xmi:id="_Fg6jEJwxEeqwT532HYtLXQ" client="_21gQEJuXEeqi_K2iLQMdMg" supplier="_FCjZgIegEeq_vJIT4Zoedw"/>
         <packagedElement xmi:type="uml:Usage" xmi:id="_Hl0aEJwxEeqwT532HYtLXQ" client="_zMLY8JuXEeqi_K2iLQMdMg" supplier="_FCjZgIegEeq_vJIT4Zoedw"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_4E_FkLM-Eeq87etjnwv5qQ" name="uses" client="_8yeicIfbEeqw0tXzRKMkvg" supplier="_nX8wEIcWEeqUqZA2AF_9Pw"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_CxMwoLM_Eeq87etjnwv5qQ" name="uses" client="_8yeicIfbEeqw0tXzRKMkvg" supplier="_kQkAMLM7Eeq87etjnwv5qQ"/>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_K_8HYHDKEequm7xLIeERRg" name="Classes">
-      <packagedElement xmi:type="uml:Package" xmi:id="_nX8wEIcWEeqUqZA2AF_9Pw" name="BaseAndAssignment">
+    <packagedElement xmi:type="uml:Package" xmi:id="_K_8HYHDKEequm7xLIeERRg" name="Packages">
+      <packagedElement xmi:type="uml:Package" xmi:id="_nX8wEIcWEeqUqZA2AF_9Pw" name="base">
         <packagedElement xmi:type="uml:Class" xmi:id="_0YeooGYQEeqq2pYv3YMNcA" name="TeacherPrefs">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_BJkVgmYREeqq2pYv3YMNcA" name="coursePrefs" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_BJjHYGYREeqq2pYv3YMNcA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dSDDIGYREeqq2pYv3YMNcA"/>
@@ -142,25 +152,6 @@
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_oqDW0K9HEeqv9K-cWDl50w" name="course" type="_XVBhkGBfEeq31cSPSR9mAA"/>
           </ownedOperation>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_NuzqEG9ZEeqks-MRezUMyA" name="TeacherAssignment">
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_KxCNwGEpEeqMmJrPvsnLhQ" name="countGroupsTD" visibility="public">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_Sz7GIGEpEeqMmJrPvsnLhQ" name="countGroupsTP" visibility="public">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_gmQ0oGEpEeqMmJrPvsnLhQ" name="countGroupsCM" visibility="public">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_eyXm0m9bEeqks-MRezUMyA" name="teacher" visibility="public" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_eyW_wG9bEeqks-MRezUMyA"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_yqpU4IctEeqUqZA2AF_9Pw" name="countGroupsCMTD" visibility="public">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_1aLdQIctEeqUqZA2AF_9Pw" name="countGroupsCMTP" visibility="public">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_H5cGEp2kEeqgYtA4nJO78A" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_H5a38J2kEeqgYtA4nJO78A"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_XVBhkGBfEeq31cSPSR9mAA" name="Course">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_Yts48GFVEeq7OdFZt-_k0Q" name="name" visibility="public">
@@ -245,23 +236,6 @@
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           </ownedAttribute>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="__FiFYGEnEeqMmJrPvsnLhQ" name="CourseAssignment" visibility="public">
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_UY_DEG9ZEeqks-MRezUMyA" name="teacherAssignments" type="_NuzqEG9ZEeqks-MRezUMyA" association="_UY9N4G9ZEeqks-MRezUMyA">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UZARMG9ZEeqks-MRezUMyA"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UZCtcG9ZEeqks-MRezUMyA" value="*"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_NUkoUm9dEeqks-MRezUMyA" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_NUkBQG9dEeqks-MRezUMyA"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_Bx4hcLG6EeqqEfH_KH6tEg" name="teacherAssignmentsToCourseAssignments" isStatic="true">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_H2WlULG6EeqqEfH_KH6tEg" name="teacherAssignments" type="_NuzqEG9ZEeqks-MRezUMyA">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IuIh4LG6EeqqEfH_KH6tEg"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IuSS4LG6EeqqEfH_KH6tEg" value="*"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_ONo3gLG6EeqqEfH_KH6tEg" type="__FiFYGEnEeqMmJrPvsnLhQ" direction="return">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PdTvoLG6EeqqEfH_KH6tEg"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PGt0kLG6EeqqEfH_KH6tEg" value="*"/>
-            </ownedParameter>
-          </ownedOperation>
-        </packagedElement>
         <packagedElement xmi:type="uml:AssociationClass" xmi:id="_bv1kcGIqEeq7OdFZt-_k0Q" name="CoursePref" visibility="public" memberEnd="_bv2LgmIqEeq7OdFZt-_k0Q _bv2ykGIqEeq7OdFZt-_k0Q">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bv2LgGIqEeq7OdFZt-_k0Q" source="org.eclipse.papyrus">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bv2LgWIqEeq7OdFZt-_k0Q" key="nature" value="UML_Nature"/>
@@ -290,7 +264,7 @@
           <ownedEnd xmi:type="uml:Property" xmi:id="_bv2LgmIqEeq7OdFZt-_k0Q" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
         </packagedElement>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_upoN8IcWEeqUqZA2AF_9Pw" name="Read">
+      <packagedElement xmi:type="uml:Package" xmi:id="_upoN8IcWEeqUqZA2AF_9Pw" name="read">
         <packagedElement xmi:type="uml:Class" xmi:id="_Eu9GUIcXEeqUqZA2AF_9Pw" name="TeacherPrefsInitializer" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_MbJ40IceEeqUqZA2AF_9Pw" name="createTeacherPrefs" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_MbJ40YceEeqUqZA2AF_9Pw" name="document" type="_UJcaMIceEeqUqZA2AF_9Pw"/>
@@ -396,9 +370,8 @@
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_w6DXYJttEeqdz4L_R9L93Q" name="aggregatedData" type="_a4w-cGwuEeqdw6kasHCXew" direction="return"/>
           </ownedOperation>
         </packagedElement>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_3HB4UK_4EeqrAKLPKD0YxA" name="create" client="_T5jLgJs_EeqkfLOOhPUFxQ" supplier="_a4w-cGwuEeqdw6kasHCXew"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_gSygcIe0EeqbHs-aXdOJpQ" name="Json">
+      <packagedElement xmi:type="uml:Package" xmi:id="_gSygcIe0EeqbHs-aXdOJpQ" name="json">
         <packagedElement xmi:type="uml:Class" xmi:id="_oSoE0Ie0EeqbHs-aXdOJpQ" name="JsonSerializer">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_IuDlwJdVEeqZR-Nl_eMGbQ" name="serializeSet" visibility="public" isStatic="true">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_a69eQJdZEeqZR-Nl_eMGbQ" name="courses" type="_XVBhkGBfEeq31cSPSR9mAA">
@@ -436,7 +409,7 @@
           </ownedOperation>
         </packagedElement>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_8yeicIfbEeqw0tXzRKMkvg" name="Write" URI="">
+      <packagedElement xmi:type="uml:Package" xmi:id="_8yeicIfbEeqw0tXzRKMkvg" name="write" URI="">
         <ownedComment xmi:type="uml:Comment" xmi:id="_RmG98LCjEeq9oMIwiA5ngQ">
           <body>In the class AssignmentPerTeacher, there are other private methods which format
 the ods : formatHeaders (Table table) and drawTable (Table table, int line)</body>
@@ -559,7 +532,7 @@ there are other private methods which format the ods : putBorders(), formatheade
           </ownedOperation>
         </packagedElement>
       </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_i4FkMJs7EeqkfLOOhPUFxQ" name="Gui">
+      <packagedElement xmi:type="uml:Package" xmi:id="_i4FkMJs7EeqkfLOOhPUFxQ" name="gui">
         <ownedComment xmi:type="uml:Comment" xmi:id="_IQCl8KqOEeqhf_6YD4kl5g">
           <body>In fact the Controller contains the call back functions needed by the View</body>
         </ownedComment>
@@ -692,7 +665,44 @@ there are other private methods which format the ods : putBorders(), formatheade
           <ownedAttribute xmi:type="uml:Property" xmi:id="_IncHYKqQEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_NiKU8KqQEeqhf_6YD4kl5g" name="coursePref" type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_18SFIKwWEeqEa6Mf8u6JHg" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_ki1OwJs7EeqkfLOOhPUFxQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_kQkAMLM7Eeq87etjnwv5qQ" name="assignment">
+        <packagedElement xmi:type="uml:Class" xmi:id="_NuzqEG9ZEeqks-MRezUMyA" name="TeacherAssignment">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_KxCNwGEpEeqMmJrPvsnLhQ" name="countGroupsTD" visibility="public">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_Sz7GIGEpEeqMmJrPvsnLhQ" name="countGroupsTP" visibility="public">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_gmQ0oGEpEeqMmJrPvsnLhQ" name="countGroupsCM" visibility="public">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_eyXm0m9bEeqks-MRezUMyA" name="teacher" visibility="public" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_eyW_wG9bEeqks-MRezUMyA"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_yqpU4IctEeqUqZA2AF_9Pw" name="countGroupsCMTD" visibility="public">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_1aLdQIctEeqUqZA2AF_9Pw" name="countGroupsCMTP" visibility="public">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_H5cGEp2kEeqgYtA4nJO78A" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_H5a38J2kEeqgYtA4nJO78A"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="__FiFYGEnEeqMmJrPvsnLhQ" name="CourseAssignment" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_UY_DEG9ZEeqks-MRezUMyA" name="teacherAssignments" type="_NuzqEG9ZEeqks-MRezUMyA" association="_UY9N4G9ZEeqks-MRezUMyA">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UZARMG9ZEeqks-MRezUMyA"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UZCtcG9ZEeqks-MRezUMyA" value="*"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_NUkoUm9dEeqks-MRezUMyA" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_NUkBQG9dEeqks-MRezUMyA"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_Bx4hcLG6EeqqEfH_KH6tEg" name="teacherAssignmentsToCourseAssignments" isStatic="true">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_H2WlULG6EeqqEfH_KH6tEg" name="teacherAssignments" type="_NuzqEG9ZEeqks-MRezUMyA">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IuIh4LG6EeqqEfH_KH6tEg"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IuSS4LG6EeqqEfH_KH6tEg" value="*"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_ONo3gLG6EeqqEfH_KH6tEg" type="__FiFYGEnEeqMmJrPvsnLhQ" direction="return">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PdTvoLG6EeqqEfH_KH6tEg"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PGt0kLG6EeqqEfH_KH6tEg" value="*"/>
+            </ownedParameter>
+          </ownedOperation>
+        </packagedElement>
       </packagedElement>
     </packagedElement>
   </packagedElement>
@@ -768,8 +778,8 @@ there are other private methods which format the ods : putBorders(), formatheade
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_YTRPUGBbEeq31cSPSR9mAA" name="Message16SendEvent" covered="_I0Oj4GBaEeq31cSPSR9mAA" message="_YTQoQGBbEeq31cSPSR9mAA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Dr5isWBbEeq31cSPSR9mAA" name="Message13ReceiveEvent" covered="_I0Oj4GBaEeq31cSPSR9mAA" message="_Dr47oGBbEeq31cSPSR9mAA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_YTRPUWBbEeq31cSPSR9mAA" name="Message16ReceiveEvent" covered="_N7rl4GBaEeq31cSPSR9mAA" message="_YTQoQGBbEeq31cSPSR9mAA"/>
-      <fragment xmi:type="uml:CombinedFragment" xmi:id="_gS0fcG63EeqpHbxk__FH3A" name="CombinedFragment44" covered="_Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA" interactionOperator="loop">
-        <operand xmi:type="uml:InteractionOperand" xmi:id="_roxrEG63EeqpHbxk__FH3A" name="InteractionOperand2" covered="_Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA">
+      <fragment xmi:type="uml:CombinedFragment" xmi:id="_gS0fcG63EeqpHbxk__FH3A" name="CombinedFragment44" covered="_N7rl4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA" interactionOperator="loop">
+        <operand xmi:type="uml:InteractionOperand" xmi:id="_roxrEG63EeqpHbxk__FH3A" name="InteractionOperand2" covered="_N7rl4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA">
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_G0kR4GBdEeq31cSPSR9mAA" name="Message28SendEvent" covered="_N7rl4GBaEeq31cSPSR9mAA" message="_G0jq0GBdEeq31cSPSR9mAA"/>
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_G0kR4WBdEeq31cSPSR9mAA" name="Message28ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_G0jq0GBdEeq31cSPSR9mAA"/>
           <guard xmi:type="uml:InteractionConstraint" xmi:id="_roy5MG63EeqpHbxk__FH3A" name="guard">
@@ -785,15 +795,15 @@ there are other private methods which format the ods : putBorders(), formatheade
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_yoxPca9XEeqv9K-cWDl50w" name="Message37ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_yowoYK9XEeqv9K-cWDl50w"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_9wC5ILG4EeqqEfH_KH6tEg" name="Message43SendEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_9wCSELG4EeqqEfH_KH6tEg"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_9wC5IbG4EeqqEfH_KH6tEg" name="Message43ReceiveEvent" covered="_N7rl4GBaEeq31cSPSR9mAA" message="_9wCSELG4EeqqEfH_KH6tEg"/>
-      <fragment xmi:type="uml:CombinedFragment" xmi:id="_nSm-8K-YEeqv9K-cWDl50w" name="CombinedFragment43" covered="_Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA _I0Oj4GBaEeq31cSPSR9mAA" interactionOperator="alt">
-        <operand xmi:type="uml:InteractionOperand" xmi:id="_nSrQYK-YEeqv9K-cWDl50w" name="InteractionOperand0" covered="_Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA _I0Oj4GBaEeq31cSPSR9mAA">
+      <fragment xmi:type="uml:CombinedFragment" xmi:id="_nSm-8K-YEeqv9K-cWDl50w" name="CombinedFragment43" covered="_N7rl4GBaEeq31cSPSR9mAA _I0Oj4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA" interactionOperator="alt">
+        <operand xmi:type="uml:InteractionOperand" xmi:id="_nSrQYK-YEeqv9K-cWDl50w" name="InteractionOperand0" covered="_N7rl4GBaEeq31cSPSR9mAA _I0Oj4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA">
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_POp54K-cEeqrAKLPKD0YxA" name="Message42SendEvent" covered="_N7rl4GBaEeq31cSPSR9mAA" message="_POndoK-cEeqrAKLPKD0YxA"/>
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_POqg8K-cEeqrAKLPKD0YxA" name="Message42ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_POndoK-cEeqrAKLPKD0YxA"/>
           <guard xmi:type="uml:InteractionConstraint" xmi:id="_rHu2Ya-YEeqv9K-cWDl50w" name="guard">
             <specification xmi:type="uml:LiteralString" xmi:id="_y0JdkK-aEeqv9K-cWDl50w" name="constraintOpt1" value="demandAssignmentGUI"/>
           </guard>
         </operand>
-        <operand xmi:type="uml:InteractionOperand" xmi:id="_BpBKoK-cEeqrAKLPKD0YxA" name="InteractionOperand2" covered="_Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA _I0Oj4GBaEeq31cSPSR9mAA">
+        <operand xmi:type="uml:InteractionOperand" xmi:id="_BpBKoK-cEeqrAKLPKD0YxA" name="InteractionOperand2" covered="_N7rl4GBaEeq31cSPSR9mAA _I0Oj4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA">
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_gxgpca-YEeqv9K-cWDl50w" name="Message40SendEvent" covered="_N7rl4GBaEeq31cSPSR9mAA" message="_gxgpcK-YEeqv9K-cWDl50w"/>
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_gxgpcq-YEeqv9K-cWDl50w" name="Message40ReceiveEvent" covered="_I0Oj4GBaEeq31cSPSR9mAA" message="_gxgpcK-YEeqv9K-cWDl50w"/>
           <guard xmi:type="uml:InteractionConstraint" xmi:id="_BpBxsK-cEeqrAKLPKD0YxA" name="guard"/>
@@ -803,7 +813,7 @@ there are other private methods which format the ods : putBorders(), formatheade
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_2r81sW6YEeqIeI1UFw-5OA" name="Message41ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_2r8OoG6YEeqIeI1UFw-5OA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_U4-IIGBaEeq31cSPSR9mAA" name="ActionExecutionSpecification4Finish" covered="_I0Oj4GBaEeq31cSPSR9mAA" execution="_U44BgGBaEeq31cSPSR9mAA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_WOvoQGBaEeq31cSPSR9mAA" name="ActionExecutionSpecification7Finish" covered="_N7rl4GBaEeq31cSPSR9mAA" execution="_WOtzEGBaEeq31cSPSR9mAA"/>
-      <fragment xmi:type="uml:InteractionUse" xmi:id="_fpa9AJdPEeqZR-Nl_eMGbQ" name="InteractionUse39" covered="_Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA _I0Oj4GBaEeq31cSPSR9mAA" refersTo="_9XmyMG6UEeqIeI1UFw-5OA"/>
+      <fragment xmi:type="uml:InteractionUse" xmi:id="_fpa9AJdPEeqZR-Nl_eMGbQ" name="InteractionUse39" covered="_N7rl4GBaEeq31cSPSR9mAA _I0Oj4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA" refersTo="_9XmyMG6UEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_cPzLwGBaEeq31cSPSR9mAA" name="sendMail(&quot;AA-Saisie voeux 2016-2017.ods&quot;)" messageSort="asynchCall" receiveEvent="_cP7HkWBaEeq31cSPSR9mAA" sendEvent="_cP7HkGBaEeq31cSPSR9mAA"/>
       <message xmi:type="uml:Message" xmi:id="_Dr47oGBbEeq31cSPSR9mAA" name="complete(&quot;AA-Saisie voeux 2016-2017.ods&quot;) " messageSort="asynchCall" receiveEvent="_Dr5isWBbEeq31cSPSR9mAA" sendEvent="_Dr5isGBbEeq31cSPSR9mAA"/>
       <message xmi:type="uml:Message" xmi:id="_YTQoQGBbEeq31cSPSR9mAA" name="sendMail(&quot;AA-Saisie voeux 2016-2017.ods&quot;)" messageSort="asynchCall" receiveEvent="_YTRPUWBbEeq31cSPSR9mAA" sendEvent="_YTRPUGBbEeq31cSPSR9mAA"/>
@@ -828,8 +838,8 @@ there are other private methods which format the ods : putBorders(), formatheade
       <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_b9PewG6VEeqIeI1UFw-5OA" name="BehaviorExecutionSpecification13" covered="_VbOjQG6VEeqIeI1UFw-5OA" finish="_dxQYkK9YEeqv9K-cWDl50w" start="_b9QF0G6VEeqIeI1UFw-5OA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Qgc14G6WEeqIeI1UFw-5OA" name="Message16SendEvent" covered="_Sz-0MG6VEeqIeI1UFw-5OA" message="_QgcO0G6WEeqIeI1UFw-5OA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Qgc14W6WEeqIeI1UFw-5OA" name="Message16ReceiveEvent" covered="_VbOjQG6VEeqIeI1UFw-5OA" message="_QgcO0G6WEeqIeI1UFw-5OA"/>
-      <fragment xmi:type="uml:CombinedFragment" xmi:id="_7BiIUG64EeqpHbxk__FH3A" name="CombinedFragment25" covered="_Sz-0MG6VEeqIeI1UFw-5OA _VbOjQG6VEeqIeI1UFw-5OA" interactionOperator="loop">
-        <operand xmi:type="uml:InteractionOperand" xmi:id="_CUzhoG65EeqpHbxk__FH3A" name="InteractionOperand2" covered="_Sz-0MG6VEeqIeI1UFw-5OA _VbOjQG6VEeqIeI1UFw-5OA">
+      <fragment xmi:type="uml:CombinedFragment" xmi:id="_7BiIUG64EeqpHbxk__FH3A" name="CombinedFragment25" covered="_VbOjQG6VEeqIeI1UFw-5OA _Sz-0MG6VEeqIeI1UFw-5OA" interactionOperator="loop">
+        <operand xmi:type="uml:InteractionOperand" xmi:id="_CUzhoG65EeqpHbxk__FH3A" name="InteractionOperand2" covered="_VbOjQG6VEeqIeI1UFw-5OA _Sz-0MG6VEeqIeI1UFw-5OA">
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_aUjNMG6WEeqIeI1UFw-5OA" name="Message19SendEvent" covered="_VbOjQG6VEeqIeI1UFw-5OA" message="_aUimIG6WEeqIeI1UFw-5OA"/>
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_aUj0QG6WEeqIeI1UFw-5OA" name="Message19ReceiveEvent" covered="_Sz-0MG6VEeqIeI1UFw-5OA" message="_aUimIG6WEeqIeI1UFw-5OA"/>
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_o0b-MG6WEeqIeI1UFw-5OA" name="Message22SendEvent" covered="_Sz-0MG6VEeqIeI1UFw-5OA" message="_o0bXIG6WEeqIeI1UFw-5OA"/>
