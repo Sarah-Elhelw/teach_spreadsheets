@@ -49,7 +49,7 @@ The *CourseAssignment* class represents the assignment of *only one course* to a
 == Gui
 image::Images\Class_Gui.PNG[{fullWifth}]
 
-CoursePrefElement lists in Model are used to represent instances of table items in the GUI. *The generation of the output files (one per teacher and the summary) are done after the user clicks on the button submit and not in real time because the current writing functions take too long to execute (18s just for the summary file).Besides, if the writing was in real time the program must be able to delete empty files per teacher and some lines in the summary file if necessary.*
+CoursePrefElement lists in Model are used to represent instances of table items in the GUI. The generation of the output files (one per teacher and the summary) are done after the user clicks on the button submit and not in real time because the current writing functions take too long to execute (18s just for the summary file). Besides, if the writing was in real time the program must be able to delete empty files per teacher and some lines in the summary file if necessary.
 
 Here is the process :
 
