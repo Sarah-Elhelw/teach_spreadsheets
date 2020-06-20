@@ -5,12 +5,11 @@
 The aim of this project is to read teacher’s preferences to assign them to study groups in courses.This project is inspired by the link:https://github.com/oliviercailloux/Teach-spreadsheets[Teach-spreadsheets project].
 
 Logos' Credits :
-The Logos that are used in the gui are created by : 
 
-Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-Icons made by <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-Icons made by <a href="https://www.flaticon.com/authors/prosymbols" title="Prosymbols">Prosymbols</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+Icons made by link:https://www.flaticon.com/authors/freepik[Freepik] from link:https://www.flaticon.com/[www.flaticon.com]. +
+Icons made by link:https://www.flaticon.com/authors/xnimrodx[nimrodx] from link:https://www.flaticon.com/[www.flaticon.com]. +
+Icons made by link:https://www.flaticon.com/authors/freepik[Freepik] from link:https://www.flaticon.com/[www.flaticon.com]. +
+Icons made by link:https://www.flaticon.com/authors/prosymbols[Prosymbols] from link:https://www.flaticon.com/[www.flaticon.com].
 
 == Global idea of the project 
 
