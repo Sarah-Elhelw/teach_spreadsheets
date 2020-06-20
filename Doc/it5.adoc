@@ -2,47 +2,46 @@
 
 The aim of this iteration is to correct and improve UML Iteration 4 by taking into consideration Mr. Cailloux’s remarks. The objective is to help the next student to understand our project.
 
-We also corrected some classes according to Java Iteration 2 and added new GUI classes.
+We also corrected some classes according to Java Iteration 3 and added new GUI classes.
 
 
 Here is the list of the modifications that were made by each one : 
 
-* The group constituted of Sarah EL HELW, Semida BUZDUGAN and Inès DRAREDJA divided the corrections as follows: 
+* The group constituted of Sarah EL HELW and Inès DRAREDJA divided the corrections as follows: 
 
 ** Sarah EL HELW : 
 
-*** Correcting some Mr.Cailloux's remarks about Iteration 3 UML
-*** Updating the Class_Json_Read class
-*** Updating the AgregatedData and CalcData classes
-*** Updating the root README.adoc 
-*** Updating names of the methods in the sequence diagram
-*** Adding specification in Advice.adoc for the next student 
-*** Updating the screenshot of all the diagram
-*** Replacing some name's classes
+*** Sequence diagrams :
+**** Reordering the sequence of messages
+**** Updating the name of the messages according to java iteration 3
+**** Correcting the sequence diagrams accoridng to UML iteration 4
 
+*** Class_assignment :
+**** Updating and renaming AggregatedData and CalcData
+**** Removing useless strings in the associations
 
-** Semida BUZDUGAN : 
+*** Class_Json_Deserializer and Class_Ods_Read :
+**** Updating JsonDeserializer and JsonSerializer classes
 
-*** Updating the root README.adoc with what we will do in the java's iteration 4
-*** Updating the Class_ODS_Write class
-*** Updating the README.adoc in file Doc
-*** Adding specification in Advice.adoc for the next student 
+*** Creating the package diagram
 
+*** Documentation :
+**** Updating the README in Doc
+**** Creating and completing Advice.adoc
 
-** Inès DRAREDJA
+** Inès DRAREDJA :
 
 *** Making the it5.adoc
-*** Correcting some Mr.Cailloux's remarks about Iteration 3 UML.
+*** Correcting some Mr.Cailloux's remarks about Iteration 4 UML
 *** Improving documents files
 *** Updating the README.adoc in file Doc
 *** Adding specification in Advice.adoc for the next student 
 
 
-//A finir
 
-* The group constituted of Hedi GUEDIDI and Mike SANTANGELO divided the corrections as follows: 
+* The group constituted of Hedi GUEDIDI, Semida BUZDUGAN and Mike SANTANGELO divided the corrections as follows: 
 
-** Hedi GUEDIDI
+** Hedi GUEDIDI :
  
 *** For the class diagrams :
 **** Updating the Read class diagram with the MultipleOdsPrefReader class and its documentation
@@ -53,6 +52,14 @@ Here is the list of the modifications that were made by each one :
 *** For the GUI :
 **** Designing the mock-up of the GUI
 **** Creating the Gui description section in the documentation (Screenshot of the gui + some brief explanation of how the GUI is supposed to work)
+
+
+** Semida BUZDUGAN : 
+
+*** Updating the root README.adoc with what we will do in the java's iteration 4
+*** Updating the Class_ODS_Write class
+*** Updating the README.adoc in file Doc
+*** Adding specification in Advice.adoc for the next student 
 
 
 ** Mike SANTANGELO 
