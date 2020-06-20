@@ -46,7 +46,7 @@ The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
 
 The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers. The *TeacherAssignment* class stores the number of TD, TP, CM groups assigned to one teacher in the selected course. +
 
-== Gui classes
+== Gui
 image::Images\Class_Gui.PNG[{fullWifth}]
 
 CoursePrefElement lists in Model are used to represent instances of table items in the GUI.
