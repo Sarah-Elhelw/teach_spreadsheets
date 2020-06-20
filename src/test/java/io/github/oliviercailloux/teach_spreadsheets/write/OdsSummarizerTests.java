@@ -5,9 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.ImmutableSet;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -19,10 +25,19 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 public class OdsSummarizerTests {
+	private final static Logger LOGGER = LoggerFactory.getLogger(OdsSummarizerTests.class);
 
 	@Test
+	/**
+	 * This test creates 2 assignments and writes in memory. This test serves to
+	 * determine the write to memory time.
+	 * 
+	 * @throws Exception
+	 */
 	void testCreateSummary() throws Exception {
-
+		/**
+		 * Creation of 2 test assignments.
+		 */
 		Course course1 = Course.Builder.newInstance().setName("testcourse1").setStudyYear(2016).setStudyLevel("DE1")
 				.setSemester(1).setCountGroupsCM(3).setCountGroupsTD(4).setNbMinutesCM(60).setNbMinutesTD(60).build();
 		Course course2 = Course.Builder.newInstance().setName("testcourse2").setStudyYear(2016).setStudyLevel("DE1")
@@ -64,16 +79,19 @@ public class OdsSummarizerTests {
 		Set<CourseAssignment> allCoursesAssigned = new LinkedHashSet<>();
 		allCoursesAssigned.add(courseAssignment1);
 		allCoursesAssigned.add(courseAssignment2);
-
+		/**
+		 * Ods creation and writing.
+		 */
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.addPrefs(prefs);
+		LOGGER.info("2 assignments : start assignment and write");
 		ods.setAllCoursesAssigned(allCoursesAssigned);
-
+		LOGGER.info("2 assignments : stop assignment");
 		URL resourceUrl = OdsSummarizer.class.getResource("OdsSummarizer.ods");
 		try (InputStream stream = resourceUrl.openStream();
 				SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
 				SpreadsheetDocument documentCreated = ods.createSummary()) {
-
+			LOGGER.info("2 assignments : stop writing in memory");
 			Table tableCreated = documentCreated.getTableByName("Summary");
 			Table table = document.getTableByName("Summary");
 
@@ -83,8 +101,55 @@ public class OdsSummarizerTests {
 							tableCreated.getCellByPosition(i, j).getDisplayText());
 				}
 			}
+		}
+	}
+
+	@Test
+	/**
+	 * this test creates 100 assignments and writes on disk. This test serves to
+	 * determine the write to disk time.
+	 * 
+	 * @throws Exception
+	 */
+	void testWriting100Summary() throws Exception {
+		Set<Course> courses = new LinkedHashSet<>();
+		Set<CoursePref> prefs = new LinkedHashSet<>();
+
+		Set<CourseAssignment> allCoursesAssigned = new LinkedHashSet<>();
+		/**
+		 * Creation of the 100 test assignments.
+		 */
+		for (int i = 1; i <= 100; i++) {
+			Course course = Course.Builder.newInstance().setName("testcourse" + i).setStudyYear(2016)
+					.setStudyLevel("DE1").setSemester(1).setCountGroupsCM(3).setCountGroupsTD(4).setNbMinutesCM(60)
+					.setNbMinutesTD(60).build();
+			courses.add(course);
+			Teacher teacher = Teacher.Builder.newInstance().setFirstName("teacher" + i + "FirstName")
+					.setLastName("teacher" + i + "LastName").build();
+			prefs.add(CoursePref.Builder.newInstance(course, teacher).setPrefCM(Preference.A).setPrefTD(Preference.B)
+					.build());
+			TeacherAssignment teacherAssignment = TeacherAssignment.Builder.newInstance(course, teacher)
+					.setCountGroupsTD(1).build();
+			CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course);
+			courseAssignmentBuilder.addTeacherAssignment(teacherAssignment);
+			CourseAssignment courseAssignment = courseAssignmentBuilder.build();
+			allCoursesAssigned.add(courseAssignment);
 
 		}
-
+		/**
+		 * Ods creation and writing.
+		 */
+		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
+		ods.addPrefs(prefs);
+		LOGGER.info("100 assignments : start assignment and write");
+		ods.setAllCoursesAssigned(ImmutableSet.copyOf(allCoursesAssigned));
+		LOGGER.info("100 assignments : stop assignment");
+		try (SpreadsheetDocument documentCreated = ods.createSummary()) {
+			if (!Files.exists(Path.of("output"))) {
+				Files.createDirectory(Path.of("output"));
+			}
+			documentCreated.save("output//testWriting100.ods");
+			LOGGER.info("100 assignments : stop writing on disk");
+		}
 	}
 }
