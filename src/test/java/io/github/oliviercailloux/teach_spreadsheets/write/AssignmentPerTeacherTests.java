@@ -35,10 +35,8 @@ public class AssignmentPerTeacherTests {
 		CourseAssignment courseAssignment = courseAssignmentBuilder.build();
 
 		ImmutableSet<CourseAssignment> allCoursesAssigned = ImmutableSet.of(courseAssignment);
-		URL resourceUrl =AssignmentPerTeacher.class.getResource("AssignmentPerTeacher.ods");
-		try (SpreadsheetDocument document = OdsHelper
-				.docFromUrl(resourceUrl);
-
+		URL resourceUrl = AssignmentPerTeacher.class.getResource("AssignmentPerTeacher.ods");
+		try (SpreadsheetDocument document = OdsHelper.docFromUrl(resourceUrl);
 				SpreadsheetDocument documentCreated = AssignmentPerTeacher.createAssignmentPerTeacher(teacher1,
 						allCoursesAssigned)) {
 
