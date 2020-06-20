@@ -4,12 +4,9 @@
 
 The aim of this project is to read teacher’s preferences to assign them to study groups in courses.This project is inspired by the link:https://github.com/oliviercailloux/Teach-spreadsheets[Teach-spreadsheets project].
 
-Logos' Credits :
+*Logos' Credits* :
 
-Icons made by link:https://www.flaticon.com/authors/freepik[Freepik] from link:https://www.flaticon.com/[www.flaticon.com]. +
-Icons made by link:https://www.flaticon.com/authors/xnimrodx[nimrodx] from link:https://www.flaticon.com/[www.flaticon.com]. +
-Icons made by link:https://www.flaticon.com/authors/freepik[Freepik] from link:https://www.flaticon.com/[www.flaticon.com]. +
-Icons made by link:https://www.flaticon.com/authors/prosymbols[Prosymbols] from link:https://www.flaticon.com/[www.flaticon.com].
+The Icons used in the gui are made by link:https://www.flaticon.com/authors/freepik[Freepik],link:https://www.flaticon.com/authors/xnimrodx[nimrodx] and link:https://www.flaticon.com/authors/prosymbols[Prosymbols] from link:https://www.flaticon.com/[www.flaticon.com].
 
 == Global idea of the project 
 
