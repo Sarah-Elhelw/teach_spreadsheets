@@ -563,7 +563,6 @@ there are other private methods which format the ods : putBorders(), formatheade
         </ownedComment>
         <packagedElement xmi:type="uml:Class" xmi:id="_ki1OwJs7EeqkfLOOhPUFxQ" name="View" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_bCoOYJs8EeqkfLOOhPUFxQ" name="initializeGui"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_bXYR8KqIEeqhf_6YD4kl5g" name="show"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_jjwH0JtxEeqdz4L_R9L93Q" name="addListenerPreferences" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_tjvsAKqZEeqhf_6YD4kl5g" name="source" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_wV_KIKqZEeqhf_6YD4kl5g" name="toChosenPreferences">
@@ -652,6 +651,13 @@ there are other private methods which format the ods : putBorders(), formatheade
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_NE3wkLLWEeq9PNqz_vvy7Q" name="tableItem" type="_kQBOgJxOEeqP0PGWWkkdZQ"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_YhmSkLLWEeq9PNqz_vvy7Q" name="toChosenPreferences">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_wvwfsLLWEeq9PNqz_vvy7Q" name="showView"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_4G7hkLLWEeq9PNqz_vvy7Q" name="sortTable">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_7nca8LLWEeq9PNqz_vvy7Q" name="table" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_C1tYcLLXEeq9PNqz_vvy7Q" name="columnName">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
@@ -830,7 +836,7 @@ there are other private methods which format the ods : putBorders(), formatheade
       <message xmi:type="uml:Message" xmi:id="_yowoYK9XEeqv9K-cWDl50w" name="writeCoursesInAJsonFile()" receiveEvent="_yoxPca9XEeqv9K-cWDl50w" sendEvent="_yoxPcK9XEeqv9K-cWDl50w"/>
       <message xmi:type="uml:Message" xmi:id="_gxgpcK-YEeqv9K-cWDl50w" name="sendMail(&quot;Fiche de service.ods&quot;)" messageSort="asynchCall" receiveEvent="_gxgpcq-YEeqv9K-cWDl50w" sendEvent="_gxgpca-YEeqv9K-cWDl50w"/>
       <message xmi:type="uml:Message" xmi:id="_POndoK-cEeqrAKLPKD0YxA" name="exitGui()" messageSort="deleteMessage" receiveEvent="_POqg8K-cEeqrAKLPKD0YxA" sendEvent="_POp54K-cEeqrAKLPKD0YxA"/>
-      <message xmi:type="uml:Message" xmi:id="_9wCSELG4EeqqEfH_KH6tEg" receiveEvent="_9wC5IbG4EeqqEfH_KH6tEg" sendEvent="_9wC5ILG4EeqqEfH_KH6tEg" signature="_bXYR8KqIEeqhf_6YD4kl5g"/>
+      <message xmi:type="uml:Message" xmi:id="_9wCSELG4EeqqEfH_KH6tEg" receiveEvent="_9wC5IbG4EeqqEfH_KH6tEg" sendEvent="_9wC5ILG4EeqqEfH_KH6tEg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_9XmyMG6UEeqIeI1UFw-5OA" name="AdminAssignement" visibility="public">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_QGDOUG6VEeqIeI1UFw-5OA" name="" type="_6sn5gGEpEeqMmJrPvsnLhQ"/>
@@ -866,7 +872,7 @@ there are other private methods which format the ods : putBorders(), formatheade
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_dxQ_oK9YEeqv9K-cWDl50w" name="Message29ReceiveEvent" covered="_Sz-0MG6VEeqIeI1UFw-5OA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_dxQYkK9YEeqv9K-cWDl50w" name="Message29SendEvent" covered="_VbOjQG6VEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_QgcO0G6WEeqIeI1UFw-5OA" name="demandAssignmentGUI()" messageSort="asynchCall" receiveEvent="_Qgc14W6WEeqIeI1UFw-5OA" sendEvent="_Qgc14G6WEeqIeI1UFw-5OA"/>
-      <message xmi:type="uml:Message" xmi:id="_aUimIG6WEeqIeI1UFw-5OA" receiveEvent="_aUj0QG6WEeqIeI1UFw-5OA" sendEvent="_aUjNMG6WEeqIeI1UFw-5OA" signature="_bXYR8KqIEeqhf_6YD4kl5g"/>
+      <message xmi:type="uml:Message" xmi:id="_aUimIG6WEeqIeI1UFw-5OA" receiveEvent="_aUj0QG6WEeqIeI1UFw-5OA" sendEvent="_aUjNMG6WEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_o0bXIG6WEeqIeI1UFw-5OA" name="assignTeachers()" messageSort="asynchCall" receiveEvent="_o0b-MW6WEeqIeI1UFw-5OA" sendEvent="_o0b-MG6WEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_tlWvgG6WEeqIeI1UFw-5OA" name="submitAssignment()" messageSort="asynchCall" receiveEvent="_tlXWkW6WEeqIeI1UFw-5OA" sendEvent="_tlXWkG6WEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_7Y8bMG6WEeqIeI1UFw-5OA" name="displayAssignmentSummary()" receiveEvent="_7Y9CQW6WEeqIeI1UFw-5OA" sendEvent="_7Y9CQG6WEeqIeI1UFw-5OA"/>
