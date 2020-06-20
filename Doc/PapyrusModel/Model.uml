@@ -631,13 +631,29 @@ there are other private methods which format the ods : putBorders(), formatheade
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_mYyDwJs7EeqkfLOOhPUFxQ" name="Controller">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_zSGNoJs9EeqkfLOOhPUFxQ" name="createAssignments" visibility="public"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_lkIAgKqNEeqhf_6YD4kl5g" name="callbackListener">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_lkIAgKqNEeqhf_6YD4kl5g" name="itemClicked">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_lkIAgaqNEeqhf_6YD4kl5g" name="item" type="_kQBOgJxOEeqP0PGWWkkdZQ"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_lkIAgqqNEeqhf_6YD4kl5g" name="toChosenPreferences">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_peC4YKqNEeqhf_6YD4kl5g" name="setModelData"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_2e8-gLLTEeq9PNqz_vvy7Q" name="getDataForTableItem">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_-Svq8LLTEeq9PNqz_vvy7Q" name="coursePrefElement" type="_RDv-oKqLEeqhf_6YD4kl5g"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_W2DBoLLUEeq9PNqz_vvy7Q" name="text" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_ud-VMLLUEeq9PNqz_vvy7Q" name="createListenerPreferences" visibility="package">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_T4ufcLLVEeq9PNqz_vvy7Q" name="table" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_VVmtILLVEeq9PNqz_vvy7Q" name="createListenerSubmitButton"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_ILltcLLWEeq9PNqz_vvy7Q" name="updatePreferences">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_NE3wkLLWEeq9PNqz_vvy7Q" name="tableItem" type="_kQBOgJxOEeqP0PGWWkkdZQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_YhmSkLLWEeq9PNqz_vvy7Q" name="toChosenPreferences">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            </ownedParameter>
+          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_3yM0sJxOEeqP0PGWWkkdZQ" name="Model">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_RJZGcJxPEeqP0PGWWkkdZQ" name="allPreferences" visibility="private" type="_RDv-oKqLEeqhf_6YD4kl5g">
