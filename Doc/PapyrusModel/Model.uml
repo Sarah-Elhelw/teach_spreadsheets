@@ -82,6 +82,8 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_FRQz0Js8EeqkfLOOhPUFxQ" name="Gui">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_6xCDIKqNEeqhf_6YD4kl5g" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_3yM0sJxOEeqP0PGWWkkdZQ"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_S-wV8KqPEeqhf_6YD4kl5g" name="uses" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_s6OXIGBZEeq31cSPSR9mAA"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_2Q3ZALLwEeq9PNqz_vvy7Q" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_zMLY8JuXEeqi_K2iLQMdMg"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_JmM2ALLxEeq9PNqz_vvy7Q" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_T5jLgJs_EeqkfLOOhPUFxQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_RefbQJwkEeqnwtyuSDALCg" name="Write">
         <packagedElement xmi:type="uml:Usage" xmi:id="_Fg6jEJwxEeqwT532HYtLXQ" client="_21gQEJuXEeqi_K2iLQMdMg" supplier="_FCjZgIegEeq_vJIT4Zoedw"/>
