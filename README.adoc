@@ -6,7 +6,7 @@ The aim of this project is to read teacher’s preferences to assign them to stu
 
 *Logos' Credits* :
 
-The Icons used in the gui are made by link:https://www.flaticon.com/authors/freepik[Freepik],link:https://www.flaticon.com/authors/xnimrodx[nimrodx] and link:https://www.flaticon.com/authors/prosymbols[Prosymbols] from link:https://www.flaticon.com/[www.flaticon.com].
+The Icons used in the gui are made by link:https://www.flaticon.com/authors/freepik[Freepik], link:https://www.flaticon.com/authors/xnimrodx[nimrodx] and link:https://www.flaticon.com/authors/prosymbols[Prosymbols] from link:https://www.flaticon.com/[www.flaticon.com].
 
 == Global idea of the project 
 
