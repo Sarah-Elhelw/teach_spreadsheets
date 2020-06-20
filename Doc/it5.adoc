@@ -48,7 +48,7 @@ Here is the list of the modifications that were made by each one :
 **** Updating the Read class diagram with the MultipleOdsPrefReader class and its documentation
 **** Creating the View class in the Gui classes diagram and updating some parts of the gui diagram
 **** Adding various documentation ( Icons credits and read,write parts in advices.adoc file)
-**** Adding the reasing behind the use of the submit button in the README doc (Gui part)
+**** Adding the reasoning behind the use of the submit button in the README doc (Gui part)
 
 *** For the GUI :
 **** Designing the mock-up of the GUI
