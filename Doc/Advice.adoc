@@ -23,7 +23,7 @@ In our program, the Admin assigns the teachers to the courses using our GUI. Ano
 
 [[Write]]
 * It would be interesting to generate as well https://github.com/oliviercailloux/projets/raw/master/Voeux/services%20MIDO.xls[services MIDO.xls]. In particular, *Affectations* sheet would then present a summary of the assignments from the teachers’ perspective (our program showing a summary from the courses’ perspective). Furthermore, *donnees* sheet would then offer a raw presentation of all the assignments. *[short]*
-* The writing to disk process is taking too long as seen in the test unit : testWriting100Summary().This needs to be investigated ( we suspect that the problem comes from the odftoolkit API but we are not sure) *[short]*. If this time can be reduced then you can try to get rid of the submit button and change the output files in real time (when an item is moved between the tables in the gui). *[middle]* 
+* The writing to disk process is taking too long as seen in the test unit : testWriting100Summary().This needs to be investigated ( we suspect that the problem comes from the odftoolkit API but we are not sure).You can proceed by adding loggers in the write package to try to find what operations take too long *[short]*. If this time can be reduced then you can try to get rid of the submit button and change the output files in real time (when an item is moved between the tables in the gui). *[middle]* 
 
 === Package read
 
