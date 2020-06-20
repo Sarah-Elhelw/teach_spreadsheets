@@ -46,7 +46,8 @@ Here is the list of the modifications that were made by each one :
  
 *** For the class diagrams :
 **** Updating the Read class diagram with the MultipleOdsPrefReader class and its documentation
-**** Creating the View class in the Gui classes diagram 
+**** Creating the View class in the Gui classes diagram and updating some parts of the gui diagram
+**** Adding various documentation ( Icons credits and read,write parts in advices.adoc file)
 
 *** For the GUI :
 **** Designing the mock-up of the GUI
