@@ -2,7 +2,6 @@ package io.github.oliviercailloux.teach_spreadsheets.write;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.InputStream;
 import java.net.URL;
 
 import org.junit.jupiter.api.Test;
@@ -36,23 +35,21 @@ public class AssignmentPerTeacherTests {
 		CourseAssignment courseAssignment = courseAssignmentBuilder.build();
 
 		ImmutableSet<CourseAssignment> allCoursesAssigned = ImmutableSet.of(courseAssignment);
-
 		URL resourceUrl = AssignmentPerTeacher.class.getResource("AssignmentPerTeacher.ods");
-		try (InputStream stream = resourceUrl.openStream();
-				SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
+		try (SpreadsheetDocument document = OdsHelper.docFromUrl(resourceUrl);
 				SpreadsheetDocument documentCreated = AssignmentPerTeacher.createAssignmentPerTeacher(teacher1,
 						allCoursesAssigned)) {
 
 			Table tableCreated = documentCreated.getTableByName("Summary");
 			Table table = document.getTableByName("Summary");
 
-			for (int i=0; i<5; i++) {
-				for (int j=0; j<21; j++) {
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 21; j++) {
 					assertEquals(table.getCellByPosition(i, j).getDisplayText(),
 							tableCreated.getCellByPosition(i, j).getDisplayText());
 				}
 			}
-
 		}
+
 	}
 }

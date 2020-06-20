@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.ImmutableSet;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashSet;
@@ -86,10 +84,9 @@ public class OdsSummarizerTests {
 		ods.addPrefs(prefs);
 		LOGGER.info("2 assignments : start assignment and write");
 		ods.setAllCoursesAssigned(allCoursesAssigned);
-		LOGGER.info("2 assignments : stop assignment");
-		URL resourceUrl = OdsSummarizer.class.getResource("OdsSummarizer.ods");
-		try (InputStream stream = resourceUrl.openStream();
-				SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
+
+		try (SpreadsheetDocument document = OdsHelper
+				.docFromUrl(AssignmentPerTeacher.class.getResource("OdsSummarizer.ods"));
 				SpreadsheetDocument documentCreated = ods.createSummary()) {
 			LOGGER.info("2 assignments : stop writing in memory");
 			Table tableCreated = documentCreated.getTableByName("Summary");
