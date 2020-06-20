@@ -612,20 +612,20 @@ there are other private methods which format the ods : putBorders(), formatheade
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_gMPdMKqKEeqhf_6YD4kl5g" name="exitApplication" visibility="private"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_r1TLAKqKEeqhf_6YD4kl5g" name="setCompositePreferenceTable" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAaqKEeqhf_6YD4kl5g" name="parentComposite"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAqqKEeqhf_6YD4kl5g" name="content"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAaqKEeqhf_6YD4kl5g" name="parentComposite" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAqqKEeqhf_6YD4kl5g" name="content" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLA6qKEeqhf_6YD4kl5g" name="headerText">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLBKqKEeqhf_6YD4kl5g" name="logo"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLBKqKEeqhf_6YD4kl5g" name="logo" type="_N5iy8LLPEeq9PNqz_vvy7Q"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0UHxcKqKEeqhf_6YD4kl5g" name="setCompositeCourseTable" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxcaqKEeqhf_6YD4kl5g" name="parentComposite"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxcqqKEeqhf_6YD4kl5g" name="content"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxcaqKEeqhf_6YD4kl5g" name="parentComposite" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxcqqKEeqhf_6YD4kl5g" name="content" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxc6qKEeqhf_6YD4kl5g" name="headerText">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxdKqKEeqhf_6YD4kl5g" name="logo"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxdKqKEeqhf_6YD4kl5g" name="logo" type="_N5iy8LLPEeq9PNqz_vvy7Q"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_2Mj5wKqKEeqhf_6YD4kl5g" name="createAndSetSubmitButton" visibility="private"/>
         </packagedElement>
@@ -872,6 +872,8 @@ there are other private methods which format the ods : putBorders(), formatheade
     <packagedElement xmi:type="uml:DataType" xmi:id="_F4qgIJs-EeqkfLOOhPUFxQ" name="org.eclipse.swt.widgets.Table"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_kQBOgJxOEeqP0PGWWkkdZQ" name="org.eclipse.swt.widgets.TableItem"/>
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_l6njAKqPEeqhf_6YD4kl5g" name="CourseType"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_N5iy8LLPEeq9PNqz_vvy7Q" name="Image"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_Pdl_oLLPEeq9PNqz_vvy7Q" name="org.eclipse.swt.widgets.Composite"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KB-vkGFOEeq7OdFZt-_k0Q">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KCBL0GFOEeq7OdFZt-_k0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
