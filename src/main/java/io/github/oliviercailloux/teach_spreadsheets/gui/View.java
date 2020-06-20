@@ -19,8 +19,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 
@@ -32,7 +30,6 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
  * "https://github.com/oliviercailloux/Teach-spreadsheets/blob/master/src/main/java/io/github/oliviercailloux/y2018/teach_spreadsheets/gui/GUIPref.java">GUIPref</a>.
  */
 public class View {
-	private final static Logger LOGGER = LoggerFactory.getLogger(View.class);
 
 	private Display display;
 	private Shell shell;
@@ -97,23 +94,13 @@ public class View {
 	public Button getSubmitButton() {
 		return buttonSubmit;
 	}
+	
 	public Shell getShell() {
 		return shell;
 	}
-
-	/**
-	 * Shows the gui.
-	 */
-	public void show() {
-		shell.pack();
-		shell.open();
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch())
-				display.sleep();
-		}
-
-		display.dispose();
-		LOGGER.info("Display well closed");
+	
+	public Display getDisplay() {
+		return display;
 	}
 
 	/**
@@ -334,7 +321,7 @@ public class View {
 		submit.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false));
 
 		buttonSubmit = new Button(submit, SWT.NONE);
-		buttonSubmit.setText("Submit ");
+		buttonSubmit.setText("Submit");
 	}
 
 }

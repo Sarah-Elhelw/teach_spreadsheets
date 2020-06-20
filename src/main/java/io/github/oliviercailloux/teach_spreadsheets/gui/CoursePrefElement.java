@@ -2,13 +2,7 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
-import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 /**
  * Represents the assignment of one group of CM, TD, CMTP, CMTD or TP for a
@@ -16,20 +10,18 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
  * GUI
  */
 public class CoursePrefElement {
-	private CourseType courseType;
-	private CoursePref coursePref;
+	private final CourseType courseType;
+	private final CoursePref coursePref;
 
-	private CoursePrefElement() {
+	private CoursePrefElement(CourseType courseType, CoursePref coursePref) {
+		checkNotNull(courseType);
+		checkNotNull(coursePref);
+		this.coursePref = coursePref;
+		this.courseType = courseType;
 	}
 
-	public static CoursePrefElement newInstance(CourseType courseType1, CoursePref coursePref1) {
-		checkNotNull(courseType1);
-		checkNotNull(coursePref1);
-
-		CoursePrefElement coursePrefElement = new CoursePrefElement();
-		coursePrefElement.courseType = courseType1;
-		coursePrefElement.coursePref = coursePref1;
-		return coursePrefElement;
+	public static CoursePrefElement newInstance(CourseType courseType, CoursePref coursePref) {
+		return new CoursePrefElement(courseType, coursePref);
 	}
 
 	public CoursePref getCoursePref() {

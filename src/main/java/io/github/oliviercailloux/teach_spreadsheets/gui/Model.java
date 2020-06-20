@@ -91,9 +91,7 @@ public class Model {
 		
 		for (CoursePrefElement coursePrefElement : allPreferences) {
 			Course course = coursePrefElement.getCoursePref().getCourse();
-			if (!courses.contains(course)) {
-				courses.add(course);
-			}
+			courses.add(course);
 		}
 		
 		return courses;

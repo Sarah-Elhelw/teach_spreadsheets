@@ -14,13 +14,12 @@ import java.util.Set;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.widgets.Widget;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.ImmutableSet;
@@ -45,27 +44,15 @@ public class Controller {
 	private Model model;
 	private final static Logger LOGGER = LoggerFactory.getLogger(View.class);
 
-	public static Controller newInstance(View view, Model model) {
-		checkNotNull(view);
-		checkNotNull(model);
-
+	public static Controller newInstance() {
 		Controller controller = new Controller();
-		controller.view = view;
-		controller.model = model;
+		controller.view = View.initializeGui();
+		controller.model = Model.newInstance();
 		return controller;
 	}
 
 	private Controller() {
 	}
-
-	/**
-	 * Registers a listener for the widget in parameter. This listener will be
-	 * triggered depending on eventType.
-	 * 
-	 * @param listener
-	 * @param widget
-	 * @param eventType
-	 */
 
 
 	/**
@@ -90,7 +77,7 @@ public class Controller {
 			public void handleEvent(Event event) {
 				Point pt = new Point(event.x, event.y);
 				TableItem item = source.getItem(pt);
-				updateModelAndView(item, toChosenPreferences);
+				itemClicked(item, toChosenPreferences);
 			}
 		};
 	}
@@ -98,8 +85,7 @@ public class Controller {
 	/**
 	 * Creates a listener for the submit button.
 	 * 
-	 * @return a listener that calls createAssignments, logs the results and prompts
-	 *         the user to exit the application.
+	 * @return a listener for submit button
 	 */
 	private Listener createListenerSubmitButton() {
 		return new Listener() {
@@ -118,11 +104,7 @@ public class Controller {
 	 * @param toChosenPreferences true iff the table item that has been clicked was
 	 *                            on the table All Preferences
 	 */
-	private void updateModelAndView(TableItem item, boolean toChosenPreferences) {
-		checkNotNull(item);
-		checkNotNull(view);
-		checkNotNull(model);
-
+	private void itemClicked(TableItem item, boolean toChosenPreferences) {
 		int i = 0;
 		ArrayList<String> texts = new ArrayList<>();
 		while (!item.getText(i).equals("")) {
@@ -344,19 +326,18 @@ public class Controller {
 	}
 	
 	/**
-	 * This method closes the application. model must not be null
+	 * Shows the gui.
 	 */
-	public void exitApplication() {
-		checkNotNull(view);
-		Shell shell=view.getShell();
-		MessageBox messageBox = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
-		messageBox.setMessage("Your choices have been submitted. Do you want to exit the application?");
-		messageBox.setText("Closing the application");
-		int response = messageBox.open();
-		if (response == SWT.YES) {
-			LOGGER.info("The application has been closed.");
-			System.exit(0);
+	public void show(Shell shell, Display display) {
+		shell.pack();
+		shell.open();
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch())
+				display.sleep();
 		}
+
+		display.dispose();
+		LOGGER.info("Display well closed");
 	}
 
 	/**
@@ -364,25 +345,23 @@ public class Controller {
 	 * function of this program.
 	 */
 	public static void main(String[] args) throws Exception {
-		View view = View.initializeGui();
-		Model model = Model.newInstance();
-		Controller controller = Controller.newInstance(view, model);
+		Controller controller = Controller.newInstance();
 
-		Table allPreferencesTable = view.getAllPreferencesTable();
-		Table chosenPreferencesTable = view.getChosenPreferencesTable();
-		Button submitButton = view.getSubmitButton();
+		Table allPreferencesTable = controller.view.getAllPreferencesTable();
+		Table chosenPreferencesTable = controller.view.getChosenPreferencesTable();
+		Button submitButton = controller.view.getSubmitButton();
 
 		controller.setModelData();
-		List<String[]> stringsToShowAllPreferences = controller.getDataForTableItems(model.getAllPreferences());
-		view.populateCourses(model.getCourses());
-		view.populateAllPreferences(stringsToShowAllPreferences);
+		List<String[]> stringsToShowAllPreferences = controller.getDataForTableItems(controller.model.getAllPreferences());
+		controller.view.populateCourses(controller.model.getCourses());
+		controller.view.populateAllPreferences(stringsToShowAllPreferences);
 
 		
 		allPreferencesTable.addListener(SWT.MouseDoubleClick, controller.createListenerPreferences(allPreferencesTable));
 		chosenPreferencesTable.addListener(SWT.MouseDoubleClick, controller.createListenerPreferences(chosenPreferencesTable));
 		submitButton.addListener(SWT.MouseDown, controller.createListenerSubmitButton());
 		
-		view.show();
+		controller.show(controller.view.getShell(), controller.view.getDisplay());
 	}
 
 
