@@ -1,6 +1,6 @@
 = Some advice for future generations
 
-*[short]*,*[middle]* and *[long]* stands for short,middle and long term. The short term points are ideas that are relatively easy to implement, middle and long are more complex and require more work.
+*[short]*, *[middle]* and *[long]* stands for short,middle and long term. The short term points are ideas that are relatively easy to implement, middle and long are more complex and require more work.
 
 == Global remarks on the project
 
