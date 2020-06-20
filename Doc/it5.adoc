@@ -56,12 +56,5 @@ Here is the list of the modifications that were made by each one :
 
 ** Mike SANTANGELO 
 
-*** For the class diagrams :
-**** Creating the Gui classes diagram and its documentation
-**** Adding (when it's necessary) the return types to the methods in Class_assignment and updating the image in the README
-**** Adding (when it's necessary) the return types to the methods in Class_ODS_Read and updating the image in the README
-
-
-
-*** For the documentation:
-**** Adding a new screenshot to the Class_ODS_Read in the documentation
+*** Reworking the GUI diagram
+*** docs

@@ -82,6 +82,8 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_FRQz0Js8EeqkfLOOhPUFxQ" name="Gui">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_6xCDIKqNEeqhf_6YD4kl5g" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_3yM0sJxOEeqP0PGWWkkdZQ"/>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_S-wV8KqPEeqhf_6YD4kl5g" name="uses" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_s6OXIGBZEeq31cSPSR9mAA"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_2Q3ZALLwEeq9PNqz_vvy7Q" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_zMLY8JuXEeqi_K2iLQMdMg"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_JmM2ALLxEeq9PNqz_vvy7Q" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_T5jLgJs_EeqkfLOOhPUFxQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_RefbQJwkEeqnwtyuSDALCg" name="Write">
         <packagedElement xmi:type="uml:Usage" xmi:id="_Fg6jEJwxEeqwT532HYtLXQ" client="_21gQEJuXEeqi_K2iLQMdMg" supplier="_FCjZgIegEeq_vJIT4Zoedw"/>
@@ -600,43 +602,43 @@ there are other private methods which format the ods : putBorders(), formatheade
           <ownedOperation xmi:type="uml:Operation" xmi:id="_2Mj5wKqKEeqhf_6YD4kl5g" name="createAndSetSubmitButton" visibility="public"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_mYyDwJs7EeqkfLOOhPUFxQ" name="Controller">
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_zSGNoJs9EeqkfLOOhPUFxQ" name="createAssignments" visibility="public"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_lkIAgKqNEeqhf_6YD4kl5g" name="itemClicked">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_zSGNoJs9EeqkfLOOhPUFxQ" name="createAssignments" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_lkIAgKqNEeqhf_6YD4kl5g" name="itemClicked" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_lkIAgaqNEeqhf_6YD4kl5g" name="item" type="_kQBOgJxOEeqP0PGWWkkdZQ"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_lkIAgqqNEeqhf_6YD4kl5g" name="toChosenPreferences">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_peC4YKqNEeqhf_6YD4kl5g" name="setModelData"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_2e8-gLLTEeq9PNqz_vvy7Q" name="getDataForTableItem">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_peC4YKqNEeqhf_6YD4kl5g" name="setModelData" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_2e8-gLLTEeq9PNqz_vvy7Q" name="getDataForTableItem" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_-Svq8LLTEeq9PNqz_vvy7Q" name="coursePrefElement" type="_RDv-oKqLEeqhf_6YD4kl5g"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_W2DBoLLUEeq9PNqz_vvy7Q" name="text" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_ud-VMLLUEeq9PNqz_vvy7Q" name="createListenerPreferences" visibility="package">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_ud-VMLLUEeq9PNqz_vvy7Q" name="createListenerPreferences" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_T4ufcLLVEeq9PNqz_vvy7Q" name="table" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_VVmtILLVEeq9PNqz_vvy7Q" name="createListenerSubmitButton"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_ILltcLLWEeq9PNqz_vvy7Q" name="updatePreferences">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_VVmtILLVEeq9PNqz_vvy7Q" name="createListenerSubmitButton" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_ILltcLLWEeq9PNqz_vvy7Q" name="updatePreferences" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_NE3wkLLWEeq9PNqz_vvy7Q" name="tableItem" type="_kQBOgJxOEeqP0PGWWkkdZQ"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_YhmSkLLWEeq9PNqz_vvy7Q" name="toChosenPreferences">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_wvwfsLLWEeq9PNqz_vvy7Q" name="showView"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_4G7hkLLWEeq9PNqz_vvy7Q" name="sortTable">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_wvwfsLLWEeq9PNqz_vvy7Q" name="showView" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_4G7hkLLWEeq9PNqz_vvy7Q" name="sortTable" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_7nca8LLWEeq9PNqz_vvy7Q" name="table" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_C1tYcLLXEeq9PNqz_vvy7Q" name="columnName">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_L1jbwLLsEeq9PNqz_vvy7Q" name="checkValidityAssignments">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_L1jbwLLsEeq9PNqz_vvy7Q" name="checkValidityAssignments" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_QJIJwLLsEeq9PNqz_vvy7Q" name="isModelValid" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_cQVzMLLsEeq9PNqz_vvy7Q" name="updateModelSet">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_cQVzMLLsEeq9PNqz_vvy7Q" name="updateModelSet" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_htf_cLLsEeq9PNqz_vvy7Q" name="stringTableItem">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ij7RILLsEeq9PNqz_vvy7Q"/>
