@@ -2833,11 +2833,7 @@
         <styles xmi:type="notation:FilteringStyle" xmi:id="_bOla9qqLEeqhf_6YD4kl5g"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bOla96qLEeqhf_6YD4kl5g"/>
       </children>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_bOla-KqLEeqhf_6YD4kl5g" type="Class_OperationCompartment">
-        <children xmi:type="notation:Shape" xmi:id="_TgAMZKqQEeqhf_6YD4kl5g" type="Operation_ClassOperationLabel">
-          <element xmi:type="uml:Operation" href="Model.uml#_RPN1gKqQEeqhf_6YD4kl5g"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_TgAMZaqQEeqhf_6YD4kl5g"/>
-        </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_bOla-KqLEeqhf_6YD4kl5g" visible="false" type="Class_OperationCompartment">
         <styles xmi:type="notation:TitleStyle" xmi:id="_bOla-aqLEeqhf_6YD4kl5g"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_bOla-qqLEeqhf_6YD4kl5g"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_bOla-6qLEeqhf_6YD4kl5g"/>
@@ -2881,7 +2877,7 @@
     <edges xmi:type="notation:Connector" xmi:id="_S-yLIKqPEeqhf_6YD4kl5g" type="Dependency_Edge" source="_1PvCgJxPEeqP0PGWWkkdZQ" target="_bOkz4KqLEeqhf_6YD4kl5g">
       <children xmi:type="notation:DecorationNode" xmi:id="_S-yLI6qPEeqhf_6YD4kl5g" type="Dependency_NameLabel">
         <styles xmi:type="notation:BooleanValueStyle" xmi:id="_iPRKQKqdEeqe-4FxPu3L4Q" name="IS_UPDATED_POSITION" booleanValue="true"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_S-yLJKqPEeqhf_6YD4kl5g" x="7" y="32"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_S-yLJKqPEeqhf_6YD4kl5g" x="-30" y="44"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_S-yLJaqPEeqhf_6YD4kl5g" type="Dependency_StereotypeLabel">
         <styles xmi:type="notation:BooleanValueStyle" xmi:id="_iuT2sKqdEeqe-4FxPu3L4Q" name="IS_UPDATED_POSITION" booleanValue="true"/>

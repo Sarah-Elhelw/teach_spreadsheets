@@ -81,7 +81,7 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_FRQz0Js8EeqkfLOOhPUFxQ" name="Gui">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_6xCDIKqNEeqhf_6YD4kl5g" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_3yM0sJxOEeqP0PGWWkkdZQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_S-wV8KqPEeqhf_6YD4kl5g" name="uses" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_RDv-oKqLEeqhf_6YD4kl5g"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_S-wV8KqPEeqhf_6YD4kl5g" name="uses" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_s6OXIGBZEeq31cSPSR9mAA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_RefbQJwkEeqnwtyuSDALCg" name="Write">
         <packagedElement xmi:type="uml:Usage" xmi:id="_Fg6jEJwxEeqwT532HYtLXQ" client="_21gQEJuXEeqi_K2iLQMdMg" supplier="_FCjZgIegEeq_vJIT4Zoedw"/>
@@ -583,7 +583,7 @@ there are other private methods which format the ods : putBorders(), formatheade
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuYqqaEeqhf_6YD4kl5g" name="courseName">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuY6qaEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
           </ownedOperation>
@@ -606,7 +606,7 @@ there are other private methods which format the ods : putBorders(), formatheade
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_2rfG4qqJEeqhf_6YD4kl5g" name="courseName">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_TAnJYKqKEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
           </ownedOperation>
@@ -666,7 +666,7 @@ there are other private methods which format the ods : putBorders(), formatheade
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_0iujQKqMEeqhf_6YD4kl5g" name="updateSet">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0iujQaqMEeqhf_6YD4kl5g" name="stringTableItem">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2mw2kKqXEeqhf_6YD4kl5g"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2nDKcKqXEeqhf_6YD4kl5g" value="*"/>
             </ownedParameter>
@@ -681,7 +681,7 @@ there are other private methods which format the ods : putBorders(), formatheade
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_n3qpEKqQEeqhf_6YD4kl5g" name="updatePreferences">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_n3qpEaqQEeqhf_6YD4kl5g" name="texts">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_n3qpEqqQEeqhf_6YD4kl5g" name="toChosenPreferences">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
@@ -691,7 +691,6 @@ there are other private methods which format the ods : putBorders(), formatheade
         <packagedElement xmi:type="uml:Class" xmi:id="_RDv-oKqLEeqhf_6YD4kl5g" name="CoursePrefElement">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_IncHYKqQEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_NiKU8KqQEeqhf_6YD4kl5g" name="coursePref" type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_RPN1gKqQEeqhf_6YD4kl5g" name="getDataForTableItem"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_18SFIKwWEeqEa6Mf8u6JHg" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_ki1OwJs7EeqkfLOOhPUFxQ"/>
       </packagedElement>
