@@ -7,26 +7,26 @@
 === Assignment process
 
 [[Assignment]]
-In our program, the Admin assigns the teachers to the courses using our GUI. Another interesting direction to take would have been to let the program assign the teachers to the courses. To do so, one should contact or directly get the program of Axel Faure, a previous intern at Dauphine, who wrote a code to assign teachers; the idea would be then to adapt the latter code to one’s program. Please talk to Mr Olivier Cailloux for further information.
+In our program, the Admin assigns the teachers to the courses using our GUI. Another interesting direction to take would have been to let the program assign the teachers to the courses. To do so, one should contact or directly get the program of Axel Faure, a previous intern at Dauphine, who wrote a code to assign teachers; the idea would be then to adapt the latter code to one’s program. Please talk to Mr Olivier Cailloux for further information. *[long]*
 
 == Advice per java package
 
 === Package json
 
 [[JsonDeserializer]]
-*JsonDeserializer* could also deserialize a json array of teachers, with teachers’ information coming from RefRof. To deal with RefRof content, it is strongly advised to draw one’s inspiration from the code accessible with https://github.com/Dauphine-MIDO/plaquette-MIDO[this link]. Indeed, one must not directly read json from RefRof but read XML for more durability of the code, XML being less impacted by format changes.
+*JsonDeserializer* could also deserialize a json array of teachers, with teachers’ information coming from RefRof. To deal with RefRof content, it is strongly advised to draw one’s inspiration from the code accessible with https://github.com/Dauphine-MIDO/plaquette-MIDO[this link]. Indeed, one must not directly read json from RefRof but read XML for more durability of the code, XML being less impacted by format changes. *[middle]*
 
 [[JsonSerializer]]
-*JsonSerializer*’s functionalities could be extended to get json array strings of teacher and more. Indeed, json format is appreciated by the administration programming services.
+*JsonSerializer*’s functionalities could be extended to get json array strings of teacher and more. Indeed, json format is appreciated by the administration programming services. *[short]*
 
 === Package write
 
 [[Write]]
-* It would be interesting to generate as well https://github.com/oliviercailloux/projets/raw/master/Voeux/services%20MIDO.xls[services MIDO.xls]. In particular, *Affectations* sheet would then present a summary of the assignments from the teachers’ perspective (our program showing a summary from the courses’ perspective). Furthermore, *donnees* sheet would then offer a raw presentation of all the assignments.
-* The writing to disk process is taking too long as seen in the test unit : testWriting100Summary().This needs to be investigated ( we suspect that the problem comes from the odftoolkit API but we are not sure)[short]. If this time can be reduced then you can try to get rid of the submit button and change the output files in real time (when a item is moved between the tables in the gui) *[middle]*. 
+* It would be interesting to generate as well https://github.com/oliviercailloux/projets/raw/master/Voeux/services%20MIDO.xls[services MIDO.xls]. In particular, *Affectations* sheet would then present a summary of the assignments from the teachers’ perspective (our program showing a summary from the courses’ perspective). Furthermore, *donnees* sheet would then offer a raw presentation of all the assignments. *[short]*
+* The writing to disk process is taking too long as seen in the test unit : testWriting100Summary().This needs to be investigated ( we suspect that the problem comes from the odftoolkit API but we are not sure)[short]. If this time can be reduced then you can try to get rid of the submit button and change the output files in real time (when a item is moved between the tables in the gui). *[middle]* 
 
 === Package read
 
 [[Read]]
-* Our Read package can only read the number of courses in prefrences in a certain format : x1 CM and x2 TD and x3 CMTD... (xi are integers ,not all course types must be present).This can be redunant because for some courses there is only 1 CM so the teacher that fills the ods must be able to indicate : "1" instead of "1 CM" [short]. For some courses, there are speacial groups that are taught in english so you can find "1 TP ang 2 TD fr".Tou can find a way to handle this case.You can also work with the adminstration to define a format *[middle]*.
-* Our Read package start the reading of courses and prefrences in each table from fixed cell coordonates, stops when it encounters an empty line and we don't handle the LSO and Apprentissage tables. You can try to write a generic code that detects automatically the header of the table and can read all sorts of tables (including Apprentissage and LSO) *[long]*.
+* Our Read package can only read the number of courses in prefrences in a certain format : x1 CM and x2 TD and x3 CMTD... (xi are integers ,not all course types must be present).This can be redunant because for some courses there is only 1 CM so the teacher that fills the ods must be able to indicate : "1" instead of "1 CM" [short]. For some courses, there are speacial groups that are taught in english so you can find "1 TP ang 2 TD fr".Tou can find a way to handle this case.You can also work with the adminstration to define a format. *[middle]*
+* Our Read package start the reading of courses and prefrences in each table from fixed cell coordonates, stops when it encounters an empty line and we don't handle the LSO and Apprentissage tables. You can try to write a generic code that detects automatically the header of the table and can read all sorts of tables (including Apprentissage and LSO). *[long]*
