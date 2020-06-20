@@ -563,13 +563,7 @@ there are other private methods which format the ods : putBorders(), formatheade
         </ownedComment>
         <packagedElement xmi:type="uml:Class" xmi:id="_ki1OwJs7EeqkfLOOhPUFxQ" name="View" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_bCoOYJs8EeqkfLOOhPUFxQ" name="initializeGui"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_jjwH0JtxEeqdz4L_R9L93Q" name="addListenerPreferences" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_tjvsAKqZEeqhf_6YD4kl5g" name="source" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_wV_KIKqZEeqhf_6YD4kl5g" name="toChosenPreferences">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_liK1gKqJEeqhf_6YD4kl5g" name="moveTableItem" visibility="private">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_liK1gKqJEeqhf_6YD4kl5g" name="moveTableItem" visibility="public">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_liK1gaqJEeqhf_6YD4kl5g" name="texts">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
@@ -577,7 +571,7 @@ there are other private methods which format the ods : putBorders(), formatheade
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_JFRuYKqaEeqhf_6YD4kl5g" name="addCourseToCoursesTable" visibility="private">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_JFRuYKqaEeqhf_6YD4kl5g" name="addCourseToCoursesTable" visibility="public">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuYaqaEeqhf_6YD4kl5g" name="nbGroups">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
@@ -586,31 +580,8 @@ there are other private methods which format the ods : putBorders(), formatheade
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuY6qaEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_OyqiQKqKEeqhf_6YD4kl5g" name="initPreferences" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_OyqiQaqKEeqhf_6YD4kl5g" name="allPreferences" type="_RDv-oKqLEeqhf_6YD4kl5g">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7dg3wKsTEeqj0paka7FkFA"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6DS8gKsTEeqj0paka7FkFA" value="*"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_htRhcJs8EeqkfLOOhPUFxQ" name="createPrefShell" visibility="private"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_a1xu0KqKEeqhf_6YD4kl5g" name="prefShell" visibility="private"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_R5ZfIKqJEeqhf_6YD4kl5g" name="addListenerPreferences" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_R5ZfIaqJEeqhf_6YD4kl5g" name="source" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_R5ZfIqqJEeqhf_6YD4kl5g" name="toChosenPreferences">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_2rfG4KqJEeqhf_6YD4kl5g" name="addCourseToCoursesTable" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_2rfG4aqJEeqhf_6YD4kl5g" name="nbGroups">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_2rfG4qqJEeqhf_6YD4kl5g" name="courseName">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_TAnJYKqKEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_gMPdMKqKEeqhf_6YD4kl5g" name="exitApplication" visibility="private"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_r1TLAKqKEeqhf_6YD4kl5g" name="setCompositePreferenceTable" visibility="private">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_a1xu0KqKEeqhf_6YD4kl5g" name="prefShell" visibility="public"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_r1TLAKqKEeqhf_6YD4kl5g" name="setCompositePreferenceTable" visibility="public">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAaqKEeqhf_6YD4kl5g" name="parentComposite" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAqqKEeqhf_6YD4kl5g" name="content" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLA6qKEeqhf_6YD4kl5g" name="headerText">
@@ -618,7 +589,7 @@ there are other private methods which format the ods : putBorders(), formatheade
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLBKqKEeqhf_6YD4kl5g" name="logo" type="_N5iy8LLPEeq9PNqz_vvy7Q"/>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_0UHxcKqKEeqhf_6YD4kl5g" name="setCompositeCourseTable" visibility="private">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_0UHxcKqKEeqhf_6YD4kl5g" name="setCompositeCourseTable" visibility="public">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxcaqKEeqhf_6YD4kl5g" name="parentComposite" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxcqqKEeqhf_6YD4kl5g" name="content" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxc6qKEeqhf_6YD4kl5g" name="headerText">
@@ -626,7 +597,7 @@ there are other private methods which format the ods : putBorders(), formatheade
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxdKqKEeqhf_6YD4kl5g" name="logo" type="_N5iy8LLPEeq9PNqz_vvy7Q"/>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_2Mj5wKqKEeqhf_6YD4kl5g" name="createAndSetSubmitButton" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_2Mj5wKqKEeqhf_6YD4kl5g" name="createAndSetSubmitButton" visibility="public"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_mYyDwJs7EeqkfLOOhPUFxQ" name="Controller">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_zSGNoJs9EeqkfLOOhPUFxQ" name="createAssignments" visibility="public"/>
