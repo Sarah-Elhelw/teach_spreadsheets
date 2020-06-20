@@ -16,7 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
@@ -30,7 +29,8 @@ public class OdsSummarizerTests {
 
 	@Test
 	/**
-	 * this test creates 2 assignments and writes in memory.
+	 * This test creates 2 assignments and writes in memory. This test serves to
+	 * determine the write to memory time.
 	 * 
 	 * @throws Exception
 	 */
@@ -84,21 +84,14 @@ public class OdsSummarizerTests {
 		 */
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.addPrefs(prefs);
-		long startTimeAddingAssignement = System.nanoTime();
 		LOGGER.info("2 assignments : start assignment and write");
 		ods.setAllCoursesAssigned(allCoursesAssigned);
 		LOGGER.info("2 assignments : stop assignment");
-		long startTimeWriting = System.nanoTime();
 		URL resourceUrl = OdsSummarizer.class.getResource("OdsSummarizer.ods");
 		try (InputStream stream = resourceUrl.openStream();
 				SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream);
 				SpreadsheetDocument documentCreated = ods.createSummary()) {
 			LOGGER.info("2 assignments : stop writing in memory");
-			long elapsedNanosWriteAndAssign = System.nanoTime() - startTimeAddingAssignement;
-			long elapsedNanosWrite = System.nanoTime() - startTimeWriting;
-			LOGGER.info("2 assignements : Time to write and assign : "
-					+ TimeUnit.NANOSECONDS.toSeconds(elapsedNanosWriteAndAssign) + "s" + " " + "Time to write : "
-					+ TimeUnit.NANOSECONDS.toSeconds(elapsedNanosWrite) + "s");
 			Table tableCreated = documentCreated.getTableByName("Summary");
 			Table table = document.getTableByName("Summary");
 
@@ -113,7 +106,8 @@ public class OdsSummarizerTests {
 
 	@Test
 	/**
-	 * this test creates 100 assignments and writes on disk.
+	 * this test creates 100 assignments and writes on disk. This test serves to
+	 * determine the write to disk time.
 	 * 
 	 * @throws Exception
 	 */
@@ -147,11 +141,9 @@ public class OdsSummarizerTests {
 		 */
 		OdsSummarizer ods = OdsSummarizer.newInstance(courses);
 		ods.addPrefs(prefs);
-		long startTimeAddingAssignement = System.nanoTime();
 		LOGGER.info("100 assignments : start assignment and write");
 		ods.setAllCoursesAssigned(ImmutableSet.copyOf(allCoursesAssigned));
 		LOGGER.info("100 assignments : stop assignment");
-		long startTimeWriting = System.nanoTime();
 		try (SpreadsheetDocument documentCreated = ods.createSummary()) {
 			if (!Files.exists(Path.of("output"))) {
 				Files.createDirectory(Path.of("output"));
@@ -159,10 +151,5 @@ public class OdsSummarizerTests {
 			documentCreated.save("output//testWriting100.ods");
 			LOGGER.info("100 assignments : stop writing on disk");
 		}
-		long elapsedNanosWriteAndAssign = System.nanoTime() - startTimeAddingAssignement;
-		long elapsedNanosWrite = System.nanoTime() - startTimeWriting;
-		LOGGER.info("100 assignments : Time to write and assign : "
-				+ TimeUnit.NANOSECONDS.toSeconds(elapsedNanosWriteAndAssign) + "s" + " " + "Time to write : "
-				+ TimeUnit.NANOSECONDS.toSeconds(elapsedNanosWrite) + "s");
 	}
 }
