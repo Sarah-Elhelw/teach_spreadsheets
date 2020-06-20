@@ -290,50 +290,122 @@
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_z93tFWEqEeqMmJrPvsnLhQ" type="Class_AttributeCompartment">
         <children xmi:type="notation:Shape" xmi:id="_yLZU8GFNEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_Ndp8ALMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_yLGaAGFNEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_yLZU8WFNEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_2KEJ8GFNEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_N-6O8LMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_2J0SUGFNEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_2KEJ8WFNEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_5K42oGFNEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_Oc5ygLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_5KmiwGFNEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_5K42oWFNEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_7-iC8GFNEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_O5FYMLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_7-SyYGFNEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_7-iC8WFNEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="__g9n4GFNEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_Pny4ULMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#__guXUGFNEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="__g9n4WFNEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_ELDYcGFOEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_QPJzQLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_EKzg0GFOEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_ELDYcWFOEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_a_p8MGFPEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_Qp6coLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_a_bSsGFPEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_a_p8MWFPEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_d9KPIGFPEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_RBvGwLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_d88zwGFPEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_d9KPIWFPEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_hWtk4GFPEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_RiLhYLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_hWe7YGFPEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_hWtk4WFPEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_keo_IGFPEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_SCeyELMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_kecx4GFPEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_keo_IWFPEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_oKGkQGFPEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_SsW1gLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_oJ5I4GFPEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_oKGkQWFPEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_q-GV4GFPEeq7OdFZt-_k0Q" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_US4ucLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_q93FUGFPEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_q-GV4WFPEeq7OdFZt-_k0Q"/>
         </children>
@@ -364,58 +436,143 @@
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_3QJ9NWEqEeqMmJrPvsnLhQ" type="Class_AttributeCompartment">
         <children xmi:type="notation:Shape" xmi:id="_mxQ7YJ2PEeqgYtA4nJO78A" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:IntValueStyle" xmi:id="_AfljELMuEeqJINLMnmuenw" name="shapeDirection"/>
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_CZBJ4LMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_ggJioJ2PEeqgYtA4nJO78A"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_mxQ7YZ2PEeqgYtA4nJO78A"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lPgroIcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_DUxAcLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_Yts48GFVEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lPgroYcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lQKy8IcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_D127ULMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_IixF8GFWEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lQKy8YcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lRXs0IcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_ETtU8LMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_LQScIGFWEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lRXs0YcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lRwHUIcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_EzExgLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_XmjwUG9vEeqLo7KqnGqs3g"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lRwHUYcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lSJv8IcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_FO81MLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_0zjwYGFVEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lSJv8YcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lSiKcIcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_Fn9LELMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_7Sb4UGFVEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lSiKcYcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lTBSoIcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_GA854LMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#__4igwGFVEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lTBSoYcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lTeloIcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_GaGZsLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_FU40sGFWEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lTeloYcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lT-78IcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_HK16ILMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_awCkIGFVEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lT-78YcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lUddEIcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_H1bvQLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_fXmlIGFVEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lUddEYcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lVILcIcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_IPU18LMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_jFoWEGFVEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lVILcYcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lVySwIcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_JjPU4LMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_nhju0GFVEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lVySwYcQEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_lWZWwIcQEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_J9b9kLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_tJ_W8GFVEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_lWZWwYcQEeqUqZA2AF_9Pw"/>
         </children>
@@ -453,42 +610,102 @@
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_bxDFZWIqEeq7OdFZt-_k0Q" type="AssociationClass_AttributeCompartment">
         <children xmi:type="notation:Shape" xmi:id="_wKr4AGIqEeq7OdFZt-_k0Q" type="Property_ComponentAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_VNNBoLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_wKdOgGIqEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_wKr4AWIqEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_zl9sEGIqEeq7OdFZt-_k0Q" type="Property_ComponentAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_Vr2sgLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_zlubgGIqEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_zl9sEWIqEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_1LCMcGIqEeq7OdFZt-_k0Q" type="Property_ComponentAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_WAPBELMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_1Kzi8GIqEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_1LCMcWIqEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_9jGDkGIqEeq7OdFZt-_k0Q" type="Property_ComponentAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_WYX0QLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_9i090GIqEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_9jGDkWIqEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_2O2Z4GIqEeq7OdFZt-_k0Q" type="Property_ComponentAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_W1AF4LMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_2OnJUGIqEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_2O2Z4WIqEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_8Kq4EGIqEeq7OdFZt-_k0Q" type="Property_ComponentAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_XqRhALMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_8KZyUGIqEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_8Kq4EWIqEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_4dCIsGIqEeq7OdFZt-_k0Q" type="Property_ComponentAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_YTyYELMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_4cy4IGIqEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_4dCIsWIqEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_5iLy4GIqEeq7OdFZt-_k0Q" type="Property_ComponentAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_YtZK4LMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_5h8iUGIqEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_5iLy4WIqEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="__xspIGIqEeq7OdFZt-_k0Q" type="Property_ComponentAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_ZU_WYLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#__xcKcGIqEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="__xspIWIqEeq7OdFZt-_k0Q"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_A6nZAGIrEeq7OdFZt-_k0Q" type="Property_ComponentAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_Zu4dELMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_A6XhYGIrEeq7OdFZt-_k0Q"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_A6nZAWIrEeq7OdFZt-_k0Q"/>
         </children>
@@ -661,22 +878,52 @@
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_OZipIG9ZEeqks-MRezUMyA" type="Class_AttributeCompartment">
         <children xmi:type="notation:Shape" xmi:id="_4ssysGE1Eeqh0awxs8iBpQ" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_K2j98LMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_gmQ0oGEpEeqMmJrPvsnLhQ"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_4ssysWE1Eeqh0awxs8iBpQ"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_98rCwIctEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_LYSyALMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_yqpU4IctEeqUqZA2AF_9Pw"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_98rCwYctEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_984eIIctEeqUqZA2AF_9Pw" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_L1OloLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_1aLdQIctEeqUqZA2AF_9Pw"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_984eIYctEeqUqZA2AF_9Pw"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_2dqvUGE1Eeqh0awxs8iBpQ" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_MRJFkLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_KxCNwGEpEeqMmJrPvsnLhQ"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_2dqvUWE1Eeqh0awxs8iBpQ"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_3IspUGE1Eeqh0awxs8iBpQ" type="Property_ClassAttributeLabel">
+          <styles xmi:type="notation:StringListValueStyle" xmi:id="_MuRtgLMuEeqJINLMnmuenw" name="maskLabel">
+            <stringListValue>visibility</stringListValue>
+            <stringListValue>name</stringListValue>
+            <stringListValue>type</stringListValue>
+            <stringListValue>derived</stringListValue>
+          </styles>
           <element xmi:type="uml:Property" href="Model.uml#_Sz7GIGEpEeqMmJrPvsnLhQ"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_3IspUWE1Eeqh0awxs8iBpQ"/>
         </children>
@@ -2515,20 +2762,6 @@
           <element xmi:type="uml:Operation" href="Model.uml#_liK1gKqJEeqhf_6YD4kl5g"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_li9fsaqJEeqhf_6YD4kl5g"/>
         </children>
-        <children xmi:type="notation:Shape" xmi:id="_JfzHMKqaEeqhf_6YD4kl5g" type="Operation_ClassOperationLabel">
-          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_J-sCoKqaEeqhf_6YD4kl5g" source="PapyrusCSSForceValue">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_J-sCoaqaEeqhf_6YD4kl5g" key="mutable" value="true"/>
-          </eAnnotations>
-          <styles xmi:type="notation:StringListValueStyle" xmi:id="_hkZ8sLFeEeq0Z-5Pdiia7A" name="maskLabel">
-            <stringListValue>parametersName</stringListValue>
-            <stringListValue>visibility</stringListValue>
-            <stringListValue>name</stringListValue>
-            <stringListValue>parametersType</stringListValue>
-            <stringListValue>returnType</stringListValue>
-          </styles>
-          <element xmi:type="uml:Operation" href="Model.uml#_JFRuYKqaEeqhf_6YD4kl5g"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_JfzHMaqaEeqhf_6YD4kl5g"/>
-        </children>
         <children xmi:type="notation:Shape" xmi:id="_a2Yy0KqKEeqhf_6YD4kl5g" type="Operation_ClassOperationLabel">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_a3uPkKqKEeqhf_6YD4kl5g" source="PapyrusCSSForceValue">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_a3uPkaqKEeqhf_6YD4kl5g" key="mutable" value="true"/>
@@ -2557,6 +2790,20 @@
           <element xmi:type="uml:Operation" href="Model.uml#_2Mj5wKqKEeqhf_6YD4kl5g"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_2NREYaqKEeqhf_6YD4kl5g"/>
         </children>
+        <children xmi:type="notation:Shape" xmi:id="_WxLD4LMwEeqJINLMnmuenw" type="Operation_ClassOperationLabel">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_W9vgQLMwEeqJINLMnmuenw" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_W9vgQbMwEeqJINLMnmuenw" key="mutable" value="true"/>
+          </eAnnotations>
+          <element xmi:type="uml:Operation" href="Model.uml#_WtnZkLMwEeqJINLMnmuenw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_WxLD4bMwEeqJINLMnmuenw"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_jHjxwLMwEeqJINLMnmuenw" type="Operation_ClassOperationLabel">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jUokcLMwEeqJINLMnmuenw" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jUpLgLMwEeqJINLMnmuenw" key="mutable" value="true"/>
+          </eAnnotations>
+          <element xmi:type="uml:Operation" href="Model.uml#_jFTH8LMwEeqJINLMnmuenw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_jHjxwbMwEeqJINLMnmuenw"/>
+        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_whYrdps7EeqkfLOOhPUFxQ"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_whYrd5s7EeqkfLOOhPUFxQ"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_whYreJs7EeqkfLOOhPUFxQ"/>
@@ -2570,7 +2817,7 @@
       </children>
       <styles xmi:type="notation:CanonicalStyle" xmi:id="_B90zQKqJEeqhf_6YD4kl5g"/>
       <element xmi:type="uml:Class" href="Model.uml#_ki1OwJs7EeqkfLOOhPUFxQ"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wfRyoZs7EeqkfLOOhPUFxQ" x="-40" width="621" height="141"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wfRyoZs7EeqkfLOOhPUFxQ" x="-40" width="621" height="161"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_0lfaEJs7EeqkfLOOhPUFxQ" type="Class_Shape">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qHyY8aqNEeqhf_6YD4kl5g" source="PapyrusCSSForceValue">

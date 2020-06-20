@@ -53,13 +53,15 @@ CoursePrefElement lists in Model are used to represent instances of table items 
 
 Here is the process :
 
-Controller initializes the View (*initializeGui* in View) and sets the Model data (*setModelData* in Controller) from Ods files thanks to *readFilesFromFolder* in MultipleOdsPrefReader class.
+Controller initializes the View, the Model and sets its data from Ods files thanks to MultipleOdsPrefReader class.
 
-Then the Controller calls the *initPreferences* function in View with the data retrieved from Model. The GUI is now set.
+Then the Controller calls functions in View with the data retrieved from Model to set the table items to show.
 
-During the initialization of the GUI, listeners for table items are set in View. These listeners call the *callbackListener* from Controller. This method updates the Model (*updatePreferences* in Model), then updates the GUI (*moveTableItem* in View).
+Controller registers itself as a listener for the submit button and the clicks on table items.
 
-A listener is also set for the submit button in View. This listener calls *createAssignments* in Controller. This function retrieves the data from Model to return the assignments for the teachers.
+The listener for submit button triggers the creation of assignment files. The clicks on table items trigger an update of Model and View.
+
+There are functions in Controller supposed to sort the tables by column and to check the validity of the assignments chosen. This may not be up to date as the project is coming to an end.
 
 == Ods Reader classes
 image::Images\Class_ODS_Read.PNG[{fullWifth}]
