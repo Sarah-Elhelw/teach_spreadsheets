@@ -34,10 +34,10 @@
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_C3hWgGwvEeqdw6kasHCXew" source="org.eclipse.papyrus">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_C3h9kGwvEeqdw6kasHCXew" key="nature" value="UML_Nature"/>
           </eAnnotations>
-          <ownedEnd xmi:type="uml:Property" xmi:id="_C3ikoGwvEeqdw6kasHCXew" name="aggregatedPrefs" type="_a4w-cGwuEeqdw6kasHCXew" aggregation="shared" association="_C3gvcGwvEeqdw6kasHCXew">
+          <ownedEnd xmi:type="uml:Property" xmi:id="_C3ikoGwvEeqdw6kasHCXew" name="teacherPrefs" type="_0YeooGYQEeqq2pYv3YMNcA" aggregation="shared" association="_C3gvcGwvEeqdw6kasHCXew">
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FL-FYGwvEeqdw6kasHCXew" value="*"/>
           </ownedEnd>
-          <ownedEnd xmi:type="uml:Property" xmi:id="_C3h9kWwvEeqdw6kasHCXew" name="teacherPrefsSet" type="_0YeooGYQEeqq2pYv3YMNcA" association="_C3gvcGwvEeqdw6kasHCXew"/>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_C3h9kWwvEeqdw6kasHCXew" name="aggregatedPrefs" type="_a4w-cGwuEeqdw6kasHCXew" association="_C3gvcGwvEeqdw6kasHCXew"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="_Ggvk4J2QEeqgYtA4nJO78A" memberEnd="_GgyBIJ2QEeqgYtA4nJO78A _Gg0dYp2QEeqgYtA4nJO78A">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ggvk4Z2QEeqgYtA4nJO78A" source="org.eclipse.papyrus">
