@@ -2,6 +2,8 @@ package io.github.oliviercailloux.teach_spreadsheets.write;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.net.URL;
+
 import org.junit.jupiter.api.Test;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Table;
@@ -33,9 +35,9 @@ public class AssignmentPerTeacherTests {
 		CourseAssignment courseAssignment = courseAssignmentBuilder.build();
 
 		ImmutableSet<CourseAssignment> allCoursesAssigned = ImmutableSet.of(courseAssignment);
-
+		URL resourceUrl =AssignmentPerTeacher.class.getResource("AssignmentPerTeacher.ods");
 		try (SpreadsheetDocument document = OdsHelper
-				.docFromUrl(AssignmentPerTeacher.class.getResource("AssignmentPerTeacher.ods"));
+				.docFromUrl(resourceUrl);
 
 				SpreadsheetDocument documentCreated = AssignmentPerTeacher.createAssignmentPerTeacher(teacher1,
 						allCoursesAssigned)) {
