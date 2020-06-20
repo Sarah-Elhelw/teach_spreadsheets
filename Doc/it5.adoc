@@ -1,0 +1,60 @@
+= Iteration 5 UML 
+
+The aim of this iteration is to correct and improve UML Iteration 4 by taking into consideration Mr. Cailloux’s remarks. The objective is to help the next student to understand our project.
+
+We also corrected some classes according to Java Iteration 2 and added new GUI classes.
+
+
+Here is the list of the modifications that were made by each one : 
+
+* The group constituted of Sarah EL HELW, Semida BUZDUGAN and Inès DRAREDJA divided the corrections as follows: 
+
+** Sarah EL HELW : 
+
+*** Correcting some Mr.Cailloux's remarks about Iteration 3 UML
+*** Updating the Class_Json_Read class
+*** Updating the AgregatedData and CalcData classes
+*** Updating the root README.adoc 
+*** Updating names of the methods in the sequence diagram
+*** Adding specification in Advice.adoc for the next student 
+*** Updating the screenshot of all the diagram
+*** Replacing some name's classes
+
+
+** Semida BUZDUGAN : 
+
+*** Updating the root README.adoc with what we will do in the java's iteration 4
+*** Updating the Class_ODS_Write class
+*** Updating the README.adoc in file Doc
+*** Adding specification in Advice.adoc for the next student 
+
+
+** Inès DRAREDJA
+
+*** Making the it5.adoc
+*** Correcting some Mr.Cailloux's remarks about Iteration 3 UML.
+*** Improving documents files
+*** Updating the README.adoc in file Doc
+*** Adding specification in Advice.adoc for the next student 
+
+
+//A finir
+
+* The group constituted of Hedi GUEDIDI and Mike SANTANGELO divided the corrections as follows: 
+
+** Hedi GUEDIDI
+ 
+*** For the class diagrams :
+**** Updating the Read class diagram with the MultipleOdsPrefReader class and its documentation
+**** Creating the View class in the Gui classes diagram and updating some parts of the gui diagram
+**** Adding various documentation ( Icons credits and read,write parts in advices.adoc file)
+
+*** For the GUI :
+**** Designing the mock-up of the GUI
+**** Creating the Gui description section in the documentation (Screenshot of the gui + some brief explanation of how the GUI is supposed to work)
+
+
+** Mike SANTANGELO 
+
+*** Reworking the GUI diagram
+*** docs

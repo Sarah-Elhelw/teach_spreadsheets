@@ -34,10 +34,10 @@
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_C3hWgGwvEeqdw6kasHCXew" source="org.eclipse.papyrus">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_C3h9kGwvEeqdw6kasHCXew" key="nature" value="UML_Nature"/>
           </eAnnotations>
-          <ownedEnd xmi:type="uml:Property" xmi:id="_C3ikoGwvEeqdw6kasHCXew" name="aggregatedPrefs" type="_a4w-cGwuEeqdw6kasHCXew" aggregation="shared" association="_C3gvcGwvEeqdw6kasHCXew">
+          <ownedEnd xmi:type="uml:Property" xmi:id="_C3ikoGwvEeqdw6kasHCXew" name="teacherPrefs" type="_0YeooGYQEeqq2pYv3YMNcA" aggregation="shared" association="_C3gvcGwvEeqdw6kasHCXew">
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FL-FYGwvEeqdw6kasHCXew" value="*"/>
           </ownedEnd>
-          <ownedEnd xmi:type="uml:Property" xmi:id="_C3h9kWwvEeqdw6kasHCXew" name="teacherPrefsSet" type="_0YeooGYQEeqq2pYv3YMNcA" association="_C3gvcGwvEeqdw6kasHCXew"/>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_C3h9kWwvEeqdw6kasHCXew" name="aggregatedPrefs" type="_a4w-cGwuEeqdw6kasHCXew" association="_C3gvcGwvEeqdw6kasHCXew"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Association" xmi:id="_Ggvk4J2QEeqgYtA4nJO78A" memberEnd="_GgyBIJ2QEeqgYtA4nJO78A _Gg0dYp2QEeqgYtA4nJO78A">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ggvk4Z2QEeqgYtA4nJO78A" source="org.eclipse.papyrus">
@@ -81,7 +81,9 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_FRQz0Js8EeqkfLOOhPUFxQ" name="Gui">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_6xCDIKqNEeqhf_6YD4kl5g" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_3yM0sJxOEeqP0PGWWkkdZQ"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="_S-wV8KqPEeqhf_6YD4kl5g" name="uses" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_RDv-oKqLEeqhf_6YD4kl5g"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_S-wV8KqPEeqhf_6YD4kl5g" name="uses" client="_3yM0sJxOEeqP0PGWWkkdZQ" supplier="_s6OXIGBZEeq31cSPSR9mAA"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_2Q3ZALLwEeq9PNqz_vvy7Q" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_zMLY8JuXEeqi_K2iLQMdMg"/>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_JmM2ALLxEeq9PNqz_vvy7Q" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_T5jLgJs_EeqkfLOOhPUFxQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_RefbQJwkEeqnwtyuSDALCg" name="Write">
         <packagedElement xmi:type="uml:Usage" xmi:id="_Fg6jEJwxEeqwT532HYtLXQ" client="_21gQEJuXEeqi_K2iLQMdMg" supplier="_FCjZgIegEeq_vJIT4Zoedw"/>
@@ -563,14 +565,7 @@ there are other private methods which format the ods : putBorders(), formatheade
         </ownedComment>
         <packagedElement xmi:type="uml:Class" xmi:id="_ki1OwJs7EeqkfLOOhPUFxQ" name="View" visibility="public">
           <ownedOperation xmi:type="uml:Operation" xmi:id="_bCoOYJs8EeqkfLOOhPUFxQ" name="initializeGui"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_bXYR8KqIEeqhf_6YD4kl5g" name="show"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_jjwH0JtxEeqdz4L_R9L93Q" name="addListenerPreferences" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_tjvsAKqZEeqhf_6YD4kl5g" name="source" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_wV_KIKqZEeqhf_6YD4kl5g" name="toChosenPreferences">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_liK1gKqJEeqhf_6YD4kl5g" name="moveTableItem" visibility="private">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_liK1gKqJEeqhf_6YD4kl5g" name="moveTableItem" visibility="public">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_liK1gaqJEeqhf_6YD4kl5g" name="texts">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
@@ -578,66 +573,86 @@ there are other private methods which format the ods : putBorders(), formatheade
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_JFRuYKqaEeqhf_6YD4kl5g" name="addCourseToCoursesTable" visibility="private">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_JFRuYKqaEeqhf_6YD4kl5g" name="addCourseToCoursesTable" visibility="public">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuYaqaEeqhf_6YD4kl5g" name="nbGroups">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuYqqaEeqhf_6YD4kl5g" name="courseName">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_JFRuY6qaEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_OyqiQKqKEeqhf_6YD4kl5g" name="initPreferences" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_OyqiQaqKEeqhf_6YD4kl5g" name="allPreferences" type="_RDv-oKqLEeqhf_6YD4kl5g">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7dg3wKsTEeqj0paka7FkFA"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6DS8gKsTEeqj0paka7FkFA" value="*"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_htRhcJs8EeqkfLOOhPUFxQ" name="createPrefShell" visibility="private"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_a1xu0KqKEeqhf_6YD4kl5g" name="prefShell" visibility="private"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_R5ZfIKqJEeqhf_6YD4kl5g" name="addListenerPreferences" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_R5ZfIaqJEeqhf_6YD4kl5g" name="source" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_R5ZfIqqJEeqhf_6YD4kl5g" name="toChosenPreferences">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_2rfG4KqJEeqhf_6YD4kl5g" name="addCourseToCoursesTable" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_2rfG4aqJEeqhf_6YD4kl5g" name="nbGroups">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_2rfG4qqJEeqhf_6YD4kl5g" name="courseName">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_TAnJYKqKEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_gMPdMKqKEeqhf_6YD4kl5g" name="exitApplication" visibility="private"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_r1TLAKqKEeqhf_6YD4kl5g" name="setCompositePreferenceTable" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAaqKEeqhf_6YD4kl5g" name="parentComposite"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAqqKEeqhf_6YD4kl5g" name="content"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_a1xu0KqKEeqhf_6YD4kl5g" name="prefShell" visibility="public"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_r1TLAKqKEeqhf_6YD4kl5g" name="setCompositePreferenceTable" visibility="public">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAaqKEeqhf_6YD4kl5g" name="parentComposite" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLAqqKEeqhf_6YD4kl5g" name="content" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLA6qKEeqhf_6YD4kl5g" name="headerText">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLBKqKEeqhf_6YD4kl5g" name="logo"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_r1TLBKqKEeqhf_6YD4kl5g" name="logo" type="_N5iy8LLPEeq9PNqz_vvy7Q"/>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_0UHxcKqKEeqhf_6YD4kl5g" name="setCompositeCourseTable" visibility="private">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxcaqKEeqhf_6YD4kl5g" name="parentComposite"/>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxcqqKEeqhf_6YD4kl5g" name="content"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_0UHxcKqKEeqhf_6YD4kl5g" name="setCompositeCourseTable" visibility="public">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxcaqKEeqhf_6YD4kl5g" name="parentComposite" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxcqqKEeqhf_6YD4kl5g" name="content" type="_Pdl_oLLPEeq9PNqz_vvy7Q"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxc6qKEeqhf_6YD4kl5g" name="headerText">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
             </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxdKqKEeqhf_6YD4kl5g" name="logo"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0UHxdKqKEeqhf_6YD4kl5g" name="logo" type="_N5iy8LLPEeq9PNqz_vvy7Q"/>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_2Mj5wKqKEeqhf_6YD4kl5g" name="createAndSetSubmitButton" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_2Mj5wKqKEeqhf_6YD4kl5g" name="createAndSetSubmitButton" visibility="public"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_mYyDwJs7EeqkfLOOhPUFxQ" name="Controller">
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_zSGNoJs9EeqkfLOOhPUFxQ" name="createAssignments" visibility="public"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_lkIAgKqNEeqhf_6YD4kl5g" name="callbackListener">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_zSGNoJs9EeqkfLOOhPUFxQ" name="createAssignments" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_lkIAgKqNEeqhf_6YD4kl5g" name="itemClicked" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_lkIAgaqNEeqhf_6YD4kl5g" name="item" type="_kQBOgJxOEeqP0PGWWkkdZQ"/>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_lkIAgqqNEeqhf_6YD4kl5g" name="toChosenPreferences">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_peC4YKqNEeqhf_6YD4kl5g" name="setModelData"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_peC4YKqNEeqhf_6YD4kl5g" name="setModelData" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_2e8-gLLTEeq9PNqz_vvy7Q" name="getDataForTableItem" visibility="private">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_-Svq8LLTEeq9PNqz_vvy7Q" name="coursePrefElement" type="_RDv-oKqLEeqhf_6YD4kl5g"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_W2DBoLLUEeq9PNqz_vvy7Q" name="text" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_ud-VMLLUEeq9PNqz_vvy7Q" name="createListenerPreferences" visibility="private">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_T4ufcLLVEeq9PNqz_vvy7Q" name="table" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_VVmtILLVEeq9PNqz_vvy7Q" name="createListenerSubmitButton" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_ILltcLLWEeq9PNqz_vvy7Q" name="updatePreferences" visibility="private">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_NE3wkLLWEeq9PNqz_vvy7Q" name="tableItem" type="_kQBOgJxOEeqP0PGWWkkdZQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_YhmSkLLWEeq9PNqz_vvy7Q" name="toChosenPreferences">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_wvwfsLLWEeq9PNqz_vvy7Q" name="showView" visibility="private"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_4G7hkLLWEeq9PNqz_vvy7Q" name="sortTable" visibility="private">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_7nca8LLWEeq9PNqz_vvy7Q" name="table" type="_F4qgIJs-EeqkfLOOhPUFxQ"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_C1tYcLLXEeq9PNqz_vvy7Q" name="columnName">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_L1jbwLLsEeq9PNqz_vvy7Q" name="checkValidityAssignments" visibility="private">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_QJIJwLLsEeq9PNqz_vvy7Q" name="isModelValid" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_cQVzMLLsEeq9PNqz_vvy7Q" name="updateModelSet" visibility="private">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_htf_cLLsEeq9PNqz_vvy7Q" name="stringTableItem">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ij7RILLsEeq9PNqz_vvy7Q"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ikIFcLLsEeq9PNqz_vvy7Q" value="*"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_nLFCcLLsEeq9PNqz_vvy7Q" name="source" type="_RDv-oKqLEeqhf_6YD4kl5g">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oAlHELLsEeq9PNqz_vvy7Q"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oAyicLLsEeq9PNqz_vvy7Q" value="*"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_2YXE8LLsEeq9PNqz_vvy7Q" name="target" type="_RDv-oKqLEeqhf_6YD4kl5g">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3j_xoLLsEeq9PNqz_vvy7Q"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3kUhwLLsEeq9PNqz_vvy7Q" value="*"/>
+            </ownedParameter>
+          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_3yM0sJxOEeqP0PGWWkkdZQ" name="Model">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_RJZGcJxPEeqP0PGWWkkdZQ" name="allPreferences" visibility="private" type="_RDv-oKqLEeqhf_6YD4kl5g">
@@ -655,7 +670,7 @@ there are other private methods which format the ods : putBorders(), formatheade
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_e40D0JxPEeqP0PGWWkkdZQ" name="setData">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_e40D0JxPEeqP0PGWWkkdZQ" name="setData" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_ceVfsKqYEeqhf_6YD4kl5g" name="teacherPrefs" type="_0YeooGYQEeqq2pYv3YMNcA"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_RgH8IKqMEeqhf_6YD4kl5g" name="setDataFromSet">
@@ -664,34 +679,16 @@ there are other private methods which format the ods : putBorders(), formatheade
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nptmsLFhEeq0Z-5Pdiia7A" value="*"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_0iujQKqMEeqhf_6YD4kl5g" name="updateSet">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0iujQaqMEeqhf_6YD4kl5g" name="stringTableItem">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2mw2kKqXEeqhf_6YD4kl5g"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2nDKcKqXEeqhf_6YD4kl5g" value="*"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0iujQqqMEeqhf_6YD4kl5g" name="source" type="_RDv-oKqLEeqhf_6YD4kl5g">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sIamoLFhEeq0Z-5Pdiia7A"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5ko88KqXEeqhf_6YD4kl5g" value="*"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0iujQ6qMEeqhf_6YD4kl5g" name="target" type="_RDv-oKqLEeqhf_6YD4kl5g">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uGdAoLFhEeq0Z-5Pdiia7A"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_867jUKqXEeqhf_6YD4kl5g" value="*"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_n3qpEKqQEeqhf_6YD4kl5g" name="updatePreferences">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_n3qpEaqQEeqhf_6YD4kl5g" name="texts">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_n3qpEqqQEeqhf_6YD4kl5g" name="toChosenPreferences">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_ggRMwLLrEeq9PNqz_vvy7Q" name="getCourses" concurrency="concurrent">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_qlGHsLLrEeq9PNqz_vvy7Q" name="courses" type="_XVBhkGBfEeq31cSPSR9mAA">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_s5JN8LLrEeq9PNqz_vvy7Q"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_s5WCQLLrEeq9PNqz_vvy7Q" value="*"/>
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_RDv-oKqLEeqhf_6YD4kl5g" name="CoursePrefElement">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_IncHYKqQEeqhf_6YD4kl5g" name="courseType" type="_l6njAKqPEeqhf_6YD4kl5g"/>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_NiKU8KqQEeqhf_6YD4kl5g" name="coursePref" type="_bv1kcGIqEeq7OdFZt-_k0Q"/>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_RPN1gKqQEeqhf_6YD4kl5g" name="getDataForTableItem"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_18SFIKwWEeqEa6Mf8u6JHg" name="uses" client="_mYyDwJs7EeqkfLOOhPUFxQ" supplier="_ki1OwJs7EeqkfLOOhPUFxQ"/>
       </packagedElement>
@@ -815,7 +812,7 @@ there are other private methods which format the ods : putBorders(), formatheade
       <message xmi:type="uml:Message" xmi:id="_yowoYK9XEeqv9K-cWDl50w" name="writeCoursesInAJsonFile()" receiveEvent="_yoxPca9XEeqv9K-cWDl50w" sendEvent="_yoxPcK9XEeqv9K-cWDl50w"/>
       <message xmi:type="uml:Message" xmi:id="_gxgpcK-YEeqv9K-cWDl50w" name="sendMail(&quot;Fiche de service.ods&quot;)" messageSort="asynchCall" receiveEvent="_gxgpcq-YEeqv9K-cWDl50w" sendEvent="_gxgpca-YEeqv9K-cWDl50w"/>
       <message xmi:type="uml:Message" xmi:id="_POndoK-cEeqrAKLPKD0YxA" name="exitGui()" messageSort="deleteMessage" receiveEvent="_POqg8K-cEeqrAKLPKD0YxA" sendEvent="_POp54K-cEeqrAKLPKD0YxA"/>
-      <message xmi:type="uml:Message" xmi:id="_9wCSELG4EeqqEfH_KH6tEg" receiveEvent="_9wC5IbG4EeqqEfH_KH6tEg" sendEvent="_9wC5ILG4EeqqEfH_KH6tEg" signature="_bXYR8KqIEeqhf_6YD4kl5g"/>
+      <message xmi:type="uml:Message" xmi:id="_9wCSELG4EeqqEfH_KH6tEg" receiveEvent="_9wC5IbG4EeqqEfH_KH6tEg" sendEvent="_9wC5ILG4EeqqEfH_KH6tEg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Interaction" xmi:id="_9XmyMG6UEeqIeI1UFw-5OA" name="AdminAssignement" visibility="public">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_QGDOUG6VEeqIeI1UFw-5OA" name="" type="_6sn5gGEpEeqMmJrPvsnLhQ"/>
@@ -851,7 +848,7 @@ there are other private methods which format the ods : putBorders(), formatheade
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_dxQ_oK9YEeqv9K-cWDl50w" name="Message29ReceiveEvent" covered="_Sz-0MG6VEeqIeI1UFw-5OA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_dxQYkK9YEeqv9K-cWDl50w" name="Message29SendEvent" covered="_VbOjQG6VEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_QgcO0G6WEeqIeI1UFw-5OA" name="demandAssignmentGUI()" messageSort="asynchCall" receiveEvent="_Qgc14W6WEeqIeI1UFw-5OA" sendEvent="_Qgc14G6WEeqIeI1UFw-5OA"/>
-      <message xmi:type="uml:Message" xmi:id="_aUimIG6WEeqIeI1UFw-5OA" receiveEvent="_aUj0QG6WEeqIeI1UFw-5OA" sendEvent="_aUjNMG6WEeqIeI1UFw-5OA" signature="_bXYR8KqIEeqhf_6YD4kl5g"/>
+      <message xmi:type="uml:Message" xmi:id="_aUimIG6WEeqIeI1UFw-5OA" receiveEvent="_aUj0QG6WEeqIeI1UFw-5OA" sendEvent="_aUjNMG6WEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_o0bXIG6WEeqIeI1UFw-5OA" name="assignTeachers()" messageSort="asynchCall" receiveEvent="_o0b-MW6WEeqIeI1UFw-5OA" sendEvent="_o0b-MG6WEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_tlWvgG6WEeqIeI1UFw-5OA" name="submitAssignment()" messageSort="asynchCall" receiveEvent="_tlXWkW6WEeqIeI1UFw-5OA" sendEvent="_tlXWkG6WEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_7Y8bMG6WEeqIeI1UFw-5OA" name="displayAssignmentSummary()" receiveEvent="_7Y9CQW6WEeqIeI1UFw-5OA" sendEvent="_7Y9CQG6WEeqIeI1UFw-5OA"/>
@@ -873,6 +870,8 @@ there are other private methods which format the ods : putBorders(), formatheade
     <packagedElement xmi:type="uml:DataType" xmi:id="_F4qgIJs-EeqkfLOOhPUFxQ" name="org.eclipse.swt.widgets.Table"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_kQBOgJxOEeqP0PGWWkkdZQ" name="org.eclipse.swt.widgets.TableItem"/>
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_l6njAKqPEeqhf_6YD4kl5g" name="CourseType"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_N5iy8LLPEeq9PNqz_vvy7Q" name="Image"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_Pdl_oLLPEeq9PNqz_vvy7Q" name="org.eclipse.swt.widgets.Composite"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KB-vkGFOEeq7OdFZt-_k0Q">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KCBL0GFOEeq7OdFZt-_k0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
