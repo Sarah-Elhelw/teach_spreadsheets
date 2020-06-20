@@ -66,3 +66,4 @@ Here is the list of the modifications that were made by each one :
 
 *** Reworking the GUI diagram
 *** docs
+*** details in Class_Assignment diagram
