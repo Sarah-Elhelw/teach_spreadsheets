@@ -631,6 +631,26 @@ there are other private methods which format the ods : putBorders(), formatheade
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
             </ownedParameter>
           </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_L1jbwLLsEeq9PNqz_vvy7Q" name="checkValidityAssignments">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_QJIJwLLsEeq9PNqz_vvy7Q" name="isModelValid" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_cQVzMLLsEeq9PNqz_vvy7Q" name="updateModelSet">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_htf_cLLsEeq9PNqz_vvy7Q" name="stringTableItem">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ij7RILLsEeq9PNqz_vvy7Q"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ikIFcLLsEeq9PNqz_vvy7Q" value="*"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_nLFCcLLsEeq9PNqz_vvy7Q" name="source" type="_RDv-oKqLEeqhf_6YD4kl5g">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oAlHELLsEeq9PNqz_vvy7Q"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oAyicLLsEeq9PNqz_vvy7Q" value="*"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_2YXE8LLsEeq9PNqz_vvy7Q" name="target" type="_RDv-oKqLEeqhf_6YD4kl5g">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3j_xoLLsEeq9PNqz_vvy7Q"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3kUhwLLsEeq9PNqz_vvy7Q" value="*"/>
+            </ownedParameter>
+          </ownedOperation>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_3yM0sJxOEeqP0PGWWkkdZQ" name="Model">
           <ownedAttribute xmi:type="uml:Property" xmi:id="_RJZGcJxPEeqP0PGWWkkdZQ" name="allPreferences" visibility="private" type="_RDv-oKqLEeqhf_6YD4kl5g">
@@ -648,7 +668,7 @@ there are other private methods which format the ods : putBorders(), formatheade
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_e40D0JxPEeqP0PGWWkkdZQ" name="setData">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_e40D0JxPEeqP0PGWWkkdZQ" name="setData" visibility="private">
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_ceVfsKqYEeqhf_6YD4kl5g" name="teacherPrefs" type="_0YeooGYQEeqq2pYv3YMNcA"/>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_RgH8IKqMEeqhf_6YD4kl5g" name="setDataFromSet">
@@ -657,27 +677,10 @@ there are other private methods which format the ods : putBorders(), formatheade
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nptmsLFhEeq0Z-5Pdiia7A" value="*"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_0iujQKqMEeqhf_6YD4kl5g" name="updateSet">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0iujQaqMEeqhf_6YD4kl5g" name="stringTableItem">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2mw2kKqXEeqhf_6YD4kl5g"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2nDKcKqXEeqhf_6YD4kl5g" value="*"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0iujQqqMEeqhf_6YD4kl5g" name="source" type="_RDv-oKqLEeqhf_6YD4kl5g">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sIamoLFhEeq0Z-5Pdiia7A"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5ko88KqXEeqhf_6YD4kl5g" value="*"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_0iujQ6qMEeqhf_6YD4kl5g" name="target" type="_RDv-oKqLEeqhf_6YD4kl5g">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uGdAoLFhEeq0Z-5Pdiia7A"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_867jUKqXEeqhf_6YD4kl5g" value="*"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_n3qpEKqQEeqhf_6YD4kl5g" name="updatePreferences">
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_n3qpEaqQEeqhf_6YD4kl5g" name="texts">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-            </ownedParameter>
-            <ownedParameter xmi:type="uml:Parameter" xmi:id="_n3qpEqqQEeqhf_6YD4kl5g" name="toChosenPreferences">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_ggRMwLLrEeq9PNqz_vvy7Q" name="getCourses" concurrency="concurrent">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_qlGHsLLrEeq9PNqz_vvy7Q" name="courses" type="_XVBhkGBfEeq31cSPSR9mAA">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_s5JN8LLrEeq9PNqz_vvy7Q"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_s5WCQLLrEeq9PNqz_vvy7Q" value="*"/>
             </ownedParameter>
           </ownedOperation>
         </packagedElement>
