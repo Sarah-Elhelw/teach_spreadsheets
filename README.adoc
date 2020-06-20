@@ -1,6 +1,6 @@
 = Teach spreadsheets
 
-== About the project 
+== About the project
 
 The aim of this project is to read teacher’s preferences to assign them to study groups in courses.This project is inspired by the link:https://github.com/oliviercailloux/Teach-spreadsheets[Teach-spreadsheets project].
 

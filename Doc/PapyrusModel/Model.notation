@@ -3187,4 +3187,12 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Mw4pUrLxEeq9PNqz_vvy7Q" points="[532, 600, -643984, -643984]$[582, 720, -643984, -643984]"/>
     </edges>
   </notation:Diagram>
+  <notation:Diagram xmi:id="_rSUIgLM3EeqI18SXLjLt6g" type="PapyrusUMLClassDiagram" name="Packages_program" measurementUnit="Pixel">
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_rSUIgbM3EeqI18SXLjLt6g" name="diagram_compatibility_version" stringValue="1.4.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_rSUIgrM3EeqI18SXLjLt6g"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_rSUIg7M3EeqI18SXLjLt6g" diagramKindId="org.eclipse.papyrus.uml.diagram.package">
+      <owner xmi:type="uml:Model" href="Model.uml#_s6OXIGBZEeq31cSPSR9mAA"/>
+    </styles>
+    <element xmi:type="uml:Model" href="Model.uml#_s6OXIGBZEeq31cSPSR9mAA"/>
+  </notation:Diagram>
 </xmi:XMI>
