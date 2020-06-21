@@ -121,4 +121,5 @@ Some notes:
 * One item in the left or middle concerns exactly one group.For example, if a teacher wants to teach 2 groups of CM for the course Algèbre then there will be two items (one for each group) in the left table at the start of the program.
 * The user can undo a selected preference by clicking on the item in the middle table.
 * Some mechanism will be implemented to signal to the user that he can't select a certain preference if the maximum number of group is already reached. For example if we have a course that accepts only 1 group of TD and there is one item on the middle table concerning 1 TD of that course than the user shouldn't be able to select another group of TD for this course from the left table.
+* Some mechanism will be implemented to keep the tables sorted at all time.The items concerning the same course are displayed together.
 
