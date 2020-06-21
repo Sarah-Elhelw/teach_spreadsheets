@@ -2,8 +2,6 @@
 
 The aim of this iteration is to correct and improve UML Iteration 4 by taking into consideration Mr. Cailloux’s remarks. The objective is to help the next student to understand our project.
 
-We also corrected some classes according to Java Iteration 3 and added new GUI classes.
-
 
 Here is the list of the modifications that were made by each one : 
 
@@ -35,6 +33,7 @@ Here is the list of the modifications that were made by each one :
 *** Correcting some Mr.Cailloux's remarks about Iteration 4 UML
 *** Improving documents files
 *** Updating the README.adoc in file Doc
+*** Removing useless documents in Doc
 *** Adding specification in Advice.adoc for the next student 
 
 
@@ -67,5 +66,7 @@ Here is the list of the modifications that were made by each one :
 ** Mike SANTANGELO 
 
 *** Reworking the GUI diagram
-*** docs
+*** Updating Class_ODS_Write , Class_Gui classes
+*** Updating the README.adoc in file Doc
+*** Adding specification in Advice.adoc for the next student 
 *** details in Class_Assignment diagram
