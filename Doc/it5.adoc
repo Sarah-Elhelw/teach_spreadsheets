@@ -48,6 +48,7 @@ Here is the list of the modifications that were made by each one :
 **** Creating the View class in the Gui classes diagram and updating some parts of the gui diagram
 **** Adding various documentation ( Icons credits and read,write parts in advices.adoc file)
 **** Adding the reasoning behind the use of the submit button in the README doc (Gui part)
+**** Adding Enum Preference in the Class_Assignment diagram
 
 *** For the GUI :
 **** Designing the mock-up of the GUI

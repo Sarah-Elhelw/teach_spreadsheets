@@ -240,14 +240,9 @@
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bv2LgGIqEeq7OdFZt-_k0Q" source="org.eclipse.papyrus">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bv2LgWIqEeq7OdFZt-_k0Q" key="nature" value="UML_Nature"/>
           </eAnnotations>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_wKdOgGIqEeq7OdFZt-_k0Q" name="prefCM" visibility="public" type="_7XVMcIcSEeqUqZA2AF_9Pw"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_zlubgGIqEeq7OdFZt-_k0Q" name="prefTD" visibility="public" type="_7XVMcIcSEeqUqZA2AF_9Pw"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_1Kzi8GIqEeq7OdFZt-_k0Q" name="prefCMTD" visibility="public" type="_7XVMcIcSEeqUqZA2AF_9Pw"/>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_2OnJUGIqEeq7OdFZt-_k0Q" name="prefNbGroupsCM" visibility="public">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
           </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_4cy4IGIqEeq7OdFZt-_k0Q" name="prefTP" visibility="public" type="_7XVMcIcSEeqUqZA2AF_9Pw"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_5h8iUGIqEeq7OdFZt-_k0Q" name="prefCMTP" visibility="public" type="_7XVMcIcSEeqUqZA2AF_9Pw"/>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_8KZyUGIqEeq7OdFZt-_k0Q" name="prefNbGroupsCMTD" visibility="public">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
           </ownedAttribute>
@@ -260,6 +255,15 @@
           <ownedAttribute xmi:type="uml:Property" xmi:id="_A6XhYGIrEeq7OdFZt-_k0Q" name="prefNbGroupsCMTP" visibility="public">
             <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
           </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_alnXsrOlEeqxG7CU9bUI2Q" name="preference" type="_7XVMcIcSEeqUqZA2AF_9Pw">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_alnXs7OlEeqxG7CU9bUI2Q"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aln-wLOlEeqxG7CU9bUI2Q" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_zNivsbOlEeqxG7CU9bUI2Q" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_zNiIoLOlEeqxG7CU9bUI2Q"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_0g1jkbOlEeqxG7CU9bUI2Q" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_0g08gLOlEeqxG7CU9bUI2Q"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_1wDvwrOlEeqxG7CU9bUI2Q" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_1wDIsLOlEeqxG7CU9bUI2Q"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26LZgLOlEeqxG7CU9bUI2Q" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_26KLYLOlEeqxG7CU9bUI2Q"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_51n28rOlEeqxG7CU9bUI2Q" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_51nP4LOlEeqxG7CU9bUI2Q"/>
           <ownedEnd xmi:type="uml:Property" xmi:id="_bv2ykGIqEeq7OdFZt-_k0Q" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
           <ownedEnd xmi:type="uml:Property" xmi:id="_bv2LgmIqEeq7OdFZt-_k0Q" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
         </packagedElement>
@@ -881,6 +885,42 @@ there are other private methods which format the ods : putBorders(), formatheade
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_l6njAKqPEeqhf_6YD4kl5g" name="CourseType"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_N5iy8LLPEeq9PNqz_vvy7Q" name="Image"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_Pdl_oLLPEeq9PNqz_vvy7Q" name="org.eclipse.swt.widgets.Composite"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_zNiIoLOlEeqxG7CU9bUI2Q" name="prefCM" visibility="public" memberEnd="_zNivsbOlEeqxG7CU9bUI2Q _zNivtLOlEeqxG7CU9bUI2Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_zNiIobOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zNivsLOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_zNivtLOlEeqxG7CU9bUI2Q" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_zNiIoLOlEeqxG7CU9bUI2Q">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3TnXwLOmEeqxG7CU9bUI2Q"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3TuFcLOmEeqxG7CU9bUI2Q" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_0g08gLOlEeqxG7CU9bUI2Q" name="prefTD" memberEnd="_0g1jkbOlEeqxG7CU9bUI2Q _0g1jlLOlEeqxG7CU9bUI2Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0g08gbOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0g1jkLOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_0g1jlLOlEeqxG7CU9bUI2Q" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_0g08gLOlEeqxG7CU9bUI2Q"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_1wDIsLOlEeqxG7CU9bUI2Q" name="prefCMTD" memberEnd="_1wDvwrOlEeqxG7CU9bUI2Q _1wDvxbOlEeqxG7CU9bUI2Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1wDvwLOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1wDvwbOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_1wDvxbOlEeqxG7CU9bUI2Q" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_1wDIsLOlEeqxG7CU9bUI2Q"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_26KLYLOlEeqxG7CU9bUI2Q" name="prefTP" memberEnd="_26LZgLOlEeqxG7CU9bUI2Q _26MAkLOlEeqxG7CU9bUI2Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_26KycLOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_26KycbOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_26MAkLOlEeqxG7CU9bUI2Q" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_26KLYLOlEeqxG7CU9bUI2Q"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_51nP4LOlEeqxG7CU9bUI2Q" name="PrefCMTP" memberEnd="_51n28rOlEeqxG7CU9bUI2Q _51n29bOlEeqxG7CU9bUI2Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_51n28LOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_51n28bOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_51n29bOlEeqxG7CU9bUI2Q" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_51nP4LOlEeqxG7CU9bUI2Q">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LdUQ8LOnEeqxG7CU9bUI2Q"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Ldda4LOnEeqxG7CU9bUI2Q" value="*"/>
+    </ownedEnd>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KB-vkGFOEeq7OdFZt-_k0Q">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KCBL0GFOEeq7OdFZt-_k0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
