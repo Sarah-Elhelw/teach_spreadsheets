@@ -5,9 +5,9 @@
 
 == Global remarks on the project
 
+[[Assignment]]
 === Assignment process
 
-[[Assignment]]
 In our program, the Admin assigns the teachers to the courses using our GUI. Another interesting direction to take would have been to let the program assign the teachers to the courses. To do so, one should contact or directly get the program of Axel Faure, a previous intern at Dauphine, who wrote a code to assign teachers; the idea would be then to adapt the latter code to one’s program. Please talk to Mr Olivier Cailloux for further information. *[long]*
 
 == Advice per java package
