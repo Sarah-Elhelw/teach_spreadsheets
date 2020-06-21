@@ -58,6 +58,7 @@ Here is the list of the modifications that were made by each one :
 
 *** Updating the root README.adoc with what we will do in the java's iteration 4
 *** Updating the Class_ODS_Write class
+*** Removing useless documents in Doc > Documents and adding new links for this documents in README.adoc 
 *** Updating the README.adoc in file Doc
 *** Adding specification in Advice.adoc for the next student 
 
