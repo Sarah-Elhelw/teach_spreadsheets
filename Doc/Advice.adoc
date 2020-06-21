@@ -32,3 +32,8 @@ Concerning  the reading of the link:https://github.com/oliviercailloux/projets/r
 
 * Our read package can only read the number of courses in prefrences in a certain format : x1 CM et x2 TD et x3 CMTD... (xi are integers, not all course types must be present).This concerns the "Nombre de groupes indicatif" and "Nombre de groupes souhaités" columns. This can be redundant because for some courses there is only 1 CM so the teacher that fills the ods must be able to indicate : "1" instead of "1 CM" *[short]*. For some courses, there are special groups that are taught in english so you can find "3 + 1 en anglais". You can find a way to handle this case. You can also work with the administration to define a format. *[middle]*
 * Our read package starts the reading of courses and preferences in each table from fixed cell coordinates, stops when it encounters an empty line and doesn't handle the LSO and Apprentissage tables. You can try to write a generic code that detects automatically the header of a table and can read all sorts of tables (including Apprentissage and LSO). *[long]*
+
+=== Gui
+
+[[Gui]]
+* Implementing a mechanism to signal the user when all the groups have a selected teacher. *[short]*
