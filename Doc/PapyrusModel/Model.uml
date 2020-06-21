@@ -61,6 +61,42 @@
           <ownedEnd xmi:type="uml:Property" xmi:id="_5iQo4a8tEeqv9K-cWDl50w" name="teacherPrefs" type="_0YeooGYQEeqq2pYv3YMNcA" association="_5iGQ0K8tEeqv9K-cWDl50w"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_2RWkwLM-Eeq87etjnwv5qQ" name="uses" client="_kQkAMLM7Eeq87etjnwv5qQ" supplier="_nX8wEIcWEeqUqZA2AF_9Pw"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_zNiIoLOlEeqxG7CU9bUI2Q" visibility="public" memberEnd="_zNivsbOlEeqxG7CU9bUI2Q _zNivtLOlEeqxG7CU9bUI2Q">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_zNiIobOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zNivsLOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
+          </eAnnotations>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_zNivtLOlEeqxG7CU9bUI2Q" name="coursePref" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_zNiIoLOlEeqxG7CU9bUI2Q">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3TnXwLOmEeqxG7CU9bUI2Q"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3TuFcLOmEeqxG7CU9bUI2Q" value="*"/>
+          </ownedEnd>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_0g08gLOlEeqxG7CU9bUI2Q" memberEnd="_0g1jkbOlEeqxG7CU9bUI2Q _0g1jlLOlEeqxG7CU9bUI2Q">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0g08gbOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0g1jkLOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
+          </eAnnotations>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_0g1jlLOlEeqxG7CU9bUI2Q" name="coursePref" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_0g08gLOlEeqxG7CU9bUI2Q"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_1wDIsLOlEeqxG7CU9bUI2Q" memberEnd="_1wDvwrOlEeqxG7CU9bUI2Q _1wDvxbOlEeqxG7CU9bUI2Q">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1wDvwLOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1wDvwbOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
+          </eAnnotations>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_1wDvxbOlEeqxG7CU9bUI2Q" name="coursePref" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_1wDIsLOlEeqxG7CU9bUI2Q"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_26KLYLOlEeqxG7CU9bUI2Q" memberEnd="_26LZgLOlEeqxG7CU9bUI2Q _26MAkLOlEeqxG7CU9bUI2Q">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_26KycLOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_26KycbOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
+          </eAnnotations>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_26MAkLOlEeqxG7CU9bUI2Q" name="coursePref" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_26KLYLOlEeqxG7CU9bUI2Q"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_51nP4LOlEeqxG7CU9bUI2Q" memberEnd="_51n28rOlEeqxG7CU9bUI2Q _51n29bOlEeqxG7CU9bUI2Q">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_51n28LOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_51n28bOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
+          </eAnnotations>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_51n29bOlEeqxG7CU9bUI2Q" name="coursePref" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_51nP4LOlEeqxG7CU9bUI2Q">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LdUQ8LOnEeqxG7CU9bUI2Q"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Ldda4LOnEeqxG7CU9bUI2Q" value="*"/>
+          </ownedEnd>
+        </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_CZVycIcaEeqUqZA2AF_9Pw" name="read">
         <packagedElement xmi:type="uml:Dependency" xmi:id="_7zSg8IcYEeqUqZA2AF_9Pw" client="_PDkJsIcXEeqUqZA2AF_9Pw" supplier="_IG1BEIcXEeqUqZA2AF_9Pw"/>
@@ -259,11 +295,11 @@
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_alnXs7OlEeqxG7CU9bUI2Q"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aln-wLOlEeqxG7CU9bUI2Q" value="1"/>
           </ownedAttribute>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_zNivsbOlEeqxG7CU9bUI2Q" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_zNiIoLOlEeqxG7CU9bUI2Q"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_0g1jkbOlEeqxG7CU9bUI2Q" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_0g08gLOlEeqxG7CU9bUI2Q"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_1wDvwrOlEeqxG7CU9bUI2Q" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_1wDIsLOlEeqxG7CU9bUI2Q"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_26LZgLOlEeqxG7CU9bUI2Q" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_26KLYLOlEeqxG7CU9bUI2Q"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_51n28rOlEeqxG7CU9bUI2Q" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_51nP4LOlEeqxG7CU9bUI2Q"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_zNivsbOlEeqxG7CU9bUI2Q" name="prefCM" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_zNiIoLOlEeqxG7CU9bUI2Q"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_0g1jkbOlEeqxG7CU9bUI2Q" name="prefTD" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_0g08gLOlEeqxG7CU9bUI2Q"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_1wDvwrOlEeqxG7CU9bUI2Q" name="prefCMTD" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_1wDIsLOlEeqxG7CU9bUI2Q"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_26LZgLOlEeqxG7CU9bUI2Q" name="prefTP" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_26KLYLOlEeqxG7CU9bUI2Q"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_51n28rOlEeqxG7CU9bUI2Q" name="prefCMTP" type="_7XVMcIcSEeqUqZA2AF_9Pw" association="_51nP4LOlEeqxG7CU9bUI2Q"/>
           <ownedEnd xmi:type="uml:Property" xmi:id="_bv2ykGIqEeq7OdFZt-_k0Q" name="course" type="_XVBhkGBfEeq31cSPSR9mAA" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
           <ownedEnd xmi:type="uml:Property" xmi:id="_bv2LgmIqEeq7OdFZt-_k0Q" name="teacher" type="_6sn5gGEpEeqMmJrPvsnLhQ" association="_bv1kcGIqEeq7OdFZt-_k0Q"/>
         </packagedElement>
@@ -782,8 +818,8 @@ there are other private methods which format the ods : putBorders(), formatheade
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_YTRPUGBbEeq31cSPSR9mAA" name="Message16SendEvent" covered="_I0Oj4GBaEeq31cSPSR9mAA" message="_YTQoQGBbEeq31cSPSR9mAA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Dr5isWBbEeq31cSPSR9mAA" name="Message13ReceiveEvent" covered="_I0Oj4GBaEeq31cSPSR9mAA" message="_Dr47oGBbEeq31cSPSR9mAA"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_YTRPUWBbEeq31cSPSR9mAA" name="Message16ReceiveEvent" covered="_N7rl4GBaEeq31cSPSR9mAA" message="_YTQoQGBbEeq31cSPSR9mAA"/>
-      <fragment xmi:type="uml:CombinedFragment" xmi:id="_gS0fcG63EeqpHbxk__FH3A" name="CombinedFragment44" covered="_N7rl4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA" interactionOperator="loop">
-        <operand xmi:type="uml:InteractionOperand" xmi:id="_roxrEG63EeqpHbxk__FH3A" name="InteractionOperand2" covered="_N7rl4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA">
+      <fragment xmi:type="uml:CombinedFragment" xmi:id="_gS0fcG63EeqpHbxk__FH3A" name="CombinedFragment44" covered="_Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA" interactionOperator="loop">
+        <operand xmi:type="uml:InteractionOperand" xmi:id="_roxrEG63EeqpHbxk__FH3A" name="InteractionOperand2" covered="_Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA">
           <guard xmi:type="uml:InteractionConstraint" xmi:id="_roy5MG63EeqpHbxk__FH3A" name="guard">
             <specification xmi:type="uml:LiteralString" xmi:id="_6kdnQG63EeqpHbxk__FH3A" name="constraintLoop1" value="teacherWishToBeLoaded()"/>
           </guard>
@@ -799,13 +835,13 @@ there are other private methods which format the ods : putBorders(), formatheade
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_yoxPca9XEeqv9K-cWDl50w" name="Message37ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_yowoYK9XEeqv9K-cWDl50w"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_9wC5ILG4EeqqEfH_KH6tEg" name="Message43SendEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_9wCSELG4EeqqEfH_KH6tEg"/>
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_9wC5IbG4EeqqEfH_KH6tEg" name="Message43ReceiveEvent" covered="_N7rl4GBaEeq31cSPSR9mAA" message="_9wCSELG4EeqqEfH_KH6tEg"/>
-      <fragment xmi:type="uml:CombinedFragment" xmi:id="_nSm-8K-YEeqv9K-cWDl50w" name="CombinedFragment43" covered="_I0Oj4GBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA" interactionOperator="alt">
-        <operand xmi:type="uml:InteractionOperand" xmi:id="_nSrQYK-YEeqv9K-cWDl50w" name="InteractionOperand0" covered="_I0Oj4GBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA">
+      <fragment xmi:type="uml:CombinedFragment" xmi:id="_nSm-8K-YEeqv9K-cWDl50w" name="CombinedFragment43" covered="_I0Oj4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA" interactionOperator="alt">
+        <operand xmi:type="uml:InteractionOperand" xmi:id="_nSrQYK-YEeqv9K-cWDl50w" name="InteractionOperand0" covered="_I0Oj4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA">
           <guard xmi:type="uml:InteractionConstraint" xmi:id="_rHu2Ya-YEeqv9K-cWDl50w" name="guard">
             <specification xmi:type="uml:LiteralString" xmi:id="_y0JdkK-aEeqv9K-cWDl50w" name="constraintOpt1" value="demandAssignmentGUI"/>
           </guard>
         </operand>
-        <operand xmi:type="uml:InteractionOperand" xmi:id="_BpBKoK-cEeqrAKLPKD0YxA" name="InteractionOperand2" covered="_I0Oj4GBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA">
+        <operand xmi:type="uml:InteractionOperand" xmi:id="_BpBKoK-cEeqrAKLPKD0YxA" name="InteractionOperand2" covered="_I0Oj4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA">
           <guard xmi:type="uml:InteractionConstraint" xmi:id="_BpBxsK-cEeqrAKLPKD0YxA" name="guard"/>
         </operand>
       </fragment>
@@ -817,7 +853,7 @@ there are other private methods which format the ods : putBorders(), formatheade
       <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_2r81sW6YEeqIeI1UFw-5OA" name="Message41ReceiveEvent" covered="_Ql1fAGBaEeq31cSPSR9mAA" message="_2r8OoG6YEeqIeI1UFw-5OA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_U4-IIGBaEeq31cSPSR9mAA" name="ActionExecutionSpecification4Finish" covered="_I0Oj4GBaEeq31cSPSR9mAA" execution="_U44BgGBaEeq31cSPSR9mAA"/>
       <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_WOvoQGBaEeq31cSPSR9mAA" name="ActionExecutionSpecification7Finish" covered="_N7rl4GBaEeq31cSPSR9mAA" execution="_WOtzEGBaEeq31cSPSR9mAA"/>
-      <fragment xmi:type="uml:InteractionUse" xmi:id="_fpa9AJdPEeqZR-Nl_eMGbQ" name="InteractionUse39" covered="_I0Oj4GBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA" refersTo="_9XmyMG6UEeqIeI1UFw-5OA"/>
+      <fragment xmi:type="uml:InteractionUse" xmi:id="_fpa9AJdPEeqZR-Nl_eMGbQ" name="InteractionUse39" covered="_I0Oj4GBaEeq31cSPSR9mAA _Ql1fAGBaEeq31cSPSR9mAA _N7rl4GBaEeq31cSPSR9mAA" refersTo="_9XmyMG6UEeqIeI1UFw-5OA"/>
       <message xmi:type="uml:Message" xmi:id="_cPzLwGBaEeq31cSPSR9mAA" name="sendMail(&quot;AA-Saisie voeux 2016-2017.ods&quot;)" messageSort="asynchCall" receiveEvent="_cP7HkWBaEeq31cSPSR9mAA" sendEvent="_cP7HkGBaEeq31cSPSR9mAA"/>
       <message xmi:type="uml:Message" xmi:id="_Dr47oGBbEeq31cSPSR9mAA" name="complete(&quot;AA-Saisie voeux 2016-2017.ods&quot;) " messageSort="asynchCall" receiveEvent="_Dr5isWBbEeq31cSPSR9mAA" sendEvent="_Dr5isGBbEeq31cSPSR9mAA"/>
       <message xmi:type="uml:Message" xmi:id="_YTQoQGBbEeq31cSPSR9mAA" name="sendMail(&quot;AA-Saisie voeux 2016-2017.ods&quot;)" messageSort="asynchCall" receiveEvent="_YTRPUWBbEeq31cSPSR9mAA" sendEvent="_YTRPUGBbEeq31cSPSR9mAA"/>
@@ -885,42 +921,6 @@ there are other private methods which format the ods : putBorders(), formatheade
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_l6njAKqPEeqhf_6YD4kl5g" name="CourseType"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_N5iy8LLPEeq9PNqz_vvy7Q" name="Image"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_Pdl_oLLPEeq9PNqz_vvy7Q" name="org.eclipse.swt.widgets.Composite"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_zNiIoLOlEeqxG7CU9bUI2Q" name="prefCM" visibility="public" memberEnd="_zNivsbOlEeqxG7CU9bUI2Q _zNivtLOlEeqxG7CU9bUI2Q">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_zNiIobOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zNivsLOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_zNivtLOlEeqxG7CU9bUI2Q" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_zNiIoLOlEeqxG7CU9bUI2Q">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3TnXwLOmEeqxG7CU9bUI2Q"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3TuFcLOmEeqxG7CU9bUI2Q" value="*"/>
-    </ownedEnd>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_0g08gLOlEeqxG7CU9bUI2Q" name="prefTD" memberEnd="_0g1jkbOlEeqxG7CU9bUI2Q _0g1jlLOlEeqxG7CU9bUI2Q">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0g08gbOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0g1jkLOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_0g1jlLOlEeqxG7CU9bUI2Q" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_0g08gLOlEeqxG7CU9bUI2Q"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_1wDIsLOlEeqxG7CU9bUI2Q" name="prefCMTD" memberEnd="_1wDvwrOlEeqxG7CU9bUI2Q _1wDvxbOlEeqxG7CU9bUI2Q">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1wDvwLOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1wDvwbOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_1wDvxbOlEeqxG7CU9bUI2Q" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_1wDIsLOlEeqxG7CU9bUI2Q"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_26KLYLOlEeqxG7CU9bUI2Q" name="prefTP" memberEnd="_26LZgLOlEeqxG7CU9bUI2Q _26MAkLOlEeqxG7CU9bUI2Q">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_26KycLOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_26KycbOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_26MAkLOlEeqxG7CU9bUI2Q" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_26KLYLOlEeqxG7CU9bUI2Q"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_51nP4LOlEeqxG7CU9bUI2Q" name="PrefCMTP" memberEnd="_51n28rOlEeqxG7CU9bUI2Q _51n29bOlEeqxG7CU9bUI2Q">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_51n28LOlEeqxG7CU9bUI2Q" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_51n28bOlEeqxG7CU9bUI2Q" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_51n29bOlEeqxG7CU9bUI2Q" type="_bv1kcGIqEeq7OdFZt-_k0Q" association="_51nP4LOlEeqxG7CU9bUI2Q">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LdUQ8LOnEeqxG7CU9bUI2Q"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Ldda4LOnEeqxG7CU9bUI2Q" value="*"/>
-    </ownedEnd>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KB-vkGFOEeq7OdFZt-_k0Q">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KCBL0GFOEeq7OdFZt-_k0Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
