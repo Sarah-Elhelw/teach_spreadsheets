@@ -42,12 +42,23 @@ public class PersonTests {
 
 		/** CASE 1 : Deserialization with a json that is not a json array: */
 
-		String json1 = "{\"persons\":[{\"firstName\": \"John\",\"lastName\": \"Doe\"}]}";
+			/** With a json object */
+		String json0 = "{\"name\": \"John Doe\"}";
+
+		List<Person> list0 = PersonTests.toPersons(json0);
+
+			/** The deserialization process returns an empty list instead of failing fast: */
+		assertEquals(List.of(), list0);
+		
+		
+			/** With a json object containing a json array: */
+		String json1 = "{\"persons\":[{\"name\": \"John Doe\"}]}";
 
 		List<Person> list1 = PersonTests.toPersons(json1);
 
-		/** The deserialization process returns an empty list instead of failing fast: */
+			/** The deserialization process returns an empty list instead of failing fast: */
 		assertEquals(List.of(), list1);
+		
 
 		/** CASE 2 : Control. Deserialization with a json array: */
 
@@ -55,7 +66,7 @@ public class PersonTests {
 
 		List<Person> list2 = PersonTests.toPersons(json2);
 
-		/** The deserialization process works properly: */
+			/** The deserialization process works properly: */
 
 		assertTrue(list2.size() == 1);
 
@@ -63,28 +74,29 @@ public class PersonTests {
 		Person expected = Person.newInstance().setName("John Doe");
 		assertEquals(expected, actual);
 		
+		
 		/** CASE 3 : Deserialization process fails fast if the json is wrongly formatted: */
 		
-		/** When the closing square bracket is missing in the json array: */
+			/** When the closing square bracket is missing in the json array: */
 		String json3 = "[{\"name\": \"John Doe\"}";
 		assertThrows(JsonParsingException.class, () -> {
 			PersonTests.toPersons(json3);
 		});
 
-		/** When the closing curly bracket is missing in the json array: */
+			/** When the closing curly bracket is missing in the json array: */
 		String json4 = "[{\"name\": \"John Doe\"]";
 		assertThrows(JsonParsingException.class, () -> {
 			PersonTests.toPersons(json4);
 		});
 		
-		/** When the closing square bracket is missing in the json object: */
-		String json5 = "{\"persons\":[{\"firstName\": \"John\",\"lastName\": \"Doe\"}}";
+			/** When the closing square bracket is missing in the json object: */
+		String json5 = "{\"persons\":[{\"name\": \"John Doe\"}}";
 		assertThrows(JsonParsingException.class, () -> {
 			PersonTests.toPersons(json5);
 		});
 		
-		/** When the closing curly bracket is missing in the json object: */
-		String json6 = "{\"persons\":[{\"firstName\": \"John\",\"lastName\": \"Doe\"}]";
+			/** When the closing curly bracket is missing in the json object: */
+		String json6 = "{\"persons\":[{\"name\": \"John Doe\"}]";
 		assertThrows(JsonParsingException.class, () -> {
 			PersonTests.toPersons(json6);
 		});
