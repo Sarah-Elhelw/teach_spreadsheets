@@ -21,6 +21,14 @@ public class CourseAssignmentTests {
 	private static Course course2 = Course.Builder.newInstance().setName("C").setCountGroupsTD(3).setNbMinutesTD(1000)
 			.setSemester(2).setStudyLevel("DE1").setStudyYear(2016).build();
 
+	
+	private static TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(course1, teacher1)
+			.setCountGroupsTD(1).build();
+	private static TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(course2, teacher2)
+			.setCountGroupsTD(1).build();
+	private static TeacherAssignment teacherAssignment3 = TeacherAssignment.Builder.newInstance(course2, teacher1)
+			.setCountGroupsTD(2).build();
+	
 	@Test
 	void testSetCourseWithNullCourse() {
 		Throwable exception = assertThrows(NullPointerException.class, () -> {
@@ -63,15 +71,7 @@ public class CourseAssignmentTests {
 		assertEquals("The course assignment must contain at least one teacher assignment.", exception.getMessage());
 	}
 	
-	@Test
-	void testGetTeachersAssignments() {
-		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(course1, teacher1)
-				.setCountGroupsTD(1).build();
-		TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(course2, teacher2)
-				.setCountGroupsTD(1).build();
-		TeacherAssignment teacherAssignment3 = TeacherAssignment.Builder.newInstance(course2, teacher1)
-				.setCountGroupsTD(2).build();
-		
+	private static ImmutableSet<CourseAssignment> buildCourseAssignments(){
 		CourseAssignment.Builder courseAssignmentBuilder1 = CourseAssignment.Builder.newInstance(course1);
 		courseAssignmentBuilder1.addTeacherAssignment(teacherAssignment1);
 		CourseAssignment courseAssignment1 = courseAssignmentBuilder1.build();
@@ -85,7 +85,29 @@ public class CourseAssignmentTests {
 		courseAssignments.add(courseAssignment1);
 		courseAssignments.add(courseAssignment2);
 		
+		return ImmutableSet.copyOf(courseAssignments);
+	}
+	
+	@Test
+	void testGetTeachersAssignments() {
+		
+		Set<CourseAssignment> courseAssignments = buildCourseAssignments();
+		
 		assertEquals(ImmutableSet.of(teacherAssignment1, teacherAssignment3).toString(),
 				CourseAssignment.getTeacherAssignments(teacher1, courseAssignments).toString());
+	}
+	
+	@Test
+	void testTeacherAssignmentsToCourseAssignments() {
+		ImmutableSet<CourseAssignment> expected = buildCourseAssignments();
+
+		Set<TeacherAssignment> teacherAssignments = new LinkedHashSet<>();
+		teacherAssignments.add(teacherAssignment1);
+		teacherAssignments.add(teacherAssignment2);
+		teacherAssignments.add(teacherAssignment3);
+		ImmutableSet<CourseAssignment> actual = CourseAssignment
+				.teacherAssignmentsToCourseAssignments(teacherAssignments);
+
+		assertEquals(expected.toString(), actual.toString());
 	}
 }
