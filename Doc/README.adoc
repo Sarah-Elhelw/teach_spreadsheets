@@ -1,3 +1,7 @@
+= Initial project
+
+You can find here the initial project : link:https://github.com/oliviercailloux/projets/blob/master/%C3%89nonc%C3%A9s/Teach%20spreadsheets.adoc[“Teach spreadsheets”]
+
 [[UseCaseDiag]]
 = Use Case doc
 
@@ -18,49 +22,61 @@ The Use Case diagram describes the main functionalities the project will impleme
 
 image::Images\Sequence_Global_context.PNG[{fullWifth}]
 
-The idea of this diagram is to present a global view of our project. The program starts by receiving all the files link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”] already completed by each teacher. *getDataFromODS()* is the function used to register in a variable of type CalcData the information read in the files “AA-Saisie voeux 2016-2017.ods”. Then, once all the data caught and ordered in variables, the program can generate a file similar to link:Documents\FichierAgrege.pdf[“Fichier Agrégé.pdf”] that summarizes thus all the files “AA-Saisie voeux 2016-2017.ods” loaded.  The function *createSummary()* writes in a Calc to produce a document similar to “Fichier Agrégé.pdf” given in the subject.
-Our program, through *writeCoursesInAJsonFile()*, will also generate a json file containing a list of all the courses in the vows files.
+The idea of this diagram is to present a global view of our project. The program starts by receiving all the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”] already completed by each teacher. *readFilesFromFolder* is the function used to register in a variable of type AggregatedPrefs all the information read in the files “AA-Saisie voeux 2016-2017.ods”. Then, the function *createSummary* writes in a Calc to produce a document similar to https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”] given in the subject.This Calc summarizes thus all the files “AA-Saisie voeux 2016-2017.ods” loaded.
+Our program, through *writeCoursesInAJsonFile*, will also generate a Json file containing a list of all the courses in the vows files.
 
-If desired by the Admin, our program can end with the generation of the aggregated file. Else, if required by the Admin, our program can continue to help the admin make an assignment. The Assignment process is described in the second sequence diagram (“Sequence_Assignment”), which is refered to in this diagram.
+If desired by the Admin, our program can end with the generation of the aggregated files. Else, if required by the Admin, our program can continue to help the admin make an assignment. The Assignment process is described in the second sequence diagram (“Sequence_Assignment”), which is refered to in this diagram. If the assignment process took place, the admin will, eventually, send the link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fiche%20de%20service.png[“Fiche de service.ods”] specific to each teacher. 
 
 == Assignment
 
 image::Images\Sequence_Assignment.PNG[{fullWifth}]
 
-The idea of this diagram is to present a focus on the assignment process. All the methods used in the messages are meant to evolve later in our project, for now, they simply allow us to describe the principle of our program. We renounced to produce a function that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers. As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (link:Documents\Fiche_de_service.png[“Fiche de service.ods”] and link:Documents\FichierAgrege.pdf[“Fichier Agrégé.ods”] fully completed). The Admin will receive all these files and will send the “Fiche de service.ods” specific to each teacher. 
+The idea of this diagram is to present a focus on the assignment process. We renounced to produce a link:Advice.adoc#Assignment[function] that would make the assignment. Instead, we decided to have our interface helping the Admin to assign the teachers. As long as the Admin is not satisfied, the process repeats itself. Once the Admin satisfied, the program will generate the Calc files summarizing the assignments (link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fiche%20de%20service.png[“Fiche de service.ods”] and link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.ods”] fully completed).
+
+[[Package]]
+= Package diagram doc
+
+image::Images\Packages_program.PNG[{fullWifth}]
+
+This diagram presents all the packages of our program. It allows to have the furthest view and a larger comprehension of our program. It shows the interactions between the different packages : the associations represent the imports needed in the java code. In the packages, the most important and representative classes are specified.
 
 [[ClassDiag]]
 = Class diagrams doc
 == Base classes
 image::Images\Class_assignment.PNG[{fullWifth}]
 
-The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers. The *TeacherAssignment* class stores the number of TD, TP, CM groups assigned to one teacher in the selected course. +
-
-*CalcData* represents the data that we can get from the files that the university gives us. The function *getDataFromODS* reads all the necessary informations in the calc link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”] to build and return a CalcData.
+*TeacherPrefs* represents the data that we can get from the files that the university gives us. The function *fromOds* reads all the necessary information in the calc link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”] to build and return a TeacherPrefs.
 The classes *Course*, *Teacher* and *CoursePref* are used in that matter.
 *CoursePref* represents preferences from a teacher for a specified course.
-We'll add getters in the classes as we work on them because it's hard to know exactly what we will need.
 
-== Gui classes
+*AggregatedPrefs* represents an aggregation of all the TeacherPrefs built in our program.
+
+The *CourseAssignment* class represents the assignment of *only one course* to a number of teachers. The *TeacherAssignment* class stores the number of TD, TP, CM groups assigned to one teacher in the selected course. +
+
+== Gui
 image::Images\Class_Gui.PNG[{fullWifth}]
 
-CoursePrefElement lists in Model are used to represent instances of table items in the GUI.
+CoursePrefElement lists in Model are used to represent instances of table items in the GUI. The generation of the output files (one per teacher and the summary) are done after the user clicks on the button submit and not in real time because the current writing functions take too long to execute (18s just for the summary file). Besides, if the writing was in real time the program must be able to delete empty files per teacher and some lines in the summary file if necessary.
 
 Here is the process :
 
-Controller initializes the View (*initializeGui* in View) and sets the Model data (*setModelData* in Controller) from ods files thanks to *readFilesFromFolder* in MultipleOdsPrefReader class.
+Controller initializes the View, the Model and sets its data from Ods files thanks to MultipleOdsPrefReader class.
 
-Then the Controller calls the *initPreferences* function in View with the data retrieved from Model. The GUI is now set.
+Then the Controller calls functions in View with the data retrieved from Model to set the table items to show.
 
-During the initialization of the GUI, listeners for table items are set in View. These listeners call the *callbackListener* from Controller. This method updates the Model (*updatePreferences* in Model), then updates the GUI (*moveTableItem* in View).
+Controller registers itself as a listener for the submit button and the clicks on table items.
 
-A listener is also set for the submit button in View. This listener calls *createAssignments* in Controller. This function retrieves the data from Model to return the assignments for the teachers.
+The listener for submit button triggers the creation of assignment files. The clicks on table items trigger an update of Model and View.
+
+There are functions in Controller supposed to sort the tables by column and to check the validity of the assignments chosen. This may not be up to date as the project is coming to an end.
 
 == Ods Reader classes
 image::Images\Class_ODS_Read.PNG[{fullWifth}]
 
-The main goal of these classes is to read information from an link:https://github.com/Sarah-Elhelw/teach_spreadsheets/blob/master/Doc/Documents/AA_Saisie_des_voeux_2016-2017.ods[ods file] and create the corresponding CalcData object. The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in JSON format the list of courses available in the input file).
-*MultipleOdsPrefReader* reads all the ods files present in a certain folder via the *readFilesFromFolder* function.
+The main goal of these classes is to read information from an link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[ods file] and create the corresponding TeacherPrefs object. The classes Course, Teacher and CoursePref that are created by this process are also returned in order to be used for other purposes (like storing in Json format the list of courses available in the input file).
+*MultipleOdsPrefReader* reads all the Ods files present in a certain folder via the *readFilesFromFolder* function.
+
+*JsonSerializer*, through *serializeSet*, builds a string Json array of all the courses' information collected from the Ods files. This concept may be link:Advice.adoc#JsonSerializer[generalized].
 
 
 == Ods Write classes
@@ -68,23 +84,25 @@ image::Images\Class_ODS_Write.PNG[{fullWifth}]
 
 We have 2 main writing classes. +
 
-The class *AssignmentPerTeacher* creates a Calc like link:Documents\Fiche_de_service.png[“Fiche_de_service.png”]. The aim of this document is to summarise all the courses a teacher will teach.
+The class *AssignmentPerTeacher* creates a Calc like link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fiche%20de%20service.png[“Fiche de service.png”]. The aim of this document is to summarise all the courses a teacher will teach.
 
-The class *OdsSummarizer* creates a Calc like link:Documents\FichierAgrege.pdf[“FichierAgrege.pdf”]. This document shows all the teachers' preferences for a list of courses. Also, if desired, this class can complete the column Assignment in order to show the possible Assignments our program suggest to do.
+The class *OdsSummarizer* creates a Calc like link:https://github.com/oliviercailloux/projets/raw/master/Voeux/Fichier%20Agrégé.pdf[“Fichier Agrégé.pdf”]. This document shows all the teachers' preferences for a list of courses. Also, if desired, this class can complete the column Assignment in order to show the possible Assignments our program suggest to do.
 
 
 You can see what the final result will look like in this files :  link:Documents\AssignmentPerTeacher.ods[“AssignmentPerTeacher.ods”] and link:Documents\OdsSummarizer.ods[“OdsSummarizer.ods”]. +
 
+The functionalities of the package write could be extended to generate link:Advice.adoc#Write[other formats] of summarized files.
+
 The class *OdsHelper* has some useful functionalities that we use in the two other writing classes.
 
 
-== Json Read classes
-image::Images\Class_Json_Read.png[{fullWifth}]
+== JsonDeserializer class
+image::Images\Class_Json_Deserializer.PNG[{fullWifth}]
 
-The main goal of *JsonReader* is to read teachers and courses informations presented in a Json format. These informations are found in RefRof and in files in the class path. RefRof's logins are stored in a file the methods reading RefRof's content need to access.
+The main goal of *JsonDeserializer* is to read courses information, presented in a Json Array format, to build a set of courses. This concept may be link:Advice.adoc#JsonDeserializer[generalized] and adapted to read from RefRof.
 
 
-*InputVowsFile* deals with the files link:Documents\AA_Saisie_des_voeux_2016-2017.ods[“AA-Saisie voeux 2016-2017.ods”]. The method *createPersonalizedFiles* creates personalized calc files, by completing the sheet "Emploi du temps", and puts them in a specified directory.
+*InputVowsFile* deals with the files link:https://github.com/oliviercailloux/projets/raw/master/Voeux/AA%20-%20Saisie%20des%20voeux%202016-2017.xls[“AA-Saisie voeux 2016-2017.xls”]. The method *createPersonalizedFiles* creates personalized calc files, by completing the sheet "Emploi du temps", and puts them in a specified directory. This class was not implemented because we renounced working on RefRof to get the teachers' information.
 
 [[GuiDescription]]
 = Gui description
@@ -102,5 +120,6 @@ Some notes:
 * The table on the right shows all the courses.The user can check it to know the maximum number of each group in each course.
 * One item in the left or middle concerns exactly one group.For example, if a teacher wants to teach 2 groups of CM for the course Algèbre then there will be two items (one for each group) in the left table at the start of the program.
 * The user can undo a selected preference by clicking on the item in the middle table.
-* Some mechanism will later be implemented to signal to the user that he can't select a certain preference if the maximum number of group is already reached. For example if we have a course that accepts only 1 group of TD and there is one item on the middle table concerning 1 TD of that course than the user shouldn't be able to select another group of TD for this course from the left table.
-* Another mechanism will later be implemented to signal the user when all the groups have a selected teacher.
+* Some mechanism will be implemented to signal to the user that he can't select a certain preference if the maximum number of group is already reached. For example if we have a course that accepts only 1 group of TD and there is one item on the middle table concerning 1 TD of that course than the user shouldn't be able to select another group of TD for this course from the left table.
+* Some mechanism will be implemented to keep the tables sorted at all time. The items concerning the same course are displayed together.
+
