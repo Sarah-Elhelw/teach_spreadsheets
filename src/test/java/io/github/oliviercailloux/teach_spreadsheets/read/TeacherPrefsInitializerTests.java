@@ -20,7 +20,7 @@ public class TeacherPrefsInitializerTests {
 		URL resourceUrl = PrefsInitializer.class.getResource("Saisie_des_voeux_format simple.ods");
 
 		try (InputStream stream = resourceUrl.openStream()) {
-			TeacherPrefs teacherPrefs = TeacherPrefs.getData(stream);
+			TeacherPrefs teacherPrefs = TeacherPrefs.fromOds(stream);
 
 			/** Checking the informations of the teacher: */
 			Teacher actualTeacher = teacherPrefs.getTeacher();

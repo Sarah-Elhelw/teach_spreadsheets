@@ -25,7 +25,7 @@ public class JsonSerializerTests {
 		URL url = TeacherPrefsInitializerTests.class.getResource("Saisie_des_voeux_format simple.ods");
 		if(url != null) {
 			try (InputStream odsStream = url.openStream()) {
-				TeacherPrefs teacherPrefs = TeacherPrefs.getData(odsStream);
+				TeacherPrefs teacherPrefs = TeacherPrefs.fromOds(odsStream);
 
 				Set<Course> courses = teacherPrefs.getCourses();
 

@@ -118,7 +118,7 @@ public class TeacherPrefs {
 	 * @throws Exception to handle the exception type IOException
 	 */
 
-	public static TeacherPrefs getData(InputStream stream) throws Exception {
+	public static TeacherPrefs fromOds(InputStream stream) throws Exception {
 			try (SpreadsheetDocument document = SpreadsheetDocument.loadDocument(stream)) {
 				return TeacherPrefsInitializer.createTeacherPrefs(document);
 			}

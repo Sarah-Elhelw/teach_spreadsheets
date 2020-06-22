@@ -98,13 +98,13 @@ public class AggregatedDataTests {
 		URL resourceUrl1 = AggregatedData.class.getResource("Saisie_des_voeux_format simple1.ods");
 		TeacherPrefs cd1;
 		try (InputStream stream = resourceUrl1.openStream()) {
-			cd1 = TeacherPrefs.getData(stream);
+			cd1 = TeacherPrefs.fromOds(stream);
 		}
 
 		URL resourceUrl2 = AggregatedData.class.getResource("Saisie_des_voeux_format simple2.ods");
 		TeacherPrefs cd2;
 		try (InputStream stream = resourceUrl2.openStream()) {
-			cd2 = TeacherPrefs.getData(stream);
+			cd2 = TeacherPrefs.fromOds(stream);
 		}
 		
 		Set<Course> courses = cd1.getCourses();

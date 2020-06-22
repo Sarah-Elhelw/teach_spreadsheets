@@ -33,7 +33,7 @@ public class MultipleOdsPrefReader {
 			Set<Path> result = walk.filter(f -> f.toString().endsWith(".ods")).collect(Collectors.toSet());
 			for (Path filePath : result) {
 				try (InputStream fileStream = Files.newInputStream(filePath)) {
-					TeacherPrefs teacherPrefs = TeacherPrefs.getData(fileStream);
+					TeacherPrefs teacherPrefs = TeacherPrefs.fromOds(fileStream);
 					tempTeacherPrefsSet.add(teacherPrefs);
 				}
 			}
