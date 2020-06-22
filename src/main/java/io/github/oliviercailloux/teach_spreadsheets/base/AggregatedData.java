@@ -29,7 +29,8 @@ public class AggregatedData {
 	public static class Builder {
 
 		/**
-		 * Set of TeacherPrefs : it is used to build (by adding) TeacherPrefsSet attribute.
+		 * Set of TeacherPrefs : it is used to build (by adding) TeacherPrefsSet
+		 * attribute.
 		 */
 		private Set<TeacherPrefs> tempTeacherPrefsSet;
 		/**
@@ -84,7 +85,7 @@ public class AggregatedData {
 
 			tempTeacherPrefsSet.add(teacherPrefs);
 		}
-		
+
 		/**
 		 * This method adds a TeacherPrefs set to the tempTeacherPrefsSet object.
 		 * 
@@ -93,12 +94,12 @@ public class AggregatedData {
 		 */
 		public void addTeacherPrefsSet(Set<TeacherPrefs> teacherPrefsSet) {
 			checkNotNull(teacherPrefsSet, "The set of TeacherPrefs must not be null.");
-			
+
 			for (TeacherPrefs teacherPrefs : teacherPrefsSet) {
 				addTeacherPrefs(teacherPrefs);
 			}
 		}
-		
+
 		/**
 		 * This method allows to build an AggregatedData by adding a set of CoursePref.
 		 * 
@@ -123,33 +124,36 @@ public class AggregatedData {
 				}
 			}
 		}
-		
+
 		/**
 		 * This method builds complete TeacherPrefs objects, using the CoursePrefs given
-		 * and stored in tempCoursePrefs, to complete tempTeacherPrefsSet the Set of TeacherPrefs
-		 * stored in the AggregatedData object.
+		 * and stored in tempCoursePrefs, to complete tempTeacherPrefsSet the Set of
+		 * TeacherPrefs stored in the AggregatedData object.
 		 */
 		private void mapToTeacherPrefs() {
 			for (Map.Entry<Teacher, Set<CoursePref>> mapentry : tempCoursePrefs.entrySet()) {
 				Teacher teacher = mapentry.getKey();
 				Set<CoursePref> coursePrefs = mapentry.getValue();
-				
-				/** The following line builds a set whose real type is mutable. courses attribute remains intact. */
+
+				/**
+				 * The following line builds a set whose real type is mutable. courses attribute
+				 * remains intact.
+				 */
 				Set<Course> courses = new LinkedHashSet<>(this.courses);
 				Set<Course> coursesInCoursePrefs = coursePrefs.stream().map(CoursePref::getCourse)
-				.collect(Collectors.toSet());
+						.collect(Collectors.toSet());
 				courses.removeAll(coursesInCoursePrefs);
-				
+
 				for (Course course : courses) {
 					CoursePref coursePref = CoursePref.Builder.newInstance(course, teacher).build();
 					coursePrefs.add(coursePref);
 				}
-				
+
 				TeacherPrefs teacherPrefs = TeacherPrefs.newInstance(coursePrefs, teacher);
-				
+
 				this.addTeacherPrefs(teacherPrefs);
 			}
-			
+
 		}
 	}
 

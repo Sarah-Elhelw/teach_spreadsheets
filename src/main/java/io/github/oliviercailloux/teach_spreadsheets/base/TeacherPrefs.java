@@ -98,9 +98,8 @@ public class TeacherPrefs {
 	 * 
 	 * @return - an ImmutableSet of the courses presented in the TeacherPrefs.
 	 */
-	public ImmutableSet<Course> getCourses(){
-		Set<Course> courses = coursePrefs.stream().map(CoursePref::getCourse)
-				.collect(Collectors.toSet());
+	public ImmutableSet<Course> getCourses() {
+		Set<Course> courses = coursePrefs.stream().map(CoursePref::getCourse).collect(Collectors.toSet());
 		return ImmutableSet.copyOf(courses);
 	}
 	

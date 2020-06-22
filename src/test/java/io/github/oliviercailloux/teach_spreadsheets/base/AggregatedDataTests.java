@@ -68,23 +68,23 @@ public class AggregatedDataTests {
 		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance(courses2);
 		aggregatedDataBuilder.addCoursePrefs(Set.of(coursePref1, coursePref3, coursePref4));
 		AggregatedData aggregatedData = aggregatedDataBuilder.build();
-		
+
 		assertTrue(aggregatedData.getTeacherPrefsSet().size() == 2);
-		
+
 		assertEquals(teacherPrefs5.getCoursePrefs(), aggregatedData.getTeacherPrefs(teacher1));
 		assertEquals(teacherPrefs6.getCoursePrefs(), aggregatedData.getTeacherPrefs(teacher2));
 	}
-	
+
 	@Test
 	void testBuildAggregatedDataWithCoursePrefsAndTeacherPrefs() {
 		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance(courses2);
 		aggregatedDataBuilder.addCoursePrefs(Set.of(coursePref1));
 		aggregatedDataBuilder.addTeacherPrefs(teacherPrefs6);
-		
+
 		AggregatedData aggregatedData = aggregatedDataBuilder.build();
-		
+
 		assertTrue(aggregatedData.getTeacherPrefsSet().size() == 2);
-		
+
 		assertEquals(teacherPrefs5.getCoursePrefs(), aggregatedData.getTeacherPrefs(teacher1));
 		assertEquals(teacherPrefs6.getCoursePrefs(), aggregatedData.getTeacherPrefs(teacher2));
 	}
