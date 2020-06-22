@@ -144,7 +144,7 @@ public class Controller {
 		for (CoursePrefElement coursePrefElement : chosenPreferences) {
 
 			Teacher teacher = coursePrefElement.getCoursePref().getTeacher();
-			String courseType = coursePrefElement.getCourseType().name();
+			String subCourseKind = coursePrefElement.getSubCourseKind().name();
 			Course course = coursePrefElement.getCoursePref().getCourse();
 
 			if (!teacherAssignmentMapTable.contains(teacher, course)) {
@@ -155,12 +155,12 @@ public class Controller {
 				assignmentBuilder.setCountGroupsTD(0);
 				assignmentBuilder.setCountGroupsTP(0);
 
-				assignGroup(assignmentBuilder, courseType);
+				assignGroup(assignmentBuilder, subCourseKind);
 
 				teacherAssignmentMapTable.put(teacher, course, assignmentBuilder);
 			} else {
 				TeacherAssignment.Builder assignmentBuilder = teacherAssignmentMapTable.get(teacher, course);
-				assignGroup(assignmentBuilder, courseType);
+				assignGroup(assignmentBuilder, subCourseKind);
 			}
 
 		}
@@ -237,7 +237,7 @@ public class Controller {
 
 		String teacherName = teacher.getLastName() + " " + teacher.getFirstName();
 		String courseName = course.getName();
-		String groupType = coursePrefElement.getCourseType().name();
+		String groupType = coursePrefElement.getSubCourseKind().name();
 
 		String choice = "";
 
