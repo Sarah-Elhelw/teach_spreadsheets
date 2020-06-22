@@ -91,7 +91,7 @@ public class AggregatedDataTests {
 
 	/**
 	 * The aim of this method is to test that when we will concretely and
-	 * realistically use the class AgregatedPrefs, it works properly.
+	 * realistically use the class AggregatedData, it works properly.
 	 */
 	@Test
 	void testAddTeacherPrefsConcretely() throws Exception {

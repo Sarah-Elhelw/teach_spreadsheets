@@ -104,16 +104,20 @@ public class AggregatedData {
 		 * 
 		 * @param coursePrefs - the Set of coursePref to be added
 		 * 
+		 * @throws IllegalArgumentException if a CoursePref expresses the preferences
+		 *                                  for a course that is not referenced.
+		 * 
 		 */
 		public void addCoursePrefs(Set<CoursePref> coursePrefs) {
 			checkNotNull(coursePrefs, "The set of CoursePref must not be null.");
 			for (CoursePref coursePref : coursePrefs) {
 				checkNotNull(coursePref);
+				checkArgument(courses.contains(coursePref.getCourse()),
+						"The CoursePref must be about a referenced course.");
 				Teacher teacher = coursePref.getTeacher();
-				if(tempCoursePrefs.containsKey(teacher)) {
+				if (tempCoursePrefs.containsKey(teacher)) {
 					tempCoursePrefs.get(teacher).add(coursePref);
-				}
-				else {
+				} else {
 					Set<CoursePref> set = new LinkedHashSet<>(Set.of(coursePref));
 					tempCoursePrefs.put(teacher, set);
 				}

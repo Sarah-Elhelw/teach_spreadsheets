@@ -41,10 +41,10 @@ public class MultipleOdsPrefReader {
 			for (Path filePath : result) {
 				try (InputStream fileStream = Files.newInputStream(filePath)) {
 					TeacherPrefs teacherPrefs = TeacherPrefs.fromOds(fileStream);
+					reading++;
 					if (reading == 1)
 						courses = teacherPrefs.getCourses();
 					teacherPrefsSet.add(teacherPrefs);
-					reading++;
 				}
 			}
 		}
