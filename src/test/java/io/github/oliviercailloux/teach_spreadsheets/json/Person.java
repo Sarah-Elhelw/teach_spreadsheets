@@ -28,6 +28,20 @@ public class Person {
 		return new Person();
 	}
 
+	/**
+	 * This method deserializes a json array string into an ImmutableList of
+	 * persons. The lines of code that deserialize the json string are inspired from
+	 * <a href="http://json-b.net/docs/user-guide.html">this website</a>.
+	 * 
+	 * @param json - the json array string.
+	 * 
+	 * @return an ImmutableList of persons.
+	 * 
+	 * @throws RuntimeException if any unexpected error(s) occur(s) during
+	 *                          deserialization.
+	 * @throws VerifyException  if the conversion failed
+	 * 
+	 */
 	public static ImmutableList<Person> toPersons(String json) {
 		checkNotNull(json, "The String must not be null.");
 		try (Jsonb jsonb = JsonbBuilder.create()) {
