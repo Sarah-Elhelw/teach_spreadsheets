@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Objects;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -194,6 +195,24 @@ public class CourseAssignment {
 		}
 
 		return ImmutableSet.copyOf(courseAssignments);
+	}
+	
+	@Override
+	public boolean equals(Object o2) {
+		if (!(o2 instanceof CourseAssignment)) {
+			return false;
+		}
+		if (this == o2) {
+			return true;
+		}
+		CourseAssignment ca2 = (CourseAssignment) o2;
+
+		return course.equals(ca2.course) && teacherAssignments.equals(ca2.teacherAssignments);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(course, teacherAssignments);
 	}
 
 	@Override

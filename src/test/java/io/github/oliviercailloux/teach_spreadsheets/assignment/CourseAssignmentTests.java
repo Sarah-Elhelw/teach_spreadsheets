@@ -93,8 +93,8 @@ public class CourseAssignmentTests {
 		
 		Set<CourseAssignment> courseAssignments = buildCourseAssignments();
 		
-		assertEquals(ImmutableSet.of(teacherAssignment1, teacherAssignment3).toString(),
-				CourseAssignment.getTeacherAssignments(teacher1, courseAssignments).toString());
+		assertEquals(ImmutableSet.of(teacherAssignment1, teacherAssignment3),
+				CourseAssignment.getTeacherAssignments(teacher1, courseAssignments));
 	}
 	
 	@Test
@@ -108,6 +108,6 @@ public class CourseAssignmentTests {
 		ImmutableSet<CourseAssignment> actual = CourseAssignment
 				.teacherAssignmentsToCourseAssignments(teacherAssignments);
 
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 	}
 }
