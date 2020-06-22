@@ -10,7 +10,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
-import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
@@ -20,8 +19,7 @@ public class MultipleOdsPrefReaderTests {
 	@Test
 	void testReadFilesFromFolder() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("testFolder");
-		AggregatedData aggregatedData = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()));
-		Set<TeacherPrefs> teacherPrefsSet = aggregatedData.getTeacherPrefsSet();
+		Set<TeacherPrefs> teacherPrefsSet = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI())).getTeacherPrefsSet();
 		assertEquals(2, teacherPrefsSet.size());
 		for (TeacherPrefs teacherPrefs : teacherPrefsSet) {
 			switch (teacherPrefs.getTeacher().getFirstName()) {
