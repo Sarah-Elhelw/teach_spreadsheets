@@ -4,7 +4,9 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 import java.util.Set;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 
 import com.google.common.base.MoreObjects;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -162,6 +164,28 @@ public class CourseAssignment {
 
 		return ImmutableSet.copyOf(assignments);
 
+	}
+	
+	public static ImmutableSet<CourseAssignment> teacherAssignmentsToCourseAssignments(
+			Set<TeacherAssignment> teacherAssignments) {
+		checkNotNull(teacherAssignments, "The set of TeacherAssignment must not be null.");
+		Map<Course, Set<TeacherAssignment>> map = new LinkedHashMap<>();
+		for (TeacherAssignment teacherAssignment : teacherAssignments) {
+			Course course = teacherAssignment.getCourse();
+			if (map.keySet().contains(course)) {
+				map.get(course).add(teacherAssignment);
+			} else {
+				Set<TeacherAssignment> set = new LinkedHashSet<>();
+				set.add(teacherAssignment);
+				map.put(course, set);
+			}
+		}
+		Set<CourseAssignment> courseAssignments = new LinkedHashSet<>();
+		for (Map.Entry<Course, Set<TeacherAssignment>> mapentry : map.entrySet()) {
+			courseAssignments.add(CourseAssignment.newInstance(mapentry.getKey(), mapentry.getValue()));
+		}
+
+		return ImmutableSet.copyOf(courseAssignments);
 	}
 
 	@Override
