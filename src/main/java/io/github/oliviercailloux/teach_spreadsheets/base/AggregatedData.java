@@ -32,6 +32,9 @@ public class AggregatedData {
 		 * Set of TeacherPrefs : it is used to build (by adding) TeacherPrefsSet attribute.
 		 */
 		private Set<TeacherPrefs> tempTeacherPrefsSet;
+		/**
+		 * Map used to store the CoursePrefs added by addTeacherPrefsSet().
+		 */
 		private Map<Teacher, Set<CoursePref>> tempCoursePrefs;
 		private Set<Course> courses;
 
@@ -82,6 +85,12 @@ public class AggregatedData {
 			tempTeacherPrefsSet.add(teacherPrefs);
 		}
 		
+		/**
+		 * This method adds a TeacherPrefs set to the tempTeacherPrefsSet object.
+		 * 
+		 * @param teacherPrefsSet - the TeacherPrefs set to be added
+		 * 
+		 */
 		public void addTeacherPrefsSet(Set<TeacherPrefs> teacherPrefsSet) {
 			checkNotNull(teacherPrefsSet, "The set of TeacherPrefs must not be null.");
 			
@@ -100,12 +109,13 @@ public class AggregatedData {
 			checkNotNull(coursePrefs, "The set of CoursePref must not be null.");
 			for (CoursePref coursePref : coursePrefs) {
 				checkNotNull(coursePref);
-				if(tempCoursePrefs.containsKey(coursePref.getTeacher())) {
-					tempCoursePrefs.get(coursePref.getTeacher()).add(coursePref);
+				Teacher teacher = coursePref.getTeacher();
+				if(tempCoursePrefs.containsKey(teacher)) {
+					tempCoursePrefs.get(teacher).add(coursePref);
 				}
 				else {
-					Set<CoursePref> newSet = new LinkedHashSet<>(Set.of(coursePref));
-					tempCoursePrefs.put(coursePref.getTeacher(), newSet);
+					Set<CoursePref> set = new LinkedHashSet<>(Set.of(coursePref));
+					tempCoursePrefs.put(teacher, set);
 				}
 			}
 		}
@@ -116,9 +126,11 @@ public class AggregatedData {
 		 * stored in the AggregatedData object.
 		 */
 		private void mapToTeacherPrefs() {
-			for (Teacher teacher : tempCoursePrefs.keySet()) {
-				Set<CoursePref> coursePrefs = tempCoursePrefs.get(teacher);
+			for (Map.Entry<Teacher, Set<CoursePref>> mapentry : tempCoursePrefs.entrySet()) {
+				Teacher teacher = mapentry.getKey();
+				Set<CoursePref> coursePrefs = mapentry.getValue();
 				
+				/** The following line builds a set whose real type is mutable. courses attribute remains intact. */
 				Set<Course> courses = new LinkedHashSet<>(this.courses);
 				Set<Course> coursesInCoursePrefs = coursePrefs.stream().map(CoursePref::getCourse)
 				.collect(Collectors.toSet());
@@ -133,6 +145,7 @@ public class AggregatedData {
 				
 				this.addTeacherPrefs(teacherPrefs);
 			}
+			
 		}
 	}
 
