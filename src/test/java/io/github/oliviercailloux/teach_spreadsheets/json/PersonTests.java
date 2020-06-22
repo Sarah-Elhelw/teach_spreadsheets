@@ -16,7 +16,7 @@ public class PersonTests {
 
 		/** CASE 1 : Deserialization with a wrongly formatted json file: */
 
-		URL resourceUrl1 = JsonDeserializer.class.getResource("WrongFormat.json");
+		URL resourceUrl1 = Person.class.getResource("WrongFormat.json");
 		final Path path1 = Path.of(resourceUrl1.toURI());
 		String json1 = Files.readString(path1);
 
@@ -24,11 +24,10 @@ public class PersonTests {
 
 		/** The deserialization process returns an empty list instead of failing fast: */
 		assertEquals(List.of(), list1);
-		
 
 		/** CASE 2 : Control: */
 
-		URL resourceUrl2 = JsonDeserializer.class.getResource("RightFormat.json");
+		URL resourceUrl2 = Person.class.getResource("RightFormat.json");
 		final Path path2 = Path.of(resourceUrl2.toURI());
 		String json2 = Files.readString(path2);
 

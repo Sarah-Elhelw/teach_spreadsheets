@@ -12,11 +12,13 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.VerifyException;
 import com.google.common.collect.ImmutableList;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class Person {
 	private String firstName;
 	private String lastName;
 
-	public Person() {
+	private Person() {
 		firstName = "";
 		lastName = "";
 	}
@@ -27,6 +29,7 @@ public class Person {
 	}
 
 	public static ImmutableList<Person> toPersons(String json) {
+		checkNotNull(json, "The String must not be null.");
 		try (Jsonb jsonb = JsonbBuilder.create()) {
 			List<Person> list = jsonb.fromJson(json, new ArrayList<Person>() {
 				private static final long serialVersionUID = -7485196487128234751L;
