@@ -4,6 +4,9 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.VerifyException;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.Objects;
+
 import static com.google.common.base.Preconditions.checkArgument;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -237,6 +240,27 @@ public class TeacherAssignment {
 		default:
 			throw new VerifyException("The argument must be CM, TD, TP, CMTD or CMTP.");
 		}
+	}
+	
+	@Override
+	public boolean equals(Object o2) {
+		if (!(o2 instanceof TeacherAssignment)) {
+			return false;
+		}
+		if (this == o2) {
+			return true;
+		}
+		TeacherAssignment ta2 = (TeacherAssignment) o2;
+
+		return course.equals(ta2.course) && teacher.equals(ta2.teacher) && countGroupsTD == ta2.countGroupsTD
+				&& countGroupsTP == ta2.countGroupsTP && countGroupsCMTD == ta2.countGroupsCMTD
+				&& countGroupsCMTP == ta2.countGroupsCMTP && countGroupsCM == ta2.countGroupsCM;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(course, teacher, countGroupsTD, countGroupsTP, countGroupsCMTD, countGroupsCMTP,
+				countGroupsCM);
 	}
 
 	@Override
