@@ -1,86 +1,36 @@
 = Teach spreadsheets
 
-== About the project 
+== About the project
 
 The aim of this project is to read teacher’s preferences to assign them to study groups in courses.This project is inspired by the link:https://github.com/oliviercailloux/Teach-spreadsheets[Teach-spreadsheets project].
+
+*Logos' Credits* :
+
+The Icons used in the gui are made by link:https://www.flaticon.com/authors/freepik[Freepik], link:https://www.flaticon.com/authors/xnimrodx[nimrodx] and link:https://www.flaticon.com/authors/prosymbols[Prosymbols] from link:https://www.flaticon.com/[www.flaticon.com].
 
 == Global idea of the project 
 
 The main functionalities that this project will implement are described in the link:Doc\README.adoc#UseCaseDiag[use case diagram]. +
-You can see how our program's gui looks like in link:Doc\README.adoc#GuiDescription[Gui description]. +
+You can see how our program's gui looks like in link:Doc\README.adoc#GuiDescription[gui description]. +
 The way we imagine the process of assignment is described in the link:Doc\README.adoc#SeqDiag[sequence diagram]. +
-The classes that we plan to implement are described in the link:Doc\README.adoc#ClassDiag[class diagram].
+The packages in our program are modelled in the link:Doc\README.adoc#Package[package diagram]. +
+The classes implemented are described in the link:Doc\README.adoc#ClassDiag[class diagram].
 
-== Third java iteration
+== Fourth java iteration
 
-* Group 1: SM/PO: Inès
+* Group 1: SM/PO: Sarah
 
-** Adding loggers in the code
+** Fixing as many issues as possible : Issues 22, 25, 32, 33 ... 
+** Adding teacherAssignmentsToCourseAssignments() in CourseAssignment
 
-* Group 2 : Hedi and Mike
+* Group 2 : Hedi and Semida
 
-** Fixing issues from iteration 1 about base package
+** Fixing issue 34
 
-** Creation of a class reading a set of input vows files
-
-** GUI for assignment
-
-* Group 3 : Semida and Sarah
-
-** Fixing issue from iteration 2 about assignment package and correcting this package according to the needs of Group 2
-
-** Correcting json package according to iteration 2 comments in order to merge it into master
-
-** Reviewing the structure of the classes in the package write (to avoid code duplication), correcting this package according iteration 2 comments in order to merge it into master and adding more fonctionalities to improve the aesthetic of the created files
-
-** Correcting diverse classes of the project : removing warnings, adding a studyLevel attribute in Course class and changing the value of studyYear according to iteration 2 issue
-
-** Creating AgregatedData class
-
-== What was done in the first java iteration  
-
-* Group 1: Mike and Inès 
-
-** Created the skeleton (attributes and getters) of classes Course, Teacher CoursePref and CalcData. 
-
-** Prepared some samples of “AA - Saisie des voeux 2016-2017.ods" as if they were completed by teachers.  
-
-* Group 2:  Hedi and Sarah 
-
-** Created the skeleton (attributes and getters) of the class CourseAssignement and Assignment. 
-
-** Looked for how to read a Calc document. 
-
-** Read the Calc document “AA - Saisie des voeux 2016-2017.ods" and instantiated a CalcData variable. 
-
-* Semida 
-
-** Created a class which summarises the samples of “AA - Saisie des voeux 2016-2017.ods" made by writing teachers' preferences in a Calc. 
-
-== What was done in the second java iteration
-
-* Group 1: SM/PO : Hedi 
-
-** Does the necessary changes in order to merge the branch it1-java-Hedi-Sarah to master
-
-** Looks for a way to read the tabs "LSO", "Apprentissage" and improve the reader classes
-
-** Verifies that the merges are not problematic
+** Making the project's main 
 
 
-* Group 2: Mike and Sarah
+* Group 3 : Mike and Inès
 
-** Reads and writes a list of courses in JSON
+** Completing the GUI for Assignment
 
-** Reads a list of teachers from RefRof
-
-** Deals with the comments and issues from iteration 1 for the classes in the packages assignment and base
-
-
-* Group 3: Semida and Inès
-
-** Does the necessary changes in order to merge the branch it1-Semida to master
-
-** Adds new features to the class OdsSummarizer (examples : export to pdf, make a more design Calc ...)
-
-** Creates new classes in order to write the result of the assignment process into new ods files : AssignmentPerTeacher and GlobalAssigment
