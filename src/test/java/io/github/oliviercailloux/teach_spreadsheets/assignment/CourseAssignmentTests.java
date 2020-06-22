@@ -71,20 +71,20 @@ public class CourseAssignmentTests {
 		assertEquals("The course assignment must contain at least one teacher assignment.", exception.getMessage());
 	}
 	
-	private static ImmutableSet<CourseAssignment> buildCourseAssignments(){
+	private static ImmutableSet<CourseAssignment> buildCourseAssignments() {
 		CourseAssignment.Builder courseAssignmentBuilder1 = CourseAssignment.Builder.newInstance(course1);
 		courseAssignmentBuilder1.addTeacherAssignment(teacherAssignment1);
 		CourseAssignment courseAssignment1 = courseAssignmentBuilder1.build();
-		
+
 		CourseAssignment.Builder courseAssignmentBuilder2 = CourseAssignment.Builder.newInstance(course2);
 		courseAssignmentBuilder2.addTeacherAssignment(teacherAssignment2);
 		courseAssignmentBuilder2.addTeacherAssignment(teacherAssignment3);
 		CourseAssignment courseAssignment2 = courseAssignmentBuilder2.build();
-		
+
 		Set<CourseAssignment> courseAssignments = new LinkedHashSet<>();
 		courseAssignments.add(courseAssignment1);
 		courseAssignments.add(courseAssignment2);
-		
+
 		return ImmutableSet.copyOf(courseAssignments);
 	}
 	

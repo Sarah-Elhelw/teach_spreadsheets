@@ -166,6 +166,14 @@ public class CourseAssignment {
 
 	}
 	
+	/**
+	 * This method builds a set of CourseAssignment using a given set of
+	 * TeacherAssignment.
+	 * 
+	 * @param teacherAssignments - the given set of TeacherAssignment
+	 * 
+	 * @return - an ImmutableSet of CourseAssignment
+	 */
 	public static ImmutableSet<CourseAssignment> teacherAssignmentsToCourseAssignments(
 			Set<TeacherAssignment> teacherAssignments) {
 		checkNotNull(teacherAssignments, "The set of TeacherAssignment must not be null.");
