@@ -17,11 +17,11 @@ import static com.google.common.base.Preconditions.checkState;
  * several input vows files.
  *
  */
-public class AggregatedPrefs {
+public class AggregatedData {
 	private ImmutableSet<TeacherPrefs> TeacherPrefsSet;
 	private ImmutableSet<Course> courses;
 
-	private AggregatedPrefs(Set<TeacherPrefs> TeacherPrefsSet, Set<Course> courses) {
+	private AggregatedData(Set<TeacherPrefs> TeacherPrefsSet, Set<Course> courses) {
 		this.TeacherPrefsSet = ImmutableSet.copyOf(TeacherPrefsSet);
 		this.courses = ImmutableSet.copyOf(courses);
 	}
@@ -42,8 +42,8 @@ public class AggregatedPrefs {
 		}
 
 		/**
-		 * This is the static factory method of the class AggregatedPrefs.Builder. To
-		 * build an AggregatedPrefs, possibly from only CoursePrefs, a set of Course is
+		 * This is the static factory method of the class AggregatedData.Builder. To
+		 * build an AggregatedData, possibly from only CoursePrefs, a set of Course is
 		 * necessary to serve as a reference.
 		 * 
 		 */
@@ -52,10 +52,10 @@ public class AggregatedPrefs {
 			return new Builder(courses);
 		}
 
-		public AggregatedPrefs build() {
+		public AggregatedData build() {
 			mapToTeacherPrefs();
-			checkState(tempTeacherPrefsSet.size() >= 1, "An AggregatedPrefs must contain at least one TeacherPrefs.");
-			return new AggregatedPrefs(tempTeacherPrefsSet, courses);
+			checkState(tempTeacherPrefsSet.size() >= 1, "An AggregatedData must contain at least one TeacherPrefs.");
+			return new AggregatedData(tempTeacherPrefsSet, courses);
 		}
 
 		/**
@@ -91,7 +91,7 @@ public class AggregatedPrefs {
 		}
 		
 		/**
-		 * This method allows to build an AggregatedPrefs by adding a set of CoursePref.
+		 * This method allows to build an AggregatedData by adding a set of CoursePref.
 		 * 
 		 * @param coursePrefs - the Set of coursePref to be added
 		 * 
@@ -113,7 +113,7 @@ public class AggregatedPrefs {
 		/**
 		 * This method builds complete TeacherPrefs objects, using the CoursePrefs given
 		 * and stored in tempCoursePrefs, to complete tempTeacherPrefsSet the Set of TeacherPrefs
-		 * stored in the AggregatedPrefs object.
+		 * stored in the AggregatedData object.
 		 */
 		private void mapToTeacherPrefs() {
 			for (Teacher teacher : tempCoursePrefs.keySet()) {

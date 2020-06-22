@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.ImmutableSet;
 
-public class AggregatedPrefsTests {
+public class AggregatedDataTests {
 
 	private static Teacher teacher1 = Teacher.Builder.newInstance().setLastName("Dupond").setFirstName("Jack").build();
 	private static Teacher teacher2 = Teacher.Builder.newInstance().setLastName("Dupont").setFirstName("Jane").build();
@@ -45,48 +45,48 @@ public class AggregatedPrefsTests {
 
 	@Test
 	void testAddTeacherPrefsWithSameTeacher() {
-		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses1);
-		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs1);
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance(courses1);
+		aggregatedDataBuilder.addTeacherPrefs(teacherPrefs1);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs2);
+			aggregatedDataBuilder.addTeacherPrefs(teacherPrefs2);
 		});
 		assertEquals("You cannot add twice all the preferences of the teacher : " + teacher1, exception.getMessage());
 	}
 
 	@Test
 	void testAddTeacherPrefsWithDifferentCourses() {
-		AggregatedPrefs.Builder aggregatedPrefs = AggregatedPrefs.Builder.newInstance(courses1);
-		aggregatedPrefs.addTeacherPrefs(teacherPrefs1);
+		AggregatedData.Builder aggregatedData = AggregatedData.Builder.newInstance(courses1);
+		aggregatedData.addTeacherPrefs(teacherPrefs1);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			aggregatedPrefs.addTeacherPrefs(teacherPrefs3);
+			aggregatedData.addTeacherPrefs(teacherPrefs3);
 		});
 		assertEquals("There must be the same courses in the teacherPrefs.", exception.getMessage());
 	}
 	
 	@Test
-	void testBuildAggregatedPrefsWithCoursePrefs() {
-		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses2);
-		aggregatedPrefsBuilder.addCoursePrefs(Set.of(coursePref1, coursePref3, coursePref4));
-		AggregatedPrefs aggregatedPrefs = aggregatedPrefsBuilder.build();
+	void testBuildAggregatedDatasWithCoursePrefs() {
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance(courses2);
+		aggregatedDataBuilder.addCoursePrefs(Set.of(coursePref1, coursePref3, coursePref4));
+		AggregatedData aggregatedData = aggregatedDataBuilder.build();
 		
-		assertTrue(aggregatedPrefs.getTeacherPrefsSet().size() == 2);
+		assertTrue(aggregatedData.getTeacherPrefsSet().size() == 2);
 		
-		assertEquals(aggregatedPrefs.getTeacherPrefs(teacher1), teacherPrefs5.getCoursePrefs());
-		assertEquals(aggregatedPrefs.getTeacherPrefs(teacher2), teacherPrefs6.getCoursePrefs());
+		assertEquals(aggregatedData.getTeacherPrefs(teacher1), teacherPrefs5.getCoursePrefs());
+		assertEquals(aggregatedData.getTeacherPrefs(teacher2), teacherPrefs6.getCoursePrefs());
 	}
 	
 	@Test
-	void testBuildAggregatedPrefsWithCoursePrefsAndTeacherPrefs() {
-		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses2);
-		aggregatedPrefsBuilder.addCoursePrefs(Set.of(coursePref3, coursePref4));
-		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs5);
+	void testBuildAggregatedDataWithCoursePrefsAndTeacherPrefs() {
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance(courses2);
+		aggregatedDataBuilder.addCoursePrefs(Set.of(coursePref3, coursePref4));
+		aggregatedDataBuilder.addTeacherPrefs(teacherPrefs5);
 		
-		AggregatedPrefs aggregatedPrefs = aggregatedPrefsBuilder.build();
+		AggregatedData aggregatedData = aggregatedDataBuilder.build();
 		
-		assertTrue(aggregatedPrefs.getTeacherPrefsSet().size() == 2);
+		assertTrue(aggregatedData.getTeacherPrefsSet().size() == 2);
 		
-		assertEquals(aggregatedPrefs.getTeacherPrefs(teacher1), teacherPrefs5.getCoursePrefs());
-		assertEquals(aggregatedPrefs.getTeacherPrefs(teacher2), teacherPrefs6.getCoursePrefs());
+		assertEquals(aggregatedData.getTeacherPrefs(teacher1), teacherPrefs5.getCoursePrefs());
+		assertEquals(aggregatedData.getTeacherPrefs(teacher2), teacherPrefs6.getCoursePrefs());
 	}
 
 	/**
@@ -95,13 +95,13 @@ public class AggregatedPrefsTests {
 	 */
 	@Test
 	void testAddTeacherPrefsConcretely() throws Exception {
-		URL resourceUrl1 = AggregatedPrefs.class.getResource("Saisie_des_voeux_format simple1.ods");
+		URL resourceUrl1 = AggregatedData.class.getResource("Saisie_des_voeux_format simple1.ods");
 		TeacherPrefs cd1;
 		try (InputStream stream = resourceUrl1.openStream()) {
 			cd1 = TeacherPrefs.getData(stream);
 		}
 
-		URL resourceUrl2 = AggregatedPrefs.class.getResource("Saisie_des_voeux_format simple2.ods");
+		URL resourceUrl2 = AggregatedData.class.getResource("Saisie_des_voeux_format simple2.ods");
 		TeacherPrefs cd2;
 		try (InputStream stream = resourceUrl2.openStream()) {
 			cd2 = TeacherPrefs.getData(stream);
@@ -109,33 +109,33 @@ public class AggregatedPrefsTests {
 		
 		Set<Course> courses = cd1.getCourses();
 
-		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses);
-		aggregatedPrefsBuilder.addTeacherPrefs(cd1);
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance(courses);
+		aggregatedDataBuilder.addTeacherPrefs(cd1);
 		assertDoesNotThrow(() -> {
-			aggregatedPrefsBuilder.addTeacherPrefs(cd2);
-			aggregatedPrefsBuilder.build();
+			aggregatedDataBuilder.addTeacherPrefs(cd2);
+			aggregatedDataBuilder.build();
 		});
 		
 	}
 
 	@Test
 	void testGetTeacherPrefs() {
-		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses1);
-		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs1);
-		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs4);
-		AggregatedPrefs aggregatedPrefs = aggregatedPrefsBuilder.build();
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance(courses1);
+		aggregatedDataBuilder.addTeacherPrefs(teacherPrefs1);
+		aggregatedDataBuilder.addTeacherPrefs(teacherPrefs4);
+		AggregatedData aggregatedData = aggregatedDataBuilder.build();
 
-		assertEquals(ImmutableSet.of(coursePref1), aggregatedPrefs.getTeacherPrefs(teacher1));
+		assertEquals(ImmutableSet.of(coursePref1), aggregatedData.getTeacherPrefs(teacher1));
 	}
 
 	@Test
 	void testGetCoursePrefs() {
-		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses1);
-		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs1);
-		aggregatedPrefsBuilder.addTeacherPrefs(teacherPrefs4);
-		AggregatedPrefs aggregatedPrefs = aggregatedPrefsBuilder.build();
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance(courses1);
+		aggregatedDataBuilder.addTeacherPrefs(teacherPrefs1);
+		aggregatedDataBuilder.addTeacherPrefs(teacherPrefs4);
+		AggregatedData aggregatedData = aggregatedDataBuilder.build();
 
-		assertEquals(ImmutableSet.of(coursePref1, coursePref4), aggregatedPrefs.getCoursePrefs(course1));
+		assertEquals(ImmutableSet.of(coursePref1, coursePref4), aggregatedData.getCoursePrefs(course1));
 	}
 
 }
