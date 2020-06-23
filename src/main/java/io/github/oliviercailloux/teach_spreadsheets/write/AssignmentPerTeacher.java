@@ -177,6 +177,7 @@ public class AssignmentPerTeacher {
 				table.getCellByPosition(j, i).setBorders(CellBordersType.ALL_FOUR,
 						new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 			}
+			table.getColumnByIndex(j).setUseOptimalWidth(table.getColumnByIndex(j).isOptimalWidth());
 		}
 	}
 
@@ -237,7 +238,13 @@ public class AssignmentPerTeacher {
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 
 		totalNumberMinutes = 0;
-
+		
+		try {
+			document.save("target//APT.ods");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return document;
 	}
 
