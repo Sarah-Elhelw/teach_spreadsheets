@@ -176,8 +176,29 @@ public class AssignmentPerTeacher {
 			for (int i = 15; i < line; i++) {
 				table.getCellByPosition(j, i).setBorders(CellBordersType.ALL_FOUR,
 						new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+				
 			}
-			table.getColumnByIndex(j).setUseOptimalWidth(table.getColumnByIndex(j).isOptimalWidth());
+		}
+	}
+	
+	/**
+	 * This method sets the auto Width for each column of the document
+	 * 
+	 * @param table - the sheet where the table is
+	 * @param line - the line where the table ends
+	 */
+	
+	private static void autoWidth(Table table, int line) {
+		double width;
+		
+		for (int j = 0; j <= 4; j++) {
+			width = 10;
+			for (int i = 0; i < line; i++) {
+				if (table.getCellByPosition(i, j).getStringValue().length() > width) {
+					width = table.getCellByPosition(i, j).getStringValue().length();
+				}
+			}
+			table.getColumnByIndex(j).setWidth(width * 2);
 		}
 	}
 
@@ -238,7 +259,8 @@ public class AssignmentPerTeacher {
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 
 		totalNumberMinutes = 0;
-		
+		autoWidth(summary, line);
+
 		try {
 			document.save("target//APT.ods");
 		} catch (Exception e) {
