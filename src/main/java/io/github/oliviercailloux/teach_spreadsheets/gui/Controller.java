@@ -3,14 +3,18 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Button;
@@ -20,17 +24,24 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
+import org.odftoolkit.simple.SpreadsheetDocument;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.ImmutableSet;
 
+import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
+import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedData;
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
+import io.github.oliviercailloux.teach_spreadsheets.json.JsonSerializer;
 import io.github.oliviercailloux.teach_spreadsheets.read.MultipleOdsPrefReader;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
+import io.github.oliviercailloux.teach_spreadsheets.write.AssignmentPerTeacher;
+import io.github.oliviercailloux.teach_spreadsheets.write.OdsSummarizer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +65,6 @@ public class Controller {
 	private Controller() {
 	}
 
-
 	/**
 	 * Creates a new listener for a preferences Table in the GUI.
 	 * 
@@ -63,7 +73,7 @@ public class Controller {
 	 * @return a listener that retrieves the table item that has been clicked from
 	 *         source and calls callbackListener
 	 */
-	
+
 	private Listener createListenerPreferences(Table source) {
 		checkNotNull(source);
 		checkNotNull(view);
@@ -84,14 +94,49 @@ public class Controller {
 
 	/**
 	 * Creates a listener for the submit button.
+	 * @param courses 
 	 * 
 	 * @return a listener for submit button
 	 */
-	private Listener createListenerSubmitButton() {
+	private Listener createListenerSubmitButton(Set<Course> courses, Set<CoursePref> CoursePrefs) {
 		return new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				LOGGER.info("Submitted assignments: " + createAssignments().toString());
+				Set<TeacherAssignment> teacherAssignments = createAssignments();
+				Set<CourseAssignment> courseAssignments = CourseAssignment
+						.teacherAssignmentsToCourseAssignments(teacherAssignments);
+				OdsSummarizer odsGlobalAssignment = OdsSummarizer.newInstance(courses);
+				odsGlobalAssignment.addPrefs(CoursePrefs);
+				odsGlobalAssignment.setAllCoursesAssigned(ImmutableSet.copyOf(courseAssignments));
+				/**
+				 * This try catch is necessary as this function doesn't throw non-runtime
+				 * exceptions (it is the main function of a Listener).
+				 */
+				try (SpreadsheetDocument odsGlobalAssignmentDocument = odsGlobalAssignment.createSummary()) {
+					if (!Files.exists(Path.of("output"))) {
+						Files.createDirectory(Path.of("output"));
+					}
+					if (!Files.exists(Path.of("output//teacher_assignments"))) {
+						Files.createDirectory(Path.of("output//teacher_assignments"));
+					}
+					/**
+					 * we need to clean the teacher_assignments folder after each submit so not to have files concerning teachers with no assignment.
+					 */
+					else {
+						FileUtils.cleanDirectory(new File("output//teacher_assignments"));
+					}
+					for (TeacherAssignment teacherAssignment : teacherAssignments) {
+						Teacher teacher = teacherAssignment.getTeacher();
+						try (SpreadsheetDocument assignmentToTeacherDocument = AssignmentPerTeacher
+								.createAssignmentPerTeacher(teacher, courseAssignments)) {
+							assignmentToTeacherDocument.save("output//teacher_assignments//" + teacher.getFirstName()
+									+ "_" + teacher.getLastName() + ".ods");
+						}
+					}
+					odsGlobalAssignmentDocument.save("output//GlobalAssignment.ods");
+				} catch (Exception e) {
+					LOGGER.error("An error has occured during the writing of the assignment Files.", e);
+				}
 			}
 		};
 	}
@@ -114,19 +159,6 @@ public class Controller {
 
 		updatePreferences(texts.toArray(new String[0]), toChosenPreferences);
 		view.moveTableItem(item, texts.toArray(new String[0]), toChosenPreferences);
-	}
-
-	/**
-	 * Populates Model data with the ods files
-	 * 
-	 * @throws Exception
-	 */
-	private void setModelData() throws Exception {
-		URL resourceUrl = PrefsInitializer.class.getResource("multipleOdsFolder");
-		try (InputStream stream = resourceUrl.openStream()) {
-			Set<CalcData> calcDatas = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()));
-			model.setDataFromSet(calcDatas);
-		}
 	}
 
 	/**
@@ -211,7 +243,7 @@ public class Controller {
 	 */
 	private List<String[]> getDataForTableItems(Set<CoursePrefElement> coursePrefElements) {
 		checkNotNull(coursePrefElements);
-		
+
 		ArrayList<String[]> stringsToShow = new ArrayList<>();
 
 		for (CoursePrefElement coursePrefElement : coursePrefElements) {
@@ -324,7 +356,7 @@ public class Controller {
 			updateSet(texts, model.getChosenPreferences(), model.getAllPreferences());
 		}
 	}
-	
+
 	/**
 	 * Shows the gui.
 	 */
@@ -345,24 +377,53 @@ public class Controller {
 	 * function of this program.
 	 */
 	public static void main(String[] args) throws Exception {
+
+		Set<CalcData> calcDatas = MultipleOdsPrefReader.readFilesFromFolder(Path.of("input"));
+		if (!Files.exists(Path.of("output"))) {
+			Files.createDirectory(Path.of("output"));
+		}
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
+		for (CalcData calcData : calcDatas) {
+			aggregatedDataBuilder.addCalcData(calcData);
+		}
+		AggregatedData aggregatedData = aggregatedDataBuilder.build();
+		Set<Course> courses = aggregatedData.getCourses();
+		Set<CoursePref> CoursePrefs = new LinkedHashSet<>();
+		for (Course course : courses) {
+			CoursePrefs.addAll(aggregatedData.getCoursePrefs(course));
+		}
+		OdsSummarizer odsPrefSummary = OdsSummarizer.newInstance(courses);
+		odsPrefSummary.addPrefs(CoursePrefs);
+
+		try (SpreadsheetDocument odsPrefSummaryDocument = odsPrefSummary.createSummary()) {
+			if (!Files.exists(Path.of("output"))) {
+				Files.createDirectory(Path.of("output"));
+			}
+			odsPrefSummaryDocument.save("output//odsPrefSummary.ods");
+		}
+
+		String coursesJson = JsonSerializer.serializeSet(courses);
+		Files.writeString(Path.of("output//courses.json"), coursesJson);
+
 		Controller controller = Controller.newInstance();
 
 		Table allPreferencesTable = controller.view.getAllPreferencesTable();
 		Table chosenPreferencesTable = controller.view.getChosenPreferencesTable();
 		Button submitButton = controller.view.getSubmitButton();
 
-		controller.setModelData();
-		List<String[]> stringsToShowAllPreferences = controller.getDataForTableItems(controller.model.getAllPreferences());
+		controller.model.setDataFromSet(calcDatas);
+
+		List<String[]> stringsToShowAllPreferences = controller
+				.getDataForTableItems(controller.model.getAllPreferences());
 		controller.view.populateCourses(controller.model.getCourses());
 		controller.view.populateAllPreferences(stringsToShowAllPreferences);
 
-		
-		allPreferencesTable.addListener(SWT.MouseDoubleClick, controller.createListenerPreferences(allPreferencesTable));
-		chosenPreferencesTable.addListener(SWT.MouseDoubleClick, controller.createListenerPreferences(chosenPreferencesTable));
-		submitButton.addListener(SWT.MouseDown, controller.createListenerSubmitButton());
-		
+		allPreferencesTable.addListener(SWT.MouseDoubleClick,
+				controller.createListenerPreferences(allPreferencesTable));
+		chosenPreferencesTable.addListener(SWT.MouseDoubleClick,
+				controller.createListenerPreferences(chosenPreferencesTable));
+		submitButton.addListener(SWT.MouseDown, controller.createListenerSubmitButton(courses,CoursePrefs));
+
 		controller.show(controller.view.getShell(), controller.view.getDisplay());
 	}
-
-
 }
