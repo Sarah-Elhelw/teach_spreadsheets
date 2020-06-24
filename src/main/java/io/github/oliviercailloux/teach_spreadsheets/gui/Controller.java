@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.swt.SWT;
@@ -28,6 +29,7 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 import io.github.oliviercailloux.teach_spreadsheets.read.MultipleOdsPrefReader;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
@@ -339,6 +341,38 @@ public class Controller {
 		display.dispose();
 		LOGGER.info("Display well closed");
 	}
+	
+	/*public boolean checkValidityAssignments(Set<CoursePrefElement> chosenPreferences) {
+		com.google.common.collect.Table<CourseType, Course, Integer> numberAssignments = HashBasedTable.create();
+		
+		for (CoursePrefElement chosenPreference : chosenPreferences) {
+			CourseType courseType = chosenPreference.getCourseType();
+			Course course = chosenPreference.getCoursePref().getCourse();
+			
+			if (!numberAssignments.contains(courseType, course)) {
+				numberAssignments.put(courseType, course, 1);
+			}
+			else {
+				int oldNumberAssignments = numberAssignments.get(courseType, course);
+				numberAssignments.put(courseType, course, oldNumberAssignments + 1);
+			}
+		}
+		
+		
+		Map<CourseType, Map<Course, Integer>> map = numberAssignments.rowMap();
+		for (Map.Entry<CourseType, Map<Course, Integer>> entry1 : map.entrySet()) {
+			CourseType courseType = entry1.getKey();
+			
+			for (Map.Entry<Course, Integer> entry2 : entry1.getValue().entrySet()) {
+				Course course = entry2.getKey();
+				int nbGroupsAssigned = entry2.getValue();
+				
+				if (nbGroupsAssigned > course.getCountGroups(courseType)) {
+					
+				}
+			}
+		}
+	}*/
 
 	/**
 	 * the only purpose of this main is to test the gui.This is not the main

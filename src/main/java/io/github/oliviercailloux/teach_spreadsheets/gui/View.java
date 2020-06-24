@@ -3,7 +3,9 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.text.Collator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.eclipse.swt.SWT;
@@ -14,7 +16,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -234,6 +238,34 @@ public class View {
 		TableColumn course = new TableColumn(table, SWT.NONE);
 		TableColumn groupType = new TableColumn(table, SWT.NONE);
 		TableColumn choice = new TableColumn(table, SWT.NONE);
+		
+		Listener sortListener = new Listener() {  
+	         public void handleEvent(Event e) {  
+	             TableItem[] items = table.getItems();  
+	             Collator collator = Collator.getInstance(Locale.getDefault());  
+	             TableColumn column = (TableColumn)e.widget;
+	             int index = (column == teacher ? 0 : (column == course ? 1 : (column == groupType ? 2 : 3)));
+	             for (int i = 1; i < items.length; i++) {  
+	                 String value1 = items[i].getText(index);  
+	                 for (int j = 0; j < i; j++){  
+	                     String value2 = items[j].getText(index);  
+	                     if (collator.compare(value1, value2) < 0) {  
+	                         String[] values = {items[i].getText(0), items[i].getText(1), items[1].getText(2), items[i].getText(3)};  
+	                         items[i].dispose();  
+	                         TableItem item = new TableItem(table, SWT.NONE, j);  
+	                         item.setText(values);  
+	                         items = table.getItems();  
+	                         break;  
+	                     }  
+	                 }  
+	             }  
+	             table.setSortColumn(column);  
+	         }  
+	     };  
+	     teacher.addListener(SWT.Selection, sortListener);
+	     course.addListener(SWT.Selection, sortListener);
+	     groupType.addListener(SWT.Selection, sortListener);
+	     choice.addListener(SWT.Selection, sortListener);
 
 		teacher.setText("Teacher");
 		course.setText("Course");
