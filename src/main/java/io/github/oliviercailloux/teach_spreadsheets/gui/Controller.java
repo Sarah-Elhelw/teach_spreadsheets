@@ -92,10 +92,11 @@ public class Controller {
 		};
 	}
 
+
 	/**
-	 * Creates a listener for the submit button.
-	 * @param courses 
-	 * 
+	 * Creates a listener for the submit button.This Listener writes the Ods output files (global assignment and assignment per teacher) to disk when the submit button is clicked.
+	 * @param courses These are the courses to be written in the output files.
+	 * @param CoursePrefs These are the courses preferences to be written in the output files.
 	 * @return a listener for submit button
 	 */
 	private Listener createListenerSubmitButton(Set<Course> courses, Set<CoursePref> CoursePrefs) {
@@ -120,7 +121,7 @@ public class Controller {
 						Files.createDirectory(Path.of("output//teacher_assignments"));
 					}
 					/**
-					 * we need to clean the teacher_assignments folder after each submit so not to have files concerning teachers with no assignment.
+					 * we need to clean the teacher_assignments folder after each submit so not to have files concerning teachers with no assignments.
 					 */
 					else {
 						FileUtils.cleanDirectory(new File("output//teacher_assignments"));
@@ -373,18 +374,22 @@ public class Controller {
 	}
 
 	/**
-	 * the only purpose of this main is to test the gui.This is not the main
-	 * function of this program.
+	 * The main that connect all the components of this program.
 	 */
 	public static void main(String[] args) throws Exception {
-
+		/**
+		 * Reading part.
+		 */
 		Set<CalcData> calcDatas = MultipleOdsPrefReader.readFilesFromFolder(Path.of("input"));
-		if (!Files.exists(Path.of("output"))) {
-			Files.createDirectory(Path.of("output"));
-		}
 		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
 		for (CalcData calcData : calcDatas) {
 			aggregatedDataBuilder.addCalcData(calcData);
+		}
+		/**
+		 * Writing the Ods summary and the Json courses part.
+		 */
+		if (!Files.exists(Path.of("output"))) {
+			Files.createDirectory(Path.of("output"));
 		}
 		AggregatedData aggregatedData = aggregatedDataBuilder.build();
 		Set<Course> courses = aggregatedData.getCourses();
@@ -404,7 +409,10 @@ public class Controller {
 
 		String coursesJson = JsonSerializer.serializeSet(courses);
 		Files.writeString(Path.of("output//courses.json"), coursesJson);
-
+		
+		/**
+		 * Gui management.
+		 */
 		Controller controller = Controller.newInstance();
 
 		Table allPreferencesTable = controller.view.getAllPreferencesTable();
@@ -422,8 +430,10 @@ public class Controller {
 				controller.createListenerPreferences(allPreferencesTable));
 		chosenPreferencesTable.addListener(SWT.MouseDoubleClick,
 				controller.createListenerPreferences(chosenPreferencesTable));
+		/**
+		 * The writing process of the Ods output files (global assignment and assignment per teacher) are defined in the Listener of the submit button.
+		 */
 		submitButton.addListener(SWT.MouseDown, controller.createListenerSubmitButton(courses,CoursePrefs));
-
 		controller.show(controller.view.getShell(), controller.view.getDisplay());
 	}
 }
