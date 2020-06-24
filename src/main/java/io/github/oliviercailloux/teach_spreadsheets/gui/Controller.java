@@ -92,11 +92,14 @@ public class Controller {
 		};
 	}
 
-
 	/**
-	 * Creates a listener for the submit button.This Listener writes the Ods output files (global assignment and assignment per teacher) to disk when the submit button is clicked.
-	 * @param courses These are the courses to be written in the output files.
-	 * @param CoursePrefs These are the courses preferences to be written in the output files.
+	 * Creates a listener for the submit button.This Listener writes the Ods output
+	 * files (global assignment and assignment per teacher) to disk when the submit
+	 * button is clicked.
+	 * 
+	 * @param courses     These are the courses to be written in the output files.
+	 * @param CoursePrefs These are the courses preferences to be written in the
+	 *                    output files.
 	 * @return a listener for submit button
 	 */
 	private Listener createListenerSubmitButton(Set<Course> courses, Set<CoursePref> CoursePrefs) {
@@ -121,7 +124,8 @@ public class Controller {
 						Files.createDirectory(Path.of("output//teacher_assignments"));
 					}
 					/**
-					 * we need to clean the teacher_assignments folder after each submit so not to have files concerning teachers with no assignments.
+					 * we need to clean the teacher_assignments folder after each submit so not to
+					 * have files concerning teachers with no assignments.
 					 */
 					else {
 						FileUtils.cleanDirectory(new File("output//teacher_assignments"));
@@ -409,7 +413,7 @@ public class Controller {
 
 		String coursesJson = JsonSerializer.serializeSet(courses);
 		Files.writeString(Path.of("output//courses.json"), coursesJson);
-		
+
 		/**
 		 * Gui management.
 		 */
@@ -431,9 +435,10 @@ public class Controller {
 		chosenPreferencesTable.addListener(SWT.MouseDoubleClick,
 				controller.createListenerPreferences(chosenPreferencesTable));
 		/**
-		 * The writing process of the Ods output files (global assignment and assignment per teacher) are defined in the Listener of the submit button.
+		 * The writing process of the Ods output files (global assignment and assignment
+		 * per teacher) are defined in the Listener of the submit button.
 		 */
-		submitButton.addListener(SWT.MouseDown, controller.createListenerSubmitButton(courses,CoursePrefs));
+		submitButton.addListener(SWT.MouseDown, controller.createListenerSubmitButton(courses, CoursePrefs));
 		controller.show(controller.view.getShell(), controller.view.getDisplay());
 	}
 }
