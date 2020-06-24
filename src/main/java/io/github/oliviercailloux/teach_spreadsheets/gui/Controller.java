@@ -4,9 +4,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -35,11 +32,9 @@ import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedData;
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
-import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 import io.github.oliviercailloux.teach_spreadsheets.json.JsonSerializer;
 import io.github.oliviercailloux.teach_spreadsheets.read.MultipleOdsPrefReader;
-import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
 import io.github.oliviercailloux.teach_spreadsheets.write.AssignmentPerTeacher;
 import io.github.oliviercailloux.teach_spreadsheets.write.OdsSummarizer;
 
@@ -392,9 +387,7 @@ public class Controller {
 		/**
 		 * Writing the Ods summary and the Json courses part.
 		 */
-		if (!Files.exists(Path.of("output"))) {
-			Files.createDirectory(Path.of("output"));
-		}
+		
 		AggregatedData aggregatedData = aggregatedDataBuilder.build();
 		Set<Course> courses = aggregatedData.getCourses();
 		Set<CoursePref> CoursePrefs = new LinkedHashSet<>();
