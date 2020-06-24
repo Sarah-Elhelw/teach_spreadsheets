@@ -10,7 +10,6 @@ import com.google.common.collect.ImmutableSet;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Immutable. This class aggregates the TeacherPrefs built from the reading of
@@ -21,8 +20,8 @@ public class AggregatedData {
 	private ImmutableSet<TeacherPrefs> TeacherPrefsSet;
 	private ImmutableSet<Course> courses;
 
-	private AggregatedData(Set<TeacherPrefs> TeacherPrefsSet, Set<Course> courses) {
-		this.TeacherPrefsSet = ImmutableSet.copyOf(TeacherPrefsSet);
+	private AggregatedData(Set<TeacherPrefs> teacherPrefsSet, Set<Course> courses) {
+		this.TeacherPrefsSet = ImmutableSet.copyOf(teacherPrefsSet);
 		this.courses = ImmutableSet.copyOf(courses);
 	}
 
@@ -58,7 +57,6 @@ public class AggregatedData {
 
 		public AggregatedData build() {
 			mapToTeacherPrefs();
-			checkState(tempTeacherPrefsSet.size() >= 1, "An AggregatedData must contain at least one TeacherPrefs.");
 			return new AggregatedData(tempTeacherPrefsSet, courses);
 		}
 
