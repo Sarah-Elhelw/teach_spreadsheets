@@ -332,6 +332,7 @@ public class OdsSummarizer {
 		}
 
 		putBorders();
+		ods.autoWidth(ods.getTable(), line, 10);
 
 		return document;
 
