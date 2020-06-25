@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -45,17 +46,18 @@ public class View {
 	private Table allPreferencesTable;
 	private Table chosenPreferencesTable;
 	private Table coursesTable;
-	
+
 	private Button buttonSubmit;
 
-	private View() {}
-	
+	private View() {
+	}
+
 	/**
 	 * Creates the Gui components.
 	 */
 	public static View initializeGui() {
 		View view = new View();
-		
+
 		view.display = new Display();
 		view.shell = new Shell(view.display, SWT.SHELL_TRIM);
 		view.shell.setMaximized(true);
@@ -67,14 +69,14 @@ public class View {
 		view.allPreferencesComposite = new Composite(view.shell, SWT.BORDER);
 		Composite allPreferencesContent = new Composite(view.allPreferencesComposite, SWT.NONE);
 		Image logoAllPreferences = new Image(view.display, View.class.getResourceAsStream("paper.png"));
-		view.allPreferencesTable = setCompositePreferenceTable(view.allPreferencesComposite, allPreferencesContent, "All preferences",
-				logoAllPreferences);
+		view.allPreferencesTable = setCompositePreferenceTable(view.allPreferencesComposite, allPreferencesContent,
+				"All preferences", logoAllPreferences);
 
 		view.chosenPreferencesComposite = new Composite(view.shell, SWT.BORDER);
 		Composite chosenPreferencesContent = new Composite(view.chosenPreferencesComposite, SWT.NONE);
 		Image logoChosenPreferences = new Image(view.display, View.class.getResourceAsStream("check.png"));
-		view.chosenPreferencesTable = setCompositePreferenceTable(view.chosenPreferencesComposite, chosenPreferencesContent,
-				"Chosen preferences", logoChosenPreferences);
+		view.chosenPreferencesTable = setCompositePreferenceTable(view.chosenPreferencesComposite,
+				chosenPreferencesContent, "Chosen preferences", logoChosenPreferences);
 
 		view.coursesComposite = new Composite(view.shell, SWT.BORDER);
 		Composite coursesContent = new Composite(view.coursesComposite, SWT.NONE);
@@ -83,26 +85,26 @@ public class View {
 
 		view.prefShell();
 		view.createAndSetSubmitButton();
-		
+
 		return view;
 	}
-	
+
 	public Table getAllPreferencesTable() {
 		return allPreferencesTable;
 	}
-	
+
 	public Table getChosenPreferencesTable() {
 		return chosenPreferencesTable;
 	}
-	
+
 	public Button getSubmitButton() {
 		return buttonSubmit;
 	}
-	
+
 	public Shell getShell() {
 		return shell;
 	}
-	
+
 	public Display getDisplay() {
 		return display;
 	}
@@ -151,12 +153,11 @@ public class View {
 			tableItem.setText(new String[] { courseName, courseType.name(), String.valueOf(nbGroups) });
 		}
 	}
-	
+
 	/**
 	 * Populates the courses table.
 	 * 
-	 * @param allPreferences a set of courses containing all the
-	 *                       information to show
+	 * @param allPreferences a set of courses containing all the information to show
 	 */
 	public void populateCourses(Set<Course> courses) {
 		checkNotNull(courses);
@@ -172,11 +173,13 @@ public class View {
 
 	/**
 	 * Populates the All Preferences Table
-	 * @param stringsToShow a list of arrays of strings to set the texts for table items
+	 * 
+	 * @param stringsToShow a list of arrays of strings to set the texts for table
+	 *                      items
 	 */
 	public void populateAllPreferences(List<String[]> stringsToShow) {
 		checkNotNull(stringsToShow);
-		
+
 		for (String[] coursePrefElement : stringsToShow) {
 			TableItem tableItem = new TableItem(allPreferencesTable, SWT.NONE);
 			tableItem.setText(coursePrefElement);
@@ -238,34 +241,36 @@ public class View {
 		TableColumn course = new TableColumn(table, SWT.NONE);
 		TableColumn groupType = new TableColumn(table, SWT.NONE);
 		TableColumn choice = new TableColumn(table, SWT.NONE);
-		
-		Listener sortListener = new Listener() {  
-	         public void handleEvent(Event e) {  
-	             TableItem[] items = table.getItems();  
-	             Collator collator = Collator.getInstance(Locale.getDefault());  
-	             TableColumn column = (TableColumn)e.widget;
-	             int index = (column == teacher ? 0 : (column == course ? 1 : (column == groupType ? 2 : 3)));
-	             for (int i = 1; i < items.length; i++) {  
-	                 String value1 = items[i].getText(index);  
-	                 for (int j = 0; j < i; j++){  
-	                     String value2 = items[j].getText(index);  
-	                     if (collator.compare(value1, value2) < 0) {  
-	                         String[] values = {items[i].getText(0), items[i].getText(1), items[1].getText(2), items[i].getText(3)};  
-	                         items[i].dispose();  
-	                         TableItem item = new TableItem(table, SWT.NONE, j);  
-	                         item.setText(values);  
-	                         items = table.getItems();  
-	                         break;  
-	                     }  
-	                 }  
-	             }  
-	             table.setSortColumn(column);  
-	         }  
-	     };  
-	     teacher.addListener(SWT.Selection, sortListener);
-	     course.addListener(SWT.Selection, sortListener);
-	     groupType.addListener(SWT.Selection, sortListener);
-	     choice.addListener(SWT.Selection, sortListener);
+
+		Listener sortListener = new Listener() {
+			@Override
+			public void handleEvent(Event e) {
+				TableItem[] items = table.getItems();
+				Collator collator = Collator.getInstance(Locale.getDefault());
+				TableColumn column = (TableColumn) e.widget;
+				int index = (column == teacher ? 0 : (column == course ? 1 : (column == groupType ? 2 : 3)));
+				for (int i = 1; i < items.length; i++) {
+					String value1 = items[i].getText(index);
+					for (int j = 0; j < i; j++) {
+						String value2 = items[j].getText(index);
+						if (collator.compare(value1, value2) < 0) {
+							String[] values = { items[i].getText(0), items[i].getText(1), items[i].getText(2),
+									items[i].getText(3) };
+							items[i].dispose();
+							TableItem item = new TableItem(table, SWT.NONE, j);
+							item.setText(values);
+							items = table.getItems();
+							break;
+						}
+					}
+				}
+				table.setSortColumn(column);
+			}
+		};
+		teacher.addListener(SWT.Selection, sortListener);
+		course.addListener(SWT.Selection, sortListener);
+		groupType.addListener(SWT.Selection, sortListener);
+		choice.addListener(SWT.Selection, sortListener);
 
 		teacher.setText("Teacher");
 		course.setText("Course");
@@ -293,7 +298,8 @@ public class View {
 	 * @param logo            a logo to be displayed next to the title
 	 * @return the table created
 	 */
-	private static Table setCompositeCourseTable(Composite parentComposite, Composite content, String headerText, Image logo) {
+	private static Table setCompositeCourseTable(Composite parentComposite, Composite content, String headerText,
+			Image logo) {
 		checkNotNull(parentComposite);
 		checkNotNull(content);
 		checkNotNull(headerText);
@@ -356,4 +362,13 @@ public class View {
 		buttonSubmit.setText("Submit");
 	}
 
+	/**
+	 * This method warns the user with an error message box
+	 */
+	public void warnUser(String message) {
+		MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR);
+		messageBox.setMessage(message);
+		messageBox.setText("Error");
+		messageBox.open();
+	}
 }

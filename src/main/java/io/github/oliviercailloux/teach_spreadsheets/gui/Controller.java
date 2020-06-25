@@ -29,7 +29,6 @@ import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment
 import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
-import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 import io.github.oliviercailloux.teach_spreadsheets.read.MultipleOdsPrefReader;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
@@ -93,6 +92,7 @@ public class Controller {
 		return new Listener() {
 			@Override
 			public void handleEvent(Event event) {
+				LOGGER.info("assignments valid : " + checkValidityAssignments(model.getChosenPreferences()));
 				LOGGER.info("Submitted assignments: " + createAssignments().toString());
 			}
 		};
@@ -342,7 +342,12 @@ public class Controller {
 		LOGGER.info("Display well closed");
 	}
 	
-	/*public boolean checkValidityAssignments(Set<CoursePrefElement> chosenPreferences) {
+	/**
+	 * checks the validity of a set of assignments. Shows a message box if the assignments are not valid.
+	 * @param chosenPreferences a set of assignments
+	 * @return true iff the number of groups assigned are not greater than the maximum number of groups for each course and course type
+	 */
+	private boolean checkValidityAssignments(Set<CoursePrefElement> chosenPreferences) {
 		com.google.common.collect.Table<CourseType, Course, Integer> numberAssignments = HashBasedTable.create();
 		
 		for (CoursePrefElement chosenPreference : chosenPreferences) {
@@ -367,12 +372,30 @@ public class Controller {
 				Course course = entry2.getKey();
 				int nbGroupsAssigned = entry2.getValue();
 				
-				if (nbGroupsAssigned > course.getCountGroups(courseType)) {
-					
+				if (courseType == CourseType.CM && nbGroupsAssigned > course.getCountGroupsCM()) {
+					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
+					return false;
+				}
+				if (courseType == CourseType.CMTD && nbGroupsAssigned > course.getCountGroupsCMTD()) {
+					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
+					return false;
+				}
+				if (courseType == CourseType.CMTP && nbGroupsAssigned > course.getCountGroupsCMTP()) {
+					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
+					return false;
+				}
+				if (courseType == CourseType.TD && nbGroupsAssigned > course.getCountGroupsTD()) {
+					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
+					return false;
+				}
+				if (courseType == CourseType.TP && nbGroupsAssigned > course.getCountGroupsTP()) {
+					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
+					return false;
 				}
 			}
 		}
-	}*/
+		return true;
+	}
 
 	/**
 	 * the only purpose of this main is to test the gui.This is not the main
