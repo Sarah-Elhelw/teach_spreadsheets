@@ -7,9 +7,10 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
+import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 
 /**
  * Model contains the preferences that are supposed to be shown in the UI.
@@ -31,48 +32,48 @@ public class Model {
 	/**
 	 * Adds CoursePrefElement objects to allPreferences
 	 * 
-	 * @param courseType the CourseType of the CoursePrefElement objects to be added
+	 * @param subCourseKind the SubCourseKind of the CoursePrefElement objects to be added
 	 * @param coursePref the CoursePref of the CoursePrefElement objects to be added
 	 * @param nbGroups   the number of elements to be added
 	 */
-	private void addToAllPreferences(CourseType courseType, CoursePref coursePref, int nbGroups) {
-		checkNotNull(courseType);
+	private void addToAllPreferences(SubCourseKind subCourseKind, CoursePref coursePref, int nbGroups) {
+		checkNotNull(subCourseKind);
 		checkNotNull(coursePref);
 		checkNotNull(allPreferences);
 
 		for (int i = 0; i < nbGroups; i++)
-			allPreferences.add(CoursePrefElement.newInstance(courseType, coursePref));
+			allPreferences.add(CoursePrefElement.newInstance(subCourseKind, coursePref));
 	}
 
 	/**
-	 * Populates allPreferences from a CalcData instance
+	 * Populates allPreferences from a TeacherPrefs instance
 	 * 
-	 * @param calcData
+	 * @param teacherPrefs
 	 */
-	private void setData(CalcData calcData) {
-		checkNotNull(calcData);
+	private void setData(TeacherPrefs teacherPrefs) {
+		checkNotNull(teacherPrefs);
 		checkNotNull(allPreferences);
 
-		ImmutableSet<CoursePref> coursePrefs = calcData.getCoursePrefs();
+		ImmutableSet<CoursePref> coursePrefs = teacherPrefs.getCoursePrefs();
 		for (CoursePref coursePref : coursePrefs) {
-			addToAllPreferences(CourseType.CM, coursePref, coursePref.getPrefNbGroupsCM());
-			addToAllPreferences(CourseType.TD, coursePref, coursePref.getPrefNbGroupsTD());
-			addToAllPreferences(CourseType.TP, coursePref, coursePref.getPrefNbGroupsTP());
-			addToAllPreferences(CourseType.CMTD, coursePref, coursePref.getPrefNbGroupsCMTD());
-			addToAllPreferences(CourseType.CMTP, coursePref, coursePref.getPrefNbGroupsCMTP());
+			addToAllPreferences(SubCourseKind.CM, coursePref, coursePref.getPrefNbGroupsCM());
+			addToAllPreferences(SubCourseKind.TD, coursePref, coursePref.getPrefNbGroupsTD());
+			addToAllPreferences(SubCourseKind.TP, coursePref, coursePref.getPrefNbGroupsTP());
+			addToAllPreferences(SubCourseKind.CMTD, coursePref, coursePref.getPrefNbGroupsCMTD());
+			addToAllPreferences(SubCourseKind.CMTP, coursePref, coursePref.getPrefNbGroupsCMTP());
 		}
 	}
 
 	/**
-	 * Populates allPreferences from a set of CalcData instance
+	 * Populates allPreferences from a set of TeacherPrefs instance
 	 * 
-	 * @param calcData
+	 * @param teacherPrefsSet
 	 */
-	public void setDataFromSet(Set<CalcData> calcDataSet) {
-		checkNotNull(calcDataSet);
+	public void setDataFromSet(Set<TeacherPrefs> teacherPrefsSet) {
+		checkNotNull(teacherPrefsSet);
 		checkNotNull(allPreferences);
-		for (CalcData calcData : calcDataSet) {
-			setData(calcData);
+		for (TeacherPrefs teacherPrefs : teacherPrefsSet) {
+			setData(teacherPrefs);
 		}
 	}
 

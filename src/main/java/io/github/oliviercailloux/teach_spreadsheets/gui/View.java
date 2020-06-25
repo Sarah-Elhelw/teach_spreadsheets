@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
+import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 
 /**
  * The View class creates the shell and manages it. Some of the code in this
@@ -142,15 +143,15 @@ public class View {
 	 * 
 	 * @param nbGroups   the number of groups for this course
 	 * @param courseName the name of the course
-	 * @param courseType the type of the course : CM, TD, TP, CMTD or CMTP
+	 * @param subCourseKind the type of the course : CM, TD, TP, CMTD or CMTP
 	 */
-	private void addCourseToCoursesTable(int nbGroups, String courseName, CourseType courseType) {
+	private void addCourseToCoursesTable(int nbGroups, String courseName, SubCourseKind subCourseKind) {
 		checkNotNull(courseName);
-		checkNotNull(courseType);
+		checkNotNull(subCourseKind);
 
 		if (nbGroups != 0) {
 			TableItem tableItem = new TableItem(coursesTable, SWT.NONE);
-			tableItem.setText(new String[] { courseName, courseType.name(), String.valueOf(nbGroups) });
+			tableItem.setText(new String[] { courseName, subCourseKind.name(), String.valueOf(nbGroups) });
 		}
 	}
 
@@ -163,11 +164,11 @@ public class View {
 		checkNotNull(courses);
 
 		for (Course course : courses) {
-			addCourseToCoursesTable(course.getCountGroupsCM(), course.getName(), CourseType.CM);
-			addCourseToCoursesTable(course.getCountGroupsTD(), course.getName(), CourseType.TD);
-			addCourseToCoursesTable(course.getCountGroupsTP(), course.getName(), CourseType.TP);
-			addCourseToCoursesTable(course.getCountGroupsCMTD(), course.getName(), CourseType.CMTD);
-			addCourseToCoursesTable(course.getCountGroupsCMTP(), course.getName(), CourseType.CMTP);
+			addCourseToCoursesTable(course.getCountGroupsCM(), course.getName(), SubCourseKind.CM);
+			addCourseToCoursesTable(course.getCountGroupsTD(), course.getName(), SubCourseKind.TD);
+			addCourseToCoursesTable(course.getCountGroupsTP(), course.getName(), SubCourseKind.TP);
+			addCourseToCoursesTable(course.getCountGroupsCMTD(), course.getName(), SubCourseKind.CMTD);
+			addCourseToCoursesTable(course.getCountGroupsCMTP(), course.getName(), SubCourseKind.CMTP);
 		}
 	}
 

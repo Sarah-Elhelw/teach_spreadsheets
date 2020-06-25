@@ -26,9 +26,10 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
-import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
+import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 import io.github.oliviercailloux.teach_spreadsheets.read.MultipleOdsPrefReader;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
@@ -125,8 +126,8 @@ public class Controller {
 	private void setModelData() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("multipleOdsFolder");
 		try (InputStream stream = resourceUrl.openStream()) {
-			Set<CalcData> calcDatas = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()));
-			model.setDataFromSet(calcDatas);
+			Set<TeacherPrefs> teacherPrefsSet = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI())).getTeacherPrefsSet();
+			model.setDataFromSet(teacherPrefsSet);
 		}
 	}
 
@@ -145,7 +146,7 @@ public class Controller {
 		for (CoursePrefElement coursePrefElement : chosenPreferences) {
 
 			Teacher teacher = coursePrefElement.getCoursePref().getTeacher();
-			String courseType = coursePrefElement.getCourseType().name();
+			SubCourseKind subCourseKind = coursePrefElement.getSubCourseKind();
 			Course course = coursePrefElement.getCoursePref().getCourse();
 
 			if (!teacherAssignmentMapTable.contains(teacher, course)) {
@@ -156,12 +157,12 @@ public class Controller {
 				assignmentBuilder.setCountGroupsTD(0);
 				assignmentBuilder.setCountGroupsTP(0);
 
-				assignGroup(assignmentBuilder, courseType);
+				assignGroup(assignmentBuilder, subCourseKind);
 
 				teacherAssignmentMapTable.put(teacher, course, assignmentBuilder);
 			} else {
 				TeacherAssignment.Builder assignmentBuilder = teacherAssignmentMapTable.get(teacher, course);
-				assignGroup(assignmentBuilder, courseType);
+				assignGroup(assignmentBuilder, subCourseKind);
 			}
 
 		}
@@ -179,24 +180,24 @@ public class Controller {
 	 * @param teacherAssignmentBuilder
 	 * @param choiceGroup
 	 */
-	private void assignGroup(TeacherAssignment.Builder teacherAssignmentBuilder, String choiceGroup) {
+	private void assignGroup(TeacherAssignment.Builder teacherAssignmentBuilder, SubCourseKind choiceGroup) {
 		checkNotNull(teacherAssignmentBuilder);
 		checkNotNull(choiceGroup);
 
 		switch (choiceGroup) {
-		case "CM":
+		case CM:
 			teacherAssignmentBuilder.setCountGroupsCM((teacherAssignmentBuilder.getCountGroupsCM() + 1));
 			break;
-		case "CMTD":
+		case CMTD:
 			teacherAssignmentBuilder.setCountGroupsCMTD((teacherAssignmentBuilder.getCountGroupsCMTD() + 1));
 			break;
-		case "TD":
+		case TD:
 			teacherAssignmentBuilder.setCountGroupsTD((teacherAssignmentBuilder.getCountGroupsTD() + 1));
 			break;
-		case "CMTP":
+		case CMTP:
 			teacherAssignmentBuilder.setCountGroupsCMTP((teacherAssignmentBuilder.getCountGroupsCMTP() + 1));
 			break;
-		case "TP":
+		case TP:
 			teacherAssignmentBuilder.setCountGroupsTP((teacherAssignmentBuilder.getCountGroupsTP() + 1));
 			break;
 		default:
@@ -238,24 +239,24 @@ public class Controller {
 
 		String teacherName = teacher.getLastName() + " " + teacher.getFirstName();
 		String courseName = course.getName();
-		String groupType = coursePrefElement.getCourseType().name();
+		SubCourseKind groupType = coursePrefElement.getSubCourseKind();
 
 		String choice = "";
 
 		switch (groupType) {
-		case "CM":
+		case CM:
 			choice = coursePref.getPrefCM().name();
 			break;
-		case "TD":
+		case TD:
 			choice = coursePref.getPrefTD().name();
 			break;
-		case "CMTD":
+		case CMTD:
 			choice = coursePref.getPrefCMTD().name();
 			break;
-		case "TP":
+		case TP:
 			choice = coursePref.getPrefTP().name();
 			break;
-		case "CMTP":
+		case CMTP:
 			choice = coursePref.getPrefCMTP().name();
 			break;
 		default:
@@ -263,7 +264,7 @@ public class Controller {
 
 		strings.add(teacherName);
 		strings.add(courseName);
-		strings.add(groupType);
+		strings.add(groupType.name());
 		strings.add(choice);
 
 		return strings.toArray(new String[0]);
