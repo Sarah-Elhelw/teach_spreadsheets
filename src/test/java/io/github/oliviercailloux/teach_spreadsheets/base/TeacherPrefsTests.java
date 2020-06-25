@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.ImmutableSet;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
+import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
-public class CalcDataTests {
+public class TeacherPrefsTests {
 
 	@Test
 	void testNewInstanceWithSameCoursesNames() {
@@ -31,7 +31,7 @@ public class CalcDataTests {
 		ImmutableSet<CoursePref> coursePrefs = ImmutableSet.copyOf(new CoursePref[] { coursePref1, coursePref2 });
 
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			CalcData.newInstance(coursePrefs, teacher);
+			TeacherPrefs.newInstance(coursePrefs, teacher);
 		});
 		assertEquals("You can't have twice the preferences of a course.", exception.getMessage());
 
@@ -50,10 +50,10 @@ public class CalcDataTests {
 
 		ImmutableSet<CoursePref> coursePrefs = ImmutableSet.of(coursePref1);
 
-		CalcData calcData = CalcData.newInstance(coursePrefs, teacher);
+		TeacherPrefs teacherPrefs = TeacherPrefs.newInstance(coursePrefs, teacher);
 
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			calcData.getCoursePref("Algèbre");
+			teacherPrefs.getCoursePref("Algèbre");
 		});
 		assertEquals("The name given in parameter does not match any course.", exception.getMessage());
 

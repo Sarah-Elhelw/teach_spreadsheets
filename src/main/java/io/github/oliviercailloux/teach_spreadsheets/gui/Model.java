@@ -7,7 +7,7 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
+import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
@@ -45,15 +45,15 @@ public class Model {
 	}
 
 	/**
-	 * Populates allPreferences from a CalcData instance
+	 * Populates allPreferences from a TeacherPrefs instance
 	 * 
-	 * @param calcData
+	 * @param teacherPrefs
 	 */
-	private void setData(CalcData calcData) {
-		checkNotNull(calcData);
+	private void setData(TeacherPrefs teacherPrefs) {
+		checkNotNull(teacherPrefs);
 		checkNotNull(allPreferences);
 
-		ImmutableSet<CoursePref> coursePrefs = calcData.getCoursePrefs();
+		ImmutableSet<CoursePref> coursePrefs = teacherPrefs.getCoursePrefs();
 		for (CoursePref coursePref : coursePrefs) {
 			addToAllPreferences(SubCourseKind.CM, coursePref, coursePref.getPrefNbGroupsCM());
 			addToAllPreferences(SubCourseKind.TD, coursePref, coursePref.getPrefNbGroupsTD());
@@ -64,15 +64,15 @@ public class Model {
 	}
 
 	/**
-	 * Populates allPreferences from a set of CalcData instance
+	 * Populates allPreferences from a set of TeacherPrefs instance
 	 * 
-	 * @param calcData
+	 * @param teacherPrefsSet
 	 */
-	public void setDataFromSet(Set<CalcData> calcDataSet) {
-		checkNotNull(calcDataSet);
+	public void setDataFromSet(Set<TeacherPrefs> teacherPrefsSet) {
+		checkNotNull(teacherPrefsSet);
 		checkNotNull(allPreferences);
-		for (CalcData calcData : calcDataSet) {
-			setData(calcData);
+		for (TeacherPrefs teacherPrefs : teacherPrefsSet) {
+			setData(teacherPrefs);
 		}
 	}
 
