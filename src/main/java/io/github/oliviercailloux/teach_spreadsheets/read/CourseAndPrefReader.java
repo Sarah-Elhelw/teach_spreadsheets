@@ -14,6 +14,7 @@ import static com.google.common.base.Preconditions.checkState;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
 
 /**
@@ -23,11 +24,6 @@ import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
  *
  */
 public class CourseAndPrefReader {
-
-	private final static String COURSETD = "CMTD";
-	private final static String COURSETP = "CMTP";
-	private final static String TD = "TD";
-	private final static String TP = "TP";
 
 	private final static int FIRST_COURSE_S1_COL = 1;
 	private final static int FIRST_COURSE_S1_ROW = 3;
@@ -112,16 +108,16 @@ public class CourseAndPrefReader {
 			for (int k = 0; k < cellData.length; k++) {
 				if (k < cellData.length - 1 && StringUtils.isNumeric(cellData[k])) {
 					value = Integer.parseInt(cellData[k]);
-					if (cellData[k + 1].equals("CMTD")) {
+					if (cellData[k + 1].equals(SubCourseKind.CMTD.name())) {
 						prefBuilder.setPrefNbGroupsCMTD(value);
 					}
-					if (cellData[k + 1].equals("CMTP")) {
+					if (cellData[k + 1].equals(SubCourseKind.CMTP.name())) {
 						prefBuilder.setPrefNbGroupsCMTP(value);
 					}
-					if (cellData[k + 1].equals("TD")) {
+					if (cellData[k + 1].equals(SubCourseKind.TD.name())) {
 						prefBuilder.setPrefNbGroupsTD(value);
 					}
-					if (cellData[k + 1].equals("TP")) {
+					if (cellData[k + 1].equals(SubCourseKind.TP.name())) {
 						prefBuilder.setPrefNbGroupsTP(value);
 					}
 				}
@@ -194,10 +190,10 @@ public class CourseAndPrefReader {
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
-			if (hourStr.contains(COURSETD)) {
+			if (hourStr.contains(SubCourseKind.CMTD.name())) {
 				courseBuilder.setNbMinutesCMTD(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagCMTD = true;
-			} else if (hourStr.contains(TD)) {
+			} else if (hourStr.contains(SubCourseKind.TD.name())) {
 				courseBuilder.setNbMinutesTD(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagTD = true;
 			}
@@ -213,10 +209,10 @@ public class CourseAndPrefReader {
 		} else {
 			String hourStr = cellText.replaceAll(",", ".");
 			String[] hourTab = hourStr.split("h");
-			if (hourStr.contains(COURSETP)) {
+			if (hourStr.contains(SubCourseKind.CMTP.name())) {
 				courseBuilder.setNbMinutesCMTP(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagCMTP = true;
-			} else if (hourStr.contains(TP)) {
+			} else if (hourStr.contains(SubCourseKind.TP.name())) {
 				courseBuilder.setNbMinutesTP(ReaderLib.hoursToMinutes(hourTab[0]));
 				flagTP = true;
 			}
@@ -241,17 +237,17 @@ public class CourseAndPrefReader {
 			for (int k = 0; k < cellData.length; k++) {
 				if (k < cellData.length - 1 && StringUtils.isNumeric(cellData[k])) {
 					value = Integer.parseInt(cellData[k]);
-					if (cellData[k + 1].equals("CMTD")) {
+					if (cellData[k + 1].equals(SubCourseKind.CMTD.name())) {
 						courseBuilder.setCountGroupsCMTD(value);
 					}
-					if (cellData[k + 1].equals("CMTP")) {
+					if (cellData[k + 1].equals(SubCourseKind.CMTP.name())) {
 						courseBuilder.setCountGroupsCMTP(value);
 					}
-					if (cellData[k + 1].equals("TD")) {
+					if (cellData[k + 1].equals(SubCourseKind.TD.name())) {
 						courseBuilder.setCountGroupsTD(value);
 					}
-					if (cellData[k + 1].equals("TP")) {
-						courseBuilder.setCountGroupsTD(value);
+					if (cellData[k + 1].equals(SubCourseKind.TP.name())) {
+						courseBuilder.setCountGroupsTP(value);
 					}
 				}
 			}

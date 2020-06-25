@@ -11,30 +11,45 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
+import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedData;
+import io.github.oliviercailloux.teach_spreadsheets.base.Course;
+import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 
 /**
- * This class contains the function that enables the reading of multiple Ods Pref files.
+ * This class contains the function that enables the reading of multiple Ods
+ * Pref files.
  */
 public class MultipleOdsPrefReader {
+
+	private static int reading = 0;
+
 	/**
 	 * Reads the Ods Pref files from the path given in the parameter.
-	 * @param pathToFolder the path to the folder where all the Ods files are.This path should not be null.
-	 * @return a set containing all the CalcDatas from all the read files.
+	 * 
+	 * @param pathToFolder the path to the folder where all the Ods files are.This
+	 *                     path should not be null.
+	 * @return an AggregatedData containing all the TeacherPrefs from all the read
+	 *         files.
 	 * @throws IOException, Exception
 	 */
-	public static Set<CalcData> readFilesFromFolder(Path pathToFolder) throws IOException, Exception {
+	public static AggregatedData readFilesFromFolder(Path pathToFolder) throws IOException, Exception {
 		checkNotNull(pathToFolder);
-		Set<CalcData> calcDataSet = new LinkedHashSet<>();
+		Set<TeacherPrefs> teacherPrefsSet = new LinkedHashSet<>();
+		Set<Course> courses = new LinkedHashSet<>();
 		try (Stream<Path> walk = Files.walk(pathToFolder)) {
 			Set<Path> result = walk.filter(f -> f.toString().endsWith(".ods")).collect(Collectors.toSet());
 			for (Path filePath : result) {
 				try (InputStream fileStream = Files.newInputStream(filePath)) {
-					CalcData calcData = CalcData.getData(fileStream);
-					calcDataSet.add(calcData);
+					TeacherPrefs teacherPrefs = TeacherPrefs.fromOds(fileStream);
+					reading++;
+					if (reading == 1)
+						courses = teacherPrefs.getCourses();
+					teacherPrefsSet.add(teacherPrefs);
 				}
 			}
 		}
-		return calcDataSet;
+		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance(courses);
+		aggregatedDataBuilder.addTeacherPrefsSet(teacherPrefsSet);
+		return aggregatedDataBuilder.build();
 	}
 }

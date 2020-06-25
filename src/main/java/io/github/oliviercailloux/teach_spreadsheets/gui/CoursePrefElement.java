@@ -3,6 +3,7 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 
 /**
  * Represents the assignment of one group of CM, TD, CMTP, CMTD or TP for a
@@ -10,25 +11,25 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
  * GUI
  */
 public class CoursePrefElement {
-	private final CourseType courseType;
+	private final SubCourseKind subCourseKind;
 	private final CoursePref coursePref;
 
-	private CoursePrefElement(CourseType courseType, CoursePref coursePref) {
-		checkNotNull(courseType);
+	private CoursePrefElement(SubCourseKind subCourseKind, CoursePref coursePref) {
+		checkNotNull(subCourseKind);
 		checkNotNull(coursePref);
 		this.coursePref = coursePref;
-		this.courseType = courseType;
+		this.subCourseKind = subCourseKind;
 	}
 
-	public static CoursePrefElement newInstance(CourseType courseType, CoursePref coursePref) {
-		return new CoursePrefElement(courseType, coursePref);
+	public static CoursePrefElement newInstance(SubCourseKind subCourseKind, CoursePref coursePref) {
+		return new CoursePrefElement(subCourseKind, coursePref);
 	}
 
 	public CoursePref getCoursePref() {
 		return coursePref;
 	}
 
-	public CourseType getCourseType() {
-		return courseType;
+	public SubCourseKind getSubCourseKind() {
+		return subCourseKind;
 	}
 }
