@@ -137,12 +137,12 @@ public class AggregatedPrefs {
 				 * The following line builds a set whose real type is mutable. courses attribute
 				 * remains intact.
 				 */
-				Set<Course> courses = new LinkedHashSet<>(this.courses);
+				Set<Course> coursesLeft = new LinkedHashSet<>(this.courses);
 				Set<Course> coursesInCoursePrefs = coursePrefs.stream().map(CoursePref::getCourse)
 						.collect(Collectors.toSet());
-				courses.removeAll(coursesInCoursePrefs);
+				coursesLeft.removeAll(coursesInCoursePrefs);
 
-				for (Course course : courses) {
+				for (Course course : coursesLeft) {
 					CoursePref coursePref = CoursePref.Builder.newInstance(course, teacher).build();
 					coursePrefs.add(coursePref);
 				}
