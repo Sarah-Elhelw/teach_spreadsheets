@@ -435,8 +435,8 @@ public class Controller {
 	 * 
 	 * @param teacherPrefs   a Set of teacherPrefs containing the the data about the
 	 *                    teachers, courses and preferences.
-	 * @param courses     the courses corresponding to calcDatas
-	 * @param CoursePrefs the course preferences corresponding to calcDatas
+	 * @param courses     the courses corresponding to TeacherPrefs
+	 * @param CoursePrefs the course preferences corresponding to TeacherPrefs
 	 */
 	public static void initializeAndLaunchGui(Set<TeacherPrefs> teacherPrefs, Set<Course> courses, Set<CoursePref> CoursePrefs,
 			Path outputFolderPath) {
