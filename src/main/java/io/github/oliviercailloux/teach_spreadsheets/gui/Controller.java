@@ -55,7 +55,6 @@ public class Controller {
 	private Controller() {
 	}
 
-
 	/**
 	 * Creates a new listener for a preferences Table in the GUI.
 	 * 
@@ -64,7 +63,7 @@ public class Controller {
 	 * @return a listener that retrieves the table item that has been clicked from
 	 *         source and calls callbackListener
 	 */
-	
+
 	private Listener createListenerPreferences(Table source) {
 		checkNotNull(source);
 		checkNotNull(view);
@@ -213,7 +212,7 @@ public class Controller {
 	 */
 	private List<String[]> getDataForTableItems(Set<CoursePrefElement> coursePrefElements) {
 		checkNotNull(coursePrefElements);
-		
+
 		ArrayList<String[]> stringsToShow = new ArrayList<>();
 
 		for (CoursePrefElement coursePrefElement : coursePrefElements) {
@@ -326,7 +325,7 @@ public class Controller {
 			updateSet(texts, model.getChosenPreferences(), model.getAllPreferences());
 		}
 	}
-	
+
 	/**
 	 * Shows the gui.
 	 */
@@ -341,37 +340,38 @@ public class Controller {
 		display.dispose();
 		LOGGER.info("Display well closed");
 	}
-	
+
 	/**
-	 * checks the validity of a set of assignments. Shows a message box if the assignments are not valid.
+	 * checks the validity of a set of assignments. Shows a message box if the
+	 * assignments are not valid.
+	 * 
 	 * @param chosenPreferences a set of assignments
-	 * @return true iff the number of groups assigned are not greater than the maximum number of groups for each course and course type
+	 * @return true iff the number of groups assigned are not greater than the
+	 *         maximum number of groups for each course and course type
 	 */
 	private boolean checkValidityAssignments(Set<CoursePrefElement> chosenPreferences) {
 		com.google.common.collect.Table<CourseType, Course, Integer> numberAssignments = HashBasedTable.create();
-		
+
 		for (CoursePrefElement chosenPreference : chosenPreferences) {
 			CourseType courseType = chosenPreference.getCourseType();
 			Course course = chosenPreference.getCoursePref().getCourse();
-			
+
 			if (!numberAssignments.contains(courseType, course)) {
 				numberAssignments.put(courseType, course, 1);
-			}
-			else {
+			} else {
 				int oldNumberAssignments = numberAssignments.get(courseType, course);
 				numberAssignments.put(courseType, course, oldNumberAssignments + 1);
 			}
 		}
-		
-		
+
 		Map<CourseType, Map<Course, Integer>> map = numberAssignments.rowMap();
 		for (Map.Entry<CourseType, Map<Course, Integer>> entry1 : map.entrySet()) {
 			CourseType courseType = entry1.getKey();
-			
+
 			for (Map.Entry<Course, Integer> entry2 : entry1.getValue().entrySet()) {
 				Course course = entry2.getKey();
 				int nbGroupsAssigned = entry2.getValue();
-				
+
 				if (courseType == CourseType.CM && nbGroupsAssigned > course.getCountGroupsCM()) {
 					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
 					return false;
@@ -409,17 +409,18 @@ public class Controller {
 		Button submitButton = controller.view.getSubmitButton();
 
 		controller.setModelData();
-		List<String[]> stringsToShowAllPreferences = controller.getDataForTableItems(controller.model.getAllPreferences());
+		List<String[]> stringsToShowAllPreferences = controller
+				.getDataForTableItems(controller.model.getAllPreferences());
 		controller.view.populateCourses(controller.model.getCourses());
 		controller.view.populateAllPreferences(stringsToShowAllPreferences);
 
-		
-		allPreferencesTable.addListener(SWT.MouseDoubleClick, controller.createListenerPreferences(allPreferencesTable));
-		chosenPreferencesTable.addListener(SWT.MouseDoubleClick, controller.createListenerPreferences(chosenPreferencesTable));
+		allPreferencesTable.addListener(SWT.MouseDoubleClick,
+				controller.createListenerPreferences(allPreferencesTable));
+		chosenPreferencesTable.addListener(SWT.MouseDoubleClick,
+				controller.createListenerPreferences(chosenPreferencesTable));
 		submitButton.addListener(SWT.MouseDown, controller.createListenerSubmitButton());
-		
+
 		controller.show(controller.view.getShell(), controller.view.getDisplay());
 	}
-
 
 }

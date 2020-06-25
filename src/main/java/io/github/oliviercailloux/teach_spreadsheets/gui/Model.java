@@ -17,15 +17,16 @@ import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 public class Model {
 	private Set<CoursePrefElement> allPreferences;
 	private Set<CoursePrefElement> chosenPreferences;
-	
+
 	public static Model newInstance() {
 		Model model = new Model();
 		model.allPreferences = new HashSet<>();
 		model.chosenPreferences = new HashSet<>();
 		return model;
 	}
-	
-	private Model() {}
+
+	private Model() {
+	}
 
 	/**
 	 * Adds CoursePrefElement objects to allPreferences
@@ -82,18 +83,18 @@ public class Model {
 	public Set<CoursePrefElement> getChosenPreferences() {
 		return chosenPreferences;
 	}
-	
+
 	/**
 	 * @return all of the courses contained in allPreferences
 	 */
 	public Set<Course> getCourses() {
 		HashSet<Course> courses = new HashSet<>();
-		
+
 		for (CoursePrefElement coursePrefElement : allPreferences) {
 			Course course = coursePrefElement.getCoursePref().getCourse();
 			courses.add(course);
 		}
-		
+
 		return courses;
 	}
 }
