@@ -92,8 +92,9 @@ public class Controller {
 		return new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				checkValidityAssignments(model.getChosenPreferences());
-				LOGGER.info("Submitted assignments: " + createAssignments().toString());
+				if (checkValidityAssignments(model.getChosenPreferences())) {
+					LOGGER.info("Submitted assignments: " + createAssignments().toString());
+				}
 			}
 		};
 	}
