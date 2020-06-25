@@ -96,19 +96,6 @@ public class Controller {
 	}
 
 	/**
-	 * Populates Model data with the ods files
-	 * 
-	 * @throws Exception
-	 */
-	private void setModelData() throws Exception {
-		URL resourceUrl = PrefsInitializer.class.getResource("multipleOdsFolder");
-		try (InputStream stream = resourceUrl.openStream()) {
-			Set<CalcData> calcDatas = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()));
-			model.setDataFromSet(calcDatas);
-		}
-	}
-
-	/**
 	 * Deletes all the Ods files in the folder.
 	 * 
 	 * @param folderPath the folder containing the Ods files to be deleted
@@ -446,12 +433,12 @@ public class Controller {
 	/**
 	 * initializes and launches the gui.
 	 * 
-	 * @param calcDatas   a Set of CalcData containing the the data about the
+	 * @param teacherPrefs   a Set of teacherPrefs containing the the data about the
 	 *                    teachers, courses and preferences.
 	 * @param courses     the courses corresponding to calcDatas
 	 * @param CoursePrefs the course preferences corresponding to calcDatas
 	 */
-	public static void initializeAndLaunchGui(Set<CalcData> calcDatas, Set<Course> courses, Set<CoursePref> CoursePrefs,
+	public static void initializeAndLaunchGui(Set<TeacherPrefs> teacherPrefs, Set<Course> courses, Set<CoursePref> CoursePrefs,
 			Path outputFolderPath) {
 		/**
 		 * Gui management.
@@ -462,7 +449,7 @@ public class Controller {
 		Table chosenPreferencesTable = controller.view.getChosenPreferencesTable();
 		Button submitButton = controller.view.getSubmitButton();
 
-		controller.model.setDataFromSet(calcDatas);
+		controller.model.setDataFromSet(teacherPrefs);
 
 		List<String[]> stringsToShowAllPreferences = controller
 				.getDataForTableItems(controller.model.getAllPreferences());

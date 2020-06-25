@@ -12,9 +12,9 @@ import org.eclipse.swt.widgets.Table;
 import org.odftoolkit.simple.SpreadsheetDocument;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedData;
-import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
+import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.gui.Controller;
 import io.github.oliviercailloux.teach_spreadsheets.json.JsonSerializer;
 import io.github.oliviercailloux.teach_spreadsheets.read.MultipleOdsPrefReader;
@@ -31,15 +31,10 @@ public class App {
 		/**
 		 * Reading part.
 		 */
-		Set<CalcData> calcDatas = MultipleOdsPrefReader.readFilesFromFolder(inputFolderPath);
-		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance();
-		for (CalcData calcData : calcDatas) {
-			aggregatedDataBuilder.addCalcData(calcData);
-		}
+		AggregatedData aggregatedData = MultipleOdsPrefReader.readFilesFromFolder(inputFolderPath);
 		/**
 		 * Writing the Ods summary and the Json courses part.
 		 */
-		AggregatedData aggregatedData = aggregatedDataBuilder.build();
 		Set<Course> courses = aggregatedData.getCourses();
 		Set<CoursePref> CoursePrefs = new LinkedHashSet<>();
 		for (Course course : courses) {
@@ -57,7 +52,8 @@ public class App {
 
 		String coursesJson = JsonSerializer.serializeSet(courses);
 		Files.writeString(Path.of(outputFolderPath.toString() + "//" + "courses.json"), coursesJson);
-
-		Controller.initializeAndLaunchGui(calcDatas, courses, CoursePrefs, outputFolderPath);
+		
+		Set<TeacherPrefs> teacherPrefs= aggregatedData.getTeacherPrefsSet();
+		Controller.initializeAndLaunchGui(teacherPrefs, courses, CoursePrefs, outputFolderPath);
 	}
 }
