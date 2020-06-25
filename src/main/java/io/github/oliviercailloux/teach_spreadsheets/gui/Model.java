@@ -32,9 +32,11 @@ public class Model {
 	/**
 	 * Adds CoursePrefElement objects to allPreferences
 	 * 
-	 * @param subCourseKind the SubCourseKind of the CoursePrefElement objects to be added
-	 * @param coursePref the CoursePref of the CoursePrefElement objects to be added
-	 * @param nbGroups   the number of elements to be added
+	 * @param subCourseKind the SubCourseKind of the CoursePrefElement objects to be
+	 *                      added
+	 * @param coursePref    the CoursePref of the CoursePrefElement objects to be
+	 *                      added
+	 * @param nbGroups      the number of elements to be added
 	 */
 	private void addToAllPreferences(SubCourseKind subCourseKind, CoursePref coursePref, int nbGroups) {
 		checkNotNull(subCourseKind);

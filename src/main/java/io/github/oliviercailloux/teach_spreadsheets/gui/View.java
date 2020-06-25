@@ -141,8 +141,8 @@ public class View {
 	/**
 	 * Adds one course to "Courses" table
 	 * 
-	 * @param nbGroups   the number of groups for this course
-	 * @param courseName the name of the course
+	 * @param nbGroups      the number of groups for this course
+	 * @param courseName    the name of the course
 	 * @param subCourseKind the type of the course : CM, TD, TP, CMTD or CMTP
 	 */
 	private void addCourseToCoursesTable(int nbGroups, String courseName, SubCourseKind subCourseKind) {

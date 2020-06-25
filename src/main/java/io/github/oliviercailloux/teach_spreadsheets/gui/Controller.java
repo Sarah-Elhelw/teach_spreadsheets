@@ -92,7 +92,7 @@ public class Controller {
 		return new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				LOGGER.info("assignments valid : " + checkValidityAssignments(model.getChosenPreferences()));
+				checkValidityAssignments(model.getChosenPreferences());
 				LOGGER.info("Submitted assignments: " + createAssignments().toString());
 			}
 		};
@@ -126,7 +126,8 @@ public class Controller {
 	private void setModelData() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("multipleOdsFolder");
 		try (InputStream stream = resourceUrl.openStream()) {
-			Set<TeacherPrefs> teacherPrefsSet = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI())).getTeacherPrefsSet();
+			Set<TeacherPrefs> teacherPrefsSet = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()))
+					.getTeacherPrefsSet();
 			model.setDataFromSet(teacherPrefsSet);
 		}
 	}
@@ -351,46 +352,31 @@ public class Controller {
 	 *         maximum number of groups for each course and course type
 	 */
 	private boolean checkValidityAssignments(Set<CoursePrefElement> chosenPreferences) {
-		com.google.common.collect.Table<CourseType, Course, Integer> numberAssignments = HashBasedTable.create();
+		com.google.common.collect.Table<SubCourseKind, Course, Integer> numberAssignments = HashBasedTable.create();
 
 		for (CoursePrefElement chosenPreference : chosenPreferences) {
-			CourseType courseType = chosenPreference.getCourseType();
+			SubCourseKind SubCourseKind = chosenPreference.getSubCourseKind();
 			Course course = chosenPreference.getCoursePref().getCourse();
 
-			if (!numberAssignments.contains(courseType, course)) {
-				numberAssignments.put(courseType, course, 1);
+			if (!numberAssignments.contains(SubCourseKind, course)) {
+				numberAssignments.put(SubCourseKind, course, 1);
 			} else {
-				int oldNumberAssignments = numberAssignments.get(courseType, course);
-				numberAssignments.put(courseType, course, oldNumberAssignments + 1);
+				int oldNumberAssignments = numberAssignments.get(SubCourseKind, course);
+				numberAssignments.put(SubCourseKind, course, oldNumberAssignments + 1);
 			}
 		}
 
-		Map<CourseType, Map<Course, Integer>> map = numberAssignments.rowMap();
-		for (Map.Entry<CourseType, Map<Course, Integer>> entry1 : map.entrySet()) {
-			CourseType courseType = entry1.getKey();
+		Map<SubCourseKind, Map<Course, Integer>> map = numberAssignments.rowMap();
+		for (Map.Entry<SubCourseKind, Map<Course, Integer>> entry1 : map.entrySet()) {
+			SubCourseKind subCourseKind = entry1.getKey();
 
 			for (Map.Entry<Course, Integer> entry2 : entry1.getValue().entrySet()) {
 				Course course = entry2.getKey();
 				int nbGroupsAssigned = entry2.getValue();
 
-				if (courseType == CourseType.CM && nbGroupsAssigned > course.getCountGroupsCM()) {
-					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
-					return false;
-				}
-				if (courseType == CourseType.CMTD && nbGroupsAssigned > course.getCountGroupsCMTD()) {
-					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
-					return false;
-				}
-				if (courseType == CourseType.CMTP && nbGroupsAssigned > course.getCountGroupsCMTP()) {
-					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
-					return false;
-				}
-				if (courseType == CourseType.TD && nbGroupsAssigned > course.getCountGroupsTD()) {
-					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
-					return false;
-				}
-				if (courseType == CourseType.TP && nbGroupsAssigned > course.getCountGroupsTP()) {
-					view.warnUser("There are too much assignments for course " + courseType + " " + course.getName());
+				if (nbGroupsAssigned > course.getCountGroups(subCourseKind)) {
+					view.warnUser(
+							"There are too much assignments for course " + subCourseKind + " " + course.getName());
 					return false;
 				}
 			}
