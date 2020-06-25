@@ -52,8 +52,8 @@ public class App {
 
 		String coursesJson = JsonSerializer.serializeSet(courses);
 		Files.writeString(Path.of(outputFolderPath.toString() + "//" + "courses.json"), coursesJson);
-		
-		Set<TeacherPrefs> teacherPrefs= aggregatedData.getTeacherPrefsSet();
+
+		Set<TeacherPrefs> teacherPrefs = aggregatedData.getTeacherPrefsSet();
 		Controller.initializeAndLaunchGui(teacherPrefs, courses, CoursePrefs, outputFolderPath);
 	}
 }
