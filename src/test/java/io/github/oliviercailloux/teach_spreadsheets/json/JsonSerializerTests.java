@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.json.Json;
@@ -16,26 +15,19 @@ import javax.json.JsonReader;
 
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableSet;
-
-import io.github.oliviercailloux.teach_spreadsheets.base.CalcData;
+import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
-import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
-import io.github.oliviercailloux.teach_spreadsheets.read.CalcDataInitializerTests;
+import io.github.oliviercailloux.teach_spreadsheets.read.TeacherPrefsInitializerTests;
 
 public class JsonSerializerTests {
 	@Test
 	void testSerializeSet() throws Exception {
-		URL url = CalcDataInitializerTests.class.getResource("Saisie_des_voeux_format simple.ods");
+		URL url = TeacherPrefsInitializerTests.class.getResource("Saisie_des_voeux_format simple.ods");
 		if(url != null) {
 			try (InputStream odsStream = url.openStream()) {
-				CalcData calcData = CalcData.getData(odsStream);
+				TeacherPrefs teacherPrefs = TeacherPrefs.fromOds(odsStream);
 
-				ImmutableSet<CoursePref> coursePrefs = calcData.getCoursePrefs();
-				Set<Course> courses = new LinkedHashSet<>();
-				for (CoursePref coursePref : coursePrefs) {
-					courses.add(coursePref.getCourse());
-				}
+				Set<Course> courses = teacherPrefs.getCourses();
 
 				String serializedSet = JsonSerializer.serializeSet(courses);
 
