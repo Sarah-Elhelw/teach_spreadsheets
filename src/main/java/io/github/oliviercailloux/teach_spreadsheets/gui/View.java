@@ -202,6 +202,43 @@ public class View {
 		this.chosenPreferencesComposite.setLayoutData(chosenPrefData);
 		this.coursesComposite.setLayoutData(coursesData);
 	}
+	
+	/**
+	 * Creates a listener to sort the columns in preferences tables.
+	 * Inspired from https://stackoverflow.com/questions/11682138/how-can-i-sort-a-table-by-column-in-swt
+	 * @param table the preferences table (All preferences or Chosen preferences)
+	 * @param teacher the teacher column in table
+	 * @param course the course column in table
+	 * @param groupType the groupType column in table
+	 * @return
+	 */
+	private static Listener createListenerSortByColumn(Table table, TableColumn teacher, TableColumn course, TableColumn groupType) {
+		return new Listener() {
+			@Override
+			public void handleEvent(Event e) {
+				TableItem[] items = table.getItems();
+				Collator collator = Collator.getInstance(Locale.getDefault());
+				TableColumn column = (TableColumn) e.widget;
+				int index = (column == teacher ? 0 : (column == course ? 1 : (column == groupType ? 2 : 3)));
+				for (int i = 1; i < items.length; i++) {
+					String value1 = items[i].getText(index);
+					for (int j = 0; j < i; j++) {
+						String value2 = items[j].getText(index);
+						if (collator.compare(value1, value2) < 0) {
+							String[] values = { items[i].getText(0), items[i].getText(1), items[i].getText(2),
+									items[i].getText(3) };
+							items[i].dispose();
+							TableItem item = new TableItem(table, SWT.NONE, j);
+							item.setText(values);
+							items = table.getItems();
+							break;
+						}
+					}
+				}
+				table.setSortColumn(column);
+			}
+		};
+	}
 
 	/**
 	 * Sets a preference table composite parameters and creates the table for this
@@ -243,31 +280,7 @@ public class View {
 		TableColumn groupType = new TableColumn(table, SWT.NONE);
 		TableColumn choice = new TableColumn(table, SWT.NONE);
 
-		Listener sortListener = new Listener() {
-			@Override
-			public void handleEvent(Event e) {
-				TableItem[] items = table.getItems();
-				Collator collator = Collator.getInstance(Locale.getDefault());
-				TableColumn column = (TableColumn) e.widget;
-				int index = (column == teacher ? 0 : (column == course ? 1 : (column == groupType ? 2 : 3)));
-				for (int i = 1; i < items.length; i++) {
-					String value1 = items[i].getText(index);
-					for (int j = 0; j < i; j++) {
-						String value2 = items[j].getText(index);
-						if (collator.compare(value1, value2) < 0) {
-							String[] values = { items[i].getText(0), items[i].getText(1), items[i].getText(2),
-									items[i].getText(3) };
-							items[i].dispose();
-							TableItem item = new TableItem(table, SWT.NONE, j);
-							item.setText(values);
-							items = table.getItems();
-							break;
-						}
-					}
-				}
-				table.setSortColumn(column);
-			}
-		};
+		Listener sortListener = createListenerSortByColumn(table, teacher, course, groupType);
 		teacher.addListener(SWT.Selection, sortListener);
 		course.addListener(SWT.Selection, sortListener);
 		groupType.addListener(SWT.Selection, sortListener);
