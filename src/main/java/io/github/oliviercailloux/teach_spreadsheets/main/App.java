@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Table;
 import org.odftoolkit.simple.SpreadsheetDocument;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedData;
+import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
@@ -23,6 +23,8 @@ import io.github.oliviercailloux.teach_spreadsheets.write.OdsSummarizer;
 public class App {
 	static private Path outputFolderPath = Path.of("output");
 	static private Path inputFolderPath = Path.of("input");
+	static private Path odsPrefSummaryDocumentPath=outputFolderPath.resolve(Path.of("odsPrefSummary.ods"));
+	static private Path coursesJsonPath=outputFolderPath.resolve("courses.json");
 
 	/**
 	 * The main that connect all the components of this program.
@@ -31,14 +33,14 @@ public class App {
 		/**
 		 * Reading part.
 		 */
-		AggregatedData aggregatedData = MultipleOdsPrefReader.readFilesFromFolder(inputFolderPath);
+		AggregatedPrefs aggregatedPrefs = MultipleOdsPrefReader.readFilesFromFolder(inputFolderPath);
 		/**
 		 * Writing the Ods summary and the Json courses part.
 		 */
-		Set<Course> courses = aggregatedData.getCourses();
+		Set<Course> courses = aggregatedPrefs.getCourses();
 		Set<CoursePref> CoursePrefs = new LinkedHashSet<>();
 		for (Course course : courses) {
-			CoursePrefs.addAll(aggregatedData.getCoursePrefs(course));
+			CoursePrefs.addAll(aggregatedPrefs.getCoursePrefs(course));
 		}
 		OdsSummarizer odsPrefSummary = OdsSummarizer.newInstance(courses);
 		odsPrefSummary.addPrefs(CoursePrefs);
@@ -47,13 +49,13 @@ public class App {
 			if (!Files.exists(outputFolderPath)) {
 				Files.createDirectory(outputFolderPath);
 			}
-			odsPrefSummaryDocument.save(outputFolderPath.toString() + "//" + "odsPrefSummary.ods");
+			odsPrefSummaryDocument.save(odsPrefSummaryDocumentPath.toString());
 		}
 
 		String coursesJson = JsonSerializer.serializeSet(courses);
-		Files.writeString(Path.of(outputFolderPath.toString() + "//" + "courses.json"), coursesJson);
+		Files.writeString(coursesJsonPath, coursesJson);
 
-		Set<TeacherPrefs> teacherPrefs = aggregatedData.getTeacherPrefsSet();
+		Set<TeacherPrefs> teacherPrefs = aggregatedPrefs.getTeacherPrefsSet();
 		Controller.initializeAndLaunchGui(teacherPrefs, courses, CoursePrefs, outputFolderPath);
 	}
 }

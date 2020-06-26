@@ -16,11 +16,11 @@ import static com.google.common.base.Preconditions.checkArgument;
  * several input vows files.
  *
  */
-public class AggregatedData {
+public class AggregatedPrefs {
 	private ImmutableSet<TeacherPrefs> TeacherPrefsSet;
 	private ImmutableSet<Course> courses;
 
-	private AggregatedData(Set<TeacherPrefs> teacherPrefsSet, Set<Course> courses) {
+	private AggregatedPrefs(Set<TeacherPrefs> teacherPrefsSet, Set<Course> courses) {
 		this.TeacherPrefsSet = ImmutableSet.copyOf(teacherPrefsSet);
 		this.courses = ImmutableSet.copyOf(courses);
 	}
@@ -45,8 +45,8 @@ public class AggregatedData {
 		}
 
 		/**
-		 * This is the static factory method of the class AggregatedData.Builder. To
-		 * build an AggregatedData, possibly from only CoursePrefs, a set of Course is
+		 * This is the static factory method of the class AggregatedPrefs.Builder. To
+		 * build an AggregatedPrefs, possibly from only CoursePrefs, a set of Course is
 		 * necessary to serve as a reference.
 		 * 
 		 */
@@ -55,9 +55,9 @@ public class AggregatedData {
 			return new Builder(courses);
 		}
 
-		public AggregatedData build() {
+		public AggregatedPrefs build() {
 			mapToTeacherPrefs();
-			return new AggregatedData(tempTeacherPrefsSet, courses);
+			return new AggregatedPrefs(tempTeacherPrefsSet, courses);
 		}
 
 		/**
@@ -99,7 +99,7 @@ public class AggregatedData {
 		}
 
 		/**
-		 * This method allows to build an AggregatedData by adding a set of CoursePref.
+		 * This method allows to build an AggregatedPrefs by adding a set of CoursePref.
 		 * 
 		 * @param coursePrefs - the Set of coursePref to be added
 		 * 
@@ -126,7 +126,7 @@ public class AggregatedData {
 		/**
 		 * This method builds complete TeacherPrefs objects, using the CoursePrefs given
 		 * and stored in tempCoursePrefs, to complete tempTeacherPrefsSet the Set of
-		 * TeacherPrefs stored in the AggregatedData object.
+		 * TeacherPrefs stored in the AggregatedPrefs object.
 		 */
 		private void mapToTeacherPrefs() {
 			for (Map.Entry<Teacher, Set<CoursePref>> mapentry : tempCoursePrefs.entrySet()) {
@@ -137,12 +137,12 @@ public class AggregatedData {
 				 * The following line builds a set whose real type is mutable. courses attribute
 				 * remains intact.
 				 */
-				Set<Course> courses = new LinkedHashSet<>(this.courses);
+				Set<Course> coursesLeft = new LinkedHashSet<>(this.courses);
 				Set<Course> coursesInCoursePrefs = coursePrefs.stream().map(CoursePref::getCourse)
 						.collect(Collectors.toSet());
-				courses.removeAll(coursesInCoursePrefs);
+				coursesLeft.removeAll(coursesInCoursePrefs);
 
-				for (Course course : courses) {
+				for (Course course : coursesLeft) {
 					CoursePref coursePref = CoursePref.Builder.newInstance(course, teacher).build();
 					coursePrefs.add(coursePref);
 				}

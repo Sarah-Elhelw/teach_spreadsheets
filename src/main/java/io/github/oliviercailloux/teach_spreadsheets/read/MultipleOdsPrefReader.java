@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedData;
+import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 
@@ -28,11 +28,11 @@ public class MultipleOdsPrefReader {
 	 * 
 	 * @param pathToFolder the path to the folder where all the Ods files are.This
 	 *                     path should not be null.
-	 * @return an AggregatedData containing all the TeacherPrefs from all the read
+	 * @return an AggregatedPrefs containing all the TeacherPrefs from all the read
 	 *         files.
 	 * @throws IOException, Exception
 	 */
-	public static AggregatedData readFilesFromFolder(Path pathToFolder) throws IOException, Exception {
+	public static AggregatedPrefs readFilesFromFolder(Path pathToFolder) throws IOException, Exception {
 		checkNotNull(pathToFolder);
 		Set<TeacherPrefs> teacherPrefsSet = new LinkedHashSet<>();
 		Set<Course> courses = new LinkedHashSet<>();
@@ -48,8 +48,8 @@ public class MultipleOdsPrefReader {
 				}
 			}
 		}
-		AggregatedData.Builder aggregatedDataBuilder = AggregatedData.Builder.newInstance(courses);
-		aggregatedDataBuilder.addTeacherPrefsSet(teacherPrefsSet);
-		return aggregatedDataBuilder.build();
+		AggregatedPrefs.Builder aggregatedPrefsBuilder = AggregatedPrefs.Builder.newInstance(courses);
+		aggregatedPrefsBuilder.addTeacherPrefsSet(teacherPrefsSet);
+		return aggregatedPrefsBuilder.build();
 	}
 }

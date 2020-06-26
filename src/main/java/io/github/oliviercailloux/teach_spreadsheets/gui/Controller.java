@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.swt.SWT;
@@ -35,7 +36,6 @@ import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
-import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedData;
 import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
@@ -186,6 +186,11 @@ public class Controller {
 		return new Listener() {
 			@Override
 			public void handleEvent(Event event) {
+
+				view.resetColors();
+				if (checkValidityAssignments(model.getChosenPreferences())) {
+					LOGGER.info("Submitted assignments: " + createAssignments().toString());
+				}
 				createAssignmentsAndWriteToDisk(courses, CoursePrefs, outputFolderPath);
 			}
 		};
@@ -437,12 +442,57 @@ public class Controller {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * initializes and launches the gui.
 	 * 
 	 * @param teacherPrefs a Set of teacherPrefs containing the the data about the
 	 *                     teachers, courses and preferences.
 	 * @param courses      the courses corresponding to TeacherPrefs
 	 * @param CoursePrefs  the course preferences corresponding to TeacherPrefs
+=======
+	 * Checks the validity of a set of assignments. Triggers a function from View to colorize the incorrect assignments in red.
+	 * 
+	 * @param chosenPreferences a set of assignments
+	 * @return true iff all of the number of groups assigned are not greater than the
+	 *         maximum number of groups for each course and course type
+	 */
+	private boolean checkValidityAssignments(Set<CoursePrefElement> chosenPreferences) {
+		boolean isValid = true;
+		com.google.common.collect.Table<SubCourseKind, Course, Integer> numberAssignments = HashBasedTable.create();
+
+		for (CoursePrefElement chosenPreference : chosenPreferences) {
+			SubCourseKind SubCourseKind = chosenPreference.getSubCourseKind();
+			Course course = chosenPreference.getCoursePref().getCourse();
+
+			if (!numberAssignments.contains(SubCourseKind, course)) {
+				numberAssignments.put(SubCourseKind, course, 1);
+			} else {
+				int oldNumberAssignments = numberAssignments.get(SubCourseKind, course);
+				numberAssignments.put(SubCourseKind, course, oldNumberAssignments + 1);
+			}
+		}
+		
+		Map<SubCourseKind, Map<Course, Integer>> map = numberAssignments.rowMap();
+		for (Map.Entry<SubCourseKind, Map<Course, Integer>> entry1 : map.entrySet()) {
+			SubCourseKind subCourseKind = entry1.getKey();
+
+			for (Map.Entry<Course, Integer> entry2 : entry1.getValue().entrySet()) {
+				Course course = entry2.getKey();
+				int nbGroupsAssigned = entry2.getValue();
+
+				if (nbGroupsAssigned > course.getCountGroups(subCourseKind)) {
+					view.colorizeChosenPreferences(course.getName(), subCourseKind.name());
+					isValid = false;
+				}
+			}
+		}
+		return isValid;
+	}
+
+	/**
+	 * the only purpose of this main is to test the gui.This is not the main
+	 * function of this program.
+>>>>>>> master
 	 */
 	public static void initializeAndLaunchGui(Set<TeacherPrefs> teacherPrefs, Set<Course> courses,
 			Set<CoursePref> CoursePrefs, Path outputFolderPath) {
@@ -466,6 +516,7 @@ public class Controller {
 				controller.createListenerPreferences(allPreferencesTable));
 		chosenPreferencesTable.addListener(SWT.MouseDoubleClick,
 				controller.createListenerPreferences(chosenPreferencesTable));
+
 		/**
 		 * The writing process of the Ods output files (global assignment and assignment
 		 * per teacher) are defined in the Listener of the submit button.
