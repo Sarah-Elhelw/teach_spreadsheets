@@ -64,3 +64,14 @@ Comment: The formatting of the documents generated was easy. However, it took me
 
 *** I will also make diverse corrections to different packages of the code to close the opened issues.
 
+
+* Ines :
+
+** I helped in the code for differents package with each groups
+** improved remarks of our teacher
+** tried to correct some issues
+** documentation (itx.adoc, readme, classes, etc..)
+** uml diagram with papyrus
+** "cleaned" the folder, and deleted the unless files
+** helped for the GUI, coded some methods in the controller
+
