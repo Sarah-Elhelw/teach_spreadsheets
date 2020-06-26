@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -19,7 +20,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -375,14 +375,28 @@ public class View {
 		buttonSubmit = new Button(submit, SWT.NONE);
 		buttonSubmit.setText("Submit");
 	}
+	
+	/**
+	 * Resets the colors of Chosen preferences table items to white
+	 */
+	public void resetColors() {
+		Color white = display.getSystemColor(SWT.COLOR_WHITE);
+		TableItem[] tableItems = chosenPreferencesTable.getItems();
+		for (int i = 0; i < tableItems.length; i++) {
+			tableItems[i].setBackground(white);
+		}
+	}
 
 	/**
-	 * This method warns the user with an error message box
+	 * This method colorizes table items from Chosen preferences that correspond to a particular course
 	 */
-	public void warnUser(String message) {
-		MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR);
-		messageBox.setMessage(message);
-		messageBox.setText("Error");
-		messageBox.open();
+	public void colorizeChosenPreferences(String courseName, String courseType) {
+		Color red = display.getSystemColor(SWT.COLOR_RED);
+		TableItem[] tableItems = chosenPreferencesTable.getItems();
+		for (int i = 0; i < tableItems.length; i++) {
+			if (tableItems[i].getText(1).equals(courseName) && tableItems[i].getText(2).equals(courseType)) {
+				tableItems[i].setBackground(red);
+			}
+		}
 	}
 }

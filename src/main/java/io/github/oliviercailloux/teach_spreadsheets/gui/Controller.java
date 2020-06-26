@@ -92,6 +92,7 @@ public class Controller {
 		return new Listener() {
 			@Override
 			public void handleEvent(Event event) {
+				view.resetColors();
 				if (checkValidityAssignments(model.getChosenPreferences())) {
 					LOGGER.info("Submitted assignments: " + createAssignments().toString());
 				}
@@ -345,14 +346,14 @@ public class Controller {
 	}
 
 	/**
-	 * checks the validity of a set of assignments. Shows a message box if the
-	 * assignments are not valid.
+	 * Checks the validity of a set of assignments. Triggers a function from View to colorize the incorrect assignments in red.
 	 * 
 	 * @param chosenPreferences a set of assignments
-	 * @return true iff the number of groups assigned are not greater than the
+	 * @return true iff all of the number of groups assigned are not greater than the
 	 *         maximum number of groups for each course and course type
 	 */
 	private boolean checkValidityAssignments(Set<CoursePrefElement> chosenPreferences) {
+		boolean isValid = true;
 		com.google.common.collect.Table<SubCourseKind, Course, Integer> numberAssignments = HashBasedTable.create();
 
 		for (CoursePrefElement chosenPreference : chosenPreferences) {
@@ -366,7 +367,7 @@ public class Controller {
 				numberAssignments.put(SubCourseKind, course, oldNumberAssignments + 1);
 			}
 		}
-
+		
 		Map<SubCourseKind, Map<Course, Integer>> map = numberAssignments.rowMap();
 		for (Map.Entry<SubCourseKind, Map<Course, Integer>> entry1 : map.entrySet()) {
 			SubCourseKind subCourseKind = entry1.getKey();
@@ -376,13 +377,12 @@ public class Controller {
 				int nbGroupsAssigned = entry2.getValue();
 
 				if (nbGroupsAssigned > course.getCountGroups(subCourseKind)) {
-					view.warnUser(
-							"There are too much assignments for course " + subCourseKind + " " + course.getName());
-					return false;
+					view.colorizeChosenPreferences(course.getName(), subCourseKind.name());
+					isValid = false;
 				}
 			}
 		}
-		return true;
+		return isValid;
 	}
 
 	/**
