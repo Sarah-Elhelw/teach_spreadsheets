@@ -23,8 +23,8 @@ import io.github.oliviercailloux.teach_spreadsheets.write.OdsSummarizer;
 public class App {
 	static private Path outputFolderPath = Path.of("output");
 	static private Path inputFolderPath = Path.of("input");
-	static private Path odsPrefSummaryDocumentPath=outputFolderPath.resolve(Path.of("odsPrefSummary.ods"));
-	static private Path coursesJsonPath=outputFolderPath.resolve("courses.json");
+	static private Path odsPrefSummaryDocumentPath = outputFolderPath.resolve(Path.of("odsPrefSummary.ods"));
+	static private Path coursesJsonPath = outputFolderPath.resolve("courses.json");
 
 	/**
 	 * The main that connect all the components of this program.

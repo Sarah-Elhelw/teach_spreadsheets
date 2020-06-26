@@ -442,8 +442,8 @@ public class Controller {
 
 	/**
 	 * @param chosenPreferences a set of assignments
-	 * @return true iff all of the number of groups assigned are not greater than the
-	 *         maximum number of groups for each course and course type
+	 * @return true iff all of the number of groups assigned are not greater than
+	 *         the maximum number of groups for each course and course type
 	 */
 	private boolean checkValidityAssignments(Set<CoursePrefElement> chosenPreferences) {
 		boolean isValid = true;
@@ -460,7 +460,7 @@ public class Controller {
 				numberAssignments.put(SubCourseKind, course, oldNumberAssignments + 1);
 			}
 		}
-		
+
 		Map<SubCourseKind, Map<Course, Integer>> map = numberAssignments.rowMap();
 		for (Map.Entry<SubCourseKind, Map<Course, Integer>> entry1 : map.entrySet()) {
 			SubCourseKind subCourseKind = entry1.getKey();
@@ -480,11 +480,14 @@ public class Controller {
 
 	/**
 	 * initializes and launches the gui.
+	 * 
 	 * @param teacherPrefs a Set of teacherPrefs containing the the data about the
 	 *                     teachers, courses and preferences.
 	 * @param courses      the courses corresponding to TeacherPrefs
 	 * @param CoursePrefs  the course preferences corresponding to TeacherPrefs
-	 * Checks the validity of a set of assignments. Triggers a function from View to colorize the incorrect assignments in red.
+	 *                     Checks the validity of a set of assignments. Triggers a
+	 *                     function from View to colorize the incorrect assignments
+	 *                     in red.
 	 * 
 	 */
 	public static void initializeAndLaunchGui(Set<TeacherPrefs> teacherPrefs, Set<Course> courses,
