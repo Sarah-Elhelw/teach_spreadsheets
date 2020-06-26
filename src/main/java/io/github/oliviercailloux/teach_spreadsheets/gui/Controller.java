@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.swt.SWT;
@@ -55,7 +56,6 @@ public class Controller {
 	private Controller() {
 	}
 
-
 	/**
 	 * Creates a new listener for a preferences Table in the GUI.
 	 * 
@@ -64,7 +64,7 @@ public class Controller {
 	 * @return a listener that retrieves the table item that has been clicked from
 	 *         source and calls callbackListener
 	 */
-	
+
 	private Listener createListenerPreferences(Table source) {
 		checkNotNull(source);
 		checkNotNull(view);
@@ -92,7 +92,10 @@ public class Controller {
 		return new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				LOGGER.info("Submitted assignments: " + createAssignments().toString());
+				view.resetColors();
+				if (checkValidityAssignments(model.getChosenPreferences())) {
+					LOGGER.info("Submitted assignments: " + createAssignments().toString());
+				}
 			}
 		};
 	}
@@ -125,7 +128,8 @@ public class Controller {
 	private void setModelData() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("multipleOdsFolder");
 		try (InputStream stream = resourceUrl.openStream()) {
-			Set<TeacherPrefs> teacherPrefsSet = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI())).getTeacherPrefsSet();
+			Set<TeacherPrefs> teacherPrefsSet = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()))
+					.getTeacherPrefsSet();
 			model.setDataFromSet(teacherPrefsSet);
 		}
 	}
@@ -212,7 +216,7 @@ public class Controller {
 	 */
 	private List<String[]> getDataForTableItems(Set<CoursePrefElement> coursePrefElements) {
 		checkNotNull(coursePrefElements);
-		
+
 		ArrayList<String[]> stringsToShow = new ArrayList<>();
 
 		for (CoursePrefElement coursePrefElement : coursePrefElements) {
@@ -325,7 +329,7 @@ public class Controller {
 			updateSet(texts, model.getChosenPreferences(), model.getAllPreferences());
 		}
 	}
-	
+
 	/**
 	 * Shows the gui.
 	 */
@@ -342,6 +346,46 @@ public class Controller {
 	}
 
 	/**
+	 * Checks the validity of a set of assignments. Triggers a function from View to colorize the incorrect assignments in red.
+	 * 
+	 * @param chosenPreferences a set of assignments
+	 * @return true iff all of the number of groups assigned are not greater than the
+	 *         maximum number of groups for each course and course type
+	 */
+	private boolean checkValidityAssignments(Set<CoursePrefElement> chosenPreferences) {
+		boolean isValid = true;
+		com.google.common.collect.Table<SubCourseKind, Course, Integer> numberAssignments = HashBasedTable.create();
+
+		for (CoursePrefElement chosenPreference : chosenPreferences) {
+			SubCourseKind SubCourseKind = chosenPreference.getSubCourseKind();
+			Course course = chosenPreference.getCoursePref().getCourse();
+
+			if (!numberAssignments.contains(SubCourseKind, course)) {
+				numberAssignments.put(SubCourseKind, course, 1);
+			} else {
+				int oldNumberAssignments = numberAssignments.get(SubCourseKind, course);
+				numberAssignments.put(SubCourseKind, course, oldNumberAssignments + 1);
+			}
+		}
+		
+		Map<SubCourseKind, Map<Course, Integer>> map = numberAssignments.rowMap();
+		for (Map.Entry<SubCourseKind, Map<Course, Integer>> entry1 : map.entrySet()) {
+			SubCourseKind subCourseKind = entry1.getKey();
+
+			for (Map.Entry<Course, Integer> entry2 : entry1.getValue().entrySet()) {
+				Course course = entry2.getKey();
+				int nbGroupsAssigned = entry2.getValue();
+
+				if (nbGroupsAssigned > course.getCountGroups(subCourseKind)) {
+					view.colorizeChosenPreferences(course.getName(), subCourseKind.name());
+					isValid = false;
+				}
+			}
+		}
+		return isValid;
+	}
+
+	/**
 	 * the only purpose of this main is to test the gui.This is not the main
 	 * function of this program.
 	 */
@@ -353,17 +397,18 @@ public class Controller {
 		Button submitButton = controller.view.getSubmitButton();
 
 		controller.setModelData();
-		List<String[]> stringsToShowAllPreferences = controller.getDataForTableItems(controller.model.getAllPreferences());
+		List<String[]> stringsToShowAllPreferences = controller
+				.getDataForTableItems(controller.model.getAllPreferences());
 		controller.view.populateCourses(controller.model.getCourses());
 		controller.view.populateAllPreferences(stringsToShowAllPreferences);
 
-		
-		allPreferencesTable.addListener(SWT.MouseDoubleClick, controller.createListenerPreferences(allPreferencesTable));
-		chosenPreferencesTable.addListener(SWT.MouseDoubleClick, controller.createListenerPreferences(chosenPreferencesTable));
+		allPreferencesTable.addListener(SWT.MouseDoubleClick,
+				controller.createListenerPreferences(allPreferencesTable));
+		chosenPreferencesTable.addListener(SWT.MouseDoubleClick,
+				controller.createListenerPreferences(chosenPreferencesTable));
 		submitButton.addListener(SWT.MouseDown, controller.createListenerSubmitButton());
-		
+
 		controller.show(controller.view.getShell(), controller.view.getDisplay());
 	}
-
 
 }
