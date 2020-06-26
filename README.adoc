@@ -85,5 +85,5 @@ Comment: The formatting of the documents generated was easy. However, it took me
 
 ** I coded the classes in the read package and theirs unit tests.
 ** I coded some parts of the gui package (mostly the view and few parts of the controller).
-** I wrote the App class in the main package (containg the main of this program).
+** I wrote the App class in the main package (containing the main of this program).
 ** I tested with Semida the writing time to disk for 100 assignments.
