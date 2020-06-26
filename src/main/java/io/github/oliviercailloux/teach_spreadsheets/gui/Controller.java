@@ -140,10 +140,10 @@ public class Controller {
 		 */
 		try (SpreadsheetDocument odsGlobalAssignmentDocument = odsGlobalAssignment.createSummary()) {
 			if (!Files.exists(outputFolderPath)) {
-				Files.createDirectory(outputFolderPath);
+				Files.createDirectories(outputFolderPath);
 			}
 			if (!Files.exists(assignmentPerTeacherFolderPath)) {
-				Files.createDirectory(assignmentPerTeacherFolderPath);
+				Files.createDirectories(assignmentPerTeacherFolderPath);
 			}
 			/**
 			 * we need to clean the teacher_assignments folder after each submit so not to
@@ -164,8 +164,7 @@ public class Controller {
 			Path globalAssignmentPath = outputFolderPath.resolve(Path.of("GlobalAssignment.ods"));
 			odsGlobalAssignmentDocument.save(globalAssignmentPath.toString());
 		} catch (Exception e) {
-			LOGGER.error("An error has occured during the writing of the assignment Files.", e);
-			throw new RuntimeException();
+			throw new SummarizerException(e);
 		}
 	}
 
@@ -442,16 +441,6 @@ public class Controller {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * initializes and launches the gui.
-	 * 
-	 * @param teacherPrefs a Set of teacherPrefs containing the the data about the
-	 *                     teachers, courses and preferences.
-	 * @param courses      the courses corresponding to TeacherPrefs
-	 * @param CoursePrefs  the course preferences corresponding to TeacherPrefs
-=======
-	 * Checks the validity of a set of assignments. Triggers a function from View to colorize the incorrect assignments in red.
-	 * 
 	 * @param chosenPreferences a set of assignments
 	 * @return true iff all of the number of groups assigned are not greater than the
 	 *         maximum number of groups for each course and course type
@@ -490,9 +479,13 @@ public class Controller {
 	}
 
 	/**
-	 * the only purpose of this main is to test the gui.This is not the main
-	 * function of this program.
->>>>>>> master
+	 * initializes and launches the gui.
+	 * @param teacherPrefs a Set of teacherPrefs containing the the data about the
+	 *                     teachers, courses and preferences.
+	 * @param courses      the courses corresponding to TeacherPrefs
+	 * @param CoursePrefs  the course preferences corresponding to TeacherPrefs
+	 * Checks the validity of a set of assignments. Triggers a function from View to colorize the incorrect assignments in red.
+	 * 
 	 */
 	public static void initializeAndLaunchGui(Set<TeacherPrefs> teacherPrefs, Set<Course> courses,
 			Set<CoursePref> CoursePrefs, Path outputFolderPath) {
