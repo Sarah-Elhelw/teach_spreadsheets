@@ -180,7 +180,7 @@ public class AssignmentPerTeacher {
 					table.getCellByPosition(j, i).setBorders(CellBordersType.TOP,
 							new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 				}
-				if (i==line) {
+				if (i == line) {
 					table.getCellByPosition(j, i).setBorders(CellBordersType.BOTTOM,
 							new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 				}
