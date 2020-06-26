@@ -7,12 +7,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.FileVisitOption;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -102,7 +104,7 @@ public class Controller {
 	 * @throws IOException
 	 */
 	private void deleteAllOdsFromFolder(Path folderPath) throws IOException {
-		Files.walkFileTree(folderPath, new SimpleFileVisitor<Path>() {
+		Files.walkFileTree(folderPath, EnumSet.noneOf(FileVisitOption.class), 1, new SimpleFileVisitor<Path>() {
 			@Override
 			public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) throws IOException {
 				if (com.google.common.io.Files.getFileExtension(file.toString()).equals("ods")) {
@@ -125,7 +127,7 @@ public class Controller {
 	private void createAssignmentsAndWriteToDisk(Set<Course> courses, Set<CoursePref> CoursePrefs,
 			Path outputFolderPath) {
 		checkNotNull(outputFolderPath);
-		Path AssignmentPerTeacherFolderPath = outputFolderPath.resolve(Path.of("teacher_assignments"));
+		Path assignmentPerTeacherFolderPath = outputFolderPath.resolve(Path.of("teacher_assignments"));
 		Set<TeacherAssignment> teacherAssignments = createAssignments();
 		Set<CourseAssignment> courseAssignments = CourseAssignment
 				.teacherAssignmentsToCourseAssignments(teacherAssignments);
@@ -140,27 +142,30 @@ public class Controller {
 			if (!Files.exists(outputFolderPath)) {
 				Files.createDirectory(outputFolderPath);
 			}
-			if (!Files.exists(AssignmentPerTeacherFolderPath)) {
-				Files.createDirectory(AssignmentPerTeacherFolderPath);
+			if (!Files.exists(assignmentPerTeacherFolderPath)) {
+				Files.createDirectory(assignmentPerTeacherFolderPath);
 			}
 			/**
 			 * we need to clean the teacher_assignments folder after each submit so not to
 			 * have files concerning teachers with no assignments.
 			 */
 			else {
-				deleteAllOdsFromFolder(AssignmentPerTeacherFolderPath);
+				deleteAllOdsFromFolder(assignmentPerTeacherFolderPath);
 			}
 			for (TeacherAssignment teacherAssignment : teacherAssignments) {
 				Teacher teacher = teacherAssignment.getTeacher();
+				Path assignmentTeacherPath = assignmentPerTeacherFolderPath
+						.resolve(Path.of(teacher.getFirstName() + "_" + teacher.getLastName() + ".ods"));
 				try (SpreadsheetDocument assignmentToTeacherDocument = AssignmentPerTeacher
 						.createAssignmentPerTeacher(teacher, courseAssignments)) {
-					assignmentToTeacherDocument.save(AssignmentPerTeacherFolderPath.toString() + "//"
-							+ teacher.getFirstName() + "_" + teacher.getLastName() + ".ods");
+					assignmentToTeacherDocument.save(assignmentTeacherPath.toString());
 				}
 			}
-			odsGlobalAssignmentDocument.save(outputFolderPath.toString() + "//" + "GlobalAssignment.ods");
+			Path globalAssignmentPath = outputFolderPath.resolve(Path.of("GlobalAssignment.ods"));
+			odsGlobalAssignmentDocument.save(globalAssignmentPath.toString());
 		} catch (Exception e) {
 			LOGGER.error("An error has occured during the writing of the assignment Files.", e);
+			throw new RuntimeException();
 		}
 	}
 
@@ -214,7 +219,8 @@ public class Controller {
 	private void setModelData() throws Exception {
 		URL resourceUrl = PrefsInitializer.class.getResource("multipleOdsFolder");
 		try (InputStream stream = resourceUrl.openStream()) {
-			Set<TeacherPrefs> teacherPrefsSet = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI())).getTeacherPrefsSet();
+			Set<TeacherPrefs> teacherPrefsSet = MultipleOdsPrefReader.readFilesFromFolder(Path.of(resourceUrl.toURI()))
+					.getTeacherPrefsSet();
 			model.setDataFromSet(teacherPrefsSet);
 		}
 	}
@@ -433,13 +439,13 @@ public class Controller {
 	/**
 	 * initializes and launches the gui.
 	 * 
-	 * @param teacherPrefs   a Set of teacherPrefs containing the the data about the
-	 *                    teachers, courses and preferences.
-	 * @param courses     the courses corresponding to TeacherPrefs
-	 * @param CoursePrefs the course preferences corresponding to TeacherPrefs
+	 * @param teacherPrefs a Set of teacherPrefs containing the the data about the
+	 *                     teachers, courses and preferences.
+	 * @param courses      the courses corresponding to TeacherPrefs
+	 * @param CoursePrefs  the course preferences corresponding to TeacherPrefs
 	 */
-	public static void initializeAndLaunchGui(Set<TeacherPrefs> teacherPrefs, Set<Course> courses, Set<CoursePref> CoursePrefs,
-			Path outputFolderPath) {
+	public static void initializeAndLaunchGui(Set<TeacherPrefs> teacherPrefs, Set<Course> courses,
+			Set<CoursePref> CoursePrefs, Path outputFolderPath) {
 		/**
 		 * Gui management.
 		 */
