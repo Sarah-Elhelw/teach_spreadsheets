@@ -59,7 +59,7 @@ Comment: It was difficult for me to understand how to use jsonb. Moreover, under
 Comment: The formatting of the documents generated was easy. However, it took me a long time to get a very aesthetic result, especially for the table in OdsSummarizer.ods.
 
 *** for base package, I:
-**** recoded almost all the unit tests to make sure that the project’s code fails fast as desired.
+**** recoded some of the unit tests to make sure that the project’s code fails fast as desired.
 **** coded AggregatedPrefs.
 
 *** I will also make diverse corrections to different packages of the code to close the opened issues.
@@ -83,7 +83,7 @@ Comment: The formatting of the documents generated was easy. However, it took me
 
 * Hedi :
 
-** I coded the classes in the read package and theirs unit tests.
+** I coded the classes in the read package and their unit tests.
 ** I coded some parts of the gui package (mostly the view and few parts of the controller).
 ** I wrote the App class in the main package (containing the main of this program).
 ** I tested with Semida the writing time to disk for 100 assignments.
