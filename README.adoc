@@ -43,7 +43,7 @@ The classes implemented are described in the link:Doc\README.adoc#ClassDiag[clas
 *** for assignment package, I:
 **** coded TeacherAssignment and CourseAssignment classes
 
-*** for write package, I:
+*** for read package, I:
 **** corrected setInfoPref() and readSemester() in CourseAndPrefReader and the code of PrefsInitializer
 **** documented classes
 **** made the unit tests for TeacherReader, readSemester() in CourseAndPrefReader, PrefsInitializer, TeacherPrefsInitializer
