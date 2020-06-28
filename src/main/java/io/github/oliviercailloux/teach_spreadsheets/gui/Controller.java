@@ -6,6 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.net.URL;
 import java.nio.file.FileVisitOption;
 import java.nio.file.FileVisitResult;
@@ -164,7 +165,11 @@ public class Controller {
 			Path globalAssignmentPath = outputFolderPath.resolve(Path.of("GlobalAssignment.ods"));
 			odsGlobalAssignmentDocument.save(globalAssignmentPath.toString());
 		} catch (Exception e) {
-			throw new SummarizerException(e);
+			/**
+			 * To throw UncheckedIOException we need an IOException.
+			 */
+			IOException ioException =new IOException(e);
+			throw new UncheckedIOException("An error has occured during the writing of the assignment Files.",ioException);
 		}
 	}
 
