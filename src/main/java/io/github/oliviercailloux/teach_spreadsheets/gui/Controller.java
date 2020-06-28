@@ -194,8 +194,8 @@ public class Controller {
 				view.resetColors();
 				if (checkValidityAssignments(model.getChosenPreferences())) {
 					LOGGER.info("Submitted assignments: " + createAssignments().toString());
+					createAssignmentsAndWriteToDisk(courses, CoursePrefs, outputFolderPath);
 				}
-				createAssignmentsAndWriteToDisk(courses, CoursePrefs, outputFolderPath);
 			}
 		};
 	}
