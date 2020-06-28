@@ -87,3 +87,9 @@ Comment: The formatting of the documents generated was easy. However, it took me
 ** I coded some parts of the gui package (mostly the view and few parts of the controller).
 ** I wrote the App class in the main package (containing the main of this program).
 ** I tested with Semida the writing time to disk for 100 assignments.
+
+* Mike :
+
+** I participated on few classes in base package (Course, Teacher, CoursePref).
+** I coded json reading/writing functions, although it hasn't been useful in the end.
+** I coded the majority of GUI functions (View, Controller and Model) and tried to respect the MVC architecture at best. I also implemented some features in the GUI to improve user experience.
