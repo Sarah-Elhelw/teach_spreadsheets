@@ -82,23 +82,23 @@ class OdsHelper {
 	/**
 	 * This method sets the auto Width for each column of the document
 	 * 
-	 * @param table  - the sheet where the table is
+	 * @param sheet  - the sheet where the table is
 	 * @param row    - the last row of the document
 	 * @param column - the last column of the document
 	 */
 
-	public void autoWidth(Table table, int row, int column) {
+	public void autoWidth(Table sheet, int row, int column) {
 		double width;
 
 		for (int j = 0; j < column; j++) {
 			width = 10;
 			for (int i = 0; i < row; i++) {
 
-				if (table.getCellByPosition(j, i).getStringValue().length() > width) {
-					width = table.getCellByPosition(j, i).getStringValue().length();
+				if (sheet.getCellByPosition(j, i).getStringValue().length() > width) {
+					width = sheet.getCellByPosition(j, i).getStringValue().length();
 				}
 			}
-			table.getColumnByIndex(j).setWidth(width * 2);
+			sheet.getColumnByIndex(j).setWidth(width * 2);
 		}
 	}
 }
