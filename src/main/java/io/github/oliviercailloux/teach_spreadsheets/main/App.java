@@ -3,12 +3,8 @@ package io.github.oliviercailloux.teach_spreadsheets.main;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Table;
 import org.odftoolkit.simple.SpreadsheetDocument;
 
 import io.github.oliviercailloux.teach_spreadsheets.base.AggregatedPrefs;
