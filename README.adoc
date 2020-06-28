@@ -43,7 +43,7 @@ The classes implemented are described in the link:Doc\README.adoc#ClassDiag[clas
 *** for assignment package, I:
 **** coded TeacherAssignment and CourseAssignment classes
 
-*** for write package, I:
+*** for read package, I:
 **** corrected setInfoPref() and readSemester() in CourseAndPrefReader and the code of PrefsInitializer
 **** documented classes
 **** made the unit tests for TeacherReader, readSemester() in CourseAndPrefReader, PrefsInitializer, TeacherPrefsInitializer
@@ -59,7 +59,7 @@ Comment: It was difficult for me to understand how to use jsonb. Moreover, under
 Comment: The formatting of the documents generated was easy. However, it took me a long time to get a very aesthetic result, especially for the table in OdsSummarizer.ods.
 
 *** for base package, I:
-**** recoded almost all the unit tests to make sure that the project’s code fails fast as desired.
+**** recoded some of the unit tests to make sure that the project’s code fails fast as desired.
 **** coded AggregatedPrefs.
 
 *** I will also make diverse corrections to different packages of the code to close the opened issues.
@@ -79,4 +79,11 @@ Comment: The formatting of the documents generated was easy. However, it took me
 
 ** My main task was the writing package i.e. the following classes : OdsHelper, AssignmentPerTeacher and OdsSummarizer.  I developed on it since the first iteration until the last and with the precious help of my mates, we achieved the final result.   
 
-** I also made my humble contribution on several other classes as for example : classes Course, CourseTests, Teacher and TeacherTests (on branch it3-Equals), CourseAssignment (on branch it3-Assignment), AggregatedData and AggregatedDataTests (on branch it3-AD), Controller (on branch it4-Main) ... 
+** I also made my humble contribution on several other classes as for example : classes Course, CourseTests, Teacher and TeacherTests (on branch it3-Equals), CourseAssignment (on branch it3-Assignment), AggregatedData and AggregatedDataTests (on branch it3-AD), Controller (on branch it4-Main) ...
+
+* Hedi :
+
+** I coded the classes in the read package and their unit tests.
+** I coded some parts of the gui package (mostly the view and few parts of the controller).
+** I wrote the App class in the main package (containing the main of this program).
+** I tested with Semida the writing time to disk for 100 assignments.

@@ -173,9 +173,17 @@ public class AssignmentPerTeacher {
 		checkNotNull(table, "The sheet should not be null.");
 
 		for (int j = 0; j <= 4; j++) {
-			for (int i = 15; i < line; i++) {
-				table.getCellByPosition(j, i).setBorders(CellBordersType.ALL_FOUR,
+			for (int i = 15; i <= line; i++) {
+				table.getCellByPosition(j, i).setBorders(CellBordersType.LEFT_RIGHT,
 						new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+				if (table.getCellByPosition(0, i).getDisplayText().length() != 0) {
+					table.getCellByPosition(j, i).setBorders(CellBordersType.TOP,
+							new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+				}
+				if (i == line) {
+					table.getCellByPosition(j, i).setBorders(CellBordersType.BOTTOM,
+							new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
+				}
 			}
 		}
 	}
@@ -237,6 +245,7 @@ public class AssignmentPerTeacher {
 				new Border(Color.BLACK, 0.03, SupportedLinearMeasure.CM));
 
 		totalNumberMinutes = 0;
+		ods.autoWidth(summary, line, 5);
 
 		return document;
 	}
