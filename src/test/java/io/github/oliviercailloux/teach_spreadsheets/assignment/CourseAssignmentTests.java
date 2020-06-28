@@ -39,14 +39,14 @@ public class CourseAssignmentTests {
 
 	@Test
 	void testAddTeacherAssignmentWithExceedingCountGroupsTD() {
-		TeacherAssignment teacherAssignment1 = TeacherAssignment.Builder.newInstance(course1, teacher1)
+		TeacherAssignment teacherAssignment11 = TeacherAssignment.Builder.newInstance(course1, teacher1)
 				.setCountGroupsTD(2).build();
-		TeacherAssignment teacherAssignment2 = TeacherAssignment.Builder.newInstance(course1, teacher2)
+		TeacherAssignment teacherAssignment12 = TeacherAssignment.Builder.newInstance(course1, teacher2)
 				.setCountGroupsTD(2).build();
 		CourseAssignment.Builder courseAssignmentBuilder = CourseAssignment.Builder.newInstance(course1);
-		courseAssignmentBuilder.addTeacherAssignment(teacherAssignment1);
+		courseAssignmentBuilder.addTeacherAssignment(teacherAssignment11);
 		Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
-			courseAssignmentBuilder.addTeacherAssignment(teacherAssignment2);
+			courseAssignmentBuilder.addTeacherAssignment(teacherAssignment12);
 		});
 		assertEquals(
 				"The number of assigned TD groups must not exceed the number of TD groups associated to the course.",

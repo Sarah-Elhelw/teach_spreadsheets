@@ -3,10 +3,19 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.net.URL;
+import java.nio.file.FileVisitOption;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -21,18 +30,24 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
+import org.odftoolkit.simple.SpreadsheetDocument;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.ImmutableSet;
 
+import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
+import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
+import io.github.oliviercailloux.teach_spreadsheets.json.JsonSerializer;
 import io.github.oliviercailloux.teach_spreadsheets.read.MultipleOdsPrefReader;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
+import io.github.oliviercailloux.teach_spreadsheets.write.AssignmentPerTeacher;
+import io.github.oliviercailloux.teach_spreadsheets.write.OdsSummarizer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,18 +99,103 @@ public class Controller {
 	}
 
 	/**
-	 * Creates a listener for the submit button.
+	 * Deletes all the Ods files in the folder.
 	 * 
+	 * @param folderPath the folder containing the Ods files to be deleted
+	 * @throws IOException
+	 */
+	private void deleteAllOdsFromFolder(Path folderPath) throws IOException {
+		Files.walkFileTree(folderPath, EnumSet.noneOf(FileVisitOption.class), 1, new SimpleFileVisitor<Path>() {
+			@Override
+			public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) throws IOException {
+				if (com.google.common.io.Files.getFileExtension(file.toString()).equals("ods")) {
+					Files.delete(file);
+				}
+				return FileVisitResult.CONTINUE;
+			}
+		});
+	}
+
+	/**
+	 * Creates the assignment files and writes them to disk.
+	 * 
+	 * @param courses          These are the courses to be written in the output
+	 *                         files.
+	 * @param CoursePrefs      These are the courses preferences to be written in
+	 *                         the output files
+	 * @param outputFolderPath the path to the output folder
+	 */
+	private void createAssignmentsAndWriteToDisk(Set<Course> courses, Set<CoursePref> CoursePrefs,
+			Path outputFolderPath) {
+		checkNotNull(outputFolderPath);
+		Path assignmentPerTeacherFolderPath = outputFolderPath.resolve(Path.of("teacher_assignments"));
+		Set<TeacherAssignment> teacherAssignments = createAssignments();
+		Set<CourseAssignment> courseAssignments = CourseAssignment
+				.teacherAssignmentsToCourseAssignments(teacherAssignments);
+		OdsSummarizer odsGlobalAssignment = OdsSummarizer.newInstance(courses);
+		odsGlobalAssignment.addPrefs(CoursePrefs);
+		odsGlobalAssignment.setAllCoursesAssigned(ImmutableSet.copyOf(courseAssignments));
+		/**
+		 * This try catch is necessary as this function doesn't throw non-runtime
+		 * exceptions (it is the main function of a Listener).
+		 */
+		try (SpreadsheetDocument odsGlobalAssignmentDocument = odsGlobalAssignment.createSummary()) {
+			if (!Files.exists(outputFolderPath)) {
+				Files.createDirectories(outputFolderPath);
+			}
+			if (!Files.exists(assignmentPerTeacherFolderPath)) {
+				Files.createDirectories(assignmentPerTeacherFolderPath);
+			}
+			/**
+			 * we need to clean the teacher_assignments folder after each submit so not to
+			 * have files concerning teachers with no assignments.
+			 */
+			else {
+				deleteAllOdsFromFolder(assignmentPerTeacherFolderPath);
+			}
+			for (TeacherAssignment teacherAssignment : teacherAssignments) {
+				Teacher teacher = teacherAssignment.getTeacher();
+				Path assignmentTeacherPath = assignmentPerTeacherFolderPath
+						.resolve(Path.of(teacher.getFirstName() + "_" + teacher.getLastName() + ".ods"));
+				try (SpreadsheetDocument assignmentToTeacherDocument = AssignmentPerTeacher
+						.createAssignmentPerTeacher(teacher, courseAssignments)) {
+					assignmentToTeacherDocument.save(assignmentTeacherPath.toString());
+				}
+			}
+			Path globalAssignmentPath = outputFolderPath.resolve(Path.of("GlobalAssignment.ods"));
+			odsGlobalAssignmentDocument.save(globalAssignmentPath.toString());
+		} catch (Exception e) {
+			/**
+			 * To throw UncheckedIOException we need an IOException.
+			 */
+			IOException ioException =new IOException(e);
+			throw new UncheckedIOException("An error has occured during the writing of the assignment Files.",ioException);
+		}
+	}
+
+	/**
+	 * Creates a listener for the submit button.This Listener writes the Ods output
+	 * files (global assignment and assignment per teacher) to disk when the submit
+	 * button is clicked.
+	 * 
+	 * @param courses          These are the courses to be written in the output
+	 *                         files.
+	 * @param CoursePrefs      These are the courses preferences to be written in
+	 *                         the output files.
+	 * @param outputFolderPath the path to the output folder
 	 * @return a listener for submit button
 	 */
-	private Listener createListenerSubmitButton() {
+	private Listener createListenerSubmitButton(Set<Course> courses, Set<CoursePref> CoursePrefs,
+			Path outputFolderPath) {
 		return new Listener() {
 			@Override
 			public void handleEvent(Event event) {
+
 				view.resetColors();
 				if (checkValidityAssignments(model.getChosenPreferences())) {
 					LOGGER.info("Submitted assignments: " + createAssignments().toString());
 				}
+				createAssignmentsAndWriteToDisk(courses, CoursePrefs, outputFolderPath);
 			}
 		};
 	}
@@ -346,11 +446,9 @@ public class Controller {
 	}
 
 	/**
-	 * Checks the validity of a set of assignments. Triggers a function from View to colorize the incorrect assignments in red.
-	 * 
 	 * @param chosenPreferences a set of assignments
-	 * @return true iff all of the number of groups assigned are not greater than the
-	 *         maximum number of groups for each course and course type
+	 * @return true iff all of the number of groups assigned are not greater than
+	 *         the maximum number of groups for each course and course type
 	 */
 	private boolean checkValidityAssignments(Set<CoursePrefElement> chosenPreferences) {
 		boolean isValid = true;
@@ -367,7 +465,7 @@ public class Controller {
 				numberAssignments.put(SubCourseKind, course, oldNumberAssignments + 1);
 			}
 		}
-		
+
 		Map<SubCourseKind, Map<Course, Integer>> map = numberAssignments.rowMap();
 		for (Map.Entry<SubCourseKind, Map<Course, Integer>> entry1 : map.entrySet()) {
 			SubCourseKind subCourseKind = entry1.getKey();
@@ -386,15 +484,58 @@ public class Controller {
 	}
 
 	/**
-	 * the only purpose of this main is to test the gui.This is not the main
-	 * function of this program.
+	 * initializes and launches the gui.
+	 * 
+	 * @param teacherPrefs a Set of teacherPrefs containing the the data about the
+	 *                     teachers, courses and preferences.
+	 * @param courses      the courses corresponding to TeacherPrefs
+	 * @param CoursePrefs  the course preferences corresponding to TeacherPrefs
+	 *                     Checks the validity of a set of assignments. Triggers a
+	 *                     function from View to colorize the incorrect assignments
+	 *                     in red.
+	 * 
+	 */
+	public static void initializeAndLaunchGui(Set<TeacherPrefs> teacherPrefs, Set<Course> courses,
+			Set<CoursePref> CoursePrefs, Path outputFolderPath) {
+		/**
+		 * Gui management.
+		 */
+		Controller controller = Controller.newInstance();
+
+		Table allPreferencesTable = controller.view.getAllPreferencesTable();
+		Table chosenPreferencesTable = controller.view.getChosenPreferencesTable();
+		Button submitButton = controller.view.getSubmitButton();
+
+		controller.model.setDataFromSet(teacherPrefs);
+
+		List<String[]> stringsToShowAllPreferences = controller
+				.getDataForTableItems(controller.model.getAllPreferences());
+		controller.view.populateCourses(controller.model.getCourses());
+		controller.view.populateAllPreferences(stringsToShowAllPreferences);
+
+		allPreferencesTable.addListener(SWT.MouseDoubleClick,
+				controller.createListenerPreferences(allPreferencesTable));
+		chosenPreferencesTable.addListener(SWT.MouseDoubleClick,
+				controller.createListenerPreferences(chosenPreferencesTable));
+
+		/**
+		 * The writing process of the Ods output files (global assignment and assignment
+		 * per teacher) are defined in the Listener of the submit button.
+		 */
+		submitButton.addListener(SWT.MouseDown,
+				controller.createListenerSubmitButton(courses, CoursePrefs, outputFolderPath));
+		controller.show(controller.view.getShell(), controller.view.getDisplay());
+	}
+
+	/**
+	 * This main just launches the gui with mock data.the only purpose of this main
+	 * is to test the gui.This is not the main function of this program.
 	 */
 	public static void main(String[] args) throws Exception {
 		Controller controller = Controller.newInstance();
 
 		Table allPreferencesTable = controller.view.getAllPreferencesTable();
 		Table chosenPreferencesTable = controller.view.getChosenPreferencesTable();
-		Button submitButton = controller.view.getSubmitButton();
 
 		controller.setModelData();
 		List<String[]> stringsToShowAllPreferences = controller
@@ -406,9 +547,7 @@ public class Controller {
 				controller.createListenerPreferences(allPreferencesTable));
 		chosenPreferencesTable.addListener(SWT.MouseDoubleClick,
 				controller.createListenerPreferences(chosenPreferencesTable));
-		submitButton.addListener(SWT.MouseDown, controller.createListenerSubmitButton());
 
 		controller.show(controller.view.getShell(), controller.view.getDisplay());
 	}
-
 }
