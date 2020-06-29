@@ -3,7 +3,6 @@ package io.github.oliviercailloux.teach_spreadsheets.gui;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
@@ -37,13 +36,11 @@ import com.google.common.collect.ImmutableSet;
 
 import io.github.oliviercailloux.teach_spreadsheets.assignment.CourseAssignment;
 import io.github.oliviercailloux.teach_spreadsheets.assignment.TeacherAssignment;
-import io.github.oliviercailloux.teach_spreadsheets.base.Preference;
 import io.github.oliviercailloux.teach_spreadsheets.base.TeacherPrefs;
 import io.github.oliviercailloux.teach_spreadsheets.base.Course;
 import io.github.oliviercailloux.teach_spreadsheets.base.CoursePref;
 import io.github.oliviercailloux.teach_spreadsheets.base.SubCourseKind;
 import io.github.oliviercailloux.teach_spreadsheets.base.Teacher;
-import io.github.oliviercailloux.teach_spreadsheets.json.JsonSerializer;
 import io.github.oliviercailloux.teach_spreadsheets.read.MultipleOdsPrefReader;
 import io.github.oliviercailloux.teach_spreadsheets.read.PrefsInitializer;
 import io.github.oliviercailloux.teach_spreadsheets.write.AssignmentPerTeacher;
@@ -194,8 +191,8 @@ public class Controller {
 				view.resetColors();
 				if (checkValidityAssignments(model.getChosenPreferences())) {
 					LOGGER.info("Submitted assignments: " + createAssignments().toString());
+					createAssignmentsAndWriteToDisk(courses, CoursePrefs, outputFolderPath);
 				}
-				createAssignmentsAndWriteToDisk(courses, CoursePrefs, outputFolderPath);
 			}
 		};
 	}
